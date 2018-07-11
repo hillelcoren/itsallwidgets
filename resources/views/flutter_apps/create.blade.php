@@ -6,8 +6,6 @@
 	<div class="container">
 		<div class="column is-8 is-offset-2">
 
-			@include('includes.flash')
-
 			<h2 class="title">Submit Application</h2>
 			<p>&nbsp;</p>
 

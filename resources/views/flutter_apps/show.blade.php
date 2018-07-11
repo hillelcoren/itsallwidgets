@@ -15,14 +15,6 @@
 				</figure>
 			</div>
 			<div class="column is-8">
-
-				@if (session('status'))
-				    <div class="notification is-success">
-				        {{ session('status') }}
-				    </div>
-				@endif
-
-
 				<nav class="breadcrumb" aria-label="breadcrumbs">
 					<ul>
 						<li><a href="{{ url('/flutter-apps') }}">All Applications</a></li>

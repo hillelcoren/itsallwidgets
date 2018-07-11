@@ -38,7 +38,7 @@
                     <div id="navbarMenuHeroA" class="navbar-menu">
                         <div class="navbar-end">
                             <span class="navbar-item">
-                                <a class="button is-info is-inverted" href="{{ url('submit-project') }}">
+                                <a class="button is-info is-inverted" href="{{ url('submit-app') }}">
                                     <span class="icon">
                                         <i class="fas fa-upload"></i>
                                     </span>
@@ -62,6 +62,13 @@
 
     <p>&nbsp;</p>
     <p>&nbsp;</p>
+
+    @if (session('status'))
+        <div class="notification is-success">
+            {{ session('status') }}
+        </div>
+        <p>&nbsp;</p>
+    @endif
 
     @yield('content')
 
