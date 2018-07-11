@@ -27,7 +27,7 @@
 						<div class="card-content">
 							<div class="content">
 								<div class="subtitle is-6">
-									{{ $app->short }}
+									{{ $app->short_description }}
 								</div>
 								@if ($app->google_url || $app->apple_url)
 									<br/>
