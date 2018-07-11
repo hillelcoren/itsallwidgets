@@ -40,6 +40,8 @@ class FlutterAppRepository
      */
     public function store($app)
     {
+        $app['slug'] = str_slug($app['title']);
+
         return FlutterApp::create($app);
     }
 

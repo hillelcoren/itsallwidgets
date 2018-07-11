@@ -17,7 +17,6 @@
 				<article class="message  is-dark">
 					<div class="message-body">
 
-
 						<label class="label" for="title">
 							Application Name <span class="required">*</span>
 						</label>
@@ -55,43 +54,45 @@
 						</p>
 
 						<div class="field">
-							<label class="label" for="short">
+							<label class="label" for="short_description">
 								Short Description <span class="required">*</span>
 							</label>
 							<div class="control">
 								<input
 								class="input {{ $errors->has('short') ? ' is-danger' : '' }}"
 								type="text"
-								name="short"
-								value="{{ old('short') }}"
+								name="short_description"
+								value="{{ old('short_description') }}"
 								required>
 
-								@if ($errors->has('short'))
+								@if ($errors->has('short_description'))
 									<span class="help is-danger">
-										{{ $errors->first('short') }}
+										{{ $errors->first('short_description') }}
 									</span>
 								@endif
 							</div>
 						</div>
 
 						<div class="field">
-							<label class="label" for="description">
+							<label class="label" for="long_description">
 								Long Description <span class="required">*</span>
 							</label>
 							<div class="control">
-								<textarea
-								class="textarea {{ $errors->has('description') ? ' is-danger' : '' }}"
-								id="description"
-								name="description"
-								required>{{ old('description') }}
-							</textarea>
+								<input
+								class="input {{ $errors->has('long_description') ? ' is-danger' : '' }}"
+								type="text"
+								name="long_description"
+								value="{{ old('long_description') }}"
+								required>
 
-							@if ($errors->has('description'))
-								<span class="help is-danger">
-									{{ $errors->first('description') }}
-								</span>
-							@endif
+								@if ($errors->has('long_description'))
+									<span class="help is-danger">
+										{{ $errors->first('long_description') }}
+									</span>
+								@endif
+							</div>
 						</div>
+
 					</div>
 
 				</div>

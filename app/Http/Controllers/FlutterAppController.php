@@ -58,27 +58,13 @@ class FlutterAppController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|unique:apps,title',
+            'title' => 'required|unique:flutter_apps,title',
             'screenshot1_url' => 'required|url',
-            'short' => 'required|max:140',
-            'description' => 'required'
+            'short_description' => 'required|max:140',
+            'long_description' => 'required',
         ]);
 
-        $app = [
-            'title' => $request->input('title'),
-            'slug' => str_slug($request->input('title')),
-            'website_url' => $request->input('website_url'),
-            'repo_url' => $request->input('repo_url'),
-            'apple_url' => $request->input('apple_url'),
-            'google_url' => $request->input('google_url'),
-            'twitter_url' => $request->input('twitter_url'),
-            'facebook_url' => $request->input('facebook_url'),
-            'screenshot1_url' => $request->input('screenshot1_url'),
-            'short' => $request->input('short'),
-            'description' => $request->input('description')
-        ];
-
-        $this->appRepo->store($app);
+        $app = $this->appRepo->store($request->all());
 
         return redirect('/flutter-app/' . $app['slug'])->with(
             'status',
@@ -95,17 +81,6 @@ class FlutterAppController extends Controller
     public function show($slug)
     {
         $app = $this->appRepo->show($slug);
-
-        /*
-        $repoArray = explode('/', $app->repo_url);
-
-        $username = $repoArray[3];
-        $repo = $repoArray[4];
-
-        $repoStats = $this->github->repo()->show($username, $repo);
-
-        return view('apps.show', compact('app', 'repoStats', 'username', 'repo'));
-        */
 
         return view('flutter_apps.show', compact('app'));
 
