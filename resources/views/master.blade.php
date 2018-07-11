@@ -57,7 +57,7 @@
                     An open list of apps built with Google Flutter
                 </div>
                 <div class="subtitle">
-                    Feel free to add an app in progress and update it once it goes live
+                    Feel free to add an app in progress and update it when it goes live
                 </div>
             </div>
         </div>
