@@ -1,14 +1,11 @@
-@extends('layouts.app')
+@extends('master')
 
 @section('title', 'Submit Application')
-
-@push('styles')
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-@endpush
 
 @section('content')
 	<div class="container">
 		<div class="column is-8 is-offset-2">
+
 			@include('includes.flash')
 
 			<h2 class="title">Submit Application</h2>

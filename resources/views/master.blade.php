@@ -71,9 +71,6 @@
     <footer class="footer">
         <div class="content has-text-centered">
             <p>
-                <a href="https://github.com/hillelcoren/openlaravel" target="_blank">It's all widgets </a> is a fork of <a href="https://github.com/ammezie/openlaravel" target="_blank">Open Laravel</a> and built with <a href="https://bulma.io/" target="_blank">Bulma</a>
-            </p>
-            <p>
                 Developed by
                 <a href="https://hillelcoren.com" target="_blank">Hillel Coren</a>
                 <a href="https://twitter.com/hillelcoren" target="_blank"><i class="fab fa-twitter-square"></i></a>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('master')
 
 @section('title', 'Flutter Apps')
 
