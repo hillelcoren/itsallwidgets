@@ -30,21 +30,17 @@
 
 
 				@if ($app->google_url || $app->apple_url)
-					<div class="columns" style="width:300px">
-						<div class="column is-one-half">
+					<div class="block">
+						@if ($app->google_url)
 							<a href="{{ $app->google_url }}" target="_blank">
-								<div class="card-image" style="visibility:{{ $app->google_url ? 'visible' : 'hidden' }}">
-									<img src="{{ asset('images/google.png') }}"/>
-								</div>
+								<img src="{{ asset('images/google.png') }}" style="width:180px"/>
 							</a>
-						</div>
-						<div class="column is-one-half">
+						@endif
+						@if ($app->apple_url)
 							<a href="{{ $app->apple_url }}" target="_blank">
-								<div class="card-image" style="visibility:{{ $app->google_url ? 'visible' : 'hidden' }}">
-									<img src="{{ asset('images/apple.png') }}"/>
-								</div>
+								<img src="{{ asset('images/apple.png') }}" style="width:180px"/>
 							</a>
-						</div>
+						@endif
 					</div>
 				@endif
 
