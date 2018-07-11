@@ -36,7 +36,7 @@ class FlutterAppController extends Controller
     {
         $apps = FlutterApp::latest()->get();
 
-        return view('apps.index', compact('apps'));
+        return view('flutter_apps.index', compact('apps'));
     }
 
     /**
@@ -46,7 +46,7 @@ class FlutterAppController extends Controller
      */
     public function create()
     {
-        return view('apps.create');
+        return view('flutter_apps.create');
     }
 
     /**
@@ -107,7 +107,7 @@ class FlutterAppController extends Controller
         return view('apps.show', compact('app', 'repoStats', 'username', 'repo'));
         */
 
-        return view('apps.show', compact('app'));
+        return view('flutter_apps.show', compact('app'));
 
     }
 }
