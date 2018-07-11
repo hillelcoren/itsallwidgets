@@ -1,26 +1,26 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta id="token" name="token" value="{{ csrf_token() }}">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="An open list of apps built with Google Flutter">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta charset="utf-8">
+    <meta id="token" name="token" value="{{ csrf_token() }}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="An open list of apps built with Google Flutter">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
-  <title>@yield('title') | {{ config('app.name') }}</title>
+    <title>@yield('title') | {{ config('app.name') }}</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
-  <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
 
-  <script>
+    <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', {{ config('services.analytics.tracking_id') }}, 'auto');
     ga('send', 'pageview');
-  </script>
+    </script>
 
 </head>
 
@@ -63,14 +63,18 @@
     <p>&nbsp;</p>
     <p>&nbsp;</p>
 
-    @if (session('status'))
-        <div class="notification is-success">
-            {{ session('status') }}
-        </div>
-        <p>&nbsp;</p>
-    @endif
+    <div class="container">
 
-    @yield('content')
+        @if (session('status'))
+            <div class="notification is-success">
+                {{ session('status') }}
+            </div>
+            <p>&nbsp;</p>
+        @endif
+
+        @yield('content')
+
+    </div>
 
     <p>&nbsp;</p>
     <p>&nbsp;</p>
