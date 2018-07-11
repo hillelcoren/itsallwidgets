@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', '/flutter-apps');
+Route::get('/flutter-apps', 'FlutterAppController@index');
+
+Route::get('/submit-app', 'FlutterAppController@create');
+Route::post('/submit-app', 'FlutterAppController@store');
+Route::get('/flutter-app/{slug}', 'FlutterAppController@show');
