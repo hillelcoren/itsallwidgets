@@ -53,9 +53,12 @@
 
         <div class="hero-body">
             <div class="container has-text-centered">
-                <h1 class="title">
+                <div class="title">
                     An open list of apps built with Google Flutter
-                </h1>
+                </div>
+                <div class="subtitle">
+                    Feel free to add an app in progress and update it once it goes live
+                </div>
             </div>
         </div>
     </section>
