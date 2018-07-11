@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Submit Project')
+@section('title', 'Submit Application')
 
 @push('styles')
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
@@ -16,7 +16,7 @@
 
 			<div class="subtitle">Required Fields</div>
 
-			<form action="{{ url('submit-project') }}" method="POST">
+			<form action="{{ url('submit-app') }}" method="POST">
 				{{ csrf_field() }}
 
 				<article class="message  is-dark">
