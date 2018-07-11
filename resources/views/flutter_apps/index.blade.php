@@ -26,28 +26,25 @@
 						</header>
 						<div class="card-content">
 							<div class="content">
-								<div class="subtitle is-6">
+								<div class="subtitle is-6" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
 									{{ $app->short_description }}
 								</div>
-								@if ($app->google_url || $app->apple_url)
-									<br/>
-									<div class="columns">
-										<div class="column is-one-half">
-											<a href="{{ $app->google_url }}" target="_blank">
-												<div class="card-image" style="visibility:{{ $app->google_url ? 'visible' : 'hidden' }}">
-													<img src="{{ asset('images/google.png') }}"/>
-												</div>
-											</a>
-										</div>
-										<div class="column is-one-half">
-											<a href="{{ $app->apple_url }}" target="_blank">
-												<div class="card-image" style="visibility:{{ $app->google_url ? 'visible' : 'hidden' }}">
-													<img src="{{ asset('images/apple.png') }}"/>
-												</div>
-											</a>
-										</div>
+								<div class="columns">
+									<div class="column is-one-half">
+										<a href="{{ $app->google_url }}" target="_blank" style="visibility:{{ $app->google_url ? 'visible' : 'hidden' }}">
+											<div class="card-image">
+												<img src="{{ asset('images/google.png') }}"/>
+											</div>
+										</a>
 									</div>
-								@endif
+									<div class="column is-one-half">
+										<a href="{{ $app->apple_url }}" target="_blank" style="visibility:{{ $app->google_url ? 'visible' : 'hidden' }}">
+											<div class="card-image">
+												<img src="{{ asset('images/apple.png') }}"/>
+											</div>
+										</a>
+									</div>
+								</div>
 							</div>
 						</div>
 
@@ -56,6 +53,8 @@
 								<img src="{{ $app->screenshot1_url }}"/>
 							</figure>
 						</div>
+
+						<!-- <div style="background-image: url('{{ $app->screenshot1_url }}');height:500px;background-size: cover;"/> -->
 					</div>
 				</div>
 			</div>
