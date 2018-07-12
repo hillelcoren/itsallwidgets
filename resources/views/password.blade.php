@@ -22,6 +22,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+
 </head>
 
 <body>
@@ -43,6 +44,7 @@
                         <input
                         class="input {{ $errors->has('twitter_url') ? ' is-danger' : '' }}"
                         name="secret"
+                        autofocus="true"
                         required>
                     </div>
                 </div>

@@ -33,6 +33,7 @@ Route::group(['middleware' => ['password']], function () {
     });
     Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle');
     Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');
+    Route::get('logout', 'Auth\LoginController@logout');
 
     Route::get('submit-app', 'FlutterAppController@create');
     Route::post('submit-app', 'FlutterAppController@store');

@@ -44,6 +44,15 @@
                                     </span>
                                     <span>Submit Application</span>
                                 </a>
+                                @if (auth()->check())
+                                    <a class="navbar-item" href="{{ url('logout') }}">
+                                        Log Out
+                                    </a>
+                                @else
+                                    <a class="navbar-item" href="{{ url('auth/google') }}">
+                                        Sign In
+                                    </a>
+                                @endif
                             </span>
                         </div>
                     </div>
@@ -105,10 +114,10 @@
                 <a href="https://twitter.com/devangelslondon" target="_blank"><i class="fab fa-twitter-square"></i></a> •
                 Scott Stoll
                 <a href="https://twitter.com/scottstoll2017" target="_blank"><i class="fab fa-twitter-square"></i></a>
-                -->
-            </p>
-        </div>
-    </footer>
+            -->
+        </p>
+    </div>
+</footer>
 
 </body>
 </html>
