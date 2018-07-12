@@ -43,7 +43,7 @@
 										</a>
 									</div>
 									<div class="column is-one-half">
-										<a href="{{ $app->apple_url }}" target="_blank" style="visibility:{{ $app->google_url ? 'visible' : 'hidden' }}">
+										<a href="{{ $app->apple_url }}" target="_blank" style="visibility:{{ $app->apple_url ? 'visible' : 'hidden' }}">
 											<div class="card-image">
 												<img src="{{ asset('images/apple.png') }}"/>
 											</div>
