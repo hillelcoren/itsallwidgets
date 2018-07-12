@@ -30,7 +30,7 @@ class GoogleController extends Controller
     {
         try {
             $user = Socialite::driver('google')->user();
-            
+
             $create['name'] = $user->getName();
             $create['email'] = $user->getEmail();
             $create['google_id'] = $user->getId();
@@ -40,7 +40,7 @@ class GoogleController extends Controller
             $createdUser = $userModel->addNew($create);
             Auth::loginUsingId($createdUser->id);
 
-            return redirect('/submit-app')->with('status', 'Your account has been successfully created!');
+            return redirect('/')->with('status', 'Your are now signed in!');
         } catch (Exception $e) {
 
             \Log::error('OAUTH ERROR: ' . $e->getMessage());
