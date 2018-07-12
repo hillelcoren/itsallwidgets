@@ -37,12 +37,13 @@
 
                 <div class="field">
                     <label class="label" for="twitter_url">
-                        Password
+                        Secret
                     </label>
                     <div class="control" style="max-width:300px">
                         <input
                         class="input {{ $errors->has('twitter_url') ? ' is-danger' : '' }}"
-                        name="password">
+                        name="secret"
+                        required>
                     </div>
                 </div>
 

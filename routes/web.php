@@ -11,12 +11,12 @@
 |
 */
 
-Route::get('/check_password', function () {
+Route::get('/check_secret', function () {
     return view('password');
 });
 
-Route::post('/check_password', function () {
-    if (request()->password == 'dart') {
+Route::post('/check_secret', function () {
+    if (request()->secret == 'dart') {
         session(['is_authorized' => true]);
         return redirect('/');
     } else {
