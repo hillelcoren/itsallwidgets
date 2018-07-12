@@ -34,7 +34,7 @@ class FlutterAppController extends Controller
      */
     public function index()
     {
-        $apps = FlutterApp::latest()->get();
+        $apps = FlutterApp::whereIsVisible(true)->latest()->get();
 
         return view('flutter_apps.index', compact('apps'));
     }
@@ -66,6 +66,10 @@ class FlutterAppController extends Controller
     public function edit($id)
     {
         $app = $this->appRepo->getById($id);
+
+        if ($app->user_id != auth()->user()->id) {
+            return redirect('/');
+        }
 
         $data = [
             'app' => $app,

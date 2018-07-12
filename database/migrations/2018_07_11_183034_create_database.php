@@ -31,6 +31,7 @@ class CreateDatabase extends Migration
             $table->string('youtube_url')->nullable();
             $table->timestamp('apple_released')->nullable();
             $table->timestamp('google_released')->nullable();
+            $table->boolean('is_visible')->default(true);
         });
 
         Schema::table('flutter_apps', function(Blueprint $table) {
