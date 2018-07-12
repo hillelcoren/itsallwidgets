@@ -17,7 +17,7 @@
 
 		{{ Form::open(array('url' => $url, 'method' => $method)) }}
 
-		@if ($app->exists())
+		@if ($app->exists)
 			{{ Form::hidden('id', $app->id) }}
 		@endif
 
@@ -247,8 +247,12 @@
 
 	<div class="columns is-centered">
 		<div class="control">
-			<a href="{{ url($app->exists() ? '/flutter-app/' . $app->slug : '/') }}" class="button is-medium is-outlined">Cancel</a> &nbsp;
-			<button class="button is-info is-medium">{{ $app->exists() ? 'Save' : 'Submit' }}</button>
+			<a href="{{ $app->exists ? url('/flutter-app/' . $app->slug) : url('/') }}" class="button is-medium is-outlined">
+				<i style="font-size: 20px" class="fa fa-times-circle"></i> &nbsp; Cancel
+			</a> &nbsp;
+			<button class="button is-info is-medium">
+				<i style="font-size: 20px" class="fas fa-cloud-upload-alt"></i> &nbsp; {{ $app->exists ? 'Save' : 'Submit' }}
+			</button>
 		</div>
 	</div>
 

@@ -22,6 +22,7 @@
 
 			@if (auth()->check() && auth()->user()->id = $app->user_id)
 				<a class="button is-info" href="{{ url('flutter-app/' . $app->id . '/edit') }}">
+					<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp; 
 					Edit Application
 				</a>
 				<p>&nbsp;</p>

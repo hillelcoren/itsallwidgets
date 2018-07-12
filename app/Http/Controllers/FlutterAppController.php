@@ -74,7 +74,6 @@ class FlutterAppController extends Controller
         ];
 
         return view('flutter_apps.edit', $data);
-
     }
 
     /**
