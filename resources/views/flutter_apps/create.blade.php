@@ -78,16 +78,13 @@
 							Long Description <span class="required">*</span>
 						</label>
 						<div class="control">
-							<input
-							class="input {{ $errors->has('long_description') ? ' is-danger' : '' }}"
-							type="text"
-							name="long_description"
-							value="{{ old('long_description') }}"
-							required>
+							<textarea
+				  				class="textarea {{ $errors->has('long_description') ? ' is-danger' : '' }}"
+								name="long_description">{{ old('long_description') }}</textarea>
 
-							@if ($errors->has('long_description'))
+							@if ($errors->has('description'))
 								<span class="help is-danger">
-									{{ $errors->first('long_description') }}
+									 {{ $errors->first('description') }}
 								</span>
 							@endif
 						</div>
@@ -111,13 +108,17 @@
 					<label class="label" for="apple_url">
 						Apple App Store
 					</label>
-					<div class="control">
+					<div class="control has-icons-left">
 						<input
 						class="input {{ $errors->has('apple_url') ? ' is-danger' : '' }}"
 						type="url"
 						name="apple_url"
 						placeholder="https://itunes.apple.com/app/..."
 						value="{{ old('apple_url') }}">
+
+						<span class="icon is-small is-left">
+					      <i class="fab fa-apple"></i>
+					    </span>
 
 						@if ($errors->has('apple_url'))
 							<span class="help is-danger">
@@ -131,13 +132,17 @@
 					<label class="label" for="google_url">
 						Google Play Store
 					</label>
-					<div class="control">
+					<div class="control has-icons-left">
 						<input
 						class="input {{ $errors->has('google_url') ? ' is-danger' : '' }}"
 						type="url"
 						name="google_url"
 						placeholder="https://play.google.com/store/apps/..."
 						value="{{ old('google_url') }}">
+
+						<span class="icon is-small is-left">
+					      <i class="fab fa-google"></i>
+					    </span>
 
 						@if ($errors->has('google_url'))
 							<span class="help is-danger">
@@ -151,13 +156,17 @@
 					<label class="label" for="repo_url">
 						Source Code
 					</label>
-					<div class="control">
+					<div class="control has-icons-left">
 						<input
 						class="input {{ $errors->has('repo_url') ? ' is-danger' : '' }}"
 						type="url"
 						name="repo_url"
 						placeholder="https://github.com/..."
 						value="{{ old('repo_url') }}">
+
+						<span class="icon is-small is-left">
+					      <i class="fab fa-github"></i>
+					    </span>
 
 						@if ($errors->has('repo_url'))
 							<span class="help is-danger">
@@ -171,13 +180,17 @@
 					<label class="label" for="website_url">
 						Website
 					</label>
-					<div class="control">
+					<div class="control has-icons-left">
 						<input
 						class="input {{ $errors->has('website_url') ? ' is-danger' : '' }}"
 						type="url"
 						name="website_url"
 						placeholder="https://example.com"
 						value="{{ old('website_url') }}">
+
+						<span class="icon is-small is-left">
+					      <i class="fas fa-globe"></i>
+					    </span>
 
 						@if ($errors->has('website_url'))
 							<span class="help is-danger">
@@ -188,16 +201,44 @@
 				</div>
 
 				<div class="field">
+					<label class="label" for="youtube_url">
+						YouTube
+					</label>
+					<div class="control has-icons-left">
+						<input
+						class="input {{ $errors->has('youtube_url') ? ' is-danger' : '' }}"
+						type="url"
+						name="youtube_url"
+						placeholder="https://youtube.com/..."
+						value="{{ old('youtube_url') }}">
+
+						<span class="icon is-small is-left">
+					      <i class="fab fa-youtube"></i>
+					    </span>
+
+						@if ($errors->has('youtube_url'))
+							<span class="help is-danger">
+								{{ $errors->first('youtube_url') }}
+							</span>
+						@endif
+					</div>
+				</div>
+
+				<div class="field">
 					<label class="label" for="facebook_url">
 						Facebook
 					</label>
-					<div class="control">
+					<div class="control has-icons-left">
 						<input
 						class="input {{ $errors->has('facebook_url') ? ' is-danger' : '' }}"
 						type="url"
 						name="facebook_url"
 						placeholder="https://facebook.com/..."
 						value="{{ old('facebook_url') }}">
+
+						<span class="icon is-small is-left">
+					      <i class="fab fa-facebook"></i>
+					    </span>
 
 						@if ($errors->has('facebook_url'))
 							<span class="help is-danger">
@@ -211,13 +252,17 @@
 					<label class="label" for="twitter_url">
 						Twitter
 					</label>
-					<div class="control">
+					<div class="control has-icons-left">
 						<input
 						class="input {{ $errors->has('twitter_url') ? ' is-danger' : '' }}"
 						type="url"
 						name="twitter_url"
 						placeholder="https://twitter.com/..."
 						value="{{ old('twitter_url') }}">
+
+						<span class="icon is-small is-left">
+					      <i class="fab fa-twitter"></i>
+					    </span>
 
 						@if ($errors->has('twitter_url'))
 							<span class="help is-danger">

@@ -18,6 +18,7 @@ class FlutterApp extends Model
         'google_url',
         'facebook_url',
         'twitter_url',
+        'youtube_url',
     ];
 
     protected $hidden = [
