@@ -7,15 +7,16 @@ use Illuminate\Database\Migrations\Migration;
 class CreateDatabase extends Migration
 {
     /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+    * Run the migrations.
+    *
+    * @return void
+    */
     public function up()
     {
         Schema::create('flutter_apps', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->unsignedInteger('user_id');
             $table->string('title')->unique();
             $table->string('slug')->unique();
             $table->string('short_description');
@@ -27,14 +28,19 @@ class CreateDatabase extends Migration
             $table->string('google_url')->nullable();
             $table->string('facebook_url')->nullable();
             $table->string('twitter_url')->nullable();
+            $table->string('youtube_url')->nullable();
+        });
+
+        Schema::table('flutter_apps', function(Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
     /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    * Reverse the migrations.
+    *
+    * @return void
+    */
     public function down()
     {
         Schema::drop('flutter_apps');

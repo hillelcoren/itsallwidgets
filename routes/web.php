@@ -16,7 +16,7 @@ Route::get('/check_secret', function () {
 });
 
 Route::post('/check_secret', function () {
-    if (request()->secret == 'dart') {
+    if (request()->secret == 'studygroup') {
         session(['is_authorized' => true]);
         return redirect('/');
     } else {
