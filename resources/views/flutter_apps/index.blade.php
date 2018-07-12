@@ -54,7 +54,7 @@
 						</div>
 
 						<div class="card-image">
-							<img src="{{ $app->screenshot1_url }}" width="750" height="1334"/>
+							<img src="{{ $app->screenshot1_url }}" width="1080" height="1920"/>
 						</div>
 
 						<!-- <div style="background-image: url('{{ $app->screenshot1_url }}');height:500px;background-size: cover;"/> -->

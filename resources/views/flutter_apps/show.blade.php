@@ -8,7 +8,7 @@
 
 	<div class="columns">
 		<div class="column is-4 is-elevated">
-			<img src="{{ $app->screenshot1_url }}" width="750" height="1334"/>
+			<img src="{{ $app->screenshot1_url }}" width="1080" height="1920"/>
 		</div>
 		<div class="column is-8">
 			<nav class="breadcrumb" aria-label="breadcrumbs">
