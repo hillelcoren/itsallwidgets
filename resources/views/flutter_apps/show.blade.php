@@ -20,6 +20,13 @@
 				</ul>
 			</nav>
 
+			@if (auth()->check() && auth()->user()->id = $app->user_id)
+				<a class="button" href="{{ url('flutter-app/' . $app->id . '/edit') }}">
+					Edit Application
+				</a>
+				<p>&nbsp;</p>
+			@endif
+
 			<div class="content">
 				<h2 class="title">
 					{{ $app->title }}

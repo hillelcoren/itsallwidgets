@@ -28,7 +28,7 @@ class FlutterAppRepository
      * @param integer $id
      * @return Collection
      */
-    public function findById($id)
+    public function getById($id)
     {
         return FlutterApp::findOrFail($id);
     }
