@@ -42,7 +42,7 @@
 				</label>
 				<div class="control">
 
-					{{ Form::text('screenshot1_url', $app->screenshot1_url, ['class' => 'input', 'required' => 'true', 'type' => 'url']) }}
+					{{ Form::text('screenshot1_url', $app->screenshot1_url, ['class' => 'input', 'required' => 'true', 'placeholder' => 'The image should be 750px by 1334px', 'type' => 'url']) }}
 
 					@if ($errors->has('screenshot1_url'))
 						<span class="help is-danger">
