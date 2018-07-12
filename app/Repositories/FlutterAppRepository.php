@@ -38,11 +38,16 @@ class FlutterAppRepository
      *
      * @param FlutterApp $app
      */
-    public function store($app)
+    public function store($input, $user_id)
     {
-        $app['slug'] = str_slug($app['title']);
+        $input['slug'] = str_slug($input['title']);
 
-        return FlutterApp::create($app);
+        $app = new FlutterApp;
+        $app->fill($input);
+        $app->user_id = $user_id;
+        $app->save();
+
+        return $app;
     }
 
     /**

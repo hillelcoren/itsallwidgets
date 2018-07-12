@@ -64,7 +64,9 @@ class FlutterAppController extends Controller
             'long_description' => 'required',
         ]);
 
-        $app = $this->appRepo->store($request->all());
+        $input = $request->all();
+        $user_id = auth()->user()->id;
+        $app = $this->appRepo->store($input, $user_id);
 
         return redirect('/flutter-app/' . $app['slug'])->with(
             'status',
