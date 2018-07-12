@@ -85,12 +85,17 @@
     <footer class="footer">
         <div class="content has-text-centered">
             <p>
-                Developed by
+                Built by the Flutter community, for the Flutter community.
+            </p>
+            <p>
                 <a href="https://hillelcoren.com" target="_blank">Hillel Coren</a>
-                <a href="https://twitter.com/hillelcoren" target="_blank"><i class="fab fa-twitter-square"></i></a>
-                and
+                <a href="https://twitter.com/hillelcoren" target="_blank"><i class="fab fa-twitter-square"></i></a> •
                 <a href="https://www.burkharts.net/apps/blog/" target="_blank">Thomas Burkhart</a>
-                <a href="https://twitter.com/ThomasBurkhartB" target="_blank"><i class="fab fa-twitter-square"></i></a>
+                <a href="https://twitter.com/ThomasBurkhartB" target="_blank"><i class="fab fa-twitter-square"></i></a> •
+                Simon Lightfoot
+                <a href="https://twitter.com/devangelslondon" target="_blank"><i class="fab fa-twitter-square"></i></a> •
+                Scott Stoll
+                <a href="https://twitter.com/scottstoll2017" target="_blank"><i class="fab fa-twitter-square"></i></a>
             </p>
         </div>
     </footer>
