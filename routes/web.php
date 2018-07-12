@@ -15,7 +15,14 @@ Route::get('/check_password', function () {
     return view('password');
 });
 
-Route::post('/check_password', 'FlutterAppController@showPassword');
+Route::post('/check_password', function () {
+    if (request()->password == 'dart') {
+        session(['is_authorized' => true]);
+        return redirect('/');
+    } else {
+        return view('password');
+    }
+});
 
 Route::group(['middleware' => ['password']], function () {
     Route::redirect('/', '/flutter-apps');
