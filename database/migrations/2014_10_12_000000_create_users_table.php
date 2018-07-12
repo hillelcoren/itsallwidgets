@@ -17,8 +17,8 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->nullable()->unique();
-            $table->string('password');
-            $table->string('oauth_user_id')->index()->unique();
+            $table->string('google_id')->index()->unique();
+            $table->string('avatar_url');
             $table->rememberToken();
             $table->timestamps();
         });

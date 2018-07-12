@@ -11,11 +11,11 @@
 |
 */
 
-Route::get('/check_secret', function () {
+Route::get('check_secret', function () {
     return view('password');
 });
 
-Route::post('/check_secret', function () {
+Route::post('check_secret', function () {
     if (request()->secret == 'studygroup') {
         session(['is_authorized' => true]);
         return redirect('/');
@@ -26,9 +26,15 @@ Route::post('/check_secret', function () {
 
 Route::group(['middleware' => ['password']], function () {
     Route::redirect('/', '/flutter-apps');
-    Route::get('/flutter-apps', 'FlutterAppController@index');
+    Route::get('flutter-apps', 'FlutterAppController@index');
 
-    Route::get('/submit-app', 'FlutterAppController@create');
-    Route::post('/submit-app', 'FlutterAppController@store');
-    Route::get('/flutter-app/{slug}', 'FlutterAppController@show');
+    Route::get('google', function () {
+        return view('google');
+    });
+    Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle');
+    Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');
+
+    Route::get('submit-app', 'FlutterAppController@create');
+    Route::post('submit-app', 'FlutterAppController@store');
+    Route::get('flutter-app/{slug}', 'FlutterAppController@show');
 });
