@@ -21,7 +21,7 @@
 			</nav>
 
 			@if (auth()->check() && auth()->user()->id = $app->user_id)
-				<a class="button" href="{{ url('flutter-app/' . $app->id . '/edit') }}">
+				<a class="button is-info" href="{{ url('flutter-app/' . $app->id . '/edit') }}">
 					Edit Application
 				</a>
 				<p>&nbsp;</p>
@@ -60,7 +60,7 @@
 						@if ($app->repo_url)
 							<a href="{{ url($app->repo_url) }}" target="_blank">{{ url($app->repo_url) }}</a><br/>
 						@endif
-					</content>
+					</div>
 					<br/>
 				@endif
 

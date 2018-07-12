@@ -243,7 +243,7 @@
 
 	<div class="columns is-centered">
 		<div class="control">
-			<a href="{{ url('/') }}" class="button is-medium is-outlined">Cancel</a> &nbsp;
+			<a href="{{ url($app->exists() ? '/flutter-app/' . $app->slug : '/') }}" class="button is-medium is-outlined">Cancel</a> &nbsp;
 			<button class="button is-info is-medium">{{ $app->exists() ? 'Save' : 'Submit' }}</button>
 		</div>
 	</div>
