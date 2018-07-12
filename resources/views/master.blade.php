@@ -8,7 +8,8 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', '{{ config('services.analytics.tracking_id') }}');
+        gtag('config', '{{ config('services.analytics.tracking_id') }}', { 'anonymize_ip': true });
+
         </script>
     @endif
 
@@ -101,7 +102,7 @@
     <footer class="footer">
         <div class="content has-text-centered">
             <p>
-                Made with <i style="color:red" class="fas fa-heart"></i> by the Flutter community
+                Made with <i style="color:red" class="fas fa-heart"></i> by the <a href="https://medium.com/flutter-community" target="_blank">Flutter Community</a>
             </p>
             <p>
                 Thank you to the <a href="https://flutter.io/" target="_blank">Flutter</a> and <a href="https://www.dartlang.org/" target="_blank">Dart</a> teams for this amazing platform!
