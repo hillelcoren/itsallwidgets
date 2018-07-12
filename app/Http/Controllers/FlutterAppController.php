@@ -114,6 +114,12 @@ class FlutterAppController extends Controller
      */
     public function update(Request $request)
     {
+        $app = $this->appRepo->getById($request->id);
+
+        if ($app->user_id != auth()->user()->id) {
+            return redirect('/');
+        }
+
         $this->validate($request, [
             'title' => 'required|unique:flutter_apps,title,' . $request->id . ',id',
             'screenshot1_url' => 'required|url',
