@@ -33,12 +33,19 @@ Route::group(['middleware' => ['password']], function () {
     });
     Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle');
     Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');
+
+    Route::get('login', function () {
+        return redirect('/');
+    })->name('login');
     Route::get('logout', 'Auth\LoginController@logout');
 
-    Route::get('submit-app', 'FlutterAppController@create');
-    Route::post('submit-app', 'FlutterAppController@store');
-
     Route::get('flutter-app/{slug}', 'FlutterAppController@show');
-    Route::get('flutter-app/{id}/edit', 'FlutterAppController@edit');
-    Route::put('flutter-app/{id}', 'FlutterAppController@update');
+
+    Route::group(['middleware' => ['auth']], function () {
+        Route::get('submit-app', 'FlutterAppController@create');
+        Route::post('submit-app', 'FlutterAppController@store');
+
+        Route::get('flutter-app/{id}/edit', 'FlutterAppController@edit');
+        Route::put('flutter-app/{id}', 'FlutterAppController@update');
+    });
 });
