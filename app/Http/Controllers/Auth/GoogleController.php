@@ -28,9 +28,9 @@ class GoogleController extends Controller
      */
     public function handleGoogleCallback()
     {
-        //try {
+        try {
             $user = Socialite::driver('google')->user();
-            \Log::info(json_encode($user));
+            
             $create['name'] = $user->getName();
             $create['email'] = $user->getEmail();
             $create['google_id'] = $user->getId();
@@ -40,14 +40,12 @@ class GoogleController extends Controller
             $createdUser = $userModel->addNew($create);
             Auth::loginUsingId($createdUser->id);
 
-            return redirect('/');
-            /*
+            return redirect('/submit-app')->with('status', 'Your account has been successfully created!');
         } catch (Exception $e) {
 
-
+            \Log::error('OAUTH ERROR: ' . $e->getMessage());
             return redirect('/');
         }
-        */
     }
 
 }
