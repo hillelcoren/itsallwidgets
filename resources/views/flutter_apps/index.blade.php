@@ -14,17 +14,17 @@
 								{{ $app->title }}
 							</p>
 							@if ($app->facebook_url)
-								<a href="{{ $app->facebook_url }}" class="card-header-icon">
+								<a href="{{ $app->facebook_url }}" class="card-header-icon" target="_blank">
 									<i style="font-size: 20px; color: #888" class="fab fa-facebook"></i>
 								</a>
 							@endif
 							@if ($app->twitter_url)
-								<a href="{{ $app->twitter_url }}" class="card-header-icon">
+								<a href="{{ $app->twitter_url }}" class="card-header-icon" target="_blank">
 									<i style="font-size: 20px; color: #888" class="fab fa-twitter"></i>
 								</a>
 							@endif
 							@if ($app->repo_url)
-								<a href="{{ $app->repo_url }}" class="card-header-icon">
+								<a href="{{ $app->repo_url }}" class="card-header-icon" target="_blank">
 									<i style="font-size: 20px; color: #888" class="fab fa-github"></i>
 								</a>
 							@endif
