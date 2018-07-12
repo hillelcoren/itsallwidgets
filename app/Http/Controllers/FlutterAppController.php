@@ -85,8 +85,13 @@ class FlutterAppController extends Controller
      */
     public function store(Request $request)
     {
+        $request->merge([
+            'slug' => str_slug(request()->title)
+        ]);
+
         $this->validate($request, [
             'title' => 'required|unique:flutter_apps,title',
+            'slug' => 'required|unique:flutter_apps,slug',
             'screenshot1_url' => 'required|url',
             'short_description' => 'required|max:140',
             'long_description' => 'required',
@@ -110,8 +115,13 @@ class FlutterAppController extends Controller
      */
     public function update(Request $request)
     {
+        $request->merge([
+            'slug' => str_slug(request()->title)
+        ]);
+
         $this->validate($request, [
-            'title' => 'required|unique:flutter_apps,title,' . request()->id . ',id',
+            'title' => 'required|unique:flutter_apps,title,' . $request->id . ',id',
+            'slug' => 'required|unique:flutter_apps,slug,' . $request->id . ',id',
             'screenshot1_url' => 'required|url',
             'short_description' => 'required|max:140',
             'long_description' => 'required',

@@ -9,6 +9,10 @@
 		<h2 class="title">Submit Application</h2>
 		<p>&nbsp;</p>
 
+		@foreach ($errors->all() as $error)
+	       <div class="block">{{ $error }}</div>
+	   	@endforeach
+
 		<div class="subtitle">Required Fields</div>
 
 		{{ Form::open(array('url' => $url, 'method' => $method)) }}

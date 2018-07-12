@@ -40,8 +40,6 @@ class FlutterAppRepository
      */
     public function store($input, $user_id)
     {
-        $input['slug'] = str_slug($input['title']);
-
         $app = new FlutterApp;
         $app->fill($input);
         $app->user_id = $user_id;
@@ -58,8 +56,6 @@ class FlutterAppRepository
     public function update($input)
     {
         $app = self::getById($input['id']);
-        $input['slug'] = str_slug($input['title']);
-
         $app->fill($input);
         $app->save();
 
