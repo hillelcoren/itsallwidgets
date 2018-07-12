@@ -46,7 +46,35 @@ class FlutterAppController extends Controller
      */
     public function create()
     {
-        return view('flutter_apps.create');
+        $app = new FlutterApp;
+
+        $data = [
+            'app' => $app,
+            'url' => 'submit-app',
+            'method' => 'POST',
+        ];
+
+        return view('flutter_apps.edit', $data);
+    }
+
+    /**
+     * Show a specified app
+     *
+     * @param  FlutterApp $slug
+     * @return Response
+     */
+    public function edit($id)
+    {
+        $app = $this->appRepo->getById($id);
+
+        $data = [
+            'app' => $app,
+            'url' => 'flutter-app/' . $app->id,
+            'method' => 'PUT',
+        ];
+
+        return view('flutter_apps.edit', $data);
+
     }
 
     /**
@@ -85,20 +113,6 @@ class FlutterAppController extends Controller
         $app = $this->appRepo->getBySlug($slug);
 
         return view('flutter_apps.show', compact('app'));
-
-    }
-
-    /**
-     * Show a specified app
-     *
-     * @param  FlutterApp $slug
-     * @return Response
-     */
-    public function edit($id)
-    {
-        $app = $this->appRepo->getById($id);
-
-        return view('flutter_apps.edit', compact('app'));
 
     }
 }

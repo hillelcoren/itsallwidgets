@@ -11,8 +11,7 @@
 
 		<div class="subtitle">Required Fields</div>
 
-		<form action="{{ url('submit-app') }}" method="POST">
-			{{ csrf_field() }}
+		{{ Form::open(array('url' => $url, 'method' => $method)) }}
 
 			<article class="message is-dark">
 				<div class="message-body">
@@ -21,13 +20,16 @@
 						Application Name <span class="required">*</span>
 					</label>
 					<div class="control">
+						{{ Form::text('title') }}
+						<!--
 						<input
 						class="input {{ $errors->has('title') ? ' is-danger' : '' }}"
 						type="text"
 						name="title"
 						value="{{ old('title') }}"
 						required>
-
+						-->
+						
 						@if ($errors->has('title'))
 							<span class="help is-danger">
 								{{ $errors->first('title') }}
@@ -290,6 +292,7 @@
 		<p>&nbsp;</p>
 		<p>&nbsp;</p>
 
-	</form>
+	{{ Form::close() }}
+
 </div>
 @stop

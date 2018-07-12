@@ -37,6 +37,8 @@ Route::group(['middleware' => ['password']], function () {
 
     Route::get('submit-app', 'FlutterAppController@create');
     Route::post('submit-app', 'FlutterAppController@store');
+
     Route::get('flutter-app/{slug}', 'FlutterAppController@show');
     Route::get('flutter-app/{id}/edit', 'FlutterAppController@edit');
+    Route::put('flutter-app/{id}', 'FlutterAppController@edit');
 });
