@@ -24,11 +24,13 @@ class CreateDatabase extends Migration
             $table->string('screenshot1_url');
             $table->string('website_url')->nullable();
             $table->string('repo_url')->nullable();
-            $table->string('apple_url')->nullable();
-            $table->string('google_url')->nullable();
+            $table->string('apple_url')->unique()->nullable();
+            $table->string('google_url')->unique()->nullable();
             $table->string('facebook_url')->nullable();
             $table->string('twitter_url')->nullable();
             $table->string('youtube_url')->nullable();
+            $table->timestamp('apple_released')->nullable();
+            $table->timestamp('google_released')->nullable();
         });
 
         Schema::table('flutter_apps', function(Blueprint $table) {

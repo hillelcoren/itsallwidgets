@@ -24,4 +24,23 @@ class FlutterApp extends Model
     protected $hidden = [
 
     ];
+
+    public function setAppleUrlAttribute($value)
+    {
+        if ($value && ! $this->apple_released) {
+            $this->attributes['apple_released'] = now();
+        }
+
+        $this->attributes['apple_url'] = $value;
+    }
+
+    public function setGoogleUrlAttribute($value)
+    {
+        if ($value && ! $this->google_released) {
+            $this->attributes['google_released'] = now();
+        }
+
+        $this->attributes['google_url'] = $value;
+    }
+
 }
