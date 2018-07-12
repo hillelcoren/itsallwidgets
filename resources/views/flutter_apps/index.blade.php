@@ -8,7 +8,7 @@
 		@foreach ($apps as $app)
 			<div class="column is-one-third">
 				<div onclick="location.href = '{{ url('flutter-app/'. $app->slug) }}';" style="cursor:pointer">
-					<div class="card">
+					<div class="card" style="filter: drop-shadow(0px 16px 8px #AAA);">
 						<header class="card-header">
 							<p class="card-header-title is-2">
 								{{ $app->title }}

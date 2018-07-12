@@ -7,7 +7,7 @@
 @section('content')
 
 	<div class="columns">
-		<div class="column is-4">
+		<div class="column is-4" style="filter: drop-shadow(0px 16px 8px #AAA);">
 			<figure class="image is-1080x1920">
 				<img src="{{ $app->screenshot1_url }}"/>
 			</figure>
@@ -34,7 +34,6 @@
 				<div class="subtitle">
 					{{ $app->short_description }}
 				</div>
-
 
 				@if ($app->google_url || $app->apple_url)
 					<div class="block">
@@ -80,6 +79,10 @@
 				<div class="block">
 					{!! nl2br(e($app->long_description)) !!}
 				</div>
+
+				@if ($app->youtube_url)
+					<iframe width="560" height="315" src="{{ $app->youtube_url }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+				@endif
 
 			</div>
 		</div>

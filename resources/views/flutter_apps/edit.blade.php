@@ -183,7 +183,7 @@
 				</label>
 				<div class="control has-icons-left">
 
-					{{ Form::text('youtube_url', $app->youtube_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://youtube.com/...']) }}
+					{{ Form::text('youtube_url', $app->youtube_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://youtube.com/embed/...']) }}
 
 					<span class="icon is-small is-left">
 						<i class="fab fa-youtube"></i>
