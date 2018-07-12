@@ -23,6 +23,12 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+
+    <style>
+        .is-elevated {
+            filter: drop-shadow(0px 12px 6px #CCC);
+        }
+    </style>
 </head>
 
 <body>

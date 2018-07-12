@@ -21,7 +21,7 @@
 			{{ Form::hidden('id', $app->id) }}
 		@endif
 
-		<article class="message is-dark" style="filter: drop-shadow(0px 12px 4px #AAA);">
+		<article class="message is-dark is-elevated">
 			<div class="message-body">
 
 				<label class="label" for="title">
@@ -93,7 +93,7 @@
 
 	<div class="subtitle">Optional Links</div>
 
-	<article class="message" style="filter: drop-shadow(0px 12px 4px #AAA);">
+	<article class="message is-elevated">
 		<div class="message-body">
 
 
@@ -247,10 +247,10 @@
 
 	<div class="columns is-centered">
 		<div class="control">
-			<a href="{{ $app->exists ? url('/flutter-app/' . $app->slug) : url('/') }}" class="button is-medium is-outlined">
+			<a href="{{ $app->exists ? url('/flutter-app/' . $app->slug) : url('/') }}" class="button is-medium is-outlined is-elevated">
 				<i style="font-size: 20px" class="fa fa-times-circle"></i> &nbsp; Cancel
 			</a> &nbsp;
-			<button class="button is-info is-medium">
+			<button class="button is-info is-medium is-elevated">
 				<i style="font-size: 20px" class="fas fa-cloud-upload-alt"></i> &nbsp; {{ $app->exists ? 'Save' : 'Submit' }}
 			</button>
 		</div>

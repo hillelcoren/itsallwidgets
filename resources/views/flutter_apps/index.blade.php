@@ -8,7 +8,7 @@
 		@foreach ($apps as $app)
 			<div class="column is-one-third">
 				<div onclick="location.href = '{{ url('flutter-app/'. $app->slug) }}';" style="cursor:pointer">
-					<div class="card" style="filter: drop-shadow(0px 12px 4px #AAA);">
+					<div class="card is-elevated">
 						<header class="card-header">
 							<p class="card-header-title is-2">
 								{{ $app->title }}
@@ -21,6 +21,11 @@
 							@if ($app->twitter_url)
 								<a href="{{ $app->twitter_url }}" class="card-header-icon">
 									<i style="font-size: 20px; color: #888" class="fab fa-twitter"></i>
+								</a>
+							@endif
+							@if ($app->repo_url)
+								<a href="{{ $app->repo_url }}" class="card-header-icon">
+									<i style="font-size: 20px; color: #888" class="fab fa-github"></i>
 								</a>
 							@endif
 						</header>

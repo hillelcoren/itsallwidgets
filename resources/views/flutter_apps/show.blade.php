@@ -7,7 +7,7 @@
 @section('content')
 
 	<div class="columns">
-		<div class="column is-4" style="filter: drop-shadow(0px 12px 4px #AAA);">
+		<div class="column is-4 is-elevated">
 			<figure class="image is-1080x1920">
 				<img src="{{ $app->screenshot1_url }}"/>
 			</figure>
@@ -21,7 +21,7 @@
 			</nav>
 
 			@if (auth()->check() && auth()->user()->id = $app->user_id)
-				<a class="button is-info" href="{{ url('flutter-app/' . $app->id . '/edit') }}">
+				<a class="button is-info is-elevated" href="{{ url('flutter-app/' . $app->id . '/edit') }}">
 					<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
 					Edit Application
 				</a>
@@ -66,12 +66,12 @@
 
 				<div class="content">
 					@if ($app->facebook_url)
-						<a class="button" href="{{ $app->facebook_url }}" target="_blank">
+						<a class="button is-elevated" href="{{ $app->facebook_url }}" target="_blank">
 							<i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
 						</a>
 					@endif
 					@if ($app->twitter_url)
-						<a class="button" 	href="{{ $app->twitter_url }}" target="_blank">
+						<a class="button is-elevated" 	href="{{ $app->twitter_url }}" target="_blank">
 							<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
 						</a>
 					@endif
