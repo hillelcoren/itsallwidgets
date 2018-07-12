@@ -85,7 +85,8 @@
     <footer class="footer">
         <div class="content has-text-centered">
             <p>
-                Built by the Flutter community for the Flutter community
+                Made with love by the Flutter community<br/>
+                Thank you to the <a href="https://flutter.io/" target="_blank">Flutter</a> and <a href="https://www.dartlang.org/" target="_blank">Dart</a> teams for this amazing platform!
             </p>
             <p>
                 <a href="https://hillelcoren.com" target="_blank">Hillel Coren</a>
