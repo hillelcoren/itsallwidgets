@@ -14,7 +14,7 @@
 		<form action="{{ url('submit-app') }}" method="POST">
 			{{ csrf_field() }}
 
-			<article class="message  is-dark">
+			<article class="message is-dark">
 				<div class="message-body">
 
 					<label class="label" for="title">

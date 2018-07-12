@@ -11,9 +11,17 @@
 |
 */
 
-Route::redirect('/', '/flutter-apps');
-Route::get('/flutter-apps', 'FlutterAppController@index');
+Route::get('/check_password', function () {
+    return view('password');
+});
 
-Route::get('/submit-app', 'FlutterAppController@create');
-Route::post('/submit-app', 'FlutterAppController@store');
-Route::get('/flutter-app/{slug}', 'FlutterAppController@show');
+Route::post('/check_password', 'FlutterAppController@showPassword');
+
+Route::group(['middleware' => ['password']], function () {
+    Route::redirect('/', '/flutter-apps');
+    Route::get('/flutter-apps', 'FlutterAppController@index');
+
+    Route::get('/submit-app', 'FlutterAppController@create');
+    Route::post('/submit-app', 'FlutterAppController@store');
+    Route::get('/flutter-app/{slug}', 'FlutterAppController@show');
+});
