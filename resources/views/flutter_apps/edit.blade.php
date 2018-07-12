@@ -21,7 +21,7 @@
 			{{ Form::hidden('id', $app->id) }}
 		@endif
 
-		<article class="message is-dark">
+		<article class="message is-dark" style="filter: drop-shadow(0px 12px 4px #AAA);">
 			<div class="message-body">
 
 				<label class="label" for="title">
@@ -93,7 +93,7 @@
 
 	<div class="subtitle">Optional Links</div>
 
-	<article class="message">
+	<article class="message" style="filter: drop-shadow(0px 12px 4px #AAA);">
 		<div class="message-body">
 
 

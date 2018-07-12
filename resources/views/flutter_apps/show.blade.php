@@ -7,7 +7,7 @@
 @section('content')
 
 	<div class="columns">
-		<div class="column is-4" style="filter: drop-shadow(0px 16px 8px #AAA);">
+		<div class="column is-4" style="filter: drop-shadow(0px 12px 4px #AAA);">
 			<figure class="image is-1080x1920">
 				<img src="{{ $app->screenshot1_url }}"/>
 			</figure>
@@ -22,7 +22,7 @@
 
 			@if (auth()->check() && auth()->user()->id = $app->user_id)
 				<a class="button is-info" href="{{ url('flutter-app/' . $app->id . '/edit') }}">
-					<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp; 
+					<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
 					Edit Application
 				</a>
 				<p>&nbsp;</p>
