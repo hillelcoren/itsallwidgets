@@ -98,7 +98,30 @@ class FlutterAppController extends Controller
 
         return redirect('/flutter-app/' . $app['slug'])->with(
             'status',
-            "Your submission has been successfully added!"
+            'Your application has been successfully added!'
+        );
+    }
+
+    /**
+     * Store app to the database
+     *
+     * @param  Request $request
+     * @return Response
+     */
+    public function update(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required|unique:flutter_apps,title,' . request()->id . ',id',
+            'screenshot1_url' => 'required|url',
+            'short_description' => 'required|max:140',
+            'long_description' => 'required',
+        ]);
+
+        $app = $this->appRepo->update($request->all());
+
+        return redirect('/flutter-app/' . $app->slug)->with(
+            'status',
+            'Your application has been successfully updated!'
         );
     }
 
@@ -113,6 +136,5 @@ class FlutterAppController extends Controller
         $app = $this->appRepo->getBySlug($slug);
 
         return view('flutter_apps.show', compact('app'));
-
     }
 }

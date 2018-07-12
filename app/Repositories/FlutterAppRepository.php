@@ -55,10 +55,15 @@ class FlutterAppRepository
      *
      * @param FlutterApp $app
      */
-    public function update($slug, $app)
+    public function update($input)
     {
-        return FlutterApp::where('slug', $slug)
-                        ->update($app);
+        $app = self::getById($input['id']);
+        $input['slug'] = str_slug($input['title']);
+
+        $app->fill($input);
+        $app->save();
+
+        return $app;
     }
 
     /**
