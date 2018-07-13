@@ -36,18 +36,30 @@
 								</div>
 								<div class="columns">
 									<div class="column is-one-half">
-										<a href="{{ $app->google_url }}" target="_blank" style="visibility:{{ $app->google_url ? 'visible' : 'hidden' }}">
+										@if ($app->google_url)
+											<a href="{{ $app->google_url }}" target="_blank" style="visibility:{{ $app->google_url ? 'visible' : 'hidden' }}">
+												<div class="card-image is-slightly-elevated">
+													<img src="{{ asset('images/google.png') }}"/>
+												</div>
+											</a>
+										@else
 											<div class="card-image is-slightly-elevated">
-												<img src="{{ asset('images/google.png') }}"/>
+												<img src="{{ asset('images/google.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
 											</div>
-										</a>
+										@endif
 									</div>
 									<div class="column is-one-half">
-										<a href="{{ $app->apple_url }}" target="_blank" style="visibility:{{ $app->apple_url ? 'visible' : 'hidden' }}">
+										@if ($app->apple_url)
+											<a href="{{ $app->apple_url }}" target="_blank" style="visibility:{{ $app->apple_url ? 'visible' : 'hidden' }}">
+												<div class="card-image is-slightly-elevated">
+													<img src="{{ asset('images/apple.png') }}"/>
+												</div>
+											</a>
+										@else
 											<div class="card-image is-slightly-elevated">
-												<img src="{{ asset('images/apple.png') }}"/>
+												<img src="{{ asset('images/apple.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
 											</div>
-										</a>
+										@endif
 									</div>
 								</div>
 							</div>
