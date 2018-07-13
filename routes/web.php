@@ -11,41 +11,26 @@
 |
 */
 
-Route::get('check_secret', function () {
-    return view('password');
+Route::redirect('/', '/flutter-apps');
+Route::get('flutter-apps', 'FlutterAppController@index');
+
+Route::get('google', function () {
+    return view('google');
 });
+Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle');
+Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');
 
-Route::post('check_secret', function () {
-    if (request()->secret == 'studygroup') {
-        session(['is_authorized' => true]);
-        return redirect('/');
-    } else {
-        return view('password');
-    }
-});
+Route::get('login', function () {
+    return redirect('/');
+})->name('login');
+Route::get('logout', 'Auth\LoginController@logout');
 
-Route::group(['middleware' => ['password']], function () {
-    Route::redirect('/', '/flutter-apps');
-    Route::get('flutter-apps', 'FlutterAppController@index');
+Route::get('flutter-app/{slug}', 'FlutterAppController@show');
 
-    Route::get('google', function () {
-        return view('google');
-    });
-    Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle');
-    Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('submit-app', 'FlutterAppController@create');
+    Route::post('submit-app', 'FlutterAppController@store');
 
-    Route::get('login', function () {
-        return redirect('/');
-    })->name('login');
-    Route::get('logout', 'Auth\LoginController@logout');
-
-    Route::get('flutter-app/{slug}', 'FlutterAppController@show');
-
-    Route::group(['middleware' => ['auth']], function () {
-        Route::get('submit-app', 'FlutterAppController@create');
-        Route::post('submit-app', 'FlutterAppController@store');
-
-        Route::get('flutter-app/{id}/edit', 'FlutterAppController@edit');
-        Route::put('flutter-app/{id}', 'FlutterAppController@update');
-    });
+    Route::get('flutter-app/{id}/edit', 'FlutterAppController@edit');
+    Route::put('flutter-app/{id}', 'FlutterAppController@update');
 });
