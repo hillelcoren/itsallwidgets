@@ -37,14 +37,14 @@
 								<div class="columns">
 									<div class="column is-one-half">
 										<a href="{{ $app->google_url }}" target="_blank" style="visibility:{{ $app->google_url ? 'visible' : 'hidden' }}">
-											<div class="card-image">
+											<div class="card-image is-slightly-elevated">
 												<img src="{{ asset('images/google.png') }}"/>
 											</div>
 										</a>
 									</div>
 									<div class="column is-one-half">
 										<a href="{{ $app->apple_url }}" target="_blank" style="visibility:{{ $app->apple_url ? 'visible' : 'hidden' }}">
-											<div class="card-image">
+											<div class="card-image is-slightly-elevated">
 												<img src="{{ asset('images/apple.png') }}"/>
 											</div>
 										</a>

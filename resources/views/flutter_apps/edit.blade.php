@@ -247,10 +247,10 @@
 
 	<div class="columns is-centered">
 		<div class="control">
-			<a href="{{ $app->exists ? url('/flutter-app/' . $app->slug) : url('/') }}" class="button is-medium is-outlined is-elevated">
+			<a href="{{ $app->exists ? url('/flutter-app/' . $app->slug) : url('/') }}" class="button is-medium is-outlined is-slightly-elevated">
 				<i style="font-size: 20px" class="fa fa-times-circle"></i> &nbsp; Cancel
 			</a> &nbsp;
-			<button class="button is-info is-medium is-elevated">
+			<button class="button is-info is-medium is-slightly-elevated">
 				<i style="font-size: 20px" class="fas fa-cloud-upload-alt"></i> &nbsp; {{ $app->exists ? 'Save' : 'Submit' }}
 			</button>
 		</div>

@@ -29,6 +29,10 @@
         .is-elevated {
             filter: drop-shadow(0px 12px 6px #CCC);
         }
+
+        .is-slightly-elevated {
+            filter: drop-shadow(0px 4px 2px #CCC);
+        }
     </style>
 </head>
 

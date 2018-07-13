@@ -19,7 +19,7 @@
 			</nav>
 
 			@if (auth()->check() && auth()->user()->id == $app->user_id)
-				<a class="button is-info is-elevated" href="{{ url('flutter-app/' . $app->id . '/edit') }}">
+				<a class="button is-info is-slightly-elevated" href="{{ url('flutter-app/' . $app->id . '/edit') }}">
 					<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
 					Edit Application
 				</a>
@@ -37,12 +37,12 @@
 				@if ($app->google_url || $app->apple_url)
 					<div class="block">
 						@if ($app->google_url)
-							<a href="{{ $app->google_url }}" target="_blank">
+							<a href="{{ $app->google_url }}" target="_blank" class="is-slightly-elevated">
 								<img src="{{ asset('images/google.png') }}" style="width:180px"/>
 							</a>
 						@endif
 						@if ($app->apple_url)
-							<a href="{{ $app->apple_url }}" target="_blank">
+							<a href="{{ $app->apple_url }}" target="_blank" class="is-slightly-elevated">
 								<img src="{{ asset('images/apple.png') }}" style="width:180px"/>
 							</a>
 						@endif
@@ -64,12 +64,12 @@
 
 				<div class="content">
 					@if ($app->facebook_url)
-						<a class="button is-elevated" href="{{ $app->facebook_url }}" target="_blank">
+						<a class="button is-slightly-elevated" href="{{ $app->facebook_url }}" target="_blank">
 							<i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
 						</a>
 					@endif
 					@if ($app->twitter_url)
-						<a class="button is-elevated" 	href="{{ $app->twitter_url }}" target="_blank">
+						<a class="button is-slightly-elevated" 	href="{{ $app->twitter_url }}" target="_blank">
 							<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
 						</a>
 					@endif
