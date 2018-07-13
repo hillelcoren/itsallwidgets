@@ -94,6 +94,25 @@
 	<article class="message is-elevated">
 		<div class="message-body">
 
+			<div class="field">
+				<label class="label" for="google_url">
+					Google Play Store
+				</label>
+				<div class="control has-icons-left">
+
+					{{ Form::text('google_url', $app->google_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://play.google.com/store/apps/...']) }}
+
+					<span class="icon is-small is-left">
+						<i class="fab fa-google"></i>
+					</span>
+
+					@if ($errors->has('google_url'))
+						<span class="help is-danger">
+							{{ $errors->first('google_url') }}
+						</span>
+					@endif
+				</div>
+			</div>
 
 			<div class="field">
 				<label class="label" for="apple_url">
@@ -110,26 +129,6 @@
 					@if ($errors->has('apple_url'))
 						<span class="help is-danger">
 							{{ $errors->first('apple_url') }}
-						</span>
-					@endif
-				</div>
-			</div>
-
-			<div class="field">
-				<label class="label" for="google_url">
-					Google Play Store
-				</label>
-				<div class="control has-icons-left">
-
-					{{ Form::text('google_url', $app->google_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://play.google.com/store/apps/...']) }}
-
-					<span class="icon is-small is-left">
-						<i class="fab fa-google"></i>
-					</span>
-
-					@if ($errors->has('google_url'))
-						<span class="help is-danger">
-							{{ $errors->first('google_url') }}
 						</span>
 					@endif
 				</div>
