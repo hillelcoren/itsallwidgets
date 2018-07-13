@@ -4,7 +4,7 @@
 
 @section('content')
 
-	<div class="columns is-multiline">
+	<div class="columns is-multiline is-4 is-variable">
 		@foreach ($apps as $app)
 			<div class="column is-one-third">
 				<div onclick="location.href = '{{ url('flutter-app/'. $app->slug) }}';" style="cursor:pointer">
@@ -72,6 +72,7 @@
 						<!-- <div style="background-image: url('{{ $app->screenshot1_url }}');height:500px;background-size: cover;"/> -->
 					</div>
 				</div>
+				<p>&nbsp;</p>
 			</div>
 		@endforeach
 	</div>
