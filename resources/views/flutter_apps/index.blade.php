@@ -1,6 +1,7 @@
 @extends('master')
 
 @section('title', 'Flutter Apps')
+@section('description', 'An open list of apps built with Google Flutter')
 
 @section('content')
 

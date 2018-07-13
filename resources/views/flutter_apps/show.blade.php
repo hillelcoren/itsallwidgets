@@ -1,8 +1,7 @@
 @extends('master')
 
-@section('title')
-	{{ $app->title }}
-@stop
+@section('title', $app->title)
+@section('description', $app->short_description)
 
 @section('content')
 

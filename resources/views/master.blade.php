@@ -16,7 +16,7 @@
     <meta charset="utf-8">
     <meta id="token" name="token" value="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="An open list of apps built with Google Flutter">
+    <meta name="description" content="@yield('description')">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <link rel="shortcut icon" href="{{ asset('/images/favicon.png') }}">
 
