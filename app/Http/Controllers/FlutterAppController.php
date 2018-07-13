@@ -34,7 +34,7 @@ class FlutterAppController extends Controller
      */
     public function index()
     {
-        $apps = FlutterApp::whereIsVisible(true)->latest()->get();
+        $apps = cache('flutter-app-list');
 
         return view('flutter_apps.index', compact('apps'));
     }
