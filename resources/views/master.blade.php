@@ -68,21 +68,28 @@
                     <div id="navbarMenuHeroA" class="navbar-menu">
                         <div class="navbar-end">
                             <span class="navbar-item">
+                                <a class="navbar-item" href="https://github.com/hillelcoren/itsallwidgets" target="_blank">
+                                    <i class="fab fa-github"></i> &nbsp; GitHub
+                                </a>
+                                @if (auth()->check())
+                                    <a class="navbar-item" href="{{ url('logout') }}">
+                                        <i class="fas fa-user-alt"></i> &nbsp; Log Out
+                                    </a>
+                                @else
+                                    <a class="navbar-item" href="{{ url('auth/google') }}">
+                                        <i class="fas fa-user-alt"></i> &nbsp; Sign In
+                                    </a>
+                                @endif
+
+                                &nbsp;&nbsp;
+                                &nbsp;&nbsp;
+
                                 <a class="button is-info is-inverted" href="{{ url(auth()->check() ? 'flutter-apps/submit' : 'auth/google') }}">
                                     <span class="icon">
                                         <i class="fas fa-upload"></i>
                                     </span>
                                     <span>Submit Application</span>
                                 </a>
-                                @if (auth()->check())
-                                    <a class="navbar-item" href="{{ url('logout') }}">
-                                        Log Out
-                                    </a>
-                                @else
-                                    <a class="navbar-item" href="{{ url('auth/google') }}">
-                                        Sign In
-                                    </a>
-                                @endif
                             </span>
                         </div>
                     </div>
