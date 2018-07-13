@@ -6,6 +6,17 @@
 
 @section('content')
 
+	<script>
+		function openStoreUrl(url) {
+			window.open(url, '_blank');
+
+			// https://stackoverflow.com/a/2385180/497368
+			if (!e) var e = window.event;
+   			e.cancelBubble = true;
+   			if (e.stopPropagation) e.stopPropagation();
+		}
+	</script>
+
 	<div class="columns is-multiline is-4 is-variable">
 		@foreach ($apps as $app)
 			<div class="column is-one-third">
@@ -39,11 +50,11 @@
 								<div class="columns">
 									<div class="column is-one-half">
 										@if ($app->google_url)
-											<a href="{{ $app->google_url }}" target="_blank" style="visibility:{{ $app->google_url ? 'visible' : 'hidden' }}">
+											<div onclick="openStoreUrl('{{ $app->google_url }}')" target="_blank" style="visibility:{{ $app->google_url ? 'visible' : 'hidden' }}">
 												<div class="card-image is-slightly-elevated">
 													<img src="{{ asset('images/google.png') }}"/>
 												</div>
-											</a>
+											</div>
 										@else
 											<div class="card-image is-slightly-elevated">
 												<img src="{{ asset('images/google.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
@@ -52,11 +63,11 @@
 									</div>
 									<div class="column is-one-half">
 										@if ($app->apple_url)
-											<a href="{{ $app->apple_url }}" target="_blank" style="visibility:{{ $app->apple_url ? 'visible' : 'hidden' }}">
+											<div onclick="openStoreUrl('{{ $app->apple_url }}')" target="_blank" style="visibility:{{ $app->apple_url ? 'visible' : 'hidden' }}">
 												<div class="card-image is-slightly-elevated">
 													<img src="{{ asset('images/apple.png') }}"/>
 												</div>
-											</a>
+											</div>
 										@else
 											<div class="card-image is-slightly-elevated">
 												<img src="{{ asset('images/apple.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
