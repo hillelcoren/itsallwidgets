@@ -28,8 +28,8 @@ Route::get('logout', 'Auth\LoginController@logout');
 Route::get('flutter-app/{slug}', 'FlutterAppController@show');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('submit-app', 'FlutterAppController@create');
-    Route::post('submit-app', 'FlutterAppController@store');
+    Route::get('flutter-apps/submit', 'FlutterAppController@create');
+    Route::post('flutter-apps/submit', 'FlutterAppController@store');
 
     Route::get('flutter-app/{slug}/edit', 'FlutterAppController@edit');
     Route::put('flutter-app/{slug}', 'FlutterAppController@update');

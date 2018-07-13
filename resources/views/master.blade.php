@@ -68,7 +68,7 @@
                     <div id="navbarMenuHeroA" class="navbar-menu">
                         <div class="navbar-end">
                             <span class="navbar-item">
-                                <a class="button is-info is-inverted" href="{{ url(auth()->check() ? 'submit-app' : 'auth/google') }}">
+                                <a class="button is-info is-inverted" href="{{ url(auth()->check() ? 'flutter-apps/submit' : 'auth/google') }}">
                                     <span class="icon">
                                         <i class="fas fa-upload"></i>
                                     </span>
