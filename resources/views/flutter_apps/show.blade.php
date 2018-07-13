@@ -19,7 +19,7 @@
 			</nav>
 
 			@if (auth()->check() && auth()->user()->id == $app->user_id)
-				<a class="button is-info is-slightly-elevated" href="{{ url('flutter-app/' . $app->id . '/edit') }}">
+				<a class="button is-info is-slightly-elevated" href="{{ url('flutter-app/' . $app->slug . '/edit') }}">
 					<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
 					Edit Application
 				</a>

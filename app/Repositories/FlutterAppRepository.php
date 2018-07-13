@@ -53,9 +53,8 @@ class FlutterAppRepository
      *
      * @param FlutterApp $app
      */
-    public function update($input)
+    public function update($app, $input)
     {
-        $app = self::getById($input['id']);
         $app->fill($input);
         $app->save();
 

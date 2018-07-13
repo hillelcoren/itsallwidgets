@@ -63,9 +63,9 @@ class FlutterAppController extends Controller
      * @param  FlutterApp $slug
      * @return Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        $app = $this->appRepo->getById($id);
+        $app = $this->appRepo->getBySlug($slug);
 
         if ($app->user_id != auth()->user()->id) {
             return redirect('/');
@@ -73,7 +73,7 @@ class FlutterAppController extends Controller
 
         $data = [
             'app' => $app,
-            'url' => 'flutter-app/' . $app->id,
+            'url' => 'flutter-app/' . $app->slug,
             'method' => 'PUT',
         ];
 
@@ -116,22 +116,22 @@ class FlutterAppController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $slug)
     {
-        $app = $this->appRepo->getById($request->id);
+        $app = $this->appRepo->getBySlug($slug);
 
         if ($app->user_id != auth()->user()->id) {
             return redirect('/');
         }
 
         $this->validate($request, [
-            'title' => 'required|unique:flutter_apps,title,' . $request->id . ',id',
+            'title' => 'required|unique:flutter_apps,title,' . $app->id . ',id',
             'screenshot1_url' => 'required|url',
             'short_description' => 'required|max:140',
             'long_description' => 'required',
         ]);
 
-        $app = $this->appRepo->update($request->all());
+        $app = $this->appRepo->update($app, $request->all());
 
         return redirect('/flutter-app/' . $app->slug)->with(
             'status',

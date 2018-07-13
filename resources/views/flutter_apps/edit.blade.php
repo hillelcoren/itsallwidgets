@@ -19,10 +19,6 @@
 
 		{{ Form::open(array('url' => $url, 'method' => $method)) }}
 
-		@if ($app->exists)
-			{{ Form::hidden('id', $app->id) }}
-		@endif
-
 		<article class="message is-dark is-elevated">
 			<div class="message-body">
 
