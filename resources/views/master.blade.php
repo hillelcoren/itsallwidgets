@@ -26,12 +26,14 @@
     <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
 
     <style>
+
     .is-elevated {
         filter: drop-shadow(0px 16px 16px #CCC);
     }
 
     .is-hover-elevated:hover {
         filter: drop-shadow(0px 16px 16px #CCC);
+        -webkit-transition : -webkit-filter 320ms
     }
 
     .is-slightly-elevated {
