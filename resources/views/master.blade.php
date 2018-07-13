@@ -14,11 +14,23 @@
     @endif
 
     <title>@yield('title') | {{ config('app.name') }}</title>
+    <meta name="description" content="@yield('description')">
+
+    <meta property="og:title" content="@yield('title') | {{ config('app.name') }}">
+    <meta property="og:description" content="@yield('description')">
+    <meta property="og:image" content="@yield('image_url')">
+    <meta property="og:url" content="{{ request()->url() }}">
+    <meta property="og:site_name" content="It's All Widgets!">
+
+    <meta name="twitter:title" content="@yield('title') | {{ config('app.name') }}">
+    <meta name="twitter:description" content="@yield('description')">
+    <meta name="twitter:image" content="@yield('image_url')">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image:alt" content="@yield('title') | {{ config('app.name') }}">
 
     <meta charset="utf-8">
     <meta id="token" name="token" value="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="@yield('description')">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <link rel="shortcut icon" href="{{ asset('/images/favicon.png') }}">
 
