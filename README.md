@@ -18,4 +18,8 @@ Then run:
 
 `php artisan key:generate`
 
+Once the .env file is setup you can initialize the database by running:
+
+`php artisan migrate`
+
 To support Google OAuth make sure to add the credentials in the .env file
