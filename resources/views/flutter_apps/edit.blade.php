@@ -58,7 +58,7 @@
 					</label>
 					<div class="control">
 
-						{{ Form::text('short_description', $app->short_description, ['class' => 'input', 'required' => 'true']) }}
+						{{ Form::text('short_description', $app->short_description, ['class' => 'input', 'required' => 'true', 'maxlength' => 250]) }}
 
 						@if ($errors->has('short_description'))
 							<span class="help is-danger">

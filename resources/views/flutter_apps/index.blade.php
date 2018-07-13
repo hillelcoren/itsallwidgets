@@ -32,7 +32,7 @@
 						</header>
 						<div class="card-content">
 							<div class="content">
-								<div class="subtitle is-6" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+								<div class="subtitle is-6" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{ $app->short_description }}">
 									{{ $app->short_description }}
 								</div>
 								<div class="columns">
