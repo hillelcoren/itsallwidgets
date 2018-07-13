@@ -40,7 +40,12 @@ class GoogleController extends Controller
             $createdUser = $userModel->addNew($create);
             Auth::loginUsingId($createdUser->id);
 
-            return redirect('/')->with('status', 'Your are now signed in!');
+            if ($createdUser->wasRecentlyCreated) {
+                return redirect('/submit-app')->with('status', 'Your account has been created!');
+            } else {
+                return redirect('/')->with('status', 'Your are now signed in!');
+            }
+
         } catch (Exception $e) {
 
             \Log::error('OAUTH ERROR: ' . $e->getMessage());
