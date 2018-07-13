@@ -45,7 +45,7 @@
 
     .is-hover-elevated:hover {
         filter: drop-shadow(0px 16px 16px #CCC);
-        -webkit-transition : -webkit-filter 320ms
+        -webkit-transition : -webkit-filter 200ms
     }
 
     .is-slightly-elevated {
