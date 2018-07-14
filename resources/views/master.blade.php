@@ -35,8 +35,9 @@
     <link rel="shortcut icon" href="{{ asset('/images/favicon.png') }}">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
-
+    
     <style>
 
     .is-elevated {
@@ -73,11 +74,17 @@
                                 </a>
                                 @if (auth()->check())
                                     <a class="navbar-item" href="{{ url('logout') }}">
-                                        <i class="fas fa-user-alt"></i> &nbsp; Log Out
+                                        <span class="icon">
+                                            <i class="fas fa-user-alt"></i>
+                                        </span> &nbsp;
+                                        <span>Log Out</span>
                                     </a>
                                 @else
                                     <a class="navbar-item" href="{{ url('auth/google') }}">
-                                        <i class="fas fa-user-alt"></i> &nbsp; Sign In
+                                        <span class="icon">
+                                            <i class="fas fa-user-alt"></i>
+                                        </span> &nbsp;
+                                        <span>Sign In</span>
                                     </a>
                                 @endif
 
@@ -87,8 +94,8 @@
                                 <a class="button is-info is-inverted" href="{{ url(auth()->check() ? 'flutter-apps/submit' : 'auth/google') }}">
                                     <span class="icon">
                                         <i class="fas fa-upload"></i>
-                                    </span>
-                                    <span>Submit Application</span>
+                                    </span> &nbsp;
+                                    <span>Submit App</span>
                                 </a>
                             </span>
                         </div>

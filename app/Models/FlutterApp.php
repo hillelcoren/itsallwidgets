@@ -22,7 +22,9 @@ class FlutterApp extends Model
     ];
 
     protected $hidden = [
-
+        'id',
+        'user_id',
+        'is_visible',
     ];
 
     public function setAppleUrlAttribute($value)
