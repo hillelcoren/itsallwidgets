@@ -27,11 +27,10 @@
 							</a>
 						</header>
 
-						<!--
 						<div class="card-content">
 							<div class="content">
-								<div class="subtitle is-6" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="@{{ $app->short_description }}">
-									@{{ $app->short_description }}
+								<div class="subtitle is-6" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" v-bind:title="app.short_description">
+									@{{ app.short_description }}
 								</div>
 								<div class="columns">
 									<div class="column is-one-half">
@@ -57,7 +56,6 @@
 								</div>
 							</div>
 						</div>
-					-->
 
 						<div class="card-image">
 							<img v-bind:src="app.screenshot1_url" width="1080" height="1920"/>
