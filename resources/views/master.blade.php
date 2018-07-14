@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
-    
+
     <style>
 
     .is-elevated {
@@ -116,9 +116,6 @@
         </div>
     </section>
 
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-
     <div class="container">
 
         @if (session('status'))
@@ -128,9 +125,9 @@
             <p>&nbsp;</p>
         @endif
 
-        @yield('content')
-
     </div>
+
+    @yield('content')
 
     <p>&nbsp;</p>
     <p>&nbsp;</p>
