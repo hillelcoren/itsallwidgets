@@ -138,11 +138,14 @@
                     <div id="navbarMenuHeroA" class="navbar-menu">
                         <div class="navbar-end">
                             <span class="navbar-item">
+                                <a class="navbar-item" href="{{ url('auth/google') }}">
+                                    <i class="fas fa-bell"></i> &nbsp; Get Updates
+                                </a>
+                                <a class="navbar-item" href="{{ url('feed') }}" target="_blank">
+                                    <i class="fas fa-rss"></i> &nbsp; RSS
+                                </a>
                                 <a class="navbar-item" href="https://github.com/hillelcoren/itsallwidgets" target="_blank">
                                     <i class="fab fa-github"></i> &nbsp; GitHub
-                                </a>
-                                <a class="navbar-item" href="{{ url('/feed') }}" target="_blank">
-                                    <i class="fas fa-rss"></i> &nbsp; RSS
                                 </a>
                                 @if (auth()->check())
                                     <a class="navbar-item" href="{{ url('logout') }}">
