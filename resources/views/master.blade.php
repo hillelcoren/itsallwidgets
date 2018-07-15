@@ -151,7 +151,7 @@
                     <div class="navbar-brand">
                         <div class="navbar-animate">
                             <a class="navbar-item" href="{{ url('/') }}">
-                                <font style="font-family:impact;font-size:42px;">IT'S ALL WIDGETS!</font>
+                                <font style="font-family:impact,sans-serif;font-size:42px;">IT'S ALL WIDGETS!</font>
                             </a>
                         </div>
                         <span class="navbar-burger burger" data-target="navMenu">
