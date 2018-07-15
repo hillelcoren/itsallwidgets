@@ -138,16 +138,11 @@
                     <div id="navbarMenuHeroA" class="navbar-menu">
                         <div class="navbar-end">
                             <span class="navbar-item">
-                                @if (! auth()->check())
-                                    <a class="navbar-item" href="{{ url('auth/google') }}">
-                                        <i class="fas fa-bell"></i> &nbsp; Get Weekly Updates
-                                    </a>
-                                @endif
-                                <a class="navbar-item" href="{{ url('feed') }}" target="_blank">
-                                    <i class="fas fa-rss"></i> &nbsp; RSS
-                                </a>
                                 <a class="navbar-item" href="https://github.com/hillelcoren/itsallwidgets" target="_blank">
                                     <i class="fab fa-github"></i> &nbsp; GitHub
+                                </a>
+                                <a class="navbar-item" href="{{ url('feed') }}" target="_blank">
+                                    <i class="fas fa-rss"></i> &nbsp; RSS
                                 </a>
                                 @if (auth()->check())
                                     <a class="navbar-item" href="{{ url('logout') }}">
@@ -167,6 +162,15 @@
 
                                 &nbsp;&nbsp;
                                 &nbsp;&nbsp;
+
+                                @if (! auth()->check())
+                                    <a class="button is-dark" href="{{ url(auth()->check() ? 'flutter-apps/submit' : 'auth/google') }}">
+                                        <span class="icon">
+                                            <i class="fas fa-bell"></i>
+                                        </span> &nbsp;
+                                        <span>Get Weekly Updates</span>
+                                    </a> &nbsp;&nbsp;
+                                @endif
 
                                 <a class="button is-info is-inverted" href="{{ url(auth()->check() ? 'flutter-apps/submit' : 'auth/google') }}">
                                     <span class="icon">
