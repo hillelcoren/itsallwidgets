@@ -36,9 +36,9 @@
 									<input class="slider is-fullwidth is-info" step="1" min="2" max="6" type="range" v-model="cardsPerRow">
 								</div>
 								<div class="select is-medium filter-select">
-									<select>
-										<option>Sort newest</option>
-										<option>Sort oldest</option>
+									<select v-model="sortBy">
+										<option value="newest">Sort newest</option>
+										<option value="oldest">Sort oldest</option>
 									</select>
 								</div>
 							</p>
@@ -136,6 +136,7 @@ var app = new Vue({
 		search: '',
 		filterOpenSource: false,
 		cardsPerRow: 5,
+		sortBy: 'newest',
 	},
 
 	computed: {
@@ -158,6 +159,7 @@ var app = new Vue({
 			var apps = this.apps;
 			var search = this.search.toLowerCase().trim();
 			var filterOpenSource = this.filterOpenSource;
+			var sortBy = this.sortBy;
 
 			if (search) {
 				apps = apps.filter(function(item) {
@@ -178,6 +180,16 @@ var app = new Vue({
 					return item.repo_url;
 				});
 			}
+
+			apps.sort(function(itemA, itemB) {
+				var timeA = new Date(itemA.created_at).getTime();
+				var timeB = new Date(itemB.created_at).getTime();
+				if (sortBy == 'oldest') {
+					return timeA - timeB;
+				} else {
+					return timeB - timeA;
+				}
+			});
 
 			return apps;
 		}

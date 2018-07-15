@@ -127,10 +127,11 @@
     <div class="container">
 
         @if (session('status'))
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
             <div class="notification is-success">
                 {{ session('status') }}
             </div>
-            <p>&nbsp;</p>
         @endif
 
     </div>
