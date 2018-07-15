@@ -108,7 +108,7 @@
 								</div>
 								<div class="columns is-2 is-variable">
 									<div class="column is-one-half">
-										<div v-if="app.google_url" v-on:click="openStoreUrl(app.google_url)">
+										<div v-if="app.google_url" v-on:click="openStoreUrl(app.google_url)" v-on:click.stop>
 											<div class="card-image is-slightly-elevated">
 												<img src="{{ asset('images/google.png') }}"/>
 											</div>
@@ -118,7 +118,7 @@
 										</div>
 									</div>
 									<div class="column is-one-half">
-										<div v-if="app.apple_url" v-on:click="openStoreUrl(app.apple_url)">
+										<div v-if="app.apple_url" v-on:click="openStoreUrl(app.apple_url)" v-on:click.stop>
 											<div class="card-image is-slightly-elevated">
 												<img src="{{ asset('images/apple.png') }}"/>
 											</div>
