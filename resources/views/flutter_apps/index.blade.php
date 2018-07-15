@@ -21,6 +21,11 @@
 	-moz-animation-duration: .5s;
 }
 
+.is-vertical-center {
+  display: flex;
+  align-items: center;
+}
+
 @media (min-width: 1400px) {
 	.modal-card {
 		width: 1400px;
@@ -34,35 +39,32 @@
 	<section class="hero is-light is-small">
 		<div class="hero-body">
 			<div class="container">
-
-				<div class="field-body">
-					<div class="field is-grouped">
-						<p class="control is-expanded has-icons-left">
-							<input v-model="search" class="input is-medium" type="text" placeholder="Search" autofocus="true">
-							<span class="icon is-small is-left">
-								<i class="fas fa-search"></i>
-							</span>
-							<div class="is-medium filter-control" style="padding-top:10px;" v-on:click="toggleOpenSource()">
-								<input type="checkbox" name="openSourceSwitch" class="switch is-rxtl is-info is-medium" v-model="filterOpenSource">
-								<label for="openSourceSwitch">Open Source &nbsp;</label>
-							</div>
-							<div class="is-medium filter-label">
-							  <label class="label is-medium" style="font-weight:normal;padding-top: 8px;">Zoom</label>
-							</div>
-							<div class="is-medium filter-control">
-								<input class="slider is-fullwidth is-medium is-info" step="1" min="2" max="6" type="range" v-model="cardsPerRow" style="padding-bottom:12px;">
-							</div>
-							<div class="is-medium filter-label">
-							  <label class="label is-medium" style="font-weight:normal;padding-top: 8px;">Sort</label>
-							</div>
-							<div class="select is-medium filter-control">
-								<select v-model="sortBy">
-									<option value="newest">Newest</option>
-									<option value="oldest">Oldest</option>
-								</select>
-							</div>
-						</p>
-					</div>
+				<div class="field is-grouped is-vertical-center">
+					<p class="control is-expanded has-icons-left">
+						<input v-model="search" class="input is-medium" type="text" placeholder="Search" autofocus="true">
+						<span class="icon is-small is-left">
+							<i class="fas fa-search"></i>
+						</span>
+						<div class="is-medium filter-control" stylex="padding-top:10px;" v-on:click="toggleOpenSource()">
+							<input type="checkbox" name="openSourceSwitch" class="switch is-rxtl is-info is-medium" v-model="filterOpenSource">
+							<label for="openSourceSwitch">Open Source &nbsp;</label>
+						</div>
+						<div class="is-medium filter-label">
+						  <label class="label is-medium" stylex="font-weight:normal;padding-top: 8px;">Zoom</label>
+						</div>
+						<div class="is-medium filter-control">
+							<input class="slider is-fullwidth is-medium is-info" step="1" min="2" max="6" type="range" v-model="cardsPerRow" stylex="padding-bottom:12px;">
+						</div>
+						<div class="is-medium filter-label">
+						  <label class="label is-medium" stylex="font-weight:normal;padding-top: 8px;">Sort</label>
+						</div>
+						<div class="select is-medium filter-control">
+							<select v-model="sortBy">
+								<option value="newest">Newest</option>
+								<option value="oldest">Oldest</option>
+							</select>
+						</div>
+					</p>
 				</div>
 			</div>
 		</div>
