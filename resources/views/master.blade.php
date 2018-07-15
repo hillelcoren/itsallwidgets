@@ -171,21 +171,21 @@
                                         <span>Log Out</span>
                                     </a>
                                 @else
-                                    <a class="navbar-item" href="{{ url('auth/google') }}" style="padding-right:32px;">
+                                    <a class="navbar-item" href="{{ url('auth/google') }}">
                                         <span class="icon">
                                             <i class="fas fa-user-alt"></i>
                                         </span> &nbsp;
                                         <span>Sign In</span>
-                                    </a><br/>
+                                    </a>
                                 @endif
 
                                 <a class="navbar-item" href="{{ url('feed') }}" target="_blank">
                                     <i class="fas fa-rss"></i> &nbsp; RSS
                                 </a>
 
-                                <a class="navbar-item" href="https://github.com/hillelcoren/itsallwidgets" target="_blank">
+                                <a class="navbar-item" href="https://github.com/hillelcoren/itsallwidgets" target="_blank" style="padding-right:32px;">
                                     <i class="fab fa-github"></i> &nbsp; GitHub
-                                </a>
+                                </a><br/>
 
                                 @if (! auth()->check())
                                     <a class="button is-dark" href="{{ url(auth()->check() ? 'flutter-apps/submit' : 'auth/google') }}">
