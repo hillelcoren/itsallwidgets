@@ -33,7 +33,7 @@
 									<label for="openSourceSwitch">Open Source</label>
 								</div>
 								<div class="is-medium filter-select">
-									<input class="slider is-fullwidth is-info" step="1" min="2" max="10" value="3" type="range">
+									<input class="slider is-fullwidth is-info" step="1" min="2" max="10" type="range" v-model="cardsPerRow">
 								</div>
 								<div class="select is-medium filter-select">
 									<select>
@@ -54,7 +54,7 @@
 
 	<div class="container">
 		<div class="columns is-multiline is-5 is-variable">
-			<div v-for="app in filteredApps" class="column is-one-third">
+			<div v-for="app in filteredApps" class="column" v-bind-class="columnClass">
 				<div onclick="location.href = '@{{ url('flutter-app/'. $app->slug) }}';" style="cursor:pointer">
 					<div class="card is-hover-elevated">
 						<header class="card-header">
@@ -135,37 +135,56 @@ var app = new Vue({
 		apps: {!! $apps !!},
 		search: '',
 		filterOpenSource: false,
+		cardsPerRow: 3,
 	},
 
 	computed: {
-      filteredApps() {
-		var apps = this.apps;
-		var search = this.search.toLowerCase().trim();
-		var filterOpenSource = this.filterOpenSource;
+		columnClass() {
+			return {
+				'is-one-half': true,
+			}
 
-		if (search) {
-			apps = apps.filter(function(item) {
-				if (item.title.toLowerCase().indexOf(search) >= 0) {
-					return true;
-				}
+			console.log('comp classs...');
+			switch(this.cardsPerRow) {
+				case 2:
+					return 'is-one-half'
+				case 3:
+					return 'is-one-third';
+				case 4:
+					return 'is-one-fourth';
+				default:
+					return 'is-one-third';
+			}
+		},
 
-				if (item.short_description.toLowerCase().indexOf(search) >= 0) {
-					return true;
-				}
+		filteredApps() {
+			var apps = this.apps;
+			var search = this.search.toLowerCase().trim();
+			var filterOpenSource = this.filterOpenSource;
 
-				return false;
-			});
+			if (search) {
+				apps = apps.filter(function(item) {
+					if (item.title.toLowerCase().indexOf(search) >= 0) {
+						return true;
+					}
+
+					if (item.short_description.toLowerCase().indexOf(search) >= 0) {
+						return true;
+					}
+
+					return false;
+				});
+			}
+
+			if (filterOpenSource) {
+				apps = apps.filter(function(item) {
+					return item.repo_url;
+				});
+			}
+
+			return apps;
 		}
-
-		if (filterOpenSource) {
-			apps = apps.filter(function(item) {
-				return item.repo_url;
-			});
-		}
-
-		return apps;
-      }
-    }
+	}
 
 });
 
