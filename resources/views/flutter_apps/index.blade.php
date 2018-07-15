@@ -39,24 +39,26 @@
 	<section class="hero is-light is-small">
 		<div class="hero-body">
 			<div class="container">
-				<div class="field is-grouped is-vertical-center">
+				<div class="field is-grouped is-grouped-multiline is-vertical-center">
 					<p class="control is-expanded has-icons-left">
-						<input v-model="search" class="input is-medium" type="text" placeholder="Search" autofocus="true">
-						<span class="icon is-small is-left">
+						<input v-model="search" class="input is-medium" type="text" placeholder="Search" autofocus="true" style="margin-top: 10px">
+						<span class="icon is-small is-left" style="margin-top: 10px">
 							<i class="fas fa-search"></i>
 						</span>
-						<div class="is-medium filter-control" stylex="padding-top:10px;" v-on:click="toggleOpenSource()">
-							<input type="checkbox" name="openSourceSwitch" class="switch is-rxtl is-info is-medium" v-model="filterOpenSource">
+						<div class="is-medium filter-control" v-on:click="toggleOpenSource()">
+							<input type="checkbox" name="openSourceSwitch"
+								class="switch is-rtl is-info is-medium" v-model="filterOpenSource">
 							<label for="openSourceSwitch">Open Source &nbsp;</label>
 						</div>
 						<div class="is-medium filter-label">
-						  <label class="label is-medium" stylex="font-weight:normal;padding-top: 8px;">Zoom</label>
+						  <label class="label is-medium">Zoom</label>
 						</div>
 						<div class="is-medium filter-control">
-							<input class="slider is-fullwidth is-medium is-info" step="1" min="2" max="6" type="range" v-model="cardsPerRow" stylex="padding-bottom:12px;">
+							<input class="slider is-fullwidth is-medium is-info"
+								step="1" min="2" max="6" type="range" v-model="cardsPerRow">
 						</div>
 						<div class="is-medium filter-label">
-						  <label class="label is-medium" stylex="font-weight:normal;padding-top: 8px;">Sort</label>
+						  <label class="label is-medium">Sort</label>
 						</div>
 						<div class="select is-medium filter-control">
 							<select v-model="sortBy">
