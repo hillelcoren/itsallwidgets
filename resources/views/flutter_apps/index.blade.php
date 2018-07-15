@@ -8,8 +8,8 @@
 
 <style>
 
-.filter-select {
-	padding-left: 20px;
+.filter-control {
+	padding-left: 40px;
 }
 
 </style>
@@ -28,14 +28,14 @@
 								<span class="icon is-small is-left">
 									<i class="fas fa-search"></i>
 								</span>
-								<div class="is-medium filter-select" style="padding-top:10px;" v-on:click="toggleOpenSource()">
+								<div class="is-medium filter-control" style="padding-top:10px;" v-on:click="toggleOpenSource()">
 									<input type="checkbox" name="openSourceSwitch" class="switch is-info is-medium" v-model="filterOpenSource">
 									<label for="openSourceSwitch">Open Source</label>
 								</div>
-								<div class="is-medium filter-select">
+								<div class="is-medium filter-control">
 									<input class="slider is-fullwidth is-info" step="1" min="2" max="6" type="range" v-model="cardsPerRow">
 								</div>
-								<div class="select is-medium filter-select">
+								<div class="select is-medium filter-control">
 									<select v-model="sortBy">
 										<option value="newest">Sort newest</option>
 										<option value="oldest">Sort oldest</option>
