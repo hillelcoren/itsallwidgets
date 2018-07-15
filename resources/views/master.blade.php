@@ -183,9 +183,13 @@
                                     <i class="fas fa-rss"></i> &nbsp; RSS
                                 </a>
 
-                                <a class="navbar-item" href="https://github.com/hillelcoren/itsallwidgets" target="_blank" style="padding-right:32px;">
+                                <a class="navbar-item" href="https://github.com/hillelcoren/itsallwidgets" target="_blank">
                                     <i class="fab fa-github"></i> &nbsp; GitHub
-                                </a><br/>
+                                </a>
+
+                                <div class="navbar-item">
+                                    &nbsp;
+                                </div>
 
                                 @if (! auth()->check())
                                     <a class="button is-dark" href="{{ url(auth()->check() ? 'flutter-apps/submit' : 'auth/google') }}">
