@@ -93,7 +93,7 @@
     }
 
     span.navbar-item,
-    div.navbar-brand,
+    div.navbar-animate,
     .hero-body .title,
     .hero-body .subtitle {
         visibility: hidden;
@@ -105,7 +105,7 @@
 
     window.onerror = function (errorMsg, url, lineNumber, column, error) {
         try {
-        $.ajax({
+            $.ajax({
                 type: 'GET',
                 url: '{{ URL::to('log_error') }}',
                 data: 'error=' + encodeURIComponent(errorMsg + ' | URL: ' + url + ' | Line: ' + lineNumber + ' | Column: '+ column)
@@ -119,9 +119,23 @@
     }
 
     $(function() {
-        $('div.navbar-brand').addClass('animated tada').css('visibility', 'visible');
-        $('span.navbar-item').addClass('animated slideInDown').css('visibility', 'visible');
-        $('.hero-body .title, .hero-body .subtitle').addClass('animated fadeIn').css('visibility', 'visible');
+        $('div.navbar-animate').addClass('animated tada').css('visibility', 'visible');
+        if (document.body.clientWidth > 1000) {
+            $('span.navbar-item').addClass('animated slideInDown').css('visibility', 'visible');
+            $('.hero-body .title, .hero-body .subtitle').addClass('animated fadeIn').css('visibility', 'visible');
+        } else {
+            $('span.navbar-item').css('visibility', 'visible');
+            $('.hero-body .title, .hero-body .subtitle').css('visibility', 'visible');
+        }
+
+        // Check for click events on the navbar burger icon
+        $(".navbar-burger").click(function() {
+
+            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+            $(".navbar-burger").toggleClass("is-active");
+            $(".navbar-menu").toggleClass("is-active");
+
+        });
     })
 
     </script>
@@ -135,11 +149,18 @@
             <nav class="navbar">
                 <div class="container">
                     <div class="navbar-brand">
-                        <a class="navbar-item" href="{{ url('/') }}">
-                            <font style="font-family:impact;font-size:42px;">IT'S ALL WIDGETS!</font>
-                        </a>
+                        <div class="navbar-animate">
+                            <a class="navbar-item" href="{{ url('/') }}">
+                                <font style="font-family:impact;font-size:42px;">IT'S ALL WIDGETS!</font>
+                            </a>
+                        </div>
+                        <span class="navbar-burger burger" data-target="navMenu">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
                     </div>
-                    <div id="navbarMenuHeroA" class="navbar-menu">
+                    <div id="navMenu" class="navbar-menu">
                         <div class="navbar-end">
                             <span class="navbar-item">
                                 <a class="navbar-item" href="https://github.com/hillelcoren/itsallwidgets" target="_blank">
@@ -156,16 +177,13 @@
                                         <span>Log Out</span>
                                     </a>
                                 @else
-                                    <a class="navbar-item" href="{{ url('auth/google') }}">
+                                    <a class="navbar-item" href="{{ url('auth/google') }}" style="padding-right:30px">
                                         <span class="icon">
                                             <i class="fas fa-user-alt"></i>
                                         </span> &nbsp;
                                         <span>Sign In</span>
                                     </a>
                                 @endif
-
-                                &nbsp;&nbsp;
-                                &nbsp;&nbsp;
 
                                 @if (! auth()->check())
                                     <a class="button is-dark" href="{{ url(auth()->check() ? 'flutter-apps/submit' : 'auth/google') }}">
@@ -234,6 +252,7 @@
             </p>
         </div>
     </footer>
+
 
 </body>
 </html>
