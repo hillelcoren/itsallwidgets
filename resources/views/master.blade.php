@@ -172,7 +172,7 @@
                                         <span class="icon">
                                             <i class="fas fa-bell"></i>
                                         </span> &nbsp;
-                                        <span>Get Weekly Updates</span>
+                                        <span>Get Updates</span>
                                     </a> &nbsp;&nbsp;
                                 @endif
 
