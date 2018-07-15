@@ -76,8 +76,11 @@
         font-family: inherit;
     }
 
-    .navbar-brand {
-        display: none;
+    span.navbar-item,
+    div.navbar-brand,
+    .hero-body .title,
+    .hero-body .subtitle {
+        visibility: hidden;
     }
 
     </style>
@@ -86,7 +89,7 @@
 
     window.onerror = function (errorMsg, url, lineNumber, column, error) {
         try {
-            $.ajax({
+        $.ajax({
                 type: 'GET',
                 url: '{{ URL::to('log_error') }}',
                 data: 'error=' + encodeURIComponent(errorMsg + ' | URL: ' + url + ' | Line: ' + lineNumber + ' | Column: '+ column)
@@ -100,7 +103,9 @@
     }
 
     $(function() {
-        $('.navbar-brand').addClass('animated tada').show();
+        $('div.navbar-brand').addClass('animated tada').css('visibility', 'visible');
+        $('span.navbar-item').addClass('animated slideInDown').css('visibility', 'visible');
+        $('.hero-body .title, .hero-body .subtitle').addClass('animated fadeIn').css('visibility', 'visible');
     })
 
     </script>
