@@ -97,7 +97,7 @@
 										</div>
 									</div>
 								</a>
-								<a href="http://twitter.com/share?text={{ urlencode($app->title) }}&amp;url={{ urlencode(url('/flutter-app/' . $app->slug)) }}" target="_blank">
+								<a href="https://twitter.com/share?text={{ urlencode($app->title) }}&amp;url={{ urlencode(url('/flutter-app/' . $app->slug)) }}" target="_blank">
 									<div class="dropdown-content">
 										<div class="dropdown-item">
 											<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter

@@ -242,7 +242,7 @@ body {
 											</div>
 										</div>
 									</a>
-									<a v-bind:href="'http://twitter.com/share?text=' + encodeURIComponent(selected_app.title) + '&amp;url=' + encodeURIComponent('{{ url('/flutter-app') }}' + '/' + selected_app.slug)" target="_blank">
+									<a v-bind:href="'https://twitter.com/share?text=' + encodeURIComponent(selected_app.title) + '&amp;url=' + encodeURIComponent('{{ url('/flutter-app') }}' + '/' + selected_app.slug)" target="_blank">
 										<div class="dropdown-content">
 											<div class="dropdown-item">
 												<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
