@@ -308,6 +308,13 @@ var app = new Vue({
 				window.location = '/flutter-app/' + app.slug;
 			} else {
 				this.selected_app = app;
+				if (history.pushState) {
+					if (app) {
+						history.pushState(null, null, '/flutter-app/' + app.slug);
+					} else {
+						history.pushState(null, null, '/flutter-apps');
+					}
+				}
 			}
 		},
 
