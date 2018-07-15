@@ -51,7 +51,7 @@ body {
 			<div class="container">
 				<div class="field is-grouped is-grouped-multiline is-vertical-center">
 					<p class="control is-expanded has-icons-left">
-						<input v-model="search" class="input is-medium" type="text" placeholder="Search" autofocus="true" style="margin-top: 10px">
+						<input v-model="search" class="input is-medium" type="text" placeholder="Search" autofocus="true" style="margin-top: 10px" v-bind:style="{ backgroundColor: searchBackgroundColor()}">
 						<span class="icon is-small is-left" style="margin-top: 10px">
 							<i class="fas fa-search"></i>
 						</span>
@@ -334,6 +334,18 @@ var app = new Vue({
 			localStorage.setItem('cards_per_row', this.cards_per_row);
 			localStorage.setItem('sort_by', this.sort_by);
 		},
+
+        searchBackgroundColor: function() {
+            if (! this.search) {
+                return '#FFFFFF';
+            } else {
+                if (this.filteredApps.length) {
+                    return '#FFFFBB';
+                } else {
+                    return '#FFC9D9';
+                }
+            }
+        }
 	},
 
 	mounted () {
