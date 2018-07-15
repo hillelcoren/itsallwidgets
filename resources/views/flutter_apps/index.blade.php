@@ -46,7 +46,6 @@
 									<select>
 										<option>Sort newest</option>
 										<option>Sort oldest</option>
-										<option>Sort released</option>
 									</select>
 								</div>
 							</p>
