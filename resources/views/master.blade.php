@@ -53,6 +53,13 @@
     .is-slightly-elevated {
         filter: drop-shadow(0px 4px 2px #CCC);
     }
+
+    .no-wrap {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
     </style>
 </head>
 

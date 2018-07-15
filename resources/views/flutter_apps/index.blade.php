@@ -58,7 +58,7 @@
 				<div onclick="location.href = '@{{ url('flutter-app/'. $app->slug) }}';" style="cursor:pointer">
 					<div class="card is-hover-elevated">
 						<header class="card-header">
-							<p class="card-header-title is-2">
+							<p class="card-header-title is-2 no-wrap">
 								@{{ app.title }}
 							</p>
 							<a href="@{{ app.facebook_url }}" class="card-header-icon" target="_blank">
@@ -74,7 +74,7 @@
 
 						<div class="card-content">
 							<div class="content">
-								<div class="subtitle is-6" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" v-bind:title="app.short_description">
+								<div class="subtitle is-6 no-wrap" v-bind:title="app.short_description">
 									@{{ app.short_description }}
 								</div>
 								<div class="columns">
