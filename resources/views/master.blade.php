@@ -76,6 +76,10 @@
         font-family: inherit;
     }
 
+    .navbar-brand {
+        display: none;
+    }
+
     </style>
 
     <script>
@@ -86,7 +90,7 @@
                 type: 'GET',
                 url: '{{ URL::to('log_error') }}',
                 data: 'error=' + encodeURIComponent(errorMsg + ' | URL: ' + url + ' | Line: ' + lineNumber + ' | Column: '+ column)
-                    + '&url=' + encodeURIComponent(window.location)
+                + '&url=' + encodeURIComponent(window.location)
             });
         } catch (exception) {
             // do nothing
@@ -94,6 +98,10 @@
 
         return false;
     }
+
+    $(function() {
+        $('.navbar-brand').addClass('animated tada').show();
+    })
 
     </script>
 
@@ -193,20 +201,9 @@
                 <a href="https://twitter.com/ThomasBurkhartB" target="_blank">@ThomasBurkhartB</a> •
                 <a href="https://twitter.com/devangelslondon" target="_blank">@devangelslondon</a> •
                 <a href="https://twitter.com/scottstoll2017" target="_blank">@scottstoll2017</a>
-
-                <!--
-                <a href="https://hillelcoren.com" target="_blank">Hillel Coren</a>
-                <a href="https://twitter.com/hillelcoren" target="_blank"><i class="fab fa-twitter-square"></i></a> •
-                <a href="https://www.burkharts.net/apps/blog/" target="_blank">Thomas Burkhart</a>
-                <a href="https://twitter.com/ThomasBurkhartB" target="_blank"><i class="fab fa-twitter-square"></i></a> •
-                Simon Lightfoot
-                <a href="https://twitter.com/devangelslondon" target="_blank"><i class="fab fa-twitter-square"></i></a> •
-                Scott Stoll
-                <a href="https://twitter.com/scottstoll2017" target="_blank"><i class="fab fa-twitter-square"></i></a>
-            -->
-        </p>
-    </div>
-</footer>
+            </p>
+        </div>
+    </footer>
 
 </body>
 </html>
