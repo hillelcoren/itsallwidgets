@@ -17,6 +17,12 @@
 	-moz-animation-duration: .5s;
 }
 
+@media (min-width: 1400px) {
+  .modal-card {
+      width: 1400px;
+  }
+}
+
 </style>
 
 <div id="app">
@@ -112,22 +118,98 @@
 						</div>
 					</div>
 				</div>
-
 				<p>&nbsp;</p>
-
 			</div>
-
 		</div>
 	</div>
 
-	<div class="modal animated fadeIn" v-bind:class="modalClass">
+	<div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_app">
 		<div class="modal-background" v-on:click="selectApp()"></div>
 		<div class="modal-card">
 			<header class="modal-card-head">
-				<p class="modal-card-title">Modal title</p>
+				<p class="modal-card-title">
+					@{{ selected_app.title }}
+				</p>
 				<button class="delete" aria-label="close" v-on:click="selectApp()"></button>
 			</header>
 			<section class="modal-card-body" @click.stop>
+
+				<div class="columns">
+					<div class="column is-4 is-elevated">
+						<img v-bind:src="selected_app.screenshot1_url" width="1080" height="1920"/>
+					</div>
+					<div class="column is-8">
+						<!--
+							<a class="button is-info is-slightly-elevated" href="@{{ url('flutter-app/' . $app->slug . '/edit') }}">
+								<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
+								Edit Application
+							</a>
+							<p>&nbsp;</p>
+						-->
+
+						<div class="content">
+							<div class="subtitle">
+								@{{ selected_app.short_description }}
+							</div>
+
+								<div class="columns">
+									<div class="column is-one-half">
+										<div v-if="selected_app.google_url" v-on:click="openStoreUrl(selected_app.google_url)">
+											<div class="card-image is-slightly-elevated">
+												<img src="{{ asset('images/google.png') }}"/>
+											</div>
+										</div>
+										<div v-if="! selected_app.google_url" class="card-image is-slightly-elevated">
+											<img src="{{ asset('images/google.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
+										</div>
+									</div>
+									<div class="column is-one-half">
+										<div v-if="selected_app.apple_url" v-on:click="openStoreUrl(selected_app.apple_url)">
+											<div class="card-image is-slightly-elevated">
+												<img src="{{ asset('images/apple.png') }}"/>
+											</div>
+										</div>
+										<div v-if="! selected_app.apple_url" class="card-image is-slightly-elevated">
+											<img src="{{ asset('images/apple.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
+										</div>
+									</div>
+								</div>
+
+								<div class="content">
+									<a v:if="selected_app.website_url" href="@{{ selected_app.website_url) }}" target="_blank">
+										@{{ selected_app.website_url }}
+									</a></br>
+									<a v:if="selected_app.repo_url" href="@{{ selected_app.repo_url) }}" target="_blank">
+										@{{ selected_app.repo_url }}
+									</a><br/>
+								</div>
+								<br/>
+
+
+							<div class="content">
+									<a v:if="selected_app.facebook_url" class="button is-slightly-elevated"
+										href="@{{ selected_app.facebook_url }}" target="_blank">
+										<i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
+									</a>
+									<a v:if="selected_app.twitter_url" class="button is-slightly-elevated"
+										href="@{{ selected_app.twitter_url }}" target="_blank">
+										<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
+									</a>
+							</div>
+
+
+							<div class="block">
+								@{{ selected_app.long_description }}
+							</div>
+
+							<iframe v:if="selected_app.youtube_url" width="560" height="315" v-bind:src="selected_app.youtube_url"
+								frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+						</div>
+
+					</div>
+
+				</div>
+
 
 			</section>
 		</div>
@@ -151,9 +233,20 @@ var app = new Vue({
 		},
 
 		selectApp: function(app) {
-			this.selectedApp = app;
+			this.selected_app = app;
 		},
 	},
+
+	/*
+	created: function() {
+		window.addEventListener('keyup', function(event) {
+			// listen for esc
+			if (event.keyCode == 27) {
+				this.selectApp();
+			}
+		});
+	},
+	*/
 
 	data: {
 		apps: {!! $apps !!},
@@ -161,12 +254,12 @@ var app = new Vue({
 		filterOpenSource: false,
 		cardsPerRow: 5,
 		sortBy: 'newest',
-		selectedApp: false,
+		selected_app: false,
 	},
 
 	computed: {
 		modalClass() {
-			if (this.selectedApp) {
+			if (this.selected_app) {
 				return {'is-active': true};
 			} else {
 				return {};
