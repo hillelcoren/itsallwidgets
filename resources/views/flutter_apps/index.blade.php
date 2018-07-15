@@ -236,6 +236,16 @@
 
 <script>
 
+
+function isStorageSupported() {
+	try {
+		return 'localStorage' in window && window['localStorage'] !== null;
+	} catch (e) {
+		return false;
+	}
+};
+
+
 var app = new Vue({
 	el: '#app',
 
@@ -269,16 +279,8 @@ var app = new Vue({
 			}
 		},
 
-		isStorageSupported: function() {
-			try {
-				return 'localStorage' in window && window['localStorage'] !== null;
-			} catch (e) {
-				return false;
-			}
-		},
-
 		saveFilters: function() {
-			if (! this.isStorageSupported()) {
+			if (! isStorageSupported()) {
 				return false;
 			}
 
@@ -299,8 +301,8 @@ var app = new Vue({
 		apps: {!! $apps !!},
 		search: '',
 		filter_open_source: false,
-		cards_per_row: 5,
-		sort_by: 'newest',
+		cards_per_row: (isStorageSupported() ? localStorage.getItem('cards_per_row') : false) || 5,
+		sort_by: (isStorageSupported() ? localStorage.getItem('sort_by') : false) || 'newest',
 		selected_app: false,
 	},
 
