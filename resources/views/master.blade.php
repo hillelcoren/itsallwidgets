@@ -162,7 +162,7 @@
                     </div>
                     <div id="navMenu" class="navbar-menu">
                         <div class="navbar-end">
-                            <span class="navbar-item">
+                            <span class="navbar-item has-text-centered">
                                 <a class="navbar-item" href="https://github.com/hillelcoren/itsallwidgets" target="_blank">
                                     <i class="fab fa-github"></i> &nbsp; GitHub
                                 </a>
@@ -178,12 +178,12 @@
                                         <span>Log Out</span>
                                     </a>
                                 @else
-                                    <a class="navbar-item" href="{{ url('auth/google') }}">
+                                    <a class="navbar-item" href="{{ url('auth/google') }}" style="padding-right:32px;">
                                         <span class="icon">
                                             <i class="fas fa-user-alt"></i>
                                         </span> &nbsp;
                                         <span>Sign In</span>
-                                    </a>
+                                    </a><br/>
                                 @endif
 
                                 @if (! auth()->check())
