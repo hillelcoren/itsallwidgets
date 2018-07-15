@@ -37,6 +37,7 @@ class FlutterAppController extends Controller
         $apps = cache('flutter-app-list');
 
         return view('flutter_apps.index', compact('apps'));
+        //return view('flutter_apps.legacy_index', compact('apps'));
     }
 
     /**

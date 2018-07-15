@@ -34,9 +34,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <link rel="shortcut icon" href="{{ asset('/images/favicon.png') }}">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+    <link rel="stylesheet" href="{{ asset('css/bulma.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bulma-extensions.min.css') }}">
+    <script src="{{ asset('js/vue.min.js') }}"></script>
+    <script defer src="{{ asset('js/fontawesome.js') }}"></script>
 
     <style>
 

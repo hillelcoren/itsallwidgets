@@ -12,6 +12,7 @@
 */
 
 Route::redirect('/', '/flutter-apps');
+
 Route::get('flutter-apps', 'FlutterAppController@index');
 
 Route::get('google', function () {
@@ -23,6 +24,7 @@ Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback')
 Route::get('login', function () {
     return redirect('/');
 })->name('login');
+
 Route::get('logout', 'Auth\LoginController@logout');
 
 Route::get('flutter-app/{slug}', 'FlutterAppController@show');

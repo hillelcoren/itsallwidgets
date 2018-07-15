@@ -24,23 +24,16 @@
 					<div class="field-body">
 						<div class="field has-addons">
 							<p class="control is-expanded has-icons-left">
-								<input class="input is-medium" type="text" placeholder="Search">
+								<input class="input is-medium" type="text" placeholder="Search" autofocus="true">
 								<span class="icon is-small is-left">
 									<i class="fas fa-search"></i>
 								</span>
-								<div class="select is-medium filter-select">
-									<select>
-										<option>Open & closed source</option>
-										<option>Open source</option>
-										<option>Closed source</option>
-									</select>
+								<div class="is-medium filter-select" style="padding-top:10px;">
+									<input type="checkbox" name="openSourceSwitch" class="switch is-info is-medium">
+									<label for="openSourceSwitch">Open Source</label>
 								</div>
-								<div class="select is-medium filter-select">
-									<select>
-										<option>Three cards per row</option>
-										<option>Sort oldest</option>
-										<option>Sort released</option>
-									</select>
+								<div class="is-medium filter-select">
+									<input class="slider is-fullwidth is-info" step="1" min="2" max="10" value="3" type="range">
 								</div>
 								<div class="select is-medium filter-select">
 									<select>
