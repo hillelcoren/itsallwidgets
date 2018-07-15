@@ -26,10 +26,8 @@
 	align-items: center;
 }
 
-@media (min-width: 1400px) {
-	.modal-card {
-		width: 1400px;
-	}
+.modal-card {
+	width: 80%;
 }
 
 [v-cloak] {
