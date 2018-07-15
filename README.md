@@ -1,6 +1,10 @@
 # It's All Widgets!
 
-An open list of apps built with Google Flutter
+The website is built with:
+
+- [Laravel](https://laravel.com/)
+- [Vue.js](https://vuejs.org/)
+- [Bulma](https://bulma.io/)
 
 ## Getting Started
 
