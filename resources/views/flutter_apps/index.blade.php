@@ -151,75 +151,78 @@
 						<img v-bind:src="selected_app.screenshot1_url" width="1080" height="1920"/>
 					</div>
 					<div class="column is-8">
-						<!--
-						<a class="button is-info is-slightly-elevated" href="@{{ url('flutter-app/' . $app->slug . '/edit') }}">
-						<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
-						Edit Application
-					</a>
-					<p>&nbsp;</p>
-				-->
+						@{{ selected_app.user_id }}
+						@if (auth()->check())
+							<div v:if="isOwner">
+								<a class="button is-info is-slightly-elevated" v-bind:href="'/flutter-app/' + selected_app.slug + '/edit'">
+									<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
+									Edit Application
+								</a>
+								<p>&nbsp;</p>
+							</div>
+						@endif
 
-				<div class="content">
-					<div class="subtitle">
-						@{{ selected_app.short_description }}
-					</div>
+						<div class="content">
+							<div class="subtitle">
+								@{{ selected_app.short_description }}
+							</div>
 
-					<div class="columns is-2 is-variable" v:if="selected_app.google_url || selected_app.apple_url">
-						<div class="column is-2">
-							<div v-if="selected_app.google_url" v-on:click="openStoreUrl(selected_app.google_url)">
-								<div class="card-image is-slightly-elevated">
-									<img src="{{ asset('images/google.png') }}"/>
+							<div class="columns is-2 is-variable" v:if="selected_app.google_url || selected_app.apple_url">
+								<div class="column is-2">
+									<div v-if="selected_app.google_url" v-on:click="openStoreUrl(selected_app.google_url)">
+										<div class="card-image is-slightly-elevated">
+											<img src="{{ asset('images/google.png') }}"/>
+										</div>
+									</div>
+									<div v-if="! selected_app.google_url" class="card-image is-slightly-elevated">
+										<img src="{{ asset('images/google.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
+									</div>
+								</div>
+								<div class="column is-2">
+									<div v-if="selected_app.apple_url" v-on:click="openStoreUrl(selected_app.apple_url)">
+										<div class="card-image is-slightly-elevated">
+											<img src="{{ asset('images/apple.png') }}"/>
+										</div>
+									</div>
+									<div v-if="! selected_app.apple_url" class="card-image is-slightly-elevated">
+										<img src="{{ asset('images/apple.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
+									</div>
 								</div>
 							</div>
-							<div v-if="! selected_app.google_url" class="card-image is-slightly-elevated">
-								<img src="{{ asset('images/google.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
+
+							<div class="content" v:if="selected_app.website_url || selected_app.repo_url">
+								<a v:if="selected_app.website_url" href="@{{ selected_app.website_url) }}" target="_blank">
+									@{{ selected_app.website_url }}
+								</a></br>
+								<a v:if="selected_app.repo_url" href="@{{ selected_app.repo_url) }}" target="_blank">
+									@{{ selected_app.repo_url }}
+								</a><br/>
+								<br/>
 							</div>
-						</div>
-						<div class="column is-2">
-							<div v-if="selected_app.apple_url" v-on:click="openStoreUrl(selected_app.apple_url)">
-								<div class="card-image is-slightly-elevated">
-									<img src="{{ asset('images/apple.png') }}"/>
-								</div>
-							</div>
-							<div v-if="! selected_app.apple_url" class="card-image is-slightly-elevated">
-								<img src="{{ asset('images/apple.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
-							</div>
-						</div>
+
+							<div class="content">
+								<a v:if="selected_app.facebook_url" class="button is-slightly-elevated"
+								href="@{{ selected_app.facebook_url }}" target="_blank">
+								<i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
+							</a>
+							<a v:if="selected_app.twitter_url" class="button is-slightly-elevated"
+							href="@{{ selected_app.twitter_url }}" target="_blank">
+							<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
+						</a>
 					</div>
 
-					<div class="content" v:if="selected_app.website_url || selected_app.repo_url">
-						<a v:if="selected_app.website_url" href="@{{ selected_app.website_url) }}" target="_blank">
-							@{{ selected_app.website_url }}
-						</a></br>
-						<a v:if="selected_app.repo_url" href="@{{ selected_app.repo_url) }}" target="_blank">
-							@{{ selected_app.repo_url }}
-						</a><br/>
-						<br/>
-					</div>
 
-					<div class="content">
-						<a v:if="selected_app.facebook_url" class="button is-slightly-elevated"
-						href="@{{ selected_app.facebook_url }}" target="_blank">
-						<i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
-					</a>
-					<a v:if="selected_app.twitter_url" class="button is-slightly-elevated"
-					href="@{{ selected_app.twitter_url }}" target="_blank">
-					<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
-				</a>
+					<span class="block wrap">@{{ selected_app.long_description }}</span>
+
+				</div>
+
+				<iframe v:if="selected_app.youtube_url" width="560" height="315" v-bind:src="selected_app.youtube_url"
+				frameborder="0" allowfullscreen></iframe>
 			</div>
-
-
-			<span class="block wrap">@{{ selected_app.long_description }}</span>
 
 		</div>
 
-		<iframe v:if="selected_app.youtube_url" width="560" height="315" v-bind:src="selected_app.youtube_url"
-		frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 	</div>
-
-</div>
-
-</div>
 
 
 </section>
@@ -269,6 +272,14 @@ data: {
 },
 
 computed: {
+	isOwner() {
+		if (! this.selected_app) {
+			return false;
+		}
+		console.log('user id: ' + this.selected_app.user_id);
+		return this.selected_app.user_id == {{ auth()->user()->id }};
+	},
+
 	modalClass() {
 		if (this.selected_app) {
 			return {'is-active': true};
@@ -334,8 +345,6 @@ computed: {
 
 });
 
-
 </script>
-
 
 @stop
