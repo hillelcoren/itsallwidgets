@@ -22,8 +22,8 @@
 }
 
 .is-vertical-center {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 @media (min-width: 1400px) {
@@ -47,18 +47,18 @@
 						</span>
 						<div class="is-medium filter-label" v-on:click="toggleOpenSource()">
 							<input type="checkbox" name="openSourceSwitch"
-								class="switch is-info is-medium" v-model="filterOpenSource">
+							class="switch is-info is-medium" v-model="filterOpenSource">
 							<label for="openSourceSwitch">Open Source &nbsp;</label>
 						</div>
 						<div class="is-medium filter-label">
-						  <label class="label is-medium" style="font-weight: normal;">Zoom</label>
+							<label class="label is-medium" style="font-weight: normal;">Zoom</label>
 						</div>
 						<div class="is-medium filter-control">
 							<input class="slider is-fullwidth is-medium is-info"
-								step="1" min="2" max="6" type="range" v-model="cardsPerRow">
+							step="1" min="2" max="6" type="range" v-model="cardsPerRow">
 						</div>
 						<div class="is-medium filter-label">
-						  <label class="label is-medium" style="font-weight: normal;">Sort</label>
+							<label class="label is-medium" style="font-weight: normal;">Sort</label>
 						</div>
 						<div class="select is-medium filter-control">
 							<select v-model="sortBy">
@@ -209,15 +209,15 @@
 			</div>
 
 
-			<div class="block">
-				@{{ selected_app.long_description }}
-			</div>
+			<span class="block wrap">@{{ selected_app.long_description }}</span>
 
-			<iframe v:if="selected_app.youtube_url" width="560" height="315" v-bind:src="selected_app.youtube_url"
-			frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 		</div>
 
+		<iframe v:if="selected_app.youtube_url" width="560" height="315" v-bind:src="selected_app.youtube_url"
+		frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 	</div>
+
+</div>
 
 </div>
 

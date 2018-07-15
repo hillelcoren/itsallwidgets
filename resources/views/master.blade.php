@@ -61,6 +61,12 @@
         text-overflow: ellipsis;
     }
 
+    .wrap {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        font-family: inherit;
+    }
+
     </style>
 </head>
 
