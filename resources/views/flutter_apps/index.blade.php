@@ -207,31 +207,59 @@
 						</div>
 
 						<div class="content">
-							<a v-if="selected_app.facebook_url" class="button is-slightly-elevated"
-							v-bind:href="selected_app.facebook_url" target="_blank">
-							<i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
-						</a>
-						<a v-if="selected_app.twitter_url" class="button is-slightly-elevated"
-						v-bind:href="selected_app.twitter_url" target="_blank">
-						<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
-					</a>
+							<a v-if="selected_app.facebook_url" class="button is-slightly-elevated" v-bind:href="selected_app.facebook_url" target="_blank">
+								<i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
+							</a>
+							<a v-if="selected_app.twitter_url" class="button is-slightly-elevated" v-bind:href="selected_app.twitter_url" target="_blank">
+								<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
+							</a>
+
+							<div class="dropdown is-hoverable">
+								<div class="dropdown-trigger is-slightly-elevated">
+									<button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+										<span>
+											<i style="font-size: 20px" class="fa fa-share"></i> &nbsp;
+											Share App
+										</span>
+										<span class="icon is-small">
+											<i class="fas fa-angle-down" aria-hidden="true"></i>
+										</span>
+									</button>
+								</div>
+								<div class="dropdown-menu" role="menu">
+									<a href="https://www.facebook.com/sharer/sharer.php?u=#url" target="_blank">
+										<div class="dropdown-content">
+											<div class="dropdown-item">
+												<i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
+											</div>
+										</div>
+									</a>
+									<a v-bind:href="'http://twitter.com/share?text=' + encodeURIComponent(selected_app.title) + '&amp;url=' + encodeURIComponent('{{ url('/flutter-app') }}' + '/' + selected_app.slug)" target="_blank">
+										<div class="dropdown-content">
+											<div class="dropdown-item">
+												<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
+
+						</div>
+
+						<span class="block wrap">@{{ selected_app.long_description }}</span>
+
+					</div>
+
+					<iframe v-if="selected_app.youtube_url" width="560" height="315" v-bind:src="selected_app.youtube_url"
+					frameborder="0" allowfullscreen></iframe>
 				</div>
-
-
-				<span class="block wrap">@{{ selected_app.long_description }}</span>
 
 			</div>
 
-			<iframe v-if="selected_app.youtube_url" width="560" height="315" v-bind:src="selected_app.youtube_url"
-			frameborder="0" allowfullscreen></iframe>
 		</div>
 
-	</div>
 
-</div>
-
-
-</section>
+	</section>
 </div>
 </div>
 
