@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
 
-class FlutterApp extends Model
+class FlutterApp extends Model implements Feedable
 {
     protected $fillable = [
         'title',
@@ -44,4 +46,19 @@ class FlutterApp extends Model
         $this->attributes['google_url'] = $value;
     }
 
+    public static function getFeedItems()
+    {
+        return cache('flutter-app-list');
+    }
+
+    public function toFeedItem()
+    {
+        return FeedItem::create()
+            ->id($this->slug)
+            ->title($this->title)
+            ->summary($this->short_description)
+            ->updated($this->updated_at)
+            ->link('/flutter-app/' . $this->slug)
+            ->author($this->title);
+    }
 }

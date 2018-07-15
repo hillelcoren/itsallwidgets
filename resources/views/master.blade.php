@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+
     @if (config('services.analytics.tracking_id'))
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122229484-1"></script>
         <script>
@@ -15,6 +16,8 @@
 
     <title>@yield('title') | {{ config('app.name') }}</title>
     <meta name="description" content="@yield('description')">
+
+    @include('feed::links')
 
     <meta property="og:title" content="@yield('title') | {{ config('app.name') }}">
     <meta property="og:description" content="@yield('description')">
@@ -86,6 +89,9 @@
                             <span class="navbar-item">
                                 <a class="navbar-item" href="https://github.com/hillelcoren/itsallwidgets" target="_blank">
                                     <i class="fab fa-github"></i> &nbsp; GitHub
+                                </a>
+                                <a class="navbar-item" href="{{ url('/feed') }}" target="_blank">
+                                    <i class="fas fa-rss"></i> &nbsp; RSS
                                 </a>
                                 @if (auth()->check())
                                     <a class="navbar-item" href="{{ url('logout') }}">

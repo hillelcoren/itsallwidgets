@@ -27,6 +27,8 @@ Route::get('login', function () {
 
 Route::get('logout', 'Auth\LoginController@logout');
 
+Route::feeds();
+
 Route::get('flutter-app/{slug}', 'FlutterAppController@show');
 
 Route::group(['middleware' => ['auth']], function () {
