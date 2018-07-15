@@ -24,7 +24,7 @@
 					<div class="field-body">
 						<div class="field has-addons">
 							<p class="control is-expanded has-icons-left">
-								<input class="input is-medium" type="text" placeholder="Search" autofocus="true">
+								<input v-model="search" class="input is-medium" type="text" placeholder="Search" autofocus="true">
 								<span class="icon is-small is-left">
 									<i class="fas fa-search"></i>
 								</span>
@@ -54,7 +54,7 @@
 
 	<div class="container">
 		<div class="columns is-multiline is-5 is-variable">
-			<div v-for="app in apps" class="column is-one-third">
+			<div v-for="app in filteredApps" class="column is-one-third">
 				<div onclick="location.href = '@{{ url('flutter-app/'. $app->slug) }}';" style="cursor:pointer">
 					<div class="card is-hover-elevated">
 						<header class="card-header">
@@ -120,15 +120,43 @@
 
 var app = new Vue({
 	el: '#app',
+
 	methods: {
 		openStoreUrl: function(url) {
 			window.open(url, '_blank');
 		}
 	},
+
 	data: {
-		apps: {!! $apps !!}
+		apps: {!! $apps !!},
+		search: '',
 	},
+
+	computed: {
+      filteredApps() {
+		var apps = this.apps;
+		var search = this.search.toLowerCase().trim();
+
+		if (search) {
+			apps = apps.filter(function(item) {
+				if (item.title.toLowerCase().indexOf(search) >= 0) {
+					return true;
+				}
+
+				if (item.short_description.toLowerCase().indexOf(search) >= 0) {
+					return true;
+				}
+
+				return false;
+			});
+		}
+
+		return apps;
+      }
+    }
+
 });
+
 
 </script>
 
