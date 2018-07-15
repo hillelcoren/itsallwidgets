@@ -33,7 +33,7 @@
 									<label for="openSourceSwitch">Open Source</label>
 								</div>
 								<div class="is-medium filter-select">
-									<input class="slider is-fullwidth is-info" step="1" min="2" max="10" type="range" v-model="cardsPerRow">
+									<input class="slider is-fullwidth is-info" step="1" min="2" max="6" type="range" v-model="cardsPerRow">
 								</div>
 								<div class="select is-medium filter-select">
 									<select>
@@ -54,7 +54,7 @@
 
 	<div class="container">
 		<div class="columns is-multiline is-5 is-variable">
-			<div v-for="app in filteredApps" class="column" v-bind-class="columnClass">
+			<div v-for="app in filteredApps" class="column" v-bind:class="columnClass">
 				<div onclick="location.href = '@{{ url('flutter-app/'. $app->slug) }}';" style="cursor:pointer">
 					<div class="card is-hover-elevated">
 						<header class="card-header">
@@ -135,25 +135,22 @@ var app = new Vue({
 		apps: {!! $apps !!},
 		search: '',
 		filterOpenSource: false,
-		cardsPerRow: 3,
+		cardsPerRow: 5,
 	},
 
 	computed: {
 		columnClass() {
-			return {
-				'is-one-half': true,
-			}
-
-			console.log('comp classs...');
-			switch(this.cardsPerRow) {
-				case 2:
-					return 'is-one-half'
-				case 3:
-					return 'is-one-third';
+			switch(+this.cardsPerRow) {
+				case 6:
+				return {'is-6': true};
+				case 5:
+				return {'is-one-third': true};
 				case 4:
-					return 'is-one-fourth';
-				default:
-					return 'is-one-third';
+				return {'is-one-fourth': true};
+				case 3:
+				return {'is-one-fifth': true};
+				case 2:
+				return {'is-2': true};
 			}
 		},
 
