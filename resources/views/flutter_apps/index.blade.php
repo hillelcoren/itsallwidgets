@@ -18,9 +18,9 @@
 }
 
 @media (min-width: 1400px) {
-  .modal-card {
-      width: 1400px;
-  }
+	.modal-card {
+		width: 1400px;
+	}
 }
 
 </style>
@@ -140,80 +140,79 @@
 					</div>
 					<div class="column is-8">
 						<!--
-							<a class="button is-info is-slightly-elevated" href="@{{ url('flutter-app/' . $app->slug . '/edit') }}">
-								<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
-								Edit Application
-							</a>
-							<p>&nbsp;</p>
-						-->
+						<a class="button is-info is-slightly-elevated" href="@{{ url('flutter-app/' . $app->slug . '/edit') }}">
+						<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
+						Edit Application
+					</a>
+					<p>&nbsp;</p>
+				-->
 
-						<div class="content">
-							<div class="subtitle">
-								@{{ selected_app.short_description }}
-							</div>
-
-								<div class="columns is-2 is-variable">
-									<div class="column is-2">
-										<div v-if="selected_app.google_url" v-on:click="openStoreUrl(selected_app.google_url)">
-											<div class="card-image is-slightly-elevated">
-												<img src="{{ asset('images/google.png') }}"/>
-											</div>
-										</div>
-										<div v-if="! selected_app.google_url" class="card-image is-slightly-elevated">
-											<img src="{{ asset('images/google.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
-										</div>
-									</div>
-									<div class="column is-2">
-										<div v-if="selected_app.apple_url" v-on:click="openStoreUrl(selected_app.apple_url)">
-											<div class="card-image is-slightly-elevated">
-												<img src="{{ asset('images/apple.png') }}"/>
-											</div>
-										</div>
-										<div v-if="! selected_app.apple_url" class="card-image is-slightly-elevated">
-											<img src="{{ asset('images/apple.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
-										</div>
-									</div>
-								</div>
-
-								<div class="content">
-									<a v:if="selected_app.website_url" href="@{{ selected_app.website_url) }}" target="_blank">
-										@{{ selected_app.website_url }}
-									</a></br>
-									<a v:if="selected_app.repo_url" href="@{{ selected_app.repo_url) }}" target="_blank">
-										@{{ selected_app.repo_url }}
-									</a><br/>
-								</div>
-								<br/>
-
-
-							<div class="content">
-									<a v:if="selected_app.facebook_url" class="button is-slightly-elevated"
-										href="@{{ selected_app.facebook_url }}" target="_blank">
-										<i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
-									</a>
-									<a v:if="selected_app.twitter_url" class="button is-slightly-elevated"
-										href="@{{ selected_app.twitter_url }}" target="_blank">
-										<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
-									</a>
-							</div>
-
-
-							<div class="block">
-								@{{ selected_app.long_description }}
-							</div>
-
-							<iframe v:if="selected_app.youtube_url" width="560" height="315" v-bind:src="selected_app.youtube_url"
-								frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-						</div>
-
+				<div class="content">
+					<div class="subtitle">
+						@{{ selected_app.short_description }}
 					</div>
 
-				</div>
+					<div class="columns is-2 is-variable" v:if="selected_app.google_url || selected_app.apple_url">
+						<div class="column is-2">
+							<div v-if="selected_app.google_url" v-on:click="openStoreUrl(selected_app.google_url)">
+								<div class="card-image is-slightly-elevated">
+									<img src="{{ asset('images/google.png') }}"/>
+								</div>
+							</div>
+							<div v-if="! selected_app.google_url" class="card-image is-slightly-elevated">
+								<img src="{{ asset('images/google.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
+							</div>
+						</div>
+						<div class="column is-2">
+							<div v-if="selected_app.apple_url" v-on:click="openStoreUrl(selected_app.apple_url)">
+								<div class="card-image is-slightly-elevated">
+									<img src="{{ asset('images/apple.png') }}"/>
+								</div>
+							</div>
+							<div v-if="! selected_app.apple_url" class="card-image is-slightly-elevated">
+								<img src="{{ asset('images/apple.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
+							</div>
+						</div>
+					</div>
+
+					<div class="content" v:if="selected_app.website_url || selected_app.repo_url">
+						<a v:if="selected_app.website_url" href="@{{ selected_app.website_url) }}" target="_blank">
+							@{{ selected_app.website_url }}
+						</a></br>
+						<a v:if="selected_app.repo_url" href="@{{ selected_app.repo_url) }}" target="_blank">
+							@{{ selected_app.repo_url }}
+						</a><br/>
+						<br/>
+					</div>
+
+					<div class="content">
+						<a v:if="selected_app.facebook_url" class="button is-slightly-elevated"
+						href="@{{ selected_app.facebook_url }}" target="_blank">
+						<i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
+					</a>
+					<a v:if="selected_app.twitter_url" class="button is-slightly-elevated"
+					href="@{{ selected_app.twitter_url }}" target="_blank">
+					<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
+				</a>
+			</div>
 
 
-			</section>
+			<div class="block">
+				@{{ selected_app.long_description }}
+			</div>
+
+			<iframe v:if="selected_app.youtube_url" width="560" height="315" v-bind:src="selected_app.youtube_url"
+			frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 		</div>
+
 	</div>
+
+</div>
+
+
+</section>
+</div>
+</div>
 
 
 </div>
@@ -239,87 +238,87 @@ var app = new Vue({
 
 	/*
 	created: function() {
-		window.addEventListener('keyup', function(event) {
-			// listen for esc
-			if (event.keyCode == 27) {
-				this.selectApp();
+	window.addEventListener('keyup', function(event) {
+	// listen for esc
+	if (event.keyCode == 27) {
+	this.selectApp();
+}
+});
+},
+*/
+
+data: {
+	apps: {!! $apps !!},
+	search: '',
+	filterOpenSource: false,
+	cardsPerRow: 5,
+	sortBy: 'newest',
+	selected_app: false,
+},
+
+computed: {
+	modalClass() {
+		if (this.selected_app) {
+			return {'is-active': true};
+		} else {
+			return {};
+		}
+	},
+
+	columnClass() {
+		switch(+this.cardsPerRow) {
+			case 6:
+			return {'is-6': true};
+			case 5:
+			return {'is-one-third': true};
+			case 4:
+			return {'is-one-fourth': true};
+			case 3:
+			return {'is-one-fifth': true};
+			case 2:
+			return {'is-2': true};
+		}
+	},
+
+	filteredApps() {
+		var apps = this.apps;
+		var search = this.search.toLowerCase().trim();
+		var filterOpenSource = this.filterOpenSource;
+		var sortBy = this.sortBy;
+
+		if (search) {
+			apps = apps.filter(function(item) {
+				if (item.title.toLowerCase().indexOf(search) >= 0) {
+					return true;
+				}
+
+				if (item.short_description.toLowerCase().indexOf(search) >= 0) {
+					return true;
+				}
+
+				return false;
+			});
+		}
+
+		if (filterOpenSource) {
+			apps = apps.filter(function(item) {
+				return item.repo_url;
+			});
+		}
+
+		apps.sort(function(itemA, itemB) {
+			var timeA = new Date(itemA.created_at).getTime();
+			var timeB = new Date(itemB.created_at).getTime();
+			if (sortBy == 'oldest') {
+				return timeA - timeB;
+			} else {
+				return timeB - timeA;
 			}
 		});
+
+		return apps;
 	},
-	*/
-
-	data: {
-		apps: {!! $apps !!},
-		search: '',
-		filterOpenSource: false,
-		cardsPerRow: 5,
-		sortBy: 'newest',
-		selected_app: false,
-	},
-
-	computed: {
-		modalClass() {
-			if (this.selected_app) {
-				return {'is-active': true};
-			} else {
-				return {};
-			}
-		},
-
-		columnClass() {
-			switch(+this.cardsPerRow) {
-				case 6:
-				return {'is-6': true};
-				case 5:
-				return {'is-one-third': true};
-				case 4:
-				return {'is-one-fourth': true};
-				case 3:
-				return {'is-one-fifth': true};
-				case 2:
-				return {'is-2': true};
-			}
-		},
-
-		filteredApps() {
-			var apps = this.apps;
-			var search = this.search.toLowerCase().trim();
-			var filterOpenSource = this.filterOpenSource;
-			var sortBy = this.sortBy;
-
-			if (search) {
-				apps = apps.filter(function(item) {
-					if (item.title.toLowerCase().indexOf(search) >= 0) {
-						return true;
-					}
-
-					if (item.short_description.toLowerCase().indexOf(search) >= 0) {
-						return true;
-					}
-
-					return false;
-				});
-			}
-
-			if (filterOpenSource) {
-				apps = apps.filter(function(item) {
-					return item.repo_url;
-				});
-			}
-
-			apps.sort(function(itemA, itemB) {
-				var timeA = new Date(itemA.created_at).getTime();
-				var timeB = new Date(itemB.created_at).getTime();
-				if (sortBy == 'oldest') {
-					return timeA - timeB;
-				} else {
-					return timeB - timeA;
-				}
-			});
-
-			return apps;
-		},
-	}
+}
 
 });
 
