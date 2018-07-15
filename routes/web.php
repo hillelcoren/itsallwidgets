@@ -26,6 +26,7 @@ Route::get('login', function () {
 })->name('login');
 
 Route::get('logout', 'Auth\LoginController@logout');
+Route::get('log_error', 'HomeController@logError');
 
 Route::feeds();
 

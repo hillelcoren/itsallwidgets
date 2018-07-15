@@ -41,6 +41,7 @@
     <link rel="stylesheet" href="{{ asset('css/bulma-extensions.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
     <script src="{{ asset('js/vue.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <script defer src="{{ asset('js/fontawesome.js') }}"></script>
 
     <style>
@@ -71,6 +72,26 @@
     }
 
     </style>
+
+    <script>
+
+    window.onerror = function (errorMsg, url, lineNumber, column, error) {
+        try {
+            $.ajax({
+                type: 'GET',
+                url: '{{ URL::to('log_error') }}',
+                data: 'error=' + encodeURIComponent(errorMsg + ' | URL: ' + url + ' | Line: ' + lineNumber + ' | Column: '+ column)
+                    + '&url=' + encodeURIComponent(window.location)
+            });
+        } catch (exception) {
+            // do nothing
+        }
+
+        return false;
+    }
+
+    </script>
+
 </head>
 
 <body>
