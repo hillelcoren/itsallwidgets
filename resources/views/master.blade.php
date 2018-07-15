@@ -138,9 +138,11 @@
                     <div id="navbarMenuHeroA" class="navbar-menu">
                         <div class="navbar-end">
                             <span class="navbar-item">
-                                <a class="navbar-item" href="{{ url('auth/google') }}">
-                                    <i class="fas fa-bell"></i> &nbsp; Get Updates
-                                </a>
+                                @if (! auth()->check())
+                                    <a class="navbar-item" href="{{ url('auth/google') }}">
+                                        <i class="fas fa-bell"></i> &nbsp; Get Weekly Updates
+                                    </a>
+                                @endif
                                 <a class="navbar-item" href="{{ url('feed') }}" target="_blank">
                                     <i class="fas fa-rss"></i> &nbsp; RSS
                                 </a>
