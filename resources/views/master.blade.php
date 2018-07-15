@@ -59,6 +59,11 @@
         filter: drop-shadow(0px 4px 2px #CCC);
     }
 
+    .has-text-centered {
+        justify-content: center;
+        align-items: center;
+    }
+
     .no-wrap {
         white-space: nowrap;
         overflow: hidden;

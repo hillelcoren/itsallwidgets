@@ -78,6 +78,10 @@
 	<p>&nbsp;</p>
 
 	<div class="container" v-cloak>
+		<div v-if="filteredApps.length == 0" class="is-wide has-text-centered is-vertical-center"
+			style="height:400px; text-align:center; font-size: 32px; color: #AAA">
+			No apps found
+		</div>
 		<div class="columns is-multiline is-4 is-variable">
 			<div v-for="app in filteredApps" class="column" v-bind:class="columnClass">
 				<div v-on:click="selectApp(app)" style="cursor:pointer">
