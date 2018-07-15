@@ -151,9 +151,9 @@
 						<img v-bind:src="selected_app.screenshot1_url" width="1080" height="1920"/>
 					</div>
 					<div class="column is-8">
-						@{{ selected_app.user_id }}
+
 						@if (auth()->check())
-							<div v:if="isOwner">
+							<div v-if="selected_app.user_id == {{ auth()->user()->id }}">
 								<a class="button is-info is-slightly-elevated" v-bind:href="'/flutter-app/' + selected_app.slug + '/edit'">
 									<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
 									Edit Application
@@ -167,7 +167,7 @@
 								@{{ selected_app.short_description }}
 							</div>
 
-							<div class="columns is-2 is-variable" v:if="selected_app.google_url || selected_app.apple_url">
+							<div class="columns is-2 is-variable" v-if="selected_app.google_url || selected_app.apple_url">
 								<div class="column is-2">
 									<div v-if="selected_app.google_url" v-on:click="openStoreUrl(selected_app.google_url)">
 										<div class="card-image is-slightly-elevated">
@@ -190,22 +190,22 @@
 								</div>
 							</div>
 
-							<div class="content" v:if="selected_app.website_url || selected_app.repo_url">
-								<a v:if="selected_app.website_url" href="@{{ selected_app.website_url) }}" target="_blank">
+							<div class="content" v-if="selected_app.website_url || selected_app.repo_url">
+								<a v-if="selected_app.website_url" href="@{{ selected_app.website_url) }}" target="_blank">
 									@{{ selected_app.website_url }}
 								</a></br>
-								<a v:if="selected_app.repo_url" href="@{{ selected_app.repo_url) }}" target="_blank">
+								<a v-if="selected_app.repo_url" href="@{{ selected_app.repo_url) }}" target="_blank">
 									@{{ selected_app.repo_url }}
 								</a><br/>
 								<br/>
 							</div>
 
 							<div class="content">
-								<a v:if="selected_app.facebook_url" class="button is-slightly-elevated"
+								<a v-if="selected_app.facebook_url" class="button is-slightly-elevated"
 								href="@{{ selected_app.facebook_url }}" target="_blank">
 								<i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
 							</a>
-							<a v:if="selected_app.twitter_url" class="button is-slightly-elevated"
+							<a v-if="selected_app.twitter_url" class="button is-slightly-elevated"
 							href="@{{ selected_app.twitter_url }}" target="_blank">
 							<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
 						</a>
@@ -216,7 +216,7 @@
 
 				</div>
 
-				<iframe v:if="selected_app.youtube_url" width="560" height="315" v-bind:src="selected_app.youtube_url"
+				<iframe v-if="selected_app.youtube_url" width="560" height="315" v-bind:src="selected_app.youtube_url"
 				frameborder="0" allowfullscreen></iframe>
 			</div>
 
@@ -272,13 +272,6 @@ data: {
 },
 
 computed: {
-	isOwner() {
-		if (! this.selected_app) {
-			return false;
-		}
-		console.log('user id: ' + this.selected_app.user_id);
-		return this.selected_app.user_id == {{ auth()->user()->id }};
-	},
 
 	modalClass() {
 		if (this.selected_app) {
