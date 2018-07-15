@@ -172,7 +172,7 @@
                                     </a> &nbsp;&nbsp;
                                 @endif
 
-                                <a class="button is-info is-inverted" href="{{ url(auth()->check() ? 'flutter-apps/submit' : 'auth/google') }}">
+                                <a class="button is-success" href="{{ url(auth()->check() ? 'flutter-apps/submit' : 'auth/google') }}">
                                     <span class="icon">
                                         <i class="fas fa-upload"></i>
                                     </span> &nbsp;
