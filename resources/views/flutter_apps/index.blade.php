@@ -47,9 +47,9 @@
 						<span class="icon is-small is-left" style="margin-top: 10px">
 							<i class="fas fa-search"></i>
 						</span>
-						<div class="is-medium filter-label" v-on:click="toggleOpenSource()">
+						<div class="is-medium" v-on:click="toggleOpenSource()" style="padding-left: 26px;">
 							<input type="checkbox" name="openSourceSwitch"
-							class="switch is-info is-medium" v-model="filterOpenSource">
+							class="switch is-info is-medium" v-model="filter_open_source">
 							<label for="openSourceSwitch">Open Source &nbsp;</label>
 						</div>
 						<div class="is-medium filter-label">
@@ -57,13 +57,13 @@
 						</div>
 						<div class="is-medium filter-control">
 							<input class="slider is-fullwidth is-medium is-info"
-							step="1" min="2" max="6" type="range" v-model="cardsPerRow">
+							step="1" min="2" max="6" type="range" v-model="cards_per_row">
 						</div>
 						<div class="is-medium filter-label">
 							<label class="label is-medium" style="font-weight: normal;">Sort</label>
 						</div>
 						<div class="select is-medium filter-control">
-							<select v-model="sortBy">
+							<select v-model="sort_by">
 								<option value="newest">Newest</option>
 								<option value="oldest">Oldest</option>
 							</select>
@@ -239,13 +239,26 @@
 var app = new Vue({
 	el: '#app',
 
+	watch: {
+		sort_by: {
+			handler() {
+				app.saveFilters();
+			},
+		},
+		cards_per_row: {
+			handler() {
+				app.saveFilters();
+			},
+		},
+	},
+
 	methods: {
 		openStoreUrl: function(url) {
 			window.open(url, '_blank');
 		},
 
 		toggleOpenSource: function() {
-			this.filterOpenSource = ! this.filterOpenSource;
+			this.filter_open_source = ! this.filter_open_source;
 		},
 
 		selectApp: function(app) {
@@ -254,6 +267,23 @@ var app = new Vue({
 			} else {
 				this.selected_app = app;
 			}
+		},
+
+		isStorageSupported: function() {
+			try {
+				return 'localStorage' in window && window['localStorage'] !== null;
+			} catch (e) {
+				return false;
+			}
+		},
+
+		saveFilters: function() {
+			if (! this.isStorageSupported()) {
+				return false;
+			}
+
+			localStorage.setItem('cards_per_row', this.cards_per_row);
+			localStorage.setItem('sort_by', this.sort_by);
 		},
 	},
 
@@ -268,9 +298,9 @@ var app = new Vue({
 	data: {
 		apps: {!! $apps !!},
 		search: '',
-		filterOpenSource: false,
-		cardsPerRow: 5,
-		sortBy: 'newest',
+		filter_open_source: false,
+		cards_per_row: 5,
+		sort_by: 'newest',
 		selected_app: false,
 	},
 
@@ -285,7 +315,7 @@ var app = new Vue({
 		},
 
 		columnClass() {
-			switch(+this.cardsPerRow) {
+			switch(+this.cards_per_row) {
 				case 6:
 				return {'is-6': true};
 				case 5:
@@ -302,8 +332,8 @@ var app = new Vue({
 		filteredApps() {
 			var apps = this.apps;
 			var search = this.search.toLowerCase().trim();
-			var filterOpenSource = this.filterOpenSource;
-			var sortBy = this.sortBy;
+			var filter_open_source = this.filter_open_source;
+			var sort_by = this.sort_by;
 
 			if (search) {
 				apps = apps.filter(function(item) {
@@ -319,7 +349,7 @@ var app = new Vue({
 				});
 			}
 
-			if (filterOpenSource) {
+			if (filter_open_source) {
 				apps = apps.filter(function(item) {
 					return item.repo_url;
 				});
@@ -328,7 +358,7 @@ var app = new Vue({
 			apps.sort(function(itemA, itemB) {
 				var timeA = new Date(itemA.created_at).getTime();
 				var timeB = new Date(itemB.created_at).getTime();
-				if (sortBy == 'oldest') {
+				if (sort_by == 'oldest') {
 					return timeA - timeB;
 				} else {
 					return timeB - timeA;
