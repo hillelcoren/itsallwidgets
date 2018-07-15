@@ -13,7 +13,7 @@
 }
 
 .filter-label {
-	padding-left: 32px;
+	padding-left: 36px;
 }
 
 .modal {
@@ -45,20 +45,20 @@
 						<span class="icon is-small is-left" style="margin-top: 10px">
 							<i class="fas fa-search"></i>
 						</span>
-						<div class="is-medium filter-control" v-on:click="toggleOpenSource()">
+						<div class="is-medium filter-label" v-on:click="toggleOpenSource()">
 							<input type="checkbox" name="openSourceSwitch"
-								class="switch is-rtl is-info is-medium" v-model="filterOpenSource">
+								class="switch is-info is-medium" v-model="filterOpenSource">
 							<label for="openSourceSwitch">Open Source &nbsp;</label>
 						</div>
 						<div class="is-medium filter-label">
-						  <label class="label is-medium">Zoom</label>
+						  <label class="label is-medium" style="font-weight: normal;">Zoom</label>
 						</div>
 						<div class="is-medium filter-control">
 							<input class="slider is-fullwidth is-medium is-info"
 								step="1" min="2" max="6" type="range" v-model="cardsPerRow">
 						</div>
 						<div class="is-medium filter-label">
-						  <label class="label is-medium">Sort</label>
+						  <label class="label is-medium" style="font-weight: normal;">Sort</label>
 						</div>
 						<div class="select is-medium filter-control">
 							<select v-model="sortBy">
