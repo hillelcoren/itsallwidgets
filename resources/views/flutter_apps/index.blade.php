@@ -88,7 +88,7 @@
 								<div class="subtitle is-6 no-wrap" v-bind:title="app.short_description">
 									@{{ app.short_description }}
 								</div>
-								<div class="columns">
+								<div class="columns is-2 is-variable">
 									<div class="column is-one-half">
 										<div v-if="app.google_url" v-on:click="openStoreUrl(app.google_url)">
 											<div class="card-image is-slightly-elevated">
@@ -152,8 +152,8 @@
 								@{{ selected_app.short_description }}
 							</div>
 
-								<div class="columns">
-									<div class="column is-one-half">
+								<div class="columns is-2 is-variable">
+									<div class="column is-2">
 										<div v-if="selected_app.google_url" v-on:click="openStoreUrl(selected_app.google_url)">
 											<div class="card-image is-slightly-elevated">
 												<img src="{{ asset('images/google.png') }}"/>
@@ -163,7 +163,7 @@
 											<img src="{{ asset('images/google.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
 										</div>
 									</div>
-									<div class="column is-one-half">
+									<div class="column is-2">
 										<div v-if="selected_app.apple_url" v-on:click="openStoreUrl(selected_app.apple_url)">
 											<div class="card-image is-slightly-elevated">
 												<img src="{{ asset('images/apple.png') }}"/>
