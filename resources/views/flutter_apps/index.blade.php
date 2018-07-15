@@ -249,7 +249,11 @@ var app = new Vue({
 		},
 
 		selectApp: function(app) {
-			this.selected_app = app;
+			if (document.body.clientWidth < 1000) {
+				window.location = '/flutter-app/' + app.slug;
+			} else {
+				this.selected_app = app;
+			}
 		},
 	},
 
