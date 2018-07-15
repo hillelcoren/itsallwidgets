@@ -15,6 +15,7 @@
 				<img src="{{ $app->screenshot1_url }}" width="1080" height="1920"/>
 			</div>
 			<div class="column is-8">
+				<section class="section">
 				<nav class="breadcrumb" aria-label="breadcrumbs">
 					<ul>
 						<li><a href="{{ url('/flutter-apps') }}">All Applications</a></li>
@@ -119,7 +120,7 @@
 
 					</div>
 				</div>
-
+			</section>
 			</div>
 		</div>
 	</div>
