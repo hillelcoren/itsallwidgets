@@ -42,6 +42,13 @@ body {
 	display: none;
 }
 
+@media screen and (max-width: 769px) {
+    .slider-control {
+        display: none;
+    }
+}
+
+
 </style>
 
 <div id="app">
@@ -58,12 +65,12 @@ body {
 						<div class="is-medium" v-on:click="toggleOpenSource()" style="padding-left: 26px;">
 							<input type="checkbox" name="openSourceSwitch"
 							class="switch is-info is-medium" v-model="filter_open_source">
-							<label for="openSourceSwitch">Open Source &nbsp;</label>
+							<label for="openSourceSwitch">Open Source &nbsp;</label>                            
 						</div>
-						<div class="is-medium filter-label">
+						<div class="is-medium filter-label slider-control">
 							<label class="label is-medium" style="font-weight: normal;">Zoom</label>
 						</div>
-						<div class="is-medium filter-control">
+						<div class="is-medium filter-control slider-control">
 							<input class="slider is-fullwidth is-medium is-info"
 							step="1" min="2" max="6" type="range" v-model="cards_per_row">
 						</div>
