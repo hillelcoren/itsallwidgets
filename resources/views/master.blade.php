@@ -11,6 +11,10 @@
 
         gtag('config', '{{ config('services.analytics.tracking_id') }}', { 'anonymize_ip': true });
 
+        function trackEvent(category, action) {
+            ga('send', 'event', category, action, this.src);
+        }
+
         </script>
     @endif
 
