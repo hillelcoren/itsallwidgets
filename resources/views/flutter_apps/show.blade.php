@@ -122,4 +122,5 @@
 
 			</div>
 		</div>
-	@stop
+	</div>
+@stop
