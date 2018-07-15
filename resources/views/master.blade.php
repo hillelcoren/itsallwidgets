@@ -151,7 +151,7 @@
                     <div class="navbar-brand">
                         <div class="navbar-animate">
                             <a class="navbar-item" href="{{ url('/') }}">
-                                <font style="font-family:impact,sans-serif;font-size:42px;">IT'S ALL WIDGETS!</font>
+                                <font class="title" style="font-family:impact,arial;font-size:42px;">IT'S ALL WIDGETS!</font>
                             </a>
                         </div>
                         <span class="navbar-burger burger" data-target="navMenu">
@@ -169,6 +169,7 @@
                                 <a class="navbar-item" href="{{ url('feed') }}" target="_blank">
                                     <i class="fas fa-rss"></i> &nbsp; RSS
                                 </a>
+
                                 @if (auth()->check())
                                     <a class="navbar-item" href="{{ url('logout') }}">
                                         <span class="icon">
@@ -177,7 +178,7 @@
                                         <span>Log Out</span>
                                     </a>
                                 @else
-                                    <a class="navbar-item" href="{{ url('auth/google') }}" style="padding-right:30px">
+                                    <a class="navbar-item" href="{{ url('auth/google') }}">
                                         <span class="icon">
                                             <i class="fas fa-user-alt"></i>
                                         </span> &nbsp;
