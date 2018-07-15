@@ -46,8 +46,11 @@ body {
     .slider-control {
         display: none;
     }
-}
 
+    .store-buttons img {
+        max-width: 200px;
+    }
+}
 
 </style>
 
@@ -65,7 +68,7 @@ body {
 						<div class="is-medium" v-on:click="toggleOpenSource()" style="padding-left: 26px;">
 							<input type="checkbox" name="openSourceSwitch"
 							class="switch is-info is-medium" v-model="filter_open_source">
-							<label for="openSourceSwitch">Open Source &nbsp;</label>                            
+							<label for="openSourceSwitch">Open Source &nbsp;</label>
 						</div>
 						<div class="is-medium filter-label slider-control">
 							<label class="label is-medium" style="font-weight: normal;">Zoom</label>
@@ -121,7 +124,7 @@ body {
 							<div class="subtitle is-6 no-wrap" v-bind:title="app.short_description">
 								@{{ app.short_description }}
 							</div>
-							<div class="columns is-2 is-variable">
+							<div class="columns is-1 is-variable is-mobile">
 								<div class="column is-one-half">
 									<div v-if="app.google_url" v-on:click="openStoreUrl(app.google_url)" v-on:click.stop>
 										<div class="card-image is-slightly-elevated">
