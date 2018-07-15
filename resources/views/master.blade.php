@@ -54,13 +54,14 @@
     }
 
     .is-hover-elevated:hover {
-        -moz-filter: drop-shadow(0px 16px 16px #CCC);
-        -moz-transition : -webkit-filter 200ms
-        -webkit-filter: drop-shadow(0px 16px 16px #CCC);
-        -webkit-transition : -webkit-filter 200ms
-        -o-filter: drop-shadow(0px 16px 16px #CCC);
-        -o-transition : -webkit-filter 200ms
+        -moz-filter: filter: drop-shadow(0px 16px 16px #CCC);
+        -webkit-filter: filter: drop-shadow(0px 16px 16px #CCC);
+        -o-filter: filter: drop-shadow(0px 16px 16px #CCC);
         filter: drop-shadow(0px 16px 16px #CCC);
+        -webkit-transition : -webkit-filter 320ms;
+        -moz-transition : -moz-filter 320ms;
+        -o-transition : -o-filter 320ms;
+        transition : filter 320ms;
     }
 
     .is-slightly-elevated {
