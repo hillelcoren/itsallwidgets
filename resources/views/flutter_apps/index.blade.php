@@ -86,13 +86,13 @@
 							<p class="card-header-title is-2 no-wrap" v-bind:title="app.title">
 								@{{ app.title }}
 							</p>
-							<a href="@{{ app.facebook_url }}" class="card-header-icon" target="_blank">
+							<a v-if="app.facebook_url" v-bind:href="app.facebook_url" class="card-header-icon" target="_blank">
 								<i style="font-size: 20px; color: #888" class="fab fa-facebook"></i>
 							</a>
-							<a href="@{{ app.twitter_url }}" class="card-header-icon" target="_blank">
+							<a v-if="app.twitter_url" v-bind:href="app.twitter_url" class="card-header-icon" target="_blank">
 								<i style="font-size: 20px; color: #888" class="fab fa-twitter"></i>
 							</a>
-							<a href="@{{ app.repo_url }}" class="card-header-icon" target="_blank">
+							<a v-if="app.repo_url" v-bind:href="app.repo_url" class="card-header-icon" target="_blank">
 								<i style="font-size: 20px; color: #888" class="fab fa-github"></i>
 							</a>
 						</header>
@@ -193,10 +193,10 @@
 							</div>
 
 							<div class="content" v-if="selected_app.website_url || selected_app.repo_url">
-								<a v-if="selected_app.website_url" href="@{{ selected_app.website_url) }}" target="_blank">
+								<a v-if="selected_app.website_url" v-bind:href="selected_app.website_url" target="_blank">
 									@{{ selected_app.website_url }}
 								</a></br>
-								<a v-if="selected_app.repo_url" href="@{{ selected_app.repo_url) }}" target="_blank">
+								<a v-if="selected_app.repo_url" v-bind:href="selected_app.repo_url" target="_blank">
 									@{{ selected_app.repo_url }}
 								</a><br/>
 								<br/>
@@ -204,11 +204,11 @@
 
 							<div class="content">
 								<a v-if="selected_app.facebook_url" class="button is-slightly-elevated"
-								href="@{{ selected_app.facebook_url }}" target="_blank">
+								v-bind:href="selected_app.facebook_url" target="_blank">
 								<i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
 							</a>
 							<a v-if="selected_app.twitter_url" class="button is-slightly-elevated"
-							href="@{{ selected_app.twitter_url }}" target="_blank">
+							v-bind:href="selected_app.twitter_url" target="_blank">
 							<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
 						</a>
 					</div>
