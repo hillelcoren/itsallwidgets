@@ -12,6 +12,11 @@
 	padding-left: 32px;
 }
 
+.modal {
+	-webkit-animation-duration: .5s;
+	-moz-animation-duration: .5s;
+}
+
 </style>
 
 <div id="app">
@@ -53,12 +58,12 @@
 	<p>&nbsp;</p>
 
 	<div class="container">
-		<div class="columns is-multiline is-5 is-variable">
+		<div class="columns is-multiline is-4 is-variable">
 			<div v-for="app in filteredApps" class="column" v-bind:class="columnClass">
-				<div onclick="location.href = '@{{ url('flutter-app/'. $app->slug) }}';" style="cursor:pointer">
+				<div v-on:click="selectApp(app)" style="cursor:pointer">
 					<div class="card is-hover-elevated">
 						<header class="card-header">
-							<p class="card-header-title is-2 no-wrap">
+							<p class="card-header-title is-2 no-wrap" v-bind:title="app.title">
 								@{{ app.title }}
 							</p>
 							<a href="@{{ app.facebook_url }}" class="card-header-icon" target="_blank">
@@ -114,6 +119,21 @@
 
 		</div>
 	</div>
+
+	<div class="modal animated fadeIn" v-bind:class="modalClass">
+		<div class="modal-background" v-on:click="selectApp()"></div>
+		<div class="modal-card">
+			<header class="modal-card-head">
+				<p class="modal-card-title">Modal title</p>
+				<button class="delete" aria-label="close" v-on:click="selectApp()"></button>
+			</header>
+			<section class="modal-card-body" @click.stop>
+
+			</section>
+		</div>
+	</div>
+
+
 </div>
 
 <script>
@@ -128,7 +148,11 @@ var app = new Vue({
 
 		toggleOpenSource: function() {
 			this.filterOpenSource = ! this.filterOpenSource;
-		}
+		},
+
+		selectApp: function(app) {
+			this.selectedApp = app;
+		},
 	},
 
 	data: {
@@ -137,9 +161,18 @@ var app = new Vue({
 		filterOpenSource: false,
 		cardsPerRow: 5,
 		sortBy: 'newest',
+		selectedApp: false,
 	},
 
 	computed: {
+		modalClass() {
+			if (this.selectedApp) {
+				return {'is-active': true};
+			} else {
+				return {};
+			}
+		},
+
 		columnClass() {
 			switch(+this.cardsPerRow) {
 				case 6:
@@ -192,7 +225,7 @@ var app = new Vue({
 			});
 
 			return apps;
-		}
+		},
 	}
 
 });

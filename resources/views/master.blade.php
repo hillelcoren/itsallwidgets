@@ -36,6 +36,7 @@
 
     <link rel="stylesheet" href="{{ asset('css/bulma.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bulma-extensions.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
     <script src="{{ asset('js/vue.min.js') }}"></script>
     <script defer src="{{ asset('js/fontawesome.js') }}"></script>
 
