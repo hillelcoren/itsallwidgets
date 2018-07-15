@@ -8,7 +8,7 @@ The website is built with:
 
 ## Getting Started
 
-If you plan to submit changes it's best to fork the repo, otherwise you can just clone it.
+If you plan to submit changes it's best to fork the repo, otherwise clone it.
 
 `git clone git@github.com:hillelcoren/itsallwidgets.git`
 
