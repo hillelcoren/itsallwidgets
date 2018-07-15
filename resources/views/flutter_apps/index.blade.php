@@ -79,156 +79,156 @@
 
 	<div class="container" v-cloak>
 		<div v-if="filteredApps.length == 0" class="is-wide has-text-centered is-vertical-center"
-			style="height:400px; text-align:center; font-size: 32px; color: #AAA">
-			No apps found
-		</div>
-		<div class="columns is-multiline is-4 is-variable">
-			<div v-for="app in filteredApps" class="column" v-bind:class="columnClass">
-				<div v-on:click="selectApp(app)" style="cursor:pointer">
-					<div class="card is-hover-elevated">
-						<header class="card-header">
-							<p class="card-header-title is-2 no-wrap" v-bind:title="app.title">
-								@{{ app.title }}
-							</p>
-							<a v-if="app.facebook_url" v-bind:href="app.facebook_url" class="card-header-icon" target="_blank">
-								<i style="font-size: 20px; color: #888" class="fab fa-facebook"></i>
-							</a>
-							<a v-if="app.twitter_url" v-bind:href="app.twitter_url" class="card-header-icon" target="_blank">
-								<i style="font-size: 20px; color: #888" class="fab fa-twitter"></i>
-							</a>
-							<a v-if="app.repo_url" v-bind:href="app.repo_url" class="card-header-icon" target="_blank">
-								<i style="font-size: 20px; color: #888" class="fab fa-github"></i>
-							</a>
-						</header>
-
-						<div class="card-content">
-							<div class="content">
-								<div class="subtitle is-6 no-wrap" v-bind:title="app.short_description">
-									@{{ app.short_description }}
-								</div>
-								<div class="columns is-2 is-variable">
-									<div class="column is-one-half">
-										<div v-if="app.google_url" v-on:click="openStoreUrl(app.google_url)" v-on:click.stop>
-											<div class="card-image is-slightly-elevated">
-												<img src="{{ asset('images/google.png') }}"/>
-											</div>
-										</div>
-										<div v-if="! app.google_url" class="card-image is-slightly-elevated">
-											<img src="{{ asset('images/google.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
-										</div>
-									</div>
-									<div class="column is-one-half">
-										<div v-if="app.apple_url" v-on:click="openStoreUrl(app.apple_url)" v-on:click.stop>
-											<div class="card-image is-slightly-elevated">
-												<img src="{{ asset('images/apple.png') }}"/>
-											</div>
-										</div>
-										<div v-if="! app.apple_url" class="card-image is-slightly-elevated">
-											<img src="{{ asset('images/apple.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="card-image">
-							<img v-bind:src="app.screenshot1_url" width="1080" height="1920"/>
-						</div>
-					</div>
-				</div>
-				<p>&nbsp;</p>
-			</div>
-		</div>
+		style="height:400px; text-align:center; font-size: 32px; color: #AAA">
+		No apps found
 	</div>
+	<div class="columns is-multiline is-4 is-variable">
+		<div v-for="app in filteredApps" class="column" v-bind:class="columnClass">
+			<div v-on:click="selectApp(app)" style="cursor:pointer">
+				<div class="card is-hover-elevated">
+					<header class="card-header">
+						<p class="card-header-title is-2 no-wrap" v-bind:title="app.title">
+							@{{ app.title }}
+						</p>
+						<a v-if="app.facebook_url" v-bind:href="app.facebook_url" class="card-header-icon" target="_blank">
+							<i style="font-size: 20px; color: #888" class="fab fa-facebook"></i>
+						</a>
+						<a v-if="app.twitter_url" v-bind:href="app.twitter_url" class="card-header-icon" target="_blank">
+							<i style="font-size: 20px; color: #888" class="fab fa-twitter"></i>
+						</a>
+						<a v-if="app.repo_url" v-bind:href="app.repo_url" class="card-header-icon" target="_blank">
+							<i style="font-size: 20px; color: #888" class="fab fa-github"></i>
+						</a>
+					</header>
 
-	<div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_app">
-		<div class="modal-background" v-on:click="selectApp()"></div>
-		<div class="modal-card">
-			<header class="modal-card-head">
-				<p class="modal-card-title">
-					@{{ selected_app.title }}
-				</p>
-				<button class="delete" aria-label="close" v-on:click="selectApp()"></button>
-			</header>
-			<section class="modal-card-body" @click.stop>
-
-				<div class="columns">
-					<div class="column is-4 is-elevated">
-						<img v-bind:src="selected_app.screenshot1_url" width="1080" height="1920"/>
-					</div>
-					<div class="column is-8">
-
-						@if (auth()->check())
-							<div v-if="selected_app.user_id == {{ auth()->user()->id }}">
-								<a class="button is-info is-slightly-elevated" v-bind:href="'/flutter-app/' + selected_app.slug + '/edit'">
-									<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
-									Edit Application
-								</a>
-								<p>&nbsp;</p>
-							</div>
-						@endif
-
+					<div class="card-content">
 						<div class="content">
-							<div class="subtitle">
-								@{{ selected_app.short_description }}
+							<div class="subtitle is-6 no-wrap" v-bind:title="app.short_description">
+								@{{ app.short_description }}
 							</div>
-
-							<div class="columns is-2 is-variable" v-if="selected_app.google_url || selected_app.apple_url">
-								<div class="column is-2">
-									<div v-if="selected_app.google_url" v-on:click="openStoreUrl(selected_app.google_url)">
+							<div class="columns is-2 is-variable">
+								<div class="column is-one-half">
+									<div v-if="app.google_url" v-on:click="openStoreUrl(app.google_url)" v-on:click.stop>
 										<div class="card-image is-slightly-elevated">
 											<img src="{{ asset('images/google.png') }}"/>
 										</div>
 									</div>
-									<div v-if="! selected_app.google_url" class="card-image is-slightly-elevated">
+									<div v-if="! app.google_url" class="card-image is-slightly-elevated">
 										<img src="{{ asset('images/google.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
 									</div>
 								</div>
-								<div class="column is-2">
-									<div v-if="selected_app.apple_url" v-on:click="openStoreUrl(selected_app.apple_url)">
+								<div class="column is-one-half">
+									<div v-if="app.apple_url" v-on:click="openStoreUrl(app.apple_url)" v-on:click.stop>
 										<div class="card-image is-slightly-elevated">
 											<img src="{{ asset('images/apple.png') }}"/>
 										</div>
 									</div>
-									<div v-if="! selected_app.apple_url" class="card-image is-slightly-elevated">
+									<div v-if="! app.apple_url" class="card-image is-slightly-elevated">
 										<img src="{{ asset('images/apple.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
 									</div>
 								</div>
 							</div>
-
-							<div class="content" v-if="selected_app.website_url || selected_app.repo_url">
-								<a v-if="selected_app.website_url" v-bind:href="selected_app.website_url" target="_blank">
-									@{{ selected_app.website_url }}
-								</a></br>
-								<a v-if="selected_app.repo_url" v-bind:href="selected_app.repo_url" target="_blank">
-									@{{ selected_app.repo_url }}
-								</a><br/>
-								<br/>
-							</div>
-
-							<div class="content">
-								<a v-if="selected_app.facebook_url" class="button is-slightly-elevated"
-								v-bind:href="selected_app.facebook_url" target="_blank">
-								<i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
-							</a>
-							<a v-if="selected_app.twitter_url" class="button is-slightly-elevated"
-							v-bind:href="selected_app.twitter_url" target="_blank">
-							<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
-						</a>
+						</div>
 					</div>
 
+					<div class="card-image">
+						<img v-bind:src="app.screenshot1_url" width="1080" height="1920"/>
+					</div>
+				</div>
+			</div>
+			<p>&nbsp;</p>
+		</div>
+	</div>
+</div>
 
-					<span class="block wrap">@{{ selected_app.long_description }}</span>
+<div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_app">
+	<div class="modal-background" v-on:click="selectApp()"></div>
+	<div class="modal-card">
+		<header class="modal-card-head">
+			<p class="modal-card-title">
+				@{{ selected_app.title }}
+			</p>
+			<button class="delete" aria-label="close" v-on:click="selectApp()"></button>
+		</header>
+		<section class="modal-card-body" @click.stop>
 
+			<div class="columns">
+				<div class="column is-4 is-elevated">
+					<img v-bind:src="selected_app.screenshot1_url" width="1080" height="1920"/>
+				</div>
+				<div class="column is-8">
+
+					@if (auth()->check())
+						<div v-if="selected_app.user_id == {{ auth()->user()->id }}">
+							<a class="button is-info is-slightly-elevated" v-bind:href="'/flutter-app/' + selected_app.slug + '/edit'">
+								<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
+								Edit Application
+							</a>
+							<p>&nbsp;</p>
+						</div>
+					@endif
+
+					<div class="content">
+						<div class="subtitle">
+							@{{ selected_app.short_description }}
+						</div>
+
+						<div class="columns is-2 is-variable" v-if="selected_app.google_url || selected_app.apple_url">
+							<div class="column is-2">
+								<div v-if="selected_app.google_url" v-on:click="openStoreUrl(selected_app.google_url)">
+									<div class="card-image is-slightly-elevated">
+										<img src="{{ asset('images/google.png') }}"/>
+									</div>
+								</div>
+								<div v-if="! selected_app.google_url" class="card-image is-slightly-elevated">
+									<img src="{{ asset('images/google.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
+								</div>
+							</div>
+							<div class="column is-2">
+								<div v-if="selected_app.apple_url" v-on:click="openStoreUrl(selected_app.apple_url)">
+									<div class="card-image is-slightly-elevated">
+										<img src="{{ asset('images/apple.png') }}"/>
+									</div>
+								</div>
+								<div v-if="! selected_app.apple_url" class="card-image is-slightly-elevated">
+									<img src="{{ asset('images/apple.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="content" v-if="selected_app.website_url || selected_app.repo_url">
+							<a v-if="selected_app.website_url" v-bind:href="selected_app.website_url" target="_blank">
+								@{{ selected_app.website_url }}
+							</a></br>
+							<a v-if="selected_app.repo_url" v-bind:href="selected_app.repo_url" target="_blank">
+								@{{ selected_app.repo_url }}
+							</a><br/>
+							<br/>
+						</div>
+
+						<div class="content">
+							<a v-if="selected_app.facebook_url" class="button is-slightly-elevated"
+							v-bind:href="selected_app.facebook_url" target="_blank">
+							<i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
+						</a>
+						<a v-if="selected_app.twitter_url" class="button is-slightly-elevated"
+						v-bind:href="selected_app.twitter_url" target="_blank">
+						<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
+					</a>
 				</div>
 
-				<iframe v-if="selected_app.youtube_url" width="560" height="315" v-bind:src="selected_app.youtube_url"
-				frameborder="0" allowfullscreen></iframe>
+
+				<span class="block wrap">@{{ selected_app.long_description }}</span>
+
 			</div>
 
+			<iframe v-if="selected_app.youtube_url" width="560" height="315" v-bind:src="selected_app.youtube_url"
+			frameborder="0" allowfullscreen></iframe>
 		</div>
 
 	</div>
+
+</div>
 
 
 </section>
@@ -327,7 +327,7 @@ var app = new Vue({
 				case 5:
 				return {'is-one-third': true};
 				case 4:
-				return {'is-one-fourth': true};
+				return {'is-one-quarter': true};
 				case 3:
 				return {'is-one-fifth': true};
 				case 2:
