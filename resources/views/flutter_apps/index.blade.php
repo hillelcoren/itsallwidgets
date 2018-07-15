@@ -9,7 +9,7 @@
 <style>
 
 .filter-control {
-	padding-left: 40px;
+	padding-left: 32px;
 }
 
 </style>
