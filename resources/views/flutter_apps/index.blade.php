@@ -28,8 +28,8 @@
 								<span class="icon is-small is-left">
 									<i class="fas fa-search"></i>
 								</span>
-								<div class="is-medium filter-select" style="padding-top:10px;">
-									<input type="checkbox" name="openSourceSwitch" class="switch is-info is-medium">
+								<div class="is-medium filter-select" style="padding-top:10px;" v-on:click="toggleOpenSource()">
+									<input type="checkbox" name="openSourceSwitch" class="switch is-info is-medium" v-model="filterOpenSource">
 									<label for="openSourceSwitch">Open Source</label>
 								</div>
 								<div class="is-medium filter-select">
@@ -124,18 +124,24 @@ var app = new Vue({
 	methods: {
 		openStoreUrl: function(url) {
 			window.open(url, '_blank');
+		},
+
+		toggleOpenSource: function() {
+			this.filterOpenSource = ! this.filterOpenSource;
 		}
 	},
 
 	data: {
 		apps: {!! $apps !!},
 		search: '',
+		filterOpenSource: false,
 	},
 
 	computed: {
       filteredApps() {
 		var apps = this.apps;
 		var search = this.search.toLowerCase().trim();
+		var filterOpenSource = this.filterOpenSource;
 
 		if (search) {
 			apps = apps.filter(function(item) {
@@ -148,6 +154,12 @@ var app = new Vue({
 				}
 
 				return false;
+			});
+		}
+
+		if (filterOpenSource) {
+			apps = apps.filter(function(item) {
+				return item.repo_url;
 			});
 		}
 
