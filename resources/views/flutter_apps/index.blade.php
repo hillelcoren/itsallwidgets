@@ -32,6 +32,10 @@
 	}
 }
 
+[v-cloak] {
+	display: none;
+}
+
 </style>
 
 <div id="app">
@@ -75,7 +79,7 @@
 	<p>&nbsp;</p>
 	<p>&nbsp;</p>
 
-	<div class="container">
+	<div class="container" v-cloak>
 		<div class="columns is-multiline is-4 is-variable">
 			<div v-for="app in filteredApps" class="column" v-bind:class="columnClass">
 				<div v-on:click="selectApp(app)" style="cursor:pointer">
@@ -251,90 +255,87 @@ var app = new Vue({
 		},
 	},
 
-	/*
-	created: function() {
-	window.addEventListener('keyup', function(event) {
-	// listen for esc
-	if (event.keyCode == 27) {
-	this.selectApp();
-}
-});
-},
-*/
-
-data: {
-	apps: {!! $apps !!},
-	search: '',
-	filterOpenSource: false,
-	cardsPerRow: 5,
-	sortBy: 'newest',
-	selected_app: false,
-},
-
-computed: {
-
-	modalClass() {
-		if (this.selected_app) {
-			return {'is-active': true};
-		} else {
-			return {};
-		}
-	},
-
-	columnClass() {
-		switch(+this.cardsPerRow) {
-			case 6:
-			return {'is-6': true};
-			case 5:
-			return {'is-one-third': true};
-			case 4:
-			return {'is-one-fourth': true};
-			case 3:
-			return {'is-one-fifth': true};
-			case 2:
-			return {'is-2': true};
-		}
-	},
-
-	filteredApps() {
-		var apps = this.apps;
-		var search = this.search.toLowerCase().trim();
-		var filterOpenSource = this.filterOpenSource;
-		var sortBy = this.sortBy;
-
-		if (search) {
-			apps = apps.filter(function(item) {
-				if (item.title.toLowerCase().indexOf(search) >= 0) {
-					return true;
-				}
-
-				if (item.short_description.toLowerCase().indexOf(search) >= 0) {
-					return true;
-				}
-
-				return false;
-			});
-		}
-
-		if (filterOpenSource) {
-			apps = apps.filter(function(item) {
-				return item.repo_url;
-			});
-		}
-
-		apps.sort(function(itemA, itemB) {
-			var timeA = new Date(itemA.created_at).getTime();
-			var timeB = new Date(itemB.created_at).getTime();
-			if (sortBy == 'oldest') {
-				return timeA - timeB;
-			} else {
-				return timeB - timeA;
+	mounted () {
+		window.addEventListener('keyup', function(event) {
+			if (event.keyCode == 27) {
+				app.selectApp();
 			}
 		});
-
-		return apps;
 	},
-}
+
+	data: {
+		apps: {!! $apps !!},
+		search: '',
+		filterOpenSource: false,
+		cardsPerRow: 5,
+		sortBy: 'newest',
+		selected_app: false,
+	},
+
+	computed: {
+
+		modalClass() {
+			if (this.selected_app) {
+				return {'is-active': true};
+			} else {
+				return {};
+			}
+		},
+
+		columnClass() {
+			switch(+this.cardsPerRow) {
+				case 6:
+				return {'is-6': true};
+				case 5:
+				return {'is-one-third': true};
+				case 4:
+				return {'is-one-fourth': true};
+				case 3:
+				return {'is-one-fifth': true};
+				case 2:
+				return {'is-2': true};
+			}
+		},
+
+		filteredApps() {
+			var apps = this.apps;
+			var search = this.search.toLowerCase().trim();
+			var filterOpenSource = this.filterOpenSource;
+			var sortBy = this.sortBy;
+
+			if (search) {
+				apps = apps.filter(function(item) {
+					if (item.title.toLowerCase().indexOf(search) >= 0) {
+						return true;
+					}
+
+					if (item.short_description.toLowerCase().indexOf(search) >= 0) {
+						return true;
+					}
+
+					return false;
+				});
+			}
+
+			if (filterOpenSource) {
+				apps = apps.filter(function(item) {
+					return item.repo_url;
+				});
+			}
+
+			apps.sort(function(itemA, itemB) {
+				var timeA = new Date(itemA.created_at).getTime();
+				var timeB = new Date(itemB.created_at).getTime();
+				if (sortBy == 'oldest') {
+					return timeA - timeB;
+				} else {
+					return timeB - timeA;
+				}
+			});
+
+			return apps;
+		},
+	}
 
 });
 
