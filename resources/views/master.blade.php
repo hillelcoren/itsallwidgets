@@ -120,12 +120,11 @@
 
     $(function() {
         $('div.navbar-animate').addClass('animated tada').css('visibility', 'visible');
+        $('.hero-body .title, .hero-body .subtitle').addClass('animated fadeIn').css('visibility', 'visible');
         if (document.body.clientWidth > 1000) {
             $('span.navbar-item').addClass('animated slideInDown').css('visibility', 'visible');
-            $('.hero-body .title, .hero-body .subtitle').addClass('animated fadeIn').css('visibility', 'visible');
         } else {
             $('span.navbar-item').css('visibility', 'visible');
-            $('.hero-body .title, .hero-body .subtitle').css('visibility', 'visible');
         }
 
         // Check for click events on the navbar burger icon
