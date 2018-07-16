@@ -118,6 +118,33 @@
         return false;
     }
 
+    $.fn.extend({
+        animateCss: function(animationName, callback) {
+            var animationEnd = (function(el) {
+                var animations = {
+                    animation: 'animationend',
+                    OAnimation: 'oAnimationEnd',
+                    MozAnimation: 'mozAnimationEnd',
+                    WebkitAnimation: 'webkitAnimationEnd',
+                };
+
+                for (var t in animations) {
+                    if (el.style[t] !== undefined) {
+                        return animations[t];
+                    }
+                }
+            })(document.createElement('div'));
+
+            this.addClass('animated ' + animationName).one(animationEnd, function() {
+                $(this).removeClass('animated ' + animationName);
+
+                if (typeof callback === 'function') callback();
+            });
+
+            return this;
+        },
+    });
+
     $(function() {
         $('div.navbar-animate').addClass('animated tada').css('visibility', 'visible');
         $('.hero-body .title, .hero-body .subtitle').addClass('animated fadeIn').css('visibility', 'visible');
@@ -224,17 +251,28 @@
         </div>
     </section>
 
-    <div class="container">
-
-        @if (session('status'))
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <div class="notification is-success">
-                {{ session('status') }}
+    @if (session('status'))
+        <section class="hero hero-status is-light is-small">
+            <div class="hero-body">
+                <div class="container">
+                    <div class="notification is-success">
+                        {{ session('status') }}
+                    </div>
+                </div>
             </div>
-        @endif
+        </section>
 
-    </div>
+        <script>
+        $(function() {
+            setTimeout(function() {
+                $('section.hero-status').animateCss('animated slideOutLeft', function() {
+                    console.log('here');
+                    $('section.hero-status').hide();
+                });
+            }, 3000);
+        });
+        </script>
+    @endif
 
     @yield('content')
 

@@ -50,6 +50,10 @@ body {
     .store-buttons img {
         max-width: 200px;
     }
+
+    body {
+        background-color: #f5f5f5;
+    }
 }
 
 </style>

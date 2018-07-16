@@ -245,8 +245,9 @@
 
 		<p>&nbsp;</p>
 		<p>&nbsp;</p>
+		<p>&nbsp;</p>
 
-		<div class="columns is-centered">
+		<div class="columns is-centered is-mobile">
 			<div class="control">
 				<a href="{{ $app->exists ? url('/flutter-app/' . $app->slug) : url('/') }}" class="button is-medium is-outlined is-slightly-elevated">
 					<i style="font-size: 20px" class="fa fa-times-circle"></i> &nbsp; Cancel
@@ -257,7 +258,6 @@
 			</div>
 		</div>
 
-		<p>&nbsp;</p>
 		<p>&nbsp;</p>
 
 		{{ Form::close() }}
