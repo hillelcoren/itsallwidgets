@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\FlutterApp;
 use App\Http\Requests;
+use App\Http\Requests\EditFlutterApp;
 use App\Http\Requests\StoreFlutterApp;
 use App\Http\Requests\UpdateFlutterApp;
 use Illuminate\Http\Request;
@@ -66,7 +67,7 @@ class FlutterAppController extends Controller
      * @param  FlutterApp $slug
      * @return Response
      */
-    public function edit()
+    public function edit(EditFlutterApp $request)
     {
         $app = request()->flutter_app;
 
