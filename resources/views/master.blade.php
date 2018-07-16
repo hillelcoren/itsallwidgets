@@ -265,7 +265,7 @@
         <script>
         $(function() {
             setTimeout(function() {
-                $('section.hero-status').animateCss('animated slideOutLeft', function() {
+                $('section.hero-status .notification').animateCss('animated fadeOut', function() {
                     console.log('here');
                     $('section.hero-status').hide();
                 });
