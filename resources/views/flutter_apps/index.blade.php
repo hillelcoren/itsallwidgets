@@ -108,13 +108,13 @@ body {
 						<p class="card-header-title is-2 no-wrap" v-bind:title="app.title">
 							@{{ app.title }}
 						</p>
-						<a v-if="app.facebook_url" v-bind:href="app.facebook_url" class="card-header-icon" target="_blank">
+                        <a v-if="app.facebook_url && cards_per_row > 3" v-bind:href="app.facebook_url" class="card-header-icon" target="_blank">
 							<i style="font-size: 20px; color: #888" class="fab fa-facebook"></i>
 						</a>
-						<a v-if="app.twitter_url" v-bind:href="app.twitter_url" class="card-header-icon" target="_blank">
+						<a v-if="app.twitter_url && cards_per_row > 3" v-bind:href="app.twitter_url" class="card-header-icon" target="_blank">
 							<i style="font-size: 20px; color: #888" class="fab fa-twitter"></i>
 						</a>
-						<a v-if="app.repo_url" v-bind:href="app.repo_url" class="card-header-icon" target="_blank">
+                        <a v-if="app.repo_url" v-bind:href="app.repo_url" class="card-header-icon" target="_blank">
 							<i style="font-size: 20px; color: #888" class="fab fa-github"></i>
 						</a>
 					</header>
