@@ -41,4 +41,9 @@ class User extends Authenticatable
 
         return $check;
     }
+
+    public function owns($app)
+    {
+        return $this->id == $app->user_id;
+    }
 }

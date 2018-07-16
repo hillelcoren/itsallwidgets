@@ -23,7 +23,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Route::bind('flutter_app', function($value) {
+            return \App\Models\FlutterApp::where('slug', $value)->first();
+        });
 
         parent::boot();
     }
