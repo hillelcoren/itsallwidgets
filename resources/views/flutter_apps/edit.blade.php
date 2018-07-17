@@ -17,42 +17,46 @@
 
 			<div class="subtitle">Required Fields</div>
 
-			{{ Form::open(array('url' => $url, 'method' => $method)) }}
+			{{ Form::open(array('url' => $url, 'method' => $method, 'files' => true)) }}
 
 			<article class="message is-dark is-elevated">
 				<div class="message-body">
 
-					<label class="label" for="title">
-						Application Name <span class="required">*</span>
-					</label>
-					<div class="control">
-						{{ Form::text('title', $app->title, ['class' => 'input', 'required' => 'true']) }}
+					<div class="field">
+						<label class="label" for="title">
+							Application Name <span class="required">*</span>
+						</label>
+						<div class="control">
+							{{ Form::text('title', $app->title, ['class' => 'input', 'required' => 'true']) }}
 
-						@if ($errors->has('title'))
-							<span class="help is-danger">
-								{{ $errors->first('title') }}
-							</span>
-						@endif
-						@if ($errors->has('slug'))
-							<span class="help is-danger">
-								{{ $errors->first('slug') }}
-							</span>
-						@endif
-					</p>
+							@if ($errors->has('title'))
+								<span class="help is-danger">
+									{{ $errors->first('title') }}
+								</span>
+							@endif
+							@if ($errors->has('slug'))
+								<span class="help is-danger">
+									{{ $errors->first('slug') }}
+								</span>
+							@endif
+						</div>
+					</div>
 
-					<label class="label" for="screenshot1_url">
-						Screenshot URL <span class="required">*</span>
-					</label>
-					<div class="control">
+					<div class="field">
+						<label class="label" for="screenshot1_url">
+							Screenshot [1080px by 1920px] <span class="required">*</span>
+						</label>
+						<div class="control">
 
-						{{ Form::text('screenshot1_url', $app->screenshot1_url, ['class' => 'input', 'required' => 'true', 'placeholder' => 'The image should be 1080px by 1920px', 'type' => 'url']) }}
+							{{ Form::file('screenshot', ['required' => 'true']) }}
 
-						@if ($errors->has('screenshot1_url'))
-							<span class="help is-danger">
-								{{ $errors->first('screenshot1_url') }}
-							</span>
-						@endif
-					</p>
+							@if ($errors->has('screenshot'))
+								<span class="help is-danger">
+									{{ $errors->first('screenshot') }}
+								</span>
+							@endif
+						</div>
+					</div>
 
 					<div class="field">
 						<label class="label" for="short_description">
