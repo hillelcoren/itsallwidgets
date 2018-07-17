@@ -108,16 +108,9 @@ class FlutterAppController extends Controller
     {
         $app = request()->flutter_app;
 
-        $request->file('screenshot')->move(public_path('/screenshots'), 'test.png');
-        //$path = $request->file('screenshot')->storeAs('/', $app->slug, 'public');
-        //dd($path);
-
-        /*
-        $path = $request->file('avatar')->storeAs(
-            'avatars', $request->user()->id
-        );;
-        */
-
+        if ($screenshot = $request->file('screenshot')) {
+            $screenshot->move(public_path('/screenshots'), $app->slug . '.' . $screenshot->extension());
+        }
 
         $app = $this->appRepo->update($app, $request->all());
 
