@@ -376,7 +376,7 @@ var app = new Vue({
         apps: {!! $apps !!},
         search: '',
         filter_open_source: false,
-        cards_per_row: (isStorageSupported() ? localStorage.getItem('cards_per_row') : false) || 5,
+        cards_per_row: (isStorageSupported() ? localStorage.getItem('cards_per_row') : false) || 4,
         sort_by: (isStorageSupported() ? localStorage.getItem('sort_by') : false) || 'newest',
         selected_app: false,
     },
