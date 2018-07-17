@@ -189,6 +189,19 @@
                     <div id="navMenu" class="navbar-menu">
                         <div class="navbar-end">
                             <span class="navbar-item has-text-centered">
+
+                                <a class="navbar-item" href="https://twitter.com/itsallwidgets" target="_blank">
+                                    <i class="fab fa-twitter"></i> &nbsp; Twitter
+                                </a>
+
+                                <a class="navbar-item" href="{{ url('feed') }}" target="_blank">
+                                    <i class="fas fa-rss"></i> &nbsp; RSS
+                                </a>
+
+                                <a class="navbar-item" href="https://github.com/hillelcoren/itsallwidgets" target="_blank">
+                                    <i class="fab fa-github"></i> &nbsp; GitHub
+                                </a>
+
                                 @if (auth()->check())
                                     <a class="navbar-item" href="{{ url('logout') }}">
                                         <span class="icon">
@@ -204,14 +217,6 @@
                                         <span>Sign In</span>
                                     </a>
                                 @endif
-
-                                <a class="navbar-item" href="{{ url('feed') }}" target="_blank">
-                                    <i class="fas fa-rss"></i> &nbsp; RSS
-                                </a>
-
-                                <a class="navbar-item" href="https://github.com/hillelcoren/itsallwidgets" target="_blank">
-                                    <i class="fab fa-github"></i> &nbsp; GitHub
-                                </a>
 
                                 <div class="navbar-item">
                                     &nbsp;
