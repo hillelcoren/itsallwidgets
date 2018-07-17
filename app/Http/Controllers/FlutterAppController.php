@@ -9,6 +9,7 @@ use App\Http\Requests\StoreFlutterApp;
 use App\Http\Requests\UpdateFlutterApp;
 use Illuminate\Http\Request;
 use App\Repositories\FlutterAppRepository;
+use App\Notifications\AppSubmitted;
 
 class FlutterAppController extends Controller
 {
@@ -97,6 +98,7 @@ class FlutterAppController extends Controller
         $input['screenshot1_url'] = '/screenshots/' . $filename;
 
         $app = $this->appRepo->store($input, $user_id);
+        $app->notify(new AppSubmitted());
 
         return redirect('/flutter-app/' . $app['slug'])->with(
             'status',

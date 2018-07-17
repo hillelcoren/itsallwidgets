@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
+use Illuminate\Notifications\Notifiable;
 
 class FlutterApp extends Model implements Feedable
 {
+    use Notifiable;
+
     protected $fillable = [
         'title',
         'slug',
