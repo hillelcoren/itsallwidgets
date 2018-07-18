@@ -2,7 +2,7 @@
 
 @section('title', $app->title)
 @section('description', $app->short_description)
-@section('image_url', $app->screenshot1_url)
+@section('image_url', $app->screenshotUrl())
 
 @section('content')
 

@@ -83,10 +83,10 @@
 						</div>
 
 						<div class="card-image">
-							<img src="{{ $app->screenshot1_url }}" width="1080" height="1920"/>
+							<img src="{{ $app->screenshotUrl() }}" width="1080" height="1920"/>
 						</div>
 
-						<!-- <div style="background-image: url('{{ $app->screenshot1_url }}');height:500px;background-size: cover;"/> -->
+						<!-- <div style="background-image: url('{{ $app->screenshotUrl() }}');height:500px;background-size: cover;"/> -->
 					</div>
 				</div>
 				<p>&nbsp;</p>
