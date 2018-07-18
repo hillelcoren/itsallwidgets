@@ -95,7 +95,7 @@ class FlutterAppController extends Controller
 
         $this->saveScreenshot($request, $app);
 
-        if (config('services.twitter.consumer_key')) {
+        if (config('services.twitter.consumer_key') && config('app.env') == 'production') {
             $app->notify(new AppSubmitted());
         }
 
