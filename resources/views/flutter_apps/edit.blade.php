@@ -15,6 +15,13 @@
 			<h2 class="title">Submit Application</h2>
 			<p>&nbsp;</p>
 
+			@if ($errors->count())
+				<div class="notification is-warning">
+					There was a problem with your submission, please correct the errors and try again.
+				</div>
+				<p>&nbsp;</p>
+			@endif
+
 			<div class="subtitle">Required Fields</div>
 
 			{{ Form::open(array('url' => $url, 'method' => $method, 'files' => true)) }}
