@@ -199,7 +199,7 @@ body {
 
                         <div class="columns is-2 is-variable" v-if="selected_app.google_url || selected_app.apple_url">
                             <div class="column is-2">
-                                <div v-if="selected_app.google_url" v-on:click="openStoreUrl(selected_app.google_url)">
+                                <div v-if="selected_app.google_url" v-on:click="openStoreUrl(selected_app.google_url)" style="cursor:pointer">
                                     <div class="card-image is-slightly-elevated">
                                         <img src="{{ asset('images/google.png') }}"/>
                                     </div>
@@ -209,7 +209,7 @@ body {
                                 </div>
                             </div>
                             <div class="column is-2">
-                                <div v-if="selected_app.apple_url" v-on:click="openStoreUrl(selected_app.apple_url)">
+                                <div v-if="selected_app.apple_url" v-on:click="openStoreUrl(selected_app.apple_url)" style="cursor:pointer">
                                     <div class="card-image is-slightly-elevated">
                                         <img src="{{ asset('images/apple.png') }}"/>
                                     </div>
