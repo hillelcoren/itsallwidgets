@@ -168,6 +168,6 @@ class FlutterAppController extends Controller
 
         $str .= '</urlset>';
 
-        return $str;
+        return response($str)->header('Content-Type', 'application/xml');
     }
 }
