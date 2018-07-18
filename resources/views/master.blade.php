@@ -48,6 +48,21 @@
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <script defer src="{{ asset('js/fontawesome.js') }}"></script>
 
+    @if (request()->google_font)
+        <link href="https://fonts.googleapis.com/css?family={{ request()->google_font }}" rel="stylesheet">
+        <style>
+            body {
+                font-family: '{{ request()->google_font }}', sans-serif;
+            }
+        </style>
+    @else
+        <style>
+            .top-left-logo {
+                font-family: impact, arial;
+            }
+        </style>
+    @endif
+
     <style>
 
     .is-elevated {
@@ -177,7 +192,7 @@
                     <div class="navbar-brand">
                         <div class="navbar-animate">
                             <a class="navbar-item" href="{{ url('/') }}">
-                                <font class="title" style="font-family:impact,arial;font-size:42px;">IT'S ALL WIDGETS!</font>
+                                <font class="title top-left-logo" style="font-size:42px;">IT'S ALL WIDGETS!</font>
                             </a>
                         </div>
                         <span class="navbar-burger burger" data-target="navMenu">
