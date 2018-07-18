@@ -29,7 +29,7 @@ class UpdateFlutterApp extends FormRequest
 
         $rules = [
             'title' => 'required|unique:flutter_apps,title,' . $app->id . ',id',
-            'screenshot' => 'image|mimes:jpg,png|dimensions:width=1080,height=1920',
+            'screenshot' => 'image|mimes:png|dimensions:width=1080,height=1920',
             'short_description' => 'required|max:250',
             'long_description' => 'required',
         ];

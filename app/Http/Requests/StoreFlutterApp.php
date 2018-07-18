@@ -26,7 +26,7 @@ class StoreFlutterApp extends FormRequest
         $rules = [
             'title' => 'required|unique:flutter_apps',
             'slug' => 'required|unique:flutter_apps',
-            'screenshot' => 'image|mimes:jpg,png|dimensions:width=1080,height=1920',
+            'screenshot' => 'image|mimes:png|dimensions:width=1080,height=1920',
             'short_description' => 'required|max:250',
             'long_description' => 'required',
         ];
