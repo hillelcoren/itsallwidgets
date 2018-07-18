@@ -15,7 +15,7 @@ class AppSubmitted extends Notification
 
     public function toTwitter($app)
     {
-        $tweet = 'New #Flutter app 🚀 ' . $app->title;
+        $tweet = 'New #Flutter app 🚀 ' . $app->title . ' 🙌 ';
 
         if ($handle = $app->twitterHandle()) {
             $tweet .= ' ' . $handle;
