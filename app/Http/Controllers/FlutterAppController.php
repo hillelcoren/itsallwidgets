@@ -98,7 +98,10 @@ class FlutterAppController extends Controller
         $input['screenshot1_url'] = '/screenshots/' . $filename;
 
         $app = $this->appRepo->store($input, $user_id);
-        $app->notify(new AppSubmitted());
+
+        if (config('services.twitter.consumer_key')) {
+            $app->notify(new AppSubmitted());
+        }
 
         return redirect('/flutter-app/' . $app['slug'])->with(
             'status',
