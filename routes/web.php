@@ -12,6 +12,7 @@
 */
 
 Route::redirect('/', '/flutter-apps');
+Route::get('sitemap.xml', 'FlutterAppController@sitemap');
 
 Route::get('flutter-apps', 'FlutterAppController@index');
 

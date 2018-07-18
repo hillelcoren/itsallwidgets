@@ -155,4 +155,25 @@ class FlutterAppController extends Controller
 
         return view('flutter_apps.show', compact('app'));
     }
+
+    public function sitemap()
+    {
+        $str = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+        $str .= '<url><loc>' . config('app.url') . '</loc><lastmod>' . date('Y-m-d') . '</lastmod><changefreq>daily</changefreq><priority>1</priority></url>';
+
+        $apps = cache('flutter-app-list');
+
+        foreach ($apps as $app) {
+            $str .= '<url>'
+            . '<loc>' . $app->url() . '</loc>'
+            . '<lastmod>' . $app->updated_at->format('Y-m-d') . '</lastmod>'
+            . '<changefreq>weekly</changefreq>'
+            . '<priority>0.5</priority>'
+            . '</url>';
+        }
+
+        $str .= '</urlset>';
+
+        return $str;
+    }
 }
