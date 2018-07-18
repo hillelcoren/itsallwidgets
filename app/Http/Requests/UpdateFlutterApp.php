@@ -35,11 +35,11 @@ class UpdateFlutterApp extends FormRequest
         ];
 
         if (request()->apple_url) {
-            $rules['apple_url'] = 'unique:flutter_apps';
+            $rules['apple_url'] = 'unique:flutter_apps,apple_url,' . $app->id . ',id',
         }
 
         if (request()->google_url) {
-            $rules['google_url'] = 'unique:flutter_apps';
+            $rules['google_url'] = 'unique:flutter_apps,google_url,' . $app->id . ',id',
         }
 
         return $rules;
