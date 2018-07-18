@@ -205,12 +205,12 @@
                         <div class="navbar-end">
                             <span class="navbar-item has-text-centered">
 
-                                <a class="navbar-item" href="{{ url('feed') }}" target="_blank">
-                                    <i class="fas fa-rss"></i> &nbsp; RSS
-                                </a>
-
                                 <a class="navbar-item" href="https://github.com/hillelcoren/itsallwidgets" target="_blank">
                                     <i class="fab fa-github"></i> &nbsp; GitHub
+                                </a>
+
+                                <a class="navbar-item" href="{{ url('feed') }}" target="_blank">
+                                    <i class="fas fa-rss"></i> &nbsp; RSS
                                 </a>
 
                                 @if (auth()->check())
@@ -237,7 +237,7 @@
                                     <span class="icon">
                                         <i class="fab fa-twitter"></i>
                                     </span> &nbsp;
-                                    <span>Follow Feed</span>
+                                    <span>Twitter Feed</span>
                                 </a> &nbsp;&nbsp;
 
                                 @if (! auth()->check())
@@ -245,11 +245,11 @@
                                         <span class="icon">
                                             <i class="fas fa-bell"></i>
                                         </span> &nbsp;
-                                        <span>Get Updates</span>
+                                        <span>Monthly Stats</span>
                                     </a> &nbsp;&nbsp;
                                 @endif
 
-                                <a class="button is-info is-inverted" href="{{ url(auth()->check() ? 'flutter-apps/submit' : 'auth/google') }}">
+                                <a class="button is-success" href="{{ url(auth()->check() ? 'flutter-apps/submit' : 'auth/google') }}">
                                     <span class="icon">
                                         <i class="fas fa-upload"></i>
                                     </span> &nbsp;
