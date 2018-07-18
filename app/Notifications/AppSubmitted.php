@@ -29,7 +29,13 @@ class AppSubmitted extends Notification
             $tweet .= ' #iPhone';
         }
 
-        $tweet .= "\n" . $app->url();
+        if ($app->repo_url) {
+            $tweet .= ' #opensource';
+        }
+
+        //$tweet .= "\n" . $app->url();
+        $tweet .= "\nhttps://itsallwidgets.com/flutter-app/jimdo-boost";
+
 
         return new TwitterStatusUpdate($tweet);
     }
