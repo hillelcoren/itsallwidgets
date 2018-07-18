@@ -42,6 +42,18 @@ body {
     display: none;
 }
 
+.short-description {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card:hover .short-description {
+    white-space: normal;
+    word-wrap: break-word;
+    font-family: inherit;
+}
+
 @media screen and (max-width: 769px) {
     .slider-control {
         display: none;
@@ -126,7 +138,7 @@ body {
 
                         <div class="card-content">
                             <div class="content">
-                                <div class="subtitle is-6 no-wrap" v-bind:title="app.short_description">
+                                <div class="subtitle is-6 short-description" v-bind:title="app.short_description">
                                     @{{ app.short_description }}
                                 </div>
                                 <div class="columns is-1 is-variable is-mobile">
