@@ -64,4 +64,25 @@ class FlutterApp extends Model implements Feedable
             ->link('/flutter-app/' . $this->slug)
             ->author($this->title);
     }
+
+    public function screenshotUrl()
+    {
+        return url($this->screenshot1_url);
+    }
+
+    public function url()
+    {
+        return url('flutter-app/' . $this->slug);
+    }
+
+    public function twitterHandle()
+    {
+        if (! $this->twitter_url) {
+            return false;
+        }
+
+        $parts = explode('/', $this->twitter_url);
+
+        return '@' . $parts[count($parts) - 1];
+    }
 }
