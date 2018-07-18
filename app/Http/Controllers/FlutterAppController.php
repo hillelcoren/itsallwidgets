@@ -91,13 +91,9 @@ class FlutterAppController extends Controller
     {
         $input = $request->all();
         $user_id = auth()->user()->id;
-
-        $screenshot = $request->file('screenshot');
-        $filename = $request->slug . '.' . $screenshot->extension();
-        $screenshot->move(public_path('/screenshots'), $filename);
-        $input['screenshot1_url'] = '/screenshots/' . $filename;
-
         $app = $this->appRepo->store($input, $user_id);
+
+        $this->saveScreenshot($request, $app);
 
         if (config('services.twitter.consumer_key')) {
             $app->notify(new AppSubmitted());
@@ -117,21 +113,34 @@ class FlutterAppController extends Controller
      */
     public function update(UpdateFlutterApp $request, $slug)
     {
-        $app = request()->flutter_app;
+        $app = $request->flutter_app;
         $input = $request->all();
-
-        if ($screenshot = $request->file('screenshot')) {
-            $filename = $app->slug . '.' . $screenshot->extension();
-            $screenshot->move(public_path('/screenshots'), $filename);
-            $input['screenshot1_url'] = '/screenshots/' . $filename;
-        }
-
         $app = $this->appRepo->update($app, $input);
+
+        $this->saveScreenshot($request, $app);
 
         return redirect('/flutter-app/' . $app->slug)->with(
             'status',
             'Your application has been successfully updated!'
         );
+    }
+
+    private function saveScreenshot($request, $app)
+    {
+        $screenshot = $request->file('screenshot');
+
+        if (! $screenshot) {
+            return;
+        }
+
+        $filename = 'app-' . $app->id . '.' . $screenshot->extension();
+        $screenshot->move(public_path('/screenshots'), $filename);
+
+        $input = [
+            'screenshot1_url' => '/screenshots/' . $filename
+        ];
+
+        $this->appRepo->update($app, $input);
     }
 
     /**
