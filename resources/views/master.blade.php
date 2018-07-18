@@ -205,11 +205,9 @@
                         <div class="navbar-end">
                             <span class="navbar-item has-text-centered">
 
-                                <!--
                                 <a class="navbar-item" href="https://twitter.com/itsallwidgets" target="_blank">
                                     <i class="fab fa-twitter"></i> &nbsp; Twitter
                                 </a>
-                                -->
 
                                 <a class="navbar-item" href="{{ url('feed') }}" target="_blank">
                                     <i class="fas fa-rss"></i> &nbsp; RSS
