@@ -155,7 +155,7 @@ body {
                         </div>
 
                         <div class="card-image">
-                            <img v-bind:src="app.screenshot1_url" width="1080" height="1920"/>
+                            <img v-bind:src="'/screenshots/app-' + app.id + '.png'" width="1080" height="1920"/>
                         </div>
                     </div>
                 </div>
@@ -178,7 +178,7 @@ body {
 
             <div class="columns">
                 <div class="column is-4 is-elevated">
-                    <img v-bind:src="selected_app.screenshot1_url" width="1080" height="1920"/>
+                    <img v-bind:src="'/screenshots/app-' + selected_app.id + '.png'" width="1080" height="1920"/>
                 </div>
                 <div class="column is-8">
 

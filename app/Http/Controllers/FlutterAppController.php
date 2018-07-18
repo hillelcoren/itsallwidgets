@@ -135,12 +135,6 @@ class FlutterAppController extends Controller
 
         $filename = 'app-' . $app->id . '.' . $screenshot->extension();
         $screenshot->move(public_path('/screenshots'), $filename);
-
-        $input = [
-            'screenshot1_url' => '/screenshots/' . $filename
-        ];
-
-        $this->appRepo->update($app, $input);
     }
 
     /**

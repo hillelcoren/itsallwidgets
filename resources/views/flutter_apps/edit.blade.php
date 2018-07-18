@@ -50,7 +50,7 @@
 					</div>
 
 					<div class="field">
-						<label class="label" for="screenshot1_url">
+						<label class="label" for="screenshot">
 							Screenshot [.png | 1080px by 1920px] <span class="required">*</span>
 						</label>
 						<div class="control">

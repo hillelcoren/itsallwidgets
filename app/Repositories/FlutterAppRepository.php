@@ -42,6 +42,7 @@ class FlutterAppRepository
     {
         $app = new FlutterApp;
         $app->fill($input);
+        $app->screenshot1_url = ''; // TODO remove once field is removed
         $app->user_id = $user_id;
         $app->save();
 

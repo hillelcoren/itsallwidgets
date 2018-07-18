@@ -16,7 +16,6 @@ class FlutterApp extends Model implements Feedable
         'slug',
         'short_description',
         'long_description',
-        'screenshot1_url',
         'website_url',
         'repo_url',
         'apple_url',
@@ -27,7 +26,6 @@ class FlutterApp extends Model implements Feedable
     ];
 
     protected $hidden = [
-        'id',
         'is_visible',
     ];
 
@@ -67,7 +65,7 @@ class FlutterApp extends Model implements Feedable
 
     public function screenshotUrl()
     {
-        return url($this->screenshot1_url);
+        return url('screenshots/app-' . $this->id . '.png');
     }
 
     public function url()
