@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-    @if (config('services.analytics.tracking_id'))
+    @if ($tracking_id)
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122229484-1"></script>
         <script>
         window.dataLayer = window.dataLayer || [];
