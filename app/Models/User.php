@@ -42,12 +42,30 @@ class User extends Authenticatable
         return $check;
     }
 
+    public function isAdmin()
+    {
+        return $this->id == 1;
+    }
+
     public function owns($app)
     {
-        if ($this->id == 1) {
+        if ($this->isAdmin()) {
             return true;
         }
 
         return $this->id == $app->user_id;
+    }
+
+    public function shouldSendTweet()
+    {
+        if (! config('services.twitter.consumer_key')) {
+            return false;
+        }
+
+        if (config('app.env') != 'production') {
+            return false;
+        }
+
+        return ! $this->isAdmin();
     }
 }

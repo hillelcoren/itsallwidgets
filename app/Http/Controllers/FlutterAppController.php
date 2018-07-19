@@ -91,12 +91,12 @@ class FlutterAppController extends Controller
     public function store(StoreFlutterApp $request)
     {
         $input = $request->all();
-        $user_id = auth()->user()->id;
-        $app = $this->appRepo->store($input, $user_id);
+        $user = auth()->user();
+        $app = $this->appRepo->store($input, $user->id);
 
         dispatch(new UploadScreenshot($app, 'screenshot'));
 
-        if (config('services.twitter.consumer_key') && config('app.env') == 'production' && $user_id > 1) {
+        if ($user->shouldSendTweet()) {
             $app->notify(new AppSubmitted());
         }
 
