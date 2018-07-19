@@ -29,11 +29,6 @@ body {
     -moz-animation-duration: .5s;
 }
 
-.is-vertical-center {
-    display: flex;
-    align-items: center;
-}
-
 .modal-card {
     width: 80%;
 }

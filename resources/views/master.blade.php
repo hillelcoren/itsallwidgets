@@ -95,6 +95,11 @@
         align-items: center;
     }
 
+    .is-vertical-center {
+        display: flex;
+        align-items: center;
+    }
+
     .no-wrap {
         white-space: nowrap;
         overflow: hidden;
@@ -185,7 +190,7 @@
 
 <body>
 
-    <section class="hero is-info is-mediumx">
+    <section class="hero is-info">
         <div class="hero-head">
             <nav class="navbar">
                 <div class="container">
