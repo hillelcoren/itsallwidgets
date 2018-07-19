@@ -43,21 +43,13 @@ body {
 }
 
 .short-description {
-    white-space: nowrap;
+    line-height: 1.5em;
+    height: 3em;
     overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     text-overflow: ellipsis;
-}
-
-
-.card {
-    max-height: 600px;
-    overflow: hidden;
-}
-
-.card:hover .short-description {
-    white-space: normal;
-    word-wrap: break-word;
-    font-family: inherit;
 }
 
 @media screen and (max-width: 769px) {
