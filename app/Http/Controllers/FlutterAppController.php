@@ -96,7 +96,7 @@ class FlutterAppController extends Controller
 
         dispatch(new UploadScreenshot($app, 'screenshot'));
 
-        if (config('services.twitter.consumer_key') && config('app.env') == 'production') {
+        if (config('services.twitter.consumer_key') && config('app.env') == 'production' && $user_id > 1) {
             $app->notify(new AppSubmitted());
         }
 
