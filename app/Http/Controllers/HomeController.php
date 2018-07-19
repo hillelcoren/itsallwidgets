@@ -7,6 +7,11 @@ use Session;
 
 class HomeController extends Controller
 {
+    public function about()
+    {
+        return view('about');
+    }
+
     public function logError()
     {
         $count = Session::get('error_count', 0);

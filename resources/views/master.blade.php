@@ -205,6 +205,10 @@
                         <div class="navbar-end">
                             <span class="navbar-item has-text-centered">
 
+                                <a class="navbar-item" href="{{ url('about') }}">
+                                    <i class="fas fa-info-circle"></i> &nbsp; About
+                                </a>
+
                                 <a class="navbar-item" href="https://github.com/hillelcoren/itsallwidgets" target="_blank">
                                     <i class="fab fa-github"></i> &nbsp; GitHub
                                 </a>

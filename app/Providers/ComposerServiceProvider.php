@@ -24,6 +24,7 @@ class ComposerServiceProvider extends ServiceProvider
 
             $view->with('tracking_id', $tracking_id);
         });
+
         /*
         View::composer(
             '', 'App\Http\ViewComposers\ProfileComposer'
