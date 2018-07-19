@@ -38,7 +38,21 @@
 
             <div class="columns">
                 <div class="column has-text-centered">
-                    <i class="fas fa-bullhorn" style="font-size:80px"></i>
+                    <i class="fas fa-image" style="font-size:80px"></i>
+                </div>
+                <div class="column is-four-fifths">
+                    <div class="title is-4">
+                        Validate screenshot
+                    </div>
+                    <div class="block is-size-4">
+                        One of the first things we noticed after launch the site was that some screenshots would have a faint yellow error border. The app will try to check for this and warn you if it's found.
+                    </div><br/>
+                </div>
+            </div>
+
+            <div class="columns">
+                <div class="column has-text-centered">
+                    <i class="fab fa-twitter" style="font-size:80px"></i>
                 </div>
                 <div class="column is-four-fifths">
                     <div class="title is-4">
@@ -52,25 +66,11 @@
 
             <div class="columns">
                 <div class="column has-text-centered">
-                    <i class="fas fa-exclamation-triangle" style="font-size:80px"></i>
+                    <i class="fas fa-bell" style="font-size:80px"></i>
                 </div>
                 <div class="column is-four-fifths">
                     <div class="title is-4">
-                        Validate screenshot
-                    </div>
-                    <div class="block is-size-4">
-                        One of the first things we noticed after launch the site was that sometimes the uploaded screenshot would have a faint yellow error border. 
-                    </div><br/>
-                </div>
-            </div>
-
-            <div class="columns">
-                <div class="column has-text-centered">
-                    <i class="fas fa-user-circle" style="font-size:80px"></i>
-                </div>
-                <div class="column is-four-fifths">
-                    <div class="title is-4">
-
+                        Keep track of Flutter apps
                     </div>
                     <div class="block is-size-4">
 
@@ -80,11 +80,11 @@
 
             <div class="columns">
                 <div class="column has-text-centered">
-                    <i class="fas fa-user-circle" style="font-size:80px"></i>
+                    <i class="fas fa-chart-line" style="font-size:80px"></i>
                 </div>
                 <div class="column is-four-fifths">
                     <div class="title is-4">
-
+                        Provide monthly metrics
                     </div>
                     <div class="block is-size-4">
 
