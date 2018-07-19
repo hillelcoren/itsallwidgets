@@ -49,7 +49,7 @@ class UploadScreenshot implements ShouldQueue
         if ($this->isErrorPixel($image, 0, 500)
             && ! $this->isErrorPixel($image, 50, 500)
         ) {
-            session()->flash('warning', 'We\'ve detected a faint yellow border around the image, there may have been an error when the screenshot was taken.');
+            session()->flash('warning', 'We\'ve detected a yellow border around the image, there may have been an error when the screenshot was taken.');
         }
     }
 
