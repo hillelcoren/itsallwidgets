@@ -214,12 +214,12 @@
                                     <i class="fas fa-info-circle"></i> &nbsp; About
                                 </a>
 
-                                <a class="navbar-item" href="https://github.com/hillelcoren/itsallwidgets" target="_blank">
-                                    <i class="fab fa-github"></i> &nbsp; GitHub
-                                </a>
-
                                 <a class="navbar-item" href="{{ url('feed') }}" target="_blank">
                                     <i class="fas fa-rss"></i> &nbsp; RSS
+                                </a>
+
+                                <a class="navbar-item" href="https://github.com/hillelcoren/itsallwidgets" target="_blank">
+                                    <i class="fab fa-github"></i> &nbsp; GitHub
                                 </a>
 
                                 @if (auth()->check())
@@ -228,13 +228,6 @@
                                             <i class="fas fa-user-alt"></i>
                                         </span> &nbsp;
                                         <span>Log Out</span>
-                                    </a>
-                                @else
-                                    <a class="navbar-item" href="{{ url('auth/google') }}">
-                                        <span class="icon">
-                                            <i class="fas fa-user-alt"></i>
-                                        </span> &nbsp;
-                                        <span>Sign In</span>
                                     </a>
                                 @endif
 

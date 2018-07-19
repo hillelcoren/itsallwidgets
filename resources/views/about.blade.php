@@ -24,63 +24,63 @@
 
             <div class="columns">
                 <div class="column has-text-centered">
-                    <i class="fas fa-user-circle" style="font-size:80px"></i>
+                    <i class="fas fa-bell" style="font-size:70px"></i>
+                </div>
+                <div class="column is-four-fifths">
+                    <div class="title is-4">
+                        Keep track of new Flutter apps
+                    </div>
+                    <div class="block is-size-4">
+                        The Flutter community continues to grow at an exponential rate.
+                    </div><br/>
+                </div>
+            </div>
+
+            <div class="columns">
+                <div class="column has-text-centered">
+                    <i class="fas fa-user-circle" style="font-size:70px"></i>
                 </div>
                 <div class="column is-four-fifths">
                     <div class="title is-4">
                         Create a free profile page
                     </div>
                     <div class="block is-size-4">
-                        Once your app is submitted we'll provide you with a perma-link for your custom page. It has links to both app stores, is optimized for social sharing and can be updated at any time.
+                        If you submit your app we'll provide you with a permalink for your custom page. It has links to both app stores, is optimized for social sharing and can be updated at any time.
                     </div><br/>
                 </div>
             </div>
 
             <div class="columns">
                 <div class="column has-text-centered">
-                    <i class="fas fa-image" style="font-size:80px"></i>
+                    <i class="fas fa-image" style="font-size:70px"></i>
                 </div>
                 <div class="column is-four-fifths">
                     <div class="title is-4">
-                        Validate screenshot
+                        Validate your screenshot
                     </div>
                     <div class="block is-size-4">
-                        One of the first things we noticed after launch the site was that some screenshots would have a faint yellow error border. The app will try to check for this and warn you if it's found.
+                        One of the first things we noticed after launching was that some screenshots would have a faint yellow error border. The site automatically checks the screenshot and warns you if it's found.
                     </div><br/>
                 </div>
             </div>
 
             <div class="columns">
                 <div class="column has-text-centered">
-                    <i class="fab fa-twitter" style="font-size:80px"></i>
+                    <i class="fab fa-twitter" style="font-size:70px"></i>
                 </div>
                 <div class="column is-four-fifths">
                     <div class="title is-4">
                         Promote your application
                     </div>
                     <div class="block is-size-4">
-                        On submission we'll automatically tweet your app to our <a href="https://twitter.com/itsallwidgets" target="_blank">Twitter account</a> notifying all of our followers. If you set a Twitter URL in the profile we'll include the handle in the tweet.
+                        On submission we'll automatically tweet your app to our <a href="https://twitter.com/itsallwidgets" target="_blank">Twitter account</a> notifying all of our followers. If you set a Twitter link in the profile we'll include your handle in the tweet.
                     </div><br/>
                 </div>
             </div>
 
             <div class="columns">
                 <div class="column has-text-centered">
-                    <i class="fas fa-bell" style="font-size:80px"></i>
-                </div>
-                <div class="column is-four-fifths">
-                    <div class="title is-4">
-                        Keep track of Flutter apps
-                    </div>
-                    <div class="block is-size-4">
-
-                    </div><br/>
-                </div>
-            </div>
-
-            <div class="columns">
-                <div class="column has-text-centered">
-                    <i class="fas fa-chart-line" style="font-size:80px"></i>
+                    <i class="fas fa-chart-line" style="font-size:70px"></i>
                 </div>
                 <div class="column is-four-fifths">
                     <div class="title is-4">
