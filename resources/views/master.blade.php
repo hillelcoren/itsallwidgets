@@ -274,6 +274,18 @@
         </div>
     </section>
 
+    @if (session('warning'))
+        <section class="hero is-light is-small">
+            <div class="hero-body">
+                <div class="container">
+                    <div class="notification is-warning">
+                        {{ session('warning') }}
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
     @if (session('status'))
         <section class="hero hero-status is-light is-small">
             <div class="hero-body">

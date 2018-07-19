@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateFlutterApp;
 use Illuminate\Http\Request;
 use App\Repositories\FlutterAppRepository;
 use App\Notifications\AppSubmitted;
+use App\Jobs\UploadScreenshot;
 
 class FlutterAppController extends Controller
 {
@@ -93,7 +94,7 @@ class FlutterAppController extends Controller
         $user_id = auth()->user()->id;
         $app = $this->appRepo->store($input, $user_id);
 
-        $this->saveScreenshot($request, $app);
+        dispatch(new UploadScreenshot($app, 'screenshot'));
 
         if (config('services.twitter.consumer_key') && config('app.env') == 'production') {
             $app->notify(new AppSubmitted());
@@ -117,24 +118,12 @@ class FlutterAppController extends Controller
         $input = $request->all();
         $app = $this->appRepo->update($app, $input);
 
-        $this->saveScreenshot($request, $app);
+        dispatch(new UploadScreenshot($app, 'screenshot'));
 
         return redirect('/flutter-app/' . $app->slug)->with(
             'status',
             'Your application has been successfully updated!'
         );
-    }
-
-    private function saveScreenshot($request, $app)
-    {
-        $screenshot = $request->file('screenshot');
-
-        if (! $screenshot) {
-            return;
-        }
-
-        $filename = 'app-' . $app->id . '.' . $screenshot->extension();
-        $screenshot->move(public_path('/screenshots'), $filename);
     }
 
     /**

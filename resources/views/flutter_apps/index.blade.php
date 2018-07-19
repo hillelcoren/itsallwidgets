@@ -48,6 +48,12 @@ body {
     text-overflow: ellipsis;
 }
 
+
+.card {
+    max-height: 600px;
+    overflow: hidden;
+}
+
 .card:hover .short-description {
     white-space: normal;
     word-wrap: break-word;
