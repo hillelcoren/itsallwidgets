@@ -46,12 +46,10 @@ class UploadScreenshot implements ShouldQueue
         // check for an error border
         $image = Image::make(public_path('/screenshots') . '/' . $filename);
 
-        if ($this->isErrorPixel($image, 0, 400)
-            && $this->isErrorPixel($image, 0, 600)
-            && ! $this->isErrorPixel($image, 50, 400)
-            && ! $this->isErrorPixel($image, 50, 600)
+        if ($this->isErrorPixel($image, 0, 500)
+            && ! $this->isErrorPixel($image, 50, 500)
         ) {
-            session()->flash('warning', 'The app has detected a faint yellow border, there may have been an error when the screenshot was taken.');
+            session()->flash('warning', 'We\'ve detected a faint yellow border around the image, there may have been an error when the screenshot was taken.');
         }
     }
 
