@@ -48,13 +48,23 @@
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <script defer src="{{ asset('js/fontawesome.js') }}"></script>
 
-    @if (request()->google_font)
-        <link href="https://fonts.googleapis.com/css?family={{ request()->google_font }}" rel="stylesheet">
-        <style>
-            body {
-                font-family: '{{ request()->google_font }}', sans-serif;
-            }
-        </style>
+    @if (request()->head_font || request()->body_font)
+        @if (request()->head_font)
+            <link href="https://fonts.googleapis.com/css?family={{ request()->head_font }}" rel="stylesheet">
+            <style>
+                .head-font {
+                    font-family: '{{ request()->head_font }}', sans-serif;
+                }
+            </style>
+        @endif
+        @if (request()->body_font)
+            <link href="https://fonts.googleapis.com/css?family={{ request()->body_font }}" rel="stylesheet">
+            <style>
+                .body-font {
+                    font-family: '{{ request()->body_font }}', sans-serif;
+                }
+            </style>
+        @endif
     @else
         <style>
             .top-left-logo {

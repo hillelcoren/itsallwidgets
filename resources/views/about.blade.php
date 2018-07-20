@@ -26,8 +26,7 @@
 
     </script>
 
-
-    <section class="hero is-dark is-small">
+    <section class="hero is-light is-small">
         <div class="hero-body">
             <div class="container">
                 <div class="title">
