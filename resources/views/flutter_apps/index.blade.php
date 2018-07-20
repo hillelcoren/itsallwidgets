@@ -159,7 +159,7 @@ body {
                             </div>
                         </div>
 
-                        <div class="card-image">
+                        <div class="card-image" style="line-height:0px">
                             <img v-bind:src="'/screenshots/app-' + app.id + '.png'" width="1080" height="1920"/>
                         </div>
                     </div>

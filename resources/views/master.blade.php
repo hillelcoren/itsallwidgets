@@ -326,7 +326,7 @@
     <p>&nbsp;</p>
     <p>&nbsp;</p>
 
-    <footer class="footer is-head-body">
+    <footer class="footer is-body-font">
         <div class="content has-text-centered">
             <p>
                 Made with &nbsp;<i style="color:red" class="fas fa-heart"></i>&nbsp; by the <a href="https://medium.com/flutter-community" target="_blank">Flutter Community</a>
