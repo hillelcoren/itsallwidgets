@@ -47,7 +47,7 @@
 
             <div class="columns column-1" style="visibility:hidden">
                 <div class="column has-text-centered">
-                    <i class="fas fa-bell" style="font-size:70px"></i>
+                    <i class="fas fa-bell" style="font-size:65px"></i>
                 </div><br/>
                 <div class="column is-four-fifths">
                     <div class="title is-4">
@@ -61,7 +61,7 @@
 
             <div class="columns column-2" style="visibility:hidden">
                 <div class="column has-text-centered">
-                    <i class="fas fa-user-circle" style="font-size:70px"></i>
+                    <i class="fas fa-user-circle" style="font-size:65px"></i>
                 </div><br/>
                 <div class="column is-four-fifths">
                     <div class="title is-4">
@@ -75,7 +75,7 @@
 
             <div class="columns column-3" style="visibility:hidden">
                 <div class="column has-text-centered">
-                    <i class="fas fa-image" style="font-size:70px"></i>
+                    <i class="fas fa-image" style="font-size:65px"></i>
                 </div><br/>
                 <div class="column is-four-fifths">
                     <div class="title is-4">
@@ -89,7 +89,7 @@
 
             <div class="columns column-4" style="visibility:hidden">
                 <div class="column has-text-centered">
-                    <i class="fab fa-twitter" style="font-size:70px"></i>
+                    <i class="fas fa-bullhorn" style="font-size:65px"></i>
                 </div><br/>
                 <div class="column is-four-fifths">
                     <div class="title is-4">
@@ -104,7 +104,7 @@
 
             <div class="columns column-5" style="visibility:hidden">
                 <div class="column has-text-centered">
-                    <i class="fas fa-chart-line" style="font-size:70px"></i>
+                    <i class="fas fa-chart-line" style="font-size:65px"></i>
                 </div><br/>
                 <div class="column is-four-fifths">
                     <div class="title is-4">
