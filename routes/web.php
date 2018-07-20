@@ -11,7 +11,11 @@
 |
 */
 
-Route::redirect('/', '/flutter-apps');
+
+Route::get('/', function () {
+    return redirect('flutter-apps', 301);
+});
+
 Route::get('about', 'HomeController@about');
 Route::get('sitemap.xml', 'FlutterAppController@sitemap');
 Route::get('flutter-apps', 'FlutterAppController@index');

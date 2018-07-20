@@ -30,7 +30,7 @@ class AppSubmitted extends Notification
         }
 
         if ($app->repo_url) {
-            $tweet .= ' #opensource';
+            $tweet .= ' #OpenSource';
         }
 
         $tweet .= "\n" . $app->url();
