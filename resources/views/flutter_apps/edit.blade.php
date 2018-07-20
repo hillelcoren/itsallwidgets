@@ -9,7 +9,7 @@
 	<p>&nbsp;</p>
 	<p>&nbsp;</p>
 
-	<div class="container">
+	<div class="container is-body-font">
 		<div class="column is-8 is-offset-2">
 
 			<h2 class="title">Submit Application</h2>

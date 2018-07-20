@@ -26,7 +26,7 @@
 
     </script>
 
-    <section class="hero is-light is-small">
+    <section class="hero is-light is-small is-head-font">
         <div class="hero-body">
             <div class="container">
                 <div class="title">
@@ -41,7 +41,7 @@
 
     <p>&nbsp;</p>
 
-    <section class="section">
+    <section class="section is-body-font">
         <div class="container">
 
             <div class="columns column-1" style="visibility:hidden">

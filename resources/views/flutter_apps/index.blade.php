@@ -68,7 +68,7 @@ body {
 
 <div id="app">
 
-    <section class="hero is-light is-small">
+    <section class="hero is-light is-small is-head-font">
         <div class="hero-body">
             <div class="container">
                 <div class="field is-grouped is-grouped-multiline is-vertical-center">
@@ -104,7 +104,7 @@ body {
         </div>
     </section>
 
-    <section class="section">
+    <section class="section is-body-font">
         <div class="container" v-cloak>
             <div v-if="filteredApps.length == 0" class="is-wide has-text-centered is-vertical-center"
             style="height:400px; text-align:center; font-size: 32px; color: #AAA">
@@ -172,7 +172,7 @@ body {
 
 <div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_app">
     <div class="modal-background" v-on:click="selectApp()"></div>
-    <div class="modal-card">
+    <div class="modal-card is-body-font">
         <header class="modal-card-head">
             <p class="modal-card-title">
                 @{{ selected_app.title }}

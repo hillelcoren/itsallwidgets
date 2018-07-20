@@ -52,7 +52,7 @@
         @if (request()->head_font)
             <link href="https://fonts.googleapis.com/css?family={{ request()->head_font }}" rel="stylesheet">
             <style>
-                .head-font {
+                .is-head-font {
                     font-family: '{{ request()->head_font }}', sans-serif;
                 }
             </style>
@@ -60,7 +60,7 @@
         @if (request()->body_font)
             <link href="https://fonts.googleapis.com/css?family={{ request()->body_font }}" rel="stylesheet">
             <style>
-                .body-font {
+                .is-body-font {
                     font-family: '{{ request()->body_font }}', sans-serif;
                 }
             </style>
@@ -200,7 +200,7 @@
 
 <body>
 
-    <section class="hero is-info">
+    <section class="hero is-info is-head-font">
         <div class="hero-head">
             <nav class="navbar">
                 <div class="container">
@@ -326,7 +326,7 @@
     <p>&nbsp;</p>
     <p>&nbsp;</p>
 
-    <footer class="footer">
+    <footer class="footer is-head-body">
         <div class="content has-text-centered">
             <p>
                 Made with &nbsp;<i style="color:red" class="fas fa-heart"></i>&nbsp; by the <a href="https://medium.com/flutter-community" target="_blank">Flutter Community</a>

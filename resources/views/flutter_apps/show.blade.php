@@ -6,7 +6,7 @@
 
 @section('content')
 
-	<section class="section">
+	<section class="section is-body-font">
 		<div class="container">
 
 			<div class="columns">
