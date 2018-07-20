@@ -32,7 +32,7 @@
                     </div>
                     <div class="block is-size-4">
                         The Flutter community continues to grow at an exponential rate, the site provides a single place to track all new apps being developed and released.
-                    </div><hr/>
+                    </div><br/>
                 </div>
             </div>
 
@@ -46,7 +46,7 @@
                     </div>
                     <div class="block is-size-4">
                         If you submit your app we'll provide you with a permalink for your custom page. It has links to both app stores, is optimized for social sharing and can be updated at any time.
-                    </div><hr/>
+                    </div><br/>
                 </div>
             </div>
 
@@ -60,7 +60,7 @@
                     </div>
                     <div class="block is-size-4">
                         One of the first things we noticed after launching was that some screenshots would have a faint yellow error border. The site automatically checks the screenshot and warns you if it's found.
-                    </div><hr/>
+                    </div><br/>
                 </div>
             </div>
 
@@ -74,9 +74,7 @@
                     </div>
                     <div class="block is-size-4">
                         On submission we'll automatically tweet your app to our <a href="https://twitter.com/itsallwidgets" target="_blank">Twitter account</a> notifying all of our followers. If you set a Twitter link in the profile we'll include your handle in the tweet.
-                    </div><hr/>
-
-
+                    </div><br/>                    
                 </div>
             </div>
 
