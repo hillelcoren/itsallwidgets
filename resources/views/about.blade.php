@@ -6,6 +6,27 @@
 
 @section('content')
 
+    <script>
+    $(function() {
+
+        $('.column-1').addClass('animated fadeInDown').css('visibility', 'visible');
+        setTimeout(function() {
+            $('.column-2').addClass('animated fadeInDown').css('visibility', 'visible');
+        }, 100);
+        setTimeout(function() {
+            $('.column-3').addClass('animated fadeInDown').css('visibility', 'visible');
+        }, 200);
+        setTimeout(function() {
+            $('.column-4').addClass('animated fadeInDown').css('visibility', 'visible');
+        }, 300);
+        setTimeout(function() {
+            $('.column-5').addClass('animated fadeInDown').css('visibility', 'visible');
+        }, 400);
+    })
+
+    </script>
+
+
     <section class="hero is-dark is-small">
         <div class="hero-body">
             <div class="container">
@@ -24,10 +45,10 @@
     <section class="section">
         <div class="container">
 
-            <div class="columns">
+            <div class="columns column-1" style="visibility:hidden">
                 <div class="column has-text-centered">
                     <i class="fas fa-bell" style="font-size:70px"></i>
-                </div>
+                </div><br/>
                 <div class="column is-four-fifths">
                     <div class="title is-4">
                         Keep track of new Flutter apps
@@ -38,10 +59,10 @@
                 </div>
             </div>
 
-            <div class="columns">
+            <div class="columns column-2" style="visibility:hidden">
                 <div class="column has-text-centered">
                     <i class="fas fa-user-circle" style="font-size:70px"></i>
-                </div>
+                </div><br/>
                 <div class="column is-four-fifths">
                     <div class="title is-4">
                         Create a free profile page
@@ -52,10 +73,10 @@
                 </div>
             </div>
 
-            <div class="columns">
+            <div class="columns column-3" style="visibility:hidden">
                 <div class="column has-text-centered">
                     <i class="fas fa-image" style="font-size:70px"></i>
-                </div>
+                </div><br/>
                 <div class="column is-four-fifths">
                     <div class="title is-4">
                         Validate your screenshot
@@ -66,10 +87,10 @@
                 </div>
             </div>
 
-            <div class="columns">
+            <div class="columns column-4" style="visibility:hidden">
                 <div class="column has-text-centered">
                     <i class="fab fa-twitter" style="font-size:70px"></i>
-                </div>
+                </div><br/>
                 <div class="column is-four-fifths">
                     <div class="title is-4">
                         Promote your application
@@ -81,10 +102,10 @@
             </div>
 
 
-            <div class="columns">
+            <div class="columns column-5" style="visibility:hidden">
                 <div class="column has-text-centered">
                     <i class="fas fa-chart-line" style="font-size:70px"></i>
-                </div>
+                </div><br/>
                 <div class="column is-four-fifths">
                     <div class="title is-4">
                         Provide monthly metrics
