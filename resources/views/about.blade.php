@@ -74,7 +74,7 @@
                     </div>
                     <div class="block is-size-4">
                         On submission we'll automatically tweet your app to our <a href="https://twitter.com/itsallwidgets" target="_blank">Twitter account</a> notifying all of our followers. If you set a Twitter link in the profile we'll include your handle in the tweet.
-                    </div><br/>                    
+                    </div><br/>
                 </div>
             </div>
 
@@ -95,7 +95,6 @@
                     </div><br/>
                 </div>
             </div>
-
 
         </div>
     </section>
