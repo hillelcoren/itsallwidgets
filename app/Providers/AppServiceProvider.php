@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Models\FlutterApp;
 use App\Observers\FlutterAppObserver;
 use Cache;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,6 +23,11 @@ class AppServiceProvider extends ServiceProvider
             return FlutterApp::whereIsVisible(true)->latest()->get();
         });
 
+        $tracking_id = config('services.analytics.tracking_id');
+        if (auth()->check() && auth()->user()->isAdmin()) {
+            $tracking_id = false;
+        }
+        View::share('tracking_id', $tracking_id);
     }
 
     /**
