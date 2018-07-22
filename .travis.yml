@@ -5,6 +5,8 @@ php:
 
 before_script:
   - cp .env.travis .env
+  - mysql -u root -e "create database IF NOT EXISTS itsallwidgets;"
+  - mysql -u root -e "GRANT ALL PRIVILEGES ON itsallwidgets.* To 'itsallwidgets'@'localhost' IDENTIFIED BY 'itsallwidgets'; FLUSH PRIVILEGES;"
   - composer self-update
   - composer install --no-interaction
 
