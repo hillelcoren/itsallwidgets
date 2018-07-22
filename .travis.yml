@@ -4,7 +4,7 @@ php:
   - 7.2
 
 addons:
-  mariadb: '10.0'
+  mariadb: '10.2.2'
 
 before_script:
   - cp .env.travis .env
