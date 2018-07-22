@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
             Cache::rememberForever('flutter-app-list', function () {
                 return FlutterApp::whereIsVisible(true)->latest()->get();
             });
-        } catch (Exception $exception) {
+        } catch (\Illuminate\Database\QueryException $exception) {
             // this will fail when running composer install
             // befor the database is migrated
         }
