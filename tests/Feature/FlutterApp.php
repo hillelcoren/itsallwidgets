@@ -16,6 +16,8 @@ class FlutterApp extends TestCase
 
     protected $title;
     protected $user;
+    protected $other_user;
+    protected $admin_user;
 
     public function setUp()
     {
@@ -23,6 +25,9 @@ class FlutterApp extends TestCase
 
         $this->user = factory(User::class)->create();
         $this->other_user = factory(User::class)->create();
+        $this->admin_user = factory(User::class)->create([
+            'is_admin' => true,
+        ]);
         $this->title = $this->faker->streetName;
     }
 
@@ -33,6 +38,10 @@ class FlutterApp extends TestCase
      */
     public function testSubmitApp()
     {
+        // =======================
+        // Create the app
+        // =======================
+
         $response = $this->get('flutter-apps/submit');
         $response->assertStatus(302);
 
@@ -42,18 +51,27 @@ class FlutterApp extends TestCase
 
         $response = $this->actingAs($this->user)
                          ->post('flutter-apps/submit', [
+                             '_token' => csrf_token(),
                              'title' => $this->title,
                              'short_description' => $this->faker->text(100),
                              'long_description' => $this->faker->text(500),
                              'screenshot' => UploadedFile::fake()->image('screenshot.png', 1080, 1920)->size(100),
                          ]);
+        $response->assertStatus(302);
 
         $this->assertDatabaseHas('flutter_apps', [
             'title' => $this->title,
         ]);
 
+        $response = $this->get('flutter-apps');
+        $response->assertDontSee($this->title);
+
         $response = $this->get('flutter-app/' . str_slug($this->title));
         $response->assertSeeText($this->title);
+
+        // =======================
+        // Edit the app
+        // =======================
 
         auth()->logout();
         $route = 'flutter-app/' . str_slug($this->title) . '/edit';
@@ -71,6 +89,7 @@ class FlutterApp extends TestCase
 
         $newTitle = $this->faker->streetName;
         $newData = [
+            '_token' => csrf_token(),
             'title' => $newTitle,
             'short_description' => $this->faker->text(100),
             'long_description' => $this->faker->text(500),
@@ -95,6 +114,7 @@ class FlutterApp extends TestCase
 
         $this->assertDatabaseHas('flutter_apps', [
             'title' => $newTitle,
+            'is_approved' => false,
         ]);
 
         auth()->logout();
@@ -102,5 +122,38 @@ class FlutterApp extends TestCase
         $response = $this->get($route);
         $response->assertDontSee($this->title);
         $response->assertSee($newTitle);
+
+
+        // =======================
+        // Approve the app
+        // =======================
+
+        auth()->logout();
+        $route = 'flutter-app/' . str_slug($this->title) . '/approve';
+
+        $response = $this->get($route);
+        $response->assertStatus(302);
+
+        $response = $this->actingAs($this->other_user)
+                          ->get($route);
+        $response->assertStatus(403);
+
+        $response = $this->actingAs($this->user)
+                          ->get($route);
+        $response->assertStatus(403);
+
+        $response = $this->actingAs($this->admin_user)
+                          ->get($route);
+        $response->assertStatus(302);
+
+        $this->assertDatabaseHas('flutter_apps', [
+            'title' => $newTitle,
+            'is_approved' => true,
+        ]);
+
+        auth()->logout();
+
+        $response = $this->get('flutter-apps');
+        //$response->assertSee($newTitle);
     }
 }

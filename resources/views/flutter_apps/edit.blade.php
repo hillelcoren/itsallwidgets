@@ -15,7 +15,7 @@
 			<h2 class="title">Submit Application</h2>
 			<p>&nbsp;</p>
 
-			@if ($errors->count())
+			@if (isset($errors) && $errors->count())
 				<div class="notification is-warning">
 					There was a problem with your submission, please correct the errors and try again.
 				</div>
