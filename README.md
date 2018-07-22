@@ -1,5 +1,7 @@
 # It's All Widgets!
 
+[![Build Status](https://travis-ci.org/hillelcoren/itsallwidgets.svg?branch=master)](https://travis-ci.org/hillelcoren/itsallwidgets)
+
 The website is built with:
 
 - [Laravel](https://laravel.com/)
