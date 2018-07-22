@@ -21,7 +21,17 @@
 						</ul>
 					</nav>
 
-					@if (auth()->check() && auth()->user()->id == $app->user_id)
+					@if (auth()->check() && auth()->user()->is_admin)
+						@if (! $app->is_approved)
+							<a class="button is-warning is-medium is-slightly-elevated" href="{{ url('flutter-app/' . $app->slug . '/approve') }}">
+								<i style="font-size: 20px" class="fas fa-check"></i> &nbsp;
+								Approve Application
+							</a>
+							<p>&nbsp;</p>
+						@endif
+					@endif
+
+					@if (auth()->check() && auth()->user()->owns($app))
 						<a class="button is-info is-slightly-elevated" href="{{ url('flutter-app/' . $app->slug . '/edit') }}">
 							<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
 							Edit Application

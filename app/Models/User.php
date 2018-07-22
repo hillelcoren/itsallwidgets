@@ -61,7 +61,7 @@ class User extends Authenticatable
             return false;
         }
 
-        return ! $this->is_admin;
+        return $this->is_admin;
     }
 
     public static function admin()

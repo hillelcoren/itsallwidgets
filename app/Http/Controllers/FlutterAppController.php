@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Requests\EditFlutterApp;
 use App\Http\Requests\StoreFlutterApp;
 use App\Http\Requests\UpdateFlutterApp;
+use App\Http\Requests\ApproveFlutterApp;
 use Illuminate\Http\Request;
 use App\Repositories\FlutterAppRepository;
 use App\Notifications\AppSubmitted;
@@ -104,15 +105,9 @@ class FlutterAppController extends Controller
 
         User::admin()->notify(new AppSubmitted($app));
 
-        /*
-        if ($user->shouldSendTweet()) {
-            $app->notify(new AppSubmitted());
-        }
-        */
-
         return redirect('/flutter-app/' . $app['slug'])->with(
             'status',
-            'Your application has been successfully added and is pending review!'
+            'Your application has been successfully added!'
         );
     }
 
@@ -148,6 +143,25 @@ class FlutterAppController extends Controller
 
         return view('flutter_apps.show', compact('app'));
     }
+
+    public function approve(ApproveFlutterApp $request)
+    {
+        $app = $request->flutter_app;
+
+        if ($app->is_approved) {
+            return redirect('/');
+        }
+
+        $app->is_approved = true;
+        $app->save();
+
+        if (auth()->user()->shouldSendTweet()) {
+            $app->notify(new AppSubmitted());
+        }
+
+        return redirect('/')->with('status', 'App has been approved!');
+    }
+
 
     public function sitemap()
     {
