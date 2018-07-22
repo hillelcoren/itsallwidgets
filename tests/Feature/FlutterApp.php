@@ -63,7 +63,7 @@ class FlutterApp extends TestCase
             'title' => $this->title,
         ]);
 
-        $response = $this->get('flutter-apps');
+        $response = $this->get('flutter-apps?legacy=true');
         $response->assertDontSee($this->title);
 
         $response = $this->get('flutter-app/' . str_slug($this->title));

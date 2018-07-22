@@ -46,8 +46,13 @@ class FlutterAppController extends Controller
             return redirect('/');
         }
 
-        $apps = cache('flutter-app-list');
-        $view = request()->legacy ? 'flutter_apps.legacy_index' : 'flutter_apps.index';
+        if (request()->legacy) {
+            $apps = FlutterApp::approved()->latest()->get();
+            $view = 'flutter_apps.legacy_index';
+        } else {
+            $apps = cache('flutter-app-list');
+            $view = 'flutter_apps.index';
+        }
 
         return view($view, compact('apps'));
     }

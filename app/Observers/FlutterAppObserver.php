@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Models\FlutterApp;
-use Cache;
 
 class FlutterAppObserver
 {
@@ -15,9 +14,7 @@ class FlutterAppObserver
      */
     public function created(FlutterApp $flutterApp)
     {
-        Cache::rememberForever('flutter-app-list', function () {
-            return FlutterApp::approved()->latest()->get();
-        });
+        cache()->forget('flutter-app-list');
     }
 
     /**
@@ -28,9 +25,7 @@ class FlutterAppObserver
      */
     public function updated(FlutterApp $flutterApp)
     {
-        Cache::rememberForever('flutter-app-list', function () {
-            return FlutterApp::approved()->latest()->get();
-        });
+        cache()->forget('flutter-app-list');
     }
 
     /**
@@ -41,8 +36,6 @@ class FlutterAppObserver
      */
     public function deleted(FlutterApp $flutterApp)
     {
-        Cache::rememberForever('flutter-app-list', function () {
-            return FlutterApp::approved()->latest()->get();
-        });
+        cache()->forget('flutter-app-list');
     }
 }
