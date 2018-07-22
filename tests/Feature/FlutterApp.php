@@ -154,6 +154,6 @@ class FlutterApp extends TestCase
         auth()->logout();
 
         $response = $this->get('flutter-apps?legacy=true');
-        //$response->assertSee($newTitle);
+        $response->assertSee($newTitle);
     }
 }
