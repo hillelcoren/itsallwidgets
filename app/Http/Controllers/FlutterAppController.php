@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\FlutterApp;
 use App\Http\Requests;
 use App\Http\Requests\EditFlutterApp;
@@ -100,6 +101,8 @@ class FlutterAppController extends Controller
         $app = $this->appRepo->store($input, $user->id);
 
         dispatch(new UploadScreenshot($app, 'screenshot'));
+
+        User::admin()->notify(new AppSubmitted($app));
 
         /*
         if ($user->shouldSendTweet()) {

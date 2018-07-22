@@ -63,4 +63,9 @@ class User extends Authenticatable
 
         return ! $this->is_admin;
     }
+
+    public static function admin()
+    {
+        return static::where('is_admin', '=', true)->first();
+    }
 }

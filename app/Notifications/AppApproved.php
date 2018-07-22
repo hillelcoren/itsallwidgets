@@ -8,7 +8,7 @@ use NotificationChannels\Twitter\TwitterStatusUpdate;
 
 class AppApproved extends Notification
 {
-    public function via($notifiable)
+    public function via($app)
     {
         return [TwitterChannel::class];
     }

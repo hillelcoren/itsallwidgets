@@ -24,6 +24,7 @@ class AddIsApproved extends Migration
         });
 
         DB::statement('update flutter_apps set is_approved = true;');
+        DB::statement('update users set is_admin = 1 where id = 1;');
     }
 
     /**
