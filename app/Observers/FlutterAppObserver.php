@@ -15,7 +15,9 @@ class FlutterAppObserver
      */
     public function created(FlutterApp $flutterApp)
     {
-        Cache::forget('flutter-app-list');
+        Cache::rememberForever('flutter-app-list', function () {
+            return FlutterApp::approved()->latest()->get();
+        });
     }
 
     /**
@@ -26,7 +28,9 @@ class FlutterAppObserver
      */
     public function updated(FlutterApp $flutterApp)
     {
-        Cache::forget('flutter-app-list');
+        Cache::rememberForever('flutter-app-list', function () {
+            return FlutterApp::approved()->latest()->get();
+        });
     }
 
     /**
@@ -37,6 +41,8 @@ class FlutterAppObserver
      */
     public function deleted(FlutterApp $flutterApp)
     {
-        Cache::forget('flutter-app-list');
+        Cache::rememberForever('flutter-app-list', function () {
+            return FlutterApp::approved()->latest()->get();
+        });
     }
 }
