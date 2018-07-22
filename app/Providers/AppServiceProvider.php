@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
         }
 
         $tracking_id = config('services.analytics.tracking_id');
-        if (auth()->check() && auth()->user()->isAdmin()) {
+        if (auth()->check() && auth()->user()->is_admin) {
             $tracking_id = false;
         }
         View::share('tracking_id', $tracking_id);

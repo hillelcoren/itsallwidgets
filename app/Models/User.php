@@ -42,14 +42,9 @@ class User extends Authenticatable
         return $check;
     }
 
-    public function isAdmin()
-    {
-        return $this->id == 1;
-    }
-
     public function owns($app)
     {
-        if ($this->isAdmin()) {
+        if ($this->is_admin) {
             return true;
         }
 
@@ -66,6 +61,6 @@ class User extends Authenticatable
             return false;
         }
 
-        return ! $this->isAdmin();
+        return ! $this->is_admin;
     }
 }

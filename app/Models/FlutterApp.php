@@ -23,6 +23,8 @@ class FlutterApp extends Model implements Feedable
         'facebook_url',
         'twitter_url',
         'youtube_url',
+        'instagram_url',
+        'hash_tags',
     ];
 
     protected $hidden = [
