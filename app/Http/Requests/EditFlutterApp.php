@@ -15,6 +15,10 @@ class EditFlutterApp extends FormRequest
     {
         $app = request()->flutter_app;
 
+        if (! $app) {
+            return false;
+        }
+
         return auth()->check() && auth()->user()->owns($app);
     }
 
