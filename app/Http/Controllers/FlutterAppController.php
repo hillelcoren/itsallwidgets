@@ -107,7 +107,7 @@ class FlutterAppController extends Controller
         $user = auth()->user();
         $app = $this->appRepo->store($input, $user->id);
 
-        dispatch(new UploadScreenshot($app, 'screenshot'));
+        dispatch(new UploadScreenshot($app));
 
         User::admin()->notify(new AppSubmitted($app));
 

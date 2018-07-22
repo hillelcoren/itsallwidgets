@@ -14,17 +14,15 @@ class UploadScreenshot implements ShouldQueue
     use Dispatchable, SerializesModels;
 
     protected $app;
-    protected $file;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($app, $file)
+    public function __construct($app)
     {
         $this->app = $app;
-        $this->file = $file;
     }
 
     /**
@@ -34,7 +32,7 @@ class UploadScreenshot implements ShouldQueue
      */
     public function handle()
     {
-        $this->file = request()->file($this->file);
+        $this->file = request()->file('screenshot');
 
         if (! $this->file) {
             return;
@@ -51,6 +49,9 @@ class UploadScreenshot implements ShouldQueue
         ) {
             session()->flash('warning', 'We\'ve detected a yellow border around the image, there may have been an error when the screenshot was taken.');
         }
+
+        // check for gif
+
     }
 
     private function isErrorPixel($image, $x, $y)

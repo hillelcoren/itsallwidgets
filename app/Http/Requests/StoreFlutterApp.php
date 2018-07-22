@@ -27,6 +27,7 @@ class StoreFlutterApp extends FormRequest
             'title' => 'required|unique:flutter_apps',
             'slug' => 'required|unique:flutter_apps',
             'screenshot' => 'image|mimes:png|dimensions:width=1080,height=1920',
+            'gif' => 'mimes:gif',
             'short_description' => 'required|max:250',
             'long_description' => 'required',
         ];
