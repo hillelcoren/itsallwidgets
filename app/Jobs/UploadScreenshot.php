@@ -32,28 +32,24 @@ class UploadScreenshot implements ShouldQueue
      */
     public function handle()
     {
-        $this->file = request()->file('screenshot');
+        if ($png = request()->file('screenshot')) {
+            $filename = 'app-' . $this->app->id . '.png';
+            $png->move(public_path('/screenshots'), $filename);
 
-        if (! $this->file) {
-            return;
-        }
+            // check for an error border
+            $image = Image::make(public_path('/screenshots') . '/' . $filename);
 
-        $filename = 'app-' . $this->app->id . '.' . $this->file->extension();
-        $this->file->move(public_path('/screenshots'), $filename);
-
-        // check for an error border
-        $image = Image::make(public_path('/screenshots') . '/' . $filename);
-
-        if ($this->isErrorPixel($image, 0, 500)
-            && ! $this->isErrorPixel($image, 50, 500)
-        ) {
-            session()->flash('warning', 'We\'ve detected a yellow border around the image, there may have been an error when the screenshot was taken.');
+            if ($this->isErrorPixel($image, 0, 500)
+                && ! $this->isErrorPixel($image, 50, 500)
+            ) {
+                session()->flash('warning', 'We\'ve detected a yellow border around the image, there may have been an error when the screenshot was taken.');
+            }
         }
 
         // check for gif
         if ($gif = request()->file('gif')) {
             $filename = 'app-' . $this->app->id . '.gif';
-            $this->file->move(public_path('/gifs'), $filename);
+            $gif->move(public_path('/gifs'), $filename);
         }
     }
 
