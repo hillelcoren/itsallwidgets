@@ -50,6 +50,10 @@ class UploadScreenshot implements ShouldQueue
         if ($gif = request()->file('gif')) {
             $filename = 'app-' . $this->app->id . '.gif';
             $gif->move(public_path('/gifs'), $filename);
+
+            $this->app->update([
+                'has_gif' => true,
+            ]);
         }
     }
 
