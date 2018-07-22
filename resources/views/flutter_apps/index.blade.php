@@ -160,6 +160,7 @@ body {
                         </div>
 
                         <div class="card-image" style="line-height:0px">
+                            <i style="font-size: 26px; position: absolute; bottom: 20px; right: 20px;" class="fas fa-video"></i>
                             <img v-bind:id="app.title + '-img'" v-bind:src="'/screenshots/app-' + app.id + '.png'" width="1080" height="1920"/>
                         </div>
                     </div>
