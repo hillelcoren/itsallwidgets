@@ -23,8 +23,8 @@
     <div class="container">
 	<div class="columns is-multiline is-5 is-variable">
 		@foreach ($apps as $app)
-			<div class="column is-one-third">
-				<div onclick="location.href = '{{ url('flutter-app/'. $app->slug) }}';" style="cursor:pointer">
+			<div class="column is-one-quarter">
+				<a href="{{ url('flutter-app/'. $app->slug) }}">
 					<div class="card is-hover-elevated">
 						<header class="card-header">
 							<p class="card-header-title is-2">
@@ -88,7 +88,7 @@
 
 						<!-- <div style="background-image: url('{{ $app->screenshotUrl() }}');height:500px;background-size: cover;"/> -->
 					</div>
-				</div>
+				</a>
 				<p>&nbsp;</p>
 			</div>
 		@endforeach
