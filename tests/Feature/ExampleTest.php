@@ -15,7 +15,9 @@ class ExampleTest extends TestCase
     public function testBasicTest()
     {
         $response = $this->get('/');
+        $response->assertStatus(301);
 
+        $response = $this->get('/flutter-apps');
         $response->assertStatus(200);
     }
 }

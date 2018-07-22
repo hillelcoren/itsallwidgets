@@ -16,6 +16,10 @@
         }
 
         </script>
+    @else
+        <script>
+        function gtag(){}
+        </script>
     @endif
 
     <title>@yield('title') | {{ config('app.name') }}</title>
