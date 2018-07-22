@@ -19,9 +19,14 @@ class AppServiceProvider extends ServiceProvider
     {
         FlutterApp::observe(FlutterAppObserver::class);
 
-        Cache::rememberForever('flutter-app-list', function () {
-            return FlutterApp::whereIsVisible(true)->latest()->get();
-        });
+        try {
+            Cache::rememberForever('flutter-app-list', function () {
+                return FlutterApp::whereIsVisible(true)->latest()->get();
+            });
+        } catch (Exception $exception) {
+            // this will fail when running composer install
+            // befor the database is migrated
+        }
 
         $tracking_id = config('services.analytics.tracking_id');
         if (auth()->check() && auth()->user()->isAdmin()) {
