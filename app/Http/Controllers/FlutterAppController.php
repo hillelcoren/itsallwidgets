@@ -39,6 +39,11 @@ class FlutterAppController extends Controller
      */
     public function index()
     {
+        if (request()->clear_cache) {
+            cache()->forget('flutter-app-list');
+            return redirect('/');
+        }
+
         $apps = cache('flutter-app-list');
 
         return view('flutter_apps.index', compact('apps'));
@@ -96,13 +101,15 @@ class FlutterAppController extends Controller
 
         dispatch(new UploadScreenshot($app, 'screenshot'));
 
+        /*
         if ($user->shouldSendTweet()) {
             $app->notify(new AppSubmitted());
         }
+        */
 
         return redirect('/flutter-app/' . $app['slug'])->with(
             'status',
-            'Your application has been successfully added!'
+            'Your application has been successfully added and is pending review!'
         );
     }
 

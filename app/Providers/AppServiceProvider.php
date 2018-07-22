@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
 
         try {
             Cache::rememberForever('flutter-app-list', function () {
-                return FlutterApp::whereIsVisible(true)->latest()->get();
+                return FlutterApp::approved()->latest()->get();
             });
         } catch (\Illuminate\Database\QueryException $exception) {
             // this will fail when running composer install

@@ -29,7 +29,18 @@ class FlutterApp extends Model implements Feedable
 
     protected $hidden = [
         'is_visible',
+        'is_approved',
     ];
+
+    public function scopeVisible($query)
+    {
+        $query->where('is_visible', '=', true);
+    }
+
+    public function scopeApproved($query)
+    {
+        $query->visible()->where('is_approved', '=', true);
+    }
 
     public function setAppleUrlAttribute($value)
     {

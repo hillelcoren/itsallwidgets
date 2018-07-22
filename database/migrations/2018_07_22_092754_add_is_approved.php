@@ -22,6 +22,8 @@ class AddIsApproved extends Migration
             $table->string('instagram_url')->nullable();
             $table->text('hash_tags')->nullable();
         });
+
+        DB::statement('update flutter_apps set is_approved = true;');
     }
 
     /**
