@@ -112,7 +112,7 @@ body {
         </div>
         <div class="columns is-multiline is-4 is-variable">
             <div v-for="app in filteredApps" class="column" v-bind:class="columnClass">
-                <div v-on:click="selectApp(app)" style="cursor:pointer">
+                <div v-on:click="selectApp(app)" v-on:mouseover="onMouseOver(app)" v-on:mouseout="onMouseOut(app)" style="cursor:pointer">
                     <div class="card is-hover-elevated">
                         <header class="card-header">
                             <p class="card-header-title is-2 no-wrap" v-bind:title="app.title">
@@ -160,7 +160,7 @@ body {
                         </div>
 
                         <div class="card-image" style="line-height:0px">
-                            <img v-bind:src="'/screenshots/app-' + app.id + '.png'" width="1080" height="1920"/>
+                            <img v-bind:id="app.title + '-img'" v-bind:src="'/screenshots/app-' + app.id + '.png'" width="1080" height="1920"/>
                         </div>
                     </div>
                 </div>
@@ -330,6 +330,18 @@ var app = new Vue({
 
         toggleOpenSource: function() {
             this.filter_open_source = ! this.filter_open_source;
+        },
+
+        onMouseOver: function(app) {
+            if (app.has_gif) {
+                $('#' + app.title + '-img').attr('src', '/gifs/app-' + app.id + '.gif');
+            }
+        },
+
+        onMouseOut: function(app) {
+            if (app.has_gif) {
+                $('#' + app.title + '-img').attr('src', '/screenshots/app-' + app.id + '.png');
+            }
         },
 
         selectApp: function(app) {
