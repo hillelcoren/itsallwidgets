@@ -163,6 +163,8 @@ return [
 
         NotificationChannels\Twitter\TwitterServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class
+        Jaybizzle\LaravelCrawlerDetect\LaravelCrawlerDetectServiceProvider::class,
+
 
     ],
 
@@ -214,7 +216,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Image' => Intervention\Image\Facades\Image::class
-
+        'Crawler' => Jaybizzle\LaravelCrawlerDetect\Facades\LaravelCrawlerDetect::class,
 
     ],
 

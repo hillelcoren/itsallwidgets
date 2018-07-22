@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Crawler;
 use App\Models\User;
 use App\Models\FlutterApp;
 use App\Http\Requests;
@@ -46,13 +47,13 @@ class FlutterAppController extends Controller
             return redirect('/');
         }
 
-        if (request()->legacy) {
-            $apps = FlutterApp::approved()->latest()->get();
+        if (request()->legacy || Crawler::isCrawler()) {
             $view = 'flutter_apps.legacy_index';
         } else {
-            $apps = cache('flutter-app-list');
             $view = 'flutter_apps.index';
         }
+
+        $apps = cache('flutter-app-list') ?: FlutterApp::approved()->latest()->get();
 
         return view($view, compact('apps'));
     }
