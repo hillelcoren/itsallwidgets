@@ -28,6 +28,7 @@ class FlutterApp extends TestCase
         $this->admin_user = factory(User::class)->create([
             'is_admin' => true,
         ]);
+
         $this->title = $this->faker->streetName;
     }
 
