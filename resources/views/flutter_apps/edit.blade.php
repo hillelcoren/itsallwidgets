@@ -110,10 +110,26 @@
 			<p>&nbsp;</p>
 
 
-			<div class="subtitle">Optional Links</div>
+			<div class="subtitle">Optional Fields</div>
 
 			<article class="message is-elevated">
 				<div class="message-body">
+
+					<div class="field">
+						<label class="label" for="gif">
+							GIF [1080px by 1920px]
+						</label>
+						<div class="control">
+
+							{{ Form::file('gif') }}
+
+							@if ($errors->has('gif'))
+								<span class="help is-danger">
+									{{ $errors->first('gif') }}
+								</span>
+							@endif
+						</div>
+					</div>
 
 					<div class="field">
 						<label class="label" for="google_url">

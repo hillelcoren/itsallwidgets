@@ -51,7 +51,10 @@ class UploadScreenshot implements ShouldQueue
         }
 
         // check for gif
-
+        if ($gif = request()->file('gif')) {
+            $filename = 'app-' . $this->app->id . '.gif';
+            $this->file->move(public_path('/gifs'), $filename);
+        }
     }
 
     private function isErrorPixel($image, $x, $y)

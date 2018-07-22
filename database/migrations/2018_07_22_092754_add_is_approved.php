@@ -18,6 +18,7 @@ class AddIsApproved extends Migration
         });
 
         Schema::table('flutter_apps', function(Blueprint $table) {
+            $table->boolean('has_gif')->default(false);
             $table->boolean('is_approved')->default(false);
             $table->string('instagram_url')->nullable();
             $table->text('hash_tags')->nullable();
