@@ -125,16 +125,16 @@ body {
                             <p class="card-header-title is-2 no-wrap" v-bind:title="app.title">
                                 @{{ app.title }}
                             </p>
-                            <a v-if="app.facebook_url && cards_per_row > 3" v-bind:href="app.facebook_url" class="card-header-icon" target="_blank" v-on:click.stop>
+                            <a v-if="app.facebook_url && cards_per_row > 3" v-bind:href="app.facebook_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
                                 <i style="font-size: 20px; color: #888" class="fab fa-facebook"></i>
                             </a>
-                            <a v-if="app.twitter_url && cards_per_row > 3" v-bind:href="app.twitter_url" class="card-header-icon" target="_blank" v-on:click.stop>
+                            <a v-if="app.twitter_url && cards_per_row > 3" v-bind:href="app.twitter_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
                                 <i style="font-size: 20px; color: #888" class="fab fa-twitter"></i>
                             </a>
-                            <a v-if="app.instagram_url && cards_per_row > 3" v-bind:href="app.instagram_url" class="card-header-icon" target="_blank" v-on:click.stop>
+                            <a v-if="app.instagram_url && cards_per_row > 3" v-bind:href="app.instagram_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
                                 <i style="font-size: 20px; color: #888" class="fab fa-instagram"></i>
                             </a>
-                            <a v-if="app.repo_url" v-bind:href="app.repo_url" class="card-header-icon" target="_blank" v-on:click.stop>
+                            <a v-if="app.repo_url" v-bind:href="app.repo_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
                                 <i style="font-size: 20px; color: #888" class="fab fa-github"></i>
                             </a>
                         </header>
@@ -146,7 +146,7 @@ body {
                                 </div>
                                 <div class="columns is-1 is-variable is-mobile">
                                     <div class="column is-one-half">
-                                        <a v-bind:href="app.google_url" v-if="app.google_url" target="_blank" v-on:click.stop target="_blank">
+                                        <a v-bind:href="app.google_url" v-if="app.google_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
                                             <div class="card-image is-slightly-elevated">
                                                 <img src="{{ asset('images/google.png') }}"/>
                                             </div>
@@ -156,7 +156,7 @@ body {
                                         </div>
                                     </div>
                                     <div class="column is-one-half">
-                                        <a v-bind:href="app.apple_url" v-if="app.apple_url" target="_blank" v-on:click.stop target="_blank">
+                                        <a v-bind:href="app.apple_url" v-if="app.apple_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
                                             <div class="card-image is-slightly-elevated">
                                                 <img src="{{ asset('images/apple.png') }}"/>
                                             </div>
@@ -217,7 +217,7 @@ body {
 
                         <div class="columns is-2 is-variable" v-if="selected_app.google_url || selected_app.apple_url">
                             <div class="column is-2">
-                                <a v-bind:href="selected_app.google_url" v-if="selected_app.google_url" target="_blank" v-on:click.stop target="_blank">
+                                <a v-bind:href="selected_app.google_url" v-if="selected_app.google_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
                                     <div class="card-image is-slightly-elevated">
                                         <img src="{{ asset('images/google.png') }}"/>
                                     </div>
@@ -227,7 +227,7 @@ body {
                                 </div>
                             </div>
                             <div class="column is-2">
-                                <a v-bind:href="selected_app.apple_url" v-if="selected_app.apple_url" target="_blank" v-on:click.stop target="_blank">
+                                <a v-bind:href="selected_app.apple_url" v-if="selected_app.apple_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
                                     <div class="card-image is-slightly-elevated">
                                         <img src="{{ asset('images/apple.png') }}"/>
                                     </div>
@@ -239,23 +239,23 @@ body {
                         </div>
 
                         <div class="content" v-if="selected_app.website_url || selected_app.repo_url">
-                            <a v-if="selected_app.website_url" v-bind:href="selected_app.website_url" target="_blank">
+                            <a v-if="selected_app.website_url" v-bind:href="selected_app.website_url" target="_blank" rel="nofollow">
                                 @{{ selected_app.website_url }}
                             </a></br>
-                            <a v-if="selected_app.repo_url" v-bind:href="selected_app.repo_url" target="_blank">
+                            <a v-if="selected_app.repo_url" v-bind:href="selected_app.repo_url" target="_blank" rel="nofollow">
                                 @{{ selected_app.repo_url }}
                             </a><br/>
                             <br/>
                         </div>
 
                         <div class="content">
-                            <a v-if="selected_app.facebook_url" class="button is-slightly-elevated" v-bind:href="selected_app.facebook_url" target="_blank">
+                            <a v-if="selected_app.facebook_url" class="button is-slightly-elevated" v-bind:href="selected_app.facebook_url" target="_blank" rel="nofollow">
                                 <i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
                             </a>
-                            <a v-if="selected_app.twitter_url" class="button is-slightly-elevated" v-bind:href="selected_app.twitter_url" target="_blank">
+                            <a v-if="selected_app.twitter_url" class="button is-slightly-elevated" v-bind:href="selected_app.twitter_url" target="_blank" rel="nofollow">
                                 <i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
                             </a>
-                            <a v-if="selected_app.instagram_url" class="button is-slightly-elevated" v-bind:href="selected_app.instagram_url" target="_blank">
+                            <a v-if="selected_app.instagram_url" class="button is-slightly-elevated" v-bind:href="selected_app.instagram_url" target="_blank" rel="nofollow">
                                 <i style="font-size: 20px" class="fab fa-instagram"></i> &nbsp; Instagram
                             </a>
 
@@ -272,14 +272,14 @@ body {
                                     </button>
                                 </div>
                                 <div class="dropdown-menu" role="menu">
-                                    <a href="https://www.facebook.com/sharer/sharer.php?u=#url" target="_blank">
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u=#url" target="_blank" rel="nofollow">
                                         <div class="dropdown-content">
                                             <div class="dropdown-item">
                                                 <i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
                                             </div>
                                         </div>
                                     </a>
-                                    <a v-bind:href="'https://twitter.com/share?text=' + encodeURIComponent(selected_app.title) + '&amp;url=' + encodeURIComponent('{{ url('/flutter-app') }}' + '/' + selected_app.slug)" target="_blank">
+                                    <a v-bind:href="'https://twitter.com/share?text=' + encodeURIComponent(selected_app.title) + '&amp;url=' + encodeURIComponent('{{ url('/flutter-app') }}' + '/' + selected_app.slug)" target="_blank" rel="nofollow">
                                         <div class="dropdown-content">
                                             <div class="dropdown-item">
                                                 <i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter

@@ -68,12 +68,12 @@
 						@if ($app->google_url || $app->apple_url)
 							<div class="block">
 								@if ($app->google_url)
-									<a href="{{ $app->google_url }}" target="_blank" class="is-slightly-elevated">
+									<a href="{{ $app->google_url }}" target="_blank" class="is-slightly-elevated" rel="nofollow">
 										<img src="{{ asset('images/google.png') }}" style="width:180px"/>
 									</a>
 								@endif
 								@if ($app->apple_url)
-									<a href="{{ $app->apple_url }}" target="_blank" class="is-slightly-elevated">
+									<a href="{{ $app->apple_url }}" target="_blank" class="is-slightly-elevated" rel="nofollow">
 										<img src="{{ asset('images/apple.png') }}" style="width:180px"/>
 									</a>
 								@endif
@@ -83,28 +83,28 @@
 						@if ($app->website_url || $app->repo_url)
 							<div class="content">
 								@if ($app->website_url)
-									<a href="{{ url($app->website_url) }}" target="_blank">{{ url($app->website_url) }}</a></br>
+									<a href="{{ url($app->website_url) }}" target="_blank" rel="nofollow">{{ url($app->website_url) }}</a></br>
 								@endif
 
 								@if ($app->repo_url)
-									<a href="{{ url($app->repo_url) }}" target="_blank">{{ url($app->repo_url) }}</a><br/>
+									<a href="{{ url($app->repo_url) }}" target="_blank" rel="nofollow">{{ url($app->repo_url) }}</a><br/>
 								@endif
 							</div>
 						@endif
 
 						<div class="content">
 							@if ($app->facebook_url)
-								<a class="button is-slightly-elevated" href="{{ $app->facebook_url }}" target="_blank">
+								<a class="button is-slightly-elevated" href="{{ $app->facebook_url }}" target="_blank" rel="nofollow">
 									<i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
 								</a> &nbsp;
 							@endif
 							@if ($app->twitter_url)
-								<a class="button is-slightly-elevated" 	href="{{ $app->twitter_url }}" target="_blank">
+								<a class="button is-slightly-elevated" 	href="{{ $app->twitter_url }}" target="_blank" rel="nofollow">
 									<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
 								</a> &nbsp;
 							@endif
 							@if ($app->instagram_url)
-								<a class="button is-slightly-elevated" 	href="{{ $app->instagram_url }}" target="_blank">
+								<a class="button is-slightly-elevated" 	href="{{ $app->instagram_url }}" target="_blank" rel="nofollow">
 									<i style="font-size: 20px" class="fab fa-instagram"></i> &nbsp; Instagram
 								</a> &nbsp;
 							@endif
@@ -122,14 +122,14 @@
 									</button>
 								</div>
 								<div class="dropdown-menu" role="menu">
-									<a href="https://www.facebook.com/sharer/sharer.php?u=#url" target="_blank">
+									<a href="https://www.facebook.com/sharer/sharer.php?u=#url" target="_blank" rel="nofollow">
 										<div class="dropdown-content">
 											<div class="dropdown-item">
 												<i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
 											</div>
 										</div>
 									</a>
-									<a href="https://twitter.com/share?text={{ urlencode($app->title) }}&amp;url={{ urlencode(url('/flutter-app/' . $app->slug)) }}" target="_blank">
+									<a href="https://twitter.com/share?text={{ urlencode($app->title) }}&amp;url={{ urlencode(url('/flutter-app/' . $app->slug)) }}" target="_blank" rel="nofollow">
 										<div class="dropdown-content">
 											<div class="dropdown-item">
 												<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
