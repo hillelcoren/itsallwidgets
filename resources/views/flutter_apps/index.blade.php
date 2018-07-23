@@ -280,10 +280,21 @@ body {
 
                     </div>
 
+                    <div v-if="selected_app.has_gif">
+                        <div class="columns is-multiline is-2 is-variable">
+                            <div class="column is-one-fifth">
+                                <img v-on:click="selectImage('screenshot')" v-bind:src="'/screenshots/app-' + selected_app.id + '.png'" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
+                            </div>
+                            <div class="column is-one-fifth">
+                                <img v-on:click="selectImage('gif')" v-bind:src="'/gifs/app-' + selected_app.id + '.gif'" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
+                            </div>
+                        </div><br/>
+                    </div>
+
                     <iframe v-if="selected_app.youtube_url" width="560" height="315" v-bind:src="selected_app.youtube_url"
                     frameborder="0" allowfullscreen></iframe>
-                </div>
 
+                </div>
             </div>
 
         </div>
