@@ -48,7 +48,7 @@ body {
 }
 
 .is-owned {
-    background-color: #CCCCCC;
+    background-color: #FFFFAA;
 }
 
 @media screen and (max-width: 769px) {
