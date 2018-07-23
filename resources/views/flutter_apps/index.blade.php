@@ -167,7 +167,9 @@ body {
                         </div>
 
                         <div class="card-image" style="line-height:0px">
-                            <i v-if="app.has_gif" v-bind:id="app.title + '-video'" style="font-size: 26px; position: absolute; bottom: 20px; right: 20px;" class="fas fa-video"></i>
+                            <div v-if="app.has_gif">
+                                <i v-bind:id="app.title + '-video'" style="font-size: 26px; position: absolute; bottom: 20px; right: 20px;" class="fas fa-video"></i>
+                            </div>
                             <img v-bind:id="app.title + '-img'" v-bind:src="'/screenshots/app-' + app.id + '.png'" width="1080" height="1920"/>
                         </div>
                     </div>
