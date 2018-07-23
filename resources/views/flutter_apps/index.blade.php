@@ -146,21 +146,21 @@ body {
                                 </div>
                                 <div class="columns is-1 is-variable is-mobile">
                                     <div class="column is-one-half">
-                                        <div v-if="app.google_url" v-on:click="openStoreUrl(app.google_url)" v-on:click.stop>
+                                        <a v-bind:href="app.google_url" v-if="app.google_url" target="_blank" v-on:click.stop target="_blank">
                                             <div class="card-image is-slightly-elevated">
                                                 <img src="{{ asset('images/google.png') }}"/>
                                             </div>
-                                        </div>
+                                        </a>
                                         <div v-if="! app.google_url" class="card-image is-slightly-elevated">
                                             <img src="{{ asset('images/google.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
                                         </div>
                                     </div>
                                     <div class="column is-one-half">
-                                        <div v-if="app.apple_url" v-on:click="openStoreUrl(app.apple_url)" v-on:click.stop>
+                                        <a v-bind:href="app.apple_url" v-if="app.apple_url" target="_blank" v-on:click.stop target="_blank">
                                             <div class="card-image is-slightly-elevated">
                                                 <img src="{{ asset('images/apple.png') }}"/>
                                             </div>
-                                        </div>
+                                        </a>
                                         <div v-if="! app.apple_url" class="card-image is-slightly-elevated">
                                             <img src="{{ asset('images/apple.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
                                         </div>
@@ -217,21 +217,21 @@ body {
 
                         <div class="columns is-2 is-variable" v-if="selected_app.google_url || selected_app.apple_url">
                             <div class="column is-2">
-                                <div v-if="selected_app.google_url" v-on:click="openStoreUrl(selected_app.google_url)" style="cursor:pointer">
+                                <a v-bind:href="selected_app.google_url" v-if="selected_app.google_url" target="_blank" v-on:click.stop target="_blank">
                                     <div class="card-image is-slightly-elevated">
                                         <img src="{{ asset('images/google.png') }}"/>
                                     </div>
-                                </div>
+                                </a>
                                 <div v-if="! selected_app.google_url" class="card-image is-slightly-elevated">
                                     <img src="{{ asset('images/google.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
                                 </div>
                             </div>
                             <div class="column is-2">
-                                <div v-if="selected_app.apple_url" v-on:click="openStoreUrl(selected_app.apple_url)" style="cursor:pointer">
+                                <a v-bind:href="selected_app.apple_url" v-if="selected_app.apple_url" target="_blank" v-on:click.stop target="_blank">
                                     <div class="card-image is-slightly-elevated">
                                         <img src="{{ asset('images/apple.png') }}"/>
                                     </div>
-                                </div>
+                                </a>
                                 <div v-if="! selected_app.apple_url" class="card-image is-slightly-elevated">
                                     <img src="{{ asset('images/apple.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
                                 </div>
@@ -360,10 +360,6 @@ var app = new Vue({
     },
 
     methods: {
-        openStoreUrl: function(url) {
-            window.open(url, '_blank');
-        },
-
         toggleOpenSource: function() {
             this.filter_open_source = ! this.filter_open_source;
         },
