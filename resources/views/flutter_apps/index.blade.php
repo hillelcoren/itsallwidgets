@@ -184,7 +184,7 @@ body {
 
             <div class="columns">
                 <div class="column is-4 is-elevated">
-                    <img v-bind:src="'/screenshots/app-' + selected_app.id + '.png'" width="1080" height="1920"/>
+                    <img v-bind:src="imageSrc" width="1080" height="1920"/>
                 </div>
                 <div class="column is-8">
 
@@ -283,7 +283,7 @@ body {
                     <div v-if="selected_app.has_gif">
                         <div class="columns is-multiline is-2 is-variable">
                             <div class="column is-one-fifth">
-                                <img v-on:click="selectImage('screenshot')" v-bind:src="'/screenshots/app-' + selected_app.id + '.png'" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
+                                <img v-on:click="selectImage('png')" v-bind:src="'/screenshots/app-' + selected_app.id + '.png'" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
                             </div>
                             <div class="column is-one-fifth">
                                 <img v-on:click="selectImage('gif')" v-bind:src="'/gifs/app-' + selected_app.id + '.gif'" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
@@ -358,6 +358,11 @@ var app = new Vue({
             }
         },
 
+        selectImage: function(type) {
+            console.log('image type: ' + type);
+            this.image_type = type;
+        },
+
         selectApp: function(app) {
             if (document.body.clientWidth < 1000) {
                 if (app) {
@@ -414,6 +419,7 @@ var app = new Vue({
         cards_per_row: (isStorageSupported() ? localStorage.getItem('cards_per_row') : false) || 4,
         sort_by: (isStorageSupported() ? localStorage.getItem('sort_by') : false) || 'newest',
         selected_app: false,
+        image_type: 'png',
     },
 
     computed: {
@@ -423,6 +429,14 @@ var app = new Vue({
                 return {'is-active': true};
             } else {
                 return {};
+            }
+        },
+
+        imageSrc() {
+            if (this.image_type == 'png') {
+                return '/screenshots/app-' + this.selected_app.id + '.png';
+            } else {
+                return '/gifs/app-' + this.selected_app.id + '.gif';
             }
         },
 
