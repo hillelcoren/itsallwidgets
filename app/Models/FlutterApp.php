@@ -80,9 +80,11 @@ class FlutterApp extends Model implements Feedable
             ->author($this->title);
     }
 
-    public function screenshotUrl()
+    public function screenshotUrl($number = false)
     {
-        return url('screenshots/app-' . $this->id . '.png');
+        $suffix = $number ? '-' . $number : '';
+
+        return url('screenshots/app-' . $this->id . $suffix . '.png');
     }
 
     public function gifUrl()

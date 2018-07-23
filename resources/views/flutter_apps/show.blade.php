@@ -11,6 +11,12 @@
 		function selectImage(type) {
 			if (type == 'png') {
 				$('#appImage').attr('src', '{{ $app->screenshotUrl() }}');
+			} else if (type == 'png1') {
+				$('#appImage').attr('src', '{{ $app->screenshotUrl(1) }}');
+			} else if (type == 'png2') {
+				$('#appImage').attr('src', '{{ $app->screenshotUrl(2) }}');
+			} else if (type == 'png3') {
+				$('#appImage').attr('src', '{{ $app->screenshotUrl(3) }}');
 			} else {
 				$('#appImage').attr('src', '{{ $app->gifUrl() }}');
 			}
@@ -134,14 +140,31 @@
 								{!! nl2br(e($app->long_description)) !!}
 							</div>
 
-							@if ($app->has_gif)
+							@if ($app->has_gif || $app->has_screenshot_1 || $app->has_screenshot_2 || $app->has_screenshot_3)
 								<div class="columns is-multiline is-2 is-variable">
+									@if ($app->has_gif)
+										<div class="column is-one-fifth">
+											<img src="{{ $app->gifUrl() }}" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer" onclick="selectImage('gif')"/>
+			                            </div>
+									@endif
 		                            <div class="column is-one-fifth">
 										<img src="{{ $app->screenshotUrl() }}" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer" onclick="selectImage('png')"/>
 		                            </div>
-		                            <div class="column is-one-fifth">
-										<img src="{{ $app->gifUrl() }}" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer" onclick="selectImage('gif')"/>
-		                            </div>
+									@if ($app->has_screenshot_1)
+										<div class="column is-one-fifth">
+											<img src="{{ $app->screenshotUrl(1) }}" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer" onclick="selectImage('png1')"/>
+			                            </div>
+									@endif
+									@if ($app->has_screenshot_2)
+										<div class="column is-one-fifth">
+											<img src="{{ $app->screenshotUrl(2) }}" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer" onclick="selectImage('png2')"/>
+			                            </div>
+									@endif
+									@if ($app->has_screenshot_3)
+										<div class="column is-one-fifth">
+											<img src="{{ $app->screenshotUrl(3) }}" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer" onclick="selectImage('png3')"/>
+			                            </div>
+									@endif
 		                        </div>
 							@endif
 
