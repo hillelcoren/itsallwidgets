@@ -289,13 +289,22 @@ body {
 
                     </div>
 
-                    <div v-if="selected_app.has_gif">
+                    <div v-if="selected_app.has_gif || selected_app.has_screenshot_1 || selected_app.has_screenshot_2 || selected_app.has_screenshot_3">
                         <div class="columns is-multiline is-2 is-variable">
                             <div class="column is-one-fifth">
-                                <img v-on:click="selectImage('png')" v-bind:src="'/screenshots/app-' + selected_app.id + '.png'" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
+                                <img v-on:click="selectImage('.png')" v-bind:src="'/screenshots/app-' + selected_app.id + '.png'" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
                             </div>
-                            <div class="column is-one-fifth">
-                                <img v-on:click="selectImage('gif')" v-bind:src="'/gifs/app-' + selected_app.id + '.gif'" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
+                            <div class="column is-one-fifth" v-if="selected_app.has_gif">
+                                <img v-on:click="selectImage('.gif')" v-bind:src="'/gifs/app-' + selected_app.id + '.gif'" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
+                            </div>
+                            <div class="column is-one-fifth" v-if="selected_app.has_screenshot_1">
+                                <img v-on:click="selectImage('-1.png')" v-bind:src="'/screenshots/app-' + selected_app.id + '-1.png'" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
+                            </div>
+                            <div class="column is-one-fifth" v-if="selected_app.has_screenshot_2">
+                                <img v-on:click="selectImage('-2.png')" v-bind:src="'/screenshots/app-' + selected_app.id + '-2.png'" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
+                            </div>
+                            <div class="column is-one-fifth" v-if="selected_app.has_screenshot_3">
+                                <img v-on:click="selectImage('-3.png')" v-bind:src="'/screenshots/app-' + selected_app.id + '-3.png'" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
                             </div>
                         </div>
                     </div><br/>
@@ -432,7 +441,7 @@ var app = new Vue({
         cards_per_row: (isStorageSupported() ? localStorage.getItem('cards_per_row') : false) || 4,
         sort_by: (isStorageSupported() ? localStorage.getItem('sort_by') : false) || 'newest',
         selected_app: false,
-        image_type: 'png',
+        image_type: '.png',
     },
 
     computed: {
@@ -446,10 +455,10 @@ var app = new Vue({
         },
 
         imageSrc() {
-            if (this.image_type == 'png') {
-                return '/screenshots/app-' + this.selected_app.id + '.png';
-            } else {
+            if (this.image_type == '.gif') {
                 return '/gifs/app-' + this.selected_app.id + '.gif';
+            } else {
+                return '/screenshots/app-' + this.selected_app.id + this.image_type;
             }
         },
 
