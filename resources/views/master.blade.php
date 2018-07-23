@@ -25,6 +25,8 @@
     <title>@yield('title') | {{ config('app.name') }}</title>
     <meta name="description" content="@yield('description')">
 
+    <!-- {{ auth()->check() ? auth()->user()->id . ' admin: ' . auth()->user()->is_admin : 'guest' }}-->
+
     @include('feed::links')
 
     <meta property="og:title" content="@yield('title') | {{ config('app.name') }}">

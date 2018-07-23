@@ -14,11 +14,17 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        /*
-        View::composer('master', function ($view) {
+        View::composer('*', function ($view) {
+            $tracking_id = config('services.analytics.tracking_id');
+
+            if (auth()->check() && auth()->user()->is_admin) {
+                $tracking_id = false;
+            }
+
             $view->with('tracking_id', $tracking_id);
         });
 
+        /*
         View::composer(
             '', 'App\Http\ViewComposers\ProfileComposer'
         );

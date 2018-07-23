@@ -25,14 +25,8 @@ class AppServiceProvider extends ServiceProvider
             });
         } catch (\Illuminate\Database\QueryException $exception) {
             // this will fail when running composer install
-            // befor the database is migrated
+            // before the database is migrated
         }
-
-        $tracking_id = config('services.analytics.tracking_id');
-        if (auth()->check() && auth()->user()->is_admin) {
-            $tracking_id = false;
-        }
-        View::share('tracking_id', $tracking_id);
     }
 
     /**
