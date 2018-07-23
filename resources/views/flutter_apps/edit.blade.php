@@ -196,7 +196,7 @@
 						</label>
 						<div class="control has-icons-left">
 
-							{{ Form::text('google_url', $app->google_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://play.google.com/store/apps/...']) }}
+							{{ Form::text('google_url', $app->google_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://play.google.com/...']) }}
 
 							<span class="icon is-small is-left">
 								<i class="fab fa-google"></i>
@@ -216,7 +216,7 @@
 						</label>
 						<div class="control has-icons-left">
 
-							{{ Form::text('apple_url', $app->apple_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://itunes.apple.com/app/...']) }}
+							{{ Form::text('apple_url', $app->apple_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://itunes.apple.com/...']) }}
 
 							<span class="icon is-small is-left">
 								<i class="fab fa-apple"></i>
@@ -276,7 +276,7 @@
 						</label>
 						<div class="control has-icons-left">
 
-							{{ Form::text('youtube_url', $app->youtube_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://youtube.com/embed/...']) }}
+							{{ Form::text('youtube_url', $app->youtube_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://www.youtube.com/embed/...']) }}
 
 							<span class="icon is-small is-left">
 								<i class="fab fa-youtube"></i>
@@ -296,7 +296,7 @@
 						</label>
 						<div class="control has-icons-left">
 
-							{{ Form::text('facebook_url', $app->facebook_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://facebook.com/...']) }}
+							{{ Form::text('facebook_url', $app->facebook_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://www.facebook.com/...']) }}
 
 							<span class="icon is-small is-left">
 								<i class="fab fa-facebook"></i>
@@ -336,7 +336,7 @@
 						</label>
 						<div class="control has-icons-left">
 
-							{{ Form::text('instagram_url', $app->instagram_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://instagram.com/...']) }}
+							{{ Form::text('instagram_url', $app->instagram_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://www.instagram.com/...']) }}
 
 							<span class="icon is-small is-left">
 								<i class="fab fa-instagram"></i>
