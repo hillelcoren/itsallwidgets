@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ExternalLink;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreFlutterApp extends FormRequest

@@ -47,6 +47,10 @@ body {
     text-overflow: ellipsis;
 }
 
+.is-owned {
+    background-color: #CCCCCC;
+}
+
 @media screen and (max-width: 769px) {
     .slider-control {
         display: none;
@@ -121,7 +125,7 @@ body {
             <div v-for="app in filteredApps" class="column" v-bind:class="columnClass">
                 <div v-on:click="selectApp(app)" v-on:mouseover="onMouseOver(app)" v-on:mouseout="onMouseOut(app)" style="cursor:pointer">
                     <div class="card is-hover-elevated">
-                        <header class="card-header">
+                        <header class="card-header" v-bind:class="[app.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} ? 'is-owned' : '']">
                             <p class="card-header-title is-2 no-wrap" v-bind:title="app.title">
                                 @{{ app.title }}
                             </p>
