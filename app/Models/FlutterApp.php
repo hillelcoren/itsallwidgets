@@ -84,12 +84,12 @@ class FlutterApp extends Model implements Feedable
     {
         $suffix = $number ? '-' . $number : '';
 
-        return url('screenshots/app-' . $this->id . $suffix . '.png');
+        return url('screenshots/app-' . $this->id . $suffix . '.png?updated_at=' . $this->updated_at->format('Y-m-d%20H:m:s'));
     }
 
     public function gifUrl()
     {
-        return url('gifs/app-' . $this->id . '.gif');
+        return url('gifs/app-' . $this->id . '.gif?updated_at=' . $this->updated_at->format('Y-m-d%20H:m:s'));
     }
 
     public function url()

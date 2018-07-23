@@ -177,7 +177,7 @@ body {
                             <div v-if="app.has_gif">
                                 <i v-bind:id="app.title + '-video'" style="font-size: 26px; position: absolute; bottom: 20px; right: 20px;" class="fas fa-video"></i>
                             </div>
-                            <img v-bind:id="app.title + '-img'" v-bind:src="'/screenshots/app-' + app.id + '.png'" width="1080" height="1920"/>
+                            <img v-bind:id="app.title + '-img'" v-bind:src="'/screenshots/app-' + app.id + '.png?updated_at=' + app.updated_at" width="1080" height="1920"/>
                         </div>
                     </div>
                 </div>
@@ -302,19 +302,19 @@ body {
                     <div v-if="selected_app.has_gif || selected_app.has_screenshot_1 || selected_app.has_screenshot_2 || selected_app.has_screenshot_3">
                         <div class="columns is-multiline is-3 is-variable">
                             <div class="column is-one-fifth" v-if="selected_app.has_gif">
-                                <img v-on:click="selectImage('.gif')" v-bind:src="'/gifs/app-' + selected_app.id + '.gif'" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
+                                <img v-on:click="selectImage('.gif')" v-bind:src="'/gifs/app-' + selected_app.id + '.gif?updated_at=' + selected_app.updated_at" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
                             </div>
                             <div class="column is-one-fifth">
-                                <img v-on:click="selectImage('.png')" v-bind:src="'/screenshots/app-' + selected_app.id + '.png'" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
+                                <img v-on:click="selectImage('.png')" v-bind:src="'/screenshots/app-' + selected_app.id + '.png?updated_at=' + selected_app.updated_at" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
                             </div>
                             <div class="column is-one-fifth" v-if="selected_app.has_screenshot_1">
-                                <img v-on:click="selectImage('-1.png')" v-bind:src="'/screenshots/app-' + selected_app.id + '-1.png'" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
+                                <img v-on:click="selectImage('-1.png')" v-bind:src="'/screenshots/app-' + selected_app.id + '-1.png?updated_at=' + selected_app.updated_at" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
                             </div>
                             <div class="column is-one-fifth" v-if="selected_app.has_screenshot_2">
-                                <img v-on:click="selectImage('-2.png')" v-bind:src="'/screenshots/app-' + selected_app.id + '-2.png'" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
+                                <img v-on:click="selectImage('-2.png')" v-bind:src="'/screenshots/app-' + selected_app.id + '-2.png?updated_at=' + selected_app.updated_at" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
                             </div>
                             <div class="column is-one-fifth" v-if="selected_app.has_screenshot_3">
-                                <img v-on:click="selectImage('-3.png')" v-bind:src="'/screenshots/app-' + selected_app.id + '-3.png'" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
+                                <img v-on:click="selectImage('-3.png')" v-bind:src="'/screenshots/app-' + selected_app.id + '-3.png?updated_at=' + selected_app.updated_at" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
                             </div>
                         </div>
                     </div><br/>
@@ -374,14 +374,14 @@ var app = new Vue({
 
         onMouseOver: function(app) {
             if (app.has_gif) {
-                $('#' + app.title + '-img').attr('src', '/gifs/app-' + app.id + '.gif');
+                $('#' + app.title + '-img').attr('src', '/gifs/app-' + app.id + '.gif?updated_at=' + app.updated_at);
                 $('#' + app.title + '-video').hide();
             }
         },
 
         onMouseOut: function(app) {
             if (app.has_gif) {
-                $('#' + app.title + '-img').attr('src', '/screenshots/app-' + app.id + '.png');
+                $('#' + app.title + '-img').attr('src', '/screenshots/app-' + app.id + '.png?updated_at=' + app.updated_at);
                 $('#' + app.title + '-video').show();
             }
         },
