@@ -64,7 +64,7 @@ class FlutterApp extends TestCase
             'title' => $this->title,
         ]);
 
-        $response = $this->get('flutter-apps?legacy=true');
+        $response = $this->get('/?legacy=true');
         $response->assertDontSee($this->title);
 
         $response = $this->get('flutter-app/' . str_slug($this->title));
@@ -154,7 +154,7 @@ class FlutterApp extends TestCase
 
         auth()->logout();
 
-        $response = $this->get('flutter-apps?legacy=true');
+        $response = $this->get('/?legacy=true');
         $response->assertSee($newTitle);
     }
 }
