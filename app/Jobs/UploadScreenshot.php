@@ -32,19 +32,10 @@ class UploadScreenshot implements ShouldQueue
      */
     public function handle()
     {
-        if ($png = request()->file('screenshot')) {
-            $filename = 'app-' . $this->app->id . '.png';
-            $png->move(public_path('/screenshots'), $filename);
-
-            // check for an error border
-            $image = Image::make(public_path('/screenshots') . '/' . $filename);
-
-            if ($this->isErrorPixel($image, 0, 500)
-                && ! $this->isErrorPixel($image, 50, 500)
-            ) {
-                session()->flash('warning', 'We\'ve detected a yellow border around the image, there may have been an error when the screenshot was taken.');
-            }
-        }
+        $this->uploadImage('screenshot');
+        $this->uploadImage('screenshot_1', '-1');
+        $this->uploadImage('screenshot_2', '-2');
+        $this->uploadImage('screenshot_3', '-3');
 
         // check for gif
         if ($gif = request()->file('gif')) {
@@ -56,6 +47,31 @@ class UploadScreenshot implements ShouldQueue
             ]);
         }
     }
+
+    private function uploadImage($name, $number = 0)
+    {
+        if ($png = request()->file($name)) {
+            $suffix = $number ? '-' . $number : '';
+            $filename = 'app-' . $this->app->id . $suffix . '.png';
+            $png->move(public_path('/screenshots'), $filename);
+
+            if ($number) {
+                $this->app->update([
+                    'has_screenshot_' . $number => true,
+                ]);
+            }
+
+            // check for an error border
+            $image = Image::make(public_path('/screenshots') . '/' . $filename);
+
+            if ($this->isErrorPixel($image, 0, 500)
+                && ! $this->isErrorPixel($image, 50, 500)
+            ) {
+                session()->flash('warning', 'We\'ve detected a yellow border around the image, there may have been an error when the screenshot was taken.');
+            }
+        }
+    }
+
 
     private function isErrorPixel($image, $x, $y)
     {

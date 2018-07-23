@@ -26,6 +26,9 @@ class FlutterApp extends Model implements Feedable
         'instagram_url',
         'hash_tags',
         'has_gif',
+        'has_screenshot_1',
+        'has_screenshot_2',
+        'has_screenshot_3',
     ];
 
     protected $hidden = [

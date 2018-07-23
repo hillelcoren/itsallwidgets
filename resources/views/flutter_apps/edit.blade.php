@@ -109,8 +109,7 @@
 
 			<p>&nbsp;</p>
 
-
-			<div class="subtitle">Optional Fields</div>
+			<div class="subtitle">Optional Images</div>
 
 			<article class="message is-elevated">
 				<div class="message-body">
@@ -130,6 +129,66 @@
 							@endif
 						</div>
 					</div>
+
+
+					<div class="field">
+						<label class="label" for="screenshot_1">
+							Screenshot [.png | 1080px by 1920px]
+						</label>
+						<div class="control">
+
+							{{ Form::file('screenshot_1') }}
+
+							@if ($errors->has('screenshot_1'))
+								<span class="help is-danger">
+									{{ $errors->first('screenshot_1') }}
+								</span>
+							@endif
+						</div>
+					</div>
+
+					<div class="field">
+						<label class="label" for="screenshot_2">
+							Screenshot [.png | 1080px by 1920px]
+						</label>
+						<div class="control">
+
+							{{ Form::file('screenshot_2') }}
+
+							@if ($errors->has('screenshot_2'))
+								<span class="help is-danger">
+									{{ $errors->first('screenshot_2') }}
+								</span>
+							@endif
+						</div>
+					</div>
+
+					<div class="field">
+						<label class="label" for="screenshot_3">
+							Screenshot [.png | 1080px by 1920px]
+						</label>
+						<div class="control">
+
+							{{ Form::file('screenshot_3') }}
+
+							@if ($errors->has('screenshot_3'))
+								<span class="help is-danger">
+									{{ $errors->first('screenshot_3') }}
+								</span>
+							@endif
+						</div>
+					</div>
+
+
+				</div>
+			</article>
+
+			<p>&nbsp;</p>
+
+			<div class="subtitle">Optional Links</div>
+
+			<article class="message is-elevated">
+				<div class="message-body">
 
 					<div class="field">
 						<label class="label" for="google_url">
@@ -274,7 +333,7 @@
 
 
 				</div>
-			</div>
+			</article>
 
 			<p>&nbsp;</p>
 			<p>&nbsp;</p>
