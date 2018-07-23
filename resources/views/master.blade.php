@@ -317,7 +317,6 @@
         $(function() {
             setTimeout(function() {
                 $('section.hero-status .notification').animateCss('animated fadeOut', function() {
-                    console.log('here');
                     $('section.hero-status').hide();
                 });
             }, 3000);

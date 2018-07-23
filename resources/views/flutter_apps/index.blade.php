@@ -359,7 +359,6 @@ var app = new Vue({
         },
 
         selectImage: function(type) {
-            console.log('image type: ' + type);
             this.image_type = type;
         },
 
