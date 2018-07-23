@@ -82,10 +82,12 @@ body {
                             class="switch is-info is-medium" v-model="filter_open_source">
                             <label for="openSourceSwitch">Open Source &nbsp;</label>
                         </div>
-                        <div class="is-medium" v-on:click="toggleGifs()" style="padding-left: 26px;">
+                        <div class="is-medium is-hidden-mobile" v-on:click="toggleGifs()" style="padding-left: 26px;">
                             <input type="checkbox" name="gifsSwitch"
                             class="switch is-info is-medium" v-model="filter_gifs">
-                            <label for="gifsSwitch">GIFs &nbsp;</label>
+                            <label for="gifsSwitch">
+                                GIFs &nbsp;
+                            </label>
                         </div>
                         <div class="is-medium filter-label slider-control">
                             <label class="label is-medium" style="font-weight: normal;">Zoom</label>
