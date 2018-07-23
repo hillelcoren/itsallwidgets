@@ -82,6 +82,11 @@ body {
                             class="switch is-info is-medium" v-model="filter_open_source">
                             <label for="openSourceSwitch">Open Source &nbsp;</label>
                         </div>
+                        <div class="is-medium" v-on:click="toggleGifs()" style="padding-left: 26px;">
+                            <input type="checkbox" name="gifsSwitch"
+                            class="switch is-info is-medium" v-model="filter_gifs">
+                            <label for="gifsSwitch">GIFs &nbsp;</label>
+                        </div>
                         <div class="is-medium filter-label slider-control">
                             <label class="label is-medium" style="font-weight: normal;">Zoom</label>
                         </div>
@@ -344,6 +349,10 @@ var app = new Vue({
             this.filter_open_source = ! this.filter_open_source;
         },
 
+        toggleGifs: function() {
+            this.filter_gifs = ! this.filter_gifs;
+        },
+
         onMouseOver: function(app) {
             if (app.has_gif) {
                 $('#' + app.title + '-img').attr('src', '/gifs/app-' + app.id + '.gif');
@@ -415,6 +424,7 @@ var app = new Vue({
         apps: {!! $apps !!},
         search: '',
         filter_open_source: false,
+        filter_gifs: false,
         cards_per_row: (isStorageSupported() ? localStorage.getItem('cards_per_row') : false) || 4,
         sort_by: (isStorageSupported() ? localStorage.getItem('sort_by') : false) || 'newest',
         selected_app: false,
@@ -458,6 +468,7 @@ var app = new Vue({
             var apps = this.apps;
             var search = this.search.toLowerCase().trim();
             var filter_open_source = this.filter_open_source;
+            var filter_gifs = this.filter_gifs;
             var sort_by = this.sort_by;
 
             if (search) {
@@ -477,6 +488,12 @@ var app = new Vue({
             if (filter_open_source) {
                 apps = apps.filter(function(item) {
                     return item.repo_url;
+                });
+            }
+
+            if (filter_gifs) {
+                apps = apps.filter(function(item) {
+                    return item.has_gif;
                 });
             }
 
