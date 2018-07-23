@@ -330,6 +330,26 @@
 						</div>
 					</div>
 
+					<div class="field">
+						<label class="label" for="instagram_url">
+							Instagram
+						</label>
+						<div class="control has-icons-left">
+
+							{{ Form::text('instagram_url', $app->instagram_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://instagram.com/...']) }}
+
+							<span class="icon is-small is-left">
+								<i class="fab fa-instagram"></i>
+							</span>
+
+							@if ($errors->has('instagram_url'))
+								<span class="help is-danger">
+									{{ $errors->first('instagram_url') }}
+								</span>
+							@endif
+						</div>
+					</div>
+
 
 
 				</div>

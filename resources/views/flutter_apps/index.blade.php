@@ -131,6 +131,9 @@ body {
                             <a v-if="app.twitter_url && cards_per_row > 3" v-bind:href="app.twitter_url" class="card-header-icon" target="_blank" v-on:click.stop>
                                 <i style="font-size: 20px; color: #888" class="fab fa-twitter"></i>
                             </a>
+                            <a v-if="app.instagram_url && cards_per_row > 3" v-bind:href="app.instagram_url" class="card-header-icon" target="_blank" v-on:click.stop>
+                                <i style="font-size: 20px; color: #888" class="fab fa-instagram"></i>
+                            </a>
                             <a v-if="app.repo_url" v-bind:href="app.repo_url" class="card-header-icon" target="_blank" v-on:click.stop>
                                 <i style="font-size: 20px; color: #888" class="fab fa-github"></i>
                             </a>
@@ -251,6 +254,9 @@ body {
                             </a>
                             <a v-if="selected_app.twitter_url" class="button is-slightly-elevated" v-bind:href="selected_app.twitter_url" target="_blank">
                                 <i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
+                            </a>
+                            <a v-if="selected_app.instagram_url" class="button is-slightly-elevated" v-bind:href="selected_app.instagram_url" target="_blank">
+                                <i style="font-size: 20px" class="fab fa-instagram"></i> &nbsp; Instagram
                             </a>
 
                             <div class="dropdown is-hoverable">

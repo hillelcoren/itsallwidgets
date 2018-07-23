@@ -103,6 +103,11 @@
 									<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
 								</a> &nbsp;
 							@endif
+							@if ($app->instagram_url)
+								<a class="button is-slightly-elevated" 	href="{{ $app->instagram_url }}" target="_blank">
+									<i style="font-size: 20px" class="fab fa-instagram"></i> &nbsp; Instagram
+								</a> &nbsp;
+							@endif
 
 							<div class="dropdown is-hoverable">
 								<div class="dropdown-trigger is-slightly-elevated">
