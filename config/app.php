@@ -162,7 +162,7 @@ return [
         App\Providers\ComposerServiceProvider::class,
 
         NotificationChannels\Twitter\TwitterServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class
+        Intervention\Image\ImageServiceProvider::class,
         Jaybizzle\LaravelCrawlerDetect\LaravelCrawlerDetectServiceProvider::class,
 
 
