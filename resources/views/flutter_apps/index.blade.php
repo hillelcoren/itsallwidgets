@@ -464,9 +464,9 @@ var app = new Vue({
 
         imageSrc() {
             if (this.image_type == '.gif' && this.selected_app.has_gif) {
-                return '/gifs/app-' + this.selected_app.id + '.gif';
+                return '/gifs/app-' + this.selected_app.id + '.gif?updated_at=' + this.selected_app.updated_at;
             } else {
-                return '/screenshots/app-' + this.selected_app.id + this.image_type;
+                return '/screenshots/app-' + this.selected_app.id + this.image_type + '?updated_at=' + this.selected_app.updated_at;
             }
         },
 
