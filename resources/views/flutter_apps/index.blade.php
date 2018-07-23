@@ -86,7 +86,7 @@ body {
                             <input type="checkbox" name="gifsSwitch"
                             class="switch is-info is-medium" v-model="filter_gifs">
                             <label for="gifsSwitch">
-                                GIFs &nbsp;
+                                GIF &nbsp;
                             </label>
                         </div>
                         <div class="is-medium filter-label slider-control">
