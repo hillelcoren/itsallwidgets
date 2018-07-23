@@ -50,10 +50,10 @@
                 </div><br/>
                 <div class="column is-four-fifths">
                     <div class="title is-4">
-                        Keep track of new Flutter apps
+                        Learn about new apps
                     </div>
                     <div class="block is-size-4">
-                        The Flutter community continues to grow at an exponential rate, the site provides a single place to track all new apps being developed and released.
+                        The Flutter community continues to grow at an exponential rate, the site provides a place to learn about new apps being developed and released.
                     </div><br/>
                 </div>
             </div>
