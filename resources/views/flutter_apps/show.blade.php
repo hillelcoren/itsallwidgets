@@ -6,12 +6,24 @@
 
 @section('content')
 
+	<script>
+
+		function selectImage(type) {
+			if (type == 'png') {
+				$('#appImage').attr('src', '{{ $app->screenshotUrl() }}');
+			} else {
+				$('#appImage').attr('src', '{{ $app->gifUrl() }}');
+			}
+		}
+
+	</script>
+
 	<section class="section is-body-font">
 		<div class="container">
 
 			<div class="columns">
 				<div class="column is-4 is-elevated">
-					<img src="{{ $app->screenshotUrl() }}" width="1080" height="1920"/>
+					<img id="appImage" src="{{ $app->screenshotUrl() }}" width="1080" height="1920"/>
 				</div>
 				<div class="column is-8">
 					<nav class="breadcrumb" aria-label="breadcrumbs">
@@ -125,10 +137,10 @@
 							@if ($app->has_gif)
 								<div class="columns is-multiline is-2 is-variable">
 		                            <div class="column is-one-fifth">
-										<img src="{{ $app->screenshotUrl() }}" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
+										<img src="{{ $app->screenshotUrl() }}" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer" onclick="selectImage('png')"/>
 		                            </div>
 		                            <div class="column is-one-fifth">
-										<img src="{{ $app->gifUrl() }}" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
+										<img src="{{ $app->gifUrl() }}" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer" onclick="selectImage('gif')"/>
 		                            </div>
 		                        </div>
 							@endif
