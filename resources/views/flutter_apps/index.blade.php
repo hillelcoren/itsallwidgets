@@ -290,12 +290,12 @@ body {
                     </div>
 
                     <div v-if="selected_app.has_gif || selected_app.has_screenshot_1 || selected_app.has_screenshot_2 || selected_app.has_screenshot_3">
-                        <div class="columns is-multiline is-2 is-variable">
-                            <div class="column is-one-fifth">
-                                <img v-on:click="selectImage('.png')" v-bind:src="'/screenshots/app-' + selected_app.id + '.png'" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
-                            </div>
+                        <div class="columns is-multiline is-3 is-variable">
                             <div class="column is-one-fifth" v-if="selected_app.has_gif">
                                 <img v-on:click="selectImage('.gif')" v-bind:src="'/gifs/app-' + selected_app.id + '.gif'" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
+                            </div>
+                            <div class="column is-one-fifth">
+                                <img v-on:click="selectImage('.png')" v-bind:src="'/screenshots/app-' + selected_app.id + '.png'" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
                             </div>
                             <div class="column is-one-fifth" v-if="selected_app.has_screenshot_1">
                                 <img v-on:click="selectImage('-1.png')" v-bind:src="'/screenshots/app-' + selected_app.id + '-1.png'" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
@@ -385,6 +385,8 @@ var app = new Vue({
         },
 
         selectApp: function(app) {
+            this.image_type = '.png';
+
             if (document.body.clientWidth < 1000) {
                 if (app) {
                     window.location = '/flutter-app/' + app.slug;
@@ -455,7 +457,7 @@ var app = new Vue({
         },
 
         imageSrc() {
-            if (this.image_type == '.gif') {
+            if (this.image_type == '.gif' && this.selected_app.has_gif) {
                 return '/gifs/app-' + this.selected_app.id + '.gif';
             } else {
                 return '/screenshots/app-' + this.selected_app.id + this.image_type;
