@@ -33,9 +33,9 @@ class UploadScreenshot implements ShouldQueue
     public function handle()
     {
         $this->uploadImage('screenshot');
-        $this->uploadImage('screenshot_1', '-1');
-        $this->uploadImage('screenshot_2', '-2');
-        $this->uploadImage('screenshot_3', '-3');
+        $this->uploadImage('screenshot_1', 1);
+        $this->uploadImage('screenshot_2', 2);
+        $this->uploadImage('screenshot_3', 3);
 
         // check for gif
         if ($gif = request()->file('gif')) {
