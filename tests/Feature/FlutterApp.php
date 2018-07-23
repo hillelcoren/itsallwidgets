@@ -43,15 +43,15 @@ class FlutterApp extends TestCase
         // Create the app
         // =======================
 
-        $response = $this->get('flutter-apps/submit');
+        $response = $this->get('submit');
         $response->assertStatus(302);
 
         $response = $this->actingAs($this->user)
-                         ->get('flutter-apps/submit');
+                         ->get('submit');
         $response->assertStatus(200);
 
         $response = $this->actingAs($this->user)
-                         ->post('flutter-apps/submit', [
+                         ->post('submit', [
                              '_token' => csrf_token(),
                              'title' => $this->title,
                              'short_description' => $this->faker->text(100),

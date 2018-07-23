@@ -34,7 +34,7 @@
 				<div class="column is-8">
 					<nav class="breadcrumb" aria-label="breadcrumbs">
 						<ul>
-							<li><a href="{{ url('/flutter-apps') }}">All Applications</a></li>
+							<li><a href="{{ url('/') }}">All Applications</a></li>
 							<li class="is-active"><a href="#" aria-current="page">{{ $app->title }}</a></li>
 						</ul>
 					</nav>

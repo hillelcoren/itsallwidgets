@@ -12,13 +12,13 @@
 */
 
 
-Route::get('/', function () {
-    return redirect('flutter-apps', 301);
+Route::get('flutter-apps', function () {
+    return redirect('/', 301);
 });
 
+Route::get('/', 'FlutterAppController@index');
 Route::get('about', 'HomeController@about');
 Route::get('sitemap.xml', 'FlutterAppController@sitemap');
-Route::get('flutter-apps', 'FlutterAppController@index');
 
 Route::get('google', function () {
     return view('google');
@@ -38,8 +38,8 @@ Route::feeds();
 Route::get('flutter-app/{slug}', 'FlutterAppController@show');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('flutter-apps/submit', 'FlutterAppController@create');
-    Route::post('flutter-apps/submit', 'FlutterAppController@store')->middleware('slug');
+    Route::get('submit', 'FlutterAppController@create');
+    Route::post('submit', 'FlutterAppController@store')->middleware('slug');
 
     Route::get('flutter-app/{flutter_app}/approve', 'FlutterAppController@approve');
     Route::get('flutter-app/{flutter_app}/edit', 'FlutterAppController@edit');

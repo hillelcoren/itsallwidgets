@@ -405,7 +405,7 @@ var app = new Vue({
                         gtag('config', '{{ $tracking_id }}', {'page_path': route});
                         history.pushState(null, null, route);
                     } else {
-                        history.pushState(null, null, '/flutter-apps');
+                        history.pushState(null, null, '/');
                     }
                 }
             }

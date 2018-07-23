@@ -69,7 +69,7 @@ class FlutterAppController extends Controller
 
         $data = [
             'app' => $app,
-            'url' => 'flutter-apps/submit',
+            'url' => 'submit',
             'method' => 'POST',
         ];
 

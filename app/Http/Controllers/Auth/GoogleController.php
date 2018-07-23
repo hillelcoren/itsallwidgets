@@ -41,7 +41,7 @@ class GoogleController extends Controller
             Auth::loginUsingId($createdUser->id);
 
             if ($createdUser->wasRecentlyCreated) {
-                return redirect('flutter-apps/submit')->with('status', 'Thanks for signing up!');
+                return redirect('submit')->with('status', 'Thanks for signing up!');
             } else {
                 return redirect('/')->with('status', 'Your are now signed in!');
             }
