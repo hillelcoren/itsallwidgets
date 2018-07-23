@@ -82,6 +82,11 @@ class FlutterApp extends Model implements Feedable
         return url('screenshots/app-' . $this->id . '.png');
     }
 
+    public function gifUrl()
+    {
+        return url('gifs/app-' . $this->id . '.gif');
+    }
+
     public function url()
     {
         return url('flutter-app/' . $this->slug);

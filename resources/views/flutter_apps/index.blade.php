@@ -288,8 +288,8 @@ body {
                             <div class="column is-one-fifth">
                                 <img v-on:click="selectImage('gif')" v-bind:src="'/gifs/app-' + selected_app.id + '.gif'" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
                             </div>
-                        </div><br/>
-                    </div>
+                        </div>
+                    </div><br/>
 
                     <iframe v-if="selected_app.youtube_url" width="560" height="315" v-bind:src="selected_app.youtube_url"
                     frameborder="0" allowfullscreen></iframe>

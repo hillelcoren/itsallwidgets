@@ -122,6 +122,17 @@
 								{!! nl2br(e($app->long_description)) !!}
 							</div>
 
+							@if ($app->has_gif)
+								<div class="columns is-multiline is-2 is-variable">
+		                            <div class="column is-one-fifth">
+										<img src="{{ $app->screenshotUrl() }}" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
+		                            </div>
+		                            <div class="column is-one-fifth">
+										<img src="{{ $app->gifUrl() }}" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
+		                            </div>
+		                        </div>
+							@endif
+
 							@if ($app->youtube_url)
 								<iframe width="560" height="315" src="{{ $app->youtube_url }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 							@endif
