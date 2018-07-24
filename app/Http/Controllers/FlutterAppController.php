@@ -13,6 +13,7 @@ use App\Http\Requests\ApproveFlutterApp;
 use Illuminate\Http\Request;
 use App\Repositories\FlutterAppRepository;
 use App\Notifications\AppSubmitted;
+use App\Notifications\AppApproved;
 use App\Jobs\UploadScreenshot;
 
 class FlutterAppController extends Controller
@@ -162,7 +163,7 @@ class FlutterAppController extends Controller
         $app->save();
 
         if (auth()->user()->shouldSendTweet()) {
-            $app->notify(new AppSubmitted());
+            $app->notify(new AppApproved());
         }
 
         return redirect('/')->with('status', 'App has been approved!');
