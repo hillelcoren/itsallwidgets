@@ -272,7 +272,7 @@
             </nav>
         </div>
 
-        <div class="hero-body">
+        <div class="hero-body" style="padding-top:34px">
             <div class="container has-text-centered">
                 <div class="title">
                     An open list of apps built with Google Flutter
