@@ -26,7 +26,7 @@
 
     </script>
 
-    <section class="hero is-light is-small is-head-font">
+    <section class="hero is-light is-small is-body-font">
         <div class="hero-body">
             <div class="container">
                 <div class="title">

@@ -72,7 +72,7 @@ body {
 
 <div id="app">
 
-    <section class="hero is-light is-small is-head-font">
+    <section class="hero is-light is-small is-body-font">
         <div class="hero-body">
             <div class="container">
                 <div class="field is-grouped is-grouped-multiline is-vertical-center">
@@ -84,12 +84,12 @@ body {
                         <div class="is-medium" v-on:click="toggleOpenSource()" style="padding-left: 26px;">
                             <input type="checkbox" name="openSourceSwitch"
                             class="switch is-info is-medium" v-model="filter_open_source">
-                            <label for="openSourceSwitch">Open Source &nbsp;</label>
+                            <label for="openSourceSwitch" style="padding-top:6px">Open Source &nbsp;</label>
                         </div>
                         <div class="is-medium is-hidden-mobile" v-on:click="toggleGifs()" style="padding-left: 26px;">
                             <input type="checkbox" name="gifsSwitch"
                             class="switch is-info is-medium" v-model="filter_gifs">
-                            <label for="gifsSwitch">
+                            <label for="gifsSwitch" style="padding-top:6px">
                                 GIF &nbsp;
                             </label>
                         </div>
