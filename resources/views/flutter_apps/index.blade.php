@@ -177,7 +177,7 @@ body {
                             <div v-if="app.has_gif">
                                 <i v-bind:id="app.title + '-video'" style="font-size: 26px; position: absolute; bottom: 20px; right: 20px;" class="fas fa-video"></i>
                             </div>
-                            <img v-bind:id="app.title + '-img'" v-bind:src="'/screenshots/app-' + app.id + '.png?updated_at=' + app.updated_at" width="1080" height="1920"/>
+                            <img v-bind:id="app.slug + '-img'" v-bind:src="'/screenshots/app-' + app.id + '.png?updated_at=' + app.updated_at" width="1080" height="1920"/>
                             <!-- <img v-bind:id="app.title + '-img'" src="/images/spacer.png" v-bind:data-src="'/screenshots/app-' + app.id + '.png?updated_at=' + app.updated_at" width="1080" height="1920" class="lazy"/> -->
                         </div>
                     </div>
@@ -370,15 +370,15 @@ var app = new Vue({
 
         onMouseOver: function(app) {
             if (app.has_gif) {
-                $('#' + app.title + '-img').attr('src', '/gifs/app-' + app.id + '.gif?updated_at=' + app.updated_at);
-                $('#' + app.title + '-video').hide();
+                $('#' + app.slug + '-img').attr('src', '/gifs/app-' + app.id + '.gif?updated_at=' + app.updated_at);
+                $('#' + app.slug + '-video').hide();
             }
         },
 
         onMouseOut: function(app) {
             if (app.has_gif) {
-                $('#' + app.title + '-img').attr('src', '/screenshots/app-' + app.id + '.png?updated_at=' + app.updated_at);
-                $('#' + app.title + '-video').show();
+                $('#' + app.slug + '-img').attr('src', '/screenshots/app-' + app.id + '.png?updated_at=' + app.updated_at);
+                $('#' + app.slug + '-video').show();
             }
         },
 
