@@ -5,12 +5,17 @@ namespace App\Notifications;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Twitter\TwitterChannel;
 use NotificationChannels\Twitter\TwitterStatusUpdate;
+use NotificationChannels\FacebookPoster\FacebookPosterChannel;
+use NotificationChannels\FacebookPoster\FacebookPosterPost;
 
 class AppApproved extends Notification
 {
     public function via($app)
     {
-        return [TwitterChannel::class];
+        return [
+            TwitterChannel::class,
+            //FacebookPosterChannel::class,
+        ];
     }
 
     public function toTwitter($app)
@@ -36,5 +41,10 @@ class AppApproved extends Notification
         $tweet .= "\n" . $app->url();
 
         return new TwitterStatusUpdate($tweet);
+    }
+
+    public function toFacebookPoster($app)
+    {
+        return new FacebookPosterPost('');
     }
 }

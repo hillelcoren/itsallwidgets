@@ -9,6 +9,7 @@
         "fideloper/proxy": "^4.0",
         "intervention/image": "^2.4",
         "jaybizzle/laravel-crawler-detect": "1.*",
+        "laravel-notification-channels/facebook-poster": "^1.2",
         "laravel-notification-channels/twitter": "^1.0",
         "laravel/framework": "5.6.*",
         "laravel/socialite": "^3.0",
