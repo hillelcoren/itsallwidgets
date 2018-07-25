@@ -177,7 +177,7 @@ body {
                             <div v-if="app.has_gif">
                                 <i v-bind:id="app.title + '-video'" style="font-size: 26px; position: absolute; bottom: 20px; right: 20px;" class="fas fa-video"></i>
                             </div>
-                            <img v-bind:id="app.title + '-img'" v-bind:data-src="'/screenshots/app-' + app.id + '.png?updated_at=' + app.updated_at" width="1080" height="1920" class="lazy"/>
+                            <img v-bind:id="app.title + '-img'" src="/images/spacer.png" v-bind:data-src="'/screenshots/app-' + app.id + '.png?updated_at=' + app.updated_at" width="1080" height="1920" class="lazy"/>
                         </div>
                     </div>
                 </div>
