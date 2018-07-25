@@ -73,7 +73,7 @@
         filter: drop-shadow(0px 16px 16px #CCC);
     }
 
-    .is-hover-elevated:hover {
+    .xis-hover-elevated:hover {
         -moz-filter: filter: drop-shadow(0px 16px 16px #CCC);
         -webkit-filter: filter: drop-shadow(0px 16px 16px #CCC);
         -o-filter: filter: drop-shadow(0px 16px 16px #CCC);
