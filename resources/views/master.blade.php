@@ -45,6 +45,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <link rel="shortcut icon" href="{{ asset('/images/favicon.png') }}">
 
+    <link href="https://fonts.googleapis.com/css?family=Overpass" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/bulma.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bulma-extensions.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
@@ -52,26 +53,18 @@
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <script defer src="{{ asset('js/fontawesome.js') }}"></script>
 
-    @if (request()->head_font || request()->body_font)
-        @if (request()->head_font)
-            <link href="https://fonts.googleapis.com/css?family={{ request()->head_font }}" rel="stylesheet">
-            <style>
-                .is-head-font {
-                    font-family: '{{ request()->head_font }}', sans-serif;
-                }
-            </style>
-        @endif
-        @if (request()->body_font)
-            <link href="https://fonts.googleapis.com/css?family={{ request()->body_font }}" rel="stylesheet">
-            <style>
-                .is-body-font {
-                    font-family: '{{ request()->body_font }}', sans-serif;
-                }
-            </style>
-        @endif
-    @endif
-
     <style>
+
+    .is-head-font {
+        font-family: 'Overpass', sans-serif;
+        font-weight: 800;
+        letter-spacing: 1px;
+        vertical-align: bottom;
+    }
+
+    .is-body-font {
+        font-family: 'Overpass', sans-serif;
+    }
 
     .is-elevated {
         -moz-filter: drop-shadow(0px 16px 16px #CCC);
