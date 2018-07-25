@@ -177,7 +177,7 @@ body {
                             <div v-if="app.has_gif">
                                 <i v-bind:id="app.title + '-video'" style="font-size: 26px; position: absolute; bottom: 20px; right: 20px;" class="fas fa-video"></i>
                             </div>
-                            <img v-bind:id="app.title + '-img'" v-bind:src="'/screenshots/app-' + app.id + '.png?updated_at=' + app.updated_at" width="1080" height="1920"/>
+                            <img v-bind:id="app.title + '-img'" v-bind:data-src="'/screenshots/app-' + app.id + '.png?updated_at=' + app.updated_at" width="1080" height="1920" class="lazy"/>
                         </div>
                     </div>
                 </div>
@@ -227,7 +227,7 @@ body {
                             </a>
                             <div v-if="! selected_app.google_url" class="card-image is-slightly-elevated">
                                 <img src="{{ asset('images/google.png') }}" style="opacity: 0.1; filter: grayscale(100%);" width="160px"/>
-                            </div> &nbsp;&nbsp; 
+                            </div> &nbsp;&nbsp;
                             <a v-bind:href="selected_app.apple_url" v-if="selected_app.apple_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
                                 <div class="card-image is-slightly-elevated">
                                     <img src="{{ asset('images/apple.png') }}" width="160px"/>
@@ -332,7 +332,6 @@ body {
 </div>
 
 <script>
-
 
 function isStorageSupported() {
     try {
@@ -529,6 +528,54 @@ var app = new Vue({
     }
 
 });
+
+// https://www.robinosborne.co.uk/2016/05/16/lazy-loading-images-dont-rely-on-javascript/
+var lazy = [];
+
+registerListener('load', setLazy);
+registerListener('load', lazyLoad);
+registerListener('scroll', lazyLoad);
+registerListener('resize', lazyLoad);
+
+function setLazy(){
+    lazy = document.getElementsByClassName('lazy');
+}
+
+function lazyLoad(){
+    for(var i=0; i<lazy.length; i++){
+        if(isInViewport(lazy[i])){
+            if (lazy[i].getAttribute('data-src')){
+                lazy[i].src = lazy[i].getAttribute('data-src');
+                lazy[i].removeAttribute('data-src');
+            }
+        }
+    }
+
+    cleanLazy();
+}
+
+function cleanLazy(){
+    lazy = Array.prototype.filter.call(lazy, function(l){ return l.getAttribute('data-src');});
+}
+
+function isInViewport(el){
+    var rect = el.getBoundingClientRect();
+
+    return (
+        rect.bottom >= 0 &&
+        rect.right >= 0 &&
+        rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.left <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
+function registerListener(event, func) {
+    if (window.addEventListener) {
+        window.addEventListener(event, func)
+    } else {
+        window.attachEvent('on' + event, func)
+    }
+}
 
 </script>
 
