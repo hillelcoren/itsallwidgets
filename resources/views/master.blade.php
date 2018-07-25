@@ -69,12 +69,6 @@
                 }
             </style>
         @endif
-    @else
-        <style>
-            .top-left-logo {
-                font-family: impact, arial;
-            }
-        </style>
     @endif
 
     <style>
@@ -210,8 +204,8 @@
                 <div class="container">
                     <div class="navbar-brand">
                         <div class="navbar-animate">
-                            <a class="navbar-item" href="{{ url('/') }}">
-                                <font class="title top-left-logo" style="font-size:42px;">IT'S ALL WIDGETS!</font>
+                            <a href="{{ url('/') }}">
+                                <img src="{{ asset('images/logo.png') }}" width="240" style="padding-top: 12px; padding-left: 12px;"/>
                             </a>
                         </div>
                         <span class="navbar-burger burger" data-target="navMenu">
