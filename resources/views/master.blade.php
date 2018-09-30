@@ -55,6 +55,10 @@
 
     <style>
 
+    .footer {
+        padding: 7rem 1.5rem 7rem;
+    }
+
     .is-head-font {
         font-family: 'Overpass', sans-serif;
         font-weight: 800;
