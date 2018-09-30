@@ -105,9 +105,9 @@ body {
                         </div>
                         <div class="select is-medium filter-control">
                             <select v-model="sort_by">
-                                <option value="featured">Featured</option>
-                                <option value="newest">Newest</option>
-                                <option value="oldest">Oldest</option>
+                                <option value="sort_featured">Featured</option>
+                                <option value="sort_newest">Newest</option>
+                                <option value="sort_oldest">Oldest</option>
                             </select>
                         </div>
                     </p>
@@ -353,6 +353,17 @@ function isStorageSupported() {
     }
 };
 
+function getCachedSortBy() {
+    var sortBy = (isStorageSupported() ? localStorage.getItem('sort_by') : false) || 'sort_featured';
+    if (sortBy == 'oldest' || sortBy == 'newest') {
+        sortBy = 'sort_featured';
+    }
+    return sortBy;
+}
+
+function getCachedCardsPerRow() {
+    return (isStorageSupported() ? localStorage.getItem('cards_per_row') : false) || 4;
+}
 
 var app = new Vue({
     el: '#app',
@@ -453,8 +464,8 @@ var app = new Vue({
         search: '',
         filter_open_source: false,
         filter_gifs: false,
-        cards_per_row: (isStorageSupported() ? localStorage.getItem('cards_per_row') : false) || 4,
-        sort_by: (isStorageSupported() ? localStorage.getItem('sort_by') : false) || 'featured',
+        cards_per_row: getCachedCardsPerRow(),
+        sort_by: getCachedSortBy(),
         selected_app: false,
         image_type: '.png',
     },
@@ -528,16 +539,17 @@ var app = new Vue({
             apps.sort(function(itemA, itemB) {
                 var timeA = new Date(itemA.created_at).getTime();
                 var timeB = new Date(itemB.created_at).getTime();
-                if (sort_by == 'featured') {
+
+                if (sort_by == 'sort_oldest') {
+                    return timeA - timeB;
+                } else if (sort_by == 'sort_newest') {
+                    return timeB - timeA;
+                } else {
                     if (itemA.featured == itemB.featured) {
                         return timeB - timeA;
                     } else {
                         return itemB.featured - itemA.featured;
                     }
-                } else if (sort_by == 'oldest') {
-                    return timeA - timeB;
-                } else {
-                    return timeB - timeA;
                 }
             });
 

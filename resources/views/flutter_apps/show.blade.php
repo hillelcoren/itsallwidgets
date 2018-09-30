@@ -49,6 +49,14 @@
 						@endif
 					@endif
 
+					@if (auth()->check() && auth()->user()->is_editor && ! $app->featured)
+						<a class="button is-warning is-slightly-elevated" href="{{ url('flutter-app/' . $app->slug . '/feature') }}">
+							<i style="font-size: 20px" class="fas fa-star"></i> &nbsp;
+							Feature Application
+						</a>
+						<p>&nbsp;</p>
+					@endif
+
 					@if (auth()->check() && auth()->user()->owns($app))
 						<a class="button is-info is-slightly-elevated" href="{{ url('flutter-app/' . $app->slug . '/edit') }}">
 							<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
