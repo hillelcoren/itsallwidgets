@@ -82,6 +82,13 @@
         filter: drop-shadow(0px 16px 16px #CCC);
     }
 
+    .is-elevated-dark {
+        -moz-filter: drop-shadow(0px 3px 2px #666);
+        -webkit-filter: drop-shadow(0px 3px 2px #666);
+        -o-filter: drop-shadow(0px 3px 2px #666);
+        filter: drop-shadow(0px 3px 2px #666);
+    }
+
     .is-hover-elevated:hover {
         -moz-filter: filter: drop-shadow(0px 16px 16px #CCC);
         -webkit-filter: filter: drop-shadow(0px 16px 16px #CCC);
@@ -245,7 +252,8 @@
                                     &nbsp;
                                 </div>
 
-                                <a class="button is-dark" href="https://twitter.com/itsallwidgets" target="_blank">
+                                <a class="button is-elevated-dark" style="color:white; background-color:#366cb6; border-color:#366cb6"
+                                    href="https://twitter.com/itsallwidgets" target="_blank">
                                     <span class="icon">
                                         <i class="fab fa-twitter"></i>
                                     </span> &nbsp;
@@ -253,7 +261,8 @@
                                 </a> &nbsp;&nbsp;
 
                                 @if (! auth()->check())
-                                    <a class="button is-warning" href="{{ url(auth()->check() ? 'submit' : 'auth/google') }}">
+                                    <a class="button is-elevated-dark" style="color:white; background-color:#54b5eb; border-color:#54b5eb"
+                                    href="{{ url(auth()->check() ? 'submit' : 'auth/google') }}">
                                         <span class="icon">
                                             <i class="fas fa-bell"></i>
                                         </span> &nbsp;
@@ -261,7 +270,8 @@
                                     </a> &nbsp;&nbsp;
                                 @endif
 
-                                <a class="button is-success" href="{{ url(auth()->check() ? 'submit' : 'auth/google') }}">
+                                <a class="button is-elevated-dark" style="color:white; background-color:#5e60af; border-color:#5e60af"
+                                    href="{{ url(auth()->check() ? 'submit' : 'auth/google') }}">
                                     <span class="icon">
                                         <i class="fas fa-upload"></i>
                                     </span> &nbsp;
