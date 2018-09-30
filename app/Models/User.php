@@ -68,4 +68,19 @@ class User extends Authenticatable
     {
         return static::where('is_admin', '=', true)->first();
     }
+
+    public function getFeaturedNumber()
+    {
+        if ($this->id == 1) {
+            return 4;
+        } else if ($this->id == 1) {
+            return 3;
+        } else if ($this->id == 2) {
+            return 2;
+        } else if ($this->id == 1) {
+            return 1;
+        }
+
+        return 0;
+    }
 }

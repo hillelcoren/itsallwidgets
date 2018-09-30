@@ -10,6 +10,7 @@ use App\Http\Requests\EditFlutterApp;
 use App\Http\Requests\StoreFlutterApp;
 use App\Http\Requests\UpdateFlutterApp;
 use App\Http\Requests\ApproveFlutterApp;
+use App\Http\Requests\FeatureFlutterApp;
 use Illuminate\Http\Request;
 use App\Repositories\FlutterAppRepository;
 use App\Notifications\AppSubmitted;
@@ -169,6 +170,24 @@ class FlutterAppController extends Controller
         return redirect('/')->with('status', 'App has been approved!');
     }
 
+    public function feature(FeatureFlutterApp $request)
+    {
+        $app = $request->flutter_app;
+        $user = auth()->user();
+        $featured = $user->getFeaturedNumber();
+
+        FlutterApp::whereFeatured($featured)->update(['featured' => 0]);
+
+        $app->featured = $featured;
+        $app->save();
+
+        if ($app->featured > 0) {
+            return redirect('/')->with('status', $app->title. ' is now featured!');
+        } else {
+            return redirect('/');
+        }
+
+    }
 
     public function sitemap()
     {

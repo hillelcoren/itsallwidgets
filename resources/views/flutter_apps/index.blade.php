@@ -105,6 +105,7 @@ body {
                         </div>
                         <div class="select is-medium filter-control">
                             <select v-model="sort_by">
+                                <option value="featured">Featured</option>
                                 <option value="newest">Newest</option>
                                 <option value="oldest">Oldest</option>
                             </select>
@@ -206,6 +207,16 @@ body {
                 <div class="column is-8">
 
                     @if (auth()->check())
+                        @if(auth()->user()->is_editor)
+                            <div v-if="selected_app.featured == 0">
+                                <a class="button is-warning is-slightly-elevated" v-bind:href="'/flutter-app/' + selected_app.slug + '/feature'">
+                                    <i style="font-size: 20px" class="fas fa-star"></i> &nbsp;
+                                    Feature Application
+                                </a>
+                                <p>&nbsp;</p>
+                            </div>
+                        @endif
+
                         <div v-if="selected_app.user_id == {{ auth()->user()->id }}">
                             <a class="button is-info is-slightly-elevated" v-bind:href="'/flutter-app/' + selected_app.slug + '/edit'">
                                 <i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
@@ -443,7 +454,7 @@ var app = new Vue({
         filter_open_source: false,
         filter_gifs: false,
         cards_per_row: (isStorageSupported() ? localStorage.getItem('cards_per_row') : false) || 4,
-        sort_by: (isStorageSupported() ? localStorage.getItem('sort_by') : false) || 'newest',
+        sort_by: (isStorageSupported() ? localStorage.getItem('sort_by') : false) || 'featured',
         selected_app: false,
         image_type: '.png',
     },
@@ -517,7 +528,13 @@ var app = new Vue({
             apps.sort(function(itemA, itemB) {
                 var timeA = new Date(itemA.created_at).getTime();
                 var timeB = new Date(itemB.created_at).getTime();
-                if (sort_by == 'oldest') {
+                if (sort_by == 'featured') {
+                    if (itemA.featured == itemB.featured) {
+                        return timeB - timeA;
+                    } else {
+                        return itemB.featured - itemA.featured;
+                    }
+                } else if (sort_by == 'oldest') {
                     return timeA - timeB;
                 } else {
                     return timeB - timeA;

@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('submit', 'FlutterAppController@create');
     Route::post('submit', 'FlutterAppController@store')->middleware('slug');
 
+    Route::get('flutter-app/{flutter_app}/feature', 'FlutterAppController@feature');
     Route::get('flutter-app/{flutter_app}/approve', 'FlutterAppController@approve');
     Route::get('flutter-app/{flutter_app}/edit', 'FlutterAppController@edit');
     Route::put('flutter-app/{flutter_app}', 'FlutterAppController@update');
