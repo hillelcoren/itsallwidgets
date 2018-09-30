@@ -128,6 +128,9 @@ body {
                     <div class="card is-hover-elevated">
                         <header class="card-header" v-bind:class="[app.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} ? 'is-owned' : '']">
                             <p class="card-header-title is-2 no-wrap" v-bind:title="app.title">
+                                <span v-if="app.featured > 0">
+                                    <i style="font-size: 18px" class="fas fa-star"></i> &nbsp;
+                                </span>
                                 @{{ app.title }}
                             </p>
                             <a v-if="app.facebook_url && cards_per_row > 3" v-bind:href="app.facebook_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
