@@ -55,6 +55,11 @@
 
     <style>
 
+    .has-bg-img {
+        background: url('/images/header-bg.jpg')center center; background-size:cover;
+    }
+
+
     .footer {
         padding: 7rem 1.5rem 7rem;
     }
@@ -195,7 +200,7 @@
 
 <body>
 
-    <section class="hero is-info is-head-font">
+    <section class="hero is-info is-head-font has-bg-img">
         <div class="hero-head">
             <nav class="navbar">
                 <div class="container">
