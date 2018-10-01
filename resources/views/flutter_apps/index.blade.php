@@ -548,10 +548,14 @@ var app = new Vue({
                 } else if (sort_by == 'sort_newest') {
                     return timeB - timeA;
                 } else {
-                    if (itemA.featured == itemB.featured) {
-                        return timeB - timeA;
-                    } else {
+                    if (itemA.featured != itemB.featured) {
                         return itemB.featured - itemA.featured;
+                    } else if (itemA.store_rating != itemB.store_rating) {
+                        return itemB.store_rating - itemA.store_rating;
+                    } else if (itemA.store_review_count != itemB.store_review_count) {
+                        return itemB.store_review_count - itemA.store_review_count;
+                    } else {
+                        return timeB - timeA;
                     }
                 }
             });
