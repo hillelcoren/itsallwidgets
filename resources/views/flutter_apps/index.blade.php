@@ -192,6 +192,7 @@ body {
     </div>
 </section>
 
+
 <div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_app">
     <div class="modal-background" v-on:click="selectApp()"></div>
     <div class="modal-card is-body-font">
@@ -341,10 +342,25 @@ body {
 
     </section>
 </div>
+
+<center>
+    <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(-1)" v-if="page_number > 1">
+        <span>
+            <i style="font-size: 18px" class="fas fa-chevron-circle-left"></i> &nbsp;&nbsp;
+        </span>
+        Previous Page
+    </a> &nbsp;
+    <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)" v-if="page_number < apps.length / 100">
+        Next Page &nbsp;&nbsp;
+        <span>
+            <i style="font-size: 18px" class="fas fa-chevron-circle-right"></i>
+        </span>
+    </a>
+</center>
+
+</div>
 </div>
 
-
-</div>
 
 <script>
 
@@ -391,6 +407,12 @@ var app = new Vue({
 
         toggleGifs: function() {
             this.filter_gifs = ! this.filter_gifs;
+        },
+
+        adjustPage: function(change) {
+            this.page_number += change;
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
         },
 
         onMouseOver: function(app) {
@@ -471,6 +493,7 @@ var app = new Vue({
         sort_by: getCachedSortBy(),
         selected_app: false,
         image_type: '.png',
+        page_number: 1,
     },
 
     computed: {
@@ -559,6 +582,10 @@ var app = new Vue({
                     }
                 }
             });
+
+            var startIndex = (this.page_number - 1) * 100;
+            var endIndex = startIndex + 100;
+            apps = apps.slice(startIndex, endIndex);
 
             return apps;
         },
