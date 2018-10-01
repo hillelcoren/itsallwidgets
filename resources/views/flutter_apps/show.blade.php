@@ -41,16 +41,20 @@
 
 					@if (auth()->check() && auth()->user()->is_admin)
 						@if (! $app->is_approved)
-							<a class="button is-warning is-medium is-slightly-elevated" href="{{ url('flutter-app/' . $app->slug . '/approve') }}">
+							<a class="button is-success is-medium is-slightly-elevated" href="{{ url('flutter-app/' . $app->slug . '/approve') }}">
 								<i style="font-size: 20px" class="fas fa-check"></i> &nbsp;
-								Approve Application
+								Approve
+							</a>
+							<a class="button is-danger is-medium is-slightly-elevated" href="{{ url('flutter-app/' . $app->slug . '/reject') }}">
+								<i style="font-size: 20px" class="fas fa-trash"></i> &nbsp;
+								Reject
 							</a>
 							<p>&nbsp;</p>
 						@endif
 					@endif
 
 					@if (auth()->check() && auth()->user()->is_editor && ! $app->featured)
-						<a class="button is-info is-slightly-elevated" href="{{ url('flutter-app/' . $app->slug . '/feature') }}">
+						<a class="button is-warning is-slightly-elevated" href="{{ url('flutter-app/' . $app->slug . '/feature') }}">
 							<i style="font-size: 20px" class="fas fa-star"></i> &nbsp;
 							Feature Application
 						</a>

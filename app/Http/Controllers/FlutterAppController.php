@@ -11,10 +11,12 @@ use App\Http\Requests\StoreFlutterApp;
 use App\Http\Requests\UpdateFlutterApp;
 use App\Http\Requests\ApproveFlutterApp;
 use App\Http\Requests\FeatureFlutterApp;
+use App\Http\Requests\RejectFlutterApp;
 use Illuminate\Http\Request;
 use App\Repositories\FlutterAppRepository;
 use App\Notifications\AppSubmitted;
 use App\Notifications\AppApproved;
+use App\Notifications\AppRejected;
 use App\Jobs\UploadScreenshot;
 
 class FlutterAppController extends Controller
@@ -168,6 +170,15 @@ class FlutterAppController extends Controller
         }
 
         return redirect('/')->with('status', 'App has been approved!');
+    }
+
+    public function reject(RejectFlutterApp $request)
+    {
+        $app = $request->flutter_app;
+
+        $app->user->notify(new AppRejected($app));
+
+        return redirect('/')->with('status', 'App has been rejected!');
     }
 
     public function feature(FeatureFlutterApp $request)

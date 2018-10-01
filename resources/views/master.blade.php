@@ -206,7 +206,6 @@
 </head>
 
 <body>
-
     <section class="hero is-info is-head-font has-bg-img">
         <div class="hero-head">
             <nav class="navbar">

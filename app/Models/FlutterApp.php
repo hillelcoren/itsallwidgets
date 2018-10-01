@@ -36,6 +36,11 @@ class FlutterApp extends Model implements Feedable
         'is_approved',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
     public function scopeVisible($query)
     {
         $query->where('is_visible', '=', true);
