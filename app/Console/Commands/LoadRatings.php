@@ -55,7 +55,7 @@ class LoadRatings extends Command
 
             $app->save();
 
-            sleep(5);
+            usleep(rand(1, 500) * 10000);
         }
 
         $this->info('Done');
