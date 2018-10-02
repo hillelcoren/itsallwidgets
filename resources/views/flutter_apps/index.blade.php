@@ -579,10 +579,24 @@ var app = new Vue({
                 } else if (sort_by == 'sort_newest') {
                     return timeB - timeA;
                 } else {
+                    var itemARating = itemA.store_rating;
+                    if (itemA.store_download_count < 100) {
+                        itemARating -= 1;
+                    } else if (itemA.store_download_count < 1000) {
+                        itemARating -= .5;
+                    }
+
+                    var itemBRating = itemB.store_rating;
+                    if (itemB.store_download_count < 100) {
+                        itemBRating -= 1;
+                    } else if (itemB.store_download_count < 1000) {
+                        itemBRating -= .5;
+                    }
+
                     if (itemA.featured != itemB.featured) {
                         return itemB.featured - itemA.featured;
-                    } else if (itemA.store_rating != itemB.store_rating) {
-                        return itemB.store_rating - itemA.store_rating;
+                    } else if (itemARating != itemBRating) {
+                        return itemBRating - itemARating;
                     } else if (itemA.store_review_count != itemB.store_review_count) {
                         return itemB.store_review_count - itemA.store_review_count;
                     } else {

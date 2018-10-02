@@ -16,6 +16,7 @@ class AddFeaturedApps extends Migration
         Schema::table('flutter_apps', function(Blueprint $table) {
             $table->smallInteger('featured')->default(0);
             $table->integer('store_review_count')->default(0);
+            $table->integer('store_download_count')->default(0);
             $table->float('store_rating', 8, 7)->default(0);
         });
 
@@ -34,6 +35,7 @@ class AddFeaturedApps extends Migration
         Schema::table('flutter_apps', function(Blueprint $table) {
             $table->dropColumn('featured');
             $table->dropColumn('store_review_count');
+            $table->dropColumn('store_download_count');
             $table->dropColumn('store_rating');
         });
 

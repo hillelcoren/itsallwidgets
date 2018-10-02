@@ -51,6 +51,9 @@ class LoadRatings extends Command
             preg_match('/reviewCount" content="(.*?)"/', $listing, $matches);
             $app->store_review_count = $matches[1];
 
+            preg_match('/Installs<.div><span class=".*?"><div><span class=".*?">(.*?)</', $listing, $matches);
+            $app->store_download_count = preg_replace('/[\D]*/', '', $matches[1]);
+
             $this->info($app->title . ' ' . $app->store_review_count . ' ' . $app->store_rating);
 
             $app->save();
