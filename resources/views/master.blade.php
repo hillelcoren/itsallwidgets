@@ -83,10 +83,10 @@
     }
 
     .is-elevated-dark {
-        -moz-filter: drop-shadow(0px 2px 2px #777);
-        -webkit-filter: drop-shadow(0px 2px 2px #777);
-        -o-filter: drop-shadow(0px 2px 2px #777);
-        filter: drop-shadow(0px 2px 2px #777);
+        -moz-filter: drop-shadow(0px 1px 3px #777);
+        -webkit-filter: drop-shadow(0px 1px 3px #777);
+        -o-filter: drop-shadow(0px 1px 3px #777);
+        filter: drop-shadow(0px 1px 3px #777);
     }
 
     .is-hover-elevated:hover {
