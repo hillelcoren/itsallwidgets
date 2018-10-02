@@ -73,11 +73,11 @@ class User extends Authenticatable
     {
         if ($this->id == 1) {
             return 4;
-        } else if ($this->id == 1) {
+        } else if ($this->id == 246) {
             return 3;
         } else if ($this->id == 2) {
             return 2;
-        } else if ($this->id == 1) {
+        } else if ($this->id == 240) {
             return 1;
         }
 
