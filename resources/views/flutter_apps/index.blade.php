@@ -133,18 +133,26 @@ body {
                                 </span>
                                 @{{ app.title }}
                             </p>
-                            <a v-if="app.facebook_url && cards_per_row > 3" v-bind:href="app.facebook_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
-                                <i style="font-size: 20px; color: #888" class="fab fa-facebook"></i>
-                            </a>
-                            <a v-if="app.twitter_url && cards_per_row > 3" v-bind:href="app.twitter_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
-                                <i style="font-size: 20px; color: #888" class="fab fa-twitter"></i>
-                            </a>
-                            <a v-if="app.instagram_url && cards_per_row > 3" v-bind:href="app.instagram_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
-                                <i style="font-size: 20px; color: #888" class="fab fa-instagram"></i>
-                            </a>
-                            <a v-if="app.repo_url" v-bind:href="app.repo_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
-                                <i style="font-size: 20px; color: #888" class="fab fa-github"></i>
-                            </a>
+                            <span v-if="app.facebook_url && cards_per_row > 3" class="icon-bug-fix">
+                                <a v-bind:href="app.facebook_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
+                                    <i style="font-size: 20px; color: #888" class="fab fa-facebook"></i>
+                                </a>
+                            </span>
+                            <span v-if="app.twitter_url && cards_per_row > 3">
+                                <a v-bind:href="app.twitter_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
+                                    <i style="font-size: 20px; color: #888" class="fab fa-twitter"></i>
+                                </a>
+                            </span>
+                            <span v-if="app.instagram_url && cards_per_row > 3" class="icon-bug-fix">
+                                <a v-bind:href="app.instagram_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
+                                    <i style="font-size: 20px; color: #888" class="fab fa-instagram"></i>
+                                </a>
+                            </span>
+                            <span v-if="app.repo_url">
+                                <a v-bind:href="app.repo_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
+                                    <i style="font-size: 20px; color: #888" class="fab fa-github"></i>
+                                </a>
+                            </span>
                         </header>
 
                         <div class="card-content">
