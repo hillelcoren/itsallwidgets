@@ -22,6 +22,7 @@ class AppSubmitted extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+                    ->subject('New app: ' . $this->app->title)
                     ->greeting('Hello!')
                     ->line('A new app has been submitted!')
                     ->action('View App', $this->app->url());
