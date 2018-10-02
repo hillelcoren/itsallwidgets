@@ -77,7 +77,8 @@ body {
             <div class="container">
                 <div class="field is-grouped is-grouped-multiline is-vertical-center">
                     <p class="control is-expanded has-icons-left">
-                        <input v-model="search" class="input is-medium" type="text" v-bind:placeholder="'Search ' + filteredApps.length + ' apps and counting...'" autofocus="true" style="margin-top: 10px" v-bind:style="{ backgroundColor: searchBackgroundColor()}">
+                        <input v-model="search" class="input is-medium" type="text" v-bind:placeholder="'Search ' + unpaginatedFilteredApps.length + ' apps and counting...'"
+                            autofocus="true" style="margin-top: 10px" v-bind:style="{ backgroundColor: searchBackgroundColor()}">
                         <span class="icon is-small is-left" style="margin-top: 10px">
                             <i class="fas fa-search"></i>
                         </span>
@@ -537,7 +538,8 @@ var app = new Vue({
             }
         },
 
-        filteredApps() {
+        unpaginatedFilteredApps() {
+
             var apps = this.apps;
             var search = this.search.toLowerCase().trim();
             var filter_open_source = this.filter_open_source;
@@ -604,6 +606,13 @@ var app = new Vue({
                     }
                 }
             });
+
+            return apps;
+        },
+
+        filteredApps() {
+
+            apps = this.unpaginatedFilteredApps;
 
             var startIndex = (this.page_number - 1) * 100;
             var endIndex = startIndex + 100;
