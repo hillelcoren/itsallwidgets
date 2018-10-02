@@ -56,8 +56,8 @@
 					</div>
 
 					<div class="field">
-						<label class="label" for="screenshot">
-							Screenshot [.png | 1080px by 1920px] <span class="required">*</span>
+						<label class="label" for="screenshot">							
+							PNG Screenshot • 1080px by 1920px <span class="required">*</span>
 						</label>
 						<div class="control">
 
@@ -108,6 +108,7 @@
 			</article>
 
 			<p>&nbsp;</p>
+			<p>&nbsp;</p>
 
 			<div class="subtitle">Optional Images</div>
 
@@ -116,7 +117,7 @@
 
 					<div class="field">
 						<label class="label" for="gif">
-							GIF [1080px by 1920px]
+							GIF Video • 1080px by 1920px
 						</label>
 						<div class="control">
 
@@ -133,7 +134,7 @@
 
 					<div class="field">
 						<label class="label" for="screenshot_1">
-							Screenshot [.png | 1080px by 1920px]
+							PNG Screenshot • 1080px by 1920px
 						</label>
 						<div class="control">
 
@@ -149,7 +150,7 @@
 
 					<div class="field">
 						<label class="label" for="screenshot_2">
-							Screenshot [.png | 1080px by 1920px]
+							PNG Screenshot • 1080px by 1920px
 						</label>
 						<div class="control">
 
@@ -165,7 +166,7 @@
 
 					<div class="field">
 						<label class="label" for="screenshot_3">
-							Screenshot [.png | 1080px by 1920px]
+							PNG Screenshot • 1080px by 1920px
 						</label>
 						<div class="control">
 
@@ -184,8 +185,11 @@
 			</article>
 
 			<p>&nbsp;</p>
+			<p>&nbsp;</p>
 
 			<div class="subtitle">Optional Links</div>
+
+			<div class="subtitle is-6">If a Twitter link is set we'll include your handle in the promotional tweet</div>
 
 			<article class="message is-elevated">
 				<div class="message-body">
