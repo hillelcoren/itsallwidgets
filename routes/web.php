@@ -20,9 +20,6 @@ Route::get('/', 'FlutterAppController@index');
 Route::get('about', 'HomeController@about');
 Route::get('sitemap.xml', 'FlutterAppController@sitemap');
 
-Route::get('google', function () {
-    return view('google');
-});
 Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle');
 Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');
 
