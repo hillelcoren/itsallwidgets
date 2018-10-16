@@ -83,10 +83,10 @@
     }
 
     .is-elevated-dark {
-        -moz-filter: drop-shadow(0px 1px 3px #777);
-        -webkit-filter: drop-shadow(0px 1px 3px #777);
-        -o-filter: drop-shadow(0px 1px 3px #777);
-        filter: drop-shadow(0px 1px 3px #777);
+        -moz-filter: drop-shadow(0px 1px 2px #777);
+        -webkit-filter: drop-shadow(0px 1px 2px #777);
+        -o-filter: drop-shadow(0px 1px 2px #777);
+        filter: drop-shadow(0px 1px 2px #777);
     }
 
     .is-hover-elevated:hover {
@@ -230,52 +230,24 @@
                                     <i class="fas fa-info-circle"></i> &nbsp; About
                                 </a>
 
-                                <a class="navbar-item" href="{{ url('feed') }}" target="_blank">
-                                    <i class="fas fa-rss"></i> &nbsp; RSS
-                                </a>
-
-                                <a class="navbar-item" href="https://github.com/hillelcoren/itsallwidgets" target="_blank">
-                                    <i class="fab fa-github"></i> &nbsp; GitHub
+                                <a class="navbar-item" href="https://twitter.com/itsallwidgets" target="_blank">
+                                    <i class="fab fa-twitter"></i> &nbsp; Twitter
                                 </a>
 
                                 @if (auth()->check())
                                     <a class="navbar-item" href="{{ url('logout') }}">
-                                        <span class="icon">
-                                            <i class="fas fa-user-alt"></i>
-                                        </span> &nbsp;
-                                        <span>Log Out</span>
+                                        <i class="fas fa-user-alt"></i> &nbsp; Logout
+                                    </a>
+                                @else
+                                    <a class="navbar-item" href="{{ url(auth()->check() ? 'submit' : 'auth/google') }}">
+                                        <i class="fas fa-bell"></i> &nbsp; Monthly Stats
                                     </a>
                                 @endif
 
-                                <div class="navbar-item">
-                                    &nbsp;
-                                </div>
-
-                                <a class="button is-elevated-dark" style="color:white; background-color:#366cb6; border-color:#366cb6"
-                                    href="https://twitter.com/itsallwidgets" target="_blank">
-                                    <span class="icon">
-                                        <i class="fab fa-twitter"></i>
-                                    </span> &nbsp;
-                                    <span>Twitter Feed</span>
-                                </a> &nbsp;&nbsp;
-
-                                @if (! auth()->check())
-                                    <a class="button is-elevated-dark" style="color:white; background-color:#54b5eb; border-color:#54b5eb"
-                                    href="{{ url(auth()->check() ? 'submit' : 'auth/google') }}">
-                                        <span class="icon">
-                                            <i class="fas fa-bell"></i>
-                                        </span> &nbsp;
-                                        <span>Monthly Stats</span>
-                                    </a> &nbsp;&nbsp;
-                                @endif
-
-                                <a class="button is-elevated-dark" style="color:white; background-color:#5e60af; border-color:#5e60af"
-                                    href="{{ url(auth()->check() ? 'submit' : 'auth/google') }}">
-                                    <span class="icon">
-                                        <i class="fas fa-upload"></i>
-                                    </span> &nbsp;
-                                    <span>Submit App</span>
+                                <a class="navbar-item" href="https://flutter.io/showcase/" target="_blank">
+                                    <i class="fas fa-globe"></i> &nbsp; Showcase
                                 </a>
+
                             </span>
                         </div>
                     </div>
@@ -291,6 +263,14 @@
                 <div class="subtitle">
                     Feel free to add an app in progress and update it when it goes live
                 </div>
+                <a class="button is-elevated-dark" style="color:white; background-color:#5e60af; border-color:#5e60af; padding: 22px 32px 20px 32px"
+                    href="{{ url(auth()->check() ? 'submit' : 'auth/google?intended_url=submit') }}">
+                    <span class="icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </span> &nbsp;
+                    <span>SUBMIT APP</span>
+                </a>
+
             </div>
         </div>
     </section>

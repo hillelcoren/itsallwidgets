@@ -18,7 +18,7 @@ class GoogleController extends Controller
      */
     public function redirectToGoogle()
     {
-        session(['intended_url' => url()->previous()]);
+        session(['intended_url' => request()->intended_url]);
 
         return Socialite::driver('google')->redirect();
     }
@@ -42,13 +42,9 @@ class GoogleController extends Controller
             $createdUser = $userModel->addNew($create);
             Auth::loginUsingId($createdUser->id);
 
-            if ($createdUser->wasRecentlyCreated) {
-                return redirect('submit')->with('status', 'Thanks for signing up!');
-            } else {
-                $route = session('intended_url', '/');
+            $route = session()->pull('intended_url', '/submit');
 
-                return redirect($route)->with('status', 'Your are now signed in!');
-            }
+            return redirect($route)->with('status', 'Your are now signed in!');
 
         } catch (Exception $e) {
 
