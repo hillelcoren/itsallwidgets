@@ -264,10 +264,10 @@
                 <div class="subtitle" style="font-weight:200; font-size:18px;">
                     MADE WITH &nbsp;<i class="fas fa-heart" style="font-size:16px"></i>&nbsp; BY THE <a href="https://medium.com/flutter-community" target="_blank">FLUTTER COMMUNITY</a>
                 </div>
-                <div class="title" style="font-size:38px; padding-top:10px;">
+                <div class="title" style="font-size:38px; padding-top:8px;">
                     An open list of apps built with Flutter
                 </div>
-                <div class="subtitle" style="font-size:18px">
+                <div class="subtitle" style="font-size:18px; padding-bottom:6px;">
                     Feel free to add an app in progress and update it when it goes live
                 </div>
                 <a class="button is-elevated-dark" style="color:white; background-color:#5e60af; border-color:#5e60af; padding: 20px 32px 18px 32px"
