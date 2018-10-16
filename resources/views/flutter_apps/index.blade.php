@@ -53,7 +53,7 @@ body {
 
 .flutter-app {
     background-color: white;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 @media screen and (max-width: 769px) {
@@ -128,12 +128,11 @@ body {
             style="height:400px; text-align:center; font-size: 32px; color: #AAA">
             No apps found
         </div>
-        <div class="columns is-multiline is-4 is-variable">
+        <div class="columns is-multiline is-6 is-variable">
             <div v-for="app in filteredApps" class="column" v-bind:class="columnClass">
                 <div v-on:click="selectApp(app)" v-on:mouseover="onMouseOver(app)" v-on:mouseout="onMouseOut(app)" style="cursor:pointer">
                     <div class="flutter-app is-hover-elevated" v-bind:class="[app.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} ? 'is-owned' : '']">
-                        <header class="card-headerx"
-                            style="padding: 20px">
+                        <header style="padding: 20px">
                             <p class="no-wrap" v-bind:title="app.title" style="font-size:22px; padding-bottom:10px">
                                 <span v-if="app.featured > 0">
                                     <i style="font-size: 18px" class="fas fa-star"></i> &nbsp;
