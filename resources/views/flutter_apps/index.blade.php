@@ -51,6 +51,11 @@ body {
     background-color: #FFFFAA;
 }
 
+.flutter-app {
+    background-color: white;
+    border-radius: 10px;
+}
+
 @media screen and (max-width: 769px) {
     .slider-control {
         display: none;
@@ -126,14 +131,18 @@ body {
         <div class="columns is-multiline is-4 is-variable">
             <div v-for="app in filteredApps" class="column" v-bind:class="columnClass">
                 <div v-on:click="selectApp(app)" v-on:mouseover="onMouseOver(app)" v-on:mouseout="onMouseOut(app)" style="cursor:pointer">
-                    <div class="card is-hover-elevated">
-                        <header class="card-header" v-bind:class="[app.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} ? 'is-owned' : '']">
-                            <p class="card-header-title is-2 no-wrap" v-bind:title="app.title">
+                    <div class="flutter-app is-hover-elevated" v-bind:class="[app.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} ? 'is-owned' : '']">
+                        <header class="card-headerx"
+                            style="padding: 20px">
+                            <p class="no-wrap" v-bind:title="app.title" style="font-size:22px; padding-bottom:10px">
                                 <span v-if="app.featured > 0">
                                     <i style="font-size: 18px" class="fas fa-star"></i> &nbsp;
                                 </span>
                                 @{{ app.title }}
                             </p>
+                            <div style="border-bottom: 2px #52b6ec solid; width: 50px"/>
+
+                            <!--
                             <span v-if="app.facebook_url && cards_per_row > 3" class="icon-bug-fix">
                                 <a v-bind:href="app.facebook_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
                                     <i style="font-size: 20px; color: #888" class="fab fa-facebook"></i>
@@ -154,36 +163,39 @@ body {
                                     <i style="font-size: 20px; color: #888" class="fab fa-github"></i>
                                 </a>
                             </span>
+                            -->
                         </header>
 
-                        <div class="card-content">
-                            <div class="content">
-                                <div class="subtitle is-6 short-description" v-bind:title="app.short_description">
-                                    @{{ app.short_description }}
-                                </div>
-                                <div class="columns is-1 is-variable is-mobile">
-                                    <div class="column is-one-half">
-                                        <a v-bind:href="app.google_url" v-if="app.google_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
-                                            <div class="card-image is-slightly-elevated">
-                                                <img src="{{ asset('images/google.png') }}"/>
-                                            </div>
-                                        </a>
-                                        <div v-if="! app.google_url" class="card-image is-slightly-elevated">
-                                            <img src="{{ asset('images/google.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
+                        <div class="content" style="padding-left:20px; padding-right:20px; ">
+                            <div class="short-description" v-bind:title="app.short_description">
+                                @{{ app.short_description }}
+                            </div>
+
+                            <!--
+                            <div class="columns is-1 is-variable is-mobile">
+                                <div class="column is-one-half">
+                                    <a v-bind:href="app.google_url" v-if="app.google_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                        <div class="card-image is-slightly-elevated">
+                                            <img src="{{ asset('images/google.png') }}"/>
                                         </div>
+                                    </a>
+                                    <div v-if="! app.google_url" class="card-image is-slightly-elevated">
+                                        <img src="{{ asset('images/google.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
                                     </div>
-                                    <div class="column is-one-half">
-                                        <a v-bind:href="app.apple_url" v-if="app.apple_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
-                                            <div class="card-image is-slightly-elevated">
-                                                <img src="{{ asset('images/apple.png') }}"/>
-                                            </div>
-                                        </a>
-                                        <div v-if="! app.apple_url" class="card-image is-slightly-elevated">
-                                            <img src="{{ asset('images/apple.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
+                                </div>
+                                <div class="column is-one-half">
+                                    <a v-bind:href="app.apple_url" v-if="app.apple_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                        <div class="card-image is-slightly-elevated">
+                                            <img src="{{ asset('images/apple.png') }}"/>
                                         </div>
+                                    </a>
+                                    <div v-if="! app.apple_url" class="card-image is-slightly-elevated">
+                                        <img src="{{ asset('images/apple.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
                                     </div>
                                 </div>
                             </div>
+
+                            -->
                         </div>
 
                         <div class="card-image" style="line-height:0px">
