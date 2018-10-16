@@ -136,6 +136,10 @@
         visibility: hidden;
     }
 
+    .hero-body .subtitle a:hover {
+        border-bottom: 1px white dashed;
+    }
+
     </style>
 
     <script>

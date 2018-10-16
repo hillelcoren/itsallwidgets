@@ -42,7 +42,7 @@ class GoogleController extends Controller
             $createdUser = $userModel->addNew($create);
             Auth::loginUsingId($createdUser->id);
 
-            $route = session()->pull('intended_url', '/submit');
+            $route = session()->pull('intended_url', 'submit');
 
             return redirect($route)->with('status', 'Your are now signed in!');
 
