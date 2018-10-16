@@ -77,7 +77,7 @@ body {
             <div class="container">
                 <div class="field is-grouped is-grouped-multiline is-vertical-center">
                     <p class="control is-expanded has-icons-left">
-                        <input v-model="search" class="input is-medium" type="text" placeholder="Search" BAK-v-bind:placeholder="'Search ' + unpaginatedFilteredApps.length + ' apps and counting.."
+                        <input v-model="search" class="input" type="text" placeholder="SEARCH" BAK-v-bind:placeholder="'Search ' + unpaginatedFilteredApps.length + ' apps and counting.."
                             autofocus="true" style="margin-top: 10px" v-bind:style="{ backgroundColor: searchBackgroundColor()}">
                         <span class="icon is-small is-left" style="margin-top: 10px">
                             <i class="fas fa-search"></i>
@@ -85,30 +85,30 @@ body {
                         <div class="is-medium" v-on:click="toggleOpenSource()" style="padding-left: 26px;">
                             <input type="checkbox" name="openSourceSwitch"
                             class="switch is-info is-medium" v-model="filter_open_source">
-                            <label for="openSourceSwitch" style="padding-top:6px">Open Source &nbsp;</label>
+                            <label for="openSourceSwitch" style="padding-top:6px; font-size: 16px">OPEN SOURCE &nbsp;</label>
                         </div>
                         <div class="is-medium is-hidden-mobile" v-on:click="toggleGifs()" style="padding-left: 26px;">
                             <input type="checkbox" name="gifsSwitch"
                             class="switch is-info is-medium" v-model="filter_gifs">
-                            <label for="gifsSwitch" style="padding-top:6px">
+                            <label for="gifsSwitch" style="padding-top:6px; font-size: 16px">
                                 GIF &nbsp;
                             </label>
                         </div>
                         <div class="is-medium filter-label slider-control">
-                            <label class="label is-medium" style="font-weight: normal;">Zoom</label>
+                            <label class="label is-medium" style="font-weight: normal; font-size: 16px">ZOOM</label>
                         </div>
                         <div class="is-medium filter-control slider-control">
                             <input class="slider is-fullwidth is-medium is-info"
                             step="1" min="2" max="6" type="range" v-model="cards_per_row">
                         </div>
                         <div class="is-medium filter-label">
-                            <label class="label is-medium" style="font-weight: normal;">Sort</label>
+                            <label class="label is-medium" style="font-weight: normal; font-size: 16px">SORT</label>
                         </div>
-                        <div class="select is-medium filter-control">
+                        <div class="select is-medium filter-control" style="font-size: 16px">
                             <select v-model="sort_by">
-                                <option value="sort_featured">Featured</option>
-                                <option value="sort_newest">Newest</option>
-                                <option value="sort_oldest">Oldest</option>
+                                <option value="sort_featured">FEATURED</option>
+                                <option value="sort_newest">NEWEST</option>
+                                <option value="sort_oldest">OLDEST</option>
                             </select>
                         </div>
                     </p>
