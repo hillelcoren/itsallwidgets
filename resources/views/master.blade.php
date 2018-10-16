@@ -45,7 +45,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <link rel="shortcut icon" href="{{ asset('/images/favicon.png') }}">
 
-    <link href="https://fonts.googleapis.com/css?family=Overpass" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Overpass:200,400" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/bulma.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bulma-extensions.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
@@ -226,6 +226,10 @@
                         <div class="navbar-end">
                             <span class="navbar-item has-text-centered">
 
+                                <a class="navbar-item" href="https://flutter.io/showcase/" target="_blank">
+                                    <i class="fas fa-globe"></i> &nbsp; Showcase
+                                </a>
+
                                 <a class="navbar-item" href="{{ url('about') }}">
                                     <i class="fas fa-info-circle"></i> &nbsp; About
                                 </a>
@@ -244,10 +248,6 @@
                                     </a>
                                 @endif
 
-                                <a class="navbar-item" href="https://flutter.io/showcase/" target="_blank">
-                                    <i class="fas fa-globe"></i> &nbsp; Showcase
-                                </a>
-
                             </span>
                         </div>
                     </div>
@@ -257,13 +257,16 @@
 
         <div class="hero-body" style="padding-top:34px">
             <div class="container has-text-centered">
-                <div class="title">
-                    An open list of apps built with Google Flutter
+                <div class="subtitle" style="font-weight:200; font-size:18px;">
+                    MADE WITH &nbsp;<i class="fas fa-heart" style="font-size:16px"></i>&nbsp; BY THE <a href="https://medium.com/flutter-community" target="_blank">FLUTTER COMMUNITY</a>
                 </div>
-                <div class="subtitle">
+                <div class="title" style="font-size:38px; padding-top:10px;">
+                    An open list of apps built with Flutter
+                </div>
+                <div class="subtitle" style="font-size:18px">
                     Feel free to add an app in progress and update it when it goes live
                 </div>
-                <a class="button is-elevated-dark" style="color:white; background-color:#5e60af; border-color:#5e60af; padding: 22px 32px 20px 32px"
+                <a class="button is-elevated-dark" style="color:white; background-color:#5e60af; border-color:#5e60af; padding: 20px 32px 18px 32px"
                     href="{{ url(auth()->check() ? 'submit' : 'auth/google?intended_url=submit') }}">
                     <span class="icon">
                         <i class="fas fa-cloud-upload-alt"></i>
@@ -316,9 +319,6 @@
 
     <footer class="footer is-body-font">
         <div class="content has-text-centered">
-            <p>
-                Made with &nbsp;<i style="color:red" class="fas fa-heart"></i>&nbsp; by the <a href="https://medium.com/flutter-community" target="_blank">Flutter Community</a>
-            </p>
             <p>
                 Thank you to the <a href="https://flutter.io/" target="_blank">Flutter</a> and <a href="https://www.dartlang.org/" target="_blank">Dart</a> teams for this amazing platform!
             </p>
