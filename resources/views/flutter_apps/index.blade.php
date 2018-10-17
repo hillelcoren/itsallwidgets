@@ -251,9 +251,7 @@ body {
     <div class="modal-background" v-on:click="selectApp()"></div>
     <div class="modal-card is-body-font">
         <header class="modal-card-head">
-            <p class="modal-card-title">
-                @{{ selected_app.title }}
-            </p>
+            <p class="modal-card-title"></p>
             <button class="delete" aria-label="close" v-on:click="selectApp()"></button>
         </header>
         <section class="modal-card-body" @click.stop>
@@ -285,6 +283,12 @@ body {
                     @endif
 
                     <div class="content">
+                        <div style="font-size:24px; padding-bottom:10px;">
+                            @{{ selected_app.title }}
+                        </div>
+
+                        <div style="border-bottom: 2px #259bee solid; width: 50px;"></div><br/>
+
                         <div class="subtitle">
                             @{{ selected_app.short_description }}
                         </div>
