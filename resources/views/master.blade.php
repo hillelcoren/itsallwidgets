@@ -140,6 +140,41 @@
         border-bottom: 1px white dashed;
     }
 
+
+    /* https://stackoverflow.com/a/22603610/497368 */
+    .strike {
+        display: block;
+        text-align: center;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .strike > span {
+        position: relative;
+        display: inline-block;
+    }
+
+    .strike > span:before,
+    .strike > span:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 160px;
+        height: 1px;
+        background: #CCCCCC;
+    }
+
+    .strike > span:before {
+        right: 100%;
+        margin-right: 15px;
+    }
+
+    .strike > span:after {
+        left: 100%;
+        margin-left: 15px;
+    }
+
+
     </style>
 
     <script>
@@ -323,15 +358,58 @@
 
     <footer class="footer is-body-font">
         <div class="content has-text-centered">
+            <img src="{{ asset('images/thank_you.png') }}" width="330"/>
+
             <p>
-                Thank you to the <a href="https://flutter.io/" target="_blank">Flutter</a> and <a href="https://www.dartlang.org/" target="_blank">Dart</a> teams for this amazing platform!
+                <div style="font-size:16px; letter-spacing:2px; padding-bottom:6px; ">
+                    TO THE <a href="https://flutter.io/" target="_blank">FLUTTER</a> & <a href="https://www.dartlang.org/" target="_blank">DART</a> TEAMS
+                </div>
+                for this amazing platform!
             </p>
+
+            <p style="padding-top:10px;">
+                <div class="strike">
+                   <span>FROM</span>
+                </div>
             <p>
-                <a href="https://twitter.com/hillelcoren" target="_blank">@hillelcoren</a> •
-                <a href="https://twitter.com/ThomasBurkhartB" target="_blank">@ThomasBurkhartB</a> •
-                <a href="https://twitter.com/devangelslondon" target="_blank">@devangelslondon</a> •
-                <a href="https://twitter.com/scottstoll2017" target="_blank">@scottstoll2017</a>
-            </p>
+
+            <div class="columns is-gapless is-centered">
+                <div class="column is-offset-4 is-1">
+                    <a href="https://twitter.com/hillelcoren" target="_blank">
+                        <img src="{{ asset('images/img_hillel.png') }}" width="72"/><br/>
+                        <span style="font-size:15px">@hillelcoren<span>
+                    </a>
+                </div>
+                <div class="column is-1">
+                    <a href="https://twitter.com/ThomasBurkhartB" target="_blank">
+                        <img src="{{ asset('images/img_thomas.png') }}" width="72"/><br/>
+                        <span style="font-size:15px">@ThomasBurkhartB<span>
+                    </a>
+                </div>
+                <div class="column is-1">
+                    <a href="https://twitter.com/devangelslondon" target="_blank">
+                        <img src="{{ asset('images/img_simon.png') }}" width="72"/><br/>
+                        <span style="font-size:15px">@devangelslondon<span>
+                    </a>
+                </div>
+                <div class="column is-1">
+                    <a href="https://twitter.com/scottstoll2017" target="_blank">
+                        <img src="{{ asset('images/img_scott.png') }}" width="72"/><br/>
+                        <span style="font-size:15px">@scottstoll2017<span>
+                    </a>
+                </div>
+            </div>
+
+            <br/>
+
+            <a class="button is-elevated-dark" style="color:white; background-color:#5e60af; border-color:#5e60af; padding: 20px 32px 18px 32px"
+                href="{{ url(auth()->check() ? 'submit' : 'auth/google?intended_url=submit') }}">
+                <span class="icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </span> &nbsp;
+                <span>SUBMIT APP</span>
+            </a>
+
         </div>
     </footer>
 
