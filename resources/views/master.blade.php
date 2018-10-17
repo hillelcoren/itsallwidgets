@@ -148,13 +148,6 @@
         word-break: break-all;
     }
 
-    @media screen and (max-width: 1600px) {
-        .footer .column a span {
-            display: none;
-        }
-    }
-
-
     /* https://stackoverflow.com/a/22603610/497368 */
     .strike {
         display: block;
