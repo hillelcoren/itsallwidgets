@@ -313,12 +313,16 @@ body {
                         </div>
 
                         <div class="content" v-if="selected_app.website_url || selected_app.repo_url">
-                            <a v-if="selected_app.website_url" v-bind:href="selected_app.website_url" target="_blank" rel="nofollow">
-                                @{{ selected_app.website_url }}
-                            </a></br>
-                            <a v-if="selected_app.repo_url" v-bind:href="selected_app.repo_url" target="_blank" rel="nofollow">
-                                @{{ selected_app.repo_url }}
-                            </a><br/>
+                            <div>
+                                <a v-if="selected_app.website_url" v-bind:href="selected_app.website_url" target="_blank" rel="nofollow">
+                                    @{{ selected_app.website_url }}
+                                </a>
+                            </div>
+                            <div>
+                                <a v-if="selected_app.repo_url" v-bind:href="selected_app.repo_url" target="_blank" rel="nofollow">
+                                    @{{ selected_app.repo_url }}
+                                </a>
+                            </div>
                         </div>
 
                         <div class="content">
