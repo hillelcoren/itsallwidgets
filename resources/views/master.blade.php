@@ -140,6 +140,20 @@
         border-bottom: 1px white dashed;
     }
 
+    .footer .column a div {
+        font-size: 15px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        word-break: break-all;
+    }
+
+    @media screen and (max-width: 1600px) {
+        .footer .column a span {
+            display: none;
+        }
+    }
+
 
     /* https://stackoverflow.com/a/22603610/497368 */
     .strike {
@@ -377,25 +391,25 @@
                 <div class="column is-offset-4 is-1">
                     <a href="https://twitter.com/hillelcoren" target="_blank">
                         <img src="{{ asset('images/img_hillel.png') }}" width="72"/><br/>
-                        <span style="font-size:15px">@hillelcoren<span>
+                        <div>@hillelcoren</div>
                     </a>
                 </div><br/>
                 <div class="column is-1">
                     <a href="https://twitter.com/ThomasBurkhartB" target="_blank">
                         <img src="{{ asset('images/img_thomas.png') }}" width="72"/><br/>
-                        <span style="font-size:15px">@ThomasBurkhartB<span>
+                        <div>@ThomasBurkhartB</div>
                     </a>
                 </div><br/>
                 <div class="column is-1">
                     <a href="https://twitter.com/devangelslondon" target="_blank">
                         <img src="{{ asset('images/img_simon.png') }}" width="72"/><br/>
-                        <span style="font-size:15px">@devangelslondon<span>
+                        <div>@devangelslondon</div>
                     </a>
                 </div><br/>
                 <div class="column is-1">
                     <a href="https://twitter.com/scottstoll2017" target="_blank">
                         <img src="{{ asset('images/img_scott.png') }}" width="72"/><br/>
-                        <span style="font-size:15px">@scottstoll2017<span>
+                        <div>@scottstoll2017</div>
                     </a>
                 </div><br/>
             </div>
