@@ -26,22 +26,7 @@
 
     </script>
 
-    <!--
-    <section class="hero is-light is-small is-body-font">
-        <div class="hero-body">
-            <div class="container">
-                <div class="title">
-                    About Us
-                </div>
-                <div class="subtitle">
-                    Our mission is to provide value to Flutter and Dart developers
-                </div>
-            </div>
-        </div>
-    </section><br/>
-    -->
-
-    <section class="section is-body-font has-text-centered">
+    <section class="header section is-body-font has-text-centered">
         <div style="color:#259bee; font-weight:600; letter-spacing: 2px;">
             ABOUT US
         </div>
@@ -70,10 +55,10 @@
                     <i class="fas fa-bell" style="font-size:50px"></i>
                 </div><br/>
                 <div class="column is-four-fifths">
-                    <div class="title is-4">
+                    <div class="subtitle is-4" style="font-weight:600">
                         Learn about new apps
                     </div>
-                    <div class="block is-size-4">
+                    <div class="block is-size-5">
                         The Flutter community continues to grow at an exponential rate, the site provides a place to learn about new apps being developed and released.
                     </div><br/>
                 </div>
@@ -84,10 +69,10 @@
                     <i class="fas fa-user-circle" style="font-size:50px"></i>
                 </div><br/>
                 <div class="column is-four-fifths">
-                    <div class="title is-4">
+                    <div class="subtitle is-4" style="font-weight:600">
                         Create a free profile page
                     </div>
-                    <div class="block is-size-4">
+                    <div class="block is-size-5">
                         If you submit your app we'll provide you with a permalink for your custom page. It has links to both app stores, is optimized for social sharing and can be updated at any time.
                     </div><br/>
                 </div>
@@ -98,10 +83,10 @@
                     <i class="fas fa-image" style="font-size:50px"></i>
                 </div><br/>
                 <div class="column is-four-fifths">
-                    <div class="title is-4">
+                    <div class="subtitle is-4" style="font-weight:600">
                         Validate your screenshot
                     </div>
-                    <div class="block is-size-4">
+                    <div class="block is-size-5">
                         One of the first things we noticed after launching was that some screenshots would have a faint yellow error border. The site automatically checks the screenshot and warns you if it's found.
                     </div><br/>
                 </div>
@@ -112,10 +97,10 @@
                     <i class="fas fa-bullhorn" style="font-size:50px"></i>
                 </div><br/>
                 <div class="column is-four-fifths">
-                    <div class="title is-4">
+                    <div class="subtitle is-4" style="font-weight:600">
                         Promote your application
                     </div>
-                    <div class="block is-size-4">
+                    <div class="block is-size-5">
                         On submission we'll automatically tweet your app to our <a href="https://twitter.com/itsallwidgets" target="_blank">Twitter account</a> notifying all of our followers. If you set a Twitter link in the profile we'll include your handle in the tweet.
                     </div><br/>
                 </div>
@@ -127,10 +112,10 @@
                     <i class="fas fa-chart-line" style="font-size:50px"></i>
                 </div><br/>
                 <div class="column is-four-fifths">
-                    <div class="title is-4">
+                    <div class="subtitle is-4" style="font-weight:600">
                         Provide monthly metrics
                     </div>
-                    <div class="block is-size-4">
+                    <div class="block is-size-5">
                         Once we've accumulated enough data to generate meaningful insights we plan to share the results in a monthly email.
                         @if (! auth()->check())
                             <a href="{{ url('auth/google') }}">Click here</a> to subscribe.
