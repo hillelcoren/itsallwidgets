@@ -181,6 +181,9 @@
         margin-left: 15px;
     }
 
+    .hero-body {
+         padding: 5rem 1.5rem 5rem 1.5rem;
+    }
 
     </style>
 

@@ -68,6 +68,15 @@ body {
     color: #259bee;
 }
 
+.columns.is-variable.is-6 {
+    --columnGap: 2rem;
+}
+
+.column {
+    padding: 1rem 1rem 6rem 1rem;
+}
+
+
 
 @media screen and (max-width: 788px) {
     .slider-control {
