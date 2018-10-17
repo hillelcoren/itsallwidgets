@@ -61,8 +61,13 @@ body {
 }
 
 .flutter-app:hover .is-hover-visible {
-    display: flex;;
+    display: flex;
 }
+
+.flutter-app a {
+    color: #259bee;
+}
+
 
 @media screen and (max-width: 769px) {
     .slider-control {
@@ -142,7 +147,7 @@ body {
                     <div class="flutter-app is-hover-elevated" v-bind:class="[app.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} ? 'is-owned' : '']">
 
 
-                        <div class="is-pulled-right field is-grouped is-grouped-multiline is-vertical-center is-hover-visible" style="padding-top:12px; padding-right:8px;">
+                        <div class="is-pulled-right field is-grouped is-grouped-multiline is-vertical-center is-hover-visible" style="padding-top:6px; padding-right:4px;">
                             <span v-if="app.facebook_url && cards_per_row > 3" class="icon-bug-fix">
                                 <a v-bind:href="app.facebook_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
                                     <i style="font-size: 20px; color: #888" class="fab fa-facebook"></i>
@@ -166,7 +171,7 @@ body {
                         </div>
 
 
-                        <header style="padding: 20px">
+                        <header style="padding: 14px">
 
                             <p class="no-wrap" v-bind:title="app.title" style="font-size:22px; padding-bottom:10px">
                                 <!--
@@ -178,11 +183,11 @@ body {
                                 @{{ app.title }}
 
                             </p>
-                            <div style="border-bottom: 2px #3976db solid; width: 50px"/>
+                            <div style="border-bottom: 2px #259bee solid; width: 50px"/>
 
                         </header>
 
-                        <div class="content" style="padding-left:20px; padding-right:20px; ">
+                        <div class="content" style="padding-left:14px; padding-right:14px; ">
                             <div class="short-description" v-bind:title="app.short_description">
                                 @{{ app.short_description }}
                             </div>
