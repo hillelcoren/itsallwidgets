@@ -26,6 +26,7 @@
 
     </script>
 
+    <!--
     <section class="hero is-light is-small is-body-font">
         <div class="hero-body">
             <div class="container">
@@ -38,6 +39,26 @@
             </div>
         </div>
     </section><br/>
+    -->
+
+    <section class="section is-body-font has-text-centered">
+        <div style="color:#259bee; font-weight:600; letter-spacing: 2px;">
+            ABOUT US
+        </div>
+        <div style="font-size: 26px;">
+            Our mission is to provide value</br>
+            to developers using
+        </div>
+        <div class="is-vertical-center has-text-centered">
+            <a href="https://flutter.io/" target="_blank">
+                <img src="{{ asset('images/flutter.jpg') }}" width="240"/>
+            </a>
+            &nbsp; <span style="font-size:28px; color:#888888">+</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.dartlang.org/" target="_blank">
+                <img src="{{ asset('images/dart.png') }}" width="200"/>
+            </a>
+        </div>
+    </section>
 
     <p>&nbsp;</p>
 
@@ -46,7 +67,7 @@
 
             <div class="columns column-1" style="visibility:hidden">
                 <div class="column has-text-centered">
-                    <i class="fas fa-bell" style="font-size:65px"></i>
+                    <i class="fas fa-bell" style="font-size:50px"></i>
                 </div><br/>
                 <div class="column is-four-fifths">
                     <div class="title is-4">
@@ -60,7 +81,7 @@
 
             <div class="columns column-2" style="visibility:hidden">
                 <div class="column has-text-centered">
-                    <i class="fas fa-user-circle" style="font-size:65px"></i>
+                    <i class="fas fa-user-circle" style="font-size:50px"></i>
                 </div><br/>
                 <div class="column is-four-fifths">
                     <div class="title is-4">
@@ -74,7 +95,7 @@
 
             <div class="columns column-3" style="visibility:hidden">
                 <div class="column has-text-centered">
-                    <i class="fas fa-image" style="font-size:65px"></i>
+                    <i class="fas fa-image" style="font-size:50px"></i>
                 </div><br/>
                 <div class="column is-four-fifths">
                     <div class="title is-4">
@@ -88,7 +109,7 @@
 
             <div class="columns column-4" style="visibility:hidden">
                 <div class="column has-text-centered">
-                    <i class="fas fa-bullhorn" style="font-size:65px"></i>
+                    <i class="fas fa-bullhorn" style="font-size:50px"></i>
                 </div><br/>
                 <div class="column is-four-fifths">
                     <div class="title is-4">
@@ -103,7 +124,7 @@
 
             <div class="columns column-5" style="visibility:hidden">
                 <div class="column has-text-centered">
-                    <i class="fas fa-chart-line" style="font-size:65px"></i>
+                    <i class="fas fa-chart-line" style="font-size:50px"></i>
                 </div><br/>
                 <div class="column is-four-fifths">
                     <div class="title is-4">
