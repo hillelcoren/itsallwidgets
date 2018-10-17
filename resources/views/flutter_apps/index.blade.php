@@ -319,7 +319,6 @@ body {
                             <a v-if="selected_app.repo_url" v-bind:href="selected_app.repo_url" target="_blank" rel="nofollow">
                                 @{{ selected_app.repo_url }}
                             </a><br/>
-                            <br/>
                         </div>
 
                         <div class="content">
