@@ -69,21 +69,26 @@ body {
 }
 
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 788px) {
     .slider-control {
         display: none;
     }
+}
 
+@media screen and (max-width: 769px) {
     .store-buttons img {
         max-width: 200px;
     }
 
+
+    /*
     .is-hover-elevated {
         -moz-filter: drop-shadow(0px 16px 16px #CCC);
         -webkit-filter: drop-shadow(0px 16px 16px #CCC);
         -o-filter: drop-shadow(0px 16px 16px #CCC);
         filter: drop-shadow(0px 16px 16px #CCC);
     }
+    */
 }
 
 </style>
