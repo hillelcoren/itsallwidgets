@@ -123,7 +123,7 @@ body {
                             <label class="label is-medium" style="font-weight: normal; font-size: 16px">SORT</label>
                         </div>
                         <div class="select is-medium filter-control" style="font-size: 16px">
-                            <select v-model="sort_by">
+                            <select v-model="sort_by" onchange="$(this).blur()">
                                 <option value="sort_featured">FEATURED</option>
                                 <option value="sort_newest">NEWEST</option>
                                 <option value="sort_oldest">OLDEST</option>
