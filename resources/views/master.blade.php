@@ -45,7 +45,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <link rel="shortcut icon" href="{{ asset('/images/favicon.png') }}">
 
-    <link href="https://fonts.googleapis.com/css?family=Overpass:200,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Overpass:200,400,600" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/bulma.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bulma-extensions.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
@@ -159,9 +159,9 @@
         content: "";
         position: absolute;
         top: 50%;
-        width: 160px;
+        width: 230px;
         height: 1px;
-        background: #CCCCCC;
+        background: #dddddd;
     }
 
     .strike > span:before {
@@ -361,46 +361,46 @@
             <img src="{{ asset('images/thank_you.png') }}" width="330"/>
 
             <p>
-                <div style="font-size:16px; letter-spacing:2px; padding-bottom:6px; ">
+                <div style="font-size:16px; letter-spacing:2px; padding-bottom:6px; font-weight:600">
                     TO THE <a href="https://flutter.io/" target="_blank">FLUTTER</a> & <a href="https://www.dartlang.org/" target="_blank">DART</a> TEAMS
                 </div>
                 for this amazing platform!
             </p>
 
-            <p style="padding-top:10px;">
+            <p style="padding-top:16px;">
                 <div class="strike">
                    <span>FROM</span>
                 </div>
             <p>
 
-            <div class="columns is-gapless is-centered">
+            <div class="columns is-gapless is-centered" style="padding-top:12px;">
                 <div class="column is-offset-4 is-1">
                     <a href="https://twitter.com/hillelcoren" target="_blank">
                         <img src="{{ asset('images/img_hillel.png') }}" width="72"/><br/>
                         <span style="font-size:15px">@hillelcoren<span>
                     </a>
-                </div>
+                </div><br/>
                 <div class="column is-1">
                     <a href="https://twitter.com/ThomasBurkhartB" target="_blank">
                         <img src="{{ asset('images/img_thomas.png') }}" width="72"/><br/>
                         <span style="font-size:15px">@ThomasBurkhartB<span>
                     </a>
-                </div>
+                </div><br/>
                 <div class="column is-1">
                     <a href="https://twitter.com/devangelslondon" target="_blank">
                         <img src="{{ asset('images/img_simon.png') }}" width="72"/><br/>
                         <span style="font-size:15px">@devangelslondon<span>
                     </a>
-                </div>
+                </div><br/>
                 <div class="column is-1">
                     <a href="https://twitter.com/scottstoll2017" target="_blank">
                         <img src="{{ asset('images/img_scott.png') }}" width="72"/><br/>
                         <span style="font-size:15px">@scottstoll2017<span>
                     </a>
-                </div>
+                </div><br/>
             </div>
 
-            <br/>
+            <br/> &nbsp; <br/>
 
             <a class="button is-elevated-dark" style="color:white; background-color:#5e60af; border-color:#5e60af; padding: 20px 32px 18px 32px"
                 href="{{ url(auth()->check() ? 'submit' : 'auth/google?intended_url=submit') }}">
