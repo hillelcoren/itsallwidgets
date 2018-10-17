@@ -56,6 +56,14 @@ body {
     border-radius: 8px;
 }
 
+.flutter-app .is-hover-visible {
+    display: none;
+}
+
+.flutter-app:hover .is-hover-visible {
+    display: flex;;
+}
+
 @media screen and (max-width: 769px) {
     .slider-control {
         display: none;
@@ -89,12 +97,12 @@ body {
                         </span>
                         <div class="is-medium" v-on:click="toggleOpenSource()" style="padding-left: 26px;">
                             <input type="checkbox" name="openSourceSwitch"
-                            class="switch is-info is-medium" v-model="filter_open_source">
+                            class="switch is-info" v-model="filter_open_source">
                             <label for="openSourceSwitch" style="padding-top:6px; font-size: 16px">OPEN SOURCE &nbsp;</label>
                         </div>
                         <div class="is-medium is-hidden-mobile" v-on:click="toggleGifs()" style="padding-left: 26px;">
                             <input type="checkbox" name="gifsSwitch"
-                            class="switch is-info is-medium" v-model="filter_gifs">
+                            class="switch is-info" v-model="filter_gifs">
                             <label for="gifsSwitch" style="padding-top:6px; font-size: 16px">
                                 GIF &nbsp;
                             </label>
@@ -132,19 +140,17 @@ body {
             <div v-for="app in filteredApps" class="column" v-bind:class="columnClass">
                 <div v-on:click="selectApp(app)" v-on:mouseover="onMouseOver(app)" v-on:mouseout="onMouseOut(app)" style="cursor:pointer">
                     <div class="flutter-app is-hover-elevated" v-bind:class="[app.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} ? 'is-owned' : '']">
-                        <header style="padding: 20px">
-                            <p class="no-wrap" v-bind:title="app.title" style="font-size:22px; padding-bottom:10px">
-                                <span v-if="app.featured > 0">
-                                    <i style="font-size: 18px" class="fas fa-star"></i> &nbsp;
-                                </span>
-                                @{{ app.title }}
-                            </p>
-                            <div style="border-bottom: 2px #52b6ec solid; width: 50px"/>
 
-                            <!--
+
+                        <div class="is-pulled-right field is-grouped is-grouped-multiline is-vertical-center is-hover-visible" style="padding-top:12px; padding-right:8px;">
                             <span v-if="app.facebook_url && cards_per_row > 3" class="icon-bug-fix">
                                 <a v-bind:href="app.facebook_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
                                     <i style="font-size: 20px; color: #888" class="fab fa-facebook"></i>
+                                </a>
+                            </span>
+                            <span v-if="app.instagram_url && ! app.facebook_url && cards_per_row > 3" class="icon-bug-fix">
+                                <a v-bind:href="app.instagram_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
+                                    <i style="font-size: 20px; color: #888" class="fab fa-instagram"></i>
                                 </a>
                             </span>
                             <span v-if="app.twitter_url && cards_per_row > 3">
@@ -152,17 +158,28 @@ body {
                                     <i style="font-size: 20px; color: #888" class="fab fa-twitter"></i>
                                 </a>
                             </span>
-                            <span v-if="app.instagram_url && cards_per_row > 3" class="icon-bug-fix">
-                                <a v-bind:href="app.instagram_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
-                                    <i style="font-size: 20px; color: #888" class="fab fa-instagram"></i>
-                                </a>
-                            </span>
                             <span v-if="app.repo_url">
                                 <a v-bind:href="app.repo_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
                                     <i style="font-size: 20px; color: #888" class="fab fa-github"></i>
                                 </a>
                             </span>
-                            -->
+                        </div>
+
+
+                        <header style="padding: 20px">
+
+                            <p class="no-wrap" v-bind:title="app.title" style="font-size:22px; padding-bottom:10px">
+                                <!--
+                                <span v-if="app.featured > 0">
+                                    <i style="font-size: 18px" class="fas fa-star"></i> &nbsp;
+                                </span>
+                                -->
+
+                                @{{ app.title }}
+
+                            </p>
+                            <div style="border-bottom: 2px #3976db solid; width: 50px"/>
+
                         </header>
 
                         <div class="content" style="padding-left:20px; padding-right:20px; ">
@@ -170,31 +187,23 @@ body {
                                 @{{ app.short_description }}
                             </div>
 
-                            <!--
-                            <div class="columns is-1 is-variable is-mobile">
-                                <div class="column is-one-half">
-                                    <a v-bind:href="app.google_url" v-if="app.google_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
-                                        <div class="card-image is-slightly-elevated">
-                                            <img src="{{ asset('images/google.png') }}"/>
-                                        </div>
-                                    </a>
-                                    <div v-if="! app.google_url" class="card-image is-slightly-elevated">
-                                        <img src="{{ asset('images/google.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
-                                    </div>
-                                </div>
-                                <div class="column is-one-half">
-                                    <a v-bind:href="app.apple_url" v-if="app.apple_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
-                                        <div class="card-image is-slightly-elevated">
-                                            <img src="{{ asset('images/apple.png') }}"/>
-                                        </div>
-                                    </a>
-                                    <div v-if="! app.apple_url" class="card-image is-slightly-elevated">
-                                        <img src="{{ asset('images/apple.png') }}" style="opacity: 0.1; filter: grayscale(100%);"/>
-                                    </div>
-                                </div>
+                            <div style="font-size:14px; padding-top:12px;">
+                                <a v-bind:href="app.google_url" v-if="app.google_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                    GOOGLE PLAY
+                                </a>
+                                <span v-if="! app.google_url" style="color:#AAAAAA">
+                                    GOOGLE PLAY
+                                </span>
+                                <span style="color:#CCCCCC">
+                                    &nbsp; | &nbsp;
+                                </span>
+                                <a v-bind:href="app.apple_url" v-if="app.apple_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                    APP STORE
+                                </a>
+                                <span v-if="! app.apple_url" style="color:#AAAAAA">
+                                    APP STORE
+                                </span>
                             </div>
-
-                            -->
                         </div>
 
                         <div class="card-image" style="line-height:0px">
