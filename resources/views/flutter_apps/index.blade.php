@@ -173,7 +173,7 @@ body {
 
                         <header style="padding: 14px">
 
-                            <p class="no-wrap" v-bind:title="app.title" style="font-size:22px; padding-bottom:10px">
+                            <p class="no-wrap" v-bind:title="app.title" style="font-size:22px; padding-bottom:10px;">
                                 <!--
                                 <span v-if="app.featured > 0">
                                     <i style="font-size: 18px" class="fas fa-star"></i> &nbsp;
