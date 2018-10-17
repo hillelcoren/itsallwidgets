@@ -198,7 +198,7 @@ body {
                                 </div>
                             @endif
 
-                            <div style="font-size:14px; padding-top:12px;">
+                            <div style="font-size:13px; padding-top:12px;">
                                 <a v-bind:href="app.google_url" v-if="app.google_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
                                     GOOGLE PLAY
                                 </a>
