@@ -171,7 +171,7 @@ body {
                         </div>
 
 
-                        <header style="padding: 14px">
+                        <header style="padding: 16px">
 
                             <p class="no-wrap" v-bind:title="app.title" style="font-size:22px; padding-bottom:10px;">
                                 <!--
@@ -187,7 +187,7 @@ body {
 
                         </header>
 
-                        <div class="content" style="padding-left:14px; padding-right:14px; ">
+                        <div class="content" style="padding-left:16px; padding-right:16px;">
                             <div class="short-description" v-bind:title="app.short_description">
                                 @{{ app.short_description }}
                             </div>
