@@ -615,7 +615,7 @@ var app = new Vue({
                     var itemARating = itemA.store_rating;
                     if (itemA.store_download_count < 100) {
                         itemARating -= 1;
-                    } else if (itemA.store_download_count < 1000) {
+                    } else if (itemA.store_download_count < 500) {
                         itemARating -= .5;
                     }
 
