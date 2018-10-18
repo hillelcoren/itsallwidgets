@@ -19,6 +19,7 @@ class GoogleController extends Controller
     public function redirectToGoogle()
     {
         session(['intended_url' => request()->intended_url]);
+        session()->save();
 
         return Socialite::driver('google')->redirect();
     }
