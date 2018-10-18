@@ -160,30 +160,40 @@ body {
                 <div v-on:click="selectApp(app)" v-on:mouseover="onMouseOver(app)" v-on:mouseout="onMouseOut(app)" style="cursor:pointer">
                     <div class="flutter-app is-hover-elevated" v-bind:class="[app.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} ? 'is-owned' : '']">
 
-
                         <div class="is-pulled-right field is-grouped is-grouped-multiline is-vertical-center is-hover-visible" style="padding-top:6px; padding-right:4px;">
-                            <span v-if="app.facebook_url && cards_per_row > 3" class="icon-bug-fix">
+                            <span v-if="app.facebook_url && cards_per_row > 3">
                                 <a v-bind:href="app.facebook_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
                                     <i style="font-size: 20px; color: #888" class="fab fa-facebook"></i>
                                 </a>
                             </span>
-                            <span v-if="app.instagram_url && ! app.facebook_url && cards_per_row > 3" class="icon-bug-fix">
-                                <a v-bind:href="app.instagram_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
-                                    <i style="font-size: 20px; color: #888" class="fab fa-instagram"></i>
-                                </a>
+                            <span v-if="app.instagram_url && ! app.facebook_url && cards_per_row > 3">
+                                <span class="icon-bug-fix">
+                                    <a v-bind:href="app.instagram_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
+                                        <i style="font-size: 20px; color: #888" class="fab fa-instagram"></i>
+                                    </a>
+                                </span>
                             </span>
                             <span v-if="app.twitter_url && cards_per_row > 3">
+                                <span class="icon-bug-fix">
+                                <span class="icon-bug-fix">
                                 <a v-bind:href="app.twitter_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
                                     <i style="font-size: 20px; color: #888" class="fab fa-twitter"></i>
                                 </a>
+                                </span>
+                                </span>
                             </span>
                             <span v-if="app.repo_url">
+                                <span class="icon-bug-fix">
+                                <span class="icon-bug-fix">
+                                <span class="icon-bug-fix">
                                 <a v-bind:href="app.repo_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
                                     <i style="font-size: 20px; color: #888" class="fab fa-github"></i>
                                 </a>
+                                </span>
+                                </span>
+                                </span>
                             </span>
                         </div>
-
 
                         <header style="padding: 16px">
 
