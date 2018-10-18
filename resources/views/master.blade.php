@@ -104,11 +104,22 @@
         filter: drop-shadow(0px 1px 2px #777);
     }
 
-    .is-hover-elevated:hover {
+    .is-hover-elevated {
         -moz-filter: filter: drop-shadow(0px 16px 16px #CCC);
         -webkit-filter: filter: drop-shadow(0px 16px 16px #CCC);
         -o-filter: filter: drop-shadow(0px 16px 16px #CCC);
         filter: drop-shadow(0px 16px 16px #CCC);
+        -webkit-transition : -webkit-filter 320ms;
+        -moz-transition : -moz-filter 320ms;
+        -o-transition : -o-filter 320ms;
+        transition : filter 320ms;
+    }
+
+    .is-hover-elevated:hover {
+        -moz-filter: filter: drop-shadow(0px 4px 6px #CCC);
+        -webkit-filter: filter: drop-shadow(0px 4px 6px #CCC);
+        -o-filter: filter: drop-shadow(0px 4px 6px #CCC);
+        filter: drop-shadow(0px 4px 6px #CCC);
         -webkit-transition : -webkit-filter 320ms;
         -moz-transition : -moz-filter 320ms;
         -o-transition : -o-filter 320ms;

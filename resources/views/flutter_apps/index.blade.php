@@ -149,7 +149,7 @@ body {
         </div>
     </section>
 
-    <section class="section is-body-font">
+    <section class="section is-body-font" style="background-color:#fefefe">
         <div class="container" v-cloak>
             <div v-if="filteredApps.length == 0" class="is-wide has-text-centered is-vertical-center"
             style="height:400px; text-align:center; font-size: 32px; color: #AAA">
