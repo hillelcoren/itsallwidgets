@@ -36,11 +36,13 @@
         </div>
         <div class="is-vertical-center has-text-centered">
             <a href="https://flutter.io/" target="_blank">
-                <img src="{{ asset('images/flutter.jpg') }}" width="240"/>
+                <img src="{{ asset('images/flutter_logo.png') }}" width="210"/>
             </a>
-            &nbsp; <span style="font-size:28px; color:#888888">+</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="https://www.dartlang.org/" target="_blank">
-                <img src="{{ asset('images/dart.png') }}" width="200"/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span style="font-size:28px; color:#888888">+</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.dartlang.org/" target="_blank" style="padding-top:4px">
+                <img src="{{ asset('images/dart_logo.png') }}" width="200"/>
             </a>
         </div>
     </section>
