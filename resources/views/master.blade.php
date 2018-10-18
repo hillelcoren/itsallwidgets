@@ -147,7 +147,8 @@
     span.navbar-item,
     div.navbar-animate,
     .hero-body .title,
-    .hero-body .subtitle {
+    .hero-body .subtitle,
+    .hero-body .button {
         visibility: hidden;
     }
 
@@ -248,7 +249,7 @@
 
     $(function() {
         $('div.navbar-animate').addClass('animated tada').css('visibility', 'visible');
-        $('.hero-body .title, .hero-body .subtitle').addClass('animated fadeIn').css('visibility', 'visible');
+        $('.hero-body .title, .hero-body .subtitle, .hero-body .button').addClass('animated fadeIn').css('visibility', 'visible');
         if (document.body.clientWidth > 1000) {
             $('span.navbar-item').addClass('animated slideInDown').css('visibility', 'visible');
         } else {

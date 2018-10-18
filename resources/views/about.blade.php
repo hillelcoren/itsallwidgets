@@ -9,24 +9,27 @@
     <script>
     $(function() {
 
-        $('.column-1').addClass('animated fadeInDown').css('visibility', 'visible');
+        $('.header').addClass('animated fadeIn').css('visibility', 'visible');
         setTimeout(function() {
-            $('.column-2').addClass('animated fadeInDown').css('visibility', 'visible');
+            $('.column-1').addClass('animated fadeInDown').css('visibility', 'visible');
         }, 100);
         setTimeout(function() {
-            $('.column-3').addClass('animated fadeInDown').css('visibility', 'visible');
+            $('.column-2').addClass('animated fadeInDown').css('visibility', 'visible');
         }, 200);
         setTimeout(function() {
-            $('.column-4').addClass('animated fadeInDown').css('visibility', 'visible');
+            $('.column-3').addClass('animated fadeInDown').css('visibility', 'visible');
         }, 300);
         setTimeout(function() {
-            $('.column-5').addClass('animated fadeInDown').css('visibility', 'visible');
+            $('.column-4').addClass('animated fadeInDown').css('visibility', 'visible');
         }, 400);
+        setTimeout(function() {
+            $('.column-5').addClass('animated fadeInDown').css('visibility', 'visible');
+        }, 500);
     })
 
     </script>
 
-    <section class="header section is-body-font has-text-centered">
+    <section class="header section is-body-font has-text-centered" style="visibility: hidden;">
         <div style="color:#259bee; font-weight:600; letter-spacing: 2px;">
             ABOUT US
         </div>
@@ -53,10 +56,7 @@
         <div class="container">
 
             <div class="columns column-1" style="visibility:hidden">
-                <div class="column has-text-centered">
-                    <i class="fas fa-bell" style="font-size:50px"></i>
-                </div><br/>
-                <div class="column is-four-fifths">
+                <div class="column is-6 is-offset-3">
                     <div class="subtitle is-4" style="font-weight:600">
                         Learn about new apps
                     </div>
@@ -67,10 +67,7 @@
             </div>
 
             <div class="columns column-2" style="visibility:hidden">
-                <div class="column has-text-centered">
-                    <i class="fas fa-user-circle" style="font-size:50px"></i>
-                </div><br/>
-                <div class="column is-four-fifths">
+                <div class="column is-6 is-offset-3">
                     <div class="subtitle is-4" style="font-weight:600">
                         Create a free profile page
                     </div>
@@ -81,10 +78,7 @@
             </div>
 
             <div class="columns column-3" style="visibility:hidden">
-                <div class="column has-text-centered">
-                    <i class="fas fa-image" style="font-size:50px"></i>
-                </div><br/>
-                <div class="column is-four-fifths">
+                <div class="column is-6 is-offset-3">
                     <div class="subtitle is-4" style="font-weight:600">
                         Validate your screenshot
                     </div>
@@ -95,10 +89,7 @@
             </div>
 
             <div class="columns column-4" style="visibility:hidden">
-                <div class="column has-text-centered">
-                    <i class="fas fa-bullhorn" style="font-size:50px"></i>
-                </div><br/>
-                <div class="column is-four-fifths">
+                <div class="column is-6 is-offset-3">
                     <div class="subtitle is-4" style="font-weight:600">
                         Promote your application
                     </div>
@@ -110,10 +101,7 @@
 
 
             <div class="columns column-5" style="visibility:hidden">
-                <div class="column has-text-centered">
-                    <i class="fas fa-chart-line" style="font-size:50px"></i>
-                </div><br/>
-                <div class="column is-four-fifths">
+                <div class="column is-6 is-offset-3">
                     <div class="subtitle is-4" style="font-weight:600">
                         Provide monthly metrics
                     </div>
