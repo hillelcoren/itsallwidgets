@@ -406,7 +406,7 @@ body {
 
 <center>
     <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(-1)" v-if="page_number > 1">
-        <span>
+        <span class="icon-bug-fix">
             <i style="font-size: 18px" class="fas fa-chevron-circle-left"></i> &nbsp;&nbsp;
         </span>
         Previous Page
