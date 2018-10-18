@@ -82,6 +82,21 @@
         filter: drop-shadow(0px 16px 16px #CCC);
     }
 
+    .button.is-elevated-dark {
+        color: white;
+        background-color:#5e60af;
+        border-color:#5e60af;
+    }
+
+    .button.is-elevated-dark:hover {
+        background-color:#6062b1;
+        border-color:#5e60af;
+        -moz-filter: drop-shadow(0px 2px 4px #888);
+        -webkit-filter: drop-shadow(0px 2px 4px #888);
+        -o-filter: drop-shadow(0px 2px 4px #888);
+        filter: drop-shadow(0px 2px 4px #888);
+    }
+
     .is-elevated-dark {
         -moz-filter: drop-shadow(0px 1px 2px #777);
         -webkit-filter: drop-shadow(0px 1px 2px #777);
@@ -315,7 +330,7 @@
                 <div class="subtitle" style="font-size:18px; padding-bottom:6px;">
                     Feel free to add an app in progress and update it when it goes live
                 </div>
-                <a class="button is-elevated-dark" style="color:white; background-color:#5e60af; border-color:#5e60af; padding: 20px 32px 18px 32px"
+                <a class="button is-elevated-dark" style="padding: 20px 32px 18px 32px"
                     href="{{ url(auth()->check() ? 'submit' : 'auth/google?intended_url=submit') }}">
                     <span class="icon">
                         <i class="fas fa-cloud-upload-alt"></i>
@@ -412,7 +427,7 @@
 
             <br/> &nbsp; <br/>
 
-            <a class="button is-elevated-dark" style="color:white; background-color:#5e60af; border-color:#5e60af; padding: 20px 32px 18px 32px"
+            <a class="button is-elevated-dark" style="padding: 20px 32px 18px 32px"
                 href="{{ url(auth()->check() ? 'submit' : 'auth/google?intended_url=submit') }}">
                 <span class="icon">
                     <i class="fas fa-cloud-upload-alt"></i>
