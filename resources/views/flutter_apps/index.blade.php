@@ -503,9 +503,9 @@ var app = new Vue({
 
         onMouseOut: function(app, e) {
             $('#social-buttons-' + app.id)
-                .removeClass('animated flipInX')
-                .addClass('animated flipOutX')
-                .css('display', 'none');
+                .animateCss('animated flipOutX', function() {
+                    $('#social-buttons-' + app.id).css('display', 'none')
+                });
 
             if (app.has_gif) {
                 $('#' + app.slug + '-img').attr('src', '/screenshots/app-' + app.id + '.png?updated_at=' + app.updated_at);
