@@ -157,10 +157,11 @@ body {
         </div>
         <div class="columns is-multiline is-6 is-variable">
             <div v-for="app in filteredApps" class="column" v-bind:class="columnClass">
-                <div v-on:click="selectApp(app)" v-on:mouseover="onMouseOver(app)" v-on:mouseout="onMouseOut(app)" style="cursor:pointer">
+                <div v-on:click="selectApp(app)" v-on:mouseenter="onMouseOver(app)" v-on:mouseleave="onMouseOut(app)" style="cursor:pointer">
                     <div class="flutter-app is-hover-elevated" v-bind:class="[app.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} ? 'is-owned' : '']">
 
-                        <div class="is-pulled-right field is-grouped is-grouped-multiline is-vertical-center is-hover-visible" style="padding-top:6px; padding-right:4px;">
+                        <div class="is-pulled-right field is-grouped is-grouped-multiline is-vertical-center"
+                            style="padding-top:6px; padding-right:4px; visibility:hidden; display: none;" v-bind:id="['social-buttons-' + app.id]">
                             <span v-if="app.facebook_url && cards_per_row > 3">
                                 <a v-bind:href="app.facebook_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
                                     <i style="font-size: 20px; color: #888" class="fab fa-facebook"></i>
@@ -488,13 +489,24 @@ var app = new Vue({
         },
 
         onMouseOver: function(app) {
+            $('#social-buttons-' + app.id)
+                .removeClass('animated flipOutX')
+                .addClass('animated flipInX')
+                .css('display', 'flex')
+                .css('visibility', 'visible');
+
             if (app.has_gif) {
                 $('#' + app.slug + '-img').attr('src', '/gifs/app-' + app.id + '.gif?updated_at=' + app.updated_at);
                 $('#' + app.slug + '-video').hide();
             }
         },
 
-        onMouseOut: function(app) {
+        onMouseOut: function(app, e) {
+            $('#social-buttons-' + app.id)
+                .removeClass('animated flipInX')
+                .addClass('animated flipOutX')
+                .css('display', 'none');
+
             if (app.has_gif) {
                 $('#' + app.slug + '-img').attr('src', '/screenshots/app-' + app.id + '.png?updated_at=' + app.updated_at);
                 $('#' + app.slug + '-video').show();
