@@ -23,7 +23,9 @@
 	<div class="container is-body-font">
 		<div class="column is-8 is-offset-2">
 
-			<h2 class="title">Submit Podcast</h2>
+			<h2 class="title">
+				{{ $episode->exists ? 'Edit Podcast' : 'Request Invitation' }}
+			</h2>
 			<p>&nbsp;</p>
 
 			@if (isset($errors) && $errors->count())
@@ -127,8 +129,115 @@
 					@endif
 
 
+					<div class="field">
+						<label class="label" for="private_notes">
+							Date/Times UTC Available <span class="required">*</span>
+						</label>
+						<div class="control">
+							{{ Form::text('private_notes', $episode->private_notes, ['class' => 'input', 'required' => true]) }}
+
+							@if ($errors->has('private_notes'))
+								<span class="help is-danger">
+									{{ $errors->first('private_notes') }}
+								</span>
+							@endif
+						</div>
+					</div>
+
+
 				</div>
 
+			</article>
+
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+
+			<div class="subtitle">Optional Links</div>
+
+			<article class="message is-elevated">
+				<div class="message-body">
+
+					<div class="field">
+						<label class="label" for="twitter_url">
+							Twitter
+						</label>
+						<div class="control has-icons-left">
+
+							{{ Form::text('twitter_url', $episode->twitter_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://twitter.com/...']) }}
+
+							<span class="icon is-small is-left">
+								<i class="fab fa-twitter"></i>
+							</span>
+
+							@if ($errors->has('twitter_url'))
+								<span class="help is-danger">
+									{{ $errors->first('twitter_url') }}
+								</span>
+							@endif
+						</div>
+					</div>
+
+					<div class="field">
+						<label class="label" for="repo_url">
+							GitHub
+						</label>
+						<div class="control has-icons-left">
+
+							{{ Form::text('github_url', $episode->github_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://github.com/...']) }}
+
+							<span class="icon is-small is-left">
+								<i class="fab fa-github"></i>
+							</span>
+
+							@if ($errors->has('repo_url'))
+								<span class="help is-danger">
+									{{ $errors->first('repo_url') }}
+								</span>
+							@endif
+						</div>
+					</div>
+
+					<div class="field">
+						<label class="label" for="website_url">
+							Website
+						</label>
+						<div class="control has-icons-left">
+
+							{{ Form::text('website_url', $episode->website_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://example.com']) }}
+
+							<span class="icon is-small is-left">
+								<i class="fas fa-globe"></i>
+							</span>
+
+							@if ($errors->has('website_url'))
+								<span class="help is-danger">
+									{{ $errors->first('website_url') }}
+								</span>
+							@endif
+						</div>
+					</div>
+
+					<div class="field">
+						<label class="label" for="twitter_url">
+							It's All Widgets!
+						</label>
+						<div class="control has-icons-left">
+
+							{{ Form::text('app_url', $episode->app_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://itsallwidgets.com/...']) }}
+
+							<span class="icon is-small is-left">
+								<i class="fas fa-star"></i>
+							</span>
+
+							@if ($errors->has('app_url'))
+								<span class="help is-danger">
+									{{ $errors->first('app_url') }}
+								</span>
+							@endif
+						</div>
+					</div>
+
+				</div>
 			</article>
 
 			<p>&nbsp;</p>

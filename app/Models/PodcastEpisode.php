@@ -24,7 +24,8 @@ class PodcastEpisode extends Model
         'is_visible',
     ];
 
-    protected $hidden = [
+    protected $hidden = [        
+        'private_notes',
         'is_visible',
         'is_approved',
     ];
