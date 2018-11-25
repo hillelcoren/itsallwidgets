@@ -1,9 +1,9 @@
 @extends('master')
 
 @section('title', 'Submit Podcast')
-@section('description', 'An open podcast for Flutter devlopers')
+@section('description', 'An open podcast for Flutter developers')
 
-@section('header_title', 'An open podcast for Flutter devlopers')
+@section('header_title', 'An open podcast for Flutter developers')
 @section('header_subtitle', 'Share your Flutter story with the community')
 @section('header_button_url', url(auth()->check() ? 'podcast/submit' : 'auth/google?intended_url=podcast/submit'))
 @section('header_button_label', 'REQUEST INTERVIEW')
