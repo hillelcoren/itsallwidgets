@@ -44,4 +44,11 @@ class PodcastController extends Controller
         );
     }
 
+    public function show($episode)
+    {
+        $episode = $this->podcastRepo->getByEpisde($episode);
+
+        return view('podcasts.show', compact('episode'));
+    }
+
 }
