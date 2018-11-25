@@ -13,7 +13,7 @@ class PodcastEpisode extends Model
     use Notifiable;
 
     protected $fillable = [
-        'guest',
+        'title',
         'short_description',
         'long_description',
         'episode',

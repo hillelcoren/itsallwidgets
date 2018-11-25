@@ -34,15 +34,15 @@
 				<div class="message-body">
 
 					<div class="field">
-						<label class="label" for="guest">
-							Guest <span class="required">*</span>
+						<label class="label" for="title">
+							Title <span class="required">*</span>
 						</label>
 						<div class="control">
-							{{ Form::text('guest', $episode->guest, ['class' => 'input', 'required' => true]) }}
+							{{ Form::text('title', $episode->title, ['class' => 'input', 'required' => true]) }}
 
-							@if ($errors->has('guest'))
+							@if ($errors->has('title'))
 								<span class="help is-danger">
-									{{ $errors->first('guest') }}
+									{{ $errors->first('title') }}
 								</span>
 							@endif
 						</div>

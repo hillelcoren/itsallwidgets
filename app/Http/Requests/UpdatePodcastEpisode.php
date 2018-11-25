@@ -25,6 +25,7 @@ class UpdatePodcastEpisode extends FormRequest
     public function rules()
     {
         $rules = [
+            'title' => 'required',
             'short_description' => 'required|max:250',
             'long_description' => 'required',
             'episode' => 'required',

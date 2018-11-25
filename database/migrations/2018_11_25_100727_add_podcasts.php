@@ -16,7 +16,7 @@ class AddPodcasts extends Migration
         Schema::create('podcast_episodes', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('guest');
+            $table->string('title');
             $table->string('short_description');
             $table->text('long_description');
             $table->smallInteger('episode')->unique();
