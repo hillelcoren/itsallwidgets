@@ -310,10 +310,6 @@
                                     <i class="fas fa-info-circle"></i> &nbsp; About
                                 </a>
 
-                                <a class="navbar-item" href="https://twitter.com/itsallwidgets" target="_blank">
-                                    <i class="fab fa-twitter"></i> &nbsp; Twitter
-                                </a>
-
                                 @if (auth()->check())
                                     <a class="navbar-item" href="{{ url('logout') }}">
                                         <i class="fas fa-user-alt"></i> &nbsp; Logout
@@ -323,6 +319,24 @@
                                         <i class="fas fa-bell"></i> &nbsp; Monthly Stats
                                     </a>
                                 @endif
+
+                                &nbsp;&nbsp;&nbsp;
+
+                                <a class="button is-elevated-dark" style="color:white; background-color:#366cb6; border-color:#366cb6"
+                                href="https://twitter.com/itsallwidgets" target="_blank">
+                                <span class="icon">
+                                    <i class="fab fa-twitter"></i>
+                                </span> &nbsp;
+                                <span>Twitter</span>
+                                </a> &nbsp;&nbsp;&nbsp;
+
+                                <a class="button is-elevated-dark" style="color:white; background-color:#366cb6; border-color:#366cb6"
+                                href="{{ url('/podcast') }}">
+                                <span class="icon">
+                                    <i class="fas fa-podcast"></i>
+                                </span> &nbsp;
+                                <span>Podcast</span>
+                                </a>
 
                             </span>
                         </div>

@@ -34,6 +34,13 @@ Route::feeds();
 
 Route::get('flutter-app/{slug}', 'FlutterAppController@show');
 
+Route::get('podcast', 'PodcastController@index');
+Route::get('podcast/create', 'PodcastController@create');
+Route::post('podcast', 'PodcastController@store');
+Route::get('podcast/{episode}', 'PodcastController@view');
+Route::get('podcast/{episode}/edit', 'PodcastController@edit');
+Route::put('podcast/{episode}', 'PodcastController@update');
+
 Route::group(['middleware' => ['auth']], function () {
     Route::get('submit', 'FlutterAppController@create');
     Route::post('submit', 'FlutterAppController@store')->middleware('slug');
