@@ -5,7 +5,7 @@
 
 @section('header_title', 'An open podcast for Flutter devlopers')
 @section('header_subtitle', 'Share your Flutter story with the community')
-@section('header_button_url', url(auth()->check() ? 'podcast/create' : 'auth/google?intended_url=podcast/create'))
+@section('header_button_url', url(auth()->check() ? 'podcast/submit' : 'auth/google?intended_url=podcast/submit'))
 @section('header_button_label', 'REQUEST INTERVIEW')
 @section('header_button_icon', 'fas fa-microphone')
 
@@ -19,18 +19,18 @@
 					<div class="card is-hover-elevated">
 						<header class="card-header">
 							<p class="card-header-title is-2">
-                                {{ $app->title }}
+                                {{ $episode->title }}
 							</p>
-							@if ($app->twitter_url)
-								<a href="{{ $app->twitter_url }}" class="card-header-icon" target="_blank">
+							@if ($episode->twitter_url)
+								<a href="{{ $episode->twitter_url }}" class="card-header-icon" target="_blank">
 									<i style="font-size: 20px; color: #888" class="fab fa-twitter"></i>
 								</a>
 							@endif
 						</header>
 						<div class="card-content">
 							<div class="content">
-								<div class="subtitle is-6" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{ $app->short_description }}">
-									{{ $app->short_description }}
+								<div class="subtitle is-6" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{ $episode->short_description }}">
+									{{ $episode->short_description }}
 								</div>
 							</div>
 						</div>

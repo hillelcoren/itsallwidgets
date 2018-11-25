@@ -22,8 +22,14 @@ class PodcastController extends Controller
             return redirect('/podcast')->with('status', 'Podcast cache has been cleared!');
         }
 
+        if (auth()->user() && auth()->user()->is_admin) {
+            $episodes = PodcastEpisode::latest()->get();
+        } else {
+            $episodes = cache('flutter-podcast-list');
+        }
+
         $data = [
-            'episodes' => cache('flutter-podcast-list'),
+            'episodes' => $episodes,
         ];
 
         return view('podcasts.index', $data);
