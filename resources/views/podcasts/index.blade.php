@@ -78,10 +78,11 @@
 		@foreach ($episodes as $episode)
 			<div class="column is-one-third">
 				<a href="{{ $episode->url() }}">
-					<div class="card podcast-episode is-hover-elevated">
+					<div class="podcast-episode is-hover-elevated">
                         <header style="padding: 16px">
                             <p class="no-wrap" v-bind:title="app.title" style="font-size:22px; padding-bottom:10px;">
                                 {{ $episode->title }}
+
                                 @if ($episode->twitter_url)
     								<a href="{{ $episode->twitter_url }}" class="card-header-icon" target="_blank">
     									<i style="font-size: 20px; color: #888" class="fab fa-twitter"></i>
