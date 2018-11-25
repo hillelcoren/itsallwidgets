@@ -25,7 +25,7 @@ class PodcastController extends Controller
 
         $data = [
             'episode' => $episode,
-            'url' => 'podcast',
+            'url' => 'flutter-podcast',
             'method' => 'POST',
         ];
 
