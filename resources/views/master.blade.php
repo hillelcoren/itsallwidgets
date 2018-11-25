@@ -331,7 +331,7 @@
                                 </a> &nbsp;&nbsp;&nbsp;
 
                                 <a class="button is-elevated-dark" style="color:white; background-color:#366cb6; border-color:#366cb6"
-                                href="{{ url('/podcast') }}">
+                                href="{{ url('/flutter-podcast') }}">
                                 <span class="icon">
                                     <i class="fas fa-podcast"></i>
                                 </span> &nbsp;
@@ -351,17 +351,17 @@
                     MADE WITH &nbsp;<i class="fas fa-heart" style="font-size:16px"></i>&nbsp; BY THE <a href="https://medium.com/flutter-community" target="_blank">FLUTTER COMMUNITY</a>
                 </div>
                 <div class="title" style="font-size:38px; padding-top:8px;">
-                    An open list of apps built with Flutter
+                    @yield('header_title', 'An open list of apps built with Flutter')
                 </div>
                 <div class="subtitle" style="font-size:18px; padding-bottom:6px;">
-                    Feel free to add an app in progress and update it when it goes live
+                    @yield('header_subtitle', 'Feel free to add an app in progress and update it when it goes live')
                 </div>
                 <a class="button is-elevated-dark" style="padding: 20px 32px 18px 32px"
-                    href="{{ url(auth()->check() ? 'submit' : 'auth/google?intended_url=submit') }}">
+                    href="@yield('header_button_url', url(auth()->check() ? 'submit' : 'auth/google?intended_url=submit'))">
                     <span class="icon">
-                        <i class="fas fa-cloud-upload-alt"></i>
+                        <i class="@yield('header_button_icon', 'fas fa-cloud-upload-alt')"></i>
                     </span> &nbsp;
-                    <span>SUBMIT APP</span>
+                    <span>@yield('header_button_label', 'SUBMIT APP')</span>
                 </a>
 
             </div>
@@ -454,11 +454,11 @@
             <br/> &nbsp; <br/>
 
             <a class="button is-elevated-dark" style="padding: 20px 32px 18px 32px"
-                href="{{ url(auth()->check() ? 'submit' : 'auth/google?intended_url=submit') }}">
+                href="@yield('header_button_url', url(auth()->check() ? 'submit' : 'auth/google?intended_url=submit'))">
                 <span class="icon">
-                    <i class="fas fa-cloud-upload-alt"></i>
+                    <i class="@yield('header_button_icon', 'fas fa-cloud-upload-alt')"></i>
                 </span> &nbsp;
-                <span>SUBMIT APP</span>
+                <span>@yield('header_button_label', 'SUBMIT APP')</span>
             </a>
 
         </div>

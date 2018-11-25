@@ -38,7 +38,7 @@ class PodcastController extends Controller
         $input = $request->all();
         $episode = $this->podcastRepo->store($input);
 
-        return redirect('/podcast/' . $episode->episode)->with(
+        return redirect('/flutter-podcast/' . $episode->episode)->with(
             'status',
             'Your podcast episode has been successfully added!'
         );
