@@ -29,4 +29,14 @@ class PodcastEpisode extends Model
         'is_approved',
     ];
 
+    public function scopeVisible($query)
+    {
+        $query->where('is_visible', '=', true);
+    }
+
+    public function url()
+    {
+        return url('flutter-podcast/' . $this->episode . '/' . $this->title);
+    }
+
 }

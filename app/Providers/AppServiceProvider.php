@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\FlutterApp;
+use App\Models\PodcastEpisode;
 use App\Observers\FlutterAppObserver;
 use Cache;
 use Illuminate\Support\Facades\View;
@@ -22,6 +23,9 @@ class AppServiceProvider extends ServiceProvider
         try {
             Cache::rememberForever('flutter-app-list', function () {
                 return FlutterApp::approved()->latest()->get();
+            });
+            Cache::rememberForever('flutter-podcast-list', function () {
+                return PodcastEpisode::visible()->latest()->get();
             });
         } catch (\Illuminate\Database\QueryException $exception) {
             // this will fail when running composer install

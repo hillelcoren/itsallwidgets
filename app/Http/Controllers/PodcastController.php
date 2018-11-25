@@ -16,7 +16,17 @@ class PodcastController extends Controller
 
     public function index()
     {
-        return view('podcasts.index');
+        if (request()->clear_cache) {
+            cache()->forget('flutter-podcast-list');
+
+            return redirect('/')->with('status', 'Podcast cache has been cleared!');
+        }
+
+        $data = [
+            'episodes' => cache('flutter-podcast-list'),
+        ];
+
+        return view('podcasts.index', $data);
     }
 
     public function create()

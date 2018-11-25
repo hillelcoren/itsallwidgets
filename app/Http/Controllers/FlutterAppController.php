@@ -49,7 +49,7 @@ class FlutterAppController extends Controller
         if (request()->clear_cache) {
             cache()->forget('flutter-app-list');
 
-            return redirect('/')->with('status', 'Cache has been cleared!');
+            return redirect('/')->with('status', 'App cache has been cleared!');
         }
 
         if (request()->legacy || Crawler::isCrawler()) {
