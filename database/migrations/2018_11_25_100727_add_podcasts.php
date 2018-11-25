@@ -18,14 +18,15 @@ class AddPodcasts extends Migration
             $table->timestamps();
             $table->string('title');
             $table->string('short_description');
-            $table->text('long_description');
-            $table->smallInteger('episode')->unique();
+            $table->text('long_description')->nullable();
+            $table->smallInteger('episode')->nullable()->unique();
             $table->string('reddit_url')->nullable();
             $table->string('website_url')->nullable();
             $table->string('github_url')->nullable();
             $table->string('twitter_url')->nullable();
             $table->string('app_url')->nullable();
             $table->boolean('is_visible')->default(false);
+            $table->boolean('is_uploaded')->default(false);
         });
     }
 
