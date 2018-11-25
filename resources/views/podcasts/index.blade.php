@@ -11,6 +11,9 @@
 
 @section('content')
 
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
     <div class="container">
 	<div class="columns is-multiline is-5 is-variable">
 		@foreach ($episodes as $episode)
