@@ -5,7 +5,6 @@
 
 @section('content')
 
-
 	<section class="section is-body-font">
 		<div class="container">
 			<div class="is-title">
