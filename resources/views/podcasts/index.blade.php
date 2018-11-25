@@ -5,7 +5,7 @@
 
 @section('header_title', 'An open podcast for Flutter devlopers')
 @section('header_subtitle', 'Share your Flutter story with the community')
-@section('header_button_url', url(auth()->check() ? 'flutter-podcast/create' : 'auth/google?intended_url=flutter-podcast/create')))
+@section('header_button_url', url(auth()->check() ? 'podcast/create' : 'auth/google?intended_url=podcast/create'))
 @section('header_button_label', 'REQUEST INTERVIEW')
 @section('header_button_icon', 'fas fa-microphone')
 
@@ -19,7 +19,7 @@
 					<div class="card is-hover-elevated">
 						<header class="card-header">
 							<p class="card-header-title is-2">
-
+                                {{ $app->title }}
 							</p>
 							@if ($app->twitter_url)
 								<a href="{{ $app->twitter_url }}" class="card-header-icon" target="_blank">
@@ -41,6 +41,7 @@
 			</div>
 		@endforeach
 	</div>
+    </div>
 
 	<p>&nbsp;</p>
 

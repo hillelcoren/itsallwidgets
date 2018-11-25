@@ -331,7 +331,7 @@
                                 </a> &nbsp;&nbsp;&nbsp;
 
                                 <a class="button is-elevated-dark" style="color:white; background-color:#366cb6; border-color:#366cb6"
-                                href="{{ url('/flutter-podcast') }}">
+                                href="{{ url('/podcast') }}">
                                 <span class="icon">
                                     <i class="fas fa-podcast"></i>
                                 </span> &nbsp;

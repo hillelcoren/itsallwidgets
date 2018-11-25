@@ -19,7 +19,7 @@ class PodcastController extends Controller
         if (request()->clear_cache) {
             cache()->forget('flutter-podcast-list');
 
-            return redirect('/')->with('status', 'Podcast cache has been cleared!');
+            return redirect('/podcast')->with('status', 'Podcast cache has been cleared!');
         }
 
         $data = [
@@ -35,7 +35,7 @@ class PodcastController extends Controller
 
         $data = [
             'episode' => $episode,
-            'url' => 'flutter-podcast',
+            'url' => 'podcast',
             'method' => 'POST',
         ];
 
@@ -48,7 +48,7 @@ class PodcastController extends Controller
         $input = $request->all();
         $episode = $this->podcastRepo->store($input);
 
-        return redirect('/flutter-podcast/' . $episode->episode)->with(
+        return redirect('/podcast/' . $episode->episode)->with(
             'status',
             'Your podcast episode has been successfully added!'
         );
