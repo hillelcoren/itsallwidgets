@@ -60,9 +60,17 @@ class PodcastController extends Controller
         );
     }
 
-    public function show($episode)
+    public function show($episode, $title)
     {
-        $episode = $this->podcastRepo->getByEpisde($episode);
+        $episode = $this->podcastRepo->getByEpisode($episode);
+
+        if (! $episode) {
+            $episode = $this->podcastRepo->getByTitle($title);
+        }
+
+        if (! $episode) {
+            return redirect('/podcast');
+        }
 
         return view('podcasts.show', compact('episode'));
     }

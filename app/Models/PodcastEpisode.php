@@ -36,7 +36,7 @@ class PodcastEpisode extends Model
 
     public function url()
     {
-        return url('podcast/' . $this->episode . '/' . $this->title);
+        return url('podcast/' . ($this->episode ?: '0') . '/' . $this->title);
     }
 
 }

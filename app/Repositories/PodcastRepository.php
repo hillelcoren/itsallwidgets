@@ -6,9 +6,14 @@ use App\Models\PodcastEpisode;
 
 class PodcastRepository
 {
-    public function getByEpisde($episode)
+    public function getByEpisode($episode)
     {
-        return PodcastEpisode::where('episode', $episode)->firstOrFail();
+        return PodcastEpisode::where('episode', $episode)->first();
+    }
+
+    public function getByTitle($title)
+    {
+        return PodcastEpisode::where('title', $title)->first();
     }
 
     public function store($input)

@@ -38,7 +38,7 @@ Route::get('podcast', 'PodcastController@index');
 Route::get('podcast/submit', 'PodcastController@create');
 Route::post('podcast', 'PodcastController@store');
 Route::get('podcast/{episode}/{title?}', 'PodcastController@show');
-Route::get('podcast/{episode}/edit', 'PodcastController@edit');
+Route::get('podcast/{episode}/{title?}/edit', 'PodcastController@edit');
 Route::put('podcast/{episode}', 'PodcastController@update');
 
 Route::group(['middleware' => ['auth']], function () {
