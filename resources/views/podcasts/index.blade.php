@@ -76,33 +76,31 @@
     <div class="container">
 	<div class="columns is-multiline is-5 is-variable">
 		@foreach ($episodes as $episode)
-			<div class="column is-one-third">
-				<a href="{{ $episode->url() }}">
-					<div class="podcast-episode is-hover-elevated">
-                        <header style="padding: 16px">
-                            <p class="no-wrap" v-bind:title="app.title" style="font-size:22px; padding-bottom:10px;">
-                                {{ $episode->title }}
+			<div class="column is-one-third" onclick="location.href = '{{ $episode->url() }}'">
+				<div class="podcast-episode is-hover-elevated">
+                    <header style="padding: 16px">
+                        <p class="no-wrap" v-bind:title="app.title" style="font-size:22px; padding-bottom:10px;">
+                            {{ $episode->title }}
 
-                                @if ($episode->twitter_url)
-    								<a href="{{ $episode->twitter_url }}" class="card-header-icon" target="_blank">
-    									<i style="font-size: 20px; color: #888" class="fab fa-twitter"></i>
-    								</a>
-    							@endif
+                            @if ($episode->twitter_url)
+								<a href="{{ $episode->twitter_url }}" class="card-header-icon" target="_blank">
+									<i style="font-size: 20px; color: #888" class="fab fa-twitter"></i>
+								</a>
+							@endif
 
-                            </p>
-                            <div style="border-bottom: 2px #259bee solid; width: 50px"/>
-                        </header>
+                        </p>
+                        <div style="border-bottom: 2px #259bee solid; width: 50px"/>
+                    </header>
 
-						<div class="card-content">
-							<div class="content">
-								<div class="subtitle is-6" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{ $episode->short_description }}">
-									{{ $episode->short_description }}
-								</div>
+					<div class="card-content">
+						<div class="content">
+							<div class="subtitle is-6" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{ $episode->short_description }}">
+								{{ $episode->short_description }}
 							</div>
 						</div>
-
 					</div>
-				</a>
+
+				</div>
 				<p>&nbsp;</p>
 			</div>
 		@endforeach
