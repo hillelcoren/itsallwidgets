@@ -47,11 +47,41 @@
 							Developer Name <span class="required">*</span>
 						</label>
 						<div class="control">
-							{{ Form::text('title', $episode->title, ['class' => 'input', 'required' => true]) }}
+							{{ Form::text('title', $episode->exists ? $episode->title : (auth()->check() ? auth()->user()->name : ''), ['class' => 'input', 'required' => true]) }}
 
 							@if ($errors->has('title'))
 								<span class="help is-danger">
 									{{ $errors->first('title') }}
+								</span>
+							@endif
+						</div>
+					</div>
+
+					<div class="field">
+						<label class="label" for="email">
+							Developer Email <span class="required">*</span>
+						</label>
+						<div class="control">
+							{{ Form::text('email', $episode->exists ? $episode->email : (auth()->check() ? auth()->user()->email : ''), ['class' => 'input', 'required' => true]) }}
+
+							@if ($errors->has('email'))
+								<span class="help is-danger">
+									{{ $errors->first('email') }}
+								</span>
+							@endif
+						</div>
+					</div>
+
+					<div class="field">
+						<label class="label" for="avatar_url">
+							Developer Avatar <span class="required">*</span>
+						</label>
+						<div class="control">
+							{{ Form::text('avatar_url', $episode->exists ? $episode->avatar_url : (auth()->check() ? auth()->user()->avatar_url : ''), ['class' => 'input', 'required' => true]) }}
+
+							@if ($errors->has('avatar_url'))
+								<span class="help is-danger">
+									{{ $errors->first('avatar_url') }}
 								</span>
 							@endif
 						</div>
@@ -75,7 +105,7 @@
 					@if (auth()->check() && auth()->user()->is_admin)
 						<div class="field">
 							<label class="label" for="long_description">
-								Long Description <span class="required">*</span>
+								Long Description
 							</label>
 							<div class="control">
 								{{ Form::textarea('long_description', $episode->short_description, ['class' => 'input', 'required' => false]) }}
@@ -90,7 +120,7 @@
 
 						<div class="field">
 							<label class="label" for="episode">
-								Episode <span class="required">*</span>
+								Episode
 							</label>
 							<div class="control">
 								{{ Form::text('episode', $episode->episode, ['class' => 'input', 'required' => false]) }}

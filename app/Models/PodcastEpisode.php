@@ -14,9 +14,11 @@ class PodcastEpisode extends Model
 
     protected $fillable = [
         'title',
+        'email',
         'short_description',
         'long_description',
         'episode',
+        'avatar_url',
         'reddit_url',
         'website_url',
         'github_url',

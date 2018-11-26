@@ -18,6 +18,7 @@ class AddPodcasts extends Migration
             $table->timestamps();
             $table->string('title');
             $table->string('email');
+            $table->string('avatar_url');
             $table->string('short_description');
             $table->text('long_description')->nullable();
             $table->text('private_notes')->nullable();
