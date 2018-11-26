@@ -44,7 +44,7 @@
 
 					<div class="field">
 						<label class="label" for="title">
-							Developer Name <span class="required">*</span>
+							Name <span class="required">*</span>
 						</label>
 						<div class="control">
 							{{ Form::text('title', $episode->exists ? $episode->title : (auth()->check() ? auth()->user()->name : ''), ['class' => 'input', 'required' => true]) }}
@@ -59,7 +59,7 @@
 
 					<div class="field">
 						<label class="label" for="email">
-							Developer Email <span class="required">*</span>
+							Email <span class="required">*</span>
 						</label>
 						<div class="control">
 							{{ Form::text('email', $episode->exists ? $episode->email : (auth()->check() ? auth()->user()->email : ''), ['class' => 'input', 'required' => true]) }}
@@ -74,7 +74,7 @@
 
 					<div class="field">
 						<label class="label" for="avatar_url">
-							Developer Avatar <span class="required">*</span>
+							Avatar URL <span class="required">*</span>
 						</label>
 						<div class="control">
 							{{ Form::text('avatar_url', $episode->exists ? $episode->avatar_url : (auth()->check() ? auth()->user()->avatar_url : ''), ['class' => 'input', 'required' => true]) }}
@@ -92,7 +92,7 @@
 							Bio <span class="required">*</span>
 						</label>
 						<div class="control">
-							{{ Form::text('short_description', $episode->short_description, ['class' => 'input', 'required' => true]) }}
+							{{ Form::textarea('short_description', $episode->short_description, ['class' => 'input', 'required' => true, 'style' => 'height:100px']) }}
 
 							@if ($errors->has('short_description'))
 								<span class="help is-danger">
@@ -102,61 +102,6 @@
 						</div>
 					</div>
 
-					@if (auth()->check() && auth()->user()->is_admin)
-						<div class="field">
-							<label class="label" for="long_description">
-								Long Description
-							</label>
-							<div class="control">
-								{{ Form::textarea('long_description', $episode->short_description, ['class' => 'input', 'required' => false]) }}
-
-								@if ($errors->has('long_description'))
-									<span class="help is-danger">
-										{{ $errors->first('long_description') }}
-									</span>
-								@endif
-							</div>
-						</div>
-
-						<div class="field">
-							<label class="label" for="episode">
-								Episode
-							</label>
-							<div class="control">
-								{{ Form::text('episode', $episode->episode, ['class' => 'input', 'required' => false]) }}
-
-								@if ($errors->has('episode'))
-									<span class="help is-danger">
-										{{ $errors->first('episode') }}
-									</span>
-								@endif
-							</div>
-						</div>
-
-						<div class="field">
-							<div class="field">
-								<label class="label" for="is_visible">
-									Is Visible
-								</label>
-								<div class="control">
-									<input name="is_visible" type="checkbox" value="1">
-								</div>
-							</div>
-						</div>
-
-						<div class="field">
-							<div class="field">
-								<label class="label" for="is_uploaded">
-									Is Uploaded
-								</label>
-								<div class="control">
-									<input name="is_uploaded" type="checkbox" value="1">
-								</div>
-							</div>
-						</div>
-
-
-					@endif
 
 					<div class="field">
 						<label class="label" for="twitter_url">
@@ -269,6 +214,72 @@
 
 				</div>
 			</article>
+
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+
+			@if (auth()->check() && auth()->user()->is_admin)
+				<div class="subtitle">Admin Section</div>
+
+				<article class="message is-elevated">
+					<div class="message-body">
+
+						<div class="field">
+							<label class="label" for="long_description">
+								Long Description
+							</label>
+							<div class="control">
+								{{ Form::textarea('long_description', $episode->short_description, ['class' => 'input', 'required' => false, 'style' => 'height:100px']) }}
+
+								@if ($errors->has('long_description'))
+									<span class="help is-danger">
+										{{ $errors->first('long_description') }}
+									</span>
+								@endif
+							</div>
+						</div>
+
+						<div class="field">
+							<label class="label" for="episode">
+								Episode
+							</label>
+							<div class="control">
+								{{ Form::text('episode', $episode->episode, ['class' => 'input', 'required' => false]) }}
+
+								@if ($errors->has('episode'))
+									<span class="help is-danger">
+										{{ $errors->first('episode') }}
+									</span>
+								@endif
+							</div>
+						</div>
+
+						<div class="field">
+							<div class="field">
+								<label class="label" for="is_visible">
+									Is Visible
+								</label>
+								<div class="control">
+									<input name="is_visible" type="checkbox" value="1">
+								</div>
+							</div>
+						</div>
+
+						<div class="field">
+							<div class="field">
+								<label class="label" for="is_uploaded">
+									Is Uploaded
+								</label>
+								<div class="control">
+									<input name="is_uploaded" type="checkbox" value="1">
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</article>
+			@endif
+
 
 			<p>&nbsp;</p>
 			<p>&nbsp;</p>
