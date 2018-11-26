@@ -158,6 +158,26 @@
 
 					@endif
 
+					<div class="field">
+						<label class="label" for="twitter_url">
+							Twitter <span class="required">*</span>
+						</label>
+						<div class="control has-icons-left">
+
+							{{ Form::text('twitter_url', $episode->twitter_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://twitter.com/...']) }}
+
+							<span class="icon is-small is-left">
+								<i class="fab fa-twitter"></i>
+							</span>
+
+							@if ($errors->has('twitter_url'))
+								<span class="help is-danger">
+									{{ $errors->first('twitter_url') }}
+								</span>
+							@endif
+						</div>
+					</div>
+
 
 					<div class="field">
 						<label class="label" for="private_notes">
@@ -186,26 +206,6 @@
 
 			<article class="message is-elevated">
 				<div class="message-body">
-
-					<div class="field">
-						<label class="label" for="twitter_url">
-							Twitter
-						</label>
-						<div class="control has-icons-left">
-
-							{{ Form::text('twitter_url', $episode->twitter_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://twitter.com/...']) }}
-
-							<span class="icon is-small is-left">
-								<i class="fab fa-twitter"></i>
-							</span>
-
-							@if ($errors->has('twitter_url'))
-								<span class="help is-danger">
-									{{ $errors->first('twitter_url') }}
-								</span>
-							@endif
-						</div>
-					</div>
 
 					<div class="field">
 						<label class="label" for="repo_url">
