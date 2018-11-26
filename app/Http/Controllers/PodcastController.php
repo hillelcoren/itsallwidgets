@@ -69,15 +69,6 @@ class PodcastController extends Controller
             'method' => 'PUT',
         ];
 
-        if ($mp3 = request()->file('mp3')) {
-            $filename = 'episode-' . $this->episode->id . '.mp3';
-            $gif->move(public_path('/mp3s'), $filename);
-
-            $this->app->update([
-                'is_uploaded' => true,
-            ]);
-        }
-
         return view('podcasts.edit', $data);
     }
 
@@ -85,6 +76,15 @@ class PodcastController extends Controller
     {
         $input = $request->all();
         $episode = $this->podcastRepo->update($episode, $input);
+
+        if ($mp3 = request()->file('mp3')) {
+            $filename = 'episode-' . $episode->id . '.mp3';
+            $mp3->move(public_path('/mp3s'), $filename);
+
+            $episode->update([
+                'is_uploaded' => true,
+            ]);
+        }
 
         return redirect($episode->adminUrl())->with(
             'status',
