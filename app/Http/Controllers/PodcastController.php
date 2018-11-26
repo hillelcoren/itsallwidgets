@@ -77,15 +77,17 @@ class PodcastController extends Controller
         $input = $request->all();
         $episode = $this->podcastRepo->update($episode, $input);
 
+        /*
         if ($mp3 = request()->file('mp3')) {
             $filename = 'episode-' . $episode->id . '.mp3';
-            $mp3->move(public_path('/mp3s'), $filename);
+            $mp3->move(storage_path('/mp3s'), $filename);
 
             $episode->update([
                 'is_uploaded' => true,
             ]);
         }
-
+        */
+        
         return redirect($episode->adminUrl())->with(
             'status',
             'Your podcast episode has been successfully updated!'

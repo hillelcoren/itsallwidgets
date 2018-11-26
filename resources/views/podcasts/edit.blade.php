@@ -252,6 +252,7 @@
 							</div>
 						</div>
 
+						<!--
 						<div class="field">
 							<label class="label" for="mp3">
 								MP3 File
@@ -267,7 +268,8 @@
 								@endif
 							</div>
 						</div>
-
+						-->
+						
 						<div class="field">
 							<div class="field">
 								<label class="label" for="is_visible">

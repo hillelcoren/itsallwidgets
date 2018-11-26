@@ -34,18 +34,18 @@ class PodcastRepository
 
     public function store($input)
     {
-        $app = new PodcastEpisode;
-        $app->fill($input);
-        $app->save();
+        $episode = new PodcastEpisode;
+        $episode->fill($input);
+        $episode->save();
 
         return $app;
     }
 
-    public function update($app, $input)
+    public function update($episode, $input)
     {
-        $app->fill($input);
-        $app->save();
+        $episode->fill($input);
+        $episode->save();
 
-        return $app;
+        return $episode;
     }
 }
