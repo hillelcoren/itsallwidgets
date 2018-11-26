@@ -40,4 +40,12 @@ class PodcastRepository
 
         return $app;
     }
+
+    public function update($app, $input)
+    {
+        $app->fill($input);
+        $app->save();
+
+        return $app;
+    }
 }

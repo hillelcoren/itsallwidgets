@@ -21,13 +21,16 @@ class PodcastEpisode extends Model
         'website_url',
         'github_url',
         'twitter_url',
+        'app_url',
         'is_visible',
+        'is_uploaded',
+        'private_notes',
     ];
 
     protected $hidden = [
+        'email',
         'private_notes',
         'is_visible',
-        'is_approved',
     ];
 
     public function scopeVisible($query)

@@ -72,13 +72,17 @@ class PodcastController extends Controller
         return view('podcasts.edit', $data);
     }
 
-    public function update(UpdatePodcastEpisode $request)
+    public function update(UpdatePodcastEpisode $request, $episode)
     {
-        /*
-        $app = $request->flutter_app;
         $input = $request->all();
-        $app = $this->appRepo->update($app, $input);
+        $episode = $this->podcastRepo->update($episode, $input);
 
+        return redirect($episode->adminUrl())->with(
+            'status',
+            'Your podcast episode has been successfully updated!'
+        );
+
+        /*
         dispatch(new UploadScreenshot($app, 'screenshot'));
 
         return redirect('/flutter-app/' . $app->slug)->with(
