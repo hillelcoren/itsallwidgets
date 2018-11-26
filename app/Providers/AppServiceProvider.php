@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
                 return FlutterApp::approved()->latest()->get();
             });
             Cache::rememberForever('flutter-podcast-list', function () {
-                return PodcastEpisode::visible()->latest()->get();
+                return PodcastEpisode::visible()->orderBy('episode', 'desc')->orderBy('created_at', 'desc')->get();
             });
         } catch (\Illuminate\Database\QueryException $exception) {
             // this will fail when running composer install

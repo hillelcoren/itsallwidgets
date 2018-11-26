@@ -24,7 +24,7 @@ class PodcastController extends Controller
         }
 
         if (auth()->user() && auth()->user()->is_admin) {
-            $episodes = PodcastEpisode::latest()->get();
+            $episodes = PodcastEpisode::orderBy('episode', 'desc')->orderBy('created_at', 'desc')->get();
         } else {
             $episodes = cache('flutter-podcast-list');
         }
