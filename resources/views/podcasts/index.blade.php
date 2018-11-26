@@ -76,7 +76,11 @@
     <div class="container">
 	<div class="columns is-multiline is-5 is-variable">
 		@foreach ($episodes as $episode)
-			<div class="column is-one-third" onclick="location.href = '{{ $episode->url() }}'">
+			<div class="column is-one-third"
+                @if ($episode->is_uploaded)
+                    onclick="location.href = '{{ $episode->url() }}'"
+                @endif
+            >
 				<div class="podcast-episode is-hover-elevated">
                     <header style="padding: 16px">
                         <p class="no-wrap" v-bind:title="app.title" style="font-size:22px; padding-bottom:10px;">
