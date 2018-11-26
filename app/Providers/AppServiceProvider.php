@@ -19,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         FlutterApp::observe(FlutterAppObserver::class);
+        PodcastEpisode::observe(PodcastEpisodeObserver::class);
 
         try {
             Cache::rememberForever('flutter-app-list', function () {
