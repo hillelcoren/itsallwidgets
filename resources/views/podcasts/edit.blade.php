@@ -246,7 +246,7 @@
 
 			<div class="columns is-centered is-mobile">
 				<div class="control">
-					<a href="{{ $episode->exists ? url('/flutter-app/' . $episode->slug) : url('/') }}" class="button is-medium is-outlined is-slightly-elevated">
+					<a href="{{ $episode->exists ? $episode->url() : url('/podcast') }}" class="button is-medium is-outlined is-slightly-elevated">
 						<i style="font-size: 20px" class="fa fa-times-circle"></i> &nbsp; Cancel
 					</a> &nbsp;
 					<button id="saveButton" class="button is-info is-medium is-slightly-elevated">

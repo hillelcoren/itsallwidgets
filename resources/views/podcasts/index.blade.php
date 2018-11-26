@@ -81,27 +81,19 @@
                     <header style="padding: 16px">
                         <p class="no-wrap" v-bind:title="app.title" style="font-size:22px; padding-bottom:10px;">
                             {{ $episode->title }}
-
-                            @if ($episode->twitter_url)
-								<a href="{{ $episode->twitter_url }}" class="card-header-icon" target="_blank">
-									<i style="font-size: 20px; color: #888" class="fab fa-twitter"></i>
-								</a>
-							@endif
-
                         </p>
                         <div style="border-bottom: 2px #259bee solid; width: 50px"/>
                     </header>
 
-					<div class="card-content">
-						<div class="content">
-							<div class="subtitle is-6" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{ $episode->short_description }}">
-								{{ $episode->short_description }}
-							</div>
+					<div class="content" style="padding:16px;padding-bottom:22px;">
+						<div class="subtitle is-6" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{ $episode->listDescription() }}">
+							{{ $episode->listDescription() }}
 						</div>
 					</div>
 
 				</div>
-				<p>&nbsp;</p>
+                <p>&nbsp;</p>
+
 			</div>
 		@endforeach
 	</div>

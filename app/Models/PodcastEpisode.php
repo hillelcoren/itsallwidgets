@@ -24,7 +24,7 @@ class PodcastEpisode extends Model
         'is_visible',
     ];
 
-    protected $hidden = [        
+    protected $hidden = [
         'private_notes',
         'is_visible',
         'is_approved',
@@ -33,6 +33,11 @@ class PodcastEpisode extends Model
     public function scopeVisible($query)
     {
         $query->where('is_visible', '=', true);
+    }
+
+    public function listDescription()
+    {
+        return $this->is_uploaded ? $this->short_description : 'Coming soon';
     }
 
     public function url()
