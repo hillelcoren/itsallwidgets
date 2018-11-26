@@ -15,7 +15,7 @@
 
     .short-description {
         line-height: 1.5em;
-        height: 3em;
+        height: 4.5em;
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -78,7 +78,7 @@
 		@foreach ($episodes as $episode)
 			<div class="column is-one-third"
                 @if ($episode->is_uploaded)
-                    onclick="location.href = '{{ $episode->url() }}'"
+                    onclick="location.href = '{{ $episode->url() }}'" style="cursor: pointer;"
                 @endif
             >
 				<div class="podcast-episode is-hover-elevated">
@@ -92,19 +92,20 @@
                         <div style="border-bottom: 2px #259bee solid; width: 50px"/>
                     </header>
 
-					<div class="content" style="padding:16px;padding-bottom:22px;">
-						<div class="subtitle is-6" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{ $episode->listDescription() }}">
+					<div class="content" style="padding:16px;padding-bottom:16px;">
+						<div class="short-description" title="{{ $episode->listDescription() }}">
 							{{ $episode->listDescription() }}
 						</div>
 
+                        <p>&nbsp;</p>
                         @if (auth()->check() && auth()->user()->is_admin)
                             <a class="button is-info is-small is-slightly-elevated" href="{{ $episode->adminUrl() }}">
     							<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
     							Edit Podcast
     						</a>
                         @endif
-					</div>
 
+					</div>
 
 				</div>
                 <p>&nbsp;</p>
