@@ -69,6 +69,15 @@ class PodcastController extends Controller
             'method' => 'PUT',
         ];
 
+        if ($mp3 = request()->file('mp3')) {
+            $filename = 'episode-' . $this->episode->id . '.mp3';
+            $gif->move(public_path('/mp3s'), $filename);
+
+            $this->app->update([
+                'is_uploaded' => true,
+            ]);
+        }
+
         return view('podcasts.edit', $data);
     }
 

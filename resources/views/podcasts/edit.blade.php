@@ -253,6 +253,22 @@
 						</div>
 
 						<div class="field">
+							<label class="label" for="mp3">
+								MP3 File
+							</label>
+							<div class="control">
+
+								{{ Form::file('mp3') }}
+
+								@if ($errors->has('mp3'))
+									<span class="help is-danger">
+										{{ $errors->first('mp3') }}
+									</span>
+								@endif
+							</div>
+						</div>
+
+						<div class="field">
 							<div class="field">
 								<label class="label" for="is_visible">
 									Is Visible
