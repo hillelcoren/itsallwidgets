@@ -93,7 +93,15 @@
 						<div class="subtitle is-6" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="{{ $episode->listDescription() }}">
 							{{ $episode->listDescription() }}
 						</div>
+
+                        @if (auth()->check() && auth()->user()->is_admin)
+                            <a class="button is-info is-small is-slightly-elevated" href="{{ $episode->adminUrl() }}">
+    							<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
+    							Edit Podcast
+    						</a>
+                        @endif
 					</div>
+
 
 				</div>
                 <p>&nbsp;</p>

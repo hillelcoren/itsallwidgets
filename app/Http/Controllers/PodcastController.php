@@ -61,21 +61,31 @@ class PodcastController extends Controller
         );
     }
 
-    public function edit(EditPodcastEpisode $request, $episode, $title = '')
+    public function edit(EditPodcastEpisode $request, $episode)
     {
-        $episode = $this->podcastRepo->getByEpisodeOrTitle($episode, $title);
-
-        if (! $episode) {
-            return redirect('/podcast');
-        }
-
         $data = [
             'episode' => $episode,
-            'url' => 'podcast/' . $episode->episode,
+            'url' => $episode->adminUrl(),
             'method' => 'PUT',
         ];
 
         return view('podcasts.edit', $data);
+    }
+
+    public function update(UpdatePodcastEpisode $request)
+    {
+        /*
+        $app = $request->flutter_app;
+        $input = $request->all();
+        $app = $this->appRepo->update($app, $input);
+
+        dispatch(new UploadScreenshot($app, 'screenshot'));
+
+        return redirect('/flutter-app/' . $app->slug)->with(
+            'status',
+            'Your application has been successfully updated!'
+        );
+        */
     }
 
     public function show($episode, $title = '')

@@ -6,6 +6,11 @@ use App\Models\PodcastEpisode;
 
 class PodcastRepository
 {
+    public function getById($id)
+    {
+        return PodcastEpisode::find($id);
+    }
+
     public function getByEpisode($episode)
     {
         return PodcastEpisode::where('episode', $episode)->first();

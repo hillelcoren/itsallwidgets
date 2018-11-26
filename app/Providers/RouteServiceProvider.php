@@ -28,12 +28,10 @@ class RouteServiceProvider extends ServiceProvider
             return \App\Models\FlutterApp::where('slug', $value)->first();
         });
 
-        /*
-        Route::bind('episode', function($value) {
-            return \App\Models\PodcastEpisode::where('episode', $value)->first();
+        Route::bind('episode_id', function($value) {
+            return \App\Models\PodcastEpisode::where('id', $value)->firstOrFail();
         });
-        */
-        
+
         parent::boot();
     }
 
