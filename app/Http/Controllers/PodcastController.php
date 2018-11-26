@@ -90,15 +90,6 @@ class PodcastController extends Controller
             'status',
             'Your podcast episode has been successfully updated!'
         );
-
-        /*
-        dispatch(new UploadScreenshot($app, 'screenshot'));
-
-        return redirect('/flutter-app/' . $app->slug)->with(
-            'status',
-            'Your application has been successfully updated!'
-        );
-        */
     }
 
     public function show($episode, $title = '')
