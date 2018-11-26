@@ -88,22 +88,6 @@
 					</div>
 
 					<div class="field">
-						<label class="label" for="short_description">
-							Bio <span class="required">*</span>
-						</label>
-						<div class="control">
-							{{ Form::textarea('short_description', $episode->short_description, ['class' => 'input', 'required' => true, 'style' => 'height:100px']) }}
-
-							@if ($errors->has('short_description'))
-								<span class="help is-danger">
-									{{ $errors->first('short_description') }}
-								</span>
-							@endif
-						</div>
-					</div>
-
-
-					<div class="field">
 						<label class="label" for="twitter_url">
 							Twitter <span class="required">*</span>
 						</label>
@@ -123,6 +107,20 @@
 						</div>
 					</div>
 
+					<div class="field">
+						<label class="label" for="short_description">
+							Bio <span class="required">*</span>
+						</label>
+						<div class="control">
+							{{ Form::textarea('short_description', $episode->short_description, ['class' => 'input', 'required' => true, 'style' => 'height:100px']) }}
+
+							@if ($errors->has('short_description'))
+								<span class="help is-danger">
+									{{ $errors->first('short_description') }}
+								</span>
+							@endif
+						</div>
+					</div>
 
 					<div class="field">
 						<label class="label" for="private_notes">
