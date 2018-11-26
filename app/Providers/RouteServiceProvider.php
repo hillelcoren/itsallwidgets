@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use App\Models\PodcastEpisode;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -27,6 +28,12 @@ class RouteServiceProvider extends ServiceProvider
             return \App\Models\FlutterApp::where('slug', $value)->first();
         });
 
+        /*
+        Route::bind('episode', function($value) {
+            return \App\Models\PodcastEpisode::where('episode', $value)->first();
+        });
+        */
+        
         parent::boot();
     }
 

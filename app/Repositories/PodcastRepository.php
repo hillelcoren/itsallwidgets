@@ -16,6 +16,17 @@ class PodcastRepository
         return PodcastEpisode::where('title', $title)->first();
     }
 
+    public function getByEpisodeOrTitle($episode, $title)
+    {
+        $episode = $this->getByEpisode($episode);
+
+        if (! $episode) {
+            $episode = $this->getByTitle($title);
+        }
+
+        return $episode;
+    }
+
     public function store($input)
     {
         $app = new PodcastEpisode;

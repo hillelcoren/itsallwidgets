@@ -61,9 +61,13 @@ class PodcastController extends Controller
         );
     }
 
-    public function edit(EditPodcastEpisode $request)
+    public function edit(EditPodcastEpisode $request, $episode, $title = '')
     {
-        $episode = request()->episode;
+        $episode = $this->podcastRepo->getByEpisodeOrTitle($episode, $title);
+
+        if (! $episode) {
+            return redirect('/podcast');
+        }
 
         $data = [
             'episode' => $episode,
@@ -74,13 +78,9 @@ class PodcastController extends Controller
         return view('podcasts.edit', $data);
     }
 
-    public function show($episode, $title)
+    public function show($episode, $title = '')
     {
-        $episode = $this->podcastRepo->getByEpisode($episode);
-
-        if (! $episode) {
-            $episode = $this->podcastRepo->getByTitle($title);
-        }
+        $episode = $this->podcastRepo->getByEpisodeOrTitle($episode, $title);
 
         if (! $episode) {
             return redirect('/podcast');
