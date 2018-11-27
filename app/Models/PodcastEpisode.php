@@ -26,6 +26,7 @@ class PodcastEpisode extends Model implements Feedable
         'is_visible',
         'is_uploaded',
         'private_notes',
+        'length',
     ];
 
     protected $hidden = [
@@ -41,7 +42,7 @@ class PodcastEpisode extends Model implements Feedable
         'published_at'
     ];
     */
-    
+
     public function scopeVisible($query)
     {
         $query->where('is_visible', '=', true);

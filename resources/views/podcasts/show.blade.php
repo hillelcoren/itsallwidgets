@@ -46,7 +46,7 @@
 
 					@if ($episode->website_url)
 						<div class="content" style="padding-bottom: 8px;">
-							<a href="{{ $episode->website_url }}" target="_blank">{{ $episode->website_url }}</a>
+							<a href="{{ $episode->website_url }}" target="_blank" rel="nofollow">{{ $episode->website_url }}</a>
 						</div>
 					@endif
 
