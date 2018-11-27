@@ -74,6 +74,29 @@
     <p>&nbsp;</p>
 
     <div class="container">
+
+    <div class="columns is-multiline is-5 is-variable">
+        <div class="column is-one-third">
+        </div>
+        <div class="column is-two-third">
+            <div class="is-size-3">It's All Widgets! Flutter Podcast</div>
+            <div class="is-size-5">
+                Hosted by <a href="https://twitter.com/hillelcoren" target="_blank">Hillel Coren</a>
+            </div>
+            <p>&nbsp;</p>
+            <div style="max-width:600px" style="padding-top:6px">
+                A regular podcast featuring many of the amazing developers from the Flutter community. In each episode we review the developer's background, what got them into Flutter and their thoughts in general.
+            </div>
+            <p>&nbsp;</p>
+            <div style="max-width:600px">
+                If you'd like to be featured in an episode please click "Request Interview" above. We all have a story to tell, make your voice heard!
+            </div>
+        </div>
+    </div>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
 	<div class="columns is-multiline is-5 is-variable">
 		@foreach ($episodes as $episode)
 			<div class="column is-one-third"
