@@ -14,7 +14,7 @@
             @endif
         @endforeach
         <image>
-            <url>https://itsallwidgets.com/images.png</url>
+            <url>https://itsallwidgets.com/images/favicon.png</url>
             <title>It's All Widgets! Flutter Podcast</title>
             <link>https://itsallwidgets.com/podcast</link>
         </image>
@@ -36,7 +36,7 @@
         <itunes:keywords>
             flutter,google,programming,development,web,mobile,developer,software engineering,app
         </itunes:keywords>
-        <itunes:image href="https://itsallwidgets.com/images.png"/>
+        <itunes:image href="https://itsallwidgets.com/images/favicon.png"/>
         <itunes:category text="Technology"/>
         <itunes:category text="Education"/>
         @foreach($items as $item)
@@ -52,7 +52,7 @@
                     <![CDATA[{!! $item->summary !!}]]>
                 </description>
                 <itunes:summary>{!! $item->summary !!}</itunes:summary>
-                <itunes:image href="https://itsallwidgets.com/images.png"/>
+                <itunes:image href="https://itsallwidgets.com/images/favicon.png"/>
                 <pubDate>{{ $item->updated->toAtomString() }}</pubDate>
                 <itunes:explicit>No</itunes:explicit>
                 <itunes:keywords>

@@ -75,8 +75,9 @@
 
     <div class="container">
 
-    <div class="columns is-multiline is-5 is-variable">
+    <div class="columns is-multiline is-8 is-variable">
         <div class="column is-one-third">
+            <img src="{{ asset('images/favicon.png') }}"/>
         </div>
         <div class="column is-two-third">
 
@@ -91,7 +92,7 @@
             </div>
 
             <div style="max-width:600px" style="padding-tojp:6px">
-                An ongoing podcast featuring many of the amazing developers from the Flutter community. In each episode we review the developer's background, what got them into Flutter and their thoughts on the platform in general.
+                An ongoing series featuring many of the amazing developers from the Flutter community. In each episode we discuss the developer's background, what got them into Flutter and their thoughts on the platform in general.
             </div>
             <p>&nbsp;</p>
             <div style="max-width:600px">
