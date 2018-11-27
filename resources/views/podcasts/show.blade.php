@@ -14,7 +14,7 @@
 	<section class="section is-body-font">
 		<div class="container">
 
-			<div class="columns is-multiline is-5 is-variable">
+			<div class="columns is-multiline is-8 is-variable">
 				<div class="column is-one-third">
 		            <img src="{{ asset('images/favicon.png') }}"/>
 		        </div>
