@@ -91,6 +91,12 @@
             <div style="max-width:600px">
                 If you'd like to be featured in an episode please click "Request Interview" above. We all have a story to tell, make your voice heard!
             </div>
+            <p>&nbsp;</p>
+            <a class="button is-light is-slightly-elevated" href="https://itsallwidgets.com/podcast/feed">
+                <i style="font-size: 20px" class="fas fa-rss"></i> &nbsp;
+                RSS Feed
+            </a>
+
         </div>
     </div>
 
