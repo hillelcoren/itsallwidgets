@@ -28,14 +28,6 @@
         border-radius: 8px;
     }
 
-    .podcast-episode .is-hover-visible {
-        display: none;
-    }
-
-    .podcast-episode:hover .is-hover-visible {
-        display: flex;
-    }
-
     .podcast-episode a {
         color: #259bee;
     }
@@ -43,8 +35,6 @@
     .column {
         padding: 1rem 1rem 6rem 1rem;
     }
-
-
 
     @media screen and (max-width: 788px) {
         .slider-control {
@@ -70,6 +60,7 @@
 
     </style>
 
+    <p>&nbsp;</p>
     <p>&nbsp;</p>
     <p>&nbsp;</p>
 
