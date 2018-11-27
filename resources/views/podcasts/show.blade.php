@@ -36,10 +36,21 @@
 						{{ $episode->short_description }}
 					</div>
 
+					@if ($episode->website_url)
+						<div class="content">
+							<a href="{{ $episode->website_url }}" target="_blank">{{ $episode->website_url }}</a>
+						</div>
+					@endif
 
 					<a class="button is-medium is-slightly-elevated" href="{{ $episode->twitter_url }}" target="_blank" rel="nofollow">
 						<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
 					</a> &nbsp;
+
+					@if ($episode->github_url)
+						<a class="button is-medium is-slightly-elevated" href="{{ $episode->github_url }}" target="_blank" rel="nofollow">
+							<i style="font-size: 20px" class="fab fa-github"></i> &nbsp; GitHub
+						</a> &nbsp;
+					@endif
 
 					<a class="button is-medium is-slightly-elevated" href="{{ $episode->downloadUrl() }}">
 						<i style="font-size: 20px" class="fas fa-download"></i> &nbsp; Download
