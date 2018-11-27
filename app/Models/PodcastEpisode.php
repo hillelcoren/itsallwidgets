@@ -3,12 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-//use Spatie\Feed\Feedable;
-//use Spatie\Feed\FeedItem;
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
 use Illuminate\Notifications\Notifiable;
 
-//class PodcastEpisode extends Model implements Feedable
-class PodcastEpisode extends Model
+class PodcastEpisode extends Model implements Feedable
 {
     use Notifiable;
 
@@ -40,6 +39,22 @@ class PodcastEpisode extends Model
         $query->where('is_visible', '=', true);
     }
 
+    public static function getFeedItems()
+    {
+        return cache('flutter-podcast-list');
+    }
+
+    public function toFeedItem()
+    {
+        return FeedItem::create()
+            ->id($this->episode)
+            ->title($this->title)
+            ->updated($this->updated_at)
+            ->summary($this->short_description)
+            ->link($this->downloadUrl())
+            ->author('Hillel Coren');
+    }
+
     public function listDescription()
     {
         return $this->is_uploaded ? $this->short_description : 'Coming soon';
@@ -57,7 +72,7 @@ class PodcastEpisode extends Model
 
     public function downloadUrl()
     {
-        return url('podcast/download/' . $this->episode);
+        return url('podcast/download/episode-' . $this->episode . '.mp3');
     }
 
     public function mp3Path()

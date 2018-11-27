@@ -13,6 +13,15 @@ return [
 
         ],
 
+        'podcast' => [
+
+            'items' => 'App\Models\PodcastEpisode@getFeedItems',
+            'url' => 'podcast/feed',
+            'title' => 'It\'s All Widgets! Flutter Podcast',
+            'view' => 'feed::feed',
+
+        ],
+
     ],
 
 ];
