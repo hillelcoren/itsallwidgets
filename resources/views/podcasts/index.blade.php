@@ -79,13 +79,19 @@
         <div class="column is-one-third">
         </div>
         <div class="column is-two-third">
-            <div class="is-size-3">It's All Widgets! Flutter Podcast</div>
-            <div class="is-size-5">
+
+            <h2 class="title">
+                <div class="is-vertical-center">
+                    It's All Widgets! Flutter Podcast
+                </div>
+                <div style="border-bottom: 2px #259bee solid; width: 50px; padding-top:12px;"/>
+            </h2>
+            <div class="subtitle" style="padding-top:8px; max-width:600px">
                 Hosted by <a href="https://twitter.com/hillelcoren" target="_blank">Hillel Coren</a>
             </div>
-            <p>&nbsp;</p>
-            <div style="max-width:600px" style="padding-top:6px">
-                A regular podcast featuring many of the amazing developers from the Flutter community. In each episode we review the developer's background, what got them into Flutter and their thoughts in general.
+
+            <div style="max-width:600px" style="padding-tojp:6px">
+                An ongoing podcast featuring many of the amazing developers from the Flutter community. In each episode we review the developer's background, what got them into Flutter and their thoughts on the platform in general.
             </div>
             <p>&nbsp;</p>
             <div style="max-width:600px">
@@ -103,9 +109,6 @@
 
         </div>
     </div>
-
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
 
 	<div class="columns is-multiline is-5 is-variable">
 		@foreach ($episodes as $episode)

@@ -28,7 +28,7 @@
 					<h2 class="title">
 						<div class="is-vertical-center">
 							{{ $episode->title }}
-							<img src="{{ $episode->avatar_url }}" style="border-radius: 50%; width: 50px; margin-left: 50px"/>
+							<img src="{{ $episode->avatar_url }}" style="border-radius: 50%; width: 50px; margin-left: 80px"/>
 						</div>
 						<div style="border-bottom: 2px #259bee solid; width: 50px; padding-top:12px;"/>
 					</h2>
@@ -49,6 +49,12 @@
 					@if ($episode->github_url)
 						<a class="button is-medium is-slightly-elevated" href="{{ $episode->github_url }}" target="_blank" rel="nofollow">
 							<i style="font-size: 20px" class="fab fa-github"></i> &nbsp; GitHub
+						</a> &nbsp;
+					@endif
+
+					@if ($episode->app_url)
+						<a class="button is-medium is-slightly-elevated" href="{{ $episode->app_url }}" target="_blank">
+							<i style="font-size: 20px" class="fas fa-star"></i> &nbsp; View App
 						</a> &nbsp;
 					@endif
 
