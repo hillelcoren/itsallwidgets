@@ -32,12 +32,12 @@
 						</div>
 						<div style="border-bottom: 2px #259bee solid; width: 50px; padding-top:12px;"/>
 					</h2>
-					<div class="subtitle" style="padding-top:16px; max-width:600px">
+					<div class="subtitle" style="padding-top:16px; padding-bottom:8px; max-width:600px">
 						{{ $episode->short_description }}
 					</div>
 
 					@if ($episode->website_url)
-						<div class="content">
+						<div class="content" style="padding-bottom: 8px;">
 							<a href="{{ $episode->website_url }}" target="_blank">{{ $episode->website_url }}</a>
 						</div>
 					@endif
