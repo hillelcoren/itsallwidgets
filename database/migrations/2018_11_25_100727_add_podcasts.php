@@ -24,7 +24,8 @@ class AddPodcasts extends Migration
             $table->text('private_notes')->nullable();
             $table->smallInteger('episode')->nullable()->unique();
             $table->smallInteger('download_count')->default(0);
-            $table->integer('length')->default(0);
+            $table->integer('file_size')->default(0);
+            $table->string('file_duration')->default(0);
             $table->string('reddit_url')->nullable();
             $table->string('website_url')->nullable();
             $table->string('github_url')->nullable();

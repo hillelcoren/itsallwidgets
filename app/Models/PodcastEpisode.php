@@ -26,7 +26,8 @@ class PodcastEpisode extends Model implements Feedable
         'is_visible',
         'is_uploaded',
         'private_notes',
-        'length',
+        'file_size',
+        'file_duration',
     ];
 
     protected $hidden = [

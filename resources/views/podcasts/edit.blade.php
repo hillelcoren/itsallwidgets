@@ -251,23 +251,6 @@
 
 						<!--
 						<div class="field">
-							<label class="label" for="length">
-								Length
-							</label>
-							<div class="control">
-								{{ Form::text('length', $episode->length, ['class' => 'input', 'required' => false]) }}
-
-								@if ($errors->has('length'))
-									<span class="help is-danger">
-										{{ $errors->first('length') }}
-									</span>
-								@endif
-							</div>
-						</div>
-						-->
-
-						<!--
-						<div class="field">
 							<label class="label" for="mp3">
 								MP3 File
 							</label>
