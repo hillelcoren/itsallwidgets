@@ -62,7 +62,7 @@ class PodcastEpisode extends Model implements Feedable
 
     public function listDescription()
     {
-        return $this->is_uploaded ? $this->short_description : 'Coming soon';
+        return $this->is_uploaded ? $this->short_description : 'Coming soon...';
     }
 
     public function url()

@@ -26,7 +26,7 @@ class StorePodcastEpisode extends FormRequest
     {
         $rules = [
             'title' => 'required',
-            'short_description' => 'required|max:250',
+            'short_description' => 'required',
             'twitter_url' => ['required', new ExternalLink('https://twitter.com/')],
             'app_url' => [new ExternalLink('https://itsallwidgets.com/flutter-app/')],
             'github_url' => [new ExternalLink('https://github.com/')],

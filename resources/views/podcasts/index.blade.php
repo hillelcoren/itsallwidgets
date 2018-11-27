@@ -125,7 +125,12 @@
 							{{ $episode->listDescription() }}
 						</div>
 
-                        <p>&nbsp;</p>
+                        <div style="padding-top:20px" class="is-size-6 has-text-grey">
+                            @if ($episode->published_at)
+                                Published: {{ \Carbon\Carbon::parse($episode->published_at)->format('M jS, Y') }}
+                            @endif&nbsp;
+                        </div>
+
                         @if (auth()->check() && auth()->user()->is_admin)
                             <a class="button is-info is-small is-slightly-elevated" href="{{ $episode->adminUrl() }}">
     							<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;

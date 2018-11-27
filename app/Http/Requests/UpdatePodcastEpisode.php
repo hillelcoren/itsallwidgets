@@ -26,7 +26,7 @@ class UpdatePodcastEpisode extends FormRequest
     {
         $rules = [
             'title' => 'required',
-            'short_description' => 'required|max:250',
+            'short_description' => 'required',
             'app_url' => [new ExternalLink('https://itsallwidgets.com/flutter-app/')],
             'twitter_url' => [new ExternalLink('https://twitter.com/')],
             'github_url' => [new ExternalLink('https://github.com/')],
