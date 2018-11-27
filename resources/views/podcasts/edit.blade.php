@@ -192,7 +192,7 @@
 
 					<div class="field">
 						<label class="label" for="twitter_url">
-							It's All Widgets!
+							App on It's All Widgets!
 						</label>
 						<div class="control has-icons-left">
 
@@ -269,7 +269,7 @@
 							</div>
 						</div>
 						-->
-						
+
 						<div class="field">
 							<div class="field">
 								<label class="label" for="is_visible">

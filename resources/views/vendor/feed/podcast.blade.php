@@ -43,6 +43,7 @@
             <item>
                 <title><![CDATA[{{ $item->title }}]]></title>
                 <link rel="alternate" href="{{ url($item->link) }}" />
+                <enclosure url="{{ url($item->link) }}" type="audio/mpeg"/>
                 <guid>{{ $item->id }}</guid>
                 <author>
                     <name> <![CDATA[{{ $item->author }}]]></name>
