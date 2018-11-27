@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Models\FlutterApp;
 use App\Models\PodcastEpisode;
 use App\Observers\FlutterAppObserver;
+use App\Observers\PodcastEpisodeObserver;
 use Cache;
 use Illuminate\Support\Facades\View;
 
