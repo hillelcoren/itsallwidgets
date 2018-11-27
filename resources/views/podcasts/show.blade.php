@@ -33,8 +33,15 @@
 						</div>
 						<div style="border-bottom: 2px #259bee solid; width: 50px; padding-top:8px;"/>
 					</h2>
+
 					<div class="subtitle" style="padding-top:16px; padding-bottom:8px; max-width:600px">
 						{{ $episode->short_description }}
+					</div>
+
+					<div style="padding-top:16px; padding-bottom:16px;" class="is-size-6 has-text-grey">
+						@if ($episode->published_at)
+							Published: {{ \Carbon\Carbon::parse($episode->published_at)->format('M jS, Y') }}
+						@endif&nbsp;
 					</div>
 
 					@if ($episode->website_url)
@@ -62,6 +69,8 @@
 					<a class="button is-medium is-slightly-elevated" href="{{ $episode->downloadUrl() }}">
 						<i style="font-size: 20px" class="fas fa-download"></i> &nbsp; Download
 					</a> &nbsp;
+
+					<p>&nbsp;</p>
 
 				</div>
 			</div>

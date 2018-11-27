@@ -114,14 +114,14 @@
                         <div class="is-pulled-right">
                             <img src="{{ $episode->avatar_url }}" style="border-radius: 50%; width: 50px;"/>
                         </div>
-                        <p class="no-wrap" v-bind:title="app.title" style="font-size:22px; padding-bottom:10px;">
+                        <p class="no-wrap" style="font-size:22px; padding-bottom:10px;">
                             {{ $episode->title }}
                         </p>
                         <div style="border-bottom: 2px #259bee solid; width: 50px"/>
                     </header>
 
 					<div class="content" style="padding:16px;padding-bottom:16px;">
-						<div class="short-description" title="{{ $episode->listDescription() }}">
+						<div class="short-description">
 							{{ $episode->listDescription() }}
 						</div>
 
