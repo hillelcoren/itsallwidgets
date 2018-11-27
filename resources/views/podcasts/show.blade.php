@@ -13,17 +13,38 @@
 
 	<section class="section is-body-font">
 		<div class="container">
-			<div class="is-title">
-				{{ $episode->title }}
+
+			<div class="columns is-multiline is-5 is-variable">
+				<div class="column is-one-third">
+				</div>
+				<div class="column is-two-third">
+					<nav class="breadcrumb" aria-label="breadcrumbs">
+						<ul>
+							<li><a href="{{ url('/podcast') }}">All Episodes</a></li>
+							<li class="is-active"><a href="#" aria-current="page">Episode #{{ $episode->episode }}</a></li>
+						</ul>
+					</nav>
+
+					<h2 class="title">
+						{{ $episode->title }}
+						<div style="border-bottom: 2px #259bee solid; width: 50px; padding-top:12px;"/>
+					</h2>
+					<div class="subtitle" style="padding-top:16px; max-width:600px">
+						{{ $episode->short_description }}
+					</div>
+
+
+					<a class="button is-large is-slightly-elevated" href="{{ $episode->twitter_url }}" target="_blank" rel="nofollow">
+						<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
+					</a> &nbsp;
+
+					<a class="button is-large is-slightly-elevated" href="{{ $episode->downloadUrl() }}">
+						<i style="font-size: 20px" class="fas fa-download"></i> &nbsp; Download
+					</a> &nbsp;
+
+				</div>
 			</div>
 
-			<a class="button is-large is-slightly-elevated" href="{{ $episode->twitter_url }}" target="_blank" rel="nofollow">
-				<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
-			</a> &nbsp;
-
-			<a class="button is-large is-slightly-elevated" href="{{ $episode->downloadUrl() }}">
-				<i style="font-size: 20px" class="fas fa-download"></i> &nbsp; Download
-			</a> &nbsp;
 
 		</div>
 	</section>

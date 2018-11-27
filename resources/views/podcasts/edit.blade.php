@@ -23,9 +23,6 @@
 	<div class="container is-body-font">
 		<div class="column is-8 is-offset-2">
 
-			<h2 class="title">
-				{{ $episode->exists ? 'Edit Podcast' : 'Request Invitation' }}
-			</h2>
 			<p>&nbsp;</p>
 
 			@if (isset($errors) && $errors->count())
