@@ -217,6 +217,21 @@ class FlutterAppController extends Controller
             . '</url>';
         }
 
+        $episodes = cache('flutter-podcast-list');
+
+        foreach ($episodes as $episode) {
+            if (! $episode->episode) {
+                continue;
+            }
+
+            $str .= '<url>'
+            . '<loc>' . $episode->url() . '</loc>'
+            . '<lastmod>' . $episode->updated_at->format('Y-m-d') . '</lastmod>'
+            . '<changefreq>weekly</changefreq>'
+            . '<priority>0.5</priority>'
+            . '</url>';
+        }
+
         $str .= '</urlset>';
 
         return response($str)->header('Content-Type', 'application/xml');
