@@ -423,7 +423,7 @@ body {
         </span>
         Previous Page
     </a> &nbsp;
-    <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)" v-if="page_number <= filteredApps.length / 100">
+    <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)" v-if="page_number <= filteredApps.length / 40">
         Next Page &nbsp;&nbsp;
         <span>
             <i style="font-size: 18px" class="fas fa-chevron-circle-right"></i>
@@ -689,8 +689,8 @@ var app = new Vue({
 
             apps = this.unpaginatedFilteredApps;
 
-            var startIndex = (this.page_number - 1) * 100;
-            var endIndex = startIndex + 100;
+            var startIndex = (this.page_number - 1) * 40;
+            var endIndex = startIndex + 40;
             apps = apps.slice(startIndex, endIndex);
 
             return apps;
