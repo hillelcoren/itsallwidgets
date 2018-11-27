@@ -105,9 +105,9 @@ class PodcastController extends Controller
         return view('podcasts.show', compact('episode'));
     }
 
-    public function download($file_name)
+    public function download($episode)
     {
-        $episode = $this->podcastRepo->getByEpisode($file_name);
+        $episode = $this->podcastRepo->getByEpisode($episode);
 
         $episode->download_count++;
         $episode->save();

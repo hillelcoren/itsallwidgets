@@ -47,7 +47,7 @@ class PodcastEpisode extends Model
 
     public function url()
     {
-        return url('podcast/' . ($this->episode ?: '0') . '/' . str_slug($this->title));
+        return url('podcast/episodes/' . ($this->episode ?: '0') . '/' . str_slug($this->title));
     }
 
     public function adminUrl()

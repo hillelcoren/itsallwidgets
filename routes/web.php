@@ -37,10 +37,10 @@ Route::get('flutter-app/{slug}', 'FlutterAppController@show');
 Route::get('podcast', 'PodcastController@index');
 Route::get('podcast/submit', 'PodcastController@create');
 Route::post('podcast', 'PodcastController@store');
-Route::get('podcast/download/{file_name}', 'PodcastController@download');
+Route::get('podcast/download/{episode}', 'PodcastController@download');
 Route::get('podcast/admin/{episode_id}', 'PodcastController@edit');
 Route::put('podcast/admin/{episode_id}', 'PodcastController@update');
-Route::get('podcast/{episode}/{title?}', 'PodcastController@show');
+Route::get('podcast/episodes/{episode}/{title?}', 'PodcastController@show');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('submit', 'FlutterAppController@create');
