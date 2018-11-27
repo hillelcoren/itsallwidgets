@@ -44,6 +44,11 @@ class PodcastRepository
     public function update($episode, $input)
     {
         $episode->fill($input);
+
+        if ($episode->is_uploaded && ! $episode->published_at) {
+            $episode->published_at = \Carbon\Carbon::now();
+        }
+
         $episode->save();
 
         return $episode;

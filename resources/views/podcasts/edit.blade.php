@@ -224,7 +224,7 @@
 								Long Description
 							</label>
 							<div class="control">
-								{{ Form::textarea('long_description', $episode->short_description, ['class' => 'input', 'required' => false, 'style' => 'height:100px']) }}
+								{{ Form::textarea('long_description', $episode->long_description, ['class' => 'input', 'required' => false, 'style' => 'height:100px']) }}
 
 								@if ($errors->has('long_description'))
 									<span class="help is-danger">
@@ -273,7 +273,7 @@
 									Is Visible
 								</label>
 								<div class="control">
-									<input name="is_visible" type="checkbox" value="1">
+									<input name="is_visible" type="checkbox" value="1" {{ $episode->is_visible ? 'CHECKED' : '' }}>
 								</div>
 							</div>
 						</div>
@@ -284,7 +284,7 @@
 									Is Uploaded
 								</label>
 								<div class="control">
-									<input name="is_uploaded" type="checkbox" value="1">
+									<input name="is_uploaded" type="checkbox" value="1" {{ $episode->is_uploaded ? 'CHECKED' : '' }}>
 								</div>
 							</div>
 						</div>

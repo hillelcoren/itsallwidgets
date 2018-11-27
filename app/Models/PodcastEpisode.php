@@ -49,9 +49,9 @@ class PodcastEpisode extends Model implements Feedable
         return FeedItem::create()
             ->id($this->downloadUrl())
             ->title($this->podcastTitle())
-            ->updated($this->updated_at)
+            ->updated($this->published_at)
             ->summary($this->short_description)
-            ->link($this->downloadUrl())            
+            ->link($this->downloadUrl())
             ->author('Hillel Coren');
     }
 

@@ -31,6 +31,7 @@ class AddPodcasts extends Migration
             $table->string('app_url')->nullable();
             $table->boolean('is_visible')->default(false);
             $table->boolean('is_uploaded')->default(false);
+            $table->timestamp('published_at')->nullable();
         });
     }
 
