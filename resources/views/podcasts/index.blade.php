@@ -83,7 +83,7 @@
             </div>
 
             <div style="max-width:600px" style="padding-tojp:6px">
-                An ongoing series featuring many of the amazing developers from the Flutter community. In each episode we discuss the developer's background, what got them into Flutter and their thoughts on the platform in general.
+                An ongoing series featuring some of the amazing developers from the Flutter community. In each episode we discuss the developer's background, what got them into Flutter and their thoughts on the platform in general.
             </div>
             <p>&nbsp;</p>
             <div style="max-width:600px">

@@ -34,6 +34,14 @@ class PodcastEpisode extends Model implements Feedable
         'is_visible',
     ];
 
+    /*
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'published_at'
+    ];
+    */
+    
     public function scopeVisible($query)
     {
         $query->where('is_visible', '=', true);
@@ -49,7 +57,7 @@ class PodcastEpisode extends Model implements Feedable
         return FeedItem::create()
             ->id($this->downloadUrl())
             ->title($this->podcastTitle())
-            ->updated($this->published_at)
+            ->updated(\Carbon\Carbon::parse($this->published_at))
             ->summary($this->short_description)
             ->link($this->downloadUrl())
             ->author('Hillel Coren');

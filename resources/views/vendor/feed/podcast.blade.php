@@ -19,13 +19,13 @@
             <link>https://itsallwidgets.com/podcast</link>
         </image>
         <description>
-
+            An ongoing series featuring some of the amazing developers from the Flutter community. In each episode we discuss the developer's background, what got them into Flutter and their thoughts on the platform in general.
         </description>
         <language>en-us</language>
         <atom:link href="https://itsallwidgets.com/podcast/feed" rel="self" type="application/rss+xml"/>
         <itunes:author>Hillel Coren</itunes:author>
         <itunes:summary>
-
+            An ongoing series featuring some of the amazing developers from the Flutter community. In each episode we discuss the developer's background, what got them into Flutter and their thoughts on the platform in general.
         </itunes:summary>
         <itunes:subtitle>An open podcast for Flutter developers</itunes:subtitle>
         <itunes:owner>
