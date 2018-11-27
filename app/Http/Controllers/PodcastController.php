@@ -87,7 +87,7 @@ class PodcastController extends Controller
             ]);
         }
         */
-        
+
         return redirect($episode->adminUrl())->with(
             'status',
             'Your podcast episode has been successfully updated!'
@@ -105,4 +105,13 @@ class PodcastController extends Controller
         return view('podcasts.show', compact('episode'));
     }
 
+    public function download($file_name)
+    {
+        $episode = $this->podcastRepo->getByEpisode($file_name);
+
+        $episode->download_count++;
+        $episode->save();
+
+        return response()->download($episode->mp3Path());
+    }
 }

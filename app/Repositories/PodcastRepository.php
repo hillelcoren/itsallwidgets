@@ -38,7 +38,7 @@ class PodcastRepository
         $episode->fill($input);
         $episode->save();
 
-        return $app;
+        return $episode;
     }
 
     public function update($episode, $input)

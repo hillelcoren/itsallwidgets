@@ -16,6 +16,15 @@
 			<div class="is-title">
 				{{ $episode->title }}
 			</div>
+
+			<a class="button is-large is-slightly-elevated" href="{{ $episode->twitter_url }}" target="_blank" rel="nofollow">
+				<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
+			</a> &nbsp;
+
+			<a class="button is-large is-slightly-elevated" href="{{ $episode->downloadUrl() }}">
+				<i style="font-size: 20px" class="fas fa-download"></i> &nbsp; Download
+			</a> &nbsp;
+
 		</div>
 	</section>
 

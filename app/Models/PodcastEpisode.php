@@ -52,7 +52,16 @@ class PodcastEpisode extends Model
 
     public function adminUrl()
     {
-        return url('podcast_admin/' . $this->id);
+        return url('podcast/admin/' . $this->id);
     }
 
+    public function downloadUrl()
+    {
+        return url('podcast/download/' . $this->episode);
+    }
+
+    public function mp3Path()
+    {
+        return storage_path('/mp3s/episode-' . $this->episode . '.mp3');
+    }
 }
