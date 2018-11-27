@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\PodcastEpisode;
 use App\Repositories\PodcastRepository;
 use App\Http\Requests\EditPodcastEpisode;
 use App\Http\Requests\StorePodcastEpisode;
 use App\Http\Requests\UpdatePodcastEpisode;
+use App\Notifications\InterviewRequested;
 
 class PodcastController extends Controller
 {
@@ -54,6 +56,8 @@ class PodcastController extends Controller
     {
         $input = $request->all();
         $episode = $this->podcastRepo->store($input);
+
+        User::admin()->notify(new InterviewRequested($episode));
 
         return redirect('/podcast/' . $episode->episode)->with(
             'status',
