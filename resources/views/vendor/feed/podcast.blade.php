@@ -13,7 +13,7 @@
         @endforeach
         <image>
             <url>https://itsallwidgets.com/images/favicon.png</url>
-            <title>Flutter Podcast</title>
+            <title>It's All Widgets! Flutter Podcast</title>
             <link>https://itsallwidgets.com/podcast</link>
         </image>
         <description>
