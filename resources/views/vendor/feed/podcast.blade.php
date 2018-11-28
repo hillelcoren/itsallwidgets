@@ -40,13 +40,13 @@
         @foreach($items as $item)
             <item>
                 <title>{{ $item->title }}</title>
-                <link rel="alternate" href="{{ url(json_decode($item->link)[0]) }}" />
+                <link href="{{ url(json_decode($item->link)[0]) }}" />
                 <enclosure url="{{ url(json_decode($item->link)[1]) }}" type="audio/mpeg"/>
                 <guid>{{ $item->id }}</guid>
                 <author>
                     <name>{{ $item->author }}</name>
                 </author>
-                <description type="html">
+                <description>
                     {!! $item->summary !!}
                 </description>
                 <itunes:summary>{!! $item->summary !!}</itunes:summary>
