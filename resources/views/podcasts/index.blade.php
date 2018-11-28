@@ -81,10 +81,7 @@
             </h2>
             <div class="subtitle" style="padding-top:8px; max-width:600px">
                 Hosted by
-                <a href="https://twitter.com/hillelcoren" target="_blank">Hillel Coren</a>,
-                <!-- <a href="https://twitter.com/ThomasBurkhartB" target="_blank">Thomas Burkhart</a>, -->
-                <a href="https://twitter.com/devangelslondon" target="_blank">Simon Lightfoot</a> and
-                <a href="https://twitter.com/scottstoll2017" target="_blank">Scott Stoll</a>
+                <a href="https://twitter.com/hillelcoren" target="_blank">Hillel Coren</a>
             </div>
 
             <div style="max-width:600px" style="padding-tojp:6px">
