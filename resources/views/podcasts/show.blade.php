@@ -35,14 +35,12 @@
 						<div style="border-bottom: 2px #259bee solid; width: 50px; padding-top:8px;"/>
 					</h2>
 
-					<div class="subtitle" style="padding-top:16px; padding-bottom:8px; max-width:600px">
-						{{ $episode->short_description }}
+					<div style="padding-top:16px; padding-bottom:16px;">
+						<audio controls src="{{ $episode->downloadUrl() }}" preload="none"></audio>
 					</div>
 
-					<div style="padding-top:16px; padding-bottom:16px;" class="is-size-6 has-text-grey">
-						@if ($episode->published_at)
-							Published: {{ \Carbon\Carbon::parse($episode->published_at)->format('M jS, Y') }}
-						@endif&nbsp;
+					<div class="subtitle" style="padding-top:16px; padding-bottom:8px; max-width:600px">
+						{{ $episode->short_description }}
 					</div>
 
 					@if ($episode->website_url)
@@ -72,6 +70,19 @@
 					</a> &nbsp;
 
 					<p>&nbsp;</p>
+					<p>&nbsp;</p>
+
+					<div>
+						@if ($episode->published_at)
+							Published {{ \Carbon\Carbon::parse($episode->published_at)->format('M jS, Y') }} •
+						@endif
+
+						Music by <a href="https://www.facebook.com/ScottHolmesMusic/" target="_blank" rel="nofollow">Scott Holmes</a>
+					</div>
+
+					<div style="padding-top:16px; padding-bottom:16px;" class="is-size-6 has-text-grey">
+					</div>
+
 
 				</div>
 			</div>
