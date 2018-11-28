@@ -83,9 +83,11 @@
 						{{ $episode->short_description }}
 					</div>
 
-					<div style="padding-top:16px; padding-bottom:8px; max-width:600px" class="block">
-						{!! $long_description !!}
-					</div>
+					@if ($long_description)
+						<div style="padding-top:16px; padding-bottom:8px; max-width:600px" class="block">
+							{!! $long_description !!}
+						</div>
+					@endif
 
 					@if ($episode->website_url)
 						<div class="content" style="padding-bottom: 8px;">
