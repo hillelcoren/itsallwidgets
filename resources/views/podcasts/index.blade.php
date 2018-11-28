@@ -95,10 +95,19 @@
                 Music by <a href="https://www.facebook.com/ScottHolmesMusic/" target="_blank" rel="nofollow">Scott Holmes</a>
             </div>
             <p>&nbsp;</p>
+
+            <!--
+            <a class="button is-light is-slightly-elevated" href="" target="_blank">
+                <i style="font-size: 20px" class="fab fa-reddit"></i> &nbsp;
+                Feedback
+            </a> &nbsp;
+            -->
+
             <a class="button is-light is-slightly-elevated" href="{{ url('podcast/feed') }}" target="_blank">
                 <i style="font-size: 20px" class="fas fa-rss"></i> &nbsp;
                 RSS Feed
-            </a>
+            </a> &nbsp;
+
 
         </div>
     </div>
