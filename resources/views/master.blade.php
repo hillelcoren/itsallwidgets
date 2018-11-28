@@ -35,7 +35,7 @@
 
     <meta name="twitter:title" content="@yield('title') | {{ config('app.name') }}">
     <meta name="twitter:description" content="@yield('description')">
-    <meta name="twitter:image" content="@yield('image_url')">
+    <meta name="twitter:image" content="@yield('image_url')?clear_cache">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image:alt" content="@yield('title') | {{ config('app.name') }}">
 
