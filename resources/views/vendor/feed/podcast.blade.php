@@ -39,15 +39,15 @@
         <itunes:category text="Education"/>
         @foreach($items as $item)
             <item>
-                <title><![CDATA[{{ $item->title }}]]></title>
+                <title>{{ $item->title }}</title>
                 <link rel="alternate" href="{{ url($item->link) }}" />
                 <enclosure url="{{ url($item->link) }}" type="audio/mpeg"/>
                 <guid>{{ $item->id }}</guid>
                 <author>
-                    <name> <![CDATA[{{ $item->author }}]]></name>
+                    <name>{{ $item->author }}</name>
                 </author>
                 <description type="html">
-                    <![CDATA[{!! $item->summary !!}]]>
+                    {!! $item->summary !!}
                 </description>
                 <itunes:summary>{!! $item->summary !!}</itunes:summary>
                 <itunes:image href="https://itsallwidgets.com/images/favicon.png"/>
