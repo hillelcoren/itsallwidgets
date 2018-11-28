@@ -59,9 +59,9 @@ class PodcastController extends Controller
 
         User::admin()->notify(new InterviewRequested($episode));
 
-        return redirect('/podcast/' . $episode->episode)->with(
+        return redirect('/podcast')->with(
             'status',
-            'Your podcast episode has been successfully added!'
+            'Your request has been successfully submitted!'
         );
     }
 
