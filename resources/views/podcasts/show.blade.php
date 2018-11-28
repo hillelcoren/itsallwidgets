@@ -35,12 +35,49 @@
 						<div style="border-bottom: 2px #259bee solid; width: 50px; padding-top:8px;"/>
 					</h2>
 
-					<div style="padding-top:16px; padding-bottom:16px;">
+					<div style="padding-bottom:16px;">
 						<audio controls preload="none" style="min-height:54px">
 							<source src="{{ $episode->downloadUrl() }}" type="audio/mpeg" />
 							Your browser does not support the audio element.
 						</audio>
 					</div>
+
+					<a class="button is-slightly-elevated" href="{{ $episode->downloadUrl() }}">
+						<i style="font-size: 20px" class="fas fa-download"></i> &nbsp; Download
+					</a> &nbsp;
+
+					<div class="dropdown is-hoverable">
+		                <div class="dropdown-trigger is-slightly-elevated">
+		                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+		                        <span>
+		                            <i style="font-size: 20px" class="fa fa-share"></i> &nbsp;
+		                            Share Episode
+		                        </span>
+		                        <span class="icon is-small">
+		                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+		                        </span>
+		                    </button>
+		                </div>
+		                <div class="dropdown-menu" role="menu">
+		                    <a href="https://www.facebook.com/sharer/sharer.php?u=#url" target="_blank" rel="nofollow">
+		                        <div class="dropdown-content">
+		                            <div class="dropdown-item">
+		                                <i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
+		                            </div>
+		                        </div>
+		                    </a>
+		                    <a href="https://twitter.com/share?text={{ urlencode("It's All Widgets! Flutter Podcast: " . $episode->title) }}&amp;url={{ urlencode($episode->url()) }}" target="_blank" rel="nofollow">
+		                        <div class="dropdown-content">
+		                            <div class="dropdown-item">
+		                                <i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
+		                            </div>
+		                        </div>
+		                    </a>
+		                </div>
+		            </div>
+
+					<p>&nbsp;</p>
+
 
 					<div class="subtitle" style="padding-top:16px; padding-bottom:8px; max-width:600px">
 						{{ $episode->short_description }}
@@ -71,10 +108,6 @@
 							<i style="font-size: 20px" class="fas fa-star"></i> &nbsp; View App
 						</a> &nbsp;
 					@endif
-
-					<a class="button is-medium is-slightly-elevated" href="{{ $episode->downloadUrl() }}">
-						<i style="font-size: 20px" class="fas fa-download"></i> &nbsp; Download
-					</a> &nbsp;
 
 					<p>&nbsp;</p>
 					<p>&nbsp;</p>
