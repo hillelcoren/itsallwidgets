@@ -149,7 +149,7 @@
 				<div class="message-body">
 
 					<div class="field">
-						<label class="label" for="repo_url">
+						<label class="label" for="github_url">
 							GitHub
 						</label>
 						<div class="control has-icons-left">
@@ -160,9 +160,9 @@
 								<i class="fab fa-github"></i>
 							</span>
 
-							@if ($errors->has('repo_url'))
+							@if ($errors->has('github_url'))
 								<span class="help is-danger">
-									{{ $errors->first('repo_url') }}
+									{{ $errors->first('github_url') }}
 								</span>
 							@endif
 						</div>
