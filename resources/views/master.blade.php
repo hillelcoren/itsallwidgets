@@ -331,7 +331,6 @@
                                 </a> &nbsp;&nbsp;&nbsp;
 
 
-                                @if (auth()->check() && auth()->user()->is_admin)
                                 <a class="button is-elevated-dark" style="color:white; background-color:#366cb6; border-color:#366cb6"
                                 href="{{ url('/podcast') }}">
                                 <span class="icon">
@@ -339,7 +338,6 @@
                                 </span> &nbsp;
                                 <span>Podcast</span>
                                 </a>
-                                @endif
 
                             </span>
                         </div>
