@@ -29,6 +29,9 @@ class AppServiceProvider extends ServiceProvider
             Cache::rememberForever('flutter-podcast-list', function () {
                 return PodcastEpisode::visible()->orderBy('episode', 'desc')->orderBy('created_at', 'desc')->get();
             });
+            Cache::rememberForever('flutter-podcast-feed', function () {
+                return PodcastEpisode::uploaded()->orderBy('episode', 'desc')->get();
+            });
         } catch (\Illuminate\Database\QueryException $exception) {
             // this will fail when running composer install
             // before the database is migrated

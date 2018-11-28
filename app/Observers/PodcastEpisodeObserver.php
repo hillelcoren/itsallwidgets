@@ -15,6 +15,7 @@ class PodcastEpisodeObserver
     public function created(PodcastEpisode $episode)
     {
         cache()->forget('flutter-podcast-list');
+        cache()->forget('flutter-podcast-feed');
     }
 
     /**
@@ -26,6 +27,7 @@ class PodcastEpisodeObserver
     public function updated(PodcastEpisode $episode)
     {
         cache()->forget('flutter-podcast-list');
+        cache()->forget('flutter-podcast-feed');
     }
 
     /**
@@ -37,5 +39,6 @@ class PodcastEpisodeObserver
     public function deleted(PodcastEpisode $episode)
     {
         cache()->forget('flutter-podcast-list');
+        cache()->forget('flutter-podcast-feed');
     }
 }

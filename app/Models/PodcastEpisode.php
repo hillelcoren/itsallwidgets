@@ -49,9 +49,14 @@ class PodcastEpisode extends Model implements Feedable
         $query->where('is_visible', '=', true);
     }
 
+    public function scopeUploaded($query)
+    {
+        $query->where('is_uploaded', '=', true);
+    }
+
     public static function getFeedItems()
     {
-        return cache('flutter-podcast-list');
+        return cache('flutter-podcast-feed');
     }
 
     public function toFeedItem()
