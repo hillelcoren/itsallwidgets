@@ -2,7 +2,7 @@
 
 @section('title', $episode->title)
 @section('description', $episode->short_description)
-@section('image_url', asset('images/background.jpg'))
+@section('image_url', asset('images/podcast_background.jpg'))
 
 @section('header_title', 'An open podcast for Flutter developers')
 @section('header_subtitle', 'Share your Flutter story with the community')
