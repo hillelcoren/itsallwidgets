@@ -17,7 +17,7 @@
 
 			<div class="columns is-multiline is-8 is-variable">
 				<div class="column is-one-third">
-		            <img src="{{ asset('images/favicon.png') }}"/>
+		            <img src="{{ asset('images/podcast.png') }}"/>
 		        </div>
 				<div class="column is-two-third">
 					<nav class="breadcrumb" aria-label="breadcrumbs">
