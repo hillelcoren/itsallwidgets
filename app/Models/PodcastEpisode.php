@@ -90,13 +90,13 @@ class PodcastEpisode extends Model implements Feedable
         return url('podcast/admin/' . $this->id);
     }
 
-    public function downloadUrl()
+    public function downloadUrl($format = 'mp3')
     {
-        return url('podcast/download/episode-' . $this->episode . '.mp3');
+        return url('podcast/download/episode-' . $this->episode . '.' . $format);
     }
 
-    public function mp3Path()
+    public function mp3Path($format = 'mp3')
     {
-        return storage_path('/mp3s/episode-' . $this->episode . '.mp3');
+        return storage_path('/mp3s/episode-' . $this->episode . '.' . $format);
     }
 }

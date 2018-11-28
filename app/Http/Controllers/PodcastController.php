@@ -114,14 +114,16 @@ class PodcastController extends Controller
         return view('podcasts.show', $data);
     }
 
-    public function download($episode)
+    public function download($episode, $format)
     {
         $episode = $this->podcastRepo->getByEpisode($episode);
 
         $episode->download_count++;
         $episode->save();
 
-        return response()->download($episode->mp3Path());
+        $file_path = $episode->mp3Path($format);
+
+        return response()->download($file_path);
     }
 
     // https://gist.github.com/jasny/2000705

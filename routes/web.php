@@ -35,7 +35,7 @@ Route::feeds();
 Route::get('flutter-app/{slug}', 'FlutterAppController@show');
 
 Route::get('podcast', 'PodcastController@index');
-Route::get('podcast/download/episode-{episode}.mp3', 'PodcastController@download');
+Route::get('podcast/download/episode-{episode}.{format}', 'PodcastController@download');
 Route::get('podcast/episodes/{episode}/{title?}', 'PodcastController@show');
 
 Route::group(['middleware' => ['auth']], function () {
