@@ -250,6 +250,21 @@
 							</div>
 						</div>
 
+						<div class="field">
+							<label class="label" for="file_duration">
+								Duration
+							</label>
+							<div class="control">
+								{{ Form::text('file_duration', $episode->file_duration, ['class' => 'input', 'required' => false]) }}
+
+								@if ($errors->has('file_duration'))
+									<span class="help is-danger">
+										{{ $errors->first('file_duration') }}
+									</span>
+								@endif
+							</div>
+						</div>
+
 						<!--
 						<div class="field">
 							<label class="label" for="mp3">

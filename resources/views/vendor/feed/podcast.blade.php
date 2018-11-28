@@ -6,7 +6,7 @@
     <channel>
         @foreach($meta as $key => $metaItem)
             @if($key === 'link')
-                <{{ $key }} href="{{ url($metaItem) }}"></{{ $key }}>
+                <{{ $key }} href="{{ url('/podcast') }}"></{{ $key }}>
             @else
                 <{{ $key }}>{{ $metaItem }}</{{ $key }}>
             @endif
@@ -40,8 +40,8 @@
         @foreach($items as $item)
             <item>
                 <title>{{ $item->title }}</title>
-                <link rel="alternate" href="{{ url($item->link) }}" />
-                <enclosure url="{{ url($item->link) }}" type="audio/mpeg"/>
+                <link rel="alternate" href="{{ url(json_decode($item->link)[0]) }}" />
+                <enclosure url="{{ url(json_decode($item->link)[1]) }}" type="audio/mpeg"/>
                 <guid>{{ $item->id }}</guid>
                 <author>
                     <name>{{ $item->author }}</name>
@@ -53,6 +53,7 @@
                 <itunes:image href="https://itsallwidgets.com/images/podcast.png"/>
                 <pubDate>{{ $item->updated->toAtomString() }}</pubDate>
                 <itunes:explicit>No</itunes:explicit>
+                <itunes:duration>{{ json_decode($item->link)[2] }}</itunes:duration>
                 <itunes:keywords>
                     flutter,google,programming,development,web,mobile,developer,software engineering,app
                 </itunes:keywords>
