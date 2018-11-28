@@ -67,7 +67,7 @@ class PodcastEpisode extends Model implements Feedable
             ->updated(\Carbon\Carbon::parse($this->published_at))
             ->summary($this->short_description . "\n" . $this->long_description)
             ->link($this->downloadUrl())
-            ->author("It's All Widgets!");
+            ->author("Hillel Coren");
     }
 
     public function podcastTitle()

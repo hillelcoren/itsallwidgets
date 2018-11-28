@@ -13,7 +13,7 @@
         @endforeach
         <image>
             <url>https://itsallwidgets.com/images/favicon.png</url>
-            <title>Flutter Podcast</title>
+            <title>It's All Widgets! Flutter Podcast</title>
             <link>https://itsallwidgets.com/podcast</link>
         </image>
         <description>
@@ -21,13 +21,13 @@
         </description>
         <language>en-us</language>
         <atom:link href="https://itsallwidgets.com/podcast/feed" rel="self" type="application/rss+xml"/>
-        <itunes:author>It's All Widgets!</itunes:author>
+        <itunes:author>Hillel Coren</itunes:author>
         <itunes:summary>
             An ongoing series featuring some of the amazing developers from the Flutter community. In each episode we discuss the developer's background, what got them into Flutter and their thoughts on the platform in general.
         </itunes:summary>
         <itunes:subtitle>An open podcast for Flutter developers</itunes:subtitle>
         <itunes:owner>
-            <itunes:name>It's All Widgets!</itunes:name>
+            <itunes:name>Hillel Coren</itunes:name>
             <itunes:email>hillelcoren@gmail.com</itunes:email>
         </itunes:owner>
         <itunes:explicit>No</itunes:explicit>

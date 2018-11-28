@@ -80,8 +80,7 @@
                 <div style="border-bottom: 2px #259bee solid; width: 50px; padding-top:12px;"/>
             </h2>
             <div class="subtitle" style="padding-top:8px; max-width:600px">
-                Hosted by
-                <a href="https://twitter.com/hillelcoren" target="_blank">Hillel Coren</a>
+                Hosted by <a href="https://twitter.com/hillelcoren" target="_blank">Hillel Coren</a>
             </div>
 
             <div style="max-width:600px" style="padding-tojp:6px">
