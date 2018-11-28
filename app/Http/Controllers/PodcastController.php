@@ -108,7 +108,7 @@ class PodcastController extends Controller
 
         $data = [
             'episode' => $episode,
-            'long_description' => $this->linkify(nl2br(e($episode->long_description)), ['http'], ['target' => '_blank']),
+            'long_description' => $this->linkify(nl2br(e($episode->long_description)), ['http'], ['target' => '_blank', 'rel' => 'nofollow']),
         ];
 
         return view('podcasts.show', $data);

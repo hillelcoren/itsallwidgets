@@ -72,7 +72,7 @@ class PodcastEpisode extends Model implements Feedable
 
     public function podcastTitle()
     {
-        return $this->episode . ': ' . $this->title;
+        return $this->episode . '. ' . $this->title;
     }
 
     public function listDescription()
