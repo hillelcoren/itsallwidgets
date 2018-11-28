@@ -38,7 +38,7 @@
 					<div style="padding-top:16px; padding-bottom:16px;">
 						<audio controls preload="none">
 							<source src="{{ $episode->downloadUrl() }}" type="audio/mpeg" />
-							<source src="{{ $episode->downloadUrl('ogg') }}" type="audio/ogg" />
+							<!-- <source src="{{ $episode->downloadUrl('ogg') }}" type="audio/ogg" /> -->
 							Your browser does not support the audio element.
 						</audio>
 					</div>
