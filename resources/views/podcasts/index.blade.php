@@ -65,6 +65,7 @@
     <p>&nbsp;</p>
     <p>&nbsp;</p>
 
+    <section class="section" style="background-color:#fefefe">
     <div class="container">
 
     <div class="columns is-multiline is-8 is-variable">
@@ -156,7 +157,8 @@
 		@endforeach
 	</div>
     </div>
-
+    </section>
+    
 	<p>&nbsp;</p>
 
 
