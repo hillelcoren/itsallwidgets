@@ -16,8 +16,7 @@ return [
 
             'items' => 'App\Models\PodcastEpisode@getFeedItems',
             'url' => 'podcast/feed',
-            //'title' => 'It\'s All Widgets! Flutter Podcast',
-            'title' => 'Flutter Podcast',
+            'title' => 'It\'s All Widgets! Flutter Podcast',
             'view' => 'feed::podcast',
         ],
 
