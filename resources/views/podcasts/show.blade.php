@@ -43,6 +43,10 @@
 						{{ $episode->short_description }}
 					</div>
 
+					<div style="padding-top:16px; padding-bottom:8px; max-width:600px" class="block">
+						{!! $long_description !!}
+					</div>
+
 					@if ($episode->website_url)
 						<div class="content" style="padding-bottom: 8px;">
 							<a href="{{ $episode->website_url }}" target="_blank" rel="nofollow">{{ $episode->website_url }}</a>
@@ -80,8 +84,13 @@
 						Music by <a href="https://www.facebook.com/ScottHolmesMusic/" target="_blank" rel="nofollow">Scott Holmes</a>
 					</div>
 
-					<div style="padding-top:16px; padding-bottom:16px;" class="is-size-6 has-text-grey">
-					</div>
+					@if (auth()->check() && auth()->user()->is_admin)
+						<br/>
+						<a class="button is-info is-slightly-elevated" href="{{ $episode->adminUrl() }}">
+							<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
+							Edit Episode
+						</a>
+					@endif
 
 
 				</div>

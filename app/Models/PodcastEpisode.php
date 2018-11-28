@@ -60,7 +60,7 @@ class PodcastEpisode extends Model implements Feedable
             ->id($this->downloadUrl())
             ->title($this->podcastTitle())
             ->updated(\Carbon\Carbon::parse($this->published_at))
-            ->summary($this->short_description)
+            ->summary($this->short_description . "\n" . $this->long_description)
             ->link($this->downloadUrl())
             ->author('Hillel Coren');
     }
