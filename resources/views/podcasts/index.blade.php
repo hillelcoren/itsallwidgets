@@ -2,7 +2,7 @@
 
 @section('title', 'Flutter Podcast')
 @section('description', 'An open podcast for Flutter developers')
-@section('image_url', asset('images/podcast_background.jpg'))
+@section('image_url', asset('images/podcast.jpg'))
 
 @section('header_title', 'An open podcast for Flutter developers')
 @section('header_subtitle', 'Share your Flutter story with the community')
@@ -70,7 +70,7 @@
 
     <div class="columns is-multiline is-8 is-variable">
         <div class="column is-one-third">
-            <img src="{{ asset('images/podcast.png') }}"/>
+            <img src="{{ asset('images/podcast.jpg') }}"/>
         </div>
         <div class="column is-two-third">
 
@@ -95,6 +95,8 @@
             <div>
                 Music by <a href="https://www.facebook.com/ScottHolmesMusic/" target="_blank" rel="nofollow">Scott Holmes</a>
             </div>
+
+            <p>&nbsp;</p>
             <p>&nbsp;</p>
 
             <a class="button is-light is-slightly-elevated" href="https://www.reddit.com/r/FlutterDev/comments/a160mf/the_its_all_widgets_flutter_podcast_is_now/" target="_blank">

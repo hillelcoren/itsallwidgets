@@ -29,13 +29,13 @@
 
     <meta property="og:title" content="@yield('title') | {{ config('app.name') }}">
     <meta property="og:description" content="@yield('description')">
-    <meta property="og:image" content="@yield('image_url')">
+    <meta property="og:image" content="@yield('image_url')?clear_cache=1">
     <meta property="og:url" content="{{ request()->url() }}">
     <meta property="og:site_name" content="It's All Widgets!">
 
     <meta name="twitter:title" content="@yield('title') | {{ config('app.name') }}">
     <meta name="twitter:description" content="@yield('description')">
-    <meta name="twitter:image" content="@yield('image_url')?clear_cache">
+    <meta name="twitter:image" content="@yield('image_url')?clear_cache=1">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image:alt" content="@yield('title') | {{ config('app.name') }}">
 
@@ -282,7 +282,11 @@
 </head>
 
 <body>
-    <section class="hero is-info is-head-font has-bg-img">
+    @if (false && request()->is('podcast*'))
+        <section class="hero is-info is-head-font" style="background-color:#222">
+    @else
+        <section class="hero is-info is-head-font has-bg-img">
+    @endif
         <div class="hero-head">
             <nav class="navbar">
                 <div class="container">
@@ -324,20 +328,27 @@
 
                                 <a class="button is-elevated-dark" style="color:white; background-color:#366cb6; border-color:#366cb6"
                                 href="https://twitter.com/itsallwidgets" target="_blank">
-                                <span class="icon">
-                                    <i class="fab fa-twitter"></i>
-                                </span> &nbsp;
-                                <span>Twitter</span>
+                                    <span class="icon">
+                                        <i class="fab fa-twitter"></i>
+                                    </span> &nbsp;
+                                    <span>Twitter</span>
                                 </a> &nbsp;&nbsp;&nbsp;
 
-
-                                <a class="button is-elevated-dark" style="color:white; background-color:#366cb6; border-color:#366cb6"
-                                href="{{ url('/podcast') }}">
-                                <span class="icon">
-                                    <i class="fas fa-podcast"></i>
-                                </span> &nbsp;
-                                <span>Podcast</span>
-                                </a>
+                                @if (request()->is('podcast*'))
+                                    <a class="button is-elevated-dark" style="color:white; background-color:#366cb6; border-color:#366cb6" href="{{ url('/') }}">
+                                        <span class="icon">
+                                            <i class="fas fa-home"></i>
+                                        </span> &nbsp;
+                                        <span>Apps</span>
+                                    </a>
+                                @else
+                                    <a class="button is-elevated-dark" style="color:white; background-color:#366cb6; border-color:#366cb6" href="{{ url('/podcast') }}">
+                                        <span class="icon">
+                                            <i class="fas fa-podcast"></i>
+                                        </span> &nbsp;
+                                        <span>Podcast</span>
+                                    </a>
+                                @endif
 
                             </span>
                         </div>
