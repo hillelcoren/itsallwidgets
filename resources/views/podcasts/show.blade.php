@@ -17,7 +17,7 @@
 
 			<div class="columns is-multiline is-8 is-variable">
 				<div class="column is-one-third">
-		            <img src="{{ asset('images/podcast.png') }}"/>
+		            <img src="{{ asset('images/podcast.jpg') }}"/>
 		        </div>
 				<div class="column is-two-third">
 					<nav class="breadcrumb" aria-label="breadcrumbs">
@@ -83,12 +83,6 @@
 						{{ $episode->short_description }}
 					</div>
 
-					@if ($long_description)
-						<div style="padding-top:16px; padding-bottom:8px; max-width:600px" class="block">
-							{!! $long_description !!}
-						</div>
-					@endif
-
 					@if ($episode->website_url)
 						<div class="content" style="padding-bottom: 8px;">
 							<a href="{{ $episode->website_url }}" target="_blank" rel="nofollow">{{ $episode->website_url }}</a>
@@ -109,6 +103,15 @@
 						<a class="button is-medium is-slightly-elevated" href="{{ $episode->app_url }}" target="_blank">
 							<i style="font-size: 20px" class="fas fa-star"></i> &nbsp; View App
 						</a> &nbsp;
+					@endif
+
+					@if ($long_description)
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+
+						<div style="max-width:600px" class="block">
+							{!! $long_description !!}
+						</div>
 					@endif
 
 					<p>&nbsp;</p>
