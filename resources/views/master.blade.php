@@ -84,13 +84,23 @@
 
     .button.is-elevated-dark {
         color: white;
-        background-color:#5e60af;
-        border-color:#5e60af;
+        @if (request()->is('podcast*'))
+            background-color:#000;
+            border-color:#000;
+        @else
+            background-color:#5e60af;
+            border-color:#5e60af;
+        @endif
     }
 
     .button.is-elevated-dark:hover {
-        background-color:#6062b1;
-        border-color:#5e60af;
+        @if (request()->is('podcast*'))
+            background-color:#060606;
+            border-color:#060606;
+        @else
+            background-color:#6062b1;
+            border-color:#5e60af;
+        @endif
         -moz-filter: drop-shadow(0px 2px 4px #888);
         -webkit-filter: drop-shadow(0px 2px 4px #888);
         -o-filter: drop-shadow(0px 2px 4px #888);
@@ -282,7 +292,7 @@
 </head>
 
 <body>
-    @if (false && request()->is('podcast*'))
+    @if (request()->is('podcast*'))
         <section class="hero is-info is-head-font" style="background-color:#222">
     @else
         <section class="hero is-info is-head-font has-bg-img">
@@ -326,22 +336,28 @@
 
                                 &nbsp;&nbsp;&nbsp;
 
-                                <a class="button is-elevated-dark" style="color:white; background-color:#366cb6; border-color:#366cb6"
-                                href="https://twitter.com/itsallwidgets" target="_blank">
-                                    <span class="icon">
-                                        <i class="fab fa-twitter"></i>
-                                    </span> &nbsp;
-                                    <span>Twitter</span>
-                                </a> &nbsp;&nbsp;&nbsp;
-
                                 @if (request()->is('podcast*'))
-                                    <a class="button is-elevated-dark" style="color:white; background-color:#366cb6; border-color:#366cb6" href="{{ url('/') }}">
+                                    <a class="button is-elevated-dark" style="color:white; background-color:#444; border-color:#444" href="https://twitter.com/itsallwidgets" target="_blank">
+                                        <span class="icon">
+                                            <i class="fab fa-twitter"></i>
+                                        </span> &nbsp;
+                                        <span>Twitter</span>
+                                    </a> &nbsp;&nbsp;&nbsp;
+
+                                    <a class="button is-elevated-dark" style="color:white; background-color:#000; border-color:#000" href="{{ url('/') }}">
                                         <span class="icon">
                                             <i class="fas fa-mobile-alt"></i>
                                         </span> &nbsp;
                                         <span>Apps</span>
                                     </a>
                                 @else
+                                    <a class="button is-elevated-dark" style="color:white; background-color:#366cb6; border-color:#366cb6" href="https://twitter.com/itsallwidgets" target="_blank">
+                                        <span class="icon">
+                                            <i class="fab fa-twitter"></i>
+                                        </span> &nbsp;
+                                        <span>Twitter</span>
+                                    </a> &nbsp;&nbsp;&nbsp;
+
                                     <a class="button is-elevated-dark" style="color:white; background-color:#366cb6; border-color:#366cb6" href="{{ url('/podcast') }}">
                                         <span class="icon">
                                             <i class="fas fa-podcast"></i>
