@@ -337,7 +337,7 @@
                                 @if (request()->is('podcast*'))
                                     <a class="button is-elevated-dark" style="color:white; background-color:#366cb6; border-color:#366cb6" href="{{ url('/') }}">
                                         <span class="icon">
-                                            <i class="fas fa-home"></i>
+                                            <i class="fas fa-mobile-alt"></i>
                                         </span> &nbsp;
                                         <span>Apps</span>
                                     </a>
