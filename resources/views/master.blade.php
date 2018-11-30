@@ -360,7 +360,7 @@
 
                                     <a class="button is-elevated-dark" style="color:white; background-color:#366cb6; border-color:#366cb6" href="{{ url('/podcast') }}">
                                         <span class="icon">
-                                            <i class="fas fa-podcast"></i>
+                                            <i class="fas fa-microphone"></i>
                                         </span> &nbsp;
                                         <span>Podcast</span>
                                     </a>
