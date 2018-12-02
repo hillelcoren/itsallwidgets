@@ -56,9 +56,12 @@
     <style>
 
     .has-bg-img {
-        background: url('/images/header-bg.jpg')center center; background-size:cover;
+        background: url('/images/header_bg.jpg') center center; background-size:cover;
     }
 
+    .has-bg-podcast-img {
+        background: url('/images/header_podcast_bg.jpg') center center; background-size:cover;
+    }
 
     .footer {
         padding: 7rem 1.5rem 7rem;
@@ -292,11 +295,7 @@
 </head>
 
 <body>
-    @if (request()->is('podcast*'))
-        <section class="hero is-info is-head-font" style="background-color:#222">
-    @else
-        <section class="hero is-info is-head-font has-bg-img">
-    @endif
+    <section class="hero is-info is-head-font {{ request()->is('podcast*') ? 'has-bg-podcast-img' : 'has-bg-img' }}" style="background-color: {{ request()->is('podcast*') ? '#222' : 'white' }};">
         <div class="hero-head">
             <nav class="navbar">
                 <div class="container">
