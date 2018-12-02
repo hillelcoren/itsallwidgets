@@ -295,7 +295,7 @@
 </head>
 
 <body>
-    <section class="hero is-info is-head-font {{ request()->is('podcast*') ? 'has-bg-podcast-img' : 'has-bg-img' }}" style="background-color: {{ request()->is('podcast*') ? '#222' : 'white' }};">
+    <section class="hero is-info is-head-font {{ request()->is('podcast*') ? 'has-bg-podcast-img' : 'has-bg-img' }}" style="background-color: {{ request()->is('podcast*') ? '#222' : '#3389d7' }};">
         <div class="hero-head">
             <nav class="navbar">
                 <div class="container">
