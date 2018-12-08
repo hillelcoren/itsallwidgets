@@ -12,6 +12,11 @@ class HomeController extends Controller
         return view('about');
     }
 
+    public function terms()
+    {
+        return view('terms');
+    }
+
     public function logError()
     {
         $count = Session::get('error_count', 0);

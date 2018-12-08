@@ -18,6 +18,7 @@ Route::get('flutter-apps', function () {
 
 Route::get('/', 'FlutterAppController@index');
 Route::get('about', 'HomeController@about');
+Route::get('terms', 'HomeController@terms');
 Route::get('sitemap.xml', 'FlutterAppController@sitemap');
 
 Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle');
