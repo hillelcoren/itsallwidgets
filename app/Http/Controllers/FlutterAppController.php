@@ -188,7 +188,7 @@ class FlutterAppController extends Controller
 
         FlutterApp::where('featured', '>', 0)->decrement('featured');
 
-        $app->featured = 12;
+        $app->featured = 16;
         $app->save();
 
         if ($app->featured > 0) {
