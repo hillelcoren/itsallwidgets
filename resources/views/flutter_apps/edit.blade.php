@@ -56,7 +56,7 @@
 					</div>
 
 					<div class="field">
-						<label class="label" for="screenshot">							
+						<label class="label" for="screenshot">
 							PNG Screenshot • 1080px by 1920px <span class="required">*</span>
 						</label>
 						<div class="control">
@@ -363,7 +363,28 @@
 			<p>&nbsp;</p>
 			<p>&nbsp;</p>
 
+			@if (! $app->exists)
+				<div class="has-text-centered">
+					<input name="terms" id="terms" type="checkbox" value="1" required>
+					<label for="terms">
+						&nbsp; I accept the It's All Widgets! {{ link_to('terms', 'Terms of Service', ['target' => '_blank']) }}
+					</label>
+					<br/>
+
+					@if ($errors->has('terms'))
+						<span class="help is-danger">
+							{{ $errors->first('terms') }}
+						</span>
+					@endif
+
+				</div>
+
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+			@endif
+
 			<div class="columns is-centered is-mobile">
+
 				<div class="control">
 					<a href="{{ $app->exists ? url('/flutter-app/' . $app->slug) : url('/') }}" class="button is-medium is-outlined is-slightly-elevated">
 						<i style="font-size: 20px" class="fa fa-times-circle"></i> &nbsp; Cancel

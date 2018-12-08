@@ -40,6 +40,7 @@ class StoreFlutterApp extends FormRequest
             'twitter_url' => [new ExternalLink('https://twitter.com/')],
             'youtube_url' => [new ExternalLink('https://www.youtube.com/embed/')],
             'instagram_url' => [new ExternalLink('https://www.instagram.com/')],
+            'terms' => 'required',
         ];
 
         if (request()->apple_url) {
