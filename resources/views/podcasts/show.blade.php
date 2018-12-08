@@ -32,7 +32,7 @@
 							{{ $episode->title }}
 							<img src="{{ $episode->avatar_url }}" style="border-radius: 50%; width: 50px; margin-left: 80px"/>
 						</div>
-						<div style="border-bottom: 2px #259bee solid; width: 50px; padding-top:8px;"/>
+						<div style="border-bottom: 2px #368cd5 solid; width: 50px; padding-top:8px;"/>
 					</h2>
 
 					<div style="padding-bottom:16px;">

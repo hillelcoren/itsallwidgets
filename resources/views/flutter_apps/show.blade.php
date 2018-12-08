@@ -72,7 +72,7 @@
 					<div class="content">
 						<h2 class="title">
 							{{ $app->title }}
-							<div style="border-bottom: 2px #259bee solid; width: 50px; padding-top:12px;"/>
+							<div style="border-bottom: 2px #368cd5 solid; width: 50px; padding-top:12px;"/>
 						</h2>
 						<div class="subtitle" style="padding-top:16px;">
 							{{ $app->short_description }}

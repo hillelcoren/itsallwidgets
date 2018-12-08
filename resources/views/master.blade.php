@@ -55,6 +55,10 @@
 
     <style>
 
+    a {
+        color: #368cd5;
+    }
+
     .has-bg-img {
         background: url('/images/header_bg.jpg') center center; background-size:cover;
     }

@@ -30,7 +30,7 @@
     </script>
 
     <section class="header section is-body-font has-text-centered" style="visibility: hidden;">
-        <div style="color:#259bee; font-weight:600; letter-spacing: 2px;">
+        <div style="color:#368cd5; font-weight:600; letter-spacing: 2px;">
             ABOUT US
         </div>
         <div style="font-size: 26px;">

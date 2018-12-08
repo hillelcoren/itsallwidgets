@@ -29,10 +29,6 @@
         border-radius: 8px;
     }
 
-    .podcast-episode a {
-        color: #259bee;
-    }
-
     .column {
         padding: 1rem 1rem 6rem 1rem;
     }
@@ -78,7 +74,7 @@
                 <div class="is-vertical-center">
                     It's All Widgets! Flutter Podcast
                 </div>
-                <div style="border-bottom: 2px #259bee solid; width: 50px; padding-top:12px;"/>
+                <div style="border-bottom: 2px #368cd5 solid; width: 50px; padding-top:12px;"/>
             </h2>
             <div class="subtitle" style="padding-top:8px; max-width:600px">
                 Hosted by <a href="https://twitter.com/hillelcoren" target="_blank">Hillel Coren</a>
@@ -158,7 +154,7 @@
                         <p class="no-wrap" style="font-size:22px; padding-bottom:10px;">
                             {{ $episode->title }}
                         </p>
-                        <div style="border-bottom: 2px #259bee solid; width: 50px"/>
+                        <div style="border-bottom: 2px #368cd5 solid; width: 50px"/>
                     </header>
 
 					<div class="content" style="padding:16px;padding-bottom:16px;">

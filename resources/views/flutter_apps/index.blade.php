@@ -65,7 +65,7 @@ body {
 }
 
 .flutter-app a {
-    color: #259bee;
+    color: #368cd5;
 }
 
 .columns.is-variable.is-6 {
@@ -208,7 +208,7 @@ body {
                                 @{{ app.title }}
 
                             </p>
-                            <div style="border-bottom: 2px #259bee solid; width: 50px"/>
+                            <div style="border-bottom: 2px #368cd5 solid; width: 50px"/>
 
                         </header>
 
@@ -298,7 +298,7 @@ body {
                             @{{ selected_app.title }}
                         </div>
 
-                        <div style="border-bottom: 2px #259bee solid; width: 50px;"></div><br/>
+                        <div style="border-bottom: 2px #368cd5 solid; width: 50px;"></div><br/>
 
                         <div class="subtitle">
                             @{{ selected_app.short_description }}
