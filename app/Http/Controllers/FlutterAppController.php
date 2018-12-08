@@ -185,12 +185,10 @@ class FlutterAppController extends Controller
     public function feature(FeatureFlutterApp $request)
     {
         $app = $request->flutter_app;
-        $user = auth()->user();
-        $featured = $user->getFeaturedNumber();
 
-        FlutterApp::whereFeatured($featured)->update(['featured' => 0]);
+        FlutterApp::where('featured', '>', 0)->decrement('featured');
 
-        $app->featured = $featured;
+        $app->featured = 12;
         $app->save();
 
         if ($app->featured > 0) {
