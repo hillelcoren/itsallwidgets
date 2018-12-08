@@ -571,7 +571,7 @@ var app = new Vue({
     data: {
         apps: {!! $apps !!},
         search: '',
-        filter_open_source: false,
+        filter_open_source: {{ request()->open_source ? 'true' : 'false' }},
         filter_gifs: false,
         cards_per_row: getCachedCardsPerRow(),
         sort_by: getCachedSortBy(),
