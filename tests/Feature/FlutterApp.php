@@ -57,6 +57,7 @@ class FlutterApp extends TestCase
                              'short_description' => $this->faker->text(100),
                              'long_description' => $this->faker->text(500),
                              'screenshot' => UploadedFile::fake()->image('screenshot.png', 1080, 1920)->size(100),
+                             'terms' => true,
                          ]);
         $response->assertStatus(302);
 
