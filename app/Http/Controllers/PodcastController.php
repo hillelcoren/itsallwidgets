@@ -58,7 +58,7 @@ class PodcastController extends Controller
         $input = $request->all();
         $episode = $this->podcastRepo->store($input);
 
-        dispach(new SaveAvatar($episode));
+        dispatch(new SaveAvatar($episode));
 
         User::admin()->notify(new InterviewRequested($episode));
 
