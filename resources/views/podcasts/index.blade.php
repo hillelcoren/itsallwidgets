@@ -149,7 +149,7 @@
 				<div class="podcast-episode is-hover-elevated has-text-centered">
                     <header style="padding: 16px">
                         <div>
-                            <img src="{{ $episode->avatar_url }}" style="border-radius: 50%; width: 120px;"/>
+                            <img src="{{ $episode->avatarUrl() }}" style="border-radius: 50%; width: 120px;"/>
                         </div><br/>
                         <p class="no-wrap" style="font-size:22px; padding-bottom:10px;">
                             {{ $episode->title }}
