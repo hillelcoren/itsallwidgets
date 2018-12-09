@@ -34,12 +34,12 @@ class SaveAvatar implements ShouldQueue
     {
         $episode = $this->episode;
 
-        dd('url: ' . $episode->avatar_url);
+        if ($contents = file_get_contents($episode->avatar_url)) {
 
-        $contents = file_get_contents($url);
-        $file = public_path('/avatars/avatar-' . $episode->id . '.jpg');
+            $file = public_path('/avatars/avatar-' . $episode->id . '.jpg');
 
-        file_put_contents($file, $contents);
+            file_put_contents($file, $contents);
+        }
     }
 
 }

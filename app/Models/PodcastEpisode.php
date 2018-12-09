@@ -99,4 +99,9 @@ class PodcastEpisode extends Model implements Feedable
     {
         return storage_path('/mp3s/episode-' . $this->episode . '.' . $format);
     }
+
+    public function avatarUrl()
+    {
+        return url('avatars/avatar-' . $this->id . '.jpg');
+    }
 }
