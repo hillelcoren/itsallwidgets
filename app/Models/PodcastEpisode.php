@@ -102,6 +102,6 @@ class PodcastEpisode extends Model implements Feedable
 
     public function avatarUrl()
     {
-        return url('avatars/avatar-' . $this->id . '.jpg');
+        return url('avatars/avatar-' . $this->id . '.jpg?no_cache=' . $this->updated_at);
     }
 }
