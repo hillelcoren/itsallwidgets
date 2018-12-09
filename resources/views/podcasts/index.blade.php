@@ -146,27 +146,28 @@
                     onclick="location.href = '{{ $episode->url() }}'" style="cursor: pointer;"
                 @endif
             >
-				<div class="podcast-episode is-hover-elevated">
+				<div class="podcast-episode is-hover-elevated has-text-centered">
                     <header style="padding: 16px">
-                        <div class="is-pulled-right">
-                            <img src="{{ $episode->avatar_url }}" style="border-radius: 50%; width: 50px;"/>
-                        </div>
+                        <div>
+                            <img src="{{ $episode->avatar_url }}" style="border-radius: 50%; width: 120px;"/>
+                        </div><br/>
                         <p class="no-wrap" style="font-size:22px; padding-bottom:10px;">
                             {{ $episode->title }}
                         </p>
-                        <div style="border-bottom: 2px #368cd5 solid; width: 50px"/>
+                        <div style="border-bottom: 2px #368cd5 solid; margin-left:140px; margin-right: 140px;"></div>
                     </header>
 
-					<div class="content" style="padding:16px;padding-bottom:16px;">
+					<div class="content" style="padding:16px;padding-bottom:6px;padding-top:6px;">
 						<div class="short-description">
 							{{ $episode->listDescription() }}
 						</div>
 
-                        <div style="padding-top:20px" class="is-size-6 has-text-grey">
+                        <div style="padding-top:20px; color: #368cd5" class="is-size-6">
                             @if ($episode->published_at)
-                                Published: {{ \Carbon\Carbon::parse($episode->published_at)->format('M jS, Y') }}
-                            @endif&nbsp;
-                        </div>
+                                <i class="fas fa-volume-up"></i> &nbsp;
+                                LISTEN
+                            @endif &nbsp;
+                        </div><br/>
 
                         @if (auth()->check() && auth()->user()->is_admin)
                             <br/>
