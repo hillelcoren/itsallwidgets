@@ -89,6 +89,12 @@
         filter: drop-shadow(0px 16px 16px #CCC);
     }
 
+    @if (request()->is('podcast*'))
+        a.navbar-item:hover {
+            background-color: #000 !important;
+        }
+    @endif
+
     .button.is-elevated-dark {
         color: white;
         @if (request()->is('podcast*'))
