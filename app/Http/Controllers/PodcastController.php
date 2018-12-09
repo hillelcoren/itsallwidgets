@@ -9,6 +9,7 @@ use App\Http\Requests\EditPodcastEpisode;
 use App\Http\Requests\StorePodcastEpisode;
 use App\Http\Requests\UpdatePodcastEpisode;
 use App\Notifications\InterviewRequested;
+use App\Jobs\SaveAvatar;
 
 class PodcastController extends Controller
 {
@@ -57,6 +58,8 @@ class PodcastController extends Controller
         $input = $request->all();
         $episode = $this->podcastRepo->store($input);
 
+        dispach(new SaveAvatar($episode));
+
         User::admin()->notify(new InterviewRequested($episode));
 
         return redirect('/podcast')->with(
@@ -81,16 +84,7 @@ class PodcastController extends Controller
         $input = $request->all();
         $episode = $this->podcastRepo->update($episode, $input);
 
-        /*
-        if ($mp3 = request()->file('mp3')) {
-            $filename = 'episode-' . $episode->id . '.mp3';
-            $mp3->move(storage_path('/mp3s'), $filename);
-
-            $episode->update([
-                'is_uploaded' => true,
-            ]);
-        }
-        */
+        dispatch(new SaveAvatar($episode));
 
         return redirect($episode->adminUrl())->with(
             'status',
