@@ -154,7 +154,7 @@
                         <p class="no-wrap" style="font-size:22px; padding-bottom:10px;">
                             {{ $episode->title }}
                         </p>
-                        <div style="border-bottom: 2px #368cd5 solid; margin-left:140px; margin-right: 140px;"></div>
+                        <div style="border-bottom: 2px #368cd5 solid; margin-left:40%; margin-right: 40%;"></div>
                     </header>
 
 					<div class="content" style="padding:16px;padding-bottom:6px;padding-top:6px;">
