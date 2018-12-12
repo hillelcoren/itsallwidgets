@@ -166,6 +166,8 @@
 
                         @if (auth()->check() && auth()->user()->is_admin)
                             <br/>
+                            Play count: {{ $episode->download_count }}
+                            <br/>
                             <a class="button is-info is-slightly-elevated" href="{{ $episode->adminUrl() }}">
     							<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
     							Edit Episode

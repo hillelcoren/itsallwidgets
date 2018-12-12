@@ -255,7 +255,7 @@
 								Duration
 							</label>
 							<div class="control">
-								{{ Form::text('file_duration', $episode->file_duration, ['class' => 'input', 'required' => false]) }}
+								{{ Form::text('file_duration', $episode->file_duration ?: '0', ['class' => 'input', 'required' => false]) }}
 
 								@if ($errors->has('file_duration'))
 									<span class="help is-danger">
