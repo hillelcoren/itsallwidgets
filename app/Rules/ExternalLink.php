@@ -29,7 +29,10 @@ class ExternalLink implements Rule
             return true;
         }
 
-        return strpos($value, $this->domain) === 0;
+        $domain = str_replace('www.', '', $this->domain);
+        $value = str_replace('www.', '', $value);
+
+        return strpos($value, $domain) === 0;
     }
 
     /**
