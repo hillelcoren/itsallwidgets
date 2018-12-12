@@ -8,6 +8,11 @@
 
 <style>
 
+a:hover {
+    text-decoration: underline;
+    color: #368cd5;
+}
+
 body {
     -moz-transition: width 1s ease-in-out, left 1.5s ease-in-out;
     -webkit-transition: width 1s ease-in-out, left 1.5s ease-in-out;
