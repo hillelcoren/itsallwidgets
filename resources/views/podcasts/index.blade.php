@@ -95,11 +95,6 @@
             <p>&nbsp;</p>
             <p>&nbsp;</p>
 
-            <a class="button is-light is-slightly-elevated" href="https://www.reddit.com/r/FlutterDev/comments/a160mf/the_its_all_widgets_flutter_podcast_is_now/" target="_blank">
-                <i style="font-size: 20px" class="fab fa-reddit"></i> &nbsp;
-                Feedback
-            </a> &nbsp;
-
             <a class="button is-light is-slightly-elevated" href="{{ url('podcast/feed') }}" target="_blank">
                 <i style="font-size: 20px" class="fas fa-rss"></i> &nbsp;
                 RSS Feed

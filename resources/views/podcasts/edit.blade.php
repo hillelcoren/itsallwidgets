@@ -289,6 +289,7 @@
 									Is Visible
 								</label>
 								<div class="control">
+									{{ Form::hidden('is_visible', 0) }}
 									<input name="is_visible" type="checkbox" value="1" {{ $episode->is_visible ? 'CHECKED' : '' }}>
 								</div>
 							</div>
@@ -300,6 +301,7 @@
 									Is Uploaded
 								</label>
 								<div class="control">
+									{{ Form::hidden('is_uploaded', 0) }}
 									<input name="is_uploaded" type="checkbox" value="1" {{ $episode->is_uploaded ? 'CHECKED' : '' }}>
 								</div>
 							</div>
