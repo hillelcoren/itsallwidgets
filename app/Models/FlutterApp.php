@@ -109,7 +109,12 @@ class FlutterApp extends Model implements Feedable
         }
 
         $parts = explode('/', $this->twitter_url);
+        $part = $parts[count($parts) - 1];
+        $part = ltrim($part, '@');
 
-        return '@' . $parts[count($parts) - 1];
+        $parts = explode('?', $part);
+        $part = $parts[0];
+
+        return '@' . $part;
     }
 }
