@@ -53,4 +53,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('podcast', 'PodcastController@store');
     Route::get('podcast/admin/{episode_id}', 'PodcastController@edit');
     Route::put('podcast/admin/{episode_id}', 'PodcastController@update');
+    Route::delete('podcast/admin/{episode_id}/delete', 'PodcastController@delete');
 });

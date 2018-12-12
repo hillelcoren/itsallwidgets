@@ -18,6 +18,8 @@ class PodcastRepository
 
     public function getByTitle($title)
     {
+        $title = ucwords(str_replace('-', ' ', $title));
+
         return PodcastEpisode::where('title', $title)->first();
     }
 

@@ -127,10 +127,18 @@
 
 					@if (auth()->check() && auth()->user()->is_admin)
 						<br/>
-						<a class="button is-info is-slightly-elevated" href="{{ $episode->adminUrl() }}">
-							<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
-							Edit Episode
-						</a>
+
+						{{ Form::open(['url' => url('/podcast/admin/' . $episode->id . '/delete'), 'method' => 'delete', 'id' => 'bulk_form']) }}
+							<a class="button is-info is-slightly-elevated" href="{{ $episode->adminUrl() }}">
+								<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
+								Edit Episode
+							</a> &nbsp;
+
+							<a class="button is-danger is-slightly-elevated" onclick="confirm('Are you sure?', $('#bulk_form').submit())">
+								<i style="font-size: 20px" class="fas fa-trash"></i> &nbsp;
+								Delete Episode
+							</a>
+						{{ Form::close() }}
 					@endif
 
 

@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\PodcastEpisode;
 use App\Repositories\PodcastRepository;
 use App\Http\Requests\EditPodcastEpisode;
+use App\Http\Requests\DeletePodcastEpisode;
 use App\Http\Requests\StorePodcastEpisode;
 use App\Http\Requests\UpdatePodcastEpisode;
 use App\Notifications\InterviewRequested;
@@ -106,6 +107,17 @@ class PodcastController extends Controller
         ];
 
         return view('podcasts.show', $data);
+    }
+
+
+    public function delete(DeletePodcastEpisode $request, $episode)
+    {
+        $episode->delete();
+
+        return redirect('/podcast')->with(
+            'status',
+            'Your podcast episode has been successfully deleted!'
+        );
     }
 
     public function download($episode, $format)

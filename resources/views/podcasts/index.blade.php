@@ -137,7 +137,7 @@
 	<div class="columns is-multiline is-5 is-variable">
 		@foreach ($episodes as $episode)
 			<div class="column is-one-third"
-                @if ($episode->is_uploaded)
+                @if ($episode->is_uploaded || (auth()->check() && auth()->user()->is_admin))
                     onclick="location.href = '{{ $episode->url() }}'" style="cursor: pointer;"
                 @endif
             >
