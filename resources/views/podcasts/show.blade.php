@@ -122,7 +122,7 @@
 							Published {{ \Carbon\Carbon::parse($episode->published_at)->format('M jS, Y') }} •
 						@endif
 
-						Music by <a href="https://www.facebook.com/ScottHolmesMusic/" target="_blank" rel="nofollow">Scott Holmes</a>
+						Music by <a href="https://scottholmesmusic.com" target="_blank" rel="nofollow">Scott Holmes</a>
 					</div>
 
 					@if (auth()->check() && auth()->user()->is_admin)

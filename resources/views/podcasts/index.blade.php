@@ -89,7 +89,7 @@
             </div>
             <p>&nbsp;</p>
             <div>
-                Music by <a href="https://www.facebook.com/ScottHolmesMusic/" target="_blank" rel="nofollow">Scott Holmes</a>
+                Music by <a href="https://scottholmesmusic.com" target="_blank" rel="nofollow">Scott Holmes</a>
             </div>
 
             <p>&nbsp;</p>
