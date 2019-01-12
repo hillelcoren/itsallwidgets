@@ -161,7 +161,7 @@ body {
             No apps found
         </div>
         <div class="columns is-multiline is-6 is-variable">
-            <div v-for="app in filteredApps" class="column" v-bind:class="columnClass">
+            <div v-for="app in filteredApps" :key="app.id" class="column" v-bind:class="columnClass">
                 <div v-on:click="selectApp(app)" v-on:mouseenter="onMouseOver(app)" v-on:mouseleave="onMouseOut(app)" style="cursor:pointer">
                     <div class="flutter-app is-hover-elevated" v-bind:class="[app.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} ? 'is-owned' : '']">
 
