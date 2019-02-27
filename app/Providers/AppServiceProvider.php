@@ -27,9 +27,6 @@ class AppServiceProvider extends ServiceProvider
                 return FlutterApp::approved()->latest()->get();
             });
             Cache::rememberForever('flutter-podcast-list', function () {
-                return PodcastEpisode::visible()->orderBy('episode', 'desc')->orderBy('created_at', 'desc')->get();
-            });
-            Cache::rememberForever('flutter-podcast-feed', function () {
                 return PodcastEpisode::uploaded()->orderBy('episode', 'desc')->get();
             });
         } catch (\Illuminate\Database\QueryException $exception) {
