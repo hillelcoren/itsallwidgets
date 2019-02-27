@@ -12,7 +12,7 @@
         "laravel-notification-channels/facebook-poster": "^1.2",
         "laravel-notification-channels/twitter": "^1.0",
         "laravel/framework": "5.6.*",
-        "laravel/socialite": "^3.0",
+        "laravel/socialite": "3.0.x-dev",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.6.0",
         "spatie/laravel-feed": "^2.1"
