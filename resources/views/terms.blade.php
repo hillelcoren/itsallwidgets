@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('title', 'Terms')
-@section('description', 'An open list of apps built with Google Flutter')
+@section('description', 'An open list of apps built with Flutter')
 @section('image_url', asset('images/background.jpg'))
 
 @section('content')
