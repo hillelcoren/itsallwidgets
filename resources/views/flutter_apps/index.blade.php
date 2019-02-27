@@ -662,16 +662,16 @@ var app = new Vue({
                     return timeB - timeA;
                 } else {
                     var itemARating = itemA.store_rating;
-                    if (itemA.store_download_count < 100) {
+                    if (itemA.store_download_count < 500) {
                         itemARating -= 1;
-                    } else if (itemA.store_download_count < 500) {
+                    } else if (itemA.store_download_count < 1000) {
                         itemARating -= .5;
                     }
 
                     var itemBRating = itemB.store_rating;
-                    if (itemB.store_download_count < 100) {
+                    if (itemB.store_download_count < 500) {
                         itemBRating -= 1;
-                    } else if (itemB.store_download_count < 500) {
+                    } else if (itemB.store_download_count < 1000) {
                         itemBRating -= .5;
                     }
 
