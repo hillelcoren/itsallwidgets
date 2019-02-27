@@ -56,7 +56,7 @@ class LoadRatings extends Command
                 $app->store_download_count = preg_replace('/[\D]*/', '', $matches[1]);
 
                 preg_match('/store\/apps\/category\/.*?"  class=".*?">(.*?)</', $listing, $matches);
-                $app->category = $matches[1];
+                $app->category = html_entity_decode($matches[1]);
 
                 $this->info($app->title . ' ' . $app->store_review_count . ' ' . $app->store_rating . ' ' . $app->store_download_count);
                 $app->save();
