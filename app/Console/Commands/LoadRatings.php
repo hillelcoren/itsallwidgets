@@ -60,7 +60,7 @@ class LoadRatings extends Command
 
                 usleep(rand(1, 500) * 10000);
             } catch(\Exception $e) {
-                $this->info($app->title . ' FAILED: ' . $e->getMessage());
+                $this->info($app->google_url . ' FAILED: ' . $e->getMessage());
             }
         }
 
