@@ -4,10 +4,10 @@
 @section('description', $episode->short_description)
 @section('image_url', asset('images/podcast_twitter.jpg'))
 
-@section('header_title', 'An open podcast for Flutter developers')
-@section('header_subtitle', 'Share your Flutter story with the community')
+@section('header_title', 'The podcast for Flutter developers')
+@section('header_subtitle', 'Stories from Flutter contributors and practitioners')
 @section('header_button_url', url(auth()->check() ? 'podcast/submit' : 'auth/google?intended_url=podcast/submit'))
-@section('header_button_label', 'REQUEST INTERVIEW')
+@section('header_button_label', 'SUGGEST INTERVIEW')
 @section('header_button_icon', 'fas fa-microphone')
 
 @section('content')
