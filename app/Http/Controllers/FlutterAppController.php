@@ -17,6 +17,7 @@ use App\Repositories\FlutterAppRepository;
 use App\Notifications\AppSubmitted;
 use App\Notifications\AppApproved;
 use App\Notifications\AppRejected;
+use App\Notifications\AppFeatured;
 use App\Jobs\UploadScreenshot;
 
 class FlutterAppController extends Controller
@@ -191,12 +192,9 @@ class FlutterAppController extends Controller
         $app->featured = 16;
         $app->save();
 
-        if ($app->featured > 0) {
-            return redirect('/')->with('status', $app->title. ' is now featured!');
-        } else {
-            return redirect('/');
-        }
+        $app->user->notify(new AppFeatured($app));
 
+        return redirect('/')->with('status', $app->title. ' is now featured!');
     }
 
     public function sitemap()
