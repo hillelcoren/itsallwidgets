@@ -301,6 +301,14 @@ body {
                     <div class="content">
                         <div style="font-size:24px; padding-bottom:10px;">
                             @{{ selected_app.title }}
+
+                            <span v-if="selected_app.category">
+                                &nbsp;&nbsp;
+                                <a class="tag is-info is-medium" v-on:click="setFilter(selected_app.category)"
+                                    href="#" style="text-decoration: none;">
+                                    @{{ selected_app.category }}
+                                </a>
+                            </span>
                         </div>
 
                         <div style="border-bottom: 2px #368cd5 solid; width: 50px;"></div><br/>
@@ -543,6 +551,12 @@ var app = new Vue({
             }
         },
 
+        setFilter: function(filter) {
+            filter = filter || '';
+            this.selectApp();
+            this.search = filter.toLowerCase();
+        },
+
         saveFilters: function() {
             if (! isStorageSupported()) {
                 return false;
@@ -575,7 +589,7 @@ var app = new Vue({
 
     data: {
         apps: {!! $apps !!},
-        search: '',
+        search: "{{ request()->search }}",
         filter_open_source: {{ filter_var(request()->open_source, FILTER_VALIDATE_BOOLEAN) ? 'true' : 'false' }},
         filter_gifs: false,
         cards_per_row: getCachedCardsPerRow(),
@@ -633,6 +647,10 @@ var app = new Vue({
                     }
 
                     if (item.short_description.toLowerCase().indexOf(search) >= 0) {
+                        return true;
+                    }
+
+                    if (item.category.toLowerCase().indexOf(search) >= 0) {
                         return true;
                     }
 
