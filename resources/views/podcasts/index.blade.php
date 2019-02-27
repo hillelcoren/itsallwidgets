@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('title', 'Flutter Podcast')
-@section('description', 'An open podcast for Flutter developers')
+@section('description', 'The podcast for Flutter developers')
 @section('image_url', asset('images/podcast_twitter.jpg'))
 
 @section('header_title', 'The podcast for Flutter developers')
