@@ -71,7 +71,12 @@ class LoadRatings extends Command
 
                 usleep(rand(1, 500) * 10000);
             } catch(\Exception $e) {
-                $this->info($app->google_url . ' FAILED: ' . $e->getMessage());
+                $error = $e->getMessage();
+                $this->info($app->google_url . ' FAILED: ' . $error);
+                if (strpos($error, '404 Not Found') !== false) {
+                    $app->google_url = null;
+                    $app->save();
+                }
             }
         }
 
