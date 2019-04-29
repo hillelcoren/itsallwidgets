@@ -30,7 +30,7 @@
     }
 
     .column {
-        padding: 1rem 1rem 6rem 1rem;
+        padding: 1rem 1rem 2rem 1rem;
     }
 
     @media screen and (max-width: 788px) {
@@ -43,7 +43,6 @@
         .store-buttons img {
             max-width: 200px;
         }
-
 
         /*
         .is-hover-elevated {
@@ -129,9 +128,15 @@
                     </a>
                 </div>
             </div>
-
-
         </div>
+    </div>
+
+    <div class="has-text-right" style="height:60px">
+        @if (request()->filter == 'all')
+            {{ link_to('podcast', 'Featured Episodes') }} | All Episodes
+        @else
+            Featured Episodes | {{ link_to('podcast?filter=all', 'All Episodes') }}
+        @endif
     </div>
 
 	<div class="columns is-multiline is-5 is-variable">

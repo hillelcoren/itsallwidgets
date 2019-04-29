@@ -56,7 +56,7 @@ class PodcastEpisode extends Model implements Feedable
 
     public static function getFeedItems()
     {
-        return cache('flutter-podcast-list');
+        return cache('flutter-featured-podcast-list');
     }
 
     public function toFeedItem()
