@@ -30,7 +30,7 @@
     }
 
     .column {
-        padding: 1rem 1rem 2rem 1rem;
+        padding: 1rem 1rem 4rem 1rem;
     }
 
     @media screen and (max-width: 788px) {

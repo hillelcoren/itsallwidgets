@@ -491,6 +491,7 @@
 
             <br/> &nbsp; <br/>
 
+            @if (!request()->is('podcast*') || (auth()->check() && auth()->user()->is_admin))
             <a class="button is-elevated-dark" style="padding: 20px 32px 18px 32px"
                 href="@yield('header_button_url', url(auth()->check() ? 'submit' : 'auth/google?intended_url=submit'))">
                 <span class="icon">
@@ -498,6 +499,7 @@
                 </span> &nbsp;
                 <span>@yield('header_button_label', 'SUBMIT APP')</span>
             </a>
+            @endif
 
         </div>
     </footer>
