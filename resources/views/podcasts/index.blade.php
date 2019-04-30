@@ -82,100 +82,101 @@
             <div style="max-width:600px" style="padding-tojp:6px">
                 An ongoing series featuring some of the amazing developers from the Flutter community. In each episode we discuss the developer's background, what got them into Flutter and their thoughts on the platform in general.
             </div>
+
             <p>&nbsp;</p>
-            <div style="max-width:600px">
-                If you'd like to be featured in an episode please click "Request Interview" above. We all have a story to tell, make your voice heard!
-            </div>
-            <p>&nbsp;</p>
+
             <div>
                 Music by <a href="https://scottholmesmusic.com" target="_blank" rel="nofollow">Scott Holmes</a>
             </div>
 
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
+            <div style="padding-top:30px;padding-bottom:40px">
 
-            <div class="dropdown is-hoverable">
-                <div class="dropdown-trigger is-slightly-elevated">
-                    <button class="button is-light" aria-haspopup="true" aria-controls="dropdown-menu4">
-                        <span>
-                            <i style="font-size: 20px" class="fa fa-cloud-download-alt"></i> &nbsp;
-                            Subscribe &nbsp;&nbsp;
-                        </span
-                        <span class="icon is-small">
-                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                        </span>
-                    </button>
-                </div>
-                <div class="dropdown-menu" role="menu">
-                    <a href="https://podcasts.apple.com/us/podcast/its-all-widgets-flutter-podcast/id1444919174?mt=2" target="_blank" rel="nofollow">
-                        <div class="dropdown-content">
-                            <div class="dropdown-item">
-                                <i style="font-size: 20px" class="fab fa-apple"></i> &nbsp; Apple
+                <div class="dropdown is-hoverable">
+                    <div class="dropdown-trigger is-slightly-elevated">
+                        <button class="button is-light" aria-haspopup="true" aria-controls="dropdown-menu4">
+                            <span>
+                                <i style="font-size: 20px" class="fa fa-cloud-download-alt"></i> &nbsp;
+                                Subscribe &nbsp;&nbsp;
+                            </span
+                            <span class="icon is-small">
+                                <i class="fas fa-angle-down" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="dropdown-menu" role="menu">
+                        <a href="https://podcasts.apple.com/us/podcast/its-all-widgets-flutter-podcast/id1444919174?mt=2" target="_blank" rel="nofollow">
+                            <div class="dropdown-content">
+                                <div class="dropdown-item">
+                                    <i style="font-size: 20px" class="fab fa-apple"></i> &nbsp; Apple
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                    <a href="https://pca.st/w2oo" target="_blank" rel="nofollow">
-                        <div class="dropdown-content">
-                            <div class="dropdown-item">
-                                <i style="font-size: 20px" class="fas fa-podcast"></i> &nbsp; Pocket Casts
+                        </a>
+                        <a href="https://pca.st/w2oo" target="_blank" rel="nofollow">
+                            <div class="dropdown-content">
+                                <div class="dropdown-item">
+                                    <i style="font-size: 20px" class="fas fa-podcast"></i> &nbsp; Pocket Casts
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                    <a href="https://player.fm/series/its-all-widgets-flutter-podcast" target="_blank" rel="nofollow">
-                        <div class="dropdown-content">
-                            <div class="dropdown-item">
-                                <i style="font-size: 20px" class="fas fa-podcast"></i> &nbsp; Player FM
+                        </a>
+                        <a href="https://player.fm/series/its-all-widgets-flutter-podcast" target="_blank" rel="nofollow">
+                            <div class="dropdown-content">
+                                <div class="dropdown-item">
+                                    <i style="font-size: 20px" class="fas fa-podcast"></i> &nbsp; Player FM
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-            </div> &nbsp;&nbsp;
+                        </a>
+                    </div>
+                </div> &nbsp;&nbsp;
 
-            <div class="dropdown is-hoverable">
-                <div class="dropdown-trigger is-slightly-elevated">
-                    <button class="button is-light" aria-haspopup="true" aria-controls="dropdown-menu4">
-                        <span>
-                            <i style="font-size: 20px" class="fa fa-share"></i> &nbsp;
-                            Share
-                        </span>
-                        <span class="icon is-small">
-                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                        </span>
-                    </button>
-                </div>
-                <div class="dropdown-menu" role="menu">
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=#url" target="_blank" rel="nofollow">
-                        <div class="dropdown-content">
-                            <div class="dropdown-item">
-                                <i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
+                <div class="dropdown is-hoverable">
+                    <div class="dropdown-trigger is-slightly-elevated">
+                        <button class="button is-light" aria-haspopup="true" aria-controls="dropdown-menu4">
+                            <span>
+                                <i style="font-size: 20px" class="fa fa-share"></i> &nbsp;
+                                Share
+                            </span>
+                            <span class="icon is-small">
+                                <i class="fas fa-angle-down" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="dropdown-menu" role="menu">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=#url" target="_blank" rel="nofollow">
+                            <div class="dropdown-content">
+                                <div class="dropdown-item">
+                                    <i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                    <a href="https://twitter.com/share?text={{ urlencode("It's All Widgets! Flutter Podcast") }}&amp;url={{ urlencode(url('/podcast')) }}" target="_blank" rel="nofollow">
-                        <div class="dropdown-content">
-                            <div class="dropdown-item">
-                                <i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
+                        </a>
+                        <a href="https://twitter.com/share?text={{ urlencode("It's All Widgets! Flutter Podcast") }}&amp;url={{ urlencode(url('/podcast')) }}" target="_blank" rel="nofollow">
+                            <div class="dropdown-content">
+                                <div class="dropdown-item">
+                                    <i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-            </div> &nbsp;&nbsp;
+                        </a>
+                    </div>
+                </div> &nbsp;&nbsp;
 
-            <a class="button is-light is-slightly-elevated" href="{{ url('podcast/feed') }}" target="_blank">
-                <i style="font-size: 20px" class="fas fa-rss"></i> &nbsp;
-                RSS Feed
-            </a> &nbsp;
+                <a class="button is-light is-slightly-elevated" href="{{ url('podcast/feed') }}" target="_blank">
+                    <i style="font-size: 20px" class="fas fa-rss"></i> &nbsp;
+                    RSS Feed
+                </a>
 
+            </div>
+
+            <div>
+                @if (request()->filter == 'all')
+                    {{ link_to('podcast', 'Featured Episodes') }} &nbsp; | &nbsp; All Episodes
+                @else
+                    Featured Episodes &nbsp; | &nbsp; {{ link_to('podcast?filter=all', 'All Episodes') }}
+                @endif
+            </div>
         </div>
+
+
     </div>
 
-    <div class="has-text-right" style="height:60px">
-        @if (request()->filter == 'all')
-            {{ link_to('podcast', 'Featured Episodes') }} | All Episodes
-        @else
-            Featured Episodes | {{ link_to('podcast?filter=all', 'All Episodes') }}
-        @endif
-    </div>
 
 	<div class="columns is-multiline is-5 is-variable">
 		@foreach ($episodes as $episode)
