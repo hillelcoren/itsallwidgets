@@ -307,6 +307,27 @@
 							</div>
 						</div>
 
+						<div class="field">
+							<label class="label" for="reddit_url">
+								Reddit
+							</label>
+							<div class="control has-icons-left">
+
+								{{ Form::text('reddit_url', $episode->reddit_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://reddit.com']) }}
+
+								<span class="icon is-small is-left">
+									<i class="fab fa-reddit"></i>
+								</span>
+
+								@if ($errors->has('reddit_url'))
+									<span class="help is-danger">
+										{{ $errors->first('reddit_url') }}
+									</span>
+								@endif
+							</div>
+						</div>
+
+
 					</div>
 				</article>
 			@endif
