@@ -297,6 +297,18 @@
 
 						<div class="field">
 							<div class="field">
+								<label class="label" for="is_featured">
+									Is Featured
+								</label>
+								<div class="control">
+									{{ Form::hidden('is_visible', 0) }}
+									<input name="is_featured" type="checkbox" value="1" {{ $episode->is_featured ? 'CHECKED' : '' }}>
+								</div>
+							</div>
+						</div>
+
+						<div class="field">
+							<div class="field">
 								<label class="label" for="is_uploaded">
 									Is Uploaded
 								</label>

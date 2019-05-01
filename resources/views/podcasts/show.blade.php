@@ -42,6 +42,12 @@
 						</audio>
 					</div>
 
+					@if ($episode->reddit_url)
+					<a class="button is-slightly-elevated" href="{{ $episode->reddit_url }}" target="_blank">
+						<i style="font-size: 20px" class="fab fa-reddit"></i> &nbsp; Reddit
+					</a> &nbsp;
+					@endif
+
 					<a class="button is-slightly-elevated" href="{{ $episode->downloadUrl() }}">
 						<i style="font-size: 20px" class="fas fa-download"></i> &nbsp; Download
 					</a> &nbsp;

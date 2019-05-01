@@ -25,6 +25,7 @@ class PodcastEpisode extends Model implements Feedable
         'app_url',
         'is_visible',
         'is_uploaded',
+        'is_featured',
         'private_notes',
         'file_size',
         'file_duration',
@@ -34,6 +35,7 @@ class PodcastEpisode extends Model implements Feedable
         'email',
         'private_notes',
         'is_visible',
+        'is_featured',
     ];
 
     /*
