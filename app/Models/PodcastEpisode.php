@@ -63,7 +63,7 @@ class PodcastEpisode extends Model implements Feedable
 
     public function toFeedItem()
     {
-        $summary = htmlentities(strip_tags($this->short_description . "\n" . $this->long_description));
+        $summary = htmlspecialchars(strip_tags($this->short_description . "\n" . $this->long_description));
 
         if ($this->reddit_url) {
             $summary .= "\n\n" . $this->reddit_url;
