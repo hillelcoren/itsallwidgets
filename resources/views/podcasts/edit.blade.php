@@ -301,7 +301,7 @@
 									Is Featured
 								</label>
 								<div class="control">
-									{{ Form::hidden('is_visible', 0) }}
+									{{ Form::hidden('is_featured', 0) }}
 									<input name="is_featured" type="checkbox" value="1" {{ $episode->is_featured ? 'CHECKED' : '' }}>
 								</div>
 							</div>

@@ -63,11 +63,17 @@ class PodcastEpisode extends Model implements Feedable
 
     public function toFeedItem()
     {
+        $summary = strip_tags($this->short_description . "\n" . $this->long_description);
+
+        if ($this->reddit_url) {
+            $summary .= "\n\n" . $this->reddit_url;
+        }
+
         return FeedItem::create()
             ->id($this->downloadUrl())
             ->title($this->podcastTitle())
             ->updated(\Carbon\Carbon::parse($this->published_at))
-            ->summary(strip_tags($this->short_description . "\n" . $this->long_description))
+            ->summary($summary)
             ->link(json_encode([$this->url(), $this->downloadUrl(), $this->file_duration]))
             ->author("Hillel Coren");
     }
