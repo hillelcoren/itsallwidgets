@@ -141,7 +141,7 @@ class PodcastController extends Controller
         // Link attributes
         $attr = '';
         foreach ($attributes as $key => $val) {
-            $attr = ' ' . $key . '="' . htmlentities($val) . '"';
+            $attr .= ' ' . $key . '="' . htmlentities($val) . '"';
         }
 
         $links = array();
