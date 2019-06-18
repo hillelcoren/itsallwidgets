@@ -75,7 +75,10 @@ class FlutterAppController extends Controller
 
         $ip = \Request::getClientIp();
         if (cache()->has($ip . '_latitude')) {
-            $event = $this->eventRepo->findByCoordinates(2, 20);
+            $latitude = cache($ip . '_latitude');
+            $longitude = cache($ip . '_longitude');
+
+            $event = $this->eventRepo->findByCoordinates($latitude, $longitude);
             if ($event) {
                 $data['banner'] = $event->banner;
             }
