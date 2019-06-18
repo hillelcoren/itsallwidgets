@@ -2,6 +2,7 @@
 
 namespace app\Repositories;
 
+use DB;
 use App\Models\FlutterEvent;
 
 class FlutterEventRepository
@@ -31,6 +32,34 @@ class FlutterEventRepository
     public function getById($id)
     {
         return FlutterEvent::findOrFail($id);
+    }
+
+    public function findByCoordinates($latitude, $longitude)
+    {
+        $latitude = floatval($latitude);
+        $longitude = floatval($longitude);
+
+        if (!$latitude || !$longitude) {
+            return false;
+        }
+
+        // https://coderwall.com/p/zetcpw/calculating-distance-between-two-points-latitude-longitude
+        $events = DB::select("SELECT id,
+            ( 6371 * acos( cos( radians($latitude) )
+            * cos( radians( latitude ) )
+            * cos( radians( longitude ) - radians($longitude) ) + sin( radians($latitude) )
+            * sin( radians( latitude ) ) ) )
+            AS calculated_distance
+            FROM flutter_events as T
+            HAVING calculated_distance <= 1000
+            ORDER BY calculated_distance
+            LIMIT 1");
+
+        if (!count($events)) {
+            return false;
+        }
+
+        return $this->getById($events[0]->id);
     }
 
     /**

@@ -154,6 +154,13 @@ body {
         </div>
     </section>
 
+    @if ($banner)
+        <br/>
+        <div class="container" v-cloak>
+            <div class="notification is-info">{{ $banner }}</div>
+        </div>
+    @endif
+
     <section class="section is-body-font" style="background-color:#fefefe">
         <div class="container" v-cloak>
             <div v-if="filteredApps.length == 0" class="is-wide has-text-centered is-vertical-center"

@@ -14,6 +14,7 @@ use App\Http\Requests\FeatureFlutterApp;
 use App\Http\Requests\RejectFlutterApp;
 use Illuminate\Http\Request;
 use App\Repositories\FlutterAppRepository;
+use App\Repositories\FlutterEventRepository;
 use App\Notifications\AppSubmitted;
 use App\Notifications\AppApproved;
 use App\Notifications\AppRejected;
@@ -29,15 +30,21 @@ class FlutterAppController extends Controller
     protected $appRepo;
 
     /**
+     * @var app\Repositories\FlutterEventRepository;
+     */
+    protected $eventRepo;
+
+    /**
      * GitHub client
      *
      * @var GrahamCampbell\GitHub\Facades\GitHub
      */
     protected $github;
 
-    public function __construct(FlutterAppRepository $appRepo)
+    public function __construct(FlutterAppRepository $appRepo, FlutterEventRepository $eventRepo)
     {
         $this->appRepo = $appRepo;
+        $this->eventRepo = $eventRepo;
     }
 
     /**
@@ -61,9 +68,20 @@ class FlutterAppController extends Controller
             $view = 'flutter_apps.index';
         }
 
-        $apps = cache('flutter-app-list') ?: FlutterApp::approved()->latest()->get();
+        $data = [
+            'apps' => cache('flutter-app-list') ?: FlutterApp::approved()->latest()->get(),
+            'banner' => false,
+        ];
 
-        return view($view, compact('apps'));
+        $ip = \Request::getClientIp();
+        if (cache()->has($ip . '_latitude')) {
+            $event = $this->eventRepo->findByCoordinates(2, 20);
+            if ($event) {
+                $data['banner'] = $event->banner;
+            }
+        }
+
+        return view($view, $data);
     }
 
     /**
