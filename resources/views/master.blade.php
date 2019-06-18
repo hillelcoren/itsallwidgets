@@ -334,10 +334,11 @@
                                 </a>
 
                                 @if (auth()->check())
+                                    @if (auth()->user()->is_editor)
                                     <a class="navbar-item" href="{{ url('flutter-events') }}">
                                         <i class="fas fa-calendar"></i> &nbsp; Events
                                     </a>
-
+                                    @endif
                                     <a class="navbar-item" href="{{ url('logout') }}">
                                         <i class="fas fa-user-alt"></i> &nbsp; Logout
                                     </a>

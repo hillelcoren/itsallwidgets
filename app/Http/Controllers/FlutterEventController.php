@@ -45,10 +45,8 @@ class FlutterEventController extends Controller
         }
 
         // TODO remove this
-        if ($events->count() == 1) {
-            return redirect($events[0]->route());
-        }
-
+        return redirect($events[0]->route());
+        
         return view('flutter_events.index', compact('events'));
     }
 
