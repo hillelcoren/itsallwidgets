@@ -152,7 +152,7 @@
 
 					<div class="field">
 						<label class="label" for="banner">
-							Banner <span class="required">*</span>
+							Message <span class="required">*</span>
 						</label>
 						<div class="control">
 
