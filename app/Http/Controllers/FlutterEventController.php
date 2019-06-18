@@ -94,11 +94,11 @@ class FlutterEventController extends Controller
     {
         $input = $request->all();
         $user = auth()->user();
-        $app = $this->eventRepo->store($input, $user->id);
+        $event = $this->eventRepo->store($input, $user->id);
 
-        User::admin()->notify(new EventSubmitted($app));
+        //User::admin()->notify(new EventSubmitted($app));
 
-        return redirect('/flutter-event/' . $app['slug'])->with(
+        return redirect($event->route())->with(
             'status',
             'Your event has been successfully added!'
         );

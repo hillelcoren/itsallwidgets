@@ -10,6 +10,28 @@
 		function onFormSubmit() {
 			$('#saveButton').addClass('is-loading').prop('disabled', true);
 		}
+
+		function updatePreview() {
+			var banner = $('textarea[name=banner]').val();
+			var name = $('input[name=event_name]').val() || 'EVENT';
+			var url = $('input[name=event_url]').val() || '/#';
+			var twitter = $('input[name=twitter_url]').val() || 'https://twitter.com/HANDLE';
+			var parts = twitter.split('/');
+			var handle = parts[parts.length - 1];
+			var str = banner;
+			var eventUrl = '<b><a href="' + url + '" target="_blank">' + name + '</a></b>';
+			var twitterUrl = '<b><a href="' + twitter + '" target="_blank">@' + handle + '</a></b>';
+
+			str = str.replace('$event', eventUrl);
+			str = str.replace('$handle', twitterUrl);
+
+			$('#bannerPreview').html(str);
+		}
+
+		$(function() {
+			updatePreview();
+		});
+
 	</script>
 
 	<p>&nbsp;</p>
@@ -42,10 +64,9 @@
 					There was a problem with your submission, please correct the errors and try again.
 				</div>
 				<p>&nbsp;</p>
-				{{ dd($errors)}}
 			@endif
 
-			{{ Form::open(['url' => $url, 'method' => $method, 'files' => true, 'onsubmit' => 'onFormSubmit()']) }}
+			{{ Form::open(['url' => $url, 'method' => $method, 'files' => true, 'onsubmit' => 'onFormSubmit()', 'onkeyup' => 'updatePreview()']) }}
 
 			<article class="message is-dark is-elevated">
 				<div class="message-body">
@@ -149,6 +170,10 @@
 
 			</article>
 
+
+			<br/>
+			<h3 class="subtitle">Banner Preview</h3>
+			<div id="bannerPreview" class="notification is-info"></div>
 
 			<p>&nbsp;</p>
 			<p>&nbsp;</p>
