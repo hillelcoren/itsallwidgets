@@ -42,6 +42,19 @@ class AppServiceProvider extends ServiceProvider
             // this will fail when running composer install
             // before the database is migrated
         }
+
+        $ip = \Request::getClientIp();
+        if (!cache()->has($ip . '_latitude')) {
+            $link = 'http://www.geoplugin.net/php.gp?ip=' . $ip;
+            $latitude = 0;
+            $longitude = 0;
+            if ($data = unserialize(@file_get_contents($link))) {
+                $latitude = floatval($data['geoplugin_latitude']);
+                $longitude = floatval($data['geoplugin_longitude']);
+            }
+            cache([$ip . '_latitude' => $latitude], 60 * 60 * 24);
+            cache([$ip . '_longitude' => $longitude], 60 * 60 * 24);
+        }
     }
 
     /**
