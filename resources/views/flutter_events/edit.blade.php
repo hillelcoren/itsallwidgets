@@ -158,6 +158,8 @@
 
 							{{ Form::textarea('banner', $event->banner ?: $event->defaultBanner(), ['class' => 'textarea', 'required' => true, 'rows' => 4]) }}
 
+							<div class="help">Note: HTML is not supported</div>
+
 							@if ($errors->has('banner'))
 								<span class="help is-danger">
 									{{ $errors->first('banner') }}
