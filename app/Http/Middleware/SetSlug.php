@@ -17,8 +17,14 @@ class SetSlug
     public function handle($request, Closure $next)
     {
         $request_array = $request->all();
-        $request_array['slug'] = str_slug($request_array['title']);
-        $request->replace($request_array);
+
+        if (isset($request_array['title'])) {
+            $request_array['slug'] = str_slug($request_array['title']);
+            $request->replace($request_array);
+        } elseif (isset($request_array['event_name'])) {
+            $request_array['slug'] = str_slug($request_array['event_name']);
+            $request->replace($request_array);
+        }
 
         return $next($request);
     }

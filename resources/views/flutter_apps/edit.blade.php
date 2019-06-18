@@ -189,7 +189,7 @@
 
 			<div class="subtitle">Optional Links</div>
 
-			<div class="subtitle is-6">If a Twitter link is set we'll include your handle in the promotional tweet</div>
+			<div class="subtitle is-6">If a Twitter link is set we'll include the handle in the promotional tweet</div>
 
 			<article class="message is-elevated">
 				<div class="message-body">
@@ -200,7 +200,7 @@
 						</label>
 						<div class="control has-icons-left">
 
-							{{ Form::text('google_url', $app->google_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://play.google.com/...']) }}
+							{{ Form::url('google_url', $app->google_url, ['class' => 'input', 'placeholder' => 'https://play.google.com/...']) }}
 
 							<span class="icon is-small is-left">
 								<i class="fab fa-google"></i>
@@ -220,7 +220,7 @@
 						</label>
 						<div class="control has-icons-left">
 
-							{{ Form::text('apple_url', $app->apple_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://itunes.apple.com/...']) }}
+							{{ Form::url('apple_url', $app->apple_url, ['class' => 'input', 'placeholder' => 'https://itunes.apple.com/...']) }}
 
 							<span class="icon is-small is-left">
 								<i class="fab fa-apple"></i>
@@ -240,7 +240,7 @@
 						</label>
 						<div class="control has-icons-left">
 
-							{{ Form::text('repo_url', $app->repo_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://github.com/...']) }}
+							{{ Form::url('repo_url', $app->repo_url, ['class' => 'input', 'placeholder' => 'https://github.com/...']) }}
 
 							<span class="icon is-small is-left">
 								<i class="fab fa-github"></i>
@@ -260,7 +260,7 @@
 						</label>
 						<div class="control has-icons-left">
 
-							{{ Form::text('website_url', $app->website_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://example.com']) }}
+							{{ Form::url('website_url', $app->website_url, ['class' => 'input', 'placeholder' => 'https://example.com']) }}
 
 							<span class="icon is-small is-left">
 								<i class="fas fa-globe"></i>
@@ -280,7 +280,7 @@
 						</label>
 						<div class="control has-icons-left">
 
-							{{ Form::text('youtube_url', $app->youtube_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://www.youtube.com/embed/...']) }}
+							{{ Form::url('youtube_url', $app->youtube_url, ['class' => 'input', 'placeholder' => 'https://www.youtube.com/embed/...']) }}
 
 							<span class="icon is-small is-left">
 								<i class="fab fa-youtube"></i>
@@ -300,7 +300,7 @@
 						</label>
 						<div class="control has-icons-left">
 
-							{{ Form::text('facebook_url', $app->facebook_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://www.facebook.com/...']) }}
+							{{ Form::url('facebook_url', $app->facebook_url, ['class' => 'input', 'placeholder' => 'https://www.facebook.com/...']) }}
 
 							<span class="icon is-small is-left">
 								<i class="fab fa-facebook"></i>
@@ -320,7 +320,7 @@
 						</label>
 						<div class="control has-icons-left">
 
-							{{ Form::text('twitter_url', $app->twitter_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://twitter.com/...']) }}
+							{{ Form::url('twitter_url', $app->twitter_url, ['class' => 'input', 'placeholder' => 'https://twitter.com/...']) }}
 
 							<span class="icon is-small is-left">
 								<i class="fab fa-twitter"></i>
@@ -340,7 +340,7 @@
 						</label>
 						<div class="control has-icons-left">
 
-							{{ Form::text('instagram_url', $app->instagram_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://www.instagram.com/...']) }}
+							{{ Form::url('instagram_url', $app->instagram_url, ['class' => 'input', 'placeholder' => 'https://www.instagram.com/...']) }}
 
 							<span class="icon is-small is-left">
 								<i class="fab fa-instagram"></i>

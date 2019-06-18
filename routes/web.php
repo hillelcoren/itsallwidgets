@@ -54,4 +54,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('podcast/admin/{episode_id}', 'PodcastController@edit');
     Route::put('podcast/admin/{episode_id}', 'PodcastController@update');
     Route::delete('podcast/admin/{episode_id}/delete', 'PodcastController@delete');
+
+    Route::get('flutter-events', 'FlutterEventController@index');
+    Route::get('flutter-event/submit', 'FlutterEventController@create');
+    Route::post('flutter-event', 'FlutterEventController@store')->middleware('slug');
+    Route::get('flutter-event/{flutter_event}/approve', 'FlutterEventController@approve');
+    Route::get('flutter-event/{flutter_event}/reject', 'FlutterEventController@reject');
+    Route::get('flutter-event/{flutter_event}/edit', 'FlutterEventController@edit');
+    Route::put('flutter-event/{flutter_event}', 'FlutterEventController@update');
+
 });

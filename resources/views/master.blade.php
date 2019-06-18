@@ -334,6 +334,10 @@
                                 </a>
 
                                 @if (auth()->check())
+                                    <a class="navbar-item" href="{{ url('flutter-events') }}">
+                                        <i class="fas fa-calendar"></i> &nbsp; Events
+                                    </a>
+
                                     <a class="navbar-item" href="{{ url('logout') }}">
                                         <i class="fas fa-user-alt"></i> &nbsp; Logout
                                     </a>

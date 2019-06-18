@@ -91,7 +91,7 @@
 						</label>
 						<div class="control has-icons-left">
 
-							{{ Form::text('twitter_url', $episode->twitter_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://twitter.com/...']) }}
+							{{ Form::url('twitter_url', $episode->twitter_url, ['class' => 'input', 'placeholder' => 'https://twitter.com/...']) }}
 
 							<span class="icon is-small is-left">
 								<i class="fab fa-twitter"></i>
@@ -154,7 +154,7 @@
 						</label>
 						<div class="control has-icons-left">
 
-							{{ Form::text('github_url', $episode->github_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://github.com/...']) }}
+							{{ Form::url('github_url', $episode->github_url, ['class' => 'input', 'placeholder' => 'https://github.com/...']) }}
 
 							<span class="icon is-small is-left">
 								<i class="fab fa-github"></i>
@@ -174,7 +174,7 @@
 						</label>
 						<div class="control has-icons-left">
 
-							{{ Form::text('website_url', $episode->website_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://example.com']) }}
+							{{ Form::url('website_url', $episode->website_url, ['class' => 'input', 'placeholder' => 'https://example.com']) }}
 
 							<span class="icon is-small is-left">
 								<i class="fas fa-globe"></i>
@@ -194,7 +194,7 @@
 						</label>
 						<div class="control has-icons-left">
 
-							{{ Form::text('app_url', $episode->app_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://itsallwidgets.com/...']) }}
+							{{ Form::url('app_url', $episode->app_url, ['class' => 'input', 'placeholder' => 'https://itsallwidgets.com/...']) }}
 
 							<span class="icon is-small is-left">
 								<i class="fas fa-star"></i>
@@ -325,7 +325,7 @@
 							</label>
 							<div class="control has-icons-left">
 
-								{{ Form::text('reddit_url', $episode->reddit_url, ['class' => 'input', 'type' => 'url', 'placeholder' => 'https://reddit.com']) }}
+								{{ Form::url('reddit_url', $episode->reddit_url, ['class' => 'input', 'placeholder' => 'https://reddit.com']) }}
 
 								<span class="icon is-small is-left">
 									<i class="fab fa-reddit"></i>
