@@ -75,8 +75,12 @@
 						<label class="label" for="event_name">
 							Event Name <span class="required">*</span>
 						</label>
-						<div class="control">
+						<div class="control has-icons-left">
 							{{ Form::text('event_name', $event->event_name, ['class' => 'input', 'required' => true]) }}
+
+							<span class="icon is-small is-left">
+								<i class="fas fa-globe"></i>
+							</span>
 
 							@if ($errors->has('event_name'))
 								<span class="help is-danger">
@@ -90,8 +94,12 @@
 						<label class="label" for="event_url">
 							Event Link <span class="required">*</span>
 						</label>
-						<div class="control">
+						<div class="control has-icons-left">
 							{{ Form::url('event_url', $event->event_url, ['class' => 'input', 'required' => true]) }}
+
+							<span class="icon is-small is-left">
+								<i class="fas fa-link"></i>
+							</span>
 
 							@if ($errors->has('event_url'))
 								<span class="help is-danger">
@@ -104,8 +112,12 @@
 						<label class="label" for="address">
 							Event Address <span class="required">*</span>
 						</label>
-						<div class="control">
+						<div class="control has-icons-left">
 							{{ Form::text('address', $event->address, ['class' => 'input', 'required' => true]) }}
+
+							<span class="icon is-small is-left">
+								<i class="fas fa-map-marked"></i>
+							</span>
 
 							@if ($errors->has('address'))
 								<span class="help is-danger">
@@ -119,8 +131,13 @@
 						<label class="label" for="event_date">
 							Event Date <span class="required">*</span>
 						</label>
-						<div class="control">
+						<div class="control has-icons-left">
 							{{ Form::date('event_date', $event->event_date, ['class' => 'input', 'required' => true]) }}
+
+
+							<span class="icon is-small is-left">
+								<i class="fas fa-calendar"></i>
+							</span>
 
 							@if ($errors->has('event_date'))
 								<span class="help is-danger">
