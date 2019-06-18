@@ -154,7 +154,7 @@ body {
         </div>
     </section>
 
-    @if (auth()->check() && auth()->is_editor())
+    @if (auth()->check() && auth()->user()->is_editor)
         @if ($banner)
             <br/>
             <div class="container" v-cloak>
