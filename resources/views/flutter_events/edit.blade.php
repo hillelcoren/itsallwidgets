@@ -23,7 +23,7 @@
 			var twitterUrl = '<b><a href="' + twitter + '" target="_blank">@' + handle + '</a></b>';
 
 			str = str.replace('$event', eventUrl);
-			str = str.replace('$handle', twitterUrl);
+			str = str.replace('$twitter', twitterUrl);
 
 			$('#bannerPreview').html(str);
 		}
@@ -158,7 +158,7 @@
 
 							{{ Form::textarea('banner', $event->banner ?: $event->defaultBanner(), ['class' => 'textarea', 'required' => true, 'rows' => 4]) }}
 
-							<div class="help">Note: HTML is not supported</div>
+							<div class="help">Note: Use $event and $twitter for links, HTML is not supported.</div>
 
 							@if ($errors->has('banner'))
 								<span class="help is-danger">

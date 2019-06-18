@@ -55,7 +55,7 @@ class FlutterEvent extends Model implements Feedable
 
     public function defaultBanner()
     {
-        return 'Join us for $event organized by $handle';
+        return 'Join us for $event organized by $twitter';
     }
 
     public function toFeedItem()
