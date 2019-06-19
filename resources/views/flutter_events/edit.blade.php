@@ -94,6 +94,12 @@
 									{{ $errors->first('event_name') }}
 								</span>
 							@endif
+							@if ($errors->has('slug'))
+								<span class="help is-danger">
+									{{ $errors->first('slug') }}
+								</span>
+							@endif
+
 						</div>
 					</div>
 
