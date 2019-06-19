@@ -71,12 +71,12 @@ class FlutterEventRepository
      */
     public function store($input, $user_id)
     {
-        $app = new FlutterEvent;
-        $app->fill($input);
-        $app->user_id = $user_id;
-        $app->save();
+        $event = new FlutterEvent;
+        $event->fill($input);
+        $event->user_id = $user_id;
+        $event->save();
 
-        return $app;
+        return $event;
     }
 
     /**
