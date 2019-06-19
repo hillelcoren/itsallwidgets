@@ -91,7 +91,7 @@ class FlutterEventController extends Controller
         $user = auth()->user();
         $event = $this->eventRepo->store($input, $user->id);
 
-        //User::admin()->notify(new EventSubmitted($app));
+        User::admin()->notify(new EventSubmitted($event));
 
         return redirect($event->route())->with(
             'status',
