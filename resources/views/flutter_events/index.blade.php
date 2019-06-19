@@ -37,7 +37,7 @@
                     </p>
                     <div style="border-bottom: 2px #368cd5 solid; margin-left:40%; margin-right: 40%;"></div>
                 </header>
-                <div>{{ $event->event_date }}</div>
+                <div>{{ $event->prettyDate() }}</div>
 
                 <div class="content" style="padding:16px;padding-bottom:16px;padding-top:18px;">
                     <div>

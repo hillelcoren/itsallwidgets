@@ -74,6 +74,14 @@ class FlutterEvent extends Model implements Feedable
         return $banner;
     }
 
+    public function prettyDate()
+    {
+        $time = strtotime($this->event_date);
+
+        return date('l jS, F Y', $time);
+
+    }
+
     public function toFeedItem()
     {
         /*
