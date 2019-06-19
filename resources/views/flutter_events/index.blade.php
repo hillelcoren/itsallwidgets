@@ -25,7 +25,17 @@
 
 <div class="container">
 
-<h2 class="title">Flutter Events</h2>
+
+<div class="is-clearfix">
+
+    <h2 class="title is-pulled-left" style="padding-top:4px">Flutter Events</h2>
+    <a href="{{ url('/flutter-event/submit') }}" class="button is-info is-slightly-elevated is-pulled-right">
+        <i style="font-size: 20px" class="fas fa-cloud-upload-alt"></i> &nbsp; Submit Event
+    </a>
+
+</div>
+
+<br/>
 
 <div class="columns is-multiline is-5 is-variable">
     @foreach ($events as $event)
@@ -41,8 +51,8 @@
 
                 <div class="content" style="padding:16px;padding-bottom:16px;padding-top:18px;">
                     <div>
-                        <i class="fas fa-eye"></i> {{ $event->count_views ?: '0' }} views &nbsp;&nbsp;&nbsp;
-                        <i class="fas fa-user"></i> {{ $event->count_views ?: '0' }} clicks
+                        <i class="fas fa-eye"></i> &nbsp; {{ $event->count_views ?: '0' }} views &nbsp;&nbsp;&nbsp;
+                        <i class="fas fa-user"></i> &nbsp; {{ ($event->count_clicks + $event->count_twitter_clicks) ?: '0' }} clicks
                     </div><br/>
 
                     <div class="short-description">
