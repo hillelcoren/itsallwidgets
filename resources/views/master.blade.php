@@ -300,6 +300,13 @@
         });
     })
 
+    function trackBannerClick(eventSlug, isTwitter) {
+        $.ajax({
+            type: 'GET',
+            url: '{{ url('/flutter-event-click') }}/' + encodeURIComponent(eventSlug) + '/' + (isTwitter ? 'twitter' : 'event'),
+        });
+    }
+
     </script>
 
 </head>

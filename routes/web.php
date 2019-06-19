@@ -34,6 +34,7 @@ Route::get('log_error', 'HomeController@logError');
 Route::feeds();
 
 Route::get('flutter-app/{slug}', 'FlutterAppController@show');
+Route::get('flutter-event-click/{flutter_event}/{click_type}', 'FlutterEventController@trackClicked');
 
 Route::get('podcast', 'PodcastController@index');
 Route::get('podcast/download/episode-{episode}.{format}', 'PodcastController@download');

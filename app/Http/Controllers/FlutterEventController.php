@@ -46,7 +46,7 @@ class FlutterEventController extends Controller
 
         // TODO remove this
         return redirect($events[0]->route());
-        
+
         return view('flutter_events.index', compact('events'));
     }
 
@@ -158,6 +158,19 @@ class FlutterEventController extends Controller
         $event->user->notify(new EventRejected($event));
 
         return redirect('/')->with('status', 'Event has been rejected!');
+    }
+
+    public function trackClicked(FlutterEvent $event, $clickType)
+    {
+        if ($clickType == 'twitter') {
+            $event->twitter_click_count++;
+        } else {
+            $event->click_count++;
+        }
+
+        $event->save();
+
+        return 'SUCCESS';
     }
 
     /*

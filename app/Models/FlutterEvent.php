@@ -62,8 +62,11 @@ class FlutterEvent extends Model implements Feedable
     {
         $banner = e($this->banner);
 
-        $eventUrl = '<b><a href="' . $this->event_url . '" target="_blank">' . $this->event_name . '</a></b>';
-        $twitterUrl = '<b><a href="' . $this->twitter_url . '" target="_blank">' . $this->twitterHandle() . '</a></b>';
+        $eventUrl = '<b><a href="' . $this->event_url . '" target="_blank" onclick="trackBannerClick(\'' . $this->slug . '\')">' .
+            $this->event_name . '</a></b>';
+
+        $twitterUrl = '<b><a href="' . $this->twitter_url . '" target="_blank" onclick="trackBannerClick(\'' . $this->slug . '\', true)">' .
+            $this->twitterHandle() . '</a></b>';
 
         $banner = str_replace('$event', $eventUrl, $banner);
         $banner = str_replace('$twitter', $twitterUrl, $banner);
