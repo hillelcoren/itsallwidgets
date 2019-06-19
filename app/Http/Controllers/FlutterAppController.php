@@ -80,7 +80,7 @@ class FlutterAppController extends Controller
                 $event->view_count++;
                 $event->save();
 
-                $data['banner'] = $event->getBanner();
+                $banner = $event->getBanner();
             }
         }
 
