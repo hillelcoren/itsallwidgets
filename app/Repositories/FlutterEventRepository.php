@@ -52,6 +52,8 @@ class FlutterEventRepository
             AS calculated_distance
             FROM flutter_events
             WHERE archived_at IS NULL
+            AND is_approved = 1
+            AND is_visisble = 1
             AND CURDATE() <= event_date
             HAVING calculated_distance <= 1000
             ORDER BY calculated_distance
