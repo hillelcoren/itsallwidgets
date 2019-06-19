@@ -93,7 +93,7 @@ class FlutterEventController extends Controller
 
         User::admin()->notify(new EventSubmitted($event));
 
-        return redirect($event->route())->with(
+        return redirect($event->url())->with(
             'status',
             'Your event has been successfully added!'
         );

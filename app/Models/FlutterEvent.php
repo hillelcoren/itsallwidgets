@@ -28,9 +28,9 @@ class FlutterEvent extends Model implements Feedable
     ];
 
 
-    public function route()
+    public function url()
     {
-        return '/flutter-event/' . $this->slug . '/edit';
+        return url('flutter-event/' . $this->slug . '/edit');
     }
 
     public function user()

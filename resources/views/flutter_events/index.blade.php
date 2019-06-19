@@ -39,7 +39,7 @@
 
 <div class="columns is-multiline is-5 is-variable">
     @foreach ($events as $event)
-        <div class="column is-one-third" onclick="location.href = '{{ $event->route() }}'" style="cursor: pointer;">
+        <div class="column is-one-third" onclick="location.href = '{{ $event->url() }}'" style="cursor: pointer;">
             <div class="flutter-event is-hover-elevated has-text-centered">
                 <header style="padding: 16px">
                     <p class="no-wrap" style="font-size:22px; padding-bottom:10px;">

@@ -154,13 +154,11 @@ body {
         </div>
     </section>
 
-    @if (auth()->check() && auth()->user()->is_admin)
-        @if ($banner)
-            <br/>
-            <div class="container" v-cloak>
-                <div class="notification is-info">{!! $banner !!}</div>
-            </div>
-        @endif
+    @if ($banner)
+        <br/>
+        <div class="container" v-cloak>
+            <div class="notification is-info">{!! $banner !!}</div>
+        </div>
     @endif
 
     <section class="section is-body-font" style="background-color:#fefefe">
