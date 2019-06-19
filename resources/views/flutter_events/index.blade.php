@@ -32,9 +32,16 @@
         <div class="column is-one-third" onclick="location.href = '{{ $event->route() }}'" style="cursor: pointer;">
             <div class="flutter-event is-hover-elevated has-text-centered">
                 <header style="padding: 16px">
-                    {{ $event->event_name }}
+                    <p class="no-wrap" style="font-size:22px; padding-bottom:10px;">
+                        {{ $event->event_name }}
+                    </p>
                     <div style="border-bottom: 2px #368cd5 solid; margin-left:40%; margin-right: 40%;"></div>
                 </header>
+                <div class="content" style="padding:16px;padding-bottom:16px;padding-top:6px;">
+                    <div class="short-description">
+                        {!! $event->getBanner() !!}
+                    </div>
+                </div>
             </div>
         </div>
     @endforeach
