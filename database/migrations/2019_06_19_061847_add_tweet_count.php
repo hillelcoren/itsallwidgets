@@ -14,6 +14,7 @@ class AddTweetCount extends Migration
     public function up()
     {
         Schema::table('flutter_events', function(Blueprint $table) {
+            $table->timestamp('archived_at')->nullable();
             $table->integer('twitter_click_count')->default(0);
             $table->integer('tweet_count')->default(0);
         });
@@ -28,6 +29,7 @@ class AddTweetCount extends Migration
     public function down()
     {
         Schema::table('flutter_events', function(Blueprint $table) {
+            $table->dropColumn('archived_at');
             $table->dropColumn('twitter_click_count');
             $table->dropColumn('tweet_count');
         });

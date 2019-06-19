@@ -50,7 +50,9 @@ class FlutterEventRepository
             * cos( radians( longitude ) - radians($longitude) ) + sin( radians($latitude) )
             * sin( radians( latitude ) ) ) )
             AS calculated_distance
-            FROM flutter_events as T
+            FROM flutter_events
+            WHERE archived_at IS NULL
+            AND CURDATE() <= event_date
             HAVING calculated_distance <= 1000
             ORDER BY calculated_distance
             LIMIT 1");
