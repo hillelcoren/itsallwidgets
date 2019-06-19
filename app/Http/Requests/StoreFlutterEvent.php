@@ -28,7 +28,7 @@ class StoreFlutterEvent extends FormRequest
             'event_name' => 'required|unique:flutter_events',
             'event_url' => 'required|unique:flutter_events',
             'slug' => 'required|unique:flutter_events',
-            'event_date' => 'required',
+            'event_date' => 'required|date',
             'address' => 'required',
             'banner' => 'required',
             'twitter_url' => [new ExternalLink('https://twitter.com/')],

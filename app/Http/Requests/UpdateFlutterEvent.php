@@ -34,7 +34,7 @@ class UpdateFlutterEvent extends FormRequest
 
         $rules = [
             'event_name' => 'required|unique:flutter_events,event_name,' . $event->id . ',id',
-            'event_date' => 'required',
+            'event_date' => 'required|date',
             'address' => 'required',
             'banner' => 'required',
             'twitter_url' => [new ExternalLink('https://twitter.com/')],
