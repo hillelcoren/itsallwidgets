@@ -52,8 +52,8 @@
                 <div class="content" style="padding:16px;padding-bottom:16px;padding-top:20px;">
 
                     <div style="font-weight:300">
-                        <i class="fas fa-eye"></i> &nbsp; {{ $event->count_views ?: '0' }} views &nbsp;&nbsp;&nbsp;
-                        <i class="fas fa-user"></i> &nbsp; {{ ($event->count_clicks + $event->count_twitter_clicks) ?: '0' }} clicks
+                        <i class="fas fa-eye"></i> &nbsp; {{ $event->view_count ?: '0' }} views &nbsp;&nbsp;&nbsp;
+                        <i class="fas fa-user"></i> &nbsp; {{ ($event->click_count + $event->twitter_click_count) ?: '0' }} clicks
                     </div><br/>
 
                     <div class="short-description">
