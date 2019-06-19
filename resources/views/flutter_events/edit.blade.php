@@ -43,6 +43,13 @@
 			@if (!$event->exists)
 				<h2 class="title">Submit a Flutter Event</h2>
 			@else
+				<nav class="breadcrumb" aria-label="breadcrumbs">
+					<ul>
+						<li><a href="{{ url('/flutter-events') }}">All Events</a></li>
+						<li class="is-active"><a href="#" aria-current="page">{{ $event->event_name }}</a></li>
+					</ul>
+				</nav>
+
 				<h2 class="title">Edit Flutter Event</h2>
 			@endif
 
@@ -221,7 +228,7 @@
 			<div class="columns is-centered is-mobile">
 
 				<div class="control">
-					<a href="{{ $event->exists ? url('/') : url('/') }}" class="button is-medium is-outlined is-slightly-elevated">
+					<a href="{{ $event->exists ? url('/flutter-events') : url('/') }}" class="button is-medium is-outlined is-slightly-elevated">
 						<i style="font-size: 20px" class="fa fa-times-circle"></i> &nbsp; Cancel
 					</a> &nbsp;
 					<button id="saveButton" class="button is-info is-medium is-slightly-elevated">
