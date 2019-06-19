@@ -68,12 +68,9 @@ class FlutterAppController extends Controller
             $view = 'flutter_apps.index';
         }
 
-        $data = [
-            'apps' => cache('flutter-app-list') ?: FlutterApp::approved()->latest()->get(),
-            'banner' => false,
-        ];
-
         $ip = \Request::getClientIp();
+        $banner = false;
+
         if (cache()->has($ip . '_latitude')) {
             $latitude = cache($ip . '_latitude');
             $longitude = cache($ip . '_longitude');
@@ -82,10 +79,20 @@ class FlutterAppController extends Controller
             if ($event) {
                 $event->view_count++;
                 $event->save();
-                
+
                 $data['banner'] = $event->getBanner();
             }
         }
+
+        if (! $banner) {
+            $link = '<b><a href="' . url(auth()->check() ? 'flutter-events' : 'auth/google?intended_url=flutter-events') . '">click here</a></b>';
+            $banner = 'If you have a Flutter event to promote you can now take over this banner, ' . $link . ' to try it out!';
+        }
+
+        $data = [
+            'apps' => cache('flutter-app-list') ?: FlutterApp::approved()->latest()->get(),
+            'banner' => $banner,
+        ];
 
         return view($view, $data);
     }

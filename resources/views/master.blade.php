@@ -339,11 +339,11 @@
                                 <a class="navbar-item" href="{{ url('about') }}">
                                     <i class="fas fa-info-circle"></i> &nbsp; About
                                 </a>
+                                <a class="navbar-item" href="{{ url(auth()->check() ? 'flutter-events' : 'auth/google?intended_url=flutter-events') }}">
+                                    <i class="fas fa-calendar"></i> &nbsp; Events
+                                </a>
 
                                 @if (auth()->check())
-                                    <a class="navbar-item" href="{{ url('flutter-events') }}">
-                                        <i class="fas fa-calendar"></i> &nbsp; Events
-                                    </a>
                                     <a class="navbar-item" href="{{ url('logout') }}">
                                         <i class="fas fa-user-alt"></i> &nbsp; Logout
                                     </a>
