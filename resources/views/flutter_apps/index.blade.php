@@ -158,7 +158,7 @@ body {
         @if ($banner)
             <br/>
             <div class="container" v-cloak>
-                <div class="notification is-info">{{ $banner }}</div>
+                <div class="notification is-info">{!! $banner !!}</div>
             </div>
         @endif
     @endif

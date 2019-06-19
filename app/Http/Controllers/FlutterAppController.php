@@ -80,7 +80,7 @@ class FlutterAppController extends Controller
 
             $event = $this->eventRepo->findByCoordinates($latitude, $longitude);
             if ($event) {
-                $data['banner'] = $event->banner;
+                $data['banner'] = $event->getBanner();
             }
         }
 

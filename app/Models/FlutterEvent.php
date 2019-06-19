@@ -58,6 +58,19 @@ class FlutterEvent extends Model implements Feedable
         return 'Join us for $event organized by $twitter';
     }
 
+    public function getBanner()
+    {
+        $banner = e($this->banner);
+
+        $eventUrl = '<b><a href="' . $this->event_url . '" target="_blank">' . $this->event_name . '</a></b>';
+        $twitterUrl = '<b><a href="' . $this->twitter_url . '" target="_blank">' . $this->twitterHandle() . '</a></b>';
+
+        $banner = str_replace('$event', $eventUrl, $banner);
+        $banner = str_replace('$twitter', $twitterUrl, $banner);
+
+        return $banner;
+    }
+
     public function toFeedItem()
     {
         /*
@@ -69,5 +82,21 @@ class FlutterEvent extends Model implements Feedable
             ->link('/flutter-app/' . $this->slug)
             ->author($this->title);
         */
+    }
+
+    public function twitterHandle()
+    {
+        if (! $this->twitter_url) {
+            return false;
+        }
+
+        $parts = explode('/', $this->twitter_url);
+        $part = $parts[count($parts) - 1];
+        $part = ltrim($part, '@');
+
+        $parts = explode('?', $part);
+        $part = $parts[0];
+
+        return '@' . $part;
     }
 }
