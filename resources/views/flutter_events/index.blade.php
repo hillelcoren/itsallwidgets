@@ -37,10 +37,20 @@
                     </p>
                     <div style="border-bottom: 2px #368cd5 solid; margin-left:40%; margin-right: 40%;"></div>
                 </header>
-                <div class="content" style="padding:16px;padding-bottom:16px;padding-top:6px;">
+                <div>{{ $event->event_date }}</div>
+
+                <div class="content" style="padding:16px;padding-bottom:16px;padding-top:18px;">
+                    <div>
+                        <i class="fas fa-eye"></i> {{ $event->count_views ?: '0' }} views &nbsp;&nbsp;&nbsp;
+                        <i class="fas fa-user"></i> {{ $event->count_views ?: '0' }} clicks
+                    </div><br/>
+
                     <div class="short-description">
                         {!! $event->getBanner() !!}
                     </div>
+
+                    <div style="padding-top:10px">{{ $event->address }}</div>
+
                 </div>
             </div>
         </div>
