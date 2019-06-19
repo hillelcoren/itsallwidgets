@@ -44,9 +44,6 @@ class FlutterEventController extends Controller
             return redirect('flutter-event/submit');
         }
 
-        // TODO remove this
-        return redirect($events[0]->route());
-
         return view('flutter_events.index', compact('events'));
     }
 
