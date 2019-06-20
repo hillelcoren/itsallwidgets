@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\HasVariable;
 use App\Rules\ExternalLink;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -30,8 +31,11 @@ class StoreFlutterEvent extends FormRequest
             'slug' => 'required|unique:flutter_events',
             'event_date' => 'required|date',
             'address' => 'required',
-            'banner' => 'required',
             'terms' => 'required',
+            'banner' => [
+                new HasVariable('$event'),
+                'required',
+            ],
         ];
 
         return $rules;

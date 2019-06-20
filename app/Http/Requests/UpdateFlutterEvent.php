@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\HasVariable;
 use App\Rules\ExternalLink;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -36,7 +37,10 @@ class UpdateFlutterEvent extends FormRequest
             'event_name' => 'required|unique:flutter_events,event_name,' . $event->id . ',id',
             'event_date' => 'required|date',
             'address' => 'required',
-            'banner' => 'required',
+            'banner' => [
+                new HasVariable('$event'),
+                'required',
+            ],
         ];
 
         return $rules;

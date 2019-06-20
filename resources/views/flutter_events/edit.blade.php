@@ -19,7 +19,7 @@
 
 			str = str.replace(/@(\S+)/g, '<b><a href="https://twitter.com/$1" target="blank">@$1</a></b>')
 					.replace(/#(\S+)/g, '<b><a href="https://twitter.com/hashtag/$1" target="blank">#$1</a></b>')
-					.replace('$event', '<b><a href="' + url + '" target="_blank">' + name + '</a></b>');							
+					.replace('$event', '<b><a href="' + url + '" target="_blank">' + name + '</a></b>');
 
 			$('#bannerPreview').html(str);
 		}
@@ -166,17 +166,19 @@
 
 							{{ Form::textarea('banner', $event->banner ?: $event->defaultBanner(), ['class' => 'textarea', 'required' => true, 'rows' => 4]) }}
 
+							@if ($errors->has('banner'))
+								<span class="help is-danger">
+									{{ $errors->first('banner') }}
+								</span>
+							@endif
+
 							<ul class="help">
 								<li>• Use $event for the event link</li>
 								<li>• Use @ and # to create twitter links</li>
 								<li>• HTML is not supported but emoji are 😊</li>
 							</ul>
 
-							@if ($errors->has('banner'))
-								<span class="help is-danger">
-									{{ $errors->first('banner') }}
-								</span>
-							@endif
+
 						</div>
 					</div>
 				</div>
