@@ -220,6 +220,26 @@
 					<div class="message-body">
 
 						<div class="field">
+							<label class="label" for="slug">
+								Slug
+							</label>
+							<div class="control has-icons-left">
+								{{ Form::text('slug', $event->slug, ['class' => 'input', 'required' => true]) }}
+
+								<span class="icon is-small is-left">
+									<i class="fas fa-lock"></i>
+								</span>
+
+								@if ($errors->has('slug'))
+									<span class="help is-danger">
+										{{ $errors->first('slug') }}
+									</span>
+								@endif
+							</div>
+						</div>
+
+
+						<div class="field">
 							<label class="label" for="latitude">
 								Latitude
 							</label>
