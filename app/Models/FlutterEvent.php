@@ -34,6 +34,11 @@ class FlutterEvent extends Model implements Feedable
         return url('flutter-event/' . $this->slug . '/edit');
     }
 
+    public function mapUrl()
+    {
+        return '';
+    }
+
     public function user()
     {
         return $this->belongsTo('App\Models\User');

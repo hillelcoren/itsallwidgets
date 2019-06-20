@@ -39,8 +39,9 @@
 
 <div class="columns is-multiline is-5 is-variable">
     @foreach ($events as $event)
-        <div class="column is-one-third" onclick="location.href = '{{ $event->url() }}'" style="cursor: pointer;">
+        <div class="column is-one-third">
             <div class="flutter-event is-hover-elevated has-text-centered">
+
                 <header style="padding: 16px">
                     <p class="no-wrap" style="font-size:22px; padding-bottom:10px;">
                         {{ $event->event_name }}
@@ -74,13 +75,30 @@
 						</a>
                         -->
                     @else
-                        @if ($event->is_approved)
-                            <div class="tag is-success">Approved</div>
-                        @else
-                            <div class="tag is-warning">Pending approval</div>
-                        @endif
+
                     @endif
 
+                    <div class="is-clearfix">
+                        <div class="is-pulled-left" style="padding-left:20px;padding-top:10px;">
+                            @if ($event->is_approved)
+                                <div class="tag is-success">
+                                    <i class="fas fa-check-square"></i> &nbsp; Approved
+                                </div>
+                            @else
+                                <div class="tag is-warning">
+                                    <i class="fas fa-clock"></i> &nbsp; Pending
+                                </div>
+                            @endif
+                        </div>
+                        <div class="is-pulled-right" style="padding-right:20px;padding-top:10px;">
+                            <a href="{{ $event->url() }}" class="button is-info is-outlined is-small is-slightly-elevated">
+                                <i class="fas fa-edit"></i> &nbsp; Edit
+                            </a>
+                            <a href="{{ $event->mapUrl() }}" class="button is-info is-outlined is-small is-slightly-elevated">
+                                <i class="fas fa-map"></i> &nbsp; Map
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
