@@ -79,7 +79,7 @@
                         @endif
 
                         <p>
-                            {{ $event->user->name }} • {{ $event->user->email }}
+                            {{ $event->user->name }}
                         </p>
 
                     @else
