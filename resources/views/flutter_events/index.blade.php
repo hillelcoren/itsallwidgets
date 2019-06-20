@@ -28,7 +28,7 @@
 
 <div class="is-clearfix">
 
-    <h2 class="title is-pulled-left" style="padding-top:4px">Flutter Events</h2>
+    <h2 class="title is-pulled-left">Flutter Events</h2>
     <a href="{{ url('/flutter-event/submit') }}" class="button is-info is-slightly-elevated is-pulled-right">
         <i style="font-size: 20px" class="fas fa-cloud-upload-alt"></i> &nbsp; Submit Event
     </a>
