@@ -63,17 +63,25 @@
 
                     <div style="padding-top:16px;font-weight:300">{{ $event->address }}</div><br/>
 
-                    @if (auth()->user()->is_admin && ! $event->is_approved)
-						<a class="button is-success is-medium is-slightly-elevated" href="{{ url('flutter-event/' . $event->slug . '/approve') }}">
-							<i style="font-size: 20px" class="fas fa-check"></i> &nbsp;
-							Approve
-						</a>
-                        <!--
-						<a class="button is-danger is-medium is-slightly-elevated" href="{{ url('flutter-event/' . $event->slug . '/reject') }}">
-							<i style="font-size: 20px" class="fas fa-trash"></i> &nbsp;
-							Reject
-						</a>
-                        -->
+                    @if (auth()->check() && auth()->user()->is_admin)
+
+                        @if (! $event->is_approved)
+                            <a class="button is-success is-medium is-slightly-elevated" href="{{ url('flutter-event/' . $event->slug . '/approve') }}">
+    							<i style="font-size: 20px" class="fas fa-check"></i> &nbsp;
+    							Approve
+    						</a>
+                            <!--
+    						<a class="button is-danger is-medium is-slightly-elevated" href="{{ url('flutter-event/' . $event->slug . '/reject') }}">
+    							<i style="font-size: 20px" class="fas fa-trash"></i> &nbsp;
+    							Reject
+    						</a>
+                            -->
+                        @endif
+
+                        <p>
+                            {{ $event->user->name }} • {{ $event->user->email }}
+                        </p>
+
                     @else
 
                     @endif
