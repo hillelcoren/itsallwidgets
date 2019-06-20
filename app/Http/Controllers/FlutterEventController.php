@@ -145,7 +145,7 @@ class FlutterEventController extends Controller
             $event->notify(new EventApproved());
         }
 
-        return redirect('/')->with('status', 'Event has been approved!');
+        return redirect('/flutter-events')->with('status', 'Event has been approved!');
     }
 
     public function reject(RejectFlutterEvent $request)
@@ -154,7 +154,7 @@ class FlutterEventController extends Controller
 
         $event->user->notify(new EventRejected($event));
 
-        return redirect('/')->with('status', 'Event has been rejected!');
+        return redirect('/flutter-events')->with('status', 'Event has been rejected!');
     }
 
     public function trackClicked(FlutterEvent $event, $clickType)
@@ -182,7 +182,7 @@ class FlutterEventController extends Controller
 
         $app->user->notify(new AppFeatured($app));
 
-        return redirect('/')->with('status', $app->title. ' is now featured!');
+        return redirect('/flutter-events')->with('status', $app->title. ' is now featured!');
     }
 
     /*

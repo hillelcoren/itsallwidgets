@@ -62,25 +62,22 @@
 
                     <div style="padding-top:16px;font-weight:300">{{ $event->address }}</div><br/>
 
-                    @if (auth()->user()->is_admin)
-                        @if (auth()->check() && auth()->user()->is_admin)
-    						@if (! $event->is_approved)
-    							<a class="button is-success is-medium is-slightly-elevated" href="{{ url('flutter-event/' . $event->slug . '/approve') }}">
-    								<i style="font-size: 20px" class="fas fa-check"></i> &nbsp;
-    								Approve
-    							</a>
-    							<a class="button is-danger is-medium is-slightly-elevated" href="{{ url('flutter-event/' . $event->slug . '/reject') }}">
-    								<i style="font-size: 20px" class="fas fa-trash"></i> &nbsp;
-    								Reject
-    							</a>
-    							<p>&nbsp;</p>
-    						@endif
-    					@endif
+                    @if (auth()->user()->is_admin && ! $event->is_approved)
+						<a class="button is-success is-medium is-slightly-elevated" href="{{ url('flutter-event/' . $event->slug . '/approve') }}">
+							<i style="font-size: 20px" class="fas fa-check"></i> &nbsp;
+							Approve
+						</a>
+                        <!--
+						<a class="button is-danger is-medium is-slightly-elevated" href="{{ url('flutter-event/' . $event->slug . '/reject') }}">
+							<i style="font-size: 20px" class="fas fa-trash"></i> &nbsp;
+							Reject
+						</a>
+                        -->
                     @else
                         @if ($event->is_approved)
                             <div class="tag is-success">Approved</div>
                         @else
-                            <div class="tag is-warning">Waiting for approval</div>
+                            <div class="tag is-warning">Pending approval</div>
                         @endif
                     @endif
 
