@@ -40,7 +40,7 @@ class FlutterEventRepository
         $longitude = floatval($longitude);
 
         if (!$latitude || !$longitude) {
-            return false;
+            //return false;
         }
 
         // https://coderwall.com/p/zetcpw/calculating-distance-between-two-points-latitude-longitude
@@ -56,7 +56,7 @@ class FlutterEventRepository
             AND is_visible = 1
             AND CURDATE() <= event_date
             HAVING calculated_distance <= 1000
-            ORDER BY calculated_distance
+            ORDER BY calculated_distance, event_date
             LIMIT 1");
 
         if (!count($events)) {
