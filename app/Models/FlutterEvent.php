@@ -19,6 +19,8 @@ class FlutterEvent extends Model implements Feedable
         'event_url',
         'slug',
         'description',
+        'latitude',
+        'longitude',
     ];
 
     protected $hidden = [

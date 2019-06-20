@@ -213,6 +213,62 @@
 			@endif
 
 
+			@if (auth()->user()->is_admin)
+				<div class="subtitle">Admin Settings</div>
+
+				<article class="message is-elevated">
+					<div class="message-body">
+
+						<div class="field">
+							<label class="label" for="latitude">
+								Latitude
+							</label>
+							<div class="control has-icons-left">
+								{{ Form::text('latitude', $event->latitude, ['class' => 'input']) }}
+
+								<span class="icon is-small is-left">
+									<i class="fas fa-map-marked"></i>
+								</span>
+
+								@if ($errors->has('latitude'))
+									<span class="help is-danger">
+										{{ $errors->first('latitude') }}
+									</span>
+								@endif
+							</div>
+						</div>
+
+
+						<div class="field">
+							<label class="label" for="longitude">
+								Longitude
+							</label>
+							<div class="control has-icons-left">
+								{{ Form::text('longitude', $event->longitude, ['class' => 'input']) }}
+
+								<span class="icon is-small is-left">
+									<i class="fas fa-map-marked"></i>
+								</span>
+
+								@if ($errors->has('longitude'))
+									<span class="help is-danger">
+										{{ $errors->first('longitude') }}
+									</span>
+								@endif
+							</div>
+						</div>
+
+
+					</div>
+				</article>
+
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+
+
+			@endif
+
+
 			<div class="columns is-centered is-mobile">
 
 				<div class="control">
