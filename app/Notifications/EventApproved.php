@@ -21,9 +21,9 @@ class EventApproved extends Notification
     {
         return (new MailMessage)
                     ->greeting('Hi,')
-                    ->line('Thanks you for submitting your event!')
-                    ->line('It has been approved, your banner should now be visible on the main site.')
-                    ->line(url('flutter-events'))
+                    ->line('Thank you for submitting your event!')
+                    ->line('It has been approved, your banner should now be visible on the site.')
+                    ->line(url('/'))
                     ->link('Note: we use the browser\'s IP address to geo-locate, it works most of the time but not always (ie, VPNs).');
     }
 }
