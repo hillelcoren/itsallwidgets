@@ -56,7 +56,7 @@ class FlutterEvent extends Model implements Feedable
 
     public function scopeOwnedBy($query, $userId)
     {
-        $query->visible()->where('user_id', '=', $userId);
+        $query->where('user_id', '=', $userId);
     }
 
     public function defaultBanner()
@@ -64,17 +64,34 @@ class FlutterEvent extends Model implements Feedable
         return 'Join us for $event organized by @handle';
     }
 
-    public function getBanner()
+    public function getTextBanner()
     {
         $banner = e($this->banner);
+        $banner = str_replace('$event', $this->event_name, $banner);
+
+        return $banner;
+    }
+
+    public function getBanner($isFeed = false)
+    {
+        $banner = e($this->banner);
+        $onclick = '';
+
+        if (! $isFeed) {
+            $onclick = ' onclick="trackBannerClick(\'' . $this->slug . '\', true)" target="_blank"';
+        }
 
         $banner = preg_replace('/@([a-zA-Z0-9_]+)/',
-            '<b><a href="http://twitter.com/$1" target="_blank" onclick="trackBannerClick(\'' . $this->slug . '\', true)">@$1</a></b>', $banner);
+            '<b><a href="http://twitter.com/$1"' . $onclick . '>@$1</a></b>', $banner);
         $banner = preg_replace('/#([a-zA-Z0-9_]+)/',
-            '<b><a href="http://twitter.com/hashtag/$1" target="_blank" onclick="trackBannerClick(\'' . $this->slug . '\', true)">#$1</a></b>', $banner);
+            '<b><a href="http://twitter.com/hashtag/$1"' . $onclick . '>#$1</a></b>', $banner);
+
+        if (! $isFeed) {
+            $onclick = ' onclick="trackBannerClick(\'' . $this->slug . '\')" target="_blank"';
+        }
 
         $eventUrl = '<b><a href="' . $this->event_url .
-            '" target="_blank" onclick="trackBannerClick(\'' . $this->slug . '\')">' .
+            '"'. $onclick . '>' .
             $this->event_name . '</a></b>';
         $banner = str_replace('$event', $eventUrl, $banner);
 

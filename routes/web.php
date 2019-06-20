@@ -32,6 +32,7 @@ Route::get('logout', 'Auth\LoginController@logout');
 Route::get('log_error', 'HomeController@logError');
 
 Route::feeds();
+Route::get('event/feed', 'FlutterEventController@jsonFeed');
 
 Route::get('flutter-app/{slug}', 'FlutterAppController@show');
 Route::get('flutter-event-click/{flutter_event}/{click_type}', 'FlutterEventController@trackClicked');

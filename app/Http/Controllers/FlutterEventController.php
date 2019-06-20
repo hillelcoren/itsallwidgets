@@ -170,6 +170,27 @@ class FlutterEventController extends Controller
         return 'SUCCESS';
     }
 
+    public function jsonFeed(Request $request)
+    {
+        $events = FlutterEvent::orderBy('event_date', 'desc')->approved()->get();
+        $data = [];
+
+        foreach ($events as $event) {
+            $obj = new \stdClass;
+            $obj->event_name = $event->event_name;
+            $obj->event_url = $event->event_url;
+            $obj->event_date = $event->event_date;
+            $obj->address = $event->address;
+            $obj->latitude = $event->latitude;
+            $obj->longitude = $event->longitude;
+            $obj->text_message = $event->getTextBanner();
+            $obj->html_message = $event->getBanner(true);
+            $data[] = $obj;
+        }
+
+        return response()->json($data)->withCallback($request->input('callback'));;
+    }
+
     /*
     public function feature(FeatureFlutterEvent $request)
     {
