@@ -82,21 +82,24 @@
                         <div class="is-pulled-left" style="padding-left:20px;padding-top:10px;">
                             @if ($event->is_approved)
                                 <div class="tag is-success">
-                                    <i class="fas fa-check-square"></i> &nbsp; Approved
+                                    Approved
                                 </div>
                             @else
                                 <div class="tag is-warning">
-                                    <i class="fas fa-clock"></i> &nbsp; Pending
+                                    Pending
                                 </div>
                             @endif
                         </div>
                         <div class="is-pulled-right" style="padding-right:20px;padding-top:10px;">
-                            <a href="{{ $event->url() }}" class="button is-info is-outlined is-small is-slightly-elevated">
+                            <a href="{{ $event->url() }}" class="button is-light is-small is-slightly-elevated">
                                 <i class="fas fa-edit"></i> &nbsp; Edit
                             </a>
-                            <a href="{{ $event->mapUrl() }}" class="button is-info is-outlined is-small is-slightly-elevated">
-                                <i class="fas fa-map"></i> &nbsp; Map
-                            </a>
+                            @if ($event->is_approved)
+                                &nbsp;
+                                <a href="{{ $event->mapUrl() }}" target="_blank" class="button is-light is-small is-slightly-elevated">
+                                    <i class="fas fa-map"></i> &nbsp; Map
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </div>

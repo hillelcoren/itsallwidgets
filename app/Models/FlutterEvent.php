@@ -36,7 +36,7 @@ class FlutterEvent extends Model implements Feedable
 
     public function mapUrl()
     {
-        return '';
+        return 'https://www.google.com/maps/search/?api=1&query=' . $this->longitude . ',' . $this->latitude;
     }
 
     public function user()
