@@ -15,15 +15,11 @@
 			var banner = $('textarea[name=banner]').val();
 			var name = $('input[name=event_name]').val() || 'EVENT';
 			var url = $('input[name=event_url]').val() || '/#';
-			var twitter = $('input[name=twitter_url]').val() || 'https://twitter.com/HANDLE';
-			var parts = twitter.split('/');
-			var handle = parts[parts.length - 1];
 			var str = banner;
-			var eventUrl = '<b><a href="' + url + '" target="_blank">' + name + '</a></b>';
-			var twitterUrl = '<b><a href="' + twitter + '" target="_blank">@' + handle + '</a></b>';
 
-			str = str.replace('$event', eventUrl);
-			str = str.replace('$twitter', twitterUrl);
+			str = str.replace(/@(\S+)/g, '<b><a href="https://twitter.com/$1" target="blank">@$1</a></b>')
+					.replace(/#(\S+)/g, '<b><a href="https://twitter.com/hashtag/$1" target="blank">#$1</a></b>')
+					.replace('$event', '<b><a href="' + url + '" target="_blank">' + name + '</a></b>');							
 
 			$('#bannerPreview').html(str);
 		}
@@ -88,6 +84,8 @@
 							<span class="icon is-small is-left">
 								<i class="fas fa-globe"></i>
 							</span>
+
+							<div class="help">The event name must be unique</div>
 
 							@if ($errors->has('event_name'))
 								<span class="help is-danger">
@@ -161,26 +159,6 @@
 					</div>
 
 					<div class="field">
-						<label class="label" for="twitter_url">
-							Twitter
-						</label>
-						<div class="control has-icons-left">
-
-							{{ Form::url('twitter_url', $event->twitter_url, ['class' => 'input', 'placeholder' => 'https://twitter.com/...']) }}
-
-							<span class="icon is-small is-left">
-								<i class="fab fa-twitter"></i>
-							</span>
-
-							@if ($errors->has('twitter_url'))
-								<span class="help is-danger">
-									{{ $errors->first('twitter_url') }}
-								</span>
-							@endif
-						</div>
-					</div>
-
-					<div class="field">
 						<label class="label" for="banner">
 							Message <span class="required">*</span>
 						</label>
@@ -188,7 +166,11 @@
 
 							{{ Form::textarea('banner', $event->banner ?: $event->defaultBanner(), ['class' => 'textarea', 'required' => true, 'rows' => 4]) }}
 
-							<div class="help">Note: Use $event and $twitter for links, HTML is not supported but emoji are 😊</div>
+							<ul class="help">
+								<li>• Use $event for the event link</li>
+								<li>• Use @ and # to create twitter links</li>
+								<li>• HTML is not supported but emoji are 😊</li>
+							</ul>
 
 							@if ($errors->has('banner'))
 								<span class="help is-danger">
@@ -197,9 +179,7 @@
 							@endif
 						</div>
 					</div>
-
 				</div>
-
 			</article>
 
 

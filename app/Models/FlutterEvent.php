@@ -17,7 +17,6 @@ class FlutterEvent extends Model implements Feedable
         'banner',
         'address',
         'event_url',
-        'twitter_url',
         'slug',
         'description',
     ];
@@ -55,21 +54,22 @@ class FlutterEvent extends Model implements Feedable
 
     public function defaultBanner()
     {
-        return 'Join us for $event organized by $twitter';
+        return 'Join us for $event organized by @handle';
     }
 
     public function getBanner()
     {
         $banner = e($this->banner);
 
-        $eventUrl = '<b><a href="' . $this->event_url . '" target="_blank" onclick="trackBannerClick(\'' . $this->slug . '\')">' .
+        $banner = preg_replace('/@([a-zA-Z0-9_]+)/',
+            '<b><a href="http://twitter.com/$1" target="_blank">@$1</a></b>', $banner);
+        $banner = preg_replace('/#([a-zA-Z0-9_]+)/',
+            '<b><a href="http://twitter.com/hashtag/$1" target="_blank">#$1</a></b>', $banner);
+
+        $eventUrl = '<b><a href="' . $this->event_url .
+            '" target="_blank" onclick="trackBannerClick(\'' . $this->slug . '\')">' .
             $this->event_name . '</a></b>';
-
-        $twitterUrl = '<b><a href="' . $this->twitter_url . '" target="_blank" onclick="trackBannerClick(\'' . $this->slug . '\', true)">' .
-            $this->twitterHandle() . '</a></b>';
-
         $banner = str_replace('$event', $eventUrl, $banner);
-        $banner = str_replace('$twitter', $twitterUrl, $banner);
 
         return $banner;
     }
@@ -93,21 +93,5 @@ class FlutterEvent extends Model implements Feedable
             ->link('/flutter-app/' . $this->slug)
             ->author($this->title);
         */
-    }
-
-    public function twitterHandle()
-    {
-        if (! $this->twitter_url) {
-            return false;
-        }
-
-        $parts = explode('/', $this->twitter_url);
-        $part = $parts[count($parts) - 1];
-        $part = ltrim($part, '@');
-
-        $parts = explode('?', $part);
-        $part = $parts[0];
-
-        return '@' . $part;
     }
 }
