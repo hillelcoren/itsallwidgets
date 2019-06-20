@@ -62,9 +62,9 @@ class FlutterEvent extends Model implements Feedable
         $banner = e($this->banner);
 
         $banner = preg_replace('/@([a-zA-Z0-9_]+)/',
-            '<b><a href="http://twitter.com/$1" target="_blank">@$1</a></b>', $banner);
+            '<b><a href="http://twitter.com/$1" target="_blank" onclick="trackBannerClick(\'' . $this->slug . '\', true)">@$1</a></b>', $banner);
         $banner = preg_replace('/#([a-zA-Z0-9_]+)/',
-            '<b><a href="http://twitter.com/hashtag/$1" target="_blank">#$1</a></b>', $banner);
+            '<b><a href="http://twitter.com/hashtag/$1" target="_blank" onclick="trackBannerClick(\'' . $this->slug . '\', true)">#$1</a></b>', $banner);
 
         $eventUrl = '<b><a href="' . $this->event_url .
             '" target="_blank" onclick="trackBannerClick(\'' . $this->slug . '\')">' .
