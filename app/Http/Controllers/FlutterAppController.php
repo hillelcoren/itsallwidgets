@@ -85,8 +85,9 @@ class FlutterAppController extends Controller
         }
 
         if (! $banner) {
-            $link = '<b><a href="' . url(auth()->check() ? 'flutter-events' : 'auth/google?intended_url=flutter-events') . '">click here</a></b>';
-            $banner = 'If you have a Flutter event to promote you can now take over this banner, ' . $link . ' to try it out!';
+            $eventLink = '<b><a href="' . url(auth()->check() ? 'flutter-events' : 'auth/google?intended_url=flutter-events') . '">take over this banner</a></b>';
+            $feedLink = '<b><a href="http://flutterevents.com/feed" target="_blank">Flutter event feed</a></b>';
+            $banner = 'You can now ' . $eventLink . ' to promote a local Flutter event or consider using the ' . $feedLink . ' to build your own app!';
         }
 
         $data = [
