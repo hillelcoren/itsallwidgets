@@ -108,15 +108,15 @@
                             @endif
                         </div>
                         <div class="is-pulled-right" style="padding-right:20px;padding-top:10px;">
-                            <a href="{{ $event->url() }}" class="button is-light is-small is-slightly-elevated">
-                                <i class="fas fa-edit"></i> &nbsp; Edit
-                            </a>
                             @if ($event->is_approved)
-                                &nbsp;
                                 <a href="{{ $event->mapUrl() }}" target="_blank" class="button is-light is-small is-slightly-elevated">
                                     <i class="fas fa-map"></i> &nbsp; Map
                                 </a>
+                                &nbsp;
                             @endif
+                            <a href="{{ $event->url() }}" class="button is-light is-small is-slightly-elevated">
+                                <i class="fas fa-edit"></i> &nbsp; Edit
+                            </a>
                         </div>
                     </div>
                 </div>
