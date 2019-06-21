@@ -29,9 +29,18 @@
 <div class="is-clearfix">
 
     <h2 class="title is-pulled-left">Flutter Events</h2>
-    <a href="{{ url('/flutter-event/submit') }}" class="button is-info is-slightly-elevated is-pulled-right">
-        <i style="font-size: 20px" class="fas fa-cloud-upload-alt"></i> &nbsp; Submit Event
-    </a>
+
+    <div class="is-pulled-right">
+        <a class="button is-light is-slightly-elevated" href="http://flutterevents.com/feed" target="_blank">
+            <i style="font-size: 20px" class="fas fa-rss"></i> &nbsp;
+            Event Feed
+        </a> &nbsp;
+
+        <a href="{{ url('/flutter-event/submit') }}" class="button is-info is-slightly-elevated">
+            <i style="font-size: 20px" class="fas fa-cloud-upload-alt"></i> &nbsp; Submit Event
+        </a>
+
+    </div>
 
 </div>
 
