@@ -47,6 +47,7 @@ class LoadEvents extends Command
 
         $data = file_get_contents('https://api.meetup.com/find/upcoming_events?page=100&text=flutter&radius=global&key=' . config('services.meetup.key'));
         $data = json_decode($data);
+        $groups = [];
 
         foreach ($data->events as $item) {
 
@@ -54,16 +55,17 @@ class LoadEvents extends Command
 
             if (property_exists($item, 'venue')) {
                 $venue = $item->venue;
-                $address = $venue->address_1 . ', ' . $venue->city . ' ' . $venue->localized_country_name;
+                $address = '';
+                if (property_exists($venue, 'address_1')) {
+                    $address = $venue->address_1 . ', ';
+                }
+                $address .= $venue->city . ' ' . $venue->localized_country_name;
                 $latitude = $venue->lat;
                 $longitude = $venue->lon;
             } else {
                 $address = $group->localized_location;
                 $latitude = $group->lat;
                 $longitude = $group->lon;
-            } else {
-                $this->info('NO ADDRESS: '. json_encode($item) . "\n\n\n");
-                continue;
             }
 
             $data = [
@@ -87,7 +89,11 @@ class LoadEvents extends Command
                 $this->eventRepo->store($data, 1);
             }
 
-            $this->info($group->name . ' ' . $group->who . ' ' . $group->localized_location);
+            if (!isset($groups[$group->id])) {
+                $groups[$group->id] = true;
+                $this->info($group->name . ', ' . $group->localized_location);
+            }
+
 
         }
 
