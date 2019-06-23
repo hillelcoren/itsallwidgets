@@ -49,31 +49,45 @@ class LoadEvents extends Command
         $data = json_decode($data);
 
         foreach ($data->events as $item) {
+
+            $group = $item->group;
+
+            if (property_exists($item, 'venue')) {
                 $venue = $item->venue;
                 $address = $venue->address_1 . ', ' . $venue->city . ' ' . $venue->localized_country_name;
-                $group = $item->group;
+                $latitude = $venue->lat;
+                $longitude = $venue->lon;
+            } else {
+                $address = $group->localized_location;
+                $latitude = $group->lat;
+                $longitude = $group->lon;
+            } else {
+                $this->info('NO ADDRESS: '. json_encode($item) . "\n\n\n");
+                continue;
+            }
 
-                $data = [
-                    'event_name' => $item->name,
-                    'event_date' => $item->local_date,
-                    'slug' => str_slug($item->name),
-                    'description' => $item->description,
-                    'address' => $address,
-                    'latitude' => $venue->lat,
-                    'longitude' => $venue->lon,
-                    'link' => $item->link,
+            $data = [
+                'event_name' => $item->name,
+                'event_date' => $item->local_date,
+                'description' => $item->description,
+                'address' => $address,
+                'latitude' => $latitude,
+                'longitude' => $longitude,
+            ];
 
-                ];
+            $event = FlutterEvent::where('event_url', '=', $item->link)->first();
 
-                $event = FlutterEvent::where('event_url', '=', $item->link)->first();
+            if ($event) {
+                $this->eventRepo->update($event, $data);
+            } else {
+                $data['banner'] = 'Join us at $event';
+                $data['slug'] = str_slug($item->name);
+                $data['link'] = $item->link;
 
-                if ($event) {
-                    $this->eventRepo->update($event, $data);
-                } else {
-                    $this->eventRepo->update($data, 1);
-                }
+                $this->eventRepo->store($data, 1);
+            }
 
-                $this->info($group->name . ' ' . $group->who . ' ' . $group->localized_location);
+            $this->info($group->name . ' ' . $group->who . ' ' . $group->localized_location);
 
         }
 
