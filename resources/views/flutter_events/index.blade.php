@@ -4,6 +4,13 @@
 @section('description', '')
 @section('image_url', asset('images/background.jpg'))
 
+@section('header_title', 'An Open List of Flutter Events')
+@section('header_subtitle', 'The app uses the Meetup.com API to provide a live list of events')
+@section('header_button_url', url('event/feed/json'))
+@section('header_button_label', 'EVENT FEED')
+@section('header_button_icon', 'fas fa-rss')
+
+
 @section('head')
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
