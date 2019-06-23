@@ -84,14 +84,14 @@ class LoadEvents extends Command
             } else {
                 $data['banner'] = 'Join us at $event';
                 $data['slug'] = str_slug($item->name);
-                $data['link'] = $item->link;
+                $data['event_url'] = $item->link;
 
                 $this->eventRepo->store($data, 1);
             }
 
             if (!isset($groups[$group->id])) {
                 $groups[$group->id] = true;
-                $this->info($group->name . ', ' . $group->localized_location);
+                $this->info($group->name . ' - ' . $group->localized_location);
             }
 
 
