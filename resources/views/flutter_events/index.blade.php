@@ -136,6 +136,7 @@
 
                     @endif
 
+                    <br/>
                     <div class="is-clearfix">
                         <!--
                         <div class="is-pulled-left" style="padding-left:20px;padding-top:10px;">
@@ -151,8 +152,8 @@
                         </div>
                         -->
                         <div classx="is-pulled-right">
-                            <a href="{{ $event->event_url }}" class="button is-light is-small is-slightly-elevated">
-                                <i class="fas fa-view"></i> &nbsp; View
+                            <a href="{{ $event->event_url }}" class="button is-light is-small is-slightly-elevated" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> &nbsp; View
                             </a>
                             @if (auth()->check() && auth()->user()->owns($event))
                                 &nbsp;
