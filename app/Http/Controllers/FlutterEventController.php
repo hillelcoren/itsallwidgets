@@ -181,10 +181,11 @@ class FlutterEventController extends Controller
             $obj->event_url = $event->event_url;
             $obj->event_date = $event->event_date;
             $obj->address = $event->address;
-            $obj->latitude = $event->latitude;
-            $obj->longitude = $event->longitude;
+            $obj->latitude = floatval($event->latitude);
+            $obj->longitude = floatval($event->longitude);
             $obj->text_message = $event->getTextBanner();
             $obj->html_message = $event->getBanner(true);
+            $obj->description = $event->description;
             $data[] = $obj;
         }
 

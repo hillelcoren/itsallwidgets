@@ -86,7 +86,10 @@ class LoadEvents extends Command
                 $data['slug'] = str_slug($item->name);
                 $data['event_url'] = $item->link;
 
-                $this->eventRepo->store($data, 1);
+                $event = $this->eventRepo->store($data, 1);
+
+                $event->is_approved = 1;
+                $event->save();
             }
 
             if (!isset($groups[$group->id])) {
