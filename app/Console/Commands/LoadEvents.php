@@ -52,6 +52,7 @@ class LoadEvents extends Command
         foreach ($data->events as $item) {
 
             $group = $item->group;
+            $city = '';
 
             if (property_exists($item, 'venue')) {
                 $venue = $item->venue;
@@ -59,6 +60,7 @@ class LoadEvents extends Command
                 if (property_exists($venue, 'address_1')) {
                     $address = $venue->address_1 . ', ';
                 }
+                $city = $venue->city;
                 $address .= $venue->city . ' ' . $venue->localized_country_name;
                 $latitude = $venue->lat;
                 $longitude = $venue->lon;
@@ -73,6 +75,7 @@ class LoadEvents extends Command
                 'event_date' => $item->local_date,
                 'description' => $item->description,
                 'address' => $address,
+                'city' => $city,
                 'latitude' => $latitude,
                 'longitude' => $longitude,
             ];
