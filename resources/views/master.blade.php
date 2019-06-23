@@ -89,7 +89,7 @@
         filter: drop-shadow(0px 16px 16px #CCC);
     }
 
-    @if (request()->is('podcast*'))
+    @if (request()->is('podcast*') || isset($useBlackHeader))
         a.navbar-item:hover {
             background-color: #000 !important;
         }
@@ -97,7 +97,7 @@
 
     .button.is-elevated-dark {
         color: white;
-        @if (request()->is('podcast*'))
+        @if (request()->is('podcast*') || isset($useBlackHeader))
             background-color:#000;
             border-color:#000;
         @else
@@ -107,7 +107,7 @@
     }
 
     .button.is-elevated-dark:hover {
-        @if (request()->is('podcast*'))
+        @if (request()->is('podcast*') || isset($useBlackHeader))
             background-color:#060606;
             border-color:#060606;
         @else
@@ -316,7 +316,7 @@
 </head>
 
 <body>
-    <section class="hero is-info is-head-font {{ request()->is('podcast*') ? 'has-bg-podcast-img' : 'has-bg-img' }}" style="background-color: {{ request()->is('podcast*') ? '#222' : '#3389d7' }};">
+    <section class="hero is-info is-head-font {{ request()->is('podcast*') || isset($useBlackHeader) ? 'has-bg-podcast-img' : 'has-bg-img' }}" style="background-color: {{ request()->is('podcast*') || isset($useBlackHeader) ? '#222' : '#3389d7' }};">
         <div class="hero-head">
             <nav class="navbar">
                 <div class="container">
@@ -344,11 +344,9 @@
                                     <i class="fas fa-info-circle"></i> &nbsp; About
                                 </a>
 
-                                <!--
-                                <a class="navbar-item" href="{{ url(auth()->check() ? 'flutter-events' : 'auth/google?intended_url=flutter-events') }}">
+                                <a class="navbar-item" href="{{ url('flutter-events') }}">
                                     <i class="fas fa-calendar"></i> &nbsp; Events
                                 </a>
-                                -->
 
                                 @if (auth()->check())
                                     <a class="navbar-item" href="{{ url('logout') }}">
@@ -362,7 +360,7 @@
 
                                 &nbsp;&nbsp;&nbsp;
 
-                                @if (request()->is('podcast*'))
+                                @if (request()->is('podcast*') || isset($useBlackHeader))
                                     <a class="button is-elevated-dark" style="color:white; background-color:#444; border-color:#444" href="https://twitter.com/itsallwidgets" target="_blank">
                                         <span class="icon">
                                             <i class="fab fa-twitter"></i>
@@ -410,7 +408,7 @@
                 <div class="subtitle" style="font-size:18px; padding-bottom:6px;">
                     @yield('header_subtitle', 'Feel free to add an app in progress and update it when it goes live')
                 </div>
-                @if (!request()->is('podcast*') || (auth()->check() && auth()->user()->is_admin))
+                @if ((!request()->is('podcast*') && !isset($useBlackHeader)) || (auth()->check() && auth()->user()->is_admin))
                 <a class="button is-elevated-dark" style="padding: 20px 32px 18px 32px"
                     href="@yield('header_button_url', url(auth()->check() ? 'submit' : 'auth/google?intended_url=submit'))">
                     <span class="icon">

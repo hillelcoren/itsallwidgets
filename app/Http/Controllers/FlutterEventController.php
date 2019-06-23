@@ -44,7 +44,12 @@ class FlutterEventController extends Controller
             return redirect('flutter-event/submit');
         }
 
-        return view('flutter_events.index', compact('events'));
+        $data = [
+            'events' => $events,
+            'useBlackHeader' => true,
+        ];
+
+        return view('flutter_events.index', $data);
     }
 
     public function create()
