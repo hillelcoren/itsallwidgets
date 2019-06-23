@@ -61,6 +61,11 @@ class FlutterEvent extends Model implements Feedable
         $query->visible()->where('is_approved', '=', true);
     }
 
+    public function scopeFuture($query)
+    {
+        $query->visible()->where('event_date', '>=', date('Y-m-d'));
+    }
+
     public function scopeOwnedBy($query, $userId)
     {
         $query->where('user_id', '=', $userId);
