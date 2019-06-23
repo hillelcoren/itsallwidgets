@@ -16,7 +16,6 @@ class AddEventCity extends Migration
         Schema::table('flutter_events', function(Blueprint $table) {
             $table->string('city')->default('');
             $table->string('banner_color')->default('');
-            $table->integer('tweet_count')->default(0);
         });
     }
 
@@ -30,7 +29,6 @@ class AddEventCity extends Migration
         Schema::table('flutter_events', function(Blueprint $table) {
             $table->dropColumn('city');
             $table->dropColumn('banner_color');
-            $table->dropColumn('tweet_count');
         });
 
     }
