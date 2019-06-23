@@ -68,7 +68,7 @@ class FlutterEvent extends Model implements Feedable
 
     public function defaultBanner()
     {
-        return 'Join us at $event in $city'
+        return 'Join us at $event in $city';
         //return 'Join us for $event organized by @handle';
     }
 

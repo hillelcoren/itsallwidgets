@@ -35,11 +35,11 @@
             <i style="font-size: 20px" class="fas fa-rss"></i> &nbsp;
             Event Feed
         </a> &nbsp;
-
+        <!--
         <a href="{{ url('/flutter-event/submit') }}" class="button is-info is-slightly-elevated">
             <i style="font-size: 20px" class="fas fa-cloud-upload-alt"></i> &nbsp; Submit Event
         </a>
-
+        -->
     </div>
 
 </div>
