@@ -76,6 +76,12 @@ class FlutterEventRepository
         $event = new FlutterEvent;
         $event->fill($input);
         $event->user_id = $user_id;
+
+        $url = $event->event_url;
+        $url = explode('?', $url)[0];
+        $url = rtrim($url, '/');
+        $event->event_url = $url;
+
         $event->save();
 
         return $event;
@@ -89,6 +95,12 @@ class FlutterEventRepository
     public function update($event, $input)
     {
         $event->fill($input);
+
+        $url = $event->event_url;
+        $url = explode('?', $url)[0];
+        $url = rtrim($url, '/');
+        $event->event_url = $url;
+
         $event->save();
 
         return $event;
