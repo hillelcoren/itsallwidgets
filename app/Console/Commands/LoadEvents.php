@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\FlutterEvent;
+use App\Repositories\FlutterEventRepository;
 
 class LoadEvents extends Command
 {
@@ -21,14 +22,18 @@ class LoadEvents extends Command
      */
     protected $description = 'Load events from meetup.com';
 
+    protected $eventRepo;
+
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(FlutterEventRepository $eventRepo)
     {
         parent::__construct();
+
+        $this->eventRepo = $eventRepo;
     }
 
     /**
@@ -44,7 +49,6 @@ class LoadEvents extends Command
         $data = json_decode($data);
 
         foreach ($data->events as $item) {
-                $event = FlutterEvent::where('event_url', '=', $item->link)->first();
                 $venue = $item->venue;
                 $address = $venue->address_1 . ', ' . $venue->city . ' ' . $venue->localized_country_name;
                 $group = $item->group;
@@ -60,11 +64,18 @@ class LoadEvents extends Command
                     'link' => $item->link,
 
                 ];
+
+                $event = FlutterEvent::where('event_url', '=', $item->link)->first();
+
+                if ($event) {
+                    $this->eventRepo->update($event, $data);
+                } else {
+                    $this->eventRepo->update($data, 1);
+                }
+
                 $this->info($group->name . ' ' . $group->who . ' ' . $group->localized_location);
 
         }
-
-
 
         $this->info('Done');
     }
