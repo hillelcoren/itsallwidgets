@@ -5,7 +5,7 @@
 @section('image_url', asset('images/background.jpg'))
 
 @section('header_title', 'An Open List of Flutter Events')
-@section('header_subtitle', 'The site uses the Meetup.com API to provide the data')
+@section('header_subtitle', 'Meeting with local Flutter developers is a great way to grow!')
 @section('header_button_url', url('event/feed/json'))
 @section('header_button_label', 'EVENT FEED')
 @section('header_button_icon', 'fas fa-rss')
