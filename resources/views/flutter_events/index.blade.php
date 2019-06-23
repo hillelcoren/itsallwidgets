@@ -5,7 +5,7 @@
 @section('image_url', asset('images/background.jpg'))
 
 @section('header_title', 'An Open List of Flutter Events')
-@section('header_subtitle', 'The app uses the Meetup.com API to provide a live list of events')
+@section('header_subtitle', 'The site uses the Meetup.com API to provide the data')
 @section('header_button_url', url('event/feed/json'))
 @section('header_button_label', 'EVENT FEED')
 @section('header_button_icon', 'fas fa-rss')
@@ -26,6 +26,16 @@
     <style>
 
     #map { height: 400px; }
+
+    .short-description {
+        line-height: 1.5em;
+        height: 4.5em;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+    }
 
     .flutter-event {
         background-color: white;
@@ -91,11 +101,13 @@
 
                 <div class="content" style="padding:16px;padding-bottom:16px;padding-top:20px;">
 
-                    <div style="font-weight:300">
-                        <i class="fas fa-eye"></i> &nbsp; {{ $event->view_count ?: '0' }} views &nbsp;&nbsp;&nbsp;
-                        <i class="fas fa-user"></i> &nbsp; {{ ($event->click_count + $event->twitter_click_count) ?: '0' }} clicks
-                    </div><br/>
-
+                    @if (auth()->check() && auth()->user()->owns($event))
+                        <div style="font-weight:300">
+                            <i class="fas fa-eye"></i> &nbsp; {{ $event->view_count ?: '0' }} views &nbsp;&nbsp;&nbsp;
+                            <i class="fas fa-user"></i> &nbsp; {{ ($event->click_count + $event->twitter_click_count) ?: '0' }} clicks
+                        </div><br/>
+                    @endif
+                    
                     <div class="short-description">
                         {!! $event->getBanner() !!}
                     </div>

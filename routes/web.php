@@ -43,6 +43,8 @@ Route::get('podcast', 'PodcastController@index');
 Route::get('podcast/download/episode-{episode}.{format}', 'PodcastController@download');
 Route::get('podcast/episodes/{episode}/{title?}', 'PodcastController@show');
 
+Route::get('flutter-events', 'FlutterEventController@index');
+
 Route::group(['middleware' => ['auth']], function () {
     Route::get('submit', 'FlutterAppController@create');
     Route::post('submit', 'FlutterAppController@store')->middleware('slug');
@@ -59,7 +61,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('podcast/admin/{episode_id}', 'PodcastController@update');
     Route::delete('podcast/admin/{episode_id}/delete', 'PodcastController@delete');
 
-    Route::get('flutter-events', 'FlutterEventController@index');
     Route::get('flutter-event/submit', 'FlutterEventController@create');
     Route::post('flutter-event', 'FlutterEventController@store')->middleware('slug');
     Route::get('flutter-event/{flutter_event}/approve', 'FlutterEventController@approve');
