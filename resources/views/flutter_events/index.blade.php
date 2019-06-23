@@ -11,6 +11,7 @@
     <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
      integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
      crossorigin=""></script>
+
 @endsection
 
 @section('content')
@@ -33,28 +34,28 @@
 
     <script>
 
-        $(function() {
-            var planes = [
+    $(function() {
+        var planes = [
 
-                @foreach ($events as $event)
-                    ['{{ $event->link() }}', {{ $event->latitude }}, {{ $event->longitude }}],
-                @endforeach
-    		];
+            @foreach ($events as $event)
+            ['{{ $event->link() }}', {{ $event->latitude }}, {{ $event->longitude }}],
+            @endforeach
+        ];
 
-            var map = L.map('map').setView([26, 0], 2);
-            mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+        var map = L.map('map').setView([26, 0], 2);
+        mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
 
-            L.tileLayer(
-                'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        L.tileLayer(
+            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; ' + mapLink + ' Contributors',
                 maxZoom: 18,
-                }).addTo(map);
+            }).addTo(map);
 
-    		for (var i = 0; i < planes.length; i++) {
-    			marker = new L.marker([planes[i][1],planes[i][2]])
-    				.bindPopup(planes[i][0])
-    				.addTo(map);
-    		}
+            for (var i = 0; i < planes.length; i++) {
+                marker = new L.marker([planes[i][1],planes[i][2]])
+                .bindPopup(planes[i][0])
+                .addTo(map);
+            }
         })
 
     </script>
