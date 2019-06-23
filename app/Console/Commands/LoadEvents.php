@@ -80,7 +80,7 @@ class LoadEvents extends Command
                 'longitude' => $longitude,
             ];
 
-            $event = FlutterEvent::where('event_url', '=', $item->link)->first();
+            $event = FlutterEvent::where('event_url', '=', rtrim($item->link, '/'))->first();
 
             if ($event) {
                 $this->eventRepo->update($event, $data);
