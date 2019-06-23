@@ -309,6 +309,10 @@
 
     </script>
 
+    @yield('head')
+
+
+
 </head>
 
 <body>
