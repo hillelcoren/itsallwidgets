@@ -102,6 +102,7 @@ class FlutterEvent extends Model implements Feedable
             '"'. $onclick . '>' .
             $this->event_name . '</a></b>';
         $banner = str_replace('$event', $eventUrl, $banner);
+        $banner = str_replace('$city', $this->city ?: $this->address, $banner);
 
         return $banner;
     }
@@ -112,6 +113,11 @@ class FlutterEvent extends Model implements Feedable
 
         return date('l jS, F Y', $time);
 
+    }
+
+    public function getCity()
+    {
+        return $this->city ?: $this->address;
     }
 
     public function toFeedItem()

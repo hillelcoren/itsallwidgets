@@ -70,10 +70,8 @@
                         {!! $event->getBanner() !!}
                     </div>
 
-                    <div style="padding-top:16px;font-weight:300">{{ $event->address }}</div><br/>
-
                     @if (auth()->check() && auth()->user()->is_admin)
-
+                        <br/>
                         @if (! $event->is_approved)
                             <a class="button is-success is-medium is-slightly-elevated" href="{{ url('flutter-event/' . $event->slug . '/approve') }}">
     							<i style="font-size: 20px" class="fas fa-check"></i> &nbsp;
