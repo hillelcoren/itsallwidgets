@@ -46,6 +46,11 @@ class FlutterEvent extends Model implements Feedable
         return link_to($this->url(), $this->event_name, ['target' => '_blank']);
     }
 
+    public function eventLink()
+    {
+        return link_to($this->event_url, $this->event_name, ['target' => '_blank']);
+    }
+
     public function user()
     {
         return $this->belongsTo('App\Models\User');

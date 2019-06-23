@@ -45,7 +45,7 @@
         var planes = [
 
             @foreach ($events as $event)
-            ['{{ $event->link() }}', {{ $event->latitude }}, {{ $event->longitude }}],
+            ['{{ $event->eventLink() }}<br/>{{ substr(strip_tags($event->description), 0, 150) }}...', {{ $event->latitude }}, {{ $event->longitude }}],
             @endforeach
         ];
 
@@ -71,25 +71,6 @@
 <p>&nbsp;</p>
 
 <div class="container">
-
-
-<div class="is-clearfix">
-
-    <h2 class="title is-pulled-left">Flutter Events</h2>
-
-    <div class="is-pulled-right">
-        <a class="button is-light is-slightly-elevated" href="http://flutterevents.com/feed" target="_blank">
-            <i style="font-size: 20px" class="fas fa-rss"></i> &nbsp;
-            Event Feed
-        </a> &nbsp;
-        <!--
-        <a href="{{ url('/flutter-event/submit') }}" class="button is-info is-slightly-elevated">
-            <i style="font-size: 20px" class="fas fa-cloud-upload-alt"></i> &nbsp; Submit Event
-        </a>
-        -->
-    </div>
-
-</div>
 
 <div id="map"></div>
 
