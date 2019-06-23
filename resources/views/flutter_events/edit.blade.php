@@ -15,11 +15,13 @@
 			var banner = $('textarea[name=banner]').val();
 			var name = $('input[name=event_name]').val() || 'EVENT';
 			var url = $('input[name=event_url]').val() || '/#';
+			var city = $('input[name=city]').val() || $('input[name=address]').val();
 			var str = banner;
 
 			str = str.replace(/@(\S+)/g, '<b><a href="https://twitter.com/$1" target="blank">@$1</a></b>')
 					.replace(/#(\S+)/g, '<b><a href="https://twitter.com/hashtag/$1" target="blank">#$1</a></b>')
-					.replace('$event', '<b><a href="' + url + '" target="_blank">' + name + '</a></b>');
+					.replace('$event', '<b><a href="' + url + '" target="_blank">' + name + '</a></b>')
+					.replace('$city', city);
 
 			$('#bannerPreview').html(str);
 		}
@@ -133,6 +135,24 @@
 							@if ($errors->has('address'))
 								<span class="help is-danger">
 									{{ $errors->first('address') }}
+								</span>
+							@endif
+						</div>
+					</div>
+					<div class="field">
+						<label class="label" for="city">
+							Event City
+						</label>
+						<div class="control has-icons-left">
+							{{ Form::text('city', $event->city, ['class' => 'input']) }}
+
+							<span class="icon is-small is-left">
+								<i class="fas fa-map-marked"></i>
+							</span>
+
+							@if ($errors->has('city'))
+								<span class="help is-danger">
+									{{ $errors->first('city') }}
 								</span>
 							@endif
 						</div>

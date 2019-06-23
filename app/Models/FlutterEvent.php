@@ -75,6 +75,7 @@ class FlutterEvent extends Model implements Feedable
     {
         $banner = e($this->banner);
         $banner = str_replace('$event', $this->event_name, $banner);
+        $banner = str_replace('$city', $this->city ?: $this->address, $banner);
 
         return $banner;
     }
