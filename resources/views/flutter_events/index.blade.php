@@ -29,7 +29,7 @@
 
     .short-description {
         line-height: 1.5em;
-        height: 4.5em;
+        height: 4.2em;
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -107,9 +107,14 @@
                             <i class="fas fa-user"></i> &nbsp; {{ ($event->click_count + $event->twitter_click_count) ?: '0' }} clicks
                         </div><br/>
                     @endif
-                    
+
                     <div class="short-description">
-                        {!! $event->getBanner() !!}
+                        @if (false && auth()->check() && auth()->user()->is_admin)
+                            {!! $event->getBanner() !!}
+                        @else
+                            {{ preg_replace('/\s\s+/', ' ', strip_tags($event->description)) }}
+                            <br/>
+                        @endif
                     </div>
 
                     @if (auth()->check() && auth()->user()->is_admin)
@@ -132,6 +137,7 @@
                     @endif
 
                     <div class="is-clearfix">
+                        <!--
                         <div class="is-pulled-left" style="padding-left:20px;padding-top:10px;">
                             @if ($event->is_approved)
                                 <div class="tag is-success">
@@ -143,16 +149,23 @@
                                 </div>
                             @endif
                         </div>
-                        <div class="is-pulled-right" style="padding-right:20px;padding-top:10px;">
+                        -->
+                        <div classx="is-pulled-right">
+                            <a href="{{ $event->event_url }}" class="button is-light is-small is-slightly-elevated">
+                                <i class="fas fa-view"></i> &nbsp; View
+                            </a>
+                            @if (auth()->check() && auth()->user()->owns($event))
+                                &nbsp;
+                                <a href="{{ $event->url() }}" class="button is-light is-small is-slightly-elevated">
+                                    <i class="fas fa-edit"></i> &nbsp; Edit
+                                </a>
+                            @endif
                             @if ($event->is_approved)
+                                &nbsp;
                                 <a href="{{ $event->mapUrl() }}" target="_blank" class="button is-light is-small is-slightly-elevated">
                                     <i class="fas fa-map"></i> &nbsp; Map
                                 </a>
-                                &nbsp;
                             @endif
-                            <a href="{{ $event->url() }}" class="button is-light is-small is-slightly-elevated">
-                                <i class="fas fa-edit"></i> &nbsp; Edit
-                            </a>
                         </div>
                     </div>
                 </div>
