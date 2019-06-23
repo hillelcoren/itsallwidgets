@@ -17,7 +17,7 @@
 
     <style>
 
-    #map { height: 300px; }
+    #map { height: 400px; }
 
     .flutter-event {
         background-color: white;
@@ -37,11 +37,11 @@
             var planes = [
 
                 @foreach ($events as $event)
-                    ["{{ $event->event_name }}", {{ $event->latitude }}, {{ $event->longitude }}],
+                    ['{{ $event->link() }}', {{ $event->latitude }}, {{ $event->longitude }}],
                 @endforeach
     		];
 
-            var map = L.map('map').setView([30, 0], 2);
+            var map = L.map('map').setView([26, 0], 2);
             mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
 
             L.tileLayer(
@@ -125,10 +125,6 @@
     						</a>
                             -->
                         @endif
-
-                        <p>
-                            {{ $event->user->name }}
-                        </p>
 
                     @else
 
