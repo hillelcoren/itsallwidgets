@@ -13,7 +13,9 @@ class AddCountry extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('flutter_events', function(Blueprint $table) {
+            $table->string('country')->default('');
+        });
     }
 
     /**
@@ -23,6 +25,9 @@ class AddCountry extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('flutter_events', function(Blueprint $table) {
+            $table->dropColumn('country');
+        });
+
     }
 }

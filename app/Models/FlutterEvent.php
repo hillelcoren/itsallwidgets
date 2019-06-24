@@ -18,6 +18,7 @@ class FlutterEvent extends Model implements Feedable
         'banner_color',
         'address',
         'city',
+        'country',
         'event_url',
         'slug',
         'description',

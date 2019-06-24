@@ -53,6 +53,7 @@ class LoadEvents extends Command
 
             $group = $item->group;
             $city = '';
+            $country = '';
 
             if (property_exists($item, 'venue')) {
                 $venue = $item->venue;
@@ -61,6 +62,7 @@ class LoadEvents extends Command
                     $address = $venue->address_1 . ', ';
                 }
                 $city = $venue->city;
+                $country = $venue->localized_country_name;
                 $address .= $venue->city . ' ' . $venue->localized_country_name;
                 $latitude = $venue->lat;
                 $longitude = $venue->lon;
@@ -76,6 +78,7 @@ class LoadEvents extends Command
                 'description' => $item->description,
                 'address' => $address,
                 'city' => $city,
+                'country' => $country,
                 'latitude' => $latitude,
                 'longitude' => $longitude,
             ];
