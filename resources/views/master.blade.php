@@ -370,7 +370,7 @@
                                         <span>Twitter</span>
                                     </a> &nbsp;&nbsp;&nbsp;
 
-                                    <a class="button is-elevated-dark" style="color:white; background-color:#000; border-color:#000" href="{{ url('/') }}">
+                                    <a class="button is-elevated-dark" style="color:white; background-color:#000; border-color:#000" href="https://itsallwidgets.com">
                                         <span class="icon">
                                             <i class="fas fa-mobile-alt"></i>
                                         </span> &nbsp;
