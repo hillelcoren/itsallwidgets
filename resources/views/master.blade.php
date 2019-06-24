@@ -336,29 +336,31 @@
                         <div class="navbar-end">
                             <span class="navbar-item has-text-centered">
 
-                                <a class="navbar-item" href="https://flutter.io/showcase/" target="_blank">
-                                    <i class="fas fa-globe"></i> &nbsp; Showcase
-                                </a>
-
-                                <a class="navbar-item" href="{{ url('about') }}">
-                                    <i class="fas fa-info-circle"></i> &nbsp; About
-                                </a>
-
-                                <a class="navbar-item" href="{{ url('flutter-events') }}">
-                                    <i class="fas fa-calendar"></i> &nbsp; Events
-                                </a>
-
-                                @if (auth()->check())
-                                    <a class="navbar-item" href="{{ url('logout') }}">
-                                        <i class="fas fa-user-alt"></i> &nbsp; Logout
+                                @if (strpos(request()->url(), 'itsallwidgets.com') !== false)
+                                    <a class="navbar-item" href="https://flutter.io/showcase/" target="_blank">
+                                        <i class="fas fa-globe"></i> &nbsp; Showcase
                                     </a>
-                                @else
-                                    <a class="navbar-item" href="{{ url(auth()->check() ? 'submit' : 'auth/google') }}">
-                                        <i class="fas fa-bell"></i> &nbsp; Monthly Stats
+
+                                    <a class="navbar-item" href="{{ url('about') }}">
+                                        <i class="fas fa-info-circle"></i> &nbsp; About
                                     </a>
+
+                                    <a class="navbar-item" href="{{ url('flutter-events') }}">
+                                        <i class="fas fa-calendar"></i> &nbsp; Events
+                                    </a>
+
+                                    @if (auth()->check())
+                                        <a class="navbar-item" href="{{ url('logout') }}">
+                                            <i class="fas fa-user-alt"></i> &nbsp; Logout
+                                        </a>
+                                    @else
+                                        <a class="navbar-item" href="{{ url(auth()->check() ? 'submit' : 'auth/google') }}">
+                                            <i class="fas fa-bell"></i> &nbsp; Monthly Stats
+                                        </a>
+                                    @endif
+
+                                    &nbsp;&nbsp;&nbsp;
                                 @endif
-
-                                &nbsp;&nbsp;&nbsp;
 
                                 @if (request()->is('podcast*') || isset($useBlackHeader))
                                     <a class="button is-elevated-dark" style="color:white; background-color:#444; border-color:#444" href="https://twitter.com/itsallwidgets" target="_blank">
