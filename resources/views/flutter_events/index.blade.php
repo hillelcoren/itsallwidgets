@@ -577,15 +577,15 @@ computed: {
         if (search) {
             events = events.filter(function(item) {
 
-                if (item.event_name.toLowerCase().indexOf(search) >= 0) {
+                if ((item.event_name || '').toLowerCase().indexOf(search) >= 0) {
                     return true;
                 }
 
-                if (item.address.toLowerCase().indexOf(search) >= 0) {
+                if ((item.address || '').toLowerCase().indexOf(search) >= 0) {
                     return true;
                 }
 
-                if (item.description.toLowerCase().indexOf(search) >= 0) {
+                if ((item.description || '').toLowerCase().indexOf(search) >= 0) {
                     return true;
                 }
 
