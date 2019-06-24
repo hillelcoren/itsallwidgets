@@ -3,9 +3,9 @@
 @section('title', 'Flutter Events')
 @section('description', 'An Open List of Flutter Events')
 @section('image_url', asset('images/background.jpg'))
-
 @section('header_title', 'An Open List of Flutter Events')
-@section('header_subtitle', 'Meeting with local Flutter developers is a great way to grow!')
+@section('header_subtitle', 'Events are synced with Meetup.com or can be added manually')
+
 @section('header_button_url', url(auth()->check() ? 'flutter-event/submit' : 'auth/google?intended_url=flutter-event/submit'))
 @section('header_button_label', 'SUBMIT EVENT')
 

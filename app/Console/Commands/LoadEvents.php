@@ -85,7 +85,7 @@ class LoadEvents extends Command
             if ($event) {
                 $this->eventRepo->update($event, $data);
             } else {
-                $data['banner'] = 'Join us at $event';
+                $data['banner'] = 'Join us at $event in $city';
                 $data['slug'] = str_slug($item->name);
                 $data['event_url'] = $item->link;
 

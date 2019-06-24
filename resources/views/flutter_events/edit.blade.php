@@ -3,6 +3,11 @@
 @section('title', 'Flutter Events')
 @section('description', 'An Open List of Flutter Events')
 @section('image_url', asset('images/background.jpg'))
+@section('header_title', 'An Open List of Flutter Events')
+@section('header_subtitle', 'Events are synced with Meetup.com or can be added manually')
+
+@section('header_button_url', url(auth()->check() ? 'flutter-event/submit' : 'auth/google?intended_url=flutter-event/submit'))
+@section('header_button_label', 'SUBMIT EVENT')
 
 @section('content')
 
@@ -15,7 +20,11 @@
 			var banner = $('textarea[name=banner]').val();
 			var name = $('input[name=event_name]').val() || 'EVENT';
 			var url = $('input[name=event_url]').val() || '/#';
-			var city = $('input[name=city]').val() || $('input[name=address]').val();
+			@if (auth()->user()->is_admin)
+				var city = $('input[name=city]').val() || $('input[name=address]').val();
+			@else
+				var city = $('input[name=address]').val();
+			@endif
 			var str = banner;
 
 			str = str.replace(/@(\S+)/g, '<b><a href="https://twitter.com/$1" target="blank">@$1</a></b>')
@@ -139,6 +148,7 @@
 							@endif
 						</div>
 					</div>
+					@if (auth()->user()->is_admin)
 					<div class="field">
 						<label class="label" for="city">
 							Event City
@@ -157,6 +167,7 @@
 							@endif
 						</div>
 					</div>
+					@endif
 
 					<div class="field">
 						<label class="label" for="event_date">
@@ -312,7 +323,7 @@
 			<div class="columns is-centered is-mobile">
 
 				<div class="control">
-					<a href="{{ $event->exists ? url('/flutter-events') : url('/') }}" class="button is-medium is-outlined is-slightly-elevated">
+					<a href="{{ $event->exists ? url('/flutter-events') : url('flutter-events') }}" class="button is-medium is-outlined is-slightly-elevated">
 						<i style="font-size: 20px" class="fa fa-times-circle"></i> &nbsp; Cancel
 					</a> &nbsp;
 					<button id="saveButton" class="button is-info is-medium is-slightly-elevated">
