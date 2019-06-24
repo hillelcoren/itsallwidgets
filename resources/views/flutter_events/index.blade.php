@@ -396,7 +396,7 @@
     </span>
     Previous Page
 </a> &nbsp;
-<a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)" v-if="page_number < unpaginatedFilteredEvents.length / 40">
+<a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)" v-if="page_number < unpaginatedFilteredEvents.length / 39">
     Next Page &nbsp;&nbsp;
     <span>
         <i style="font-size: 18px" class="fas fa-chevron-circle-right"></i>
@@ -595,8 +595,8 @@ computed: {
 
         events = this.unpaginatedFilteredEvents;
 
-        var startIndex = (this.page_number - 1) * 40;
-        var endIndex = startIndex + 40;
+        var startIndex = (this.page_number - 1) * 39;
+        var endIndex = startIndex + 39;
         events = events.slice(startIndex, endIndex);
 
         return events;
