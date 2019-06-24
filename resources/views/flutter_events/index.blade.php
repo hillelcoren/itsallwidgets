@@ -159,13 +159,12 @@
             }
         })
 
-        function updateMapMarkers(eventIds) {
+        function updateMapMarkers(events) {
             window.layerGroup.clearLayers();
+            var events = app.filteredEvents;
 
-            for (var i = 0; i < markerList.length; i++) {
-                
-
-                var data = markerMap[markerList[i]];
+            for (var i = 0; i < events.length; i++) {
+                var data = markerMap[events[i].id];
                 marker = new L.marker([data[1],data[2]])
                 .bindPopup(data[0])
                 .addTo(layerGroup);
@@ -222,7 +221,7 @@
     </div>
     <div class="columns is-multiline is-6 is-variable">
         <div v-for="event in filteredEvents" :key="event.id" class="column" v-bind:class="columnClass">
-            <div v-on:click="selectEvent(event)" v-on:mouseenter="onMouseOver(event)" v-on:mouseleave="onMouseOut(event)" style="cursor:pointer">
+            <div v-on:click="selectEvent(event)" style="cursor:pointer">
                 <div class="flutter-event is-hover-elevated" v-bind:class="[event.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} ? 'is-owned' : '']">
 
                     <header style="padding: 16px">
@@ -443,23 +442,23 @@ function getCachedCardsPerRow() {
 return (isStorageSupported() ? localStorage.getItem('cards_per_row') : false) || 4;
 }
 
-var event = new Vue({
+var app = new Vue({
 el: '#event',
 
 watch: {
     search: {
         handler() {
-            event.updateMap();
+            app.updateMap();
         },
     },
     sort_by: {
         handler() {
-            event.saveFilters();
+            app.saveFilters();
         },
     },
     cards_per_row: {
         handler() {
-            event.saveFilters();
+            app.saveFilters();
         },
     },
 },
@@ -469,31 +468,6 @@ methods: {
         this.page_number += change;
         document.body.scrollTop = 0; // For Safari
         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    },
-
-    onMouseOver: function(event) {
-        $('#social-buttons-' + event.id)
-            .removeClass('animated flipOutX')
-            .addClass('animated flipInX')
-            .css('display', 'flex')
-            .css('visibility', 'visible');
-
-        if (event.has_gif) {
-            $('#' + event.slug + '-img').attr('src', '/gifs/event-' + event.id + '.gif?updated_at=' + event.updated_at);
-            $('#' + event.slug + '-video').hide();
-        }
-    },
-
-    onMouseOut: function(event, e) {
-        $('#social-buttons-' + event.id)
-            .animateCss('animated flipOutX', function() {
-                $('#social-buttons-' + event.id).css('display', 'none')
-            });
-
-        if (event.has_gif) {
-            $('#' + event.slug + '-img').attr('src', '/screenshots/event-' + event.id + '.png?updated_at=' + event.updated_at);
-            $('#' + event.slug + '-video').show();
-        }
     },
 
     selectImage: function(type) {
@@ -537,8 +511,8 @@ methods: {
     },
 
     updateMap: function() {
-        if (this.timeout) clearTimeout(this.timeout);
-        this.timeout = setTimeout(function() {
+        if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
+        this.bounceTimeout = setTimeout(function() {
             updateMapMarkers();
         }, 500);
     },
