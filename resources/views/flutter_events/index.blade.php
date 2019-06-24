@@ -16,6 +16,7 @@
     <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
      integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
      crossorigin=""></script>
+    <script src="{{ asset('js/bouncemarker.js') }}"></script>
 
 @endsection
 
@@ -164,7 +165,10 @@
 
             for (var i = 0; i < markerList.length; i++) {
                 var data = markerMap[markerList[i]];
-                marker = new L.marker([data[1],data[2]])
+                marker = new L.marker([data[1],data[2]], {
+                    bounceOnAdd: true,
+                    bounceOnAddOptions: {duration: Math.floor(Math.random() * 1001)},
+                })
                 .bindPopup(data[0])
                 .addTo(layerGroup);
             }
@@ -176,7 +180,10 @@
 
             for (var i = 0; i < events.length; i++) {
                 var data = markerMap[events[i].id];
-                marker = new L.marker([data[1],data[2]])
+                marker = new L.marker([data[1],data[2]], {
+                    bounceOnAdd: true,
+                    bounceOnAddOptions: {duration: Math.floor(Math.random() * 1001)},
+                })
                 .bindPopup(data[0])
                 .addTo(layerGroup);
             }
