@@ -554,15 +554,15 @@ computed: {
     columnClass() {
         switch(+this.cards_per_row) {
             case 6:
-            return {'is-6': true};
+                return {'is-6': true};
             case 5:
-            return {'is-one-third': true};
+                return {'is-one-third': true};
             case 4:
-            return {'is-one-quarter': true};
+                return {'is-one-quarter': true};
             case 3:
-            return {'is-one-fifth': true};
+                return {'is-one-fifth': true};
             case 2:
-            return {'is-2': true};
+                return {'is-2': true};
         }
     },
 
