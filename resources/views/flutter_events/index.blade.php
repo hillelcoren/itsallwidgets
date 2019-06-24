@@ -200,9 +200,9 @@
                         </div>
                         <div class="select is-medium filter-control" style="font-size: 16px">
                             <select v-model="sort_by" onchange="$(this).blur()">
-                                <option value="sort_featured">FEATURED</option>
-                                <option value="sort_newest">NEWEST</option>
-                                <option value="sort_oldest">OLDEST</option>
+                                <option value="sort_date">DATE</option>
+                                <option value="sort_name">NAME</option>
+                                <option value="sort_country">COUNTRY</option>
                             </select>
                         </div>
                     </p>
@@ -592,37 +592,12 @@ computed: {
         }
 
         events.sort(function(itemA, itemB) {
-            var timeA = new Date(itemA.created_at).getTime();
-            var timeB = new Date(itemB.created_at).getTime();
-
-            if (sort_by == 'sort_oldest') {
-                return timeA - timeB;
-            } else if (sort_by == 'sort_newest') {
-                return timeB - timeA;
-            } else {
-                var itemARating = itemA.store_rating;
-                if (itemA.store_download_count < 500) {
-                    itemARating -= 1;
-                } else if (itemA.store_download_count < 1000) {
-                    itemARating -= .5;
-                }
-
-                var itemBRating = itemB.store_rating;
-                if (itemB.store_download_count < 500) {
-                    itemBRating -= 1;
-                } else if (itemB.store_download_count < 1000) {
-                    itemBRating -= .5;
-                }
-
-                if (itemA.featured != itemB.featured) {
-                    return itemB.featured - itemA.featured;
-                } else if (itemARating != itemBRating) {
-                    return itemBRating - itemARating;
-                } else if (itemA.store_review_count != itemB.store_review_count) {
-                    return itemB.store_review_count - itemA.store_review_count;
-                } else {
-                    return timeB - timeA;
-                }
+            if (sort_by == 'sort_date') {
+                return itemA.event_date.toLowerCase().localeCompare(itemA.event_date.toLowerCase());
+            } else if (sort_by == 'sort_name') {
+                return itemA.event_name.toLowerCase().localeCompare(itemA.event_name.toLowerCase());
+            } else if (sort_by == 'sort_country') {
+                return itemA.country.toLowerCase().localeCompare(itemA.country.toLowerCase());
             }
         });
 

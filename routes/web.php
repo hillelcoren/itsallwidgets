@@ -32,7 +32,9 @@ Route::get('logout', 'Auth\LoginController@logout');
 Route::get('log_error', 'HomeController@logError');
 
 Route::feeds();
+
 // TODO change to RSS feeds
+Route::get('feed', 'FlutterEventController@jsonFeed');
 Route::get('event/feed', 'FlutterEventController@jsonFeed');
 Route::get('event/feed/json', 'FlutterEventController@jsonFeed');
 

@@ -7,7 +7,7 @@ return [
         'main' => [
 
             'items' => 'App\Models\FlutterApp@getFeedItems',
-            'url' => 'feed',
+            'url' => 'app/feed',
             'title' => 'It\'s All Widgets!',
             'view' => 'feed::feed',
         ],
