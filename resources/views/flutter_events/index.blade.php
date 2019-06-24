@@ -249,7 +249,7 @@
                             @{{ event.description }}
                         </div>
 
-                        <div class="event-links" style="font-size:13px; padding-top:12px; padding-bottom:10px">
+                        <div class="event-links" style="font-size:13px; padding-top:16px; padding-bottom:16px">
                             <a v-bind:href="event.event_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
                                 VIEW EVENT
                             </a>
@@ -470,16 +470,10 @@ methods: {
         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     },
 
-    selectImage: function(type) {
-        this.image_type = type;
-    },
-
     selectEvent: function(event) {
-        this.image_type = '.png';
-
         if (document.body.clientWidth < 1000) {
             if (event) {
-                window.location = '/flutter-event/' + event.slug;
+                //window.location = '/flutter-event/' + event.slug;
             }
         } else {
             this.selected_event = event;
@@ -487,9 +481,9 @@ methods: {
                 if (event) {
                     var route = '/flutter-event/' + event.slug;
                     gtag('config', '{{ $tracking_id }}', {'page_path': route});
-                    history.pushState(null, null, route);
+                    //history.pushState(null, null, route);
                 } else {
-                    history.pushState(null, null, '/');
+                    //history.pushState(null, null, '/');
                 }
             }
         }
@@ -544,7 +538,6 @@ data: {
     cards_per_row: getCachedCardsPerRow(),
     sort_by: getCachedSortBy(),
     selected_event: false,
-    image_type: '.png',
     page_number: 1,
 },
 
