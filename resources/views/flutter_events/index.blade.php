@@ -59,6 +59,16 @@
         display: none;
     }
 
+    .short-address {
+        line-height: 1.5em;
+        height: 1.5em;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+    }
+
     .short-description {
         line-height: 1.5em;
         height: 12em;
@@ -241,7 +251,7 @@
                     </header>
 
                     <div class="content" style="padding-left:16px; padding-right:16px;">
-                        <p class="help">
+                        <p class="help short-address">
                             @{{ event.pretty_event_date }} • @{{ event.location }}
                         </p>
 
