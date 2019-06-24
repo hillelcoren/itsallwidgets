@@ -47,6 +47,7 @@
     }
 
     .modal {
+        z-index: 999999;
         -webkit-animation-duration: .5s;
         -moz-animation-duration: .5s;
     }

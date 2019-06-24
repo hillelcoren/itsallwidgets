@@ -190,6 +190,23 @@
 					</div>
 
 					<div class="field">
+						<label class="label" for="description">
+							Event Description <span class="required">*</span>
+						</label>
+						<div class="control">
+
+							{{ Form::textarea('description', $event->description, ['class' => 'textarea', 'required' => true, 'rows' => 8]) }}
+
+							@if ($errors->has('description'))
+								<span class="help is-danger">
+									{{ $errors->first('description') }}
+								</span>
+							@endif
+
+						</div>
+					</div>
+
+					<div class="field">
 						<label class="label" for="banner">
 							Message <span class="required">*</span>
 						</label>
