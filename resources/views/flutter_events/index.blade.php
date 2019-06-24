@@ -266,7 +266,7 @@
                                 <span style="color:#CCCCCC">
                                     &nbsp; | &nbsp;
                                 </span>
-                                <a v-bind:href="'{{ url('flutter-event') }}/' + event.slug + '/edit'" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                <a v-bind:href="'https://itsallwidgets.com/flutter-event/' + event.slug + '/edit'" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
                                     EDIT EVENT
                                 </a>
                             </span>
