@@ -221,6 +221,10 @@
                     </header>
 
                     <div class="content" style="padding-left:16px; padding-right:16px;">
+                        <p class="help">
+                            @{{ event.pretty_event_date }} • @{{ event.city || event.address }}
+                        </p>
+
                         <div class="short-description" v-bind:title="event.short_description">
                             @{{ event.description }}
                         </div>

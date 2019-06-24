@@ -28,6 +28,14 @@ class FlutterEvent extends Model implements Feedable
     protected $hidden = [
         'is_visible',
         'is_approved',
+        'view_count',
+        'click_count',
+        'twitter_click_count',
+        'tweet_count',
+    ];
+
+    protected $appends = [
+        'pretty_event_date',
     ];
 
 
@@ -122,13 +130,18 @@ class FlutterEvent extends Model implements Feedable
     {
         $time = strtotime($this->event_date);
 
-        return date('l jS, F Y', $time);
+        return date('D, F jS', $time);
 
     }
 
     public function getCity()
     {
         return $this->city ?: $this->address;
+    }
+
+    public function getPrettyEventDateAttribute()
+    {
+        return $this->prettyDate();
     }
 
     public function toFeedItem()
