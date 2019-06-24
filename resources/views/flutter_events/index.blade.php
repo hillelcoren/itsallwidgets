@@ -574,15 +574,12 @@ computed: {
 
         if (search) {
             events = events.filter(function(item) {
-                if (item.title.toLowerCase().indexOf(search) >= 0) {
+
+                if (item.event_name.toLowerCase().indexOf(search) >= 0) {
                     return true;
                 }
 
-                if (item.short_description.toLowerCase().indexOf(search) >= 0) {
-                    return true;
-                }
-
-                if (item.category.toLowerCase().indexOf(search) >= 0) {
+                if (item.address.toLowerCase().indexOf(search) >= 0) {
                     return true;
                 }
 
