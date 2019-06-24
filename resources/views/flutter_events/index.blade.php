@@ -595,11 +595,14 @@ computed: {
 
         events.sort(function(itemA, itemB) {
             if (sort_by == 'sort_date') {
-                return itemA.event_date.toLowerCase().localeCompare(itemA.event_date.toLowerCase());
-            } else if (sort_by == 'sort_name') {
-                return itemA.event_name.toLowerCase().localeCompare(itemA.event_name.toLowerCase());
+                return (itemA.event_date || '').toLowerCase()
+                    .localeCompare((itemB.event_date || '').toLowerCase());
             } else if (sort_by == 'sort_country') {
-                return itemA.country.toLowerCase().localeCompare(itemA.country.toLowerCase());
+                return (itemA.country || '').toLowerCase()
+                    .localeCompare((itemB.country || '').toLowerCase());
+            } else {
+                return (itemA.event_name || '').toLowerCase()
+                    .localeCompare((itemB.event_name || '').toLowerCase());
             }
         });
 
