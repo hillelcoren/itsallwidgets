@@ -1,7 +1,7 @@
 @extends('master')
 
-@section('title', 'Submit Event')
-@section('description', 'Submit a Flutter event')
+@section('title', 'Flutter Events')
+@section('description', 'An Open List of Flutter Events')
 @section('image_url', asset('images/background.jpg'))
 
 @section('content')
