@@ -322,7 +322,7 @@
                 <div class="container">
                     <div class="navbar-brand">
                         <div class="navbar-animate">
-                            <a href="{{ url('/') }}">
+                            <a href="https://itsallwidgets.com">
                                 <img src="{{ asset('images/logo.png') }}" width="240" style="padding-top: 12px; padding-left: 12px;"/>
                             </a>
                         </div>
