@@ -195,7 +195,6 @@
                             <input class="slider is-fullwidth is-medium is-info"
                             step="1" min="2" max="6" type="range" v-model="cards_per_row">
                         </div>
-                        <!--
                         <div class="is-medium filter-label">
                             <label class="label is-medium" style="font-weight: normal; font-size: 16px"> &nbsp;&nbsp;&nbsp; SORT </label>
                         </div>
@@ -206,7 +205,6 @@
                                 <option value="sort_country">COUNTRY</option>
                             </select>
                         </div>
-                        -->
                     </p>
                 </div>
             </div>
@@ -425,23 +423,19 @@
 <script>
 
 function isStorageSupported() {
-try {
-    return 'localStorage' in window && window['localStorage'] !== null;
-} catch (e) {
-    return false;
-}
+    try {
+        return 'localStorage' in window && window['localStorage'] !== null;
+    } catch (e) {
+        return false;
+    }
 };
 
 function getCachedSortBy() {
-var sortBy = (isStorageSupported() ? localStorage.getItem('sort_by') : false) || 'sort_featured';
-if (sortBy == 'oldest' || sortBy == 'newest') {
-    sortBy = 'sort_featured';
-}
-return sortBy;
+    return (isStorageSupported() ? localStorage.getItem('sort_by') : false) || 'sort_date';
 }
 
 function getCachedCardsPerRow() {
-return (isStorageSupported() ? localStorage.getItem('cards_per_row') : false) || 4;
+    return (isStorageSupported() ? localStorage.getItem('cards_per_row') : false) || 4;
 }
 
 var app = new Vue({
