@@ -159,14 +159,18 @@
             }
         })
 
-        function updateMapMarkers() {
+        function updateMapMarkers(eventIds) {
             window.layerGroup.clearLayers();
 
-            for (var i = 0; i < 10; i++) {
-                marker = new L.marker([planes[i][1],planes[i][2]])
-                .bindPopup(planes[i][0])
+            for (var i = 0; i < markerList.length; i++) {
+                
+
+                var data = markerMap[markerList[i]];
+                marker = new L.marker([data[1],data[2]])
+                .bindPopup(data[0])
                 .addTo(layerGroup);
             }
+
         }
 
     </script>
