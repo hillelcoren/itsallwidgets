@@ -11,9 +11,16 @@
 |
 */
 
-
 Route::get('flutter-apps', function () {
     return redirect('/', 301);
+});
+
+Route::group(['domain' => 'itsallwidgets.com'], function() {
+    Route::get('/', 'FlutterAppController@index');
+});
+
+Route::group(['domain' => 'flutterevents.com'], function() {
+    Route::get('/', 'FlutterEventController@index');
 });
 
 Route::get('/', 'FlutterAppController@index');
