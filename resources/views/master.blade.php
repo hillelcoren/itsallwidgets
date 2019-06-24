@@ -408,7 +408,7 @@
                 <div class="subtitle" style="font-size:18px; padding-bottom:6px;">
                     @yield('header_subtitle', 'Feel free to add an app in progress and update it when it goes live')
                 </div>
-                @if ((!request()->is('podcast*') && !isset($useBlackHeader)) || (auth()->check() && auth()->user()->is_admin))
+                @if (!request()->is('podcast*') || (auth()->check() && auth()->user()->is_admin))
                 <a class="button is-elevated-dark" style="padding: 20px 32px 18px 32px"
                     href="@yield('header_button_url', url(auth()->check() ? 'submit' : 'auth/google?intended_url=submit'))">
                     <span class="icon">

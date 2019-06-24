@@ -1,15 +1,13 @@
 @extends('master')
 
 @section('title', 'Flutter Events')
-@section('description', '')
+@section('description', 'An Open List of Flutter Events')
 @section('image_url', asset('images/background.jpg'))
 
 @section('header_title', 'An Open List of Flutter Events')
 @section('header_subtitle', 'Meeting with local Flutter developers is a great way to grow!')
-@section('header_button_url', url('event/feed/json'))
-@section('header_button_label', 'EVENT FEED')
-@section('header_button_icon', 'fas fa-rss')
-
+@section('header_button_url', url(auth()->check() ? 'flutter-event/submit' : 'auth/google?intended_url=flutter-event/submit'))
+@section('header_button_label', 'SUBMIT EVENT')
 
 @section('head')
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
