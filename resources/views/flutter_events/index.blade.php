@@ -74,20 +74,20 @@
         background-color: #FFFFFF;
     }
 
-    .flutter-app {
+    .flutter-event {
         background-color: white;
         border-radius: 8px;
     }
 
-    .flutter-app .is-hover-visible {
+    .flutter-event .is-hover-visible {
         display: none;
     }
 
-    .flutter-app:hover .is-hover-visible {
+    .flutter-event:hover .is-hover-visible {
         display: flex;
     }
 
-    .flutter-app a {
+    .flutter-event a {
         color: #368cd5;
     }
 
@@ -235,6 +235,15 @@
                             <a v-bind:href="'https://www.google.com/maps/search/?api=1&query=' + event.latitude + ',' + event.longitude" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
                                 VIEW MAP
                             </a>
+
+                            <span v-if="event.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} || {{ auth()->check() && auth()->user()->is_admin ? 'true' : 'false' }}">
+                                <span style="color:#CCCCCC">
+                                    &nbsp; | &nbsp;
+                                </span>
+                                <a v-bind:href="'{{ url('flutter-event') }}/' + event.slug + '/edit'" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                    EDIT EVENT
+                                </a>
+                            </span>
                         </div>
 
                     </div>
@@ -380,30 +389,6 @@
                     <span class="block wrap">@{{ selected_event.long_description }}</span>
 
                 </div>
-
-                <div v-if="selected_event.has_gif || selected_event.has_screenshot_1 || selected_event.has_screenshot_2 || selected_event.has_screenshot_3">
-                    <div class="columns is-multiline is-3 is-variable">
-                        <div class="column is-one-fifth" v-if="selected_event.has_gif">
-                            <img v-on:click="selectImage('.gif')" v-bind:src="'/gifs/event-' + selected_event.id + '.gif?updated_at=' + selected_event.updated_at" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
-                        </div>
-                        <div class="column is-one-fifth">
-                            <img v-on:click="selectImage('.png')" v-bind:src="'/screenshots/event-' + selected_event.id + '.png?updated_at=' + selected_event.updated_at" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
-                        </div>
-                        <div class="column is-one-fifth" v-if="selected_event.has_screenshot_1">
-                            <img v-on:click="selectImage('-1.png')" v-bind:src="'/screenshots/event-' + selected_event.id + '-1.png?updated_at=' + selected_event.updated_at" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
-                        </div>
-                        <div class="column is-one-fifth" v-if="selected_event.has_screenshot_2">
-                            <img v-on:click="selectImage('-2.png')" v-bind:src="'/screenshots/event-' + selected_event.id + '-2.png?updated_at=' + selected_event.updated_at" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
-                        </div>
-                        <div class="column is-one-fifth" v-if="selected_event.has_screenshot_3">
-                            <img v-on:click="selectImage('-3.png')" v-bind:src="'/screenshots/event-' + selected_event.id + '-3.png?updated_at=' + selected_event.updated_at" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
-                        </div>
-                    </div>
-                </div><br/>
-
-                <iframe v-if="selected_event.youtube_url" width="560" height="315" v-bind:src="selected_event.youtube_url"
-                frameborder="0" allowfullscreen></iframe>
-
             </div>
         </div>
 
@@ -713,7 +698,7 @@ computed: {
 
                     @if (auth()->check() && auth()->user()->is_admin)
                         <br/>
-                        @if (! $event->is_eventroved)
+                        @if (! $event->is_approved)
                             <a class="button is-success is-medium is-slightly-elevated" href="{{ url('flutter-event/' . $event->slug . '/eventrove') }}">
     							<i style="font-size: 20px" class="fas fa-check"></i> &nbsp;
     							Eventrove
@@ -734,7 +719,7 @@ computed: {
                     <div class="is-clearfix">
                         <!--
                         <div class="is-pulled-left" style="padding-left:20px;padding-top:10px;">
-                            @if ($event->is_eventroved)
+                            @if ($event->is_approved)
                                 <div class="tag is-success">
                                     Eventroved
                                 </div>
@@ -755,7 +740,7 @@ computed: {
                                     <i class="fas fa-edit"></i> &nbsp; Edit
                                 </a>
                             @endif
-                            @if ($event->is_eventroved)
+                            @if ($event->is_approved)
                                 &nbsp;
                                 <a href="{{ $event->mapUrl() }}" target="_blank" class="button is-light is-small is-slightly-elevated">
                                     <i class="fas fa-map"></i> &nbsp; Map
