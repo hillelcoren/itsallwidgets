@@ -25,7 +25,7 @@
 
     #map { height: 300px; }
 
-    div.app-stores > a:hover {
+    div.event-links > a:hover {
         text-decoration: underline;
         color: #368cd5;
     }
@@ -61,7 +61,7 @@
 
     .short-description {
         line-height: 1.5em;
-        height: 3em;
+        height: 12em;
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -225,22 +225,16 @@
                             @{{ event.description }}
                         </div>
 
-                        <div class="event-stores" style="font-size:13px; padding-top:12px;">
-                            <a v-bind:href="event.google_url" v-if="event.google_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
-                                GOOGLE PLAY
+                        <div class="event-links" style="font-size:13px; padding-top:12px; padding-bottom:10px">
+                            <a v-bind:href="event.event_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                VIEW EVENT
                             </a>
-                            <span v-if="! event.google_url" style="color:#AAAAAA">
-                                GOOGLE PLAY
-                            </span>
                             <span style="color:#CCCCCC">
                                 &nbsp; | &nbsp;
                             </span>
-                            <a v-bind:href="event.eventle_url" v-if="event.eventle_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
-                                APP STORE
+                            <a v-bind:href="'https://www.google.com/maps/search/?api=1&query=' + event.latitude + ',' + event.longitude" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                VIEW MAP
                             </a>
-                            <span v-if="! event.eventle_url" style="color:#AAAAAA">
-                                APP STORE
-                            </span>
                         </div>
 
                     </div>
