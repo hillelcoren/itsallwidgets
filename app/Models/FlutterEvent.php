@@ -24,6 +24,7 @@ class FlutterEvent extends Model implements Feedable
         'description',
         'latitude',
         'longitude',
+        'is_visible',
     ];
 
     protected $hidden = [
