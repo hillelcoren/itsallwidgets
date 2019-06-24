@@ -25,9 +25,43 @@
 
     #map { height: 300px; }
 
+    div.app-stores > a:hover {
+        text-decoration: underline;
+        color: #368cd5;
+    }
+
+    body {
+        -moz-transition: width 1s ease-in-out, left 1.5s ease-in-out;
+        -webkit-transition: width 1s ease-in-out, left 1.5s ease-in-out;
+        -moz-transition: width 1s ease-in-out, left 1.5s ease-in-out;
+        -o-transition: width 1s ease-in-out, left 1.5s ease-in-out;
+        transition: width 1s ease-in-out, left 1.5s ease-in-out;
+    }
+
+    .filter-control {
+        padding-left: 16px;
+    }
+
+    .filter-label {
+        padding-left: 36px;
+    }
+
+    .modal {
+        -webkit-animation-duration: .5s;
+        -moz-animation-duration: .5s;
+    }
+
+    .modal-card {
+        width: 80%;
+    }
+
+    [v-cloak] {
+        display: none;
+    }
+
     .short-description {
         line-height: 1.5em;
-        height: 4.2em;
+        height: 3em;
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -35,13 +69,58 @@
         text-overflow: ellipsis;
     }
 
-    .flutter-event {
+    .is-owned {
+        xbackground-color: #FFFFAA;
+        background-color: #FFFFFF;
+    }
+
+    .flutter-app {
         background-color: white;
         border-radius: 8px;
     }
 
+    .flutter-app .is-hover-visible {
+        display: none;
+    }
+
+    .flutter-app:hover .is-hover-visible {
+        display: flex;
+    }
+
+    .flutter-app a {
+        color: #368cd5;
+    }
+
+    .columns.is-variable.is-6 {
+        --columnGap: 2rem;
+    }
+
     .column {
-        padding: 1rem 1rem 4rem 1rem;
+        padding: 1rem 1rem 6rem 1rem;
+    }
+
+
+
+    @media screen and (max-width: 788px) {
+        .slider-control {
+            display: none;
+        }
+    }
+
+    @media screen and (max-width: 769px) {
+        .store-buttons img {
+            max-width: 200px;
+        }
+
+
+        /*
+        .is-hover-elevated {
+            -moz-filter: drop-shadow(0px 16px 16px #CCC);
+            -webkit-filter: drop-shadow(0px 16px 16px #CCC);
+            -o-filter: drop-shadow(0px 16px 16px #CCC);
+            filter: drop-shadow(0px 16px 16px #CCC);
+        }
+        */
     }
 
     </style>
@@ -75,7 +154,7 @@
 
     </script>
 
-<div id="event" >
+<div id="event">
 
     <div id="map"></div>
 
@@ -113,7 +192,7 @@
     </section>
 
 
-<div class="container">
+<div class="zcontainer">
 <section class="section is-body-font" style="background-color:#fefefe">
     <div class="columns is-multiline is-6 is-variable">
         <div v-for="event in filteredEvents" :key="event.id" class="column" v-bind:class="columnClass">
@@ -141,12 +220,6 @@
                             @{{ event.description }}
                         </div>
 
-                        @if (auth()->check() && auth()->user()->is_editor)
-                            <br/><div>
-                                @{{ Math.round(event.store_rating * 100) / 100 }} (@{{ event.store_review_count }}) • @{{ event.store_download_count }}+
-                            </div>
-                        @endif
-
                         <div class="event-stores" style="font-size:13px; padding-top:12px;">
                             <a v-bind:href="event.google_url" v-if="event.google_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
                                 GOOGLE PLAY
@@ -164,14 +237,7 @@
                                 APP STORE
                             </span>
                         </div>
-                    </div>
 
-                    <div class="card-image" style="line-height:0px">
-                        <div v-if="event.has_gif">
-                            <i v-bind:id="event.title + '-video'" style="font-size: 26px; position: absolute; bottom: 20px; right: 20px;" class="fas fa-video"></i>
-                        </div>
-                        <img v-bind:id="event.slug + '-img'" v-bind:src="'/screenshots/event-' + event.id + '.png?updated_at=' + event.updated_at" width="1080" height="1920"/>
-                        <!-- <img v-bind:id="event.title + '-img'" src="/images/spacer.png" v-bind:data-src="'/screenshots/event-' + event.id + '.png?updated_at=' + event.updated_at" width="1080" height="1920" class="lazy"/> -->
                     </div>
                 </div>
             </div>
@@ -181,6 +247,7 @@
 </div>
 </section>
 </div>
+
 
 <div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_event">
 <div class="modal-background" v-on:click="selectEvent()"></div>
@@ -515,14 +582,6 @@ computed: {
             return {'is-active': true};
         } else {
             return {};
-        }
-    },
-
-    imageSrc() {
-        if (this.image_type == '.gif' && this.selected_event.has_gif) {
-            return '/gifs/event-' + this.selected_event.id + '.gif?updated_at=' + this.selected_event.updated_at;
-        } else {
-            return '/screenshots/event-' + this.selected_event.id + this.image_type + '?updated_at=' + this.selected_event.updated_at;
         }
     },
 
