@@ -583,6 +583,10 @@ computed: {
                     return true;
                 }
 
+                if (item.description.toLowerCase().indexOf(search) >= 0) {
+                    return true;
+                }
+
                 return false;
             });
         }
