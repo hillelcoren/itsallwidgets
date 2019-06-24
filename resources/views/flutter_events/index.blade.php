@@ -195,6 +195,7 @@
                             <input class="slider is-fullwidth is-medium is-info"
                             step="1" min="2" max="6" type="range" v-model="cards_per_row">
                         </div>
+                        <!--
                         <div class="is-medium filter-label">
                             <label class="label is-medium" style="font-weight: normal; font-size: 16px"> &nbsp;&nbsp;&nbsp; SORT </label>
                         </div>
@@ -205,6 +206,7 @@
                                 <option value="sort_country">COUNTRY</option>
                             </select>
                         </div>
+                        -->
                     </p>
                 </div>
             </div>
