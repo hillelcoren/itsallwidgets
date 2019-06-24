@@ -169,14 +169,14 @@
                             <i class="fas fa-search"></i>
                         </span>
                         <div class="is-medium filter-label slider-control">
-                            <label class="label is-medium" style="font-weight: normal; font-size: 16px"> &nbsp; ZOOM &nbsp; </label>
+                            <label class="label is-medium" style="font-weight: normal; font-size: 16px"> &nbsp; ZOOM </label>
                         </div>
                         <div class="is-medium filter-control slider-control">
                             <input class="slider is-fullwidth is-medium is-info"
                             step="1" min="2" max="6" type="range" v-model="cards_per_row">
                         </div>
                         <div class="is-medium filter-label">
-                            <label class="label is-medium" style="font-weight: normal; font-size: 16px"> &nbsp;&nbsp;&nbsp; SORT &nbsp; </label>
+                            <label class="label is-medium" style="font-weight: normal; font-size: 16px"> &nbsp;&nbsp;&nbsp; SORT </label>
                         </div>
                         <div class="select is-medium filter-control" style="font-size: 16px">
                             <select v-model="sort_by" onchange="$(this).blur()">
@@ -194,6 +194,11 @@
 
 <div class="zcontainer">
 <section class="section is-body-font" style="background-color:#fefefe">
+    <div class="container" v-cloak>
+        <div v-if="filteredEvents.length == 0" class="is-wide has-text-centered is-vertical-center"
+        style="height:400px; text-align:center; font-size: 32px; color: #AAA">
+        No apps found
+    </div>
     <div class="columns is-multiline is-6 is-variable">
         <div v-for="event in filteredEvents" :key="event.id" class="column" v-bind:class="columnClass">
             <div v-on:click="selectEvent(event)" v-on:mouseenter="onMouseOver(event)" v-on:mouseleave="onMouseOut(event)" style="cursor:pointer">
