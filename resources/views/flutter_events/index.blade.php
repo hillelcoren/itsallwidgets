@@ -222,7 +222,7 @@
 
                     <div class="content" style="padding-left:16px; padding-right:16px;">
                         <p class="help">
-                            @{{ event.pretty_event_date }} • @{{ event.city || event.address }}
+                            @{{ event.pretty_event_date }} • @{{ event.location }}
                         </p>
 
                         <div class="short-description" v-bind:title="event.short_description">

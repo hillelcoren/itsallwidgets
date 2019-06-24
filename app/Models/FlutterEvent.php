@@ -37,6 +37,7 @@ class FlutterEvent extends Model implements Feedable
 
     protected $appends = [
         'pretty_event_date',
+        'location',
     ];
 
 
@@ -143,6 +144,11 @@ class FlutterEvent extends Model implements Feedable
     public function getPrettyEventDateAttribute()
     {
         return $this->prettyDate();
+    }
+
+    public function getLocationAttribute()
+    {
+        return $this->city ? ($this->city . ', ' . $this->country) : $this->address;
     }
 
     public function toFeedItem()
