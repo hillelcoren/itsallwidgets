@@ -71,7 +71,7 @@
 
     .short-description {
         line-height: 1.5em;
-        height: 12em;
+        height: 9em;
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -106,7 +106,7 @@
     }
 
     .column {
-        padding: 1rem 1rem 6rem 1rem;
+        padding: 1rem 1rem 2rem 1rem;
     }
 
 
@@ -199,7 +199,7 @@
                             <i class="fas fa-search"></i>
                         </span>
                         <div class="is-medium filter-label slider-control">
-                            <label class="label is-medium" style="font-weight: normal; font-size: 16px"> &nbsp; ZOOM </label>
+                            <label class="label is-medium" style="font-weight: normal; font-size: 16px"> &nbsp; WIDTH </label>
                         </div>
                         <div class="is-medium filter-control slider-control">
                             <input class="slider is-fullwidth is-medium is-info"
@@ -560,15 +560,15 @@ computed: {
     columnClass() {
         switch(+this.cards_per_row) {
             case 6:
-                return {'is-6': true};
+                return {'is-12': true};
             case 5:
-                return {'is-one-third': true};
+                return {'is-6': true};
             case 4:
-                return {'is-one-quarter': true};
+                return {'is-one-third': true};
             case 3:
-                return {'is-one-fifth': true};
+                return {'is-one-quarter': true};
             case 2:
-                return {'is-2': true};
+                return {'is-one-fifth': true};
         }
     },
 
