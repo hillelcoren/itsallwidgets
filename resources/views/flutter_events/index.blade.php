@@ -128,29 +128,46 @@
 
     <script>
 
+    var markerList = [
+        @foreach ($events as $event)
+            {{ $event->id}},
+        @endforeach
+    ];
+    var markerMap = {
+        @foreach ($events as $event)
+            {{ $event->id}}: ['{{ $event->eventLink() }}<br/>{{ substr(strip_tags($event->description), 0, 150) }}...', {{ $event->latitude }}, {{ $event->longitude }}],
+        @endforeach
+    };
+
     $(function() {
-        var planes = [
-
-            @foreach ($events as $event)
-            ['{{ $event->eventLink() }}<br/>{{ substr(strip_tags($event->description), 0, 150) }}...', {{ $event->latitude }}, {{ $event->longitude }}],
-            @endforeach
-        ];
-
         var map = L.map('map').setView([26, 0], 2);
         mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
 
-        L.tileLayer(
+        window.layerGroup = L.layerGroup().addTo(map);
+
+        window.tileLayer = L.tileLayer(
             'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; ' + mapLink + ' Contributors',
                 maxZoom: 18,
             }).addTo(map);
 
-            for (var i = 0; i < planes.length; i++) {
-                marker = new L.marker([planes[i][1],planes[i][2]])
-                .bindPopup(planes[i][0])
-                .addTo(map);
+            for (var i = 0; i < markerList.length; i++) {
+                var data = markerMap[markerList[i]];
+                marker = new L.marker([data[1],data[2]])
+                .bindPopup(data[0])
+                .addTo(layerGroup);
             }
         })
+
+        function updateMapMarkers() {
+            window.layerGroup.clearLayers();
+
+            for (var i = 0; i < 10; i++) {
+                marker = new L.marker([planes[i][1],planes[i][2]])
+                .bindPopup(planes[i][0])
+                .addTo(layerGroup);
+            }
+        }
 
     </script>
 
@@ -426,6 +443,11 @@ var event = new Vue({
 el: '#event',
 
 watch: {
+    search: {
+        handler() {
+            event.updateMap();
+        },
+    },
     sort_by: {
         handler() {
             event.saveFilters();
@@ -508,6 +530,13 @@ methods: {
 
         localStorage.setItem('cards_per_row', this.cards_per_row);
         localStorage.setItem('sort_by', this.sort_by);
+    },
+
+    updateMap: function() {
+        if (this.timeout) clearTimeout(this.timeout);
+        this.timeout = setTimeout(function() {
+            updateMapMarkers();
+        }, 500);
     },
 
     searchBackgroundColor: function() {
