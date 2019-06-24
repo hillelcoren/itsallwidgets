@@ -75,18 +75,27 @@
 
     </script>
 
-<div id="app" >
+<div id="event" >
+
+    <div id="map"></div>
 
     <section class="hero is-light is-small is-body-font">
         <div class="hero-body">
             <div class="container">
                 <div class="field is-grouped is-grouped-multiline is-vertical-center">
                     <p class="control is-expanded has-icons-left">
-                        <input v-model="search" class="input" type="text" placeholder="SEARCH" BAK-v-bind:placeholder="'Search ' + unpaginatedFilteredApps.length + ' apps and counting.."
+                        <input v-model="search" class="input" type="text" placeholder="SEARCH" BAK-v-bind:placeholder="'Search ' + unpaginatedFilteredEvents.length + ' events and counting.."
                             autofocus="true" style="margin-top: 10px" v-bind:style="{ backgroundColor: searchBackgroundColor()}">
                         <span class="icon is-small is-left" style="margin-top: 10px">
                             <i class="fas fa-search"></i>
                         </span>
+                        <div class="is-medium filter-label slider-control">
+                            <label class="label is-medium" style="font-weight: normal; font-size: 16px">ZOOM</label>
+                        </div>
+                        <div class="is-medium filter-control slider-control">
+                            <input class="slider is-fullwidth is-medium is-info"
+                            step="1" min="2" max="6" type="range" v-model="cards_per_row">
+                        </div>
                         <div class="is-medium filter-label">
                             <label class="label is-medium" style="font-weight: normal; font-size: 16px"> &nbsp;&nbsp;SORT &nbsp; </label>
                         </div>
@@ -103,10 +112,514 @@
         </div>
     </section>
 
-<div id="map"></div>
+
+<div class="container">
+<section class="section is-body-font" style="background-color:#fefefe">
+    <div class="columns is-multiline is-6 is-variable">
+        <div v-for="event in filteredEvents" :key="event.id" class="column" v-bind:class="columnClass">
+            <div v-on:click="selectEvent(event)" v-on:mouseenter="onMouseOver(event)" v-on:mouseleave="onMouseOut(event)" style="cursor:pointer">
+                <div class="flutter-event is-hover-elevated" v-bind:class="[event.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} ? 'is-owned' : '']">
+
+                    <header style="padding: 16px">
+
+                        <p class="no-wrap" v-bind:title="event.title" style="font-size:22px; padding-bottom:10px;">
+                            <!--
+                            <span v-if="event.featured > 0">
+                                <i style="font-size: 18px" class="fas fa-star"></i> &nbsp;
+                            </span>
+                            -->
+
+                            @{{ event.event_name }}
+
+                        </p>
+                        <div style="border-bottom: 2px #368cd5 solid; width: 50px"/>
+
+                    </header>
+
+                    <div class="content" style="padding-left:16px; padding-right:16px;">
+                        <div class="short-description" v-bind:title="event.short_description">
+                            @{{ event.description }}
+                        </div>
+
+                        @if (auth()->check() && auth()->user()->is_editor)
+                            <br/><div>
+                                @{{ Math.round(event.store_rating * 100) / 100 }} (@{{ event.store_review_count }}) • @{{ event.store_download_count }}+
+                            </div>
+                        @endif
+
+                        <div class="event-stores" style="font-size:13px; padding-top:12px;">
+                            <a v-bind:href="event.google_url" v-if="event.google_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                GOOGLE PLAY
+                            </a>
+                            <span v-if="! event.google_url" style="color:#AAAAAA">
+                                GOOGLE PLAY
+                            </span>
+                            <span style="color:#CCCCCC">
+                                &nbsp; | &nbsp;
+                            </span>
+                            <a v-bind:href="event.eventle_url" v-if="event.eventle_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                APP STORE
+                            </a>
+                            <span v-if="! event.eventle_url" style="color:#AAAAAA">
+                                APP STORE
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="card-image" style="line-height:0px">
+                        <div v-if="event.has_gif">
+                            <i v-bind:id="event.title + '-video'" style="font-size: 26px; position: absolute; bottom: 20px; right: 20px;" class="fas fa-video"></i>
+                        </div>
+                        <img v-bind:id="event.slug + '-img'" v-bind:src="'/screenshots/event-' + event.id + '.png?updated_at=' + event.updated_at" width="1080" height="1920"/>
+                        <!-- <img v-bind:id="event.title + '-img'" src="/images/spacer.png" v-bind:data-src="'/screenshots/event-' + event.id + '.png?updated_at=' + event.updated_at" width="1080" height="1920" class="lazy"/> -->
+                    </div>
+                </div>
+            </div>
+            <p>&nbsp;</p>
+        </div>
+    </div>
+</div>
+</section>
+</div>
+
+<div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_event">
+<div class="modal-background" v-on:click="selectEvent()"></div>
+<div class="modal-card is-body-font">
+    <header class="modal-card-head">
+        <p class="modal-card-title"></p>
+        <button class="delete" aria-label="close" v-on:click="selectEvent()"></button>
+    </header>
+    <section class="modal-card-body" @click.stop>
+
+        <div class="columns">
+            <div class="column is-4 is-elevated">
+                <img v-bind:src="imageSrc" width="1080" height="1920"/>
+            </div>
+            <div class="column is-8">
+
+                @if (auth()->check())
+                    @if(auth()->user()->is_editor)
+                        <div v-if="selected_event.featured == 0">
+                            <a class="button is-warning is-slightly-elevated" v-bind:href="'/flutter-event/' + selected_event.slug + '/feature'">
+                                <i style="font-size: 20px" class="fas fa-star"></i> &nbsp;
+                                Feature Eventlication
+                            </a>
+                            <p>&nbsp;</p>
+                        </div>
+                    @endif
+
+                    <div v-if="selected_event.user_id == {{ auth()->user()->id }}">
+                        <a class="button is-info is-slightly-elevated" v-bind:href="'/flutter-event/' + selected_event.slug + '/edit'">
+                            <i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
+                            Edit Eventlication
+                        </a>
+                        <p>&nbsp;</p>
+                    </div>
+                @endif
+
+                <div class="content">
+                    <div style="font-size:24px; padding-bottom:10px;">
+                        @{{ selected_event.title }}
+
+                        <span v-if="selected_event.category">
+                            &nbsp;&nbsp;
+                            <a class="tag is-info is-medium" v-on:click="setFilter(selected_event.category)"
+                                href="#" style="text-decoration: none;">
+                                @{{ selected_event.category }}
+                            </a>
+                        </span>
+                    </div>
+
+                    <div style="border-bottom: 2px #368cd5 solid; width: 50px;"></div><br/>
+
+                    <div class="subtitle">
+                        @{{ selected_event.short_description }}
+                    </div>
+
+                    <div v-if="selected_event.google_url || selected_event.eventle_url" class="buttons">
+                        <a v-bind:href="selected_event.google_url" v-if="selected_event.google_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                            <div class="card-image is-slightly-elevated">
+                                <img src="{{ asset('images/google.png') }}" width="160px"/>
+                            </div>
+                        </a>
+                        <div v-if="! selected_event.google_url" class="card-image is-slightly-elevated">
+                            <img src="{{ asset('images/google.png') }}" style="opacity: 0.1; filter: grayscale(100%);" width="160px"/>
+                        </div> &nbsp;&nbsp;
+                        <a v-bind:href="selected_event.eventle_url" v-if="selected_event.eventle_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                            <div class="card-image is-slightly-elevated">
+                                <img src="{{ asset('images/eventle.png') }}" width="160px"/>
+                            </div>
+                        </a>
+                        <div v-if="! selected_event.eventle_url" class="card-image is-slightly-elevated">
+                            <img src="{{ asset('images/eventle.png') }}" style="opacity: 0.1; filter: grayscale(100%);" width="160px"/>
+                        </div>
+                    </div>
+
+                    <div class="content" v-if="selected_event.website_url || selected_event.repo_url">
+                        <div>
+                            <a v-if="selected_event.website_url" v-bind:href="selected_event.website_url" target="_blank" rel="nofollow">
+                                @{{ selected_event.website_url }}
+                            </a>
+                        </div>
+                        <div>
+                            <a v-if="selected_event.repo_url" v-bind:href="selected_event.repo_url" target="_blank" rel="nofollow">
+                                @{{ selected_event.repo_url }}
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <a v-if="selected_event.facebook_url" class="button is-slightly-elevated" v-bind:href="selected_event.facebook_url" target="_blank" rel="nofollow">
+                            <i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
+                        </a>
+                        <a v-if="selected_event.twitter_url" class="button is-slightly-elevated" v-bind:href="selected_event.twitter_url" target="_blank" rel="nofollow">
+                            <i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
+                        </a>
+                        <a v-if="selected_event.instagram_url" class="button is-slightly-elevated" v-bind:href="selected_event.instagram_url" target="_blank" rel="nofollow">
+                            <i style="font-size: 20px" class="fab fa-instagram"></i> &nbsp; Instagram
+                        </a>
+
+                        <div class="dropdown is-hoverable">
+                            <div class="dropdown-trigger is-slightly-elevated">
+                                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                                    <span>
+                                        <i style="font-size: 20px" class="fa fa-share"></i> &nbsp;
+                                        Share Event
+                                    </span>
+                                    <span class="icon is-small">
+                                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="dropdown-menu" role="menu">
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=#url" target="_blank" rel="nofollow">
+                                    <div class="dropdown-content">
+                                        <div class="dropdown-item">
+                                            <i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
+                                        </div>
+                                    </div>
+                                </a>
+                                <a v-bind:href="'https://twitter.com/share?text=' + encodeURIComponent(selected_event.title) + '&amp;url=' + encodeURIComponent('{{ url('/flutter-event') }}' + '/' + selected_event.slug)" target="_blank" rel="nofollow">
+                                    <div class="dropdown-content">
+                                        <div class="dropdown-item">
+                                            <i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <span class="block wrap">@{{ selected_event.long_description }}</span>
+
+                </div>
+
+                <div v-if="selected_event.has_gif || selected_event.has_screenshot_1 || selected_event.has_screenshot_2 || selected_event.has_screenshot_3">
+                    <div class="columns is-multiline is-3 is-variable">
+                        <div class="column is-one-fifth" v-if="selected_event.has_gif">
+                            <img v-on:click="selectImage('.gif')" v-bind:src="'/gifs/event-' + selected_event.id + '.gif?updated_at=' + selected_event.updated_at" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
+                        </div>
+                        <div class="column is-one-fifth">
+                            <img v-on:click="selectImage('.png')" v-bind:src="'/screenshots/event-' + selected_event.id + '.png?updated_at=' + selected_event.updated_at" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
+                        </div>
+                        <div class="column is-one-fifth" v-if="selected_event.has_screenshot_1">
+                            <img v-on:click="selectImage('-1.png')" v-bind:src="'/screenshots/event-' + selected_event.id + '-1.png?updated_at=' + selected_event.updated_at" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
+                        </div>
+                        <div class="column is-one-fifth" v-if="selected_event.has_screenshot_2">
+                            <img v-on:click="selectImage('-2.png')" v-bind:src="'/screenshots/event-' + selected_event.id + '-2.png?updated_at=' + selected_event.updated_at" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
+                        </div>
+                        <div class="column is-one-fifth" v-if="selected_event.has_screenshot_3">
+                            <img v-on:click="selectImage('-3.png')" v-bind:src="'/screenshots/event-' + selected_event.id + '-3.png?updated_at=' + selected_event.updated_at" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
+                        </div>
+                    </div>
+                </div><br/>
+
+                <iframe v-if="selected_event.youtube_url" width="560" height="315" v-bind:src="selected_event.youtube_url"
+                frameborder="0" allowfullscreen></iframe>
+
+            </div>
+        </div>
+
+    </div>
 
 
-<br/>
+</section>
+</div>
+
+<center>
+
+<a class="button is-info is-slightly-elevated" v-on:click="adjustPage(-1)" v-if="page_number > 1">
+    <span class="icon-bug-fix">
+        <i style="font-size: 18px" class="fas fa-chevron-circle-left"></i> &nbsp;&nbsp;
+    </span>
+    Previous Page
+</a> &nbsp;
+<a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)" v-if="page_number < unpaginatedFilteredEvents.length / 40">
+    Next Page &nbsp;&nbsp;
+    <span>
+        <i style="font-size: 18px" class="fas fa-chevron-circle-right"></i>
+    </span>
+</a>
+</center>
+
+</div>
+</div>
+
+
+<script>
+
+function isStorageSupported() {
+try {
+    return 'localStorage' in window && window['localStorage'] !== null;
+} catch (e) {
+    return false;
+}
+};
+
+function getCachedSortBy() {
+var sortBy = (isStorageSupported() ? localStorage.getItem('sort_by') : false) || 'sort_featured';
+if (sortBy == 'oldest' || sortBy == 'newest') {
+    sortBy = 'sort_featured';
+}
+return sortBy;
+}
+
+function getCachedCardsPerRow() {
+return (isStorageSupported() ? localStorage.getItem('cards_per_row') : false) || 4;
+}
+
+var event = new Vue({
+el: '#event',
+
+watch: {
+    sort_by: {
+        handler() {
+            event.saveFilters();
+        },
+    },
+    cards_per_row: {
+        handler() {
+            event.saveFilters();
+        },
+    },
+},
+
+methods: {
+    adjustPage: function(change) {
+        this.page_number += change;
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    },
+
+    onMouseOver: function(event) {
+        $('#social-buttons-' + event.id)
+            .removeClass('animated flipOutX')
+            .addClass('animated flipInX')
+            .css('display', 'flex')
+            .css('visibility', 'visible');
+
+        if (event.has_gif) {
+            $('#' + event.slug + '-img').attr('src', '/gifs/event-' + event.id + '.gif?updated_at=' + event.updated_at);
+            $('#' + event.slug + '-video').hide();
+        }
+    },
+
+    onMouseOut: function(event, e) {
+        $('#social-buttons-' + event.id)
+            .animateCss('animated flipOutX', function() {
+                $('#social-buttons-' + event.id).css('display', 'none')
+            });
+
+        if (event.has_gif) {
+            $('#' + event.slug + '-img').attr('src', '/screenshots/event-' + event.id + '.png?updated_at=' + event.updated_at);
+            $('#' + event.slug + '-video').show();
+        }
+    },
+
+    selectImage: function(type) {
+        this.image_type = type;
+    },
+
+    selectEvent: function(event) {
+        this.image_type = '.png';
+
+        if (document.body.clientWidth < 1000) {
+            if (event) {
+                window.location = '/flutter-event/' + event.slug;
+            }
+        } else {
+            this.selected_event = event;
+            if (history.pushState) {
+                if (event) {
+                    var route = '/flutter-event/' + event.slug;
+                    gtag('config', '{{ $tracking_id }}', {'page_path': route});
+                    history.pushState(null, null, route);
+                } else {
+                    history.pushState(null, null, '/');
+                }
+            }
+        }
+    },
+
+    setFilter: function(filter) {
+        filter = filter || '';
+        this.selectEvent();
+        this.search = filter.toLowerCase();
+    },
+
+    saveFilters: function() {
+        if (! isStorageSupported()) {
+            return false;
+        }
+
+        localStorage.setItem('cards_per_row', this.cards_per_row);
+        localStorage.setItem('sort_by', this.sort_by);
+    },
+
+    searchBackgroundColor: function() {
+        if (! this.search) {
+            return '#FFFFFF';
+        } else {
+            if (this.filteredEvents.length) {
+                return '#FFFFBB';
+            } else {
+                return '#FFC9D9';
+            }
+        }
+    }
+},
+
+mounted () {
+    window.addEventListener('keyup', function(event) {
+        if (event.keyCode == 27) {
+            event.selectEvent();
+        }
+    });
+},
+
+data: {
+    events: {!! $events !!},
+    search: "{{ request()->search }}",
+    cards_per_row: getCachedCardsPerRow(),
+    sort_by: getCachedSortBy(),
+    selected_event: false,
+    image_type: '.png',
+    page_number: 1,
+},
+
+computed: {
+
+    modalClass() {
+        if (this.selected_event) {
+            return {'is-active': true};
+        } else {
+            return {};
+        }
+    },
+
+    imageSrc() {
+        if (this.image_type == '.gif' && this.selected_event.has_gif) {
+            return '/gifs/event-' + this.selected_event.id + '.gif?updated_at=' + this.selected_event.updated_at;
+        } else {
+            return '/screenshots/event-' + this.selected_event.id + this.image_type + '?updated_at=' + this.selected_event.updated_at;
+        }
+    },
+
+    columnClass() {
+        switch(+this.cards_per_row) {
+            case 6:
+            return {'is-6': true};
+            case 5:
+            return {'is-one-third': true};
+            case 4:
+            return {'is-one-quarter': true};
+            case 3:
+            return {'is-one-fifth': true};
+            case 2:
+            return {'is-2': true};
+        }
+    },
+
+    unpaginatedFilteredEvents() {
+
+        var events = this.events;
+        var search = this.search.toLowerCase().trim();
+        var sort_by = this.sort_by;
+
+        if (search) {
+            events = events.filter(function(item) {
+                if (item.title.toLowerCase().indexOf(search) >= 0) {
+                    return true;
+                }
+
+                if (item.short_description.toLowerCase().indexOf(search) >= 0) {
+                    return true;
+                }
+
+                if (item.category.toLowerCase().indexOf(search) >= 0) {
+                    return true;
+                }
+
+                return false;
+            });
+        }
+
+        events.sort(function(itemA, itemB) {
+            var timeA = new Date(itemA.created_at).getTime();
+            var timeB = new Date(itemB.created_at).getTime();
+
+            if (sort_by == 'sort_oldest') {
+                return timeA - timeB;
+            } else if (sort_by == 'sort_newest') {
+                return timeB - timeA;
+            } else {
+                var itemARating = itemA.store_rating;
+                if (itemA.store_download_count < 500) {
+                    itemARating -= 1;
+                } else if (itemA.store_download_count < 1000) {
+                    itemARating -= .5;
+                }
+
+                var itemBRating = itemB.store_rating;
+                if (itemB.store_download_count < 500) {
+                    itemBRating -= 1;
+                } else if (itemB.store_download_count < 1000) {
+                    itemBRating -= .5;
+                }
+
+                if (itemA.featured != itemB.featured) {
+                    return itemB.featured - itemA.featured;
+                } else if (itemARating != itemBRating) {
+                    return itemBRating - itemARating;
+                } else if (itemA.store_review_count != itemB.store_review_count) {
+                    return itemB.store_review_count - itemA.store_review_count;
+                } else {
+                    return timeB - timeA;
+                }
+            }
+        });
+
+        return events;
+    },
+
+    filteredEvents() {
+
+        events = this.unpaginatedFilteredEvents;
+
+        var startIndex = (this.page_number - 1) * 40;
+        var endIndex = startIndex + 40;
+        events = events.slice(startIndex, endIndex);
+
+        return events;
+    },
+}
+
+});
+
+</script>
+
+
 
 <div class="container">
 <div class="columns is-multiline is-5 is-variable">
@@ -142,10 +655,10 @@
 
                     @if (auth()->check() && auth()->user()->is_admin)
                         <br/>
-                        @if (! $event->is_approved)
-                            <a class="button is-success is-medium is-slightly-elevated" href="{{ url('flutter-event/' . $event->slug . '/approve') }}">
+                        @if (! $event->is_eventroved)
+                            <a class="button is-success is-medium is-slightly-elevated" href="{{ url('flutter-event/' . $event->slug . '/eventrove') }}">
     							<i style="font-size: 20px" class="fas fa-check"></i> &nbsp;
-    							Approve
+    							Eventrove
     						</a>
                             <!--
     						<a class="button is-danger is-medium is-slightly-elevated" href="{{ url('flutter-event/' . $event->slug . '/reject') }}">
@@ -163,9 +676,9 @@
                     <div class="is-clearfix">
                         <!--
                         <div class="is-pulled-left" style="padding-left:20px;padding-top:10px;">
-                            @if ($event->is_approved)
+                            @if ($event->is_eventroved)
                                 <div class="tag is-success">
-                                    Approved
+                                    Eventroved
                                 </div>
                             @else
                                 <div class="tag is-warning">
@@ -184,7 +697,7 @@
                                     <i class="fas fa-edit"></i> &nbsp; Edit
                                 </a>
                             @endif
-                            @if ($event->is_approved)
+                            @if ($event->is_eventroved)
                                 &nbsp;
                                 <a href="{{ $event->mapUrl() }}" target="_blank" class="button is-light is-small is-slightly-elevated">
                                     <i class="fas fa-map"></i> &nbsp; Map
