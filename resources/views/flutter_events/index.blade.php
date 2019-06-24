@@ -23,7 +23,7 @@
 
     <style>
 
-    #map { height: 400px; }
+    #map { height: 300px; }
 
     .short-description {
         line-height: 1.5em;
@@ -75,15 +75,40 @@
 
     </script>
 
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+<div id="app" >
 
-<div class="container">
+    <section class="hero is-light is-small is-body-font">
+        <div class="hero-body">
+            <div class="container">
+                <div class="field is-grouped is-grouped-multiline is-vertical-center">
+                    <p class="control is-expanded has-icons-left">
+                        <input v-model="search" class="input" type="text" placeholder="SEARCH" BAK-v-bind:placeholder="'Search ' + unpaginatedFilteredApps.length + ' apps and counting.."
+                            autofocus="true" style="margin-top: 10px" v-bind:style="{ backgroundColor: searchBackgroundColor()}">
+                        <span class="icon is-small is-left" style="margin-top: 10px">
+                            <i class="fas fa-search"></i>
+                        </span>
+                        <div class="is-medium filter-label">
+                            <label class="label is-medium" style="font-weight: normal; font-size: 16px"> &nbsp;&nbsp;SORT &nbsp; </label>
+                        </div>
+                        <div class="select is-medium filter-control" style="font-size: 16px">
+                            <select v-model="sort_by" onchange="$(this).blur()">
+                                <option value="sort_featured">FEATURED</option>
+                                <option value="sort_newest">NEWEST</option>
+                                <option value="sort_oldest">OLDEST</option>
+                            </select>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
 <div id="map"></div>
 
+
 <br/>
 
+<div class="container">
 <div class="columns is-multiline is-5 is-variable">
     @foreach ($events as $event)
         <div class="column is-one-third">
@@ -171,6 +196,7 @@
             </div>
         </div>
     @endforeach
+</div>
 </div>
 </div>
 
