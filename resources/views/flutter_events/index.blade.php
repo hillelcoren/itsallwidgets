@@ -209,13 +209,18 @@
                         <div class="is-medium filter-label">
                             <label class="label is-medium" style="font-weight: normal; font-size: 16px"> &nbsp;&nbsp;&nbsp; SORT </label>
                         </div>
-                        <div class="select is-medium filter-control" style="font-size: 16px">
+                        <div class="select is-medium filter-control" style="font-size: 16px; margin-right:40px">
                             <select v-model="sort_by" onchange="$(this).blur()">
                                 <option value="sort_date">DATE</option>
                                 <option value="sort_name">NAME</option>
                                 <option value="sort_country">COUNTRY</option>
                             </select>
                         </div>
+                        <a class="button is-white is-slightly-elevated" href="https://flutterevents.com/feed" target="_blank">
+                            <i style="font-size: 20px" class="fas fa-rss"></i> &nbsp;
+                            EVENT FEED
+                        </a>
+
                     </p>
                 </div>
             </div>
