@@ -38,6 +38,7 @@ class FlutterEvent extends Model implements Feedable
     protected $appends = [
         'pretty_event_date',
         'location',
+        'text_description',
     ];
 
 
@@ -139,6 +140,15 @@ class FlutterEvent extends Model implements Feedable
     public function getCity()
     {
         return $this->city ?: $this->address;
+    }
+
+    public function getTextDescriptionAttribute()
+    {
+        $str = $this->description;
+        $str = str_replace("<br/>", "\n", $str);
+        $str = str_replace("</p> ", "</p>\n\n", $str);
+
+        return strip_tags($str);
     }
 
     public function getPrettyEventDateAttribute()

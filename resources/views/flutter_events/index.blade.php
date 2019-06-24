@@ -256,7 +256,7 @@
                         </p>
 
                         <div class="short-description" v-bind:title="event.short_description">
-                            @{{ event.description }}
+                            @{{ event.text_description }}
                         </div>
 
                         <div class="event-links" style="font-size:13px; padding-top:16px; padding-bottom:16px">
@@ -363,7 +363,7 @@
 
                     </div>
 
-                    <span class="block wrap">@{{ selected_event.description }}</span>
+                    <span class="block wrap">@{{ selected_event.text_description }}</span>
 
                 </div>
             </div>
@@ -554,7 +554,7 @@ computed: {
                     return true;
                 }
 
-                if ((item.description || '').toLowerCase().indexOf(search) >= 0) {
+                if ((item.text_description || '').toLowerCase().indexOf(search) >= 0) {
                     return true;
                 }
 
