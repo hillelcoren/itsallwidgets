@@ -464,61 +464,58 @@
     <footer class="footer is-body-font">
         <div class="content has-text-centered">
 
-            @if (strpos(request()->url(), 'itsallwidgets.com') !== false)
+            <img src="{{ asset('images/thank_you.png') }}" width="330"/>
 
-                <img src="{{ asset('images/thank_you.png') }}" width="330"/>
-
-                <p>
-                    <div style="font-size:16px; letter-spacing:2px; padding-bottom:6px; font-weight:600">
-                        TO THE <a href="https://flutter.io/" target="_blank">FLUTTER</a> & <a href="https://www.dartlang.org/" target="_blank">DART</a> TEAMS
-                    </div>
-                    for this amazing platform!
-                </p>
-
-                <p style="padding-top:16px;">
-                    <div class="strike">
-                       <span>FROM</span>
-                    </div>
-                <p>
-
-                <div class="columns is-gapless is-centered" style="padding-top:12px;">
-                    <div class="column is-offset-4 is-1">
-                        <a href="https://twitter.com/hillelcoren" target="_blank">
-                            <img src="{{ asset('images/img_hillel.png') }}" width="72"/><br/>
-                            <div>@hillelcoren</div>
-                        </a>
-                    </div><br/>
-                    <div class="column is-1">
-                        <a href="https://twitter.com/ThomasBurkhartB" target="_blank">
-                            <img src="{{ asset('images/img_thomas.png') }}" width="72"/><br/>
-                            <div>@ThomasBurkhartB</div>
-                        </a>
-                    </div><br/>
-                    <div class="column is-1">
-                        <a href="https://twitter.com/devangelslondon" target="_blank">
-                            <img src="{{ asset('images/img_simon.png') }}" width="72"/><br/>
-                            <div>@devangelslondon</div>
-                        </a>
-                    </div><br/>
-                    <div class="column is-1">
-                        <a href="https://twitter.com/scottstoll2017" target="_blank">
-                            <img src="{{ asset('images/img_scott.png') }}" width="72"/><br/>
-                            <div>@scottstoll2017</div>
-                        </a>
-                    </div><br/>
+            <p>
+                <div style="font-size:16px; letter-spacing:2px; padding-bottom:6px; font-weight:600">
+                    TO THE <a href="https://flutter.io/" target="_blank">FLUTTER</a> & <a href="https://www.dartlang.org/" target="_blank">DART</a> TEAMS
                 </div>
+                for this amazing platform!
+            </p>
 
-                <br/> &nbsp; <br/>
+            <p style="padding-top:16px;">
+                <div class="strike">
+                   <span>FROM</span>
+                </div>
+            <p>
 
-                @if (!request()->is('podcast*') || (auth()->check() && auth()->user()->is_admin))
-                <a class="button is-elevated-dark" style="padding: 20px 32px 18px 32px"
-                    href="@yield('header_button_url', url(auth()->check() ? 'submit' : 'auth/google?intended_url=submit'))">
-                    <span class="icon">
-                        <i class="@yield('header_button_icon', 'fas fa-cloud-upload-alt')"></i>
-                    </span> &nbsp;
-                    <span>@yield('header_button_label', 'SUBMIT APP')</span>
-                </a>
-                @endif
+            <div class="columns is-gapless is-centered" style="padding-top:12px;">
+                <div class="column is-offset-4 is-1">
+                    <a href="https://twitter.com/hillelcoren" target="_blank">
+                        <img src="{{ asset('images/img_hillel.png') }}" width="72"/><br/>
+                        <div>@hillelcoren</div>
+                    </a>
+                </div><br/>
+                <div class="column is-1">
+                    <a href="https://twitter.com/ThomasBurkhartB" target="_blank">
+                        <img src="{{ asset('images/img_thomas.png') }}" width="72"/><br/>
+                        <div>@ThomasBurkhartB</div>
+                    </a>
+                </div><br/>
+                <div class="column is-1">
+                    <a href="https://twitter.com/devangelslondon" target="_blank">
+                        <img src="{{ asset('images/img_simon.png') }}" width="72"/><br/>
+                        <div>@devangelslondon</div>
+                    </a>
+                </div><br/>
+                <div class="column is-1">
+                    <a href="https://twitter.com/scottstoll2017" target="_blank">
+                        <img src="{{ asset('images/img_scott.png') }}" width="72"/><br/>
+                        <div>@scottstoll2017</div>
+                    </a>
+                </div><br/>
+            </div>
+
+            <br/> &nbsp; <br/>
+
+            @if (!request()->is('podcast*') || (auth()->check() && auth()->user()->is_admin))
+            <a class="button is-elevated-dark" style="padding: 20px 32px 18px 32px"
+                href="@yield('header_button_url', url(auth()->check() ? 'submit' : 'auth/google?intended_url=submit'))">
+                <span class="icon">
+                    <i class="@yield('header_button_icon', 'fas fa-cloud-upload-alt')"></i>
+                </span> &nbsp;
+                <span>@yield('header_button_label', 'SUBMIT APP')</span>
+            </a>
             @endif
         </div>
     </footer>
