@@ -304,20 +304,10 @@
             <div class="column is-8">
 
                 @if (auth()->check())
-                    @if(auth()->user()->is_editor)
-                        <div v-if="selected_event.featured == 0">
-                            <a class="button is-warning is-slightly-elevated" v-bind:href="'/flutter-event/' + selected_event.slug + '/feature'">
-                                <i style="font-size: 20px" class="fas fa-star"></i> &nbsp;
-                                Feature Eventlication
-                            </a>
-                            <p>&nbsp;</p>
-                        </div>
-                    @endif
-
                     <div v-if="selected_event.user_id == {{ auth()->user()->id }}">
                         <a class="button is-info is-slightly-elevated" v-bind:href="'/flutter-event/' + selected_event.slug + '/edit'">
                             <i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
-                            Edit Eventlication
+                            Edit Event
                         </a>
                         <p>&nbsp;</p>
                     </div>
@@ -325,47 +315,22 @@
 
                 <div class="content">
                     <div style="font-size:24px; padding-bottom:10px;">
-                        @{{ selected_event.title }}
-
-                        <span v-if="selected_event.category">
-                            &nbsp;&nbsp;
-                            <a class="tag is-info is-medium" v-on:click="setFilter(selected_event.category)"
-                                href="#" style="text-decoration: none;">
-                                @{{ selected_event.category }}
-                            </a>
-                        </span>
+                        @{{ selected_event.event_name }}
                     </div>
 
                     <div style="border-bottom: 2px #368cd5 solid; width: 50px;"></div><br/>
 
                     <div class="subtitle">
-                        @{{ selected_event.short_description }}
-                    </div>
-
-                    <div class="content" v-if="selected_event.website_url || selected_event.repo_url">
-                        <div>
-                            <a v-if="selected_event.website_url" v-bind:href="selected_event.website_url" target="_blank" rel="nofollow">
-                                @{{ selected_event.website_url }}
-                            </a>
-                        </div>
-                        <div>
-                            <a v-if="selected_event.repo_url" v-bind:href="selected_event.repo_url" target="_blank" rel="nofollow">
-                                @{{ selected_event.repo_url }}
-                            </a>
-                        </div>
+                        @{{ selected_event.pretty_event_date }} • @{{ selected_event.location }}
                     </div>
 
                     <div class="content">
-                        <a v-if="selected_event.facebook_url" class="button is-slightly-elevated" v-bind:href="selected_event.facebook_url" target="_blank" rel="nofollow">
-                            <i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
+                        <a v-bind:href="selected_event.event_url" target="_blank" rel="nofollow">
+                            @{{ selected_event.event_url }}
                         </a>
-                        <a v-if="selected_event.twitter_url" class="button is-slightly-elevated" v-bind:href="selected_event.twitter_url" target="_blank" rel="nofollow">
-                            <i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
-                        </a>
-                        <a v-if="selected_event.instagram_url" class="button is-slightly-elevated" v-bind:href="selected_event.instagram_url" target="_blank" rel="nofollow">
-                            <i style="font-size: 20px" class="fab fa-instagram"></i> &nbsp; Instagram
-                        </a>
+                    </div>
 
+                    <div class="content">
                         <div class="dropdown is-hoverable">
                             <div class="dropdown-trigger is-slightly-elevated">
                                 <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
@@ -398,7 +363,7 @@
 
                     </div>
 
-                    <span class="block wrap">@{{ selected_event.long_description }}</span>
+                    <span class="block wrap">@{{ selected_event.description }}</span>
 
                 </div>
             </div>
