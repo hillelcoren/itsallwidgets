@@ -64,7 +64,6 @@ class FlutterEventController extends Controller
             'event' => $event,
             'url' => 'flutter-event',
             'method' => 'POST',
-            'useBlackHeader' => true,
         ];
 
         return view('flutter_events.edit', $data);
@@ -84,7 +83,6 @@ class FlutterEventController extends Controller
             'event' => $event,
             'url' => 'flutter-event/' . $event->slug,
             'method' => 'PUT',
-            'useBlackHeader' => true,
         ];
 
         return view('flutter_events.edit', $data);

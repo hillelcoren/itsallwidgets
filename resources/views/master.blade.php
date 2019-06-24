@@ -345,7 +345,7 @@
                                         <i class="fas fa-info-circle"></i> &nbsp; About
                                     </a>
 
-                                    <a class="navbar-item" href="{{ url('flutter-events') }}">
+                                    <a class="navbar-item" href="https://flutterevemts.com">
                                         <i class="fas fa-calendar"></i> &nbsp; Events
                                     </a>
 
