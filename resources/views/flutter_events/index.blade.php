@@ -271,9 +271,6 @@
     <section class="modal-card-body" @click.stop>
 
         <div class="columns">
-            <div class="column is-4 is-elevated">
-                <img v-bind:src="imageSrc" width="1080" height="1920"/>
-            </div>
             <div class="column is-8">
 
                 @if (auth()->check())
@@ -313,25 +310,6 @@
 
                     <div class="subtitle">
                         @{{ selected_event.short_description }}
-                    </div>
-
-                    <div v-if="selected_event.google_url || selected_event.eventle_url" class="buttons">
-                        <a v-bind:href="selected_event.google_url" v-if="selected_event.google_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
-                            <div class="card-image is-slightly-elevated">
-                                <img src="{{ asset('images/google.png') }}" width="160px"/>
-                            </div>
-                        </a>
-                        <div v-if="! selected_event.google_url" class="card-image is-slightly-elevated">
-                            <img src="{{ asset('images/google.png') }}" style="opacity: 0.1; filter: grayscale(100%);" width="160px"/>
-                        </div> &nbsp;&nbsp;
-                        <a v-bind:href="selected_event.eventle_url" v-if="selected_event.eventle_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
-                            <div class="card-image is-slightly-elevated">
-                                <img src="{{ asset('images/eventle.png') }}" width="160px"/>
-                            </div>
-                        </a>
-                        <div v-if="! selected_event.eventle_url" class="card-image is-slightly-elevated">
-                            <img src="{{ asset('images/eventle.png') }}" style="opacity: 0.1; filter: grayscale(100%);" width="160px"/>
-                        </div>
                     </div>
 
                     <div class="content" v-if="selected_event.website_url || selected_event.repo_url">
