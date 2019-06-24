@@ -90,14 +90,14 @@
                             <i class="fas fa-search"></i>
                         </span>
                         <div class="is-medium filter-label slider-control">
-                            <label class="label is-medium" style="font-weight: normal; font-size: 16px">ZOOM</label>
+                            <label class="label is-medium" style="font-weight: normal; font-size: 16px"> &nbsp; ZOOM &nbsp; </label>
                         </div>
                         <div class="is-medium filter-control slider-control">
                             <input class="slider is-fullwidth is-medium is-info"
                             step="1" min="2" max="6" type="range" v-model="cards_per_row">
                         </div>
                         <div class="is-medium filter-label">
-                            <label class="label is-medium" style="font-weight: normal; font-size: 16px"> &nbsp;&nbsp;SORT &nbsp; </label>
+                            <label class="label is-medium" style="font-weight: normal; font-size: 16px"> &nbsp;&nbsp;&nbsp; SORT &nbsp; </label>
                         </div>
                         <div class="select is-medium filter-control" style="font-size: 16px">
                             <select v-model="sort_by" onchange="$(this).blur()">
