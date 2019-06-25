@@ -34,15 +34,11 @@ class FlutterEventController extends Controller
     {
         $user = auth()->user();
 
-        /*
         if ($user->is_admin) {
-            $events = FlutterEvent::orderBy('event_date', 'asc')->future()->get();
+            $events = FlutterEvent::orderBy('event_date', 'asc')->get();
         } else {
-            $events = FlutterEvent::orderBy('event_date', 'asc')->future()->ownedBy($user->id)->get();
+            $events = FlutterEvent::orderBy('event_date', 'asc')->approved()->future()->get();
         }
-        */
-
-        $events = FlutterEvent::orderBy('event_date', 'asc')->approved()->future()->get();
 
         $data = [
             'events' => $events,
