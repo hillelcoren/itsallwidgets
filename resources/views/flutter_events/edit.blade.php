@@ -292,7 +292,7 @@
 								Latitude
 							</label>
 							<div class="control has-icons-left">
-								{{ Form::text('latitude', $event->latitude, ['class' => 'input']) }}
+								{{ Form::text('latitude', $event->latitude ?: '0', ['class' => 'input']) }}
 
 								<span class="icon is-small is-left">
 									<i class="fas fa-map-marked"></i>
@@ -312,7 +312,7 @@
 								Longitude
 							</label>
 							<div class="control has-icons-left">
-								{{ Form::text('longitude', $event->longitude, ['class' => 'input']) }}
+								{{ Form::text('longitude', $event->longitude ?: '0', ['class' => 'input']) }}
 
 								<span class="icon is-small is-left">
 									<i class="fas fa-map-marked"></i>
