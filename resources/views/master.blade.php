@@ -513,9 +513,21 @@
                         </a>
                     </div><br/>
                 @elseif (isFE())
+                    <div class="column is-1">
+                        <a href="https://twitter.com/Nash0x7E2" target="_blank">
+                            <img src="{{ asset('images/img_nash.png') }}" width="72"/><br/>
+                            <div>@Nash0x7E2</div>
+                        </a>
+                    </div><br/>
+                    <div class="column is-1">
+                        <a href="https://twitter.com/MendyMarcus" target="_blank">
+                            <img src="{{ asset('images/img_mendy.png') }}" width="72"/><br/>
+                            <div>@MendyMarcus</div>
+                        </a>
+                    </div><br/>
                 @elseif (isFX())
                 @elseif (isFC())
-                @endif                  
+                @endif
             </div>
 
             <br/> &nbsp; <br/>
