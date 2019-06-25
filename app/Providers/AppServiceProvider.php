@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\FlutterApp;
+use App\Models\FlutterEvent;
 use App\Models\PodcastEpisode;
 use App\Observers\FlutterAppObserver;
+use App\Observers\FlutterEventObserver;
 use App\Observers\PodcastEpisodeObserver;
 use Cache;
 use Illuminate\Support\Facades\View;
@@ -20,12 +22,18 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         FlutterApp::observe(FlutterAppObserver::class);
+        FlutterEvent::observe(FlutterEventObserver::class);
         PodcastEpisode::observe(PodcastEpisodeObserver::class);
 
         try {
             if (! cache('flutter-app-list')) {
                 Cache::rememberForever('flutter-app-list', function () {
                     return FlutterApp::approved()->latest()->get();
+                });
+            }
+            if (! cache('flutter-event-list')) {
+                Cache::rememberForever('flutter-event-list', function () {
+                    return FlutterEvent::approved()->latest()->get();
                 });
             }
             if (! cache('flutter-podcast-list')) {

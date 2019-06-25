@@ -42,11 +42,7 @@ class FlutterEventController extends Controller
         }
         */
 
-        $events = FlutterEvent::orderBy('event_date', 'asc')->future()->get();
-
-        if ($events->isEmpty()) {
-            return redirect('flutter-event/submit');
-        }
+        $events = FlutterEvent::orderBy('event_date', 'asc')->approved()->future()->get();
 
         $data = [
             'events' => $events,
@@ -216,8 +212,8 @@ class FlutterEventController extends Controller
 
         return redirect('/flutter-events')->with('status', $app->title. ' is now featured!');
     }
+    */
 
-    /*
     public function sitemap()
     {
         $str = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">";
@@ -253,5 +249,4 @@ class FlutterEventController extends Controller
 
         return response($str)->header('Content-Type', 'application/xml');
     }
-    */
 }
