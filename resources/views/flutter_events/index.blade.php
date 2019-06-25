@@ -465,7 +465,7 @@ methods: {
     selectEvent: function(event) {
         if (document.body.clientWidth < 1000) {
             if (event) {
-                window.location = '/' + event.slug;
+                //window.location = '/' + event.slug;
             }
         } else {
             this.selected_event = event;
@@ -473,9 +473,9 @@ methods: {
                 if (event) {
                     var route = '/' + event.slug;
                     gtag('config', '{{ $tracking_id }}', {'page_path': route});
-                    history.pushState(null, null, route);
+                    //history.pushState(null, null, route);
                 } else {
-                    history.pushState(null, null, '/');
+                    //history.pushState(null, null, '/');
                 }
             }
         }
