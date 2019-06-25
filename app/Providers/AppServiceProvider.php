@@ -11,6 +11,7 @@ use App\Observers\FlutterEventObserver;
 use App\Observers\PodcastEpisodeObserver;
 use Cache;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -72,6 +73,7 @@ class AppServiceProvider extends ServiceProvider
     */
     public function register()
     {
-        //
+        Blade::component('components.navigation', 'navigation');
+        Blade::component('components.channels', 'channels');
     }
 }
