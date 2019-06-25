@@ -231,7 +231,7 @@
                                 <option value="sort_country">COUNTRY</option>
                             </select>
                         </div>
-                        <a class="button is-white is-slightly-elevated" href="https://flutterevents.com/feed" target="_blank">
+                        <a class="button is-white is-slightly-elevated" href="{{ feUrl() }}/feed" target="_blank">
                             <i style="font-size: 20px" class="fas fa-rss"></i> &nbsp;
                             EVENT FEED
                         </a>

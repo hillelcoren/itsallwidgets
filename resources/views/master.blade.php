@@ -336,7 +336,7 @@
                         <div class="navbar-end">
                             <span class="navbar-item has-text-centered">
 
-                                @if (strpos(request()->url(), 'itsallwidgets.com') !== false)
+                                @if (isIAW())
                                     <a class="navbar-item" href="https://flutter.dev/showcase" target="_blank">
                                         <i class="fas fa-globe"></i> &nbsp; Showcase
                                     </a>
@@ -350,8 +350,8 @@
                                     <i class="fas fa-info-circle"></i> &nbsp; About
                                 </a>
 
-                                @if (strpos(request()->url(), 'itsallwidgets.com') !== false)
-                                    <a class="navbar-item" href="https://flutterevents.com">
+                                @if (isIAW())
+                                    <a class="navbar-item" href="{{ feUrl() }}">
                                         <i class="fas fa-calendar"></i> &nbsp; Events
                                     </a>
 
