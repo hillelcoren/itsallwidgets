@@ -167,7 +167,10 @@
                 var data = markerMap[markerList[i]];
                 marker = new L.marker([data[1],data[2]], {
                     bounceOnAdd: true,
-                    bounceOnAddOptions: {duration: Math.floor(Math.random() * 1201)},
+                    bounceOnAddOptions: {
+                        duration: 500 + Math.floor(Math.random() * 801),
+                        height: 150 + Math.floor(Math.random() * 301),
+                    },
                 })
                 .bindPopup(data[0])
                 .addTo(layerGroup);
@@ -182,7 +185,10 @@
                 var data = markerMap[events[i].id];
                 marker = new L.marker([data[1],data[2]], {
                     bounceOnAdd: true,
-                    bounceOnAddOptions: {duration: Math.floor(Math.random() * 1201)},
+                    bounceOnAddOptions: {
+                        duration: 500 + Math.floor(Math.random() * 801),
+                        height: 150 + Math.floor(Math.random() * 301),
+                    },
                 })
                 .bindPopup(data[0])
                 .addTo(layerGroup);
