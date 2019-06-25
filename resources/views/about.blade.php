@@ -38,7 +38,7 @@
             to developers using
         </div>
         <div class="is-vertical-center has-text-centered">
-            <a href="https://flutter.io/" target="_blank">
+            <a href="https://flutter.dev" target="_blank">
                 <img src="{{ asset('images/flutter_logo.png') }}" width="210"/>
             </a>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

@@ -336,9 +336,16 @@
                         <div class="navbar-end">
                             <span class="navbar-item has-text-centered">
 
-                                <a class="navbar-item" href="https://flutter.io/showcase/" target="_blank">
-                                    <i class="fas fa-globe"></i> &nbsp; Showcase
-                                </a>
+                                @if (strpos(request()->url(), 'itsallwidgets.com') !== false)
+                                    <a class="navbar-item" href="https://flutter.dev/showcase" target="_blank">
+                                        <i class="fas fa-globe"></i> &nbsp; Showcase
+                                    </a>
+                                @else
+                                    <a class="navbar-item" href="https://flutter.dev/community" target="_blank">
+                                        <i class="fas fa-globe"></i> &nbsp; Community
+                                    </a>
+                                @endif
+
                                 <a class="navbar-item" href="https://itsallwidgets.com/about">
                                     <i class="fas fa-info-circle"></i> &nbsp; About
                                 </a>
@@ -468,7 +475,7 @@
 
             <p>
                 <div style="font-size:16px; letter-spacing:2px; padding-bottom:6px; font-weight:600">
-                    TO THE <a href="https://flutter.io/" target="_blank">FLUTTER</a> & <a href="https://www.dartlang.org/" target="_blank">DART</a> TEAMS
+                    TO THE <a href="https://flutter.dev" target="_blank">FLUTTER</a> & <a href="https://www.dartlang.org/" target="_blank">DART</a> TEAMS
                 </div>
                 for this amazing platform!
             </p>
