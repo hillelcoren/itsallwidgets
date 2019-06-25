@@ -96,8 +96,6 @@
 								<i class="fas fa-globe"></i>
 							</span>
 
-							<div class="help">The event name must be unique</div>
-
 							@if ($errors->has('event_name'))
 								<span class="help is-danger">
 									{{ $errors->first('event_name') }}
