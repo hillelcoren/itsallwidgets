@@ -18,6 +18,10 @@ class GoogleController extends Controller
      */
     public function redirectToGoogle()
     {
+        if (auth()->check()) {
+            return redirect(request()->intended_url ?: url());
+        }
+
         session(['intended_url' => request()->intended_url]);
         session()->save();
 
