@@ -35,7 +35,7 @@ class StoreFlutterApp extends FormRequest
             'short_description' => 'required|max:250',
             'long_description' => 'required',
             'google_url' => [new ExternalLink('https://play.google.com/')],
-            'apple_url' => [new ExternalLink('https://itunes.apple.com/')],
+            'apple_url' => [new ExternalLink('https://itunes.apple.com/', 'https://apps.apple.com/')],
             'facebook_url' => [new ExternalLink('https://www.facebook.com/')],
             'twitter_url' => [new ExternalLink('https://twitter.com/')],
             'youtube_url' => [new ExternalLink('https://www.youtube.com/embed/')],

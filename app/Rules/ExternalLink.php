@@ -11,9 +11,10 @@ class ExternalLink implements Rule
      *
      * @return void
      */
-    public function __construct($domain)
+    public function __construct($domain1, $domain2 = '')
     {
-        $this->domain = $domain;
+        $this->domain1 = $domain1;
+        $this->domain2 = $domain2;
     }
 
     /**
@@ -29,10 +30,11 @@ class ExternalLink implements Rule
             return true;
         }
 
-        $domain = str_replace('www.', '', $this->domain);
+        $domain1 = str_replace('www.', '', $this->domain1);
+        $domain2 = str_replace('www.', '', $this->domain2);
         $value = str_replace('www.', '', $value);
 
-        return strpos($value, $domain) === 0;
+        return strpos($value, $domain1) === 0 || strpos($value, $domain2) === 0;
     }
 
     /**
@@ -42,6 +44,12 @@ class ExternalLink implements Rule
      */
     public function message()
     {
-        return 'The link should begin with ' . $this->domain;
+        $str = 'The link should begin with ' . $this->domain1;
+
+        if ($this->domain2) {
+            $str .= ' or ' . $this->domain2;
+        }
+
+        return $str;
     }
 }
