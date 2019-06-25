@@ -6,7 +6,7 @@
 @section('header_title', 'An Open List of Flutter Events')
 @section('header_subtitle', 'Events are synced with Meetup.com or can be added manually')
 
-@section('header_button_url', 'https://itsallwidgets.com/' . (auth()->check() ? 'flutter-event/submit' : 'auth/google?intended_url=flutter-event/submit'))
+@section('header_button_url', iawUrl() . '/' . (auth()->check() ? 'flutter-event/submit' : 'auth/google?intended_url=flutter-event/submit'))
 @section('header_button_label', 'SUBMIT EVENT')
 
 @section('head')
@@ -295,7 +295,7 @@
                                 <span style="color:#CCCCCC">
                                     &nbsp; | &nbsp;
                                 </span>
-                                <a v-bind:href="'https://itsallwidgets.com/flutter-event/' + event.slug + '/edit'" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                <a v-bind:href="'{{ iawUrl() }}/flutter-event/' + event.slug + '/edit'" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
                                     EDIT EVENT
                                 </a>
                             </span>

@@ -322,7 +322,7 @@
                 <div class="container">
                     <div class="navbar-brand">
                         <div class="navbar-animate">
-                            <a href="https://itsallwidgets.com">
+                            <a href="{{ iawUrl() }}">
                                 <img src="{{ asset('images/logo.png') }}" width="240" style="padding-top: 12px; padding-left: 12px;"/>
                             </a>
                         </div>
@@ -346,7 +346,7 @@
                                     </a>
                                 @endif
 
-                                <a class="navbar-item" href="https://itsallwidgets.com/about">
+                                <a class="navbar-item" href="{{ iawUrl() }}/about">
                                     <i class="fas fa-info-circle"></i> &nbsp; About
                                 </a>
 
@@ -376,7 +376,7 @@
                                         <span>Twitter</span>
                                     </a> &nbsp;&nbsp;&nbsp;
 
-                                    <a class="button is-elevated-dark" style="color:white; background-color:#000; border-color:#000" href="https://itsallwidgets.com">
+                                    <a class="button is-elevated-dark" style="color:white; background-color:#000; border-color:#000" href="{{ iawUrl() }}">
                                         <span class="icon">
                                             <i class="fas fa-mobile-alt"></i>
                                         </span> &nbsp;
@@ -526,6 +526,7 @@
             @endif
         </div>
     </footer>
+
 
 
 </body>
