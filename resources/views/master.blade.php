@@ -341,7 +341,7 @@
 
                                 &nbsp;&nbsp;&nbsp;
 
-                                @channels()
+                                @channels(['isPodcast' => request()->is('podcast*') || isset($useBlackHeader)])
                                 @endchannels
                             </span>
                         </div>
