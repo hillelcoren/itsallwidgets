@@ -272,7 +272,7 @@
 								Slug
 							</label>
 							<div class="control has-icons-left">
-								{{ Form::text('slug', $event->slug, ['class' => 'input', 'required' => true]) }}
+								{{ Form::text('slug', $event->slug, ['class' => 'input']) }}
 
 								<span class="icon is-small is-left">
 									<i class="fas fa-lock"></i>

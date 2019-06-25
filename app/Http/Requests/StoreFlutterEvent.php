@@ -26,7 +26,7 @@ class StoreFlutterEvent extends FormRequest
     public function rules()
     {
         $rules = [
-            'event_name' => 'required|unique:flutter_events',
+            'event_name' => 'required',
             'event_url' => 'required|unique:flutter_events',
             'slug' => 'required|unique:flutter_events',
             'event_date' => 'required|date',

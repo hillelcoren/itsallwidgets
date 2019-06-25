@@ -465,17 +465,17 @@ methods: {
     selectEvent: function(event) {
         if (document.body.clientWidth < 1000) {
             if (event) {
-                //window.location = '/flutter-event/' + event.slug;
+                window.location = '/' + event.slug;
             }
         } else {
             this.selected_event = event;
             if (history.pushState) {
                 if (event) {
-                    var route = '/flutter-event/' + event.slug;
+                    var route = '/' + event.slug;
                     gtag('config', '{{ $tracking_id }}', {'page_path': route});
-                    //history.pushState(null, null, route);
+                    history.pushState(null, null, route);
                 } else {
-                    //history.pushState(null, null, '/');
+                    history.pushState(null, null, '/');
                 }
             }
         }

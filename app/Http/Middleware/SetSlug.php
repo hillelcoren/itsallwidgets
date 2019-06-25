@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Models\FlutterEvent;
 
 class SetSlug
 {
@@ -21,8 +22,19 @@ class SetSlug
         if (isset($request_array['title'])) {
             $request_array['slug'] = str_slug($request_array['title']);
             $request->replace($request_array);
-        } elseif (isset($request_array['event_name']) && isset($request_array['event_name'])) {
-            $request_array['slug'] = $request_array['event_date'] . '-' . str_slug($request_array['event_name']);
+        } elseif (isset($request_array['event_name'])) {
+            $slug = str_slug($request_array['event_name'];
+            $count = 1;
+
+            if (FlutterEvent::whereSlug($slug)->first()) {
+                while(FlutterEvent::whereSlug($slug . '-' . $count)->first()) {
+                    $count++;
+                }
+
+                $slug .= '-' . $count;
+            }
+
+            $request_array['slug'] = $slug;
             $request->replace($request_array);
         }
 

@@ -34,7 +34,7 @@ class UpdateFlutterEvent extends FormRequest
         $event = request()->flutter_event;
 
         $rules = [
-            'event_name' => 'required|unique:flutter_events,event_name,' . $event->id . ',id',
+            'event_name' => 'required',
             'slug' => 'unique:flutter_events,slug,' . $event->id . ',id',
             'event_date' => 'required|date',
             'address' => 'required',
