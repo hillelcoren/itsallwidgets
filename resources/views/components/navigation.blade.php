@@ -1,6 +1,6 @@
 @php
     $isIAW = isIAW();
-    $url = "https://flutter.dev/" . isIAW() ? "showcase" : "community";
+    $url = "https://flutter.dev/" . (isIAW() ? "showcase" : "community");
     $title = $isIAW ? "Showcase" : "Community";
 @endphp
 <a class="navbar-item" href="{{$url}}" target="_blank">
