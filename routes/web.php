@@ -16,7 +16,7 @@ Route::feeds();
 Route::group(['domain' => 'flutterevents.{env}'], function() {
     Route::get('/', 'FlutterEventController@index');
     Route::get('feed', 'FlutterEventController@jsonFeed');
-    Route::get('sitemap.xml', 'FlutterAppController@sitemap');
+    Route::get('sitemap.xml', 'FlutterEventController@sitemap');
 });
 
 Route::group(['domain' => 'itsallwidgets.{env}'], function() {
