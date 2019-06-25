@@ -23,7 +23,7 @@ class SetSlug
             $request_array['slug'] = str_slug($request_array['title']);
             $request->replace($request_array);
         } elseif (isset($request_array['event_name'])) {
-            $slug = str_slug($request_array['event_name'];
+            $slug = str_slug($request_array['event_name']);
             $count = 1;
 
             if (FlutterEvent::whereSlug($slug)->first()) {
