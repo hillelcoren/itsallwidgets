@@ -23,6 +23,6 @@ class EventSubmitted extends Notification
                     ->subject('New event: ' . $this->event->event_name)
                     ->greeting('Hello!')
                     ->line('A new event has been submitted!')
-                    ->action('View Event', $this->event->url());
+                    ->action('View Event', $this->event->editUrl());
     }
 }

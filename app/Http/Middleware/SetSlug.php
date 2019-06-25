@@ -21,8 +21,8 @@ class SetSlug
         if (isset($request_array['title'])) {
             $request_array['slug'] = str_slug($request_array['title']);
             $request->replace($request_array);
-        } elseif (isset($request_array['event_name'])) {
-            $request_array['slug'] = str_slug($request_array['event_name']);
+        } elseif (isset($request_array['event_name']) && isset($request_array['event_name'])) {
+            $request_array['slug'] = $request_array['event_date'] . '-' . str_slug($request_array['event_name']);
             $request->replace($request_array);
         }
 

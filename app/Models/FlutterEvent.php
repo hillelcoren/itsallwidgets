@@ -45,7 +45,12 @@ class FlutterEvent extends Model implements Feedable
 
     public function url()
     {
-        return url('flutter-event/' . $this->slug . '/edit');
+        return url((isIAW() ? 'flutter-event/' : '') . $this->slug);
+    }
+
+    public function editUrl()
+    {
+        return $this->url() . '/edit';
     }
 
     public function mapUrl()

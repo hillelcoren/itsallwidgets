@@ -98,7 +98,7 @@ class FlutterEventController extends Controller
 
         User::admin()->notify(new EventSubmitted($event));
 
-        return redirect($event->url())->with(
+        return redirect($event->editUrl())->with(
             'status',
             'Your event has been successfully added!'
         );
@@ -116,7 +116,7 @@ class FlutterEventController extends Controller
         $input = $request->all();
         $event = $this->eventRepo->update($event, $input);
 
-        return redirect($event->url())->with(
+        return redirect($event->editUrl())->with(
             'status',
             'Your event has been successfully updated!'
         );
