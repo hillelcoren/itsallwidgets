@@ -336,68 +336,13 @@
                         <div class="navbar-end">
                             <span class="navbar-item has-text-centered">
 
-                                @if (isIAW())
-                                    <a class="navbar-item" href="https://flutter.dev/showcase" target="_blank">
-                                        <i class="fas fa-globe"></i> &nbsp; Showcase
-                                    </a>
-                                @else
-                                    <a class="navbar-item" href="https://flutter.dev/community" target="_blank">
-                                        <i class="fas fa-globe"></i> &nbsp; Community
-                                    </a>
-                                @endif
-
-                                <a class="navbar-item" href="{{ iawUrl() }}/about">
-                                    <i class="fas fa-info-circle"></i> &nbsp; About
-                                </a>
-
-                                @if (isIAW())
-                                    <a class="navbar-item" href="{{ feUrl() }}">
-                                        <i class="fas fa-calendar"></i> &nbsp; Events
-                                    </a>
-
-                                    @if (auth()->check())
-                                        <a class="navbar-item" href="{{ url('logout') }}">
-                                            <i class="fas fa-user-alt"></i> &nbsp; Logout
-                                        </a>
-                                    @else
-                                        <a class="navbar-item" href="{{ url(auth()->check() ? 'submit' : 'auth/google') }}">
-                                            <i class="fas fa-bell"></i> &nbsp; Monthly Stats
-                                        </a>
-                                    @endif
-                                @endif
+                                @navigation()
+                                @endnavigation
 
                                 &nbsp;&nbsp;&nbsp;
 
-                                @if (request()->is('podcast*') || isset($useBlackHeader))
-                                    <a class="button is-elevated-dark" style="color:white; background-color:#444; border-color:#444" href="https://twitter.com/itsallwidgets" target="_blank">
-                                        <span class="icon">
-                                            <i class="fab fa-twitter"></i>
-                                        </span> &nbsp;
-                                        <span>Twitter</span>
-                                    </a> &nbsp;&nbsp;&nbsp;
-
-                                    <a class="button is-elevated-dark" style="color:white; background-color:#000; border-color:#000" href="{{ iawUrl() }}">
-                                        <span class="icon">
-                                            <i class="fas fa-mobile-alt"></i>
-                                        </span> &nbsp;
-                                        <span>Apps</span>
-                                    </a>
-                                @else
-                                    <a class="button is-elevated-dark" style="color:white; background-color:#366cb6; border-color:#366cb6" href="https://twitter.com/itsallwidgets" target="_blank">
-                                        <span class="icon">
-                                            <i class="fab fa-twitter"></i>
-                                        </span> &nbsp;
-                                        <span>Twitter</span>
-                                    </a> &nbsp;&nbsp;&nbsp;
-
-                                    <a class="button is-elevated-dark" style="color:white; background-color:#366cb6; border-color:#366cb6" href="{{ url('/podcast') }}">
-                                        <span class="icon">
-                                            <i class="fas fa-microphone"></i>
-                                        </span> &nbsp;
-                                        <span>Podcast</span>
-                                    </a>
-                                @endif
-
+                                @channels()
+                                @endchannels
                             </span>
                         </div>
                     </div>
