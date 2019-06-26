@@ -616,7 +616,7 @@ computed: {
             } else {
                 return (itemA.event_date || '').toLowerCase()
                     .localeCompare((itemB.event_date || '').toLowerCase());
-            }            
+            }
         });
 
         return events;

@@ -180,9 +180,9 @@
 
     span.navbar-item,
     div.navbar-animate,
-    .hero-body .title,
-    .hero-body .subtitle,
-    .hero-body .button {
+    .hero-body-animate .title,
+    .hero-body-animate .subtitle,
+    .hero-body-animate .button {
         visibility: hidden;
     }
 
@@ -283,7 +283,7 @@
 
     $(function() {
         $('div.navbar-animate').addClass('animated tada').css('visibility', 'visible');
-        $('.hero-body .title, .hero-body .subtitle, .hero-body .button').addClass('animated fadeIn').css('visibility', 'visible');
+        $('.hero-body-animate .title, .hero-body-animate .subtitle, .hero-body-animate .button').addClass('animated fadeIn').css('visibility', 'visible');
         if (document.body.clientWidth > 1000) {
             $('span.navbar-item').addClass('animated slideInDown').css('visibility', 'visible');
         } else {
@@ -350,7 +350,7 @@
             </nav>
         </div>
 
-        <div class="hero-body" style="padding-top:34px">
+        <div class="hero-body hero-body-animate" style="padding-top:34px">
             <div class="container has-text-centered">
                 <div class="subtitle" style="font-weight:200; font-size:18px;">
                     MADE WITH &nbsp;<i class="fas fa-heart" style="font-size:16px"></i>&nbsp; BY THE FLUTTER COMMUNITY <!-- <a href="https://twitter.com/hashtag/Flutter" target="_blank">FLUTTER COMMUNITY</a> -->
