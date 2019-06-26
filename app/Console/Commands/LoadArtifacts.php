@@ -82,86 +82,102 @@ class LoadArtifacts extends Command
                     'is_approved' => true,
                 ];
 
-                // https://stackoverflow.com/a/9244634/497368
-                libxml_use_internal_errors(true);
-                $c = file_get_contents($artifact->url);
-                $d = new \DomDocument();
-                $d->loadHTML($c);
-                $xp = new \domxpath($d);
-
-                foreach ($xp->query("//meta[@property='og:description']") as $el) {
-                    $item['meta_description'] = $el->getAttribute("content");
-                    break;
-                }
-
-                foreach ($xp->query("//meta[@name='author']") as $el) {
-                    $item['meta_author'] = $el->getAttribute("content");
-                    break;
-                }
-
-                foreach ($xp->query("//link[@rel='author']") as $el) {
-                    $item['meta_author_url'] = $el->getAttribute("href");
-                    break;
-                }
-
-                foreach ($xp->query("//meta[@name='twitter:creator']") as $el) {
-                    $item['meta_twitter_creator'] = $el->getAttribute("content");
-                    break;
-                }
-
-                foreach ($xp->query("//meta[@name='twitter:site']") as $el) {
-                    $item['meta_twitter_site'] = $el->getAttribute("content");
-                    break;
-                }
-
-                foreach ($xp->query("//meta[@property='og:image']") as $el) {
-                    $image = $el->getAttribute("content");
-                    $this->info('image: ' . $image);
-                }
-
-                $githubLinks = [];
-                foreach ($xp->query("//a") as $el) {
-                    $url = $el->getAttribute("href");
-                    $matches = [];
-                    preg_match('/https:\/\/github.com\/(\w+)\/(\w+)/', $url, $matches);
-                    if (count($matches)) {
-                        $githubLink = $matches[0];
-                        if (isset($githubLinks[$githubLink])) {
-                            $githubLinks[$githubLink]++;
-                        } else {
-                            $githubLinks[$githubLink] = 1;
-                        }
-                    }
-                }
-                if (count($githubLinks)) {
-                    arsort($githubLinks);
-                    $item['repo_url'] = key($githubLinks);
-                }
-
-                $json = $xp->query( '//script[@type="application/ld+json"]' );
-                if ($json && $json->item(0)) {
-                    $json = trim($json->item(0)->nodeValue);
-                    $json = json_decode($json);
-
-                    if (! isset($item['meta_author'])) {
-                        $item['meta_author'] = $json->author->name;
-                    }
-                    if (! isset($item['meta_author_url'])) {
-                        $item['meta_author_url'] = $json->author->url;
-                    }
-                    if (! isset($item['meta_publisher'])) {
-                        $item['meta_publisher'] = $json->publisher->name;
-                    }
-                }
+                $item = $this->loadMetaData($item);
+                $item = $this->parseRepoUrl($item);
 
                 $this->info(json_encode($item));
                 $this->artifactRepo->store($item, 1);
                 //exit;
             }
-
+            
             exit;
         }
 
         $this->info('Done');
+    }
+
+    private function loadMetaData($data)
+    {
+        // https://stackoverflow.com/a/9244634/497368
+        libxml_use_internal_errors(true);
+        $c = file_get_contents($artifact->url);
+        $d = new \DomDocument();
+        $d->loadHTML($c);
+        $xp = new \domxpath($d);
+
+        foreach ($xp->query("//meta[@property='og:description']") as $el) {
+            $data['meta_description'] = $el->getAttribute("content");
+            break;
+        }
+
+        foreach ($xp->query("//meta[@name='author']") as $el) {
+            $data['meta_author'] = $el->getAttribute("content");
+            break;
+        }
+
+        foreach ($xp->query("//link[@rel='author']") as $el) {
+            $data['meta_author_url'] = $el->getAttribute("href");
+            break;
+        }
+
+        foreach ($xp->query("//meta[@name='twitter:creator']") as $el) {
+            $data['meta_twitter_creator'] = $el->getAttribute("content");
+            break;
+        }
+
+        foreach ($xp->query("//meta[@name='twitter:site']") as $el) {
+            $data['meta_twitter_site'] = $el->getAttribute("content");
+            break;
+        }
+
+        foreach ($xp->query("//meta[@property='og:image']") as $el) {
+            $data = $el->getAttribute("content");
+            $this->info('image: ' . $image);
+        }
+
+        $json = $xp->query( '//script[@type="application/ld+json"]' );
+        if ($json && $json->item(0)) {
+            $json = trim($json->item(0)->nodeValue);
+            $json = json_decode($json);
+
+            if (! isset($item['meta_author'])) {
+                $item['meta_author'] = $json->author->name;
+            }
+            if (! isset($item['meta_author_url'])) {
+                $item['meta_author_url'] = $json->author->url;
+            }
+            if (! isset($item['meta_publisher'])) {
+                $item['meta_publisher'] = $json->publisher->name;
+            }
+        }
+
+        return $data;
+    }
+
+    private function parseRepoUrl($data)
+    {
+        $githubLinks = [];
+
+        foreach ($xp->query("//a") as $el) {
+            $url = $el->getAttribute("href");
+            $matches = [];
+            preg_match('/https:\/\/github.com\/(\w+)\/(\w+)/', $url, $matches);
+
+            if (count($matches)) {
+                $githubLink = $matches[0];
+                if (isset($githubLinks[$githubLink])) {
+                    $githubLinks[$githubLink]++;
+                } else {
+                    $githubLinks[$githubLink] = 1;
+                }
+            }
+        }
+
+        if (count($githubLinks)) {
+            arsort($githubLinks);
+            $data['repo_url'] = key($githubLinks);
+        }
+
+        return $data;
     }
 }
