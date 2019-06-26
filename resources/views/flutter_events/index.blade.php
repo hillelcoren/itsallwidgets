@@ -222,9 +222,21 @@
                         </div>
                         -->
                         <div class="is-medium filter-label">
+                            <label class="label is-medium" style="font-weight: normal; font-size: 16px"> DISTANCE </label>
+                        </div>
+                        <div class="select is-medium filter-control" style="font-size: 16px;">
+                            <select v-model="filter_distance" onchange="$(this).blur()">
+                                <option value="filter_distance_any"></option>
+                                <option value="filter_distance_50">50 miles</option>
+                                <option value="filter_distance_100">100 miles</option>
+                                <option value="filter_distance_250">250 miles</option>
+                                <option value="filter_distance_500">500 miles</option>
+                            </select>
+                        </div>
+                        <div class="is-medium filter-label">
                             <label class="label is-medium" style="font-weight: normal; font-size: 16px"> SORT </label>
                         </div>
-                        <div class="select is-medium filter-control" style="font-size: 16px; margin-right:40px">
+                        <div class="select is-medium filter-control" style="font-size: 16px; margin-right:50px">
                             <select v-model="sort_by" onchange="$(this).blur()">
                                 <option value="sort_date">DATE</option>
                                 <option value="sort_name">NAME</option>
@@ -531,6 +543,7 @@ data: {
     sort_by: getCachedSortBy(),
     selected_event: false,
     page_number: 1,
+    filter_distance: 'filter_distance_any',
 },
 
 computed: {
@@ -563,9 +576,19 @@ computed: {
         var events = this.events;
         var search = this.search.toLowerCase().trim();
         var sort_by = this.sort_by;
+        var distance = this.filter_distance;
 
-        if (search) {
+        if (search || distance) {
             events = events.filter(function(item) {
+                if (distance == 'filter_distance_50' && item.distance > 50) {
+                    return false;
+                } else if (distance == 'filter_distance_100' && item.distance > 100) {
+                    return false;
+                } else if (distance == 'filter_distance_250' && item.distance > 250) {
+                    return false;
+                } else if (distance == 'filter_distance_500' && item.distance > 500) {
+                    return false;
+                }
 
                 if ((item.event_name || '').toLowerCase().indexOf(search) >= 0) {
                     return true;
