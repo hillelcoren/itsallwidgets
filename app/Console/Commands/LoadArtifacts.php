@@ -121,7 +121,7 @@ class LoadArtifacts extends Command
 
             if (substr($url, 0, 1) == '/') {
                 $parse = parse_url($data['url']);
-                $url = $parse['host'] . $url;
+                $url = 'https://' . $parse['host'] . $url;
             }
 
             $data['meta_author_url'] = $url;

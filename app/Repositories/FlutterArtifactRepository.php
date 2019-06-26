@@ -41,18 +41,18 @@ class FlutterArtifactRepository
      */
     public function store($input, $user_id)
     {
-        $ertifact = new FlutterArtifact;
-        $ertifact->fill($input);
-        $ertifact->user_id = $user_id;
+        $artifact = new FlutterArtifact;
+        $artifact->fill($input);
+        $artifact->user_id = $user_id;
 
-        $url = $ertifact->url;
-        $url = explode('?', $url)[0];
+        $url = $artifact->url;
+        //$url = explode('?', $url)[0];
         $url = rtrim($url, '/');
-        $ertifact->url = $url;
+        $artifact->url = $url;
 
-        $ertifact->save();
+        $artifact->save();
 
-        return $ertifact;
+        return $artifact;
     }
 
     /**
@@ -60,18 +60,18 @@ class FlutterArtifactRepository
      *
      * @param FlutterArtifact $app
      */
-    public function update($ertifact, $input)
+    public function update($artifact, $input)
     {
-        $ertifact->fill($input);
+        $artifact->fill($input);
 
-        $url = $ertifact->ertifact_url;
-        $url = explode('?', $url)[0];
+        $url = $artifact->artifact_url;
+        //$url = explode('?', $url)[0];
         $url = rtrim($url, '/');
-        $ertifact->ertifact_url = $url;
+        $artifact->artifact_url = $url;
 
-        $ertifact->save();
+        $artifact->save();
 
-        return $ertifact;
+        return $artifact;
     }
 
     /**
