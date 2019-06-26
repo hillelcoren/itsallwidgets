@@ -90,7 +90,7 @@ class LoadArtifacts extends Command
                 $xp = new \domxpath($d);
 
                 $item = $this->pasreMetaData($xp, $item);
-                $item = $this->parseSchema($xp, $item)
+                $item = $this->parseSchema($xp, $item);
                 $item = $this->parseRepoUrl($xp, $item);
 
                 $this->info(json_encode($item));
