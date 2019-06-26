@@ -15,12 +15,19 @@ class FlutterArtifact extends Model implements Feedable
         'title',
         'slug',
         'url',
-        'description',
+        'comment',
         'published_date',
         'type',
         'source_url',
+        'repo_url',
         'is_approved',
         'is_visible',
+        'meta_description',
+        'meta_publisher',
+        'meta_author',
+        'meta_author_url',
+        'meta_twitter_creator',
+        'meta_twitter_site',
     ];
 
     protected $hidden = [

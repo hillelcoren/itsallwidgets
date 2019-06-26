@@ -49,14 +49,17 @@ class LoadArtifacts extends Command
         $data = json_decode($data);
 
         foreach ($data->issues as $issue) {
-            $this->info(json_encode($issue));
+            //$this->info(json_encode($issue));
 
             $link = 'https://json.flutterweekly.net/' . $issue->file;
             $artifacts = file_get_contents($link);
+
             $artifacts = json_decode($artifacts);
             $publishedDate = date('Y-m-d', strtotime($issue->publishedOn));
 
             foreach ($artifacts->articles as $artifact) {
+                //$this->info(json_encode($artifact));
+                //$this->info($artifact->url);continue;
 
                 $slug = str_slug($artifact->title);
 
@@ -72,16 +75,91 @@ class LoadArtifacts extends Command
                     'title' => $artifact->title,
                     'slug' => $slug,
                     'url' => $artifact->url,
-                    'description' => $artifact->description,
+                    'comment' => $artifact->description,
                     'type' => $type,
                     'source_url' => $link,
                     'published_date' => $publishedDate,
                     'is_approved' => true,
                 ];
 
+                // https://stackoverflow.com/a/9244634/497368
+                libxml_use_internal_errors(true);
+                $c = file_get_contents($artifact->url);
+                $d = new \DomDocument();
+                $d->loadHTML($c);
+                $xp = new \domxpath($d);
+
+                foreach ($xp->query("//meta[@property='og:description']") as $el) {
+                    $item['meta_description'] = $el->getAttribute("content");
+                    break;
+                }
+
+                foreach ($xp->query("//meta[@name='author']") as $el) {
+                    $item['meta_author'] = $el->getAttribute("content");
+                    break;
+                }
+
+                foreach ($xp->query("//link[@rel='author']") as $el) {
+                    $item['meta_author_url'] = $el->getAttribute("href");
+                    break;
+                }
+
+                foreach ($xp->query("//meta[@name='twitter:creator']") as $el) {
+                    $item['meta_twitter_creator'] = $el->getAttribute("content");
+                    break;
+                }
+
+                foreach ($xp->query("//meta[@name='twitter:site']") as $el) {
+                    $item['meta_twitter_site'] = $el->getAttribute("content");
+                    break;
+                }
+
+                foreach ($xp->query("//meta[@property='og:image']") as $el) {
+                    $image = $el->getAttribute("content");
+                    $this->info('image: ' . $image);
+                }
+
+                $githubLinks = [];
+                foreach ($xp->query("//a") as $el) {
+                    $url = $el->getAttribute("href");
+                    $matches = [];
+                    preg_match('/https:\/\/github.com\/(\w+)\/(\w+)/', $url, $matches);
+                    if (count($matches)) {
+                        $githubLink = $matches[0];
+                        if (isset($githubLinks[$githubLink])) {
+                            $githubLinks[$githubLink]++;
+                        } else {
+                            $githubLinks[$githubLink] = 1;
+                        }
+                    }
+                }
+                if (count($githubLinks)) {
+                    arsort($githubLinks);
+                    $item['repo_url'] = key($githubLinks);
+                }
+
+                $json = $xp->query( '//script[@type="application/ld+json"]' );
+                if ($json && $json->item(0)) {
+                    $json = trim($json->item(0)->nodeValue);
+                    $json = json_decode($json);
+
+                    if (! isset($item['meta_author'])) {
+                        $item['meta_author'] = $json->author->name;
+                    }
+                    if (! isset($item['meta_author_url'])) {
+                        $item['meta_author_url'] = $json->author->url;
+                    }
+                    if (! isset($item['meta_publisher'])) {
+                        $item['meta_publisher'] = $json->publisher->name;
+                    }
+                }
+
+                $this->info(json_encode($item));
                 $this->artifactRepo->store($item, 1);
-                exit;
+                //exit;
             }
+
+            exit;
         }
 
         $this->info('Done');

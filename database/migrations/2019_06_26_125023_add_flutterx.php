@@ -20,14 +20,19 @@ class AddFlutterx extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->string('url')->unique();
-            $table->text('description')->nullable();
+            $table->text('comment')->nullable();
             $table->enum('type', ['article', 'video', 'library']);
-            $table->string('source_url');
+            $table->string('source_url')->nullable();
+            $table->string('repo_url')->nullable();
             $table->date('published_date');
             $table->boolean('is_visible')->default(true);
             $table->boolean('is_approved')->default(false);
-            $table->text('social_title')->nullable();
-            $table->text('social_description')->nullable();
+            $table->text('meta_description')->nullable();
+            $table->string('meta_publisher')->nullable();
+            $table->string('meta_author')->nullable();
+            $table->string('meta_author_url')->nullable();
+            $table->string('meta_twitter_creator')->nullable();
+            $table->string('meta_twitter_site')->nullable();
         });
 
         Schema::table('flutter_artifacts', function(Blueprint $table) {
