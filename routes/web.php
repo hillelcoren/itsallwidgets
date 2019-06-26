@@ -20,7 +20,7 @@ Route::group(['domain' => 'flutterevents.{env}'], function() {
     Route::get('{flutter_event}', 'FlutterEventController@show');
 });
 
-Route::group(['domain' => 'itsallwidgets.{env}'], function() {
+//Route::group(['domain' => 'itsallwidgets.{env}'], function() {
     Route::get('flutter-apps', function () {
         return redirect('/', 301);
     });
@@ -48,8 +48,8 @@ Route::group(['domain' => 'itsallwidgets.{env}'], function() {
     Route::get('flutter-event-click/{flutter_event}/{click_type}', 'FlutterEventController@trackClicked');
 
     Route::get('podcast', 'PodcastController@index');
-    Route::get('podcast/episodes/{episode}/{title?}', 'PodcastController@show');
     Route::get('podcast/download/episode-{episode}.{format}', 'PodcastController@download');
+    Route::get('podcast/episodes/{episode}/{title?}', 'PodcastController@show');
 
     Route::get('flutter-events', 'FlutterEventController@index');
 
@@ -77,4 +77,4 @@ Route::group(['domain' => 'itsallwidgets.{env}'], function() {
         Route::put('flutter-event/{flutter_event}', 'FlutterEventController@update');
     });
 
-});
+//});
