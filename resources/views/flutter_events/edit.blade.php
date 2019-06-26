@@ -16,6 +16,12 @@
 			$('#saveButton').addClass('is-loading').prop('disabled', true);
 		}
 
+		function formatUrl() {
+			var url = $("input[name='event_url']").val();
+			url = url.split('?')[0].replace(/\/+$/, '');
+			$("input[name='event_url']").val(url);
+		}
+
 		function updatePreview() {
 			var banner = $('textarea[name=banner]').val();
 			var name = $('input[name=event_name]').val() || 'EVENT';
@@ -115,7 +121,7 @@
 							Event Link <span class="required">*</span>
 						</label>
 						<div class="control has-icons-left">
-							{{ Form::url('event_url', $event->event_url, ['class' => 'input', 'required' => true]) }}
+							{{ Form::url('event_url', $event->event_url, ['class' => 'input', 'required' => true, 'onchange' => 'formatUrl()']) }}
 
 							<span class="icon is-small is-left">
 								<i class="fas fa-link"></i>
