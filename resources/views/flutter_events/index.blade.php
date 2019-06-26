@@ -4,10 +4,12 @@
 @section('description', 'An Open List of Flutter Events')
 @section('image_url', asset('images/events_twitter.png'))
 @section('header_title', 'An Open List of Flutter Events')
-@section('header_subtitle', 'Events are synced with Meetup.com or can be added manually')
-
 @section('header_button_url', iawUrl() . '/' . (auth()->check() ? 'flutter-event/submit' : 'auth/google?intended_url=flutter-event/submit'))
 @section('header_button_label', 'SUBMIT EVENT')
+
+@section('header_subtitle')
+    Events are synced with <a href="https://www.meetup.com/find/?allMeetups=false&keywords=flutter&radius=Infinity" target="_blank">Meetup.com</a> or can be added manually
+@endsection
 
 @section('head')
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
