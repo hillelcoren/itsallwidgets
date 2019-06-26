@@ -65,7 +65,7 @@ class LoadArtifacts extends Command
 
                 if ($artifact->section == 'articles') {
                     $type = 'article';
-                } elseif ($artifact->section == 'video') {
+                } elseif ($artifact->section == 'videos') {
                     $type = 'video';
                 } else {
                     $type = 'library';
@@ -154,13 +154,13 @@ class LoadArtifacts extends Command
             $json = json_decode($json);
 
             if (! isset($item['meta_author'])) {
-                $item['meta_author'] = $json->author->name;
+                $data['meta_author'] = $json->author->name;
             }
             if (! isset($item['meta_author_url'])) {
-                $item['meta_author_url'] = $json->author->url;
+                $data['meta_author_url'] = $json->author->url;
             }
             if (! isset($item['meta_publisher'])) {
-                $item['meta_publisher'] = $json->publisher->name;
+                $data['meta_publisher'] = $json->publisher->name;
             }
         }
 
