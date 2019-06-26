@@ -44,12 +44,10 @@ class FlutterArtifactRepository
         $artifact = new FlutterArtifact;
         $artifact->fill($input);
         $artifact->user_id = $user_id;
-
-        $url = $artifact->url;
-        //$url = explode('?', $url)[0];
-        $url = rtrim($url, '/');
-        $artifact->url = $url;
-
+        $artifact->url = rtrim($artifact->url , '/');
+        $artifact->source_url = rtrim($artifact->source_url , '/');
+        $artifact->repo_url = rtrim($artifact->repo_url , '/');
+        $artifact->meta_author_url = rtrim($artifact->meta_author_url , '/');
         $artifact->save();
 
         return $artifact;
@@ -63,12 +61,10 @@ class FlutterArtifactRepository
     public function update($artifact, $input)
     {
         $artifact->fill($input);
-
-        $url = $artifact->artifact_url;
-        //$url = explode('?', $url)[0];
-        $url = rtrim($url, '/');
-        $artifact->artifact_url = $url;
-
+        $artifact->url = rtrim($artifact->url , '/');
+        $artifact->source_url = rtrim($artifact->source_url , '/');
+        $artifact->repo_url = rtrim($artifact->repo_url , '/');
+        $artifact->meta_author_url = rtrim($artifact->meta_author_url , '/');
         $artifact->save();
 
         return $artifact;

@@ -59,7 +59,6 @@ class LoadArtifacts extends Command
 
             foreach ($artifacts->articles as $artifact) {
                 //$this->info(json_encode($artifact));
-                //$this->info($artifact->url);continue;
 
                 $slug = str_slug($artifact->title);
 
