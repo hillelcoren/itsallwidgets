@@ -48,8 +48,8 @@ Route::group(['domain' => 'itsallwidgets.{env}'], function() {
     Route::get('flutter-event-click/{flutter_event}/{click_type}', 'FlutterEventController@trackClicked');
 
     Route::get('podcast', 'PodcastController@index');
-    Route::get('podcast/download/episode-{episode}.{format}', 'PodcastController@download');
     Route::get('podcast/episodes/{episode}/{title?}', 'PodcastController@show');
+    Route::get('podcast/download/episode-{episode}.{format}', 'PodcastController@download');
 
     Route::get('flutter-events', 'FlutterEventController@index');
 
