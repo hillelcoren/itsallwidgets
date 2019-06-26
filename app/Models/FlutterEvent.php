@@ -153,7 +153,7 @@ class FlutterEvent extends Model implements Feedable
     {
         $ip = \Request::getClientIp();
         $banner = false;
-        /*
+
         if (! cache()->has($ip . '_latitude')) {
             return 0;
         }
@@ -164,10 +164,6 @@ class FlutterEvent extends Model implements Feedable
         if (!$lat1 || !$lon1) {
             return 0;
         }
-        */
-
-        $lat1 = 32.263407;
-        $lon1 = 34.825821;
 
         $lat2 = $this->latitude;
         $lon2 = $this->longitude;
