@@ -263,7 +263,7 @@
     <div class="container" v-cloak>
         <div v-if="filteredEvents.length == 0" class="is-wide has-text-centered is-vertical-center"
         style="height:400px; text-align:center; font-size: 32px; color: #AAA">
-        No apps found
+        No events found
     </div>
     <div class="columns is-multiline is-6 is-variable">
         <div v-for="event in filteredEvents" :key="event.id" class="column" v-bind:class="columnClass">
