@@ -39,6 +39,7 @@ class FlutterEvent extends Model implements Feedable
     protected $appends = [
         'pretty_event_date',
         'location',
+        'distance',
         'text_description',
     ];
 
@@ -146,6 +147,35 @@ class FlutterEvent extends Model implements Feedable
     public function getCity()
     {
         return $this->city ?: $this->address;
+    }
+
+    public function getDistanceAttribute()
+    {
+        $ip = \Request::getClientIp();
+        $banner = false;
+
+        if (! cache()->has($ip . '_latitude')) {
+            return 0;
+        }
+
+        $lat1 = cache($ip . '_latitude');
+        $lon1 = cache($ip . '_longitude');
+
+        if (!$lat1 || !$lon1) {
+            return 0;
+        }
+
+        $lat2 = $this->latitude;
+        $lon2 = $this->longitude;
+
+        // https://stackoverflow.com/a/30556851/497368
+        $theta = $lon1 - $lon2;
+        $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+        $dist = acos($dist);
+        $dist = rad2deg($dist);
+        $miles = $dist * 60 * 1.1515;
+
+        return $miles;
     }
 
     public function getTextDescriptionAttribute()

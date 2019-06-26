@@ -61,8 +61,10 @@ class AppServiceProvider extends ServiceProvider
                 $latitude = floatval($data['geoplugin_latitude']);
                 $longitude = floatval($data['geoplugin_longitude']);
             }
-            cache([$ip . '_latitude' => $latitude], 60 * 60 * 24);
-            cache([$ip . '_longitude' => $longitude], 60 * 60 * 24);
+            if ($latitude && $longitude) {
+                cache([$ip . '_latitude' => $latitude], 60 * 60 * 24);
+                cache([$ip . '_longitude' => $longitude], 60 * 60 * 24);
+            }
         }
     }
 
