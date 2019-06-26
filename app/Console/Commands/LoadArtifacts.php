@@ -82,29 +82,30 @@ class LoadArtifacts extends Command
                     'is_approved' => true,
                 ];
 
-                $item = $this->loadMetaData($item);
-                $item = $this->parseRepoUrl($item);
+                // https://stackoverflow.com/a/9244634/497368
+                libxml_use_internal_errors(true);
+                $c = file_get_contents($artifact->url);
+                $d = new \DomDocument();
+                $d->loadHTML($c);
+                $xp = new \domxpath($d);
+
+                $item = $this->pasreMetaData($xp, $item);
+                $item = $this->parseSchema($xp, $item)
+                $item = $this->parseRepoUrl($xp, $item);
 
                 $this->info(json_encode($item));
                 $this->artifactRepo->store($item, 1);
                 //exit;
             }
-            
+
             exit;
         }
 
         $this->info('Done');
     }
 
-    private function loadMetaData($data)
+    private function pasreMetaData($xp, $data)
     {
-        // https://stackoverflow.com/a/9244634/497368
-        libxml_use_internal_errors(true);
-        $c = file_get_contents($artifact->url);
-        $d = new \DomDocument();
-        $d->loadHTML($c);
-        $xp = new \domxpath($d);
-
         foreach ($xp->query("//meta[@property='og:description']") as $el) {
             $data['meta_description'] = $el->getAttribute("content");
             break;
@@ -116,7 +117,14 @@ class LoadArtifacts extends Command
         }
 
         foreach ($xp->query("//link[@rel='author']") as $el) {
-            $data['meta_author_url'] = $el->getAttribute("href");
+            $url = $el->getAttribute("href");
+
+            if (substr($url, 0, 1) == '/') {
+                $parse = parse_url($data['url']);
+                $url = $parse['host'] . $url;
+            }
+
+            $data['meta_author_url'] = $url;
             break;
         }
 
@@ -131,10 +139,15 @@ class LoadArtifacts extends Command
         }
 
         foreach ($xp->query("//meta[@property='og:image']") as $el) {
-            $data = $el->getAttribute("content");
+            $image = $el->getAttribute("content");
             $this->info('image: ' . $image);
         }
 
+        return $data;
+    }
+
+    private function parseSchema($xp, $data)
+    {
         $json = $xp->query( '//script[@type="application/ld+json"]' );
         if ($json && $json->item(0)) {
             $json = trim($json->item(0)->nodeValue);
@@ -154,7 +167,7 @@ class LoadArtifacts extends Command
         return $data;
     }
 
-    private function parseRepoUrl($data)
+    private function parseRepoUrl($xp, $data)
     {
         $githubLinks = [];
 
