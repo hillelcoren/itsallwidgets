@@ -186,6 +186,7 @@ class FlutterEventController extends Controller
             $obj->text_message = $event->getTextBanner();
             $obj->html_message = $event->getBanner(true);
             $obj->description = $event->description;
+            $obj->distance = $event->distance;
             $data[] = $obj;
         }
 
