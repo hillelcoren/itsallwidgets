@@ -361,14 +361,14 @@
                 <div class="subtitle" style="font-size:18px; padding-bottom:6px;">
                     @yield('header_subtitle', 'Feel free to add an app in progress and update it when it goes live')
                 </div>
-                @if (!request()->is('podcast*') || (auth()->check() && auth()->user()->is_admin))
-                <a class="button is-elevated-dark" style="padding: 20px 32px 18px 32px"
-                    href="@yield('header_button_url', url(auth()->check() ? 'submit' : 'auth/google?intended_url=submit'))">
-                    <span class="icon">
-                        <i class="@yield('header_button_icon', 'fas fa-cloud-upload-alt')"></i>
-                    </span> &nbsp;
-                    <span>@yield('header_button_label', 'SUBMIT APP')</span>
-                </a>
+                @if (!isFX() && (!request()->is('podcast*') || (auth()->check() && auth()->user()->is_admin)))
+                    <a class="button is-elevated-dark" style="padding: 20px 32px 18px 32px"
+                        href="@yield('header_button_url', url(auth()->check() ? 'submit' : 'auth/google?intended_url=submit'))">
+                        <span class="icon">
+                            <i class="@yield('header_button_icon', 'fas fa-cloud-upload-alt')"></i>
+                        </span> &nbsp;
+                        <span>@yield('header_button_label', 'SUBMIT APP')</span>
+                    </a>
                 @endif
             </div>
         </div>
@@ -477,14 +477,14 @@
 
             <br/> &nbsp; <br/>
 
-            @if (!request()->is('podcast*') || (auth()->check() && auth()->user()->is_admin))
-            <a class="button is-elevated-dark" style="padding: 20px 32px 18px 32px"
-                href="@yield('header_button_url', url(auth()->check() ? 'submit' : 'auth/google?intended_url=submit'))">
-                <span class="icon">
-                    <i class="@yield('header_button_icon', 'fas fa-cloud-upload-alt')"></i>
-                </span> &nbsp;
-                <span>@yield('header_button_label', 'SUBMIT APP')</span>
-            </a>
+            @if (!isFX() && (!request()->is('podcast*') || (auth()->check() && auth()->user()->is_admin)))
+                <a class="button is-elevated-dark" style="padding: 20px 32px 18px 32px"
+                    href="@yield('header_button_url', url(auth()->check() ? 'submit' : 'auth/google?intended_url=submit'))">
+                    <span class="icon">
+                        <i class="@yield('header_button_icon', 'fas fa-cloud-upload-alt')"></i>
+                    </span> &nbsp;
+                    <span>@yield('header_button_label', 'SUBMIT APP')</span>
+                </a>
             @endif
         </div>
     </footer>
