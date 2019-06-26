@@ -83,21 +83,20 @@ class LoadArtifacts extends Command
 
                 // https://stackoverflow.com/a/9244634/497368
                 libxml_use_internal_errors(true);
-                $c = file_get_contents($artifact->url);
-                $d = new \DomDocument();
-                $d->loadHTML($c);
-                $xp = new \domxpath($d);
 
-                $item = $this->pasreMetaData($xp, $item);
-                $item = $this->parseSchema($xp, $item);
-                $item = $this->parseRepoUrl($xp, $item);
+                if ($c = @file_get_contents($artifact->url)) {
+                    $d = new \DomDocument();
+                    $d->loadHTML($c);
+                    $xp = new \domxpath($d);
 
-                $this->info(json_encode($item));
-                $this->artifactRepo->store($item, 1);
-                //exit;
+                    $item = $this->pasreMetaData($xp, $item);
+                    $item = $this->parseSchema($xp, $item);
+                    $item = $this->parseRepoUrl($xp, $item);
+
+                    $this->info(json_encode($item));
+                    $this->artifactRepo->store($item, 1);
+                }
             }
-
-            exit;
         }
 
         $this->info('Done');
@@ -152,13 +151,17 @@ class LoadArtifacts extends Command
             $json = trim($json->item(0)->nodeValue);
             $json = json_decode($json);
 
-            if (! isset($item['meta_author'])) {
+            if (! isset($item['meta_author'])
+                && property_exists($json, 'author')) {
                 $data['meta_author'] = $json->author->name;
             }
-            if (! isset($item['meta_author_url'])) {
+            if (! isset($item['meta_author_url'])
+                && property_exists($json, 'author')
+                && property_exists($json->author, 'url')) {
                 $data['meta_author_url'] = $json->author->url;
             }
-            if (! isset($item['meta_publisher'])) {
+            if (! isset($item['meta_publisher'])
+                && property_exists($json, 'publisher')) {
                 $data['meta_publisher'] = $json->publisher->name;
             }
         }
