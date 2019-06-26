@@ -239,8 +239,7 @@
                         <div class="select is-medium filter-control" style="font-size: 16px; margin-right:50px">
                             <select v-model="sort_by" onchange="$(this).blur()">
                                 <option value="sort_date">DATE</option>
-                                <option value="sort_name">NAME</option>
-                                <option value="sort_country">COUNTRY</option>
+                                <option value="sort_distance">DISTANCE</option>
                             </select>
                         </div>
                         <a class="button is-white is-slightly-elevated" href="{{ feUrl() }}/feed" target="_blank">
@@ -612,16 +611,12 @@ computed: {
         }
 
         events.sort(function(itemA, itemB) {
-            if (sort_by == 'sort_date') {
+            if (sort_by == 'sort_distance' && itemA.distance != itemB.distance) {
+                return itemA.distance - itemB.distance;
+            } else {
                 return (itemA.event_date || '').toLowerCase()
                     .localeCompare((itemB.event_date || '').toLowerCase());
-            } else if (sort_by == 'sort_country') {
-                return (itemA.country || '').toLowerCase()
-                    .localeCompare((itemB.country || '').toLowerCase());
-            } else {
-                return (itemA.event_name || '').toLowerCase()
-                    .localeCompare((itemB.event_name || '').toLowerCase());
-            }
+            }            
         });
 
         return events;
