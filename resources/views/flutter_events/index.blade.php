@@ -455,6 +455,11 @@ watch: {
             app.updateMap();
         },
     },
+    filter_distance: {
+        handler() {
+            app.updateMap();
+        },
+    },
     sort_by: {
         handler() {
             app.saveFilters();
