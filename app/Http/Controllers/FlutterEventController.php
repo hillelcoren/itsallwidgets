@@ -38,9 +38,11 @@ class FlutterEventController extends Controller
             $events = FlutterEvent::orderBy('event_date', 'asc')->approved()->future()->get();
         }
 
+        $locationKey = \Request::getClientIp() . '_latitude';
         $data = [
             'events' => $events,
             'useBlackHeader' => true,
+            'hasLocation' => cache()->has($locationKey),
         ];
 
         return view('flutter_events.index', $data);

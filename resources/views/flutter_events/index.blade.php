@@ -221,27 +221,29 @@
                             step="1" min="2" max="6" type="range" v-model="cards_per_row">
                         </div>
                         -->
-                        <div class="is-medium filter-label">
-                            <label class="label is-medium" style="font-weight: normal; font-size: 16px"> DISTANCE </label>
-                        </div>
-                        <div class="select is-medium filter-control" style="font-size: 16px;">
-                            <select v-model="filter_distance" onchange="$(this).blur()">
-                                <option value="filter_distance_any"></option>
-                                <option value="filter_distance_50">50 miles</option>
-                                <option value="filter_distance_100">100 miles</option>
-                                <option value="filter_distance_250">250 miles</option>
-                                <option value="filter_distance_500">500 miles</option>
-                            </select>
-                        </div>
-                        <div class="is-medium filter-label">
-                            <label class="label is-medium" style="font-weight: normal; font-size: 16px"> SORT </label>
-                        </div>
-                        <div class="select is-medium filter-control" style="font-size: 16px; margin-right:50px">
-                            <select v-model="sort_by" onchange="$(this).blur()">
-                                <option value="sort_date">DATE</option>
-                                <option value="sort_distance">DISTANCE</option>
-                            </select>
-                        </div>
+                        @if ($hasLocation)
+                            <div class="is-medium filter-label">
+                                <label class="label is-medium" style="font-weight: normal; font-size: 16px"> DISTANCE </label>
+                            </div>
+                            <div class="select is-medium filter-control" style="font-size: 16px;">
+                                <select v-model="filter_distance" onchange="$(this).blur()">
+                                    <option value="filter_distance_any"></option>
+                                    <option value="filter_distance_50">50 miles</option>
+                                    <option value="filter_distance_100">100 miles</option>
+                                    <option value="filter_distance_250">250 miles</option>
+                                    <option value="filter_distance_500">500 miles</option>
+                                </select>
+                            </div>
+                            <div class="is-medium filter-label">
+                                <label class="label is-medium" style="font-weight: normal; font-size: 16px"> SORT </label>
+                            </div>
+                            <div class="select is-medium filter-control" style="font-size: 16px; margin-right:50px">
+                                <select v-model="sort_by" onchange="$(this).blur()">
+                                    <option value="sort_date">DATE</option>
+                                    <option value="sort_distance">DISTANCE</option>
+                                </select>
+                            </div>
+                        @endif
                         <a class="button is-white is-slightly-elevated" href="{{ feUrl() }}/feed" target="_blank">
                             <i style="font-size: 20px" class="fas fa-rss"></i> &nbsp;
                             EVENT FEED
