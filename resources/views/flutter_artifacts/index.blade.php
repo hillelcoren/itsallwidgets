@@ -147,12 +147,12 @@
                             <input class="slider is-fullwidth is-medium is-info"
                             step="1" min="2" max="6" type="range" v-model="cards_per_row">
                         </div>
-                        -->
 
                         <a class="button is-white is-slightly-elevated" href="{{ feUrl() }}/feed" target="_blank">
                             <i style="font-size: 20px" class="fas fa-rss"></i> &nbsp;
                             EVENT FEED
                         </a>
+                        -->
 
                     </p>
                 </div>
@@ -190,24 +190,20 @@
                     </header>
 
                     <div class="content" style="padding-left:16px; padding-right:16px;">
+
+                        <!--
                         <p class="help short-address">
                         </p>
+                        -->
 
                         <div class="short-description" v-bind:title="artifact.short_description">
                             @{{ artifact.comment }}
                         </div>
 
                         <div class="artifact-links" style="font-size:13px; padding-top:16px; padding-bottom:16px">
-                            <a v-bind:href="artifact.artifact_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
-                                VIEW EVENT
+                            <a v-bind:href="artifact.url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                VIEW RESOURCE
                             </a>
-                            <span style="color:#CCCCCC">
-                                &nbsp; | &nbsp;
-                            </span>
-                            <a v-bind:href="'https://www.google.com/maps/search/?api=1&query=' + artifact.latitude + ',' + artifact.longitude" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
-                                VIEW MAP
-                            </a>
-
                             <span v-if="artifact.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} || {{ auth()->check() && auth()->user()->is_admin ? 'true' : 'false' }}">
                                 <span style="color:#CCCCCC">
                                     &nbsp; | &nbsp;
@@ -245,7 +241,7 @@
                     <div v-if="selected_artifact.user_id == {{ auth()->user()->id }}">
                         <a class="button is-info is-slightly-elevated" v-bind:href="'/flutter-artifact/' + selected_artifact.slug + '/edit'">
                             <i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
-                            Edit Artifact
+                            Edit Resource
                         </a>
                         <p>&nbsp;</p>
                     </div>
@@ -253,18 +249,14 @@
 
                 <div class="content">
                     <div style="font-size:24px; padding-bottom:10px;">
-                        @{{ selected_artifact.artifact_name }}
+                        @{{ selected_artifact.title }}
                     </div>
 
                     <div style="border-bottom: 2px #368cd5 solid; width: 50px;"></div><br/>
 
-                    <div class="subtitle">
-                        @{{ selected_artifact.pretty_artifact_date }} • @{{ selected_artifact.location }}
-                    </div>
-
                     <div class="content">
                         <a v-bind:href="selected_artifact.artifact_url" target="_blank" rel="nofollow">
-                            @{{ selected_artifact.artifact_url }}
+                            @{{ selected_artifact.url }}
                         </a>
                     </div>
 
@@ -301,7 +293,9 @@
 
                     </div>
 
-                    <span class="block wrap">@{{ selected_artifact.text_description }}</span>
+                    <div class="block wrap">@{{ selected_artifact.comment }}</div>
+
+                    <div class="block wrap">@{{ selected_artifact.meta_description }}</div>
 
                 </div>
             </div>
@@ -490,25 +484,15 @@ computed: {
 
         if (search || distance) {
             artifacts = artifacts.filter(function(item) {
-                if (distance == 'filter_distance_50' && item.distance > 50) {
-                    return false;
-                } else if (distance == 'filter_distance_100' && item.distance > 100) {
-                    return false;
-                } else if (distance == 'filter_distance_250' && item.distance > 250) {
-                    return false;
-                } else if (distance == 'filter_distance_500' && item.distance > 500) {
-                    return false;
-                }
-
-                if ((item.artifact_name || '').toLowerCase().indexOf(search) >= 0) {
+                if ((item.title  || '').toLowerCase().indexOf(search) >= 0) {
                     return true;
                 }
 
-                if ((item.address || '').toLowerCase().indexOf(search) >= 0) {
+                if ((item.comment || '').toLowerCase().indexOf(search) >= 0) {
                     return true;
                 }
 
-                if ((item.text_description || '').toLowerCase().indexOf(search) >= 0) {
+                if ((item.meta_description || '').toLowerCase().indexOf(search) >= 0) {
                     return true;
                 }
 
