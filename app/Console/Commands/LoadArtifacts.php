@@ -192,7 +192,7 @@ class LoadArtifacts extends Command
 
             if ($json && ! isset($item['meta_author'])
                 && property_exists($json, 'author')
-                && property_exists($json->author, 'name')) {
+                && $json->author && property_exists($json->author, 'name')) {
                 $data['meta_author'] = $json->author->name;
             }
             if ($json && ! isset($item['meta_author_url'])
