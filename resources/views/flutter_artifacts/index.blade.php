@@ -15,7 +15,29 @@
 
     <style>
 
-    #map { height: 300px; }
+
+    .thumbnail-wrapper {
+      width: 90%;
+      max-width: 600px;
+      margin: 1em auto;
+      background-color: #E9ADAD;
+      max-height: 200px;
+    }
+
+    .thumbnail-container {
+      position:relative;
+      padding-bottom:40%;
+      overflow: hidden;
+    }
+
+    img .thumbnail {
+      position:absolute;
+      top:-50%; bottom:-50%;
+      margin:auto;
+      width: 100%;
+      height: auto;
+    }
+
 
     div.artifact-links > a:hover {
         text-decoration: underline;
@@ -211,11 +233,11 @@
                             @{{ artifact.comment }}
                         </div>
 
-                        <div v-if="artifact.image_url" class="card-image" style="line-height:0px">
-                            <img v-bind:src="artifact.image_url + '?updated_at=' + artifact.updated_at"
-                                widthx="1080" heightx="1920"/>
+                        <div class="thumbnail-wrapper card-image">
+                          <div class="thumbnail-container">
+                            <img v-bind:src="artifact.image_url + '?updated_at=' + artifact.updated_at" class="thumbnail" width="100%"/>
+                          </div>
                         </div>
-
 
                         <div class="artifact-links" style="font-size:13px; padding-top:16px; padding-bottom:16px">
                             <a v-bind:href="artifact.url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
