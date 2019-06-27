@@ -151,7 +151,7 @@
             <div class="container">
                 <div class="field is-grouped is-grouped-multiline is-vertical-center">
                     <p class="control is-expanded has-icons-left">
-                        <input v-model="search" class="input" type="text" placeholder="SEARCH" BAK-v-bind:placeholder="'Search ' + unpaginatedFilteredArtifacts.length + ' artifacts and counting.."
+                        <input v-model="search" class="input is-medium" type="text" placeholder="SEARCH" BAK-v-bind:placeholder="'Search ' + unpaginatedFilteredArtifacts.length + ' artifacts and counting.."
                             autofocus="true" style="margin-top: 10px" v-bind:style="{ backgroundColor: searchBackgroundColor()}">
                         <span class="icon is-small is-left" style="margin-top: 10px">
                             <i class="fas fa-search"></i>
@@ -161,7 +161,7 @@
                         <div class="is-medium filter-label">
                             <label class="label is-medium" style="font-weight: normal; font-size: 16px"> TYPE </label>
                         </div>
-                        <div class="select is-medium filter-control" style="font-size: 16px;">
+                        <div class="select is-large filter-control" style="font-size: 16px;">
                             <select v-model="filter_type" onchange="$(this).blur()">
                                 <option value="filter_type_all">ALL</option>
                                 <option value="filter_type_articles">ARTICLES</option>
@@ -173,7 +173,7 @@
                         <div class="is-medium filter-label">
                             <label class="label is-medium" style="font-weight: normal; font-size: 16px"> SORT </label>
                         </div>
-                        <div class="select is-medium filter-control" style="font-size: 16px;">
+                        <div class="select is-large filter-control" style="font-size: 16px;">
                             <select v-model="sort_by" onchange="$(this).blur()">
                                 <!-- <option value="sort_featured">FEATURED</option> -->
                                 <option value="sort_newest">NEWEST</option>
