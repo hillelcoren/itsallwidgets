@@ -106,7 +106,7 @@ class FlutterArtifact extends Model implements Feedable
     public function getTypeClassAttribute()
     {
         if ($this->type == 'article') {
-            return 'info';
+            return 'link';
         } elseif ($this->type == 'video') {
             return 'primary';
         } elseif ($this->type == 'library') {
