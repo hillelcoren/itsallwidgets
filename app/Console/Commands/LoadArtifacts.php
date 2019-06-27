@@ -109,7 +109,7 @@ class LoadArtifacts extends Command
                             $extension = '';
                         }
 
-                        if ($contents = file_get_contents($imageUrl)) {
+                        if ($contents = @file_get_contents($imageUrl)) {
                             $url = '/thumbnails/artifact-' . $artifact->id . $extension;
                             $file = public_path($url);
                             file_put_contents($file, $contents);
