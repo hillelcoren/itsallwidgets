@@ -221,28 +221,23 @@
                                     @{{ artifact.meta_author }}
                                 </a>
                             </span>
-                            <span v-if="artifact.meta_twitter_creator" class="">
-                                <span v-if="artifact.meta_author_url">
-                                    <a target="_blank" v-bind:href="'https://twitter.com/' + artifact.meta_twitter_creator" v-on:click.stop rel="nofollow">
-                                        <i class="fab fa-twitter"></i>
-                                    </a>
-                                </span>
-                                <span v-if="!artifact.meta_author_url">
-                                    <a target="_blank" v-bind:href="'https://twitter.com/' + artifact.meta_twitter_creator" v-on:click.stop rel="nofollow">
-                                        @@{{ artifact.meta_twitter_creator }}
-                                    </a>
-                                </span>
+                            <span v-if="!artifact.meta_author_url && artifact.meta_twitter_creator" class="">
+                                <a target="_blank" v-bind:href="'https://twitter.com/' + artifact.meta_twitter_creator" v-on:click.stop rel="nofollow">
+                                    @@{{ artifact.meta_twitter_creator }}
+                                </a>
                             </span>
-                            <span v-if="artifact.meta_author_url || artifact.meta_twitter_creator" class="">
+
+                            <span v-if="(artifact.meta_author_url || artifact.meta_twitter_creator) && (artifact.meta_twitter_site || artifact.meta_publisher)" class="">
                                 •
                             </span>
+
                             <span v-if="artifact.meta_twitter_site" class="">
-                                <a target="_blank" v-bind:href="'https://twitter.com/' + artifact.meta_twitter_creator" v-on:click.stop rel="nofollow">
+                                <a target="_blank" v-bind:href="'https://twitter.com/' + artifact.meta_twitter_site" v-on:click.stop rel="nofollow">
                                     @{{ artifact.meta_publisher || artifact.meta_twitter_site }}
                                 </a>
                             <span>
-                            <span v-if="!artifact.meta_twitter_site" class="">
-                                @{{ artifact.meta_publisher || artifact.meta_twitter_site }}
+                            <span v-if="!artifact.meta_twitter_site && artifact.meta_publisher" class="">
+                                @{{ artifact.meta_publisher }}
                             <span>
                         </div>
 
@@ -568,7 +563,23 @@ computed: {
                     return true;
                 }
 
+                if ((item.meta_author || '').toLowerCase().indexOf(search) >= 0) {
+                    return true;
+                }
+
+                if ((item.meta_publisher || '').toLowerCase().indexOf(search) >= 0) {
+                    return true;
+                }
+
                 if ((item.meta_description || '').toLowerCase().indexOf(search) >= 0) {
+                    return true;
+                }
+
+                if ((item.meta_twitter_creator || '').toLowerCase().indexOf(search) >= 0) {
+                    return true;
+                }
+
+                if ((item.meta_twitter_site || '').toLowerCase().indexOf(search) >= 0) {
                     return true;
                 }
 
