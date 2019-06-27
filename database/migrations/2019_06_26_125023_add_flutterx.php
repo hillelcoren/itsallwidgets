@@ -24,6 +24,7 @@ class AddFlutterx extends Migration
             $table->enum('type', ['article', 'video', 'library']);
             $table->string('source_url')->nullable();
             $table->string('repo_url')->nullable();
+            $table->string('image_url')->nullable();
             $table->date('published_date');
             $table->boolean('is_visible')->default(true);
             $table->boolean('is_approved')->default(false);

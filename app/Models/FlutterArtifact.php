@@ -18,6 +18,7 @@ class FlutterArtifact extends Model implements Feedable
         'comment',
         'published_date',
         'type',
+        'image_url',
         'source_url',
         'repo_url',
         'is_approved',

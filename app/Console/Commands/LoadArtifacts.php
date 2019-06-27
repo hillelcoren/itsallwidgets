@@ -137,8 +137,8 @@ class LoadArtifacts extends Command
         }
 
         foreach ($xp->query("//meta[@property='og:image']") as $el) {
-            $image = $el->getAttribute("content");
-            $this->info('image: ' . $image);
+            $data['image_url'] = $el->getAttribute("content");
+            break;
         }
 
         return $data;
