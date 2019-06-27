@@ -205,7 +205,7 @@ class LoadArtifacts extends Command
         foreach ($xp->query("//a") as $el) {
             $url = $el->getAttribute("href");
             $matches = [];
-            preg_match('/https:\/\/github.com\/(\w+)\/(\w+)/', $url, $matches);
+            preg_match('/https:\/\/github.com\/([\w-]+)\/([\w-]+)/', $url, $matches);
 
             if (count($matches)) {
                 $githubLink = $matches[0];
