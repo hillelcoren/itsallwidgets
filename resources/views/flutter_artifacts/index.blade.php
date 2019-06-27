@@ -202,6 +202,11 @@
 
                     <header style="padding-left:16px;padding-top:16px;padding-right:16px;">
 
+                        <a v-bind:href="artifact.repo_url" v-if="artifact.repo_url" v-on:click.stop rel="nofollow"
+                            class="is-pulled-right" target="_blank" style="color:black; margin-top:4px">
+                            <i class="fab fa-github"></i>
+                        </a>
+
                         <p v-bind:title="artifact.title" style="font-size:22px; padding-bottom:6px;">
                             @{{ artifact.title }}
                         </p>

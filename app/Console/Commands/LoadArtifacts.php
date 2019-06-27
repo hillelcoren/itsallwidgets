@@ -127,6 +127,11 @@ class LoadArtifacts extends Command
 
     private function pasreMetaData($xp, $data)
     {
+        foreach ($xp->query("//meta[@property='og:title']") as $el) {
+            $data['title'] = $el->getAttribute("content");
+            break;
+        }
+
         foreach ($xp->query("//meta[@property='og:description']") as $el) {
             $data['meta_description'] = $el->getAttribute("content");
             break;
