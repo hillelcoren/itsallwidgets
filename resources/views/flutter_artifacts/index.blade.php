@@ -7,8 +7,7 @@
 @section('header_button_url', false)
 
 @section('header_subtitle')
-    Sourced from <a href="https://flutterweekly.net" target="_blank">Flutter Weekly</a> &
-        <a href="https://medium.com/flutter-community" target="_blank">Flutter Community</a>
+    Sourced from the <a href="https://flutterweekly.net" target="_blank">Flutter Weekly Newsletter</a>
 @endsection
 
 @section('content')
@@ -336,7 +335,7 @@
                                 <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
                                     <span>
                                         <i style="font-size: 20px" class="fa fa-share"></i> &nbsp;
-                                        Share Artifact
+                                        Share Resource
                                     </span>
                                     <span class="icon is-small">
                                         <i class="fas fa-angle-down" aria-hidden="true"></i>

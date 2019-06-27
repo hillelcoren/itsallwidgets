@@ -15,11 +15,19 @@
     <i class="fas fa-info-circle"></i> &nbsp; About
 </a>
 
-@if (isIAW())
+@if (! isFE() && ! isIAW())
     <a class="navbar-item" href="{{ feUrl() }}">
         <i class="fas fa-calendar"></i> &nbsp; Events
     </a>
+@endif
 
+@if (! isFX())
+    <a class="navbar-item" href="{{ fxUrl() }}">
+        <i class="fas fa-calendar"></i> &nbsp; Resources
+    </a>
+@endif
+
+@if (isIAW())
     @if (auth()->check())
         <a class="navbar-item" href="{{ url('logout') }}">
             <i class="fas fa-user-alt"></i> &nbsp; Logout
