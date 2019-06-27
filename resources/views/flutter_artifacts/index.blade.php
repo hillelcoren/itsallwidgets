@@ -29,10 +29,9 @@
     }
 
     /* The Masonry Brick */
-    .itemx {
+    .masonry .item {
       background: #fff;
-      padding: 1em;
-      margin: 0 0 1.5em;
+      margin-top: 10px;
     }
 
     /* Masonry on large screens */
