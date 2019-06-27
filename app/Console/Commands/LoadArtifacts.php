@@ -111,8 +111,6 @@ class LoadArtifacts extends Command
                         }
 
                         $artifact->save();
-
-                        exit;
                     }
                 }
             }
