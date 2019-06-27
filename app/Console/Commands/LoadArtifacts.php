@@ -60,6 +60,11 @@ class LoadArtifacts extends Command
             foreach ($artifacts->articles as $artifact) {
                 //$this->info(json_encode($artifact));
 
+                if (FlutterArtifact::whereUrl(rtrim($artifact->url , '/'))->first()) {
+                    $this->info('Exists: skipping...');
+                    continue;
+                }
+
                 $slug = str_slug($artifact->title);
 
                 if ($artifact->section == 'articles') {
