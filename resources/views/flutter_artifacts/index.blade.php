@@ -236,19 +236,21 @@
                             @{{ artifact.comment }}
                         </div>
 
-                        <div class="artifact-links" style="font-size:13px; padding-top:16px; padding-bottom:16px">
-                            <a v-bind:href="artifact.url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
-                                VIEW RESOURCE
-                            </a>
-                            <span v-if="artifact.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} || {{ auth()->check() && auth()->user()->is_admin ? 'true' : 'false' }}">
-                                <span style="color:#CCCCCC">
-                                    &nbsp; | &nbsp;
-                                </span>
-                                <a v-bind:href="'{{ iawUrl() }}/flutter-artifact/' + artifact.slug + '/edit'" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
-                                    EDIT EVENT
+                        <center>
+                            <div class="artifact-links" style="font-size:13px; padding-top:16px; padding-bottom:16px">
+                                <a v-bind:href="artifact.url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                    @{{ artifact.type_label }} &nbsp; <i class="fas fa-external-link-alt"></i>
                                 </a>
-                            </span>
-                        </div>
+                                <span v-if="artifact.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} || {{ auth()->check() && auth()->user()->is_admin ? 'true' : 'false' }}">
+                                    <span style="color:#CCCCCC">
+                                        &nbsp; | &nbsp;
+                                    </span>
+                                    <a v-bind:href="'{{ iawUrl() }}/flutter-artifact/' + artifact.slug + '/edit'" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                        EDIT RESOURCE
+                                    </a>
+                                </span>
+                            </div>
+                        </center>
 
                         <div v-if="artifact.image_url" class="card-image" style="max-height:250px; overflow: hidden" style="vertical-align:center">
                             <img v-bind:src="artifact.image_url + '?updated_at=' + artifact.updated_at" width="100%"/>

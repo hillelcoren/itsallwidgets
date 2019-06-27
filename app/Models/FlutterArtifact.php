@@ -40,6 +40,7 @@ class FlutterArtifact extends Model implements Feedable
         'pretty_published_date',
         'pretty_type',
         'type_class',
+        'type_label',
     ];
 
 
@@ -83,7 +84,7 @@ class FlutterArtifact extends Model implements Feedable
     {
         $time = strtotime($this->published_date);
 
-        return date('D, F jS', $time);
+        return date('D, F jS Y', $time);
     }
 
     public function getPrettyTypeAttribute()
@@ -99,6 +100,17 @@ class FlutterArtifact extends Model implements Feedable
             return 'danger';
         } elseif ($this->type == 'library') {
             return 'dark';
+        }
+    }
+
+    public function getTypeLabelAttribute()
+    {
+        if ($this->type == 'article') {
+            return 'READ ARTICLE';
+        } elseif ($this->type == 'video') {
+            return 'WATCH VIDEO';
+        } elseif ($this->type == 'library') {
+            return 'VIEW LIBRARY';
         }
     }
 
