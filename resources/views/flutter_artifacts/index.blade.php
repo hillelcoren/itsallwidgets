@@ -211,6 +211,12 @@
                             @{{ artifact.comment }}
                         </div>
 
+                        <div v-if="artifact.image_url" class="card-image" style="line-height:0px">
+                            <img v-bind:src="artifact.image_url + '?updated_at=' + artifact.updated_at"
+                                widthx="1080" heightx="1920"/>
+                        </div>
+
+
                         <div class="artifact-links" style="font-size:13px; padding-top:16px; padding-bottom:16px">
                             <a v-bind:href="artifact.url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
                                 VIEW RESOURCE
