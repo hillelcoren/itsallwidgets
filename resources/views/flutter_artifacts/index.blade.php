@@ -147,10 +147,10 @@
                         </div>
                         <div class="select is-medium filter-control" style="font-size: 16px;">
                             <select v-model="filter_type" onchange="$(this).blur()">
-                                <option value="filter_type_all"></option>
-                                <option value="filter_type_articles">Articles</option>
-                                <option value="filter_type_videos">Videos</option>
-                                <option value="filter_type_libraries">Libraries</option>
+                                <option value="filter_type_all">ALL</option>
+                                <option value="filter_type_articles">ARTICLES</option>
+                                <option value="filter_type_videos">VIDEOS</option>
+                                <option value="filter_type_libraries">LIBRARIES</option>
                             </select>
                         </div>
 
@@ -177,7 +177,7 @@
     <div class="container" v-cloak>
         <div v-if="filteredArtifacts.length == 0" class="is-wide has-text-centered is-vertical-center"
         style="height:400px; text-align:center; font-size: 32px; color: #AAA">
-        No artifacts found
+        No resources found
     </div>
     <div class="columns is-multiline is-6 is-variable">
         <div v-for="artifact in filteredArtifacts" :key="artifact.id" class="column" v-bind:class="columnClass">
@@ -360,16 +360,6 @@ var app = new Vue({
 el: '#artifact',
 
 watch: {
-    search: {
-        handler() {
-            app.updateMap();
-        },
-    },
-    filter_distance: {
-        handler() {
-            app.updateMap();
-        },
-    },
     sort_by: {
         handler() {
             app.saveFilters();
@@ -444,7 +434,7 @@ methods: {
 },
 
 mounted () {
-    window.addArtifactListener('keyup', function(artifact) {
+    window.addEventListener('keyup', function(artifact) {
         if (artifact.keyCode == 27) {
             artifact.selectArtifact();
         }
@@ -458,8 +448,7 @@ data: {
     sort_by: getCachedSortBy(),
     selected_artifact: false,
     page_number: 1,
-    filter_distance: 'filter_distance_any',
-    filter_type: '',
+    filter_type: 'filter_type_all',
 },
 
 computed: {
@@ -492,10 +481,22 @@ computed: {
         var artifacts = this.artifacts;
         var search = this.search.toLowerCase().trim();
         var sort_by = this.sort_by;
-        var distance = this.filter_distance;
+        var type = this.filter_type;
 
-        if (search || distance) {
+        if (search || type) {
             artifacts = artifacts.filter(function(item) {
+
+                if (type) {
+                    if (type == 'filter_type_articles' && artifact.type != 'article') {
+                        return false;
+                    } else if (type == 'filter_type_videos' && artifact.type != 'video') {
+                        return false;
+                    } else if (type == 'filter_type_libraries' && artifact.type != 'library') {
+                        return false;
+                    }
+                }
+
+
                 if ((item.title  || '').toLowerCase().indexOf(search) >= 0) {
                     return true;
                 }
@@ -513,12 +514,14 @@ computed: {
         }
 
         artifacts.sort(function(itemA, itemB) {
+            /*
             if (sort_by == 'sort_distance' && itemA.distance != itemB.distance) {
                 return itemA.distance - itemB.distance;
             } else {
                 return (itemA.artifact_date || '').toLowerCase()
                     .localeCompare((itemB.artifact_date || '').toLowerCase());
             }
+            */
         });
 
         return artifacts;
