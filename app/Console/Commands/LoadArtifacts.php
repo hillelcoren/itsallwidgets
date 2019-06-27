@@ -191,7 +191,8 @@ class LoadArtifacts extends Command
             $json = json_decode($json);
 
             if (! isset($item['meta_author'])
-                && property_exists($json, 'author')) {
+                && property_exists($json, 'author')
+                && property_exists($json->author, 'name')) {
                 $data['meta_author'] = $json->author->name;
             }
             if (! isset($item['meta_author_url'])
