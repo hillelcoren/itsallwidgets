@@ -233,11 +233,10 @@
                             @{{ artifact.comment }}
                         </div>
 
-                        <div class="thumbnail-wrapper card-image">
-                          <div class="thumbnail-container">
-                            <img v-bind:src="artifact.image_url + '?updated_at=' + artifact.updated_at" class="thumbnail" width="100%"/>
-                          </div>
+                        <div v-if="artifact.image_url" class="card-image" style="max-height:200px; overflow: hidden" style="vertical-align:center">
+                            <img v-bind:src="artifact.image_url + '?updated_at=' + artifact.updated_at" width="100%"/>
                         </div>
+
 
                         <div class="artifact-links" style="font-size:13px; padding-top:16px; padding-bottom:16px">
                             <a v-bind:href="artifact.url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
