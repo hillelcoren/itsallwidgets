@@ -307,68 +307,60 @@
         <div class="columns">
             <div class="column is-8">
 
-                @if (auth()->check())
-                    <div v-if="selected_artifact.user_id == {{ auth()->user()->id }}">
-                        <a class="button is-info is-slightly-elevated" v-bind:href="'/flutter-artifact/' + selected_artifact.slug + '/edit'">
-                            <i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
-                            Edit Resource
-                        </a>
-                        <p>&nbsp;</p>
-                    </div>
-                @endif
+                <div style="font-size:24px; padding-bottom:10px;">
+                    @{{ selected_artifact.title }}
+                </div>
+
+                <div style="border-bottom: 2px #368cd5 solid; width: 50px;"></div><br/>
 
                 <div class="content">
-                    <div style="font-size:24px; padding-bottom:10px;">
-                        @{{ selected_artifact.title }}
-                    </div>
+                    <a v-bind:href="selected_artifact.artifact_url" target="_blank" rel="nofollow">
+                        @{{ selected_artifact.url }}
+                    </a>
+                </div>
 
-                    <div style="border-bottom: 2px #368cd5 solid; width: 50px;"></div><br/>
-
-                    <div class="content">
-                        <a v-bind:href="selected_artifact.artifact_url" target="_blank" rel="nofollow">
-                            @{{ selected_artifact.url }}
-                        </a>
-                    </div>
-
-                    <div class="content">
-                        <div class="dropdown is-hoverable">
-                            <div class="dropdown-trigger is-slightly-elevated">
-                                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-                                    <span>
-                                        <i style="font-size: 20px" class="fa fa-share"></i> &nbsp;
-                                        Share Resource
-                                    </span>
-                                    <span class="icon is-small">
-                                        <i class="fas fa-angle-down" aria-hidden="true"></i>
-                                    </span>
-                                </button>
-                            </div>
-                            <div class="dropdown-menu" role="menu">
-                                <a href="https://www.facebook.com/sharer/sharer.php?u=#url" target="_blank" rel="nofollow">
-                                    <div class="dropdown-content">
-                                        <div class="dropdown-item">
-                                            <i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
-                                        </div>
-                                    </div>
-                                </a>
-                                <a v-bind:href="'https://twitter.com/share?text=' + encodeURIComponent(selected_artifact.title) + '&amp;url=' + encodeURIComponent('{{ url('/flutter-artifact') }}' + '/' + selected_artifact.slug)" target="_blank" rel="nofollow">
-                                    <div class="dropdown-content">
-                                        <div class="dropdown-item">
-                                            <i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
+                <div class="content">
+                    <div class="dropdown is-hoverable">
+                        <div class="dropdown-trigger is-slightly-elevated">
+                            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                                <span>
+                                    <i style="font-size: 20px" class="fa fa-share"></i> &nbsp;
+                                    Share Resource
+                                </span>
+                                <span class="icon is-small">
+                                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                </span>
+                            </button>
                         </div>
-
+                        <div class="dropdown-menu" role="menu">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=#url" target="_blank" rel="nofollow">
+                                <div class="dropdown-content">
+                                    <div class="dropdown-item">
+                                        <i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
+                                    </div>
+                                </div>
+                            </a>
+                            <a v-bind:href="'https://twitter.com/share?text=' + encodeURIComponent(selected_artifact.title) + '&amp;url=' + encodeURIComponent('{{ url('/flutter-artifact') }}' + '/' + selected_artifact.slug)" target="_blank" rel="nofollow">
+                                <div class="dropdown-content">
+                                    <div class="dropdown-item">
+                                        <i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-
-                    <div class="block wrap">@{{ selected_artifact.comment }}</div>
-
-                    <div class="block wrap">@{{ selected_artifact.meta_description }}</div>
 
                 </div>
+
+                <div class="block wrap">@{{ selected_artifact.comment }}</div>
+
+                <div class="block wrap">@{{ selected_artifact.meta_description }}</div>
+
             </div>
+            <div class="column is-4 is-slightly-elevated">
+                <img v-bind:src="selected_artifact.image_url + '?updated_at=' + selected_artifact.updated_at" width="100%"/>
+            </div>
+
         </div>
 
     </div>
