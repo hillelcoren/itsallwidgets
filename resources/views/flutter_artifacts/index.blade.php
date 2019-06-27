@@ -2,7 +2,7 @@
 
 @section('title', 'Flutter X')
 @section('description', 'A Curated List of Flutter Resources')
-@section('image_url', asset('images/artifacts_twitter.png'))
+@section('image_url', asset('images/flutterx_twitter.png'))
 @section('header_title', 'A Curated List of Flutter Resources')
 @section('header_button_url', false)
 
