@@ -15,27 +15,52 @@
 
     <style>
 
-
-    .thumbnail-wrapper {
-      width: 90%;
-      max-width: 600px;
-      margin: 1em auto;
-      background-color: #E9ADAD;
-      max-height: 200px;
+    /* https://w3bits.com/css-masonry/ */
+    .masonry { /* Masonry container */
+      column-count: 4;
+      column-gap: 1em;
     }
 
-    .thumbnail-container {
-      position:relative;
-      padding-bottom:40%;
-      overflow: hidden;
-    }
-
-    img .thumbnail {
-      position:absolute;
-      top:-50%; bottom:-50%;
-      margin:auto;
+    .masonry .item { /* Masonry bricks or child elements */
+      background-color: #eee;
+      display: inline-block;
+      margin: 0 0 1em;
       width: 100%;
-      height: auto;
+    }
+
+    /* The Masonry Brick */
+    .itemx {
+      background: #fff;
+      padding: 1em;
+      margin: 0 0 1.5em;
+    }
+
+    /* Masonry on large screens */
+    @media only screen and (min-width: 1024px) {
+      .masonry {
+        column-count: 4;
+      }
+    }
+
+    /* Masonry on medium-sized screens */
+    @media only screen and (max-width: 1023px) and (min-width: 768px) {
+      .masonry {
+        column-count: 3;
+      }
+    }
+
+    /* Masonry on small screens */
+    @media only screen and (max-width: 767px) and (min-width: 540px) {
+      .masonry {
+        column-count: 2;
+      }
+    }
+
+    /* Masonry on small screens */
+    @media only screen and (max-width: 539px){
+      .masonry {
+        column-count: 1;
+      }
     }
 
 
@@ -201,8 +226,8 @@
         style="height:400px; text-align:center; font-size: 32px; color: #AAA">
         No resources found
     </div>
-    <div class="columns is-multiline is-6 is-variable">
-        <div v-for="artifact in filteredArtifacts" :key="artifact.id" class="column" v-bind:class="columnClass">
+    <div class="masonry">
+        <div v-for="artifact in filteredArtifacts" :key="artifact.id" class="item">
             <div v-on:click="selectArtifact(artifact)" style="cursor:pointer">
                 <div class="flutter-artifact is-hover-elevated" v-bind:class="[artifact.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} ? 'is-owned' : '']">
 

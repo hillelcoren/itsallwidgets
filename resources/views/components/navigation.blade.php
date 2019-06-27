@@ -1,17 +1,21 @@
 @php
-    $isIAW = isIAW();
-    $url = "https://flutter.dev/" . (isIAW() ? "showcase" : "community");
-    $title = $isIAW ? "Showcase" : "Community";
+    if (isFX())
+        $url = 'docs';
+    elseif (isFE())
+        $url = 'community';
+    else
+        $url = 'showcase'
 @endphp
-<a class="navbar-item" href="{{$url}}" target="_blank">
-    <i class="fas fa-globe"></i> &nbsp; {{$title}}
+
+<a class="navbar-item" href="https://flutter.dev/{{ $url }}" target="_blank">
+    <i class="fas fa-globe"></i> &nbsp; {{ ucwords($url) }}
 </a>
 
 <a class="navbar-item" href="{{ iawUrl() }}/about">
     <i class="fas fa-info-circle"></i> &nbsp; About
 </a>
 
-@if ($isIAW)
+@if (isIAW())
     <a class="navbar-item" href="{{ feUrl() }}">
         <i class="fas fa-calendar"></i> &nbsp; Events
     </a>
