@@ -185,26 +185,31 @@ class LoadArtifacts extends Command
 
     private function parseSchema($xp, $data)
     {
-        $json = $xp->query( '//script[@type="application/ld+json"]' );
-        if ($json && $json->item(0)) {
-            $json = trim($json->item(0)->nodeValue);
-            $json = json_decode($json);
+        try {
+            $json = $xp->query( '//script[@type="application/ld+json"]' );
+            if ($json && $json->item(0)) {
+                $json = trim($json->item(0)->nodeValue);
+                $json = json_decode($json);
 
-            if ($json && ! isset($item['meta_author'])
-                && property_exists($json, 'author')
-                && $json->author && property_exists($json->author, 'name')) {
-                $data['meta_author'] = $json->author->name;
+                if ($json && ! isset($item['meta_author'])
+                    && property_exists($json, 'author')
+                    && property_exists($json->author, 'name')) {
+                    $data['meta_author'] = $json->author->name;
+                }
+                if ($json && ! isset($item['meta_author_url'])
+                    && property_exists($json, 'author')
+                    && property_exists($json->author, 'url')) {
+                    $data['meta_author_url'] = $json->author->url;
+                }
+                if ($json && ! isset($item['meta_publisher'])
+                    && property_exists($json, 'publisher')
+                    && property_exists($json->publisher, 'name')) {
+                    $data['meta_publisher'] = $json->publisher->name;
+                }
             }
-            if ($json && ! isset($item['meta_author_url'])
-                && property_exists($json, 'author')
-                && property_exists($json->author, 'url')) {
-                $data['meta_author_url'] = $json->author->url;
-            }
-            if ($json && ! isset($item['meta_publisher'])
-                && property_exists($json, 'publisher')
-                && property_exists($json->publisher, 'name')) {
-                $data['meta_publisher'] = $json->publisher->name;
-            }
+
+        } catch (\Exception $e) {
+            // TODO
         }
 
         return $data;
