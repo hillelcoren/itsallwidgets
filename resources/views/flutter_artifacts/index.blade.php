@@ -159,7 +159,7 @@
                         </div>
                         <div class="select is-medium filter-control" style="font-size: 16px;">
                             <select v-model="sort_by" onchange="$(this).blur()">
-                                <option value="sort_featured">FEATURED</option>
+                                <!-- <option value="sort_featured">FEATURED</option> -->
                                 <option value="sort_newest">NEWEST</option>
                                 <option value="sort_oldest">OLDEST</option>
                             </select>
@@ -349,7 +349,7 @@ function isStorageSupported() {
 };
 
 function getCachedSortBy() {
-    return (isStorageSupported() ? localStorage.getItem('sort_by') : false) || 'sort_date';
+    return (isStorageSupported() ? localStorage.getItem('sort_by') : false) || 'sort_newest';
 }
 
 function getCachedCardsPerRow() {
@@ -487,15 +487,14 @@ computed: {
             artifacts = artifacts.filter(function(item) {
 
                 if (type) {
-                    if (type == 'filter_type_articles' && artifact.type != 'article') {
+                    if (type == 'filter_type_articles' && item.type != 'article') {
                         return false;
-                    } else if (type == 'filter_type_videos' && artifact.type != 'video') {
+                    } else if (type == 'filter_type_videos' && item.type != 'video') {
                         return false;
-                    } else if (type == 'filter_type_libraries' && artifact.type != 'library') {
+                    } else if (type == 'filter_type_libraries' && item.type != 'library') {
                         return false;
                     }
                 }
-
 
                 if ((item.title  || '').toLowerCase().indexOf(search) >= 0) {
                     return true;
@@ -514,14 +513,13 @@ computed: {
         }
 
         artifacts.sort(function(itemA, itemB) {
-            /*
-            if (sort_by == 'sort_distance' && itemA.distance != itemB.distance) {
-                return itemA.distance - itemB.distance;
+            if (sort_by == 'sort_oldest') {
+                return itemA.published_date.localeCompare(itemB.published_date);
+            } else if (sort_by == 'sort_newest') {
+                return itemB.published_date.localeCompare(itemA.published_date);
             } else {
-                return (itemA.artifact_date || '').toLowerCase()
-                    .localeCompare((itemB.artifact_date || '').toLowerCase());
+                return itemB.published_date.localeCompare(itemA.published_date);
             }
-            */
         });
 
         return artifacts;
