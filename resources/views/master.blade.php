@@ -439,24 +439,34 @@
                     </a>
                 </div><br/>
                 @if (isIAW())
-                    <div class="column is-1">
-                        <a href="https://twitter.com/ThomasBurkhartB" target="_blank">
-                            <img src="{{ asset('images/img_thomas.png') }}" width="72"/><br/>
-                            <div>@ThomasBurkhartB</div>
-                        </a>
-                    </div><br/>
-                    <div class="column is-1">
-                        <a href="https://twitter.com/devangelslondon" target="_blank">
-                            <img src="{{ asset('images/img_simon.png') }}" width="72"/><br/>
-                            <div>@devangelslondon</div>
-                        </a>
-                    </div><br/>
-                    <div class="column is-1">
-                        <a href="https://twitter.com/scottstoll2017" target="_blank">
-                            <img src="{{ asset('images/img_scott.png') }}" width="72"/><br/>
-                            <div>@scottstoll2017</div>
-                        </a>
-                    </div><br/>
+
+                    @if (request()->is('flutterx*'))
+                        <div class="column is-1">
+                            <a href="https://twitter.com/SergiAndReplace" target="_blank">
+                                <img src="{{ asset('images/img_sergi.png') }}" width="72"/><br/>
+                                <div>@SergiAndReplace</div>
+                            </a>
+                        </div><br/>
+                    @else
+                        <div class="column is-1">
+                            <a href="https://twitter.com/ThomasBurkhartB" target="_blank">
+                                <img src="{{ asset('images/img_thomas.png') }}" width="72"/><br/>
+                                <div>@ThomasBurkhartB</div>
+                            </a>
+                        </div><br/>
+                        <div class="column is-1">
+                            <a href="https://twitter.com/devangelslondon" target="_blank">
+                                <img src="{{ asset('images/img_simon.png') }}" width="72"/><br/>
+                                <div>@devangelslondon</div>
+                            </a>
+                        </div><br/>
+                        <div class="column is-1">
+                            <a href="https://twitter.com/scottstoll2017" target="_blank">
+                                <img src="{{ asset('images/img_scott.png') }}" width="72"/><br/>
+                                <div>@scottstoll2017</div>
+                            </a>
+                        </div><br/>
+                    @endif
                 @elseif (isFE())
                     <div class="column is-1">
                         <a href="https://twitter.com/Nash0x7E2" target="_blank">

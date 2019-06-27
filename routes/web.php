@@ -11,6 +11,10 @@
 |
 */
 
+
+// TODO remove this
+Route::get('/flutterx', 'FlutterArtifactController@index');
+
 Route::feeds();
 
 Route::group(['domain' => 'flutterevents.{env}'], function() {
