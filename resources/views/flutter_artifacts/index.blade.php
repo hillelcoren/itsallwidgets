@@ -221,7 +221,7 @@
 
                         <div class="help is-clearfix" style="padding-top:10px;padding-bottom:10px;">
                             <div class="is-pulled-right">
-                                <span class="tag is-info">
+                                <span v-bind:class="'button is-outlined is-small is-static is-' + artifact.type_class">
                                     @{{ artifact.pretty_type }}
                                 </span>
                             </div>

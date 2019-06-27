@@ -39,6 +39,7 @@ class FlutterArtifact extends Model implements Feedable
     protected $appends = [
         'pretty_published_date',
         'pretty_type',
+        'type_class',
     ];
 
 
@@ -88,6 +89,17 @@ class FlutterArtifact extends Model implements Feedable
     public function getPrettyTypeAttribute()
     {
         return ucwords($this->type);
+    }
+
+    public function getTypeClassAttribute()
+    {
+        if ($this->type == 'article') {
+            return 'info';
+        } elseif ($this->type == 'video') {
+            return 'danger';
+        } elseif ($this->type == 'library') {
+            return 'dark';
+        }
     }
 
     public function toFeedItem()
