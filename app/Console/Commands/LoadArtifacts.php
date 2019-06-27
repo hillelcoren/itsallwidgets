@@ -161,7 +161,10 @@ class LoadArtifacts extends Command
         }
 
         foreach ($xp->query("//meta[@name='twitter:site']") as $el) {
-            $data['meta_twitter_site'] = ltrim($el->getAttribute("content"), '@');
+            $handle = ltrim($el->getAttribute("content"), '@');
+            if (! in_array(strtolower($handle), ['yotube', 'github', 'medium'])) {
+                $data['meta_twitter_site'] = $handle;
+            }
             break;
         }
 
