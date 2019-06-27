@@ -37,6 +37,8 @@ class FlutterArtifact extends Model implements Feedable
     ];
 
     protected $appends = [
+        'pretty_published_date',
+        'pretty_type',
     ];
 
 
@@ -73,6 +75,19 @@ class FlutterArtifact extends Model implements Feedable
     public function scopeOwnedBy($query, $userId)
     {
         $query->where('user_id', '=', $userId);
+    }
+
+
+    public function getPrettyPublishedDateAttribute()
+    {
+        $time = strtotime($this->published_date);
+
+        return date('D, F jS', $time);
+    }
+
+    public function getPrettyTypeAttribute()
+    {
+        return ucwords($this->type);
     }
 
     public function toFeedItem()

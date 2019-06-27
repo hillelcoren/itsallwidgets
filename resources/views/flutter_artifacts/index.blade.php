@@ -98,26 +98,6 @@
         display: none;
     }
 
-    .short-address {
-        line-height: 1.5em;
-        height: 1.5em;
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        text-overflow: ellipsis;
-    }
-
-    .short-description {
-        line-height: 1.5em;
-        height: 9em;
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        text-overflow: ellipsis;
-    }
-
     .is-owned {
         xbackground-color: #FFFFAA;
         background-color: #FFFFFF;
@@ -221,7 +201,7 @@
             <div v-on:click="selectArtifact(artifact)" style="cursor:pointer">
                 <div class="flutter-artifact is-hover-elevated" v-bind:class="[artifact.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} ? 'is-owned' : '']">
 
-                    <header style="padding: 16px">
+                    <header style="padding-left:16px;padding-top:16px;padding-right:16px;">
 
                         <p class="no-wrap" v-bind:title="artifact.title" style="font-size:22px; padding-bottom:10px;">
                             <!--
@@ -237,21 +217,23 @@
 
                     </header>
 
-                    <div class="content" style="padding-left:16px; padding-right:16px;">
+                    <div class="content" style="padding-left:16px; padding-right:16px; margin-top:0px">
 
-                        <!--
-                        <p class="help short-address">
-                        </p>
-                        -->
+                        <div class="help is-clearfix" style="padding-top:10px;padding-bottom:10px;">
+                            <div class="is-pulled-left">
 
-                        <div class="short-description" v-bind:title="artifact.short_description">
+                                @{{ artifact.pretty_published_date }}
+                            </div>
+                            <div class="is-pulled-right">
+                                <span class="tag is-info">
+                                    @{{ artifact.pretty_type }}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div v-bind:title="artifact.short_description">
                             @{{ artifact.comment }}
                         </div>
-
-                        <div v-if="artifact.image_url" class="card-image" style="max-height:200px; overflow: hidden" style="vertical-align:center">
-                            <img v-bind:src="artifact.image_url + '?updated_at=' + artifact.updated_at" width="100%"/>
-                        </div>
-
 
                         <div class="artifact-links" style="font-size:13px; padding-top:16px; padding-bottom:16px">
                             <a v-bind:href="artifact.url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
@@ -267,10 +249,11 @@
                             </span>
                         </div>
 
+                        <div v-if="artifact.image_url" class="card-image" style="max-height:250px; overflow: hidden" style="vertical-align:center">
+                            <img v-bind:src="artifact.image_url + '?updated_at=' + artifact.updated_at" width="100%"/>
+                        </div>
+
                         <div class="media-content" style="font-size:13px; padding-top:8px; padding-bottom:16px">
-                            <span v-if="artifact.meta_author_url || artifact.meta_twitter_creator" class="title is-6">
-                                By
-                            </span>
                             <span v-if="artifact.meta_author_url" class="title is-6">
                                 <a target="_blank" v-bind:href="artifact.meta_author_url" v-on:click.stop rel="nofollow">
                                     @{{ artifact.meta_author }}
@@ -284,10 +267,21 @@
                                 </span>
                                 <span v-if="!artifact.meta_author_url">
                                     <a target="_blank" v-bind:href="'https://twitter.com/' + artifact.meta_twitter_creator" v-on:click.stop rel="nofollow">
-                                        @{{ artifact.meta_twitter_creator }}
+                                        @@{{ artifact.meta_twitter_creator }}
                                     </a>
                                 </span>
                             </span>
+                            <span v-if="artifact.meta_author_url || artifact.meta_twitter_creator" class="title is-6">
+                                •
+                            </span>
+                            <span v-if="artifact.meta_twitter_site" class="title is-6">
+                                <a target="_blank" v-bind:href="'https://twitter.com/' + artifact.meta_twitter_creator" v-on:click.stop rel="nofollow">
+                                    @{{ artifact.meta_publisher || artifact.meta_twitter_site }}
+                                </a>
+                            <span>
+                            <span v-if="!artifact.meta_twitter_site" class="title is-6">
+                                @{{ artifact.meta_publisher || artifact.meta_twitter_site }}
+                            <span>
                         </div>
 
                     </div>

@@ -102,7 +102,7 @@ class LoadArtifacts extends Command
                     if ($imageUrl) {
                         $parts = explode('?', $imageUrl);
                         $imageUrl = count($parts) ? $parts[0] : '';
-                        $imageUrl = rtrim($imageUrl , '/');
+                        $imageUrl = rtrim($imageUrl, '/');
                         $parts = explode('.', $imageUrl);
                         $extension = count($parts) > 1 ? '.' . $parts[count($parts) - 1] : '';
                         if (strlen($extension) > 4) {
@@ -150,12 +150,12 @@ class LoadArtifacts extends Command
         }
 
         foreach ($xp->query("//meta[@name='twitter:creator']") as $el) {
-            $data['meta_twitter_creator'] = $el->getAttribute("content");
+            $data['meta_twitter_creator'] = ltrim($el->getAttribute("content"), '@');
             break;
         }
 
         foreach ($xp->query("//meta[@name='twitter:site']") as $el) {
-            $data['meta_twitter_site'] = $el->getAttribute("content");
+            $data['meta_twitter_site'] = ltrim($el->getAttribute("content"), '@');
             break;
         }
 
