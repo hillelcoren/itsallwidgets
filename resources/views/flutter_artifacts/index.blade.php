@@ -18,7 +18,7 @@
     /* https://w3bits.com/css-masonry/ */
     .masonry { /* Masonry container */
       column-count: 4;
-      column-gap: 1em;
+      column-gap: 1.2em;
     }
 
     .masonry .item { /* Masonry bricks or child elements */
@@ -139,15 +139,6 @@
     .flutter-artifact a {
         color: #368cd5;
     }
-
-    .columns.is-variable.is-6 {
-        --columnGap: 2rem;
-    }
-
-    .column {
-        padding: 1rem 1rem 2rem 1rem;
-    }
-
 
 
     @media screen and (max-width: 788px) {
@@ -279,7 +270,6 @@
                     </div>
                 </div>
             </div>
-            <p>&nbsp;</p>
         </div>
     </div>
 </div>
