@@ -140,20 +140,30 @@
                         <span class="icon is-small is-left" style="margin-top: 10px">
                             <i class="fas fa-search"></i>
                         </span>
-                        <!--
-                        <div class="is-medium filter-label slider-control">
-                            <label class="label is-medium" style="font-weight: normal; font-size: 16px"> &nbsp; WIDTH </label>
+
+
+                        <div class="is-medium filter-label">
+                            <label class="label is-medium" style="font-weight: normal; font-size: 16px"> TYPE </label>
                         </div>
-                        <div class="is-medium filter-control slider-control">
-                            <input class="slider is-fullwidth is-medium is-info"
-                            step="1" min="2" max="6" type="range" v-model="cards_per_row">
+                        <div class="select is-medium filter-control" style="font-size: 16px;">
+                            <select v-model="filter_type" onchange="$(this).blur()">
+                                <option value="filter_type_all"></option>
+                                <option value="filter_type_articles">Articles</option>
+                                <option value="filter_type_videos">Videos</option>
+                                <option value="filter_type_libraries">Libraries</option>
+                            </select>
                         </div>
 
-                        <a class="button is-white is-slightly-elevated" href="{{ feUrl() }}/feed" target="_blank">
-                            <i style="font-size: 20px" class="fas fa-rss"></i> &nbsp;
-                            EVENT FEED
-                        </a>
-                        -->
+                        <div class="is-medium filter-label">
+                            <label class="label is-medium" style="font-weight: normal; font-size: 16px"> SORT </label>
+                        </div>
+                        <div class="select is-medium filter-control" style="font-size: 16px;">
+                            <select v-model="sort_by" onchange="$(this).blur()">
+                                <option value="sort_featured">FEATURED</option>
+                                <option value="sort_newest">NEWEST</option>
+                                <option value="sort_oldest">OLDEST</option>
+                            </select>
+                        </div>
 
                     </p>
                 </div>
@@ -449,6 +459,7 @@ data: {
     selected_artifact: false,
     page_number: 1,
     filter_distance: 'filter_distance_any',
+    filter_type: '',
 },
 
 computed: {
