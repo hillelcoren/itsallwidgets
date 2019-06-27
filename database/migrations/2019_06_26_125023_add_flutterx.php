@@ -29,11 +29,11 @@ class AddFlutterx extends Migration
             $table->boolean('is_visible')->default(true);
             $table->boolean('is_approved')->default(false);
             $table->text('meta_description')->nullable();
-            $table->string('meta_publisher')->nullable();
             $table->string('meta_author')->nullable();
             $table->string('meta_author_url')->nullable();
-            $table->string('meta_twitter_creator')->nullable();
-            $table->string('meta_twitter_site')->nullable();
+            $table->string('meta_author_twitter')->nullable();
+            $table->string('meta_publisher')->nullable();
+            $table->string('meta_publisher_twitter')->nullable();
         });
 
         Schema::table('flutter_artifacts', function(Blueprint $table) {

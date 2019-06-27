@@ -217,25 +217,25 @@
                                     @{{ artifact.meta_author }}
                                 </a>
                             </span>
-                            <span v-if="!artifact.meta_author_url && artifact.meta_twitter_creator" class="">
-                                <a target="_blank" v-bind:href="'https://twitter.com/' + artifact.meta_twitter_creator" v-on:click.stop rel="nofollow">
-                                    @@{{ artifact.meta_twitter_creator }}
+                            <span v-if="!artifact.meta_author_url && artifact.meta_author_twitter" class="">
+                                <a target="_blank" v-bind:href="'https://twitter.com/' + artifact.meta_author_twitter" v-on:click.stop rel="nofollow">
+                                    @@{{ artifact.meta_author_twitter }}
                                 </a>
                             </span>
 
-                            <span v-if="(artifact.meta_author_url || artifact.meta_twitter_creator) && (artifact.meta_twitter_site || artifact.meta_publisher)" class="">
+                            <span v-if="(artifact.meta_author_url || artifact.meta_author_twitter) && (artifact.meta_publisher_twitter || artifact.meta_publisher)" class="">
                                 •
                             </span>
 
-                            <span v-if="artifact.meta_twitter_site" class="">
-                                <a target="_blank" v-bind:href="'https://twitter.com/' + artifact.meta_twitter_site" v-on:click.stop rel="nofollow">
-                                    @{{ artifact.meta_publisher || artifact.meta_twitter_site }}
+                            <span v-if="artifact.meta_publisher_twitter" class="">
+                                <a target="_blank" v-bind:href="'https://twitter.com/' + artifact.meta_publisher_twitter" v-on:click.stop rel="nofollow">
+                                    @{{ artifact.meta_publisher || artifact.meta_publisher_twitter }}
                                 </a>
                             </span>
-                            <span v-if="!artifact.meta_twitter_site && artifact.meta_publisher">
+                            <span v-if="!artifact.meta_publisher_twitter && artifact.meta_publisher">
                                 @{{ artifact.meta_publisher }}
                             </span>
-                            <span v-if="!artifact.meta_twitter_site && !artifact.meta_publisher">
+                            <span v-if="!artifact.meta_publisher_twitter && !artifact.meta_publisher">
                                 @{{ artifact.domain }}
                             </span>
 
@@ -570,11 +570,11 @@ computed: {
                     return true;
                 }
 
-                if ((item.meta_twitter_creator || '').toLowerCase().indexOf(search) >= 0) {
+                if ((item.meta_author_twitter || '').toLowerCase().indexOf(search) >= 0) {
                     return true;
                 }
 
-                if ((item.meta_twitter_site || '').toLowerCase().indexOf(search) >= 0) {
+                if ((item.meta_publisher_twitter || '').toLowerCase().indexOf(search) >= 0) {
                     return true;
                 }
 

@@ -156,14 +156,14 @@ class LoadArtifacts extends Command
         }
 
         foreach ($xp->query("//meta[@name='twitter:creator']") as $el) {
-            $data['meta_twitter_creator'] = ltrim($el->getAttribute("content"), '@');
+            $data['meta_author_twitter'] = ltrim($el->getAttribute("content"), '@');
             break;
         }
 
         foreach ($xp->query("//meta[@name='twitter:site']") as $el) {
             $handle = ltrim($el->getAttribute("content"), '@');
             if (! in_array(strtolower($handle), ['yotube', 'github', 'medium'])) {
-                $data['meta_twitter_site'] = $handle;
+                $data['meta_publisher_twitter'] = $handle;
             }
             break;
         }

@@ -27,8 +27,8 @@ class FlutterArtifact extends Model implements Feedable
         'meta_publisher',
         'meta_author',
         'meta_author_url',
-        'meta_twitter_creator',
-        'meta_twitter_site',
+        'meta_author_twitter',
+        'meta_publisher_twitter',
     ];
 
     protected $hidden = [
