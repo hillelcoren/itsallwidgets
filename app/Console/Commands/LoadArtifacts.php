@@ -94,7 +94,26 @@ class LoadArtifacts extends Command
                     $item = $this->parseRepoUrl($xp, $item);
 
                     $this->info(json_encode($item));
-                    $this->artifactRepo->store($item, 1);
+                    $artifact = $this->artifactRepo->store($item, 1);
+
+                    $imageUrl = $artifact->image_url;
+                    $parts = explode('.', $imageUrl);
+                    $extension = count($parts) ? $parts[count($parts) - 1] : '';
+
+                    if ($imageUrl) {
+                        if ($contents = file_get_contents($imageUrl)) {
+                            $url = '/thumbnails/artifact-' . $artifact->id . '.' . $extension;
+                            $file = public_path($url);
+                            file_put_contents($file, $contents);
+                            $artifact->image_url = $url;
+                        } else {
+                            $artifact->image_url = null;
+                        }
+
+                        $artifact->save();
+
+                        exit;
+                    }
                 }
             }
         }
