@@ -203,7 +203,7 @@
 
                     <header style="padding-left:16px;padding-top:16px;padding-right:16px;">
 
-                        <p class="no-wrap" v-bind:title="artifact.title" style="font-size:22px; padding-bottom:10px;">
+                        <p v-bind:title="artifact.title" style="font-size:22px; padding-bottom:10px;">
                             <!--
                             <span v-if="artifact.featured > 0">
                                 <i style="font-size: 18px" class="fas fa-star"></i> &nbsp;
@@ -220,13 +220,14 @@
                     <div class="content" style="padding-left:16px; padding-right:16px; margin-top:0px">
 
                         <div class="help is-clearfix" style="padding-top:10px;padding-bottom:10px;">
-                            <div class="is-pulled-left">
-
-                                @{{ artifact.pretty_published_date }}
-                            </div>
                             <div class="is-pulled-right">
                                 <span class="tag is-info">
                                     @{{ artifact.pretty_type }}
+                                </span>
+                            </div>
+                            <div class="is-pulled-left">
+                                <span class="tag is-white" style="padding-left:0px">
+                                    @{{ artifact.pretty_published_date }}
                                 </span>
                             </div>
                         </div>
