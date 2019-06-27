@@ -25,6 +25,7 @@ class AddFlutterx extends Migration
             $table->string('source_url')->nullable();
             $table->string('repo_url')->nullable();
             $table->string('image_url')->nullable();
+            $table->string('gif_url')->nullable();
             $table->date('published_date');
             $table->boolean('is_visible')->default(true);
             $table->boolean('is_approved')->default(false);
