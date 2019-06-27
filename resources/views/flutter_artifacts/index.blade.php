@@ -203,7 +203,7 @@
                     <header style="padding-left:16px;padding-top:16px;padding-right:16px;">
 
                         <a v-bind:href="artifact.repo_url" v-if="artifact.repo_url" v-on:click.stop rel="nofollow"
-                            class="is-pulled-right" target="_blank" style="color:black; margin-top:4px">
+                            class="is-pulled-right" target="_blank" style="color:black; margin-top:5px">
                             <i class="fab fa-github"></i>
                         </a>
 
@@ -231,10 +231,14 @@
                                 <a target="_blank" v-bind:href="'https://twitter.com/' + artifact.meta_twitter_site" v-on:click.stop rel="nofollow">
                                     @{{ artifact.meta_publisher || artifact.meta_twitter_site }}
                                 </a>
-                            <span>
-                            <span v-if="!artifact.meta_twitter_site && artifact.meta_publisher" class="">
+                            </span>
+                            <span v-if="!artifact.meta_twitter_site && artifact.meta_publisher">
                                 @{{ artifact.meta_publisher }}
-                            <span>
+                            </span>
+                            <span v-if="!artifact.meta_twitter_site && !artifact.meta_publisher">
+                                @{{ artifact.domain }}
+                            </span>
+
                         </div>
 
 

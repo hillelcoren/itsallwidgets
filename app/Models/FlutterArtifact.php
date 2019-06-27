@@ -41,6 +41,7 @@ class FlutterArtifact extends Model implements Feedable
         'pretty_type',
         'type_class',
         'type_label',
+        'domain',
     ];
 
 
@@ -90,6 +91,16 @@ class FlutterArtifact extends Model implements Feedable
     public function getPrettyTypeAttribute()
     {
         return ucwords($this->type);
+    }
+
+    public function getDomainAttribute()
+    {
+        $parse = parse_url($this->url);
+
+        $host = $parse['host'];
+        $host = str_replace(['www.', 'blog.'], '', $host);
+
+        return $host;
     }
 
     public function getTypeClassAttribute()
