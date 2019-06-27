@@ -17,7 +17,7 @@
     /* https://w3bits.com/css-masonry/ */
     .masonry { /* Masonry container */
       column-count: 4;
-      column-gap: 1.2em;
+      column-gap: 1.4em;
     }
 
     .masonry .item { /* Masonry bricks or child elements */
