@@ -202,19 +202,11 @@
 
                     <header style="padding-left:16px;padding-top:16px;padding-right:16px;">
 
-                        <p v-bind:title="artifact.title" style="font-size:22px; padding-bottom:10px;">
-                            <!--
-                            <span v-if="artifact.featured > 0">
-                                <i style="font-size: 18px" class="fas fa-star"></i> &nbsp;
-                            </span>
-                            -->
-
+                        <p v-bind:title="artifact.title" style="font-size:22px; padding-bottom:6px;">
                             @{{ artifact.title }}
-
                         </p>
 
-
-                        <div style="font-size:13px; padding-bottom:8px">
+                        <div style="font-size:13px; padding-bottom:14px">
                             <span v-if="artifact.meta_author_url" class="">
                                 <a target="_blank" v-bind:href="artifact.meta_author_url" v-on:click.stop rel="nofollow">
                                     @{{ artifact.meta_author }}
@@ -247,14 +239,14 @@
 
                     <div class="content" style="padding-left:16px; padding-right:16px; margin-top:0px">
 
-                        <div class="help is-clearfix" style="padding-top:10px;padding-bottom:10px;">
+                        <div class="help is-clearfix" style="padding-top:8px;padding-bottom:8px;">
                             <div class="is-pulled-right">
                                 <span v-bind:class="'button is-outlined is-small is-static is-' + artifact.type_class">
                                     @{{ artifact.pretty_type }}
                                 </span>
                             </div>
                             <div class="is-pulled-left">
-                                <span class="tag is-white" style="padding-left:0px">
+                                <span class="tag is-white" style="padding-left:0px; color:#777">
                                     @{{ artifact.pretty_published_date }}
                                 </span>
                             </div>
