@@ -255,7 +255,7 @@
                                 </span>
                             </div>
                             <div class="is-pulled-left">
-                                <span class="tag is-white" style="padding-left:0px; color:#777">
+                                <span class="tag is-white" style="padding-left:0px; padding-top:6px; color:#777">
                                     @{{ artifact.pretty_published_date }}
                                 </span>
                             </div>
@@ -268,7 +268,10 @@
                         <center>
                             <div class="artifact-links" style="font-size:13px; padding-top:16px; padding-bottom:16px">
                                 <a v-bind:href="artifact.url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
-                                    @{{ artifact.type_label }} &nbsp; <i class="fas fa-external-link-alt"></i>
+                                    @{{ artifact.type_label }}
+                                </a> &nbsp;
+                                <a v-bind:href="artifact.url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                    <i class="fas fa-external-link-alt"></i>
                                 </a>
                                 <span v-if="artifact.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} || {{ auth()->check() && auth()->user()->is_admin ? 'true' : 'false' }}">
                                     <span style="color:#CCCCCC">
