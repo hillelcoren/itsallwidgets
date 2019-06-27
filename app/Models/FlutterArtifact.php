@@ -108,7 +108,7 @@ class FlutterArtifact extends Model implements Feedable
         if ($this->type == 'article') {
             return 'info';
         } elseif ($this->type == 'video') {
-            return 'danger';
+            return 'primary';
         } elseif ($this->type == 'library') {
             return 'dark';
         }
