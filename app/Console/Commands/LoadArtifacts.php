@@ -218,7 +218,11 @@ class LoadArtifacts extends Command
 
         if (count($githubLinks)) {
             arsort($githubLinks);
-            $data['repo_url'] = key($githubLinks);
+            $url = key($githubLinks);
+
+            if ($githubLinks[$url] >= 3) {
+                $data['repo_url'] = $url;
+            }
         }
 
         return $data;
