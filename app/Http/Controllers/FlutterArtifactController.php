@@ -31,7 +31,7 @@ class FlutterArtifactController extends Controller
         foreach ($artifacts as $artifact)
         {
             $index = strpos(strtolower($artifact->contents), $search);
-            $str = substr($artifact->contents, $index, 1000);
+            $str = substr($artifact->contents, $index, 800);
 
             $obj = new \stdClass;
             $obj->id = $artifact->id;

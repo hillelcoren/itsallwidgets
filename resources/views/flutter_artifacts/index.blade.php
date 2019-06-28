@@ -356,9 +356,33 @@
 
                 </div>
 
-                <div class="block wrap">@{{ selected_artifact.comment }}</div>
+                <nav class="panel">
+                    <p class="panel-heading">
+                        Flutter Weekly
+                    </p>
+                    <div class="panel-block">
+                        <div class="block wrap">@{{ selected_artifact.comment }}</div>
+                    </div>
+                </nav>
 
-                <div class="block wrap">@{{ selected_artifact.contents || selected_artifact.meta_description }}</div>
+                <nav class="panel" v-if="selected_artifact.meta_description">
+                    <p class="panel-heading">
+                        Description
+                    </p>
+                    <div class="panel-block">
+                        <div class="block wrap">@{{ selected_artifact.meta_description }}</div>
+                    </div>
+                </nav>
+
+                <nav class="panel" v-if="selected_artifact.contents">
+                    <p class="panel-heading">
+                        Search Result
+                    </p>
+                    <div class="panel-block">
+                        <div class="block wrap">@{{ selected_artifact.contents }}</div>
+                    </div>
+                </nav>
+
 
             </div>
             <div class="column is-4 is-slightly-elevated">
