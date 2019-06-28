@@ -23,7 +23,7 @@
     </a>
 @endif
 
-@if (false && ! isFX())
+@if (! isFX())
     <a class="navbar-item" href="{{ fxUrl() }}">
         <i class="fas fa-book"></i> &nbsp; Resources
     </a>

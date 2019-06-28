@@ -381,7 +381,7 @@
     </span>
     Previous Page
 </a> &nbsp;
-<a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)" v-if="page_number < unpaginatedFilteredArtifacts.length / 39">
+<a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)" v-if="page_number < unpaginatedFilteredArtifacts.length / 80">
     Next Page &nbsp;&nbsp;
     <span>
         <i style="font-size: 18px" class="fas fa-chevron-circle-right"></i>
@@ -621,8 +621,8 @@ computed: {
 
         artifacts = this.unpaginatedFilteredArtifacts;
 
-        var startIndex = (this.page_number - 1) * 39;
-        var endIndex = startIndex + 39;
+        var startIndex = (this.page_number - 1) * 80;
+        var endIndex = startIndex + 80;
         artifacts = artifacts.slice(startIndex, endIndex);
 
         return artifacts;
