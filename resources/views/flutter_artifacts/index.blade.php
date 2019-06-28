@@ -196,7 +196,7 @@
         No resources found
     </div>
     <div class="masonry">
-        <div v-for="artifact in filteredArtifacts" :key="artifact.id" class="item">
+        <div v-for="artifact in filteredArtifacts" :key="artifact.id + artifact.contents" class="item">
             <div v-on:click="selectArtifact(artifact)" style="cursor:pointer">
                 <div class="flutter-artifact is-hover-elevated" v-bind:class="[artifact.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} ? 'is-owned' : '']">
 
@@ -497,7 +497,9 @@ methods: {
 
         if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
         this.bounceTimeout = setTimeout(function() {
+            console.log('searching for: ' + searchStr);
             $.get('/flutterx/search?search=' + encodeURIComponent(searchStr), function (data) {
+                console.log('count matches: ' + data.length);
                 var artifactMap = {};
                 for (var i=0; i<data.length; i++) {
                     var artifact = data[i];
@@ -506,10 +508,9 @@ methods: {
 
                 for (var i=0; i<artifacts.length; i++) {
                     var artifact = artifacts[i];
-                    artifact.contents = (artifactMap[artifact.id] || '').substr(0, 100);
+                    artifact.contents = (artifactMap[artifact.id] || '').substr(0, 200);
                 }
             });
-
         }, 500);
     },
 
