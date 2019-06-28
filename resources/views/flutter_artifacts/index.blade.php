@@ -262,7 +262,7 @@
                         </div>
 
                         <div v-bind:title="artifact.short_description">
-                            @{{ artifact.contents }}
+                            @{{ artifact.contents || artifact.comment }}
                         </div>
 
                         <center>
