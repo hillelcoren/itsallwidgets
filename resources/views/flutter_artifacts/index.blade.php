@@ -261,7 +261,7 @@
                             </div>
                         </div>
 
-                        <div v-bind:title="artifact.short_description">
+                        <div v-bind:title="artifact.short_description" style="word-break:break-word;">
                             @{{ artifact.contents || artifact.comment }}
                         </div>
 
@@ -491,20 +491,27 @@ methods: {
         if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
         this.bounceTimeout = setTimeout(function() {
             console.log('searching for: ' + searchStr);
-            $.get('/flutterx/search?search=' + encodeURIComponent(searchStr), function (data) {
-                console.log('count matches: ' + data.length);
-                var artifactMap = {};
-                for (var i=0; i<data.length; i++) {
-                    var artifact = data[i];
-                    artifactMap[artifact.id] = artifact.contents;
-                }
+            if (searchStr && searchStr.length >= 3) {
+                $.get('/flutterx/search?search=' + encodeURIComponent(searchStr), function (data) {
+                    console.log('count matches: ' + data.length);
+                    var artifactMap = {};
+                    for (var i=0; i<data.length; i++) {
+                        var artifact = data[i];
+                        artifactMap[artifact.id] = artifact.contents;
+                    }
 
+                    for (var i=0; i<artifacts.length; i++) {
+                        var artifact = artifacts[i];
+                        var str = (artifactMap[artifact.id] || '').substr(0, 200);
+                        app.$set(artifacts[i], 'contents', str);
+                    }
+                });
+            } else {
                 for (var i=0; i<artifacts.length; i++) {
-                    var artifact = artifacts[i];
-                    var str = (artifactMap[artifact.id] || '').substr(0, 200);
-                    app.$set(artifacts[i], 'contents', str);
+                    app.$set(artifacts[i], 'contents', '');
                 }
-            });
+            }
+
         }, 500);
     },
 
