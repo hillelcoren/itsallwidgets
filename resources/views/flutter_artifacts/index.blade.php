@@ -7,7 +7,7 @@
 @section('header_button_url', false)
 
 @section('header_subtitle')
-    From multiple sources including the <a href="https://flutterweekly.net" target="_blank">Flutter Weekly Newsletter</a>
+    Easily search the <a href="https://flutterweekly.net" target="_blank">Flutter Weekly Newsletter</a> archives
 @endsection
 
 @section('content')
@@ -151,7 +151,7 @@
             <div class="container">
                 <div class="field is-grouped is-grouped-multiline is-vertical-center">
                     <p class="control is-expanded has-icons-left">
-                        <input v-model="search" class="input is-medium" type="text" v-bind:placeholder="'Search ' + unpaginatedFilteredArtifacts.length + ' resources...'"
+                        <input v-model="search" class="input is-medium" type="text" v-bind:placeholder="'Search ' + unpaginatedFilteredArtifacts.length.toLocaleString() + ' resources...'"
                             autofocus="true" style="margin-top: 10px" v-bind:style="{ backgroundColor: searchBackgroundColor()}">
                         <span class="icon is-small is-left" style="margin-top: 10px">
                             <i class="fas fa-search"></i>

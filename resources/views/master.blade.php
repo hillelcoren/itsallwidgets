@@ -487,6 +487,18 @@
                         </a>
                     </div><br/>
                 @elseif (isFX())
+                    <div class="column is-1">
+                        <a href="https://twitter.com/efthemess" target="_blank">
+                            <img src="{{ asset('images/img_efthymios.png') }}" width="72"/><br/>
+                            <div>@efthemess</div>
+                        </a>
+                    </div><br/>
+                    <div class="column is-1">
+                        <a href="https://twitter.com/SergiAndReplace" target="_blank">
+                            <img src="{{ asset('images/img_sergi.png') }}" width="72"/><br/>
+                            <div>@SergiAndReplace</div>
+                        </a>
+                    </div><br/>
                 @elseif (isFC())
                 @endif
             </div>

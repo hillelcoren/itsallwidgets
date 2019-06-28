@@ -11,9 +11,11 @@
     <i class="fas fa-globe"></i> &nbsp; {{ ucwords($url) }}
 </a>
 
-<a class="navbar-item" href="{{ iawUrl() }}/about">
-    <i class="fas fa-info-circle"></i> &nbsp; About
-</a>
+@if (isIAW())
+    <a class="navbar-item" href="{{ iawUrl() }}/about">
+        <i class="fas fa-info-circle"></i> &nbsp; About
+    </a>
+@endif
 
 @if (! isFE() && ! isIAW())
     <a class="navbar-item" href="{{ feUrl() }}">
