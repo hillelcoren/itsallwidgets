@@ -493,29 +493,25 @@ methods: {
 
     serverSearch: function() {
         var searchStr = this.search;
+        var artifacts = this.artifacts;
 
         if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
         this.bounceTimeout = setTimeout(function() {
-            console.log('sending search reasuet... ' + searchStr);
             $.get('/flutterx/search?search=' + encodeURIComponent(searchStr), function (data) {
-                updateContents(artifacts);
+                var artifactMap = {};
+                for (var i=0; i<data.length; i++) {
+                    var artifact = data[i];
+                    artifactMap[artifact.id] = artifact.contents;
+                }
+
+                for (var i=0; i<artifacts.length; i++) {
+                    var artifact = artifacts[i];
+                    artifact.contents = (artifactMap[artifact.id] || '').substr(0, 100);
+                }
             });
 
         }, 500);
     },
-
-    updateContents: function(artifacts) {
-        var artifactMap = {};
-        for (var i=0; i<artifacts.length; i++) {
-            var artifact = artifacts[i];
-            artifactMap[artifact.id] = artifact.contents;
-        }
-
-        for (var i=0; i<data.artifacts.length; i++) {
-            var artifact = data.artifacts[i];
-            artifact.contents = artifactMap[artifact.id] || '';
-        }
-    }
 
 },
 
