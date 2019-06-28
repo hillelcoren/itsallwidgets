@@ -218,6 +218,11 @@ class LoadArtifacts extends Command
 
     private function parseRepoUrl($xp, $data)
     {
+        if ($data['type'] == 'library') {
+            $data['repo_url'] = $data['url'];
+            return $data;
+        }
+
         $githubLinks = [];
 
         foreach ($xp->query("//a") as $el) {
