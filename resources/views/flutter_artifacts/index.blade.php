@@ -193,7 +193,8 @@
     <div class="container" v-cloak>
         <div v-if="filteredArtifacts.length == 0" class="is-wide has-text-centered is-vertical-center"
         style="height:400px; text-align:center; font-size: 32px; color: #AAA">
-        No resources found
+        <span v-if="is_searching">Searching...</span>
+        <span v-if="! is_searching">No resources found</span>
     </div>
     <div class="masonry">
         <div v-for="artifact in filteredArtifacts" :key="artifact.id + artifact.contents" class="item">
@@ -488,12 +489,14 @@ methods: {
         var searchStr = this.search;
         var artifacts = this.artifacts;
 
+        app.$set(app, 'is_searching', true);
         if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
+
         this.bounceTimeout = setTimeout(function() {
-            console.log('searching for: ' + searchStr);
             if (searchStr && searchStr.length >= 3) {
                 $.get('/flutterx/search?search=' + encodeURIComponent(searchStr), function (data) {
-                    console.log('count matches: ' + data.length);
+                    app.$set(app, 'is_searching', false);
+
                     var artifactMap = {};
                     for (var i=0; i<data.length; i++) {
                         var artifact = data[i];
@@ -507,6 +510,7 @@ methods: {
                     }
                 });
             } else {
+                app.$set(app, 'is_searching', false);
                 for (var i=0; i<artifacts.length; i++) {
                     app.$set(artifacts[i], 'contents', '');
                 }
@@ -533,6 +537,7 @@ data: {
     selected_artifact: false,
     page_number: 1,
     filter_type: 'filter_type_all',
+    is_searching: false,
 },
 
 computed: {
