@@ -20,7 +20,10 @@ Route::group(['domain' => 'flutterevents.{env}'], function() {
     Route::get('{flutter_event}', 'FlutterEventController@show');
 });
 
-Route::get('/flutterx', 'FlutterArtifactController@index');
+// TODO remove these
+Route::get('flutterx', 'FlutterArtifactController@index');
+Route::get('search', 'FlutterArtifactController@search');
+
 Route::group(['domain' => 'flutterx.{env}'], function() {
     Route::get('/', 'FlutterArtifactController@index');
     Route::get('search', 'FlutterArtifactController@search');
