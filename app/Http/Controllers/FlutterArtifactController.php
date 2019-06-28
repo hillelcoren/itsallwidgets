@@ -9,9 +9,9 @@ class FlutterArtifactController extends Controller
     public function index()
     {
         if (auth()->check() && auth()->user()->is_admin) {
-            $artifacts = FlutterArtifact::get();
+            $artifacts = FlutterArtifact::latest()->get();
         } else {
-            $artifacts = FlutterArtifact::approved()->get();
+            $artifacts = FlutterArtifact::latest()->approved()->get();
         }
 
         $data = [
@@ -41,5 +41,10 @@ class FlutterArtifactController extends Controller
         }
 
         return response()->json($data);
+    }
+
+    public function show()
+    {
+        return '';
     }
 }

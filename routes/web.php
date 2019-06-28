@@ -27,6 +27,7 @@ Route::get('search', 'FlutterArtifactController@search');
 Route::group(['domain' => 'flutterx.{env}'], function() {
     Route::get('/', 'FlutterArtifactController@index');
     Route::get('search', 'FlutterArtifactController@search');
+    Route::get('{flutter_resource}', 'FlutterArtifactController@show');
     //Route::get('feed', 'FlutterEventController@jsonFeed');
     //Route::get('sitemap.xml', 'FlutterEventController@sitemap');
     //Route::get('{flutter_event}', 'FlutterEventController@show');
