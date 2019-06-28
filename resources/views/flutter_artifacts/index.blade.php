@@ -530,7 +530,8 @@ methods: {
                     }
 
                     for (var i=0; i<artifacts.length; i++) {
-                        app.$set(artifacts[i], 'contents', artifactMap[artifact.id] || '');
+                        var artifact = artifacts[i];
+                        app.$set(artifacts[i], 'contents', (artifactMap[artifact.id] || ''));
                     }
                 });
             } else {
