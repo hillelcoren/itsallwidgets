@@ -11,11 +11,6 @@
 |
 */
 
-
-// TODO remove this
-Route::get('/flutterx', 'FlutterArtifactController@index');
-Route::get('/flutterx/search', 'FlutterArtifactController@search');
-
 Route::feeds();
 
 Route::group(['domain' => 'flutterevents.{env}'], function() {
@@ -27,6 +22,7 @@ Route::group(['domain' => 'flutterevents.{env}'], function() {
 
 Route::group(['domain' => 'flutterx.{env}'], function() {
     Route::get('/', 'FlutterArtifactController@index');
+    Route::get('search', 'FlutterArtifactController@search');
     //Route::get('feed', 'FlutterEventController@jsonFeed');
     //Route::get('sitemap.xml', 'FlutterEventController@sitemap');
     //Route::get('{flutter_event}', 'FlutterEventController@show');

@@ -496,7 +496,7 @@ methods: {
 
         this.bounceTimeout = setTimeout(function() {
             if (searchStr && searchStr.length >= 3) {
-                $.get('/flutterx/search?search=' + encodeURIComponent(searchStr), function (data) {
+                $.get('/search?search=' + encodeURIComponent(searchStr), function (data) {
                     app.$set(app, 'is_searching', false);
 
                     var artifactMap = {};
