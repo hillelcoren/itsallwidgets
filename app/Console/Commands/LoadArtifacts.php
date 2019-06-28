@@ -258,7 +258,9 @@ class LoadArtifacts extends Command
         }
 
         $body = $doc->getElementsByTagName('body');
-        $data['contents'] = $body->item(0)->nodeValue;
+        if ($body && $body->item(0)) {
+            $data['contents'] = $body->item(0)->nodeValue;
+        }
 
         return $data;
     }
