@@ -477,7 +477,9 @@ methods: {
         if (! this.search) {
             return '#FFFFFF';
         } else {
-            if (this.filteredArtifacts.length) {
+            if (this.is_searching) {
+                return '#FFFFBB';
+            } else if (this.filteredArtifacts.length) {
                 return '#FFFFBB';
             } else {
                 return '#FFC9D9';
