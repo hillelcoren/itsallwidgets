@@ -472,13 +472,6 @@ methods: {
         localStorage.setItem('sort_by', this.sort_by);
     },
 
-    updateMap: function() {
-        if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
-        this.bounceTimeout = setTimeout(function() {
-            updateMapMarkers();
-        }, 500);
-    },
-
     searchBackgroundColor: function() {
         if (! this.search) {
             return '#FFFFFF';
@@ -508,7 +501,8 @@ methods: {
 
                 for (var i=0; i<artifacts.length; i++) {
                     var artifact = artifacts[i];
-                    artifact.contents = (artifactMap[artifact.id] || '').substr(0, 200);
+                    var str = (artifactMap[artifact.id] || '').substr(0, 200);
+                    app.$set(artifacts[i], 'contents', str);
                 }
             });
         }, 500);
