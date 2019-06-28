@@ -414,6 +414,11 @@ var app = new Vue({
 el: '#artifact',
 
 watch: {
+    search: {
+        handler() {
+            app.serverSearch();
+        },
+    },
     sort_by: {
         handler() {
             app.saveFilters();
@@ -484,7 +489,18 @@ methods: {
                 return '#FFC9D9';
             }
         }
-    }
+    },
+
+    serverSearch: function() {
+        var searchStr = this.search;
+
+        if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
+        this.bounceTimeout = setTimeout(function() {
+            console.log('sending search reasuet... ' + searchStr);
+            $.get('');
+        }, 500);
+    },
+
 },
 
 mounted () {
