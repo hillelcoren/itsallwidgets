@@ -14,6 +14,7 @@
 
 // TODO remove this
 Route::get('/flutterx', 'FlutterArtifactController@index');
+Route::get('/flutterx/search', 'FlutterArtifactController@search');
 
 Route::feeds();
 

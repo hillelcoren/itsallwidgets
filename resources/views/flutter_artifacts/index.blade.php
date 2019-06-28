@@ -262,7 +262,7 @@
                         </div>
 
                         <div v-bind:title="artifact.short_description">
-                            @{{ artifact.comment }}
+                            @{{ artifact.contents }}
                         </div>
 
                         <center>
@@ -497,9 +497,25 @@ methods: {
         if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
         this.bounceTimeout = setTimeout(function() {
             console.log('sending search reasuet... ' + searchStr);
-            $.get('');
+            $.get('/flutterx/search?search=' + encodeURIComponent(searchStr), function (data) {
+                updateContents(artifacts);
+            });
+
         }, 500);
     },
+
+    updateContents: function(artifacts) {
+        var artifactMap = {};
+        for (var i=0; i<artifacts.length; i++) {
+            var artifact = artifacts[i];
+            artifactMap[artifact.id] = artifact.contents;
+        }
+
+        for (var i=0; i<data.artifacts.length; i++) {
+            var artifact = data.artifacts[i];
+            artifact.contents = artifactMap[artifact.id] || '';
+        }
+    }
 
 },
 
@@ -568,6 +584,7 @@ computed: {
 
                 var searchStr = (item.title || '')
                     + (item.comment || '')
+                    + (item.contents || '')
                     + (item.meta_author || '')
                     + (item.meta_publisher || '')
                     + (item.meta_description || '')

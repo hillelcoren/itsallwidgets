@@ -259,7 +259,9 @@ class LoadArtifacts extends Command
 
         $body = $doc->getElementsByTagName('body');
         if ($body && $body->item(0)) {
-            $data['contents'] = $body->item(0)->nodeValue;
+            $str = $body->item(0)->nodeValue;
+            $str = trim(preg_replace('/[\t\n\r\s]+/', ' ', $str));
+            $data['contents'] = $str;
         }
 
         return $data;

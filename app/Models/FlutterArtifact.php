@@ -37,6 +37,7 @@ class FlutterArtifact extends Model implements Feedable
     protected $hidden = [
         'is_visible',
         'is_approved',
+        'contents',
     ];
 
     protected $appends = [
