@@ -209,4 +209,12 @@ class FlutterEvent extends Model implements Feedable
             ->author($this->title);
         */
     }
+
+    /**
+     * Get all of the owning activity models.
+     */
+    public function activity()
+    {
+        return $this->morphTo();
+    }
 }
