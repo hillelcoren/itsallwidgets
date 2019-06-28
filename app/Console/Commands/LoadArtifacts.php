@@ -92,13 +92,14 @@ class LoadArtifacts extends Command
                 libxml_use_internal_errors(true);
 
                 if ($c = @file_get_contents($artifact->url)) {
-                    $d = new \DomDocument();
-                    $d->loadHTML($c);
-                    $xp = new \domxpath($d);
+                    $doc = new \DomDocument();
+                    $doc->loadHTML($c);
+                    $xp = new \domxpath($doc);
 
                     $item = $this->pasreMetaData($xp, $item);
                     $item = $this->parseSchema($xp, $item);
                     $item = $this->parseRepoUrl($xp, $item);
+                    $item = $this->parseContents($doc, $item);
 
                     $imageUrl = array_get($item, 'image_url');
                     $item['image_url'] = null;
@@ -242,6 +243,22 @@ class LoadArtifacts extends Command
                 $data['repo_url'] = $url;
             }
         }
+
+        return $data;
+    }
+
+    private function parseContents($doc, $data)
+    {
+        while (($r = $doc->getElementsByTagName('script')) && $r->length) {
+            $r->item(0)->parentNode->removeChild($r->item(0));
+        }
+
+        while (($r = $doc->getElementsByTagName('style')) && $r->length) {
+            $r->item(0)->parentNode->removeChild($r->item(0));
+        }
+
+        $body = $doc->getElementsByTagName('body');
+        $data['contents'] = $body->item(0)->nodeValue;
 
         return $data;
     }

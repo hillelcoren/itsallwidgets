@@ -14,7 +14,7 @@ class AddContents extends Migration
     public function up()
     {
         Schema::table('flutter_artifacts', function(Blueprint $table) {
-            $table->text('contents')->nullable();
+            $table->mediumText('contents')->nullable();
         });
 
         DB::statement('ALTER TABLE flutter_artifacts ADD FULLTEXT fulltext_index (contents, title, comment, meta_author, meta_publisher, meta_description, meta_author_twitter, meta_publisher_twitter)');

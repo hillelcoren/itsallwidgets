@@ -2,6 +2,7 @@
 
 namespace App\Models\Traits;
 
+// https://arianacosta.com/php/laravel/tutorial-full-text-search-laravel-5/
 trait FullTextSearch
 {
     /**
