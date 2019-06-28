@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Traits\FullTextSearch;
 
 class FlutterArtifact extends Model implements Feedable
 {
     use Notifiable;
+    use FullTextSearch;
 
     protected $fillable = [
         'title',
@@ -44,6 +46,16 @@ class FlutterArtifact extends Model implements Feedable
         'domain',
     ];
 
+    protected $searchable = [
+        'contents',
+        'title',
+        'comment',
+        'meta_author',
+        'meta_publisher',
+        'meta_description',
+        'meta_author_twitter',
+        'meta_publisher_twitter',
+    ];
 
     public function url()
     {
