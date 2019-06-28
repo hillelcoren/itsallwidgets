@@ -550,31 +550,15 @@ computed: {
                     }
                 }
 
-                if ((item.title  || '').toLowerCase().indexOf(search) >= 0) {
-                    return true;
-                }
+                var searchStr = (item.title || '')
+                    + (item.comment || '')
+                    + (item.meta_author || '')
+                    + (item.meta_publisher || '')
+                    + (item.meta_description || '')
+                    + (item.meta_author_twitter || '')
+                    + (item.meta_publisher_twitter || '');
 
-                if ((item.comment || '').toLowerCase().indexOf(search) >= 0) {
-                    return true;
-                }
-
-                if ((item.meta_author || '').toLowerCase().indexOf(search) >= 0) {
-                    return true;
-                }
-
-                if ((item.meta_publisher || '').toLowerCase().indexOf(search) >= 0) {
-                    return true;
-                }
-
-                if ((item.meta_description || '').toLowerCase().indexOf(search) >= 0) {
-                    return true;
-                }
-
-                if ((item.meta_author_twitter || '').toLowerCase().indexOf(search) >= 0) {
-                    return true;
-                }
-
-                if ((item.meta_publisher_twitter || '').toLowerCase().indexOf(search) >= 0) {
+                if (searchStr.toLowerCase().indexOf(search) >= 0) {
                     return true;
                 }
 
