@@ -263,7 +263,7 @@
                         </div>
 
                         <div v-bind:title="artifact.short_description" style="word-break:break-word;">
-                            @{{ artifact.contents || artifact.comment }}
+                            @{{ artifact.contents ? artifact.contents.substr(0, 200) : artifact.comment }}
                         </div>
 
                         <center>
@@ -358,7 +358,7 @@
 
                 <div class="block wrap">@{{ selected_artifact.comment }}</div>
 
-                <div class="block wrap">@{{ selected_artifact.meta_description }}</div>
+                <div class="block wrap">@{{ selected_artifact.contents || selected_artifact.meta_description }}</div>
 
             </div>
             <div class="column is-4 is-slightly-elevated">
@@ -506,9 +506,7 @@ methods: {
                     }
 
                     for (var i=0; i<artifacts.length; i++) {
-                        var artifact = artifacts[i];
-                        var str = (artifactMap[artifact.id] || '').substr(0, 200);
-                        app.$set(artifacts[i], 'contents', str);
+                        app.$set(artifacts[i], 'contents', artifactMap[artifact.id] || '');
                     }
                 });
             } else {
