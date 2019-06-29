@@ -318,7 +318,7 @@
                 <div style="border-bottom: 2px #368cd5 solid; width: 50px;"></div><br/>
 
                 <div class="content">
-                    <a v-bind:href="selected_artifact.artifact_url" target="_blank" rel="nofollow">
+                    <a v-bind:href="selected_artifact.url" target="_blank" rel="nofollow">
                         @{{ selected_artifact.url }}
                     </a>
                 </div>
@@ -382,13 +382,10 @@
                         <div class="block wrap">@{{ selected_artifact.contents }}</div>
                     </div>
                 </nav>
-
-
             </div>
-            <div class="column is-4 is-slightly-elevated">
+            <div class="column is-4 is-slightly-elevated" v-if="selected_artifact.image_url">
                 <img v-bind:src="selected_artifact.image_url + '?updated_at=' + selected_artifact.updated_at" width="100%"/>
             </div>
-
         </div>
 
     </div>
