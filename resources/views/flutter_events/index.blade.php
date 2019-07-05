@@ -209,20 +209,11 @@
             <div class="container">
                 <div class="field is-grouped is-grouped-multiline is-vertical-center">
                     <p class="control is-expanded has-icons-left">
-                        <input v-model="search" class="input" type="text" placeholder="SEARCH" BAK-v-bind:placeholder="'Search ' + unpaginatedFilteredEvents.length + ' events and counting.."
+                        <input v-model="search" class="input" type="text" v-bind:placeholder="'Search ' + unpaginatedFilteredEvents.length.toLocaleString() + ' events...'"
                             autofocus="true" style="margin-top: 10px" v-bind:style="{ backgroundColor: searchBackgroundColor()}">
                         <span class="icon is-small is-left" style="margin-top: 10px">
                             <i class="fas fa-search"></i>
                         </span>
-                        <!--
-                        <div class="is-medium filter-label slider-control">
-                            <label class="label is-medium" style="font-weight: normal; font-size: 16px"> &nbsp; WIDTH </label>
-                        </div>
-                        <div class="is-medium filter-control slider-control">
-                            <input class="slider is-fullwidth is-medium is-info"
-                            step="1" min="2" max="6" type="range" v-model="cards_per_row">
-                        </div>
-                        -->
                         @if ($hasLocation)
                             <div class="is-medium filter-label">
                                 <label class="label is-medium" style="font-weight: normal; font-size: 16px"> DISTANCE </label>
@@ -266,7 +257,7 @@
         No events found
     </div>
     <div class="columns is-multiline is-6 is-variable">
-        <div v-for="event in filteredEvents" :key="event.id" class="column" v-bind:class="columnClass">
+        <div v-for="event in filteredEvents" :key="event.id" class="column is-one-third">
             <div v-on:click="selectEvent(event)" style="cursor:pointer">
                 <div class="flutter-event is-hover-elevated" v-bind:class="[event.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} ? 'is-owned' : '']">
 
@@ -445,10 +436,6 @@ function getCachedSortBy() {
     return (isStorageSupported() ? localStorage.getItem('sort_by') : false) || 'sort_date';
 }
 
-function getCachedCardsPerRow() {
-    return (isStorageSupported() ? localStorage.getItem('cards_per_row') : false) || 4;
-}
-
 var app = new Vue({
 el: '#event',
 
@@ -464,11 +451,6 @@ watch: {
         },
     },
     sort_by: {
-        handler() {
-            app.saveFilters();
-        },
-    },
-    cards_per_row: {
         handler() {
             app.saveFilters();
         },
@@ -512,7 +494,6 @@ methods: {
             return false;
         }
 
-        localStorage.setItem('cards_per_row', this.cards_per_row);
         localStorage.setItem('sort_by', this.sort_by);
     },
 
@@ -547,7 +528,6 @@ mounted () {
 data: {
     events: {!! $events !!},
     search: "{{ request()->search }}",
-    cards_per_row: getCachedCardsPerRow(),
     sort_by: getCachedSortBy(),
     selected_event: false,
     page_number: 1,
@@ -561,21 +541,6 @@ computed: {
             return {'is-active': true};
         } else {
             return {};
-        }
-    },
-
-    columnClass() {
-        switch(+this.cards_per_row) {
-            case 6:
-                return {'is-12': true};
-            case 5:
-                return {'is-6': true};
-            case 4:
-                return {'is-one-third': true};
-            case 3:
-                return {'is-one-quarter': true};
-            case 2:
-                return {'is-one-fifth': true};
         }
     },
 
