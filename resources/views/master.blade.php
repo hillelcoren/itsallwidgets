@@ -353,7 +353,7 @@
         <div class="hero-body hero-body-animate" style="padding-top:34px">
             <div class="container has-text-centered">
                 <div class="subtitle" style="font-weight:200; font-size:18px;">
-                    MADE WITH &nbsp;<i class="fas fa-heart" style="font-size:16px"></i>&nbsp; BY THE FLUTTER COMMUNITY <!-- <a href="https://twitter.com/hashtag/Flutter" target="_blank">FLUTTER COMMUNITY</a> -->
+                    MADE WITH &nbsp;<i class="fas fa-heart" style="font-size:16px"></i>&nbsp; BY THE <a href="https://medium.com/flutter-community" target="_blank">FLUTTER COMMUNITY</a>
                 </div>
                 <div class="title" style="font-size:38px; padding-top:8px;">
                     @yield('header_title', 'An open list of apps built with Flutter')
