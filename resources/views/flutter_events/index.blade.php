@@ -209,11 +209,12 @@
             <div class="container">
                 <div class="field is-grouped is-grouped-multiline is-vertical-center">
                     <p class="control is-expanded has-icons-left">
-                        <input v-model="search" class="input" type="text" v-bind:placeholder="'Search ' + unpaginatedFilteredEvents.length.toLocaleString() + ' events...'"
+                        <input v-model="search" class="input is-medium" type="text" v-bind:placeholder="'Search ' + unpaginatedFilteredEvents.length.toLocaleString() + ' upcoming events...'"
                             autofocus="true" style="margin-top: 10px" v-bind:style="{ backgroundColor: searchBackgroundColor()}">
                         <span class="icon is-small is-left" style="margin-top: 10px">
                             <i class="fas fa-search"></i>
                         </span>
+
                         @if ($hasLocation)
                             <div class="is-medium filter-label">
                                 <label class="label is-medium" style="font-weight: normal; font-size: 16px"> DISTANCE </label>
@@ -237,11 +238,12 @@
                                 </select>
                             </div>
                         @endif
-                        <a class="button is-white is-slightly-elevated" href="{{ feUrl() }}/feed" target="_blank">
-                            <i style="font-size: 20px" class="fas fa-rss"></i> &nbsp;
-                            EVENT FEED
-                        </a>
-
+                        <div>
+                            <a class="button is-white is-slightly-elevated" href="{{ feUrl() }}/feed" target="_blank">
+                                <i style="font-size: 20px" class="fas fa-rss"></i> &nbsp;
+                                EVENT FEED
+                            </a>
+                        </div>
                     </p>
                 </div>
             </div>
@@ -264,11 +266,6 @@
                     <header style="padding: 16px">
 
                         <p class="no-wrap" v-bind:title="event.title" style="font-size:22px; padding-bottom:10px;">
-                            <!--
-                            <span v-if="event.featured > 0">
-                                <i style="font-size: 18px" class="fas fa-star"></i> &nbsp;
-                            </span>
-                            -->
 
                             @{{ event.event_name }}
 
