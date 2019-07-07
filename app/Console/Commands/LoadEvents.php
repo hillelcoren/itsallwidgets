@@ -143,7 +143,7 @@ class LoadEvents extends Command
                 }
 
                 if ($contents = @file_get_contents($imageUrl)) {
-                    $url = '/groups/event-' . $event->id . $extension;
+                    $url = '/events/event-' . $event->id . $extension;
                     $file = public_path($url);
                     file_put_contents($file, $contents);
                     $event->image_url = $url;
