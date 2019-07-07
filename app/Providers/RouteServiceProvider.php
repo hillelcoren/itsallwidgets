@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use App\Models\PodcastEpisode;
+use App\Models\FlutterArtifact;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Route::bind('flutter_artifact', function($value) {
+            return \App\Models\FlutterArtifact::where('slug', $value)->first();
+        });
+
         Route::bind('flutter_app', function($value) {
             return \App\Models\FlutterApp::where('slug', $value)->first();
         });

@@ -51,8 +51,13 @@ class FlutterArtifactController extends Controller
         return 'done';
     }
 
-    public function show()
+    public function show($artifact)
     {
-        return '';
+        $data = [
+            'useBlackHeader' => true,
+            'artifact' => $artifact,
+        ];
+
+        return view('flutter_artifacts.show', $data);
     }
 }

@@ -409,7 +409,7 @@ methods: {
     selectArtifact: function(artifact) {
         if (document.body.clientWidth < 1000) {
             if (artifact) {
-                //window.location = '/' + artifact.slug;
+                window.location = '/' + artifact.slug;
             }
         } else {
             this.selected_artifact = artifact;
@@ -417,9 +417,9 @@ methods: {
                 if (artifact) {
                     var route = '/' + artifact.slug;
                     gtag('config', '{{ $tracking_id }}', {'page_path': route});
-                    //history.pushState(null, null, route);
+                    history.pushState(null, null, route);
                 } else {
-                    //history.pushState(null, null, '/');
+                    history.pushState(null, null, '/');
                 }
             }
         }
