@@ -9,7 +9,7 @@ class FlutterArtifactController extends Controller
     public function index()
     {
         if (auth()->check() && auth()->user()->is_admin) {
-            $artifacts = FlutterArtifact::latest()->get();
+            $artifacts = FlutterArtifact::orderBy('id', 'desc')->get();
         } else {
             $artifacts = FlutterArtifact::latest()->approved()->get();
         }

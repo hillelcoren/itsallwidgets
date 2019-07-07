@@ -12,55 +12,40 @@
 
 @section('content')
 
+    <script src="https://unpkg.com/colcade@0/colcade.js"></script>
+
     <style>
 
-    /* https://w3bits.com/css-masonry/ */
-    .masonry { /* Masonry container */
-      column-count: 4;
-      column-gap: 1.4em;
+    /* Using floats */
+    .grid-col {
+        float: left;
+        width: 100%;
     }
 
-    .masonry .item { /* Masonry bricks or child elements */
-      background-color: #eee;
-      display: inline-block;
-      margin: 0 0 1em;
-      width: 100%;
+    .grid-item {
+        margin: 1em;
     }
 
-    /* The Masonry Brick */
-    .masonry .item {
-      background: #fff;
-      margin-top: 10px;
+    .clearfix {
+        overflow: auto;
     }
 
-    /* Masonry on large screens */
-    @media only screen and (min-width: 1024px) {
-      .masonry {
-        column-count: 4;
-      }
+    /* 2 columns by default, hide columns 2 & 3 */
+    .grid-col--2, .grid-col--3, .grid-col--4 {
+        display: none
     }
 
-    /* Masonry on medium-sized screens */
-    @media only screen and (max-width: 1023px) and (min-width: 768px) {
-      .masonry {
-        column-count: 3;
-      }
+    /* 3 columns at medium size */
+    @media ( min-width: 768px ) {
+      .grid-col { width: 33.333%; }
+      .grid-col--2, .grid-col--4 { display: block; } /* show column 2 */
     }
 
-    /* Masonry on small screens */
-    @media only screen and (max-width: 767px) and (min-width: 540px) {
-      .masonry {
-        column-count: 2;
-      }
+    /* 4 columns at large size */
+    @media ( min-width: 1080px ) {
+      .grid-col { width: 25%; }
+      .grid-col--3, .grid-col--4 { display: block; } /* show column 3 */
     }
-
-    /* Masonry on small screens */
-    @media only screen and (max-width: 539px){
-      .masonry {
-        column-count: 1;
-      }
-    }
-
 
     div.artifact-links > a:hover {
         text-decoration: underline;
@@ -130,16 +115,6 @@
         .store-buttons img {
             max-width: 200px;
         }
-
-
-        /*
-        .is-hover-elevated {
-            -moz-filter: drop-shadow(0px 16px 16px #CCC);
-            -webkit-filter: drop-shadow(0px 16px 16px #CCC);
-            -o-filter: drop-shadow(0px 16px 16px #CCC);
-            filter: drop-shadow(0px 16px 16px #CCC);
-        }
-        */
     }
 
     </style>
@@ -188,16 +163,19 @@
     </section>
 
 
-<div class="zcontainer">
-<section class="section is-body-font" style="background-color:#fefefe">
+<section class="section is-body-font clearfix" style="background-color:#fefefe">
     <div class="container" v-cloak>
         <div v-if="filteredArtifacts.length == 0" class="is-wide has-text-centered is-vertical-center"
-        style="height:400px; text-align:center; font-size: 32px; color: #AAA">
+            style="height:400px; text-align:center; font-size: 32px; color: #AAA">
         <span v-if="is_searching">Searching...</span>
         <span v-if="! is_searching">No resources found</span>
     </div>
-    <div class="masonry">
-        <div v-for="artifact in filteredArtifacts" :key="artifact.id + artifact.contents" class="item">
+    <div class="grid" data-colcade="columns: .grid-col, items: .grid-item">
+        <div class="grid-col grid-col--1"></div>
+        <div class="grid-col grid-col--2"></div>
+        <div class="grid-col grid-col--3"></div>
+        <div class="grid-col grid-col--4"></div>
+        <div v-for="artifact in filteredArtifacts" :key="artifact.id + artifact.contents" class="grid-item">
             <div v-on:click="selectArtifact(artifact)" style="cursor:pointer">
                 <div class="flutter-artifact is-hover-elevated" v-bind:class="[artifact.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} ? 'is-owned' : '']">
 
@@ -294,10 +272,7 @@
             </div>
         </div>
     </div>
-</div>
 </section>
-</div>
-
 
 <div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_artifact">
 <div class="modal-background" v-on:click="selectArtifact()"></div>
@@ -546,7 +521,6 @@ mounted () {
             artifact.selectArtifact();
         }
     });
-
 },
 
 data: {
@@ -620,7 +594,6 @@ computed: {
     },
 
     filteredArtifacts() {
-
         artifacts = this.unpaginatedFilteredArtifacts;
 
         var startIndex = (this.page_number - 1) * 80;
@@ -632,6 +605,87 @@ computed: {
 }
 
 });
+
+
+
+/**
+ * Set appropriate spanning to any masonry item
+ *
+ * Get different properties we already set for the masonry, calculate
+ * height or spanning for any cell of the masonry grid based on its
+ * content-wrapper's height, the (row) gap of the grid, and the size
+ * of the implicit row tracks.
+ *
+ * @param item Object A brick/tile/cell inside the masonry
+ */
+function resizeMasonryItem(item){
+  /* Get the grid object, its row-gap, and the size of its implicit rows */
+  var grid = document.getElementsByClassName('masonry')[0],
+      rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap')),
+      rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
+
+  /*
+   * Spanning for any brick = S
+   * Grid's row-gap = G
+   * Size of grid's implicitly create row-track = R
+   * Height of item content = H
+   * Net height of the item = H1 = H + G
+   * Net height of the implicit row-track = T = G + R
+   * S = H1 / T
+   */
+  var rowSpan = Math.ceil((item.querySelector('.masonry-content').getBoundingClientRect().height+rowGap)/(rowHeight+rowGap));
+
+  /* Set the spanning as calculated above (S) */
+  item.style.gridRowEnd = 'span '+rowSpan;
+}
+
+/**
+ * Apply spanning to all the masonry items
+ *
+ * Loop through all the items and apply the spanning to them using
+ * `resizeMasonryItem()` function.
+ *
+ * @uses resizeMasonryItem
+ */
+function resizeAllMasonryItems(){
+  // Get all item class objects in one list
+  var allItems = document.getElementsByClassName('masonry-brick');
+
+  /*
+   * Loop through the above list and execute the spanning function to
+   * each list-item (i.e. each masonry item)
+   */
+  for(var i=0;i>allItems.length;i++){
+    resizeMasonryItem(allItems[i]);
+  }
+}
+
+/**
+ * Resize the items when all the images inside the masonry grid
+ * finish loading. This will ensure that all the content inside our
+ * masonry items is visible.
+ *
+ * @uses ImagesLoaded
+ * @uses resizeMasonryItem
+ */
+function waitForImages() {
+  var allItems = document.getElementsByClassName('masonry-brick');
+  for(var i=0;i<allItems.length;i++){
+    imagesLoaded( allItems[i], function(instance) {
+      var item = instance.elements[0];
+      resizeMasonryItem(item);
+    } );
+  }
+}
+
+/* Resize all the grid items on the load and resize events */
+var masonryEvents = ['load', 'resize'];
+masonryEvents.forEach( function(event) {
+  window.addEventListener(event, resizeAllMasonryItems);
+} );
+
+
+
 
 </script>
 
