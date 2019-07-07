@@ -275,114 +275,108 @@
 </section>
 
 <div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_artifact">
-<div class="modal-background" v-on:click="selectArtifact()"></div>
-<div class="modal-card is-body-font">
-    <header class="modal-card-head">
-        <p class="modal-card-title"></p>
-        <button class="delete" aria-label="close" v-on:click="selectArtifact()"></button>
-    </header>
-    <section class="modal-card-body" @click.stop>
+    <div class="modal-background" v-on:click="selectArtifact()"></div>
+    <div class="modal-card is-body-font">
+        <header class="modal-card-head">
+            <p class="modal-card-title"></p>
+            <button class="delete" aria-label="close" v-on:click="selectArtifact()"></button>
+        </header>
+        <section class="modal-card-body" @click.stop>
+            <div class="columns">
+                <div class="column is-8">
+                    <div style="font-size:24px; padding-bottom:10px;">
+                        @{{ selected_artifact.title }}
+                    </div>
 
-        <div class="columns">
-            <div class="column is-8">
+                    <div style="border-bottom: 2px #368cd5 solid; width: 50px;"></div><br/>
 
-                <div style="font-size:24px; padding-bottom:10px;">
-                    @{{ selected_artifact.title }}
-                </div>
+                    <div class="content">
+                        <a v-bind:href="selected_artifact.url" target="_blank" rel="nofollow">
+                            @{{ selected_artifact.url }}
+                        </a>
+                    </div>
 
-                <div style="border-bottom: 2px #368cd5 solid; width: 50px;"></div><br/>
-
-                <div class="content">
-                    <a v-bind:href="selected_artifact.url" target="_blank" rel="nofollow">
-                        @{{ selected_artifact.url }}
-                    </a>
-                </div>
-
-                <div class="content">
-                    <div class="dropdown is-hoverable">
-                        <div class="dropdown-trigger is-slightly-elevated">
-                            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-                                <span>
-                                    <i style="font-size: 20px" class="fa fa-share"></i> &nbsp;
-                                    Share Resource
-                                </span>
-                                <span class="icon is-small">
-                                    <i class="fas fa-angle-down" aria-hidden="true"></i>
-                                </span>
-                            </button>
-                        </div>
-                        <div class="dropdown-menu" role="menu">
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=#url" target="_blank" rel="nofollow">
-                                <div class="dropdown-content">
-                                    <div class="dropdown-item">
-                                        <i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
+                    <div class="content">
+                        <div class="dropdown is-hoverable">
+                            <div class="dropdown-trigger is-slightly-elevated">
+                                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                                    <span>
+                                        <i style="font-size: 20px" class="fa fa-share"></i> &nbsp;
+                                        Share Resource
+                                    </span>
+                                    <span class="icon is-small">
+                                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="dropdown-menu" role="menu">
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=#url" target="_blank" rel="nofollow">
+                                    <div class="dropdown-content">
+                                        <div class="dropdown-item">
+                                            <i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                            <a v-bind:href="'https://twitter.com/share?text=' + encodeURIComponent(selected_artifact.title) + '&amp;url=' + encodeURIComponent('{{ url('/flutter-artifact') }}' + '/' + selected_artifact.slug)" target="_blank" rel="nofollow">
-                                <div class="dropdown-content">
-                                    <div class="dropdown-item">
-                                        <i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
+                                </a>
+                                <a v-bind:href="'https://twitter.com/share?text=' + encodeURIComponent(selected_artifact.title) + '&amp;url=' + encodeURIComponent('{{ url('/flutter-artifact') }}' + '/' + selected_artifact.slug)" target="_blank" rel="nofollow">
+                                    <div class="dropdown-content">
+                                        <div class="dropdown-item">
+                                            <i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            </div>
                         </div>
+
                     </div>
 
+                    <nav class="panel">
+                        <p class="panel-heading">
+                            Flutter Weekly
+                        </p>
+                        <div class="panel-block">
+                            <div class="block wrap">@{{ selected_artifact.comment }}</div>
+                        </div>
+                    </nav>
+
+                    <nav class="panel" v-if="selected_artifact.meta_description">
+                        <p class="panel-heading">
+                            Description
+                        </p>
+                        <div class="panel-block">
+                            <div class="block wrap">@{{ selected_artifact.meta_description }}</div>
+                        </div>
+                    </nav>
+
+                    <nav class="panel" v-if="selected_artifact.contents">
+                        <p class="panel-heading">
+                            Search Result
+                        </p>
+                        <div class="panel-block">
+                            <div class="block wrap">@{{ selected_artifact.contents }}</div>
+                        </div>
+                    </nav>
                 </div>
-
-                <nav class="panel">
-                    <p class="panel-heading">
-                        Flutter Weekly
-                    </p>
-                    <div class="panel-block">
-                        <div class="block wrap">@{{ selected_artifact.comment }}</div>
-                    </div>
-                </nav>
-
-                <nav class="panel" v-if="selected_artifact.meta_description">
-                    <p class="panel-heading">
-                        Description
-                    </p>
-                    <div class="panel-block">
-                        <div class="block wrap">@{{ selected_artifact.meta_description }}</div>
-                    </div>
-                </nav>
-
-                <nav class="panel" v-if="selected_artifact.contents">
-                    <p class="panel-heading">
-                        Search Result
-                    </p>
-                    <div class="panel-block">
-                        <div class="block wrap">@{{ selected_artifact.contents }}</div>
-                    </div>
-                </nav>
+                <div class="column is-4 is-slightly-elevated" v-if="selected_artifact.image_url">
+                    <img v-bind:src="selected_artifact.image_url + '?updated_at=' + selected_artifact.updated_at" width="100%"/>
+                </div>
             </div>
-            <div class="column is-4 is-slightly-elevated" v-if="selected_artifact.image_url">
-                <img v-bind:src="selected_artifact.image_url + '?updated_at=' + selected_artifact.updated_at" width="100%"/>
-            </div>
-        </div>
-
+        </section>
     </div>
-
-
-</section>
 </div>
 
 <center>
-
-<a class="button is-info is-slightly-elevated" v-on:click="adjustPage(-1)" v-if="page_number > 1">
-    <span class="icon-bug-fix">
-        <i style="font-size: 18px" class="fas fa-chevron-circle-left"></i> &nbsp;&nbsp;
-    </span>
-    Previous Page
-</a> &nbsp;
-<a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)" v-if="page_number < unpaginatedFilteredArtifacts.length / 80">
-    Next Page &nbsp;&nbsp;
-    <span>
-        <i style="font-size: 18px" class="fas fa-chevron-circle-right"></i>
-    </span>
-</a>
+    <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(-1)" v-if="page_number > 1">
+        <span class="icon-bug-fix">
+            <i style="font-size: 18px" class="fas fa-chevron-circle-left"></i> &nbsp;&nbsp;
+        </span>
+        Previous Page
+    </a> &nbsp;
+    <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)" v-if="page_number < unpaginatedFilteredArtifacts.length / 80">
+        Next Page &nbsp;&nbsp;
+        <span>
+            <i style="font-size: 18px" class="fas fa-chevron-circle-right"></i>
+        </span>
+    </a>
 </center>
 
 </div>
@@ -427,6 +421,7 @@ methods: {
     },
 
     selectArtifact: function(artifact) {
+        console.log('select: %s', artifact);
         if (document.body.clientWidth < 1000) {
             if (artifact) {
                 //window.location = '/' + artifact.slug;
