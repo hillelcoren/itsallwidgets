@@ -293,6 +293,17 @@
                             @{{ event.text_description }}
                         </div>
 
+                        @if (true || (auth()->check() && auth()->user()->is_editor))
+                            <br/>
+                            <div>
+                                @{{ event.rsvp_yes > 0 ? event.rsvp_yes + ' Attending' : '' }}
+                                @{{ event.rsvp_yes > 0 && event.rsvp_limit > 0 ? '•' : '' }}
+                                @{{ event.rsvp_limit > 0 ? event.rsvp_limit + ' Limit' : '' }}
+                                @{{ event.rsvp_limit > 0 && event.rsvp_waitlist > 0 ? '•' : '' }}
+                                @{{ event.rsvp_waitlist > 0 ? event.rsvp_waitlist + ' Waitlisted' : '' }}
+                            </div>
+                        @endif
+
                         <div class="event-links" style="font-size:13px; padding-top:16px; padding-bottom:16px">
                             <a v-bind:href="event.event_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
                                 VIEW EVENT
