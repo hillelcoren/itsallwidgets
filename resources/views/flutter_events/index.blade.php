@@ -311,15 +311,13 @@
                             @{{ event.text_description }}
                         </div>
 
-                        @if (true || (auth()->check() && auth()->user()->is_editor))
-                            <div style="color:#666; padding-top:16px">
-                                @{{ event.rsvp_yes > 0 ? event.rsvp_yes + ' Attending' : '' }}
-                                @{{ event.rsvp_yes > 0 && event.rsvp_limit > 0 ? '•' : '' }}
-                                @{{ event.rsvp_limit > 0 ? event.rsvp_limit + ' Limit' : '' }}
-                                @{{ event.rsvp_limit > 0 && event.rsvp_waitlist > 0 ? '•' : '' }}
-                                @{{ event.rsvp_waitlist > 0 ? event.rsvp_waitlist + ' Waitlisted' : '' }}
-                            </div>
-                        @endif
+                        <div style="color:#666; padding-top:16px">
+                            @{{ event.rsvp_yes > 0 ? event.rsvp_yes + ' Attending' : '' }}
+                            @{{ event.rsvp_yes > 0 && event.rsvp_limit > 0 ? '•' : '' }}
+                            @{{ event.rsvp_limit > 0 ? event.rsvp_limit + ' Limit' : '' }}
+                            @{{ event.rsvp_limit > 0 && event.rsvp_waitlist > 0 ? '•' : '' }}
+                            @{{ event.rsvp_waitlist > 0 ? event.rsvp_waitlist + ' Waitlisted' : '' }}
+                        </div>
 
                         <div class="event-links" style="font-size:13px; padding-top:16px; padding-bottom:16px">
                             <a v-bind:href="event.event_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
@@ -633,8 +631,8 @@ computed: {
         }
 
         events.sort(function(itemA, itemB) {
-            if (sort_by == 'sort_attending' && itemA.rsvp_yes != itemB.rsvp_yes) {
-                return itemB.rsvp_yes - itemA.rsvp_yes;
+            if (sort_by == 'sort_attending' && (itemA.rsvp_yes + itemA.rsvp_waitlist) != (itemB.rsvp_yes + itemB.rsvp_waitlist)) {
+                return (itemB.rsvp_yes + itemB.rsvp_waitlist) - (itemA.rsvp_yes + itemA.rsvp_waitlist);
             } else if (sort_by == 'sort_distance' && itemA.distance != itemB.distance) {
                 return itemA.distance - itemB.distance;
             } else {
