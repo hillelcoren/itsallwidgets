@@ -13,8 +13,6 @@
 
 Route::feeds();
 
-Route::get('flutter-groups', 'FlutterEventController@groups');
-
 Route::group(['domain' => 'flutterevents.{env}'], function() {
     Route::get('/', 'FlutterEventController@index');
     Route::get('feed', 'FlutterEventController@jsonFeed');
