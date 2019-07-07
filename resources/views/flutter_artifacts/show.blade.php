@@ -31,46 +31,20 @@
 						<h2 class="title">
 							{{ $artifact->title }}
 
-							@if ($artifact->category)
-								&nbsp;&nbsp;
-								<a class="tag is-info is-medium" style="text-decoration: none;"
-									href="{{ url('?search=' . strtolower($artifact->category)) }}">
-									{{ $artifact->category }}
-								</a>
-							@endif
+                            &nbsp;&nbsp;
+
+                            <span class="button is-outlined is-small is-static is-{{ $artifact->type }}">
+                                {{ $artifact->pretty_type }}
+                            </span>
 
 							<div style="border-bottom: 2px #368cd5 solid; width: 50px; padding-top:12px;"/>
 						</h2>
-						<div class="subtitle" style="padding-top:16px;">
-							{{ $artifact->short_description }}
-						</div>
 
-						@if ($artifact->google_url || $artifact->apple_url)
-							<div class="block">
-								@if ($artifact->google_url)
-									<a href="{{ $artifact->google_url }}" target="_blank" class="is-slightly-elevated" rel="nofollow">
-										<img src="{{ asset('images/google.png') }}" style="width:180px"/>
-									</a>
-								@endif
-								@if ($artifact->apple_url)
-									<a href="{{ $artifact->apple_url }}" target="_blank" class="is-slightly-elevated" rel="nofollow">
-										<img src="{{ asset('images/apple.png') }}" style="width:180px"/>
-									</a>
-								@endif
-							</div>
-						@endif
-
-						@if ($artifact->website_url || $artifact->repo_url)
-							<div class="content">
-								@if ($artifact->website_url)
-									<a href="{{ url($artifact->website_url) }}" target="_blank" rel="nofollow">{{ url($artifact->website_url) }}</a></br>
-								@endif
-
-								@if ($artifact->repo_url)
-									<a href="{{ url($artifact->repo_url) }}" target="_blank" rel="nofollow">{{ url($artifact->repo_url) }}</a><br/>
-								@endif
-							</div>
-						@endif
+                        <div class="content">
+                            <a href="{{ url($artifact->url) }}" target="_blank" rel="nofollow" style="font-size:20px">
+                                {{ url($artifact->url) }}
+                            </a><br/>
+                        </div>
 
 						<div class="content">
 							@if ($artifact->facebook_url)
@@ -119,43 +93,19 @@
 								</div>
 							</div>
 
-							<br/><br/>
+							<br/>&nbsp;<br/>
 
 							<div class="block">
-								{!! nl2br(e($artifact->long_description)) !!}
+								{!! nl2br(e($artifact->meta_description)) !!}
 							</div>
 
-							@if ($artifact->has_gif || $artifact->has_screenshot_1 || $artifact->has_screenshot_2 || $artifact->has_screenshot_3)
-								<div class="columns is-multiline is-2 is-variable">
-									@if ($artifact->has_gif)
-										<div class="column is-one-fifth">
-											<img src="{{ $artifact->gifUrl() }}" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer" onclick="selectImage('gif')"/>
-			                            </div>
-									@endif
-		                            <div class="column is-one-fifth">
-										<img src="{{ $artifact->screenshotUrl() }}" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer" onclick="selectImage('png')"/>
-		                            </div>
-									@if ($artifact->has_screenshot_1)
-										<div class="column is-one-fifth">
-											<img src="{{ $artifact->screenshotUrl(1) }}" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer" onclick="selectImage('png1')"/>
-			                            </div>
-									@endif
-									@if ($artifact->has_screenshot_2)
-										<div class="column is-one-fifth">
-											<img src="{{ $artifact->screenshotUrl(2) }}" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer" onclick="selectImage('png2')"/>
-			                            </div>
-									@endif
-									@if ($artifact->has_screenshot_3)
-										<div class="column is-one-fifth">
-											<img src="{{ $artifact->screenshotUrl(3) }}" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer" onclick="selectImage('png3')"/>
-			                            </div>
-									@endif
-		                        </div>
-							@endif
+                            <div style="padding-top:0px;padding-bottom:18px;">
+                                <span class="tag is-white" style="padding-left:0px; padding-top:6px; color:#777">
+                                    Published on {{ $artifact->pretty_published_date }}
+                                </span>
+                            </div>
 
-							@if ($artifact->youtube_url)
-								<iframe width="560" height="315" src="{{ $artifact->youtube_url }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-							@endif
+
 
 						</div>
 					</div>
