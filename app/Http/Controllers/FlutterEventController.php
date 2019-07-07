@@ -176,9 +176,15 @@ class FlutterEventController extends Controller
         $events = FlutterEvent::orderBy('event_date')->approved()->get();
 
         $str = '';
+        $groups = [];
 
         foreach ($events as $event) {
-            $str .= $event->event_date . '<br/>';
+            if (isset($groups[$event->meetup_group_id])) {
+                continue;
+            }
+
+            $groups[$event->meetup_group_id] = true;
+            $str .= $event->event_date . ' • ' . $event->meetup_group_name . ': ' . $event->event_name . '<br/>';
         }
 
         return $str;
