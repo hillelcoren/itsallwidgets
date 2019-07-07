@@ -23,7 +23,7 @@
     }
 
     .grid-item {
-        margin: 1em;
+        margin: 1.2em .6em 1.2em .6em;
     }
 
     .clearfix {
@@ -657,24 +657,6 @@ function resizeAllMasonryItems(){
    */
   for(var i=0;i>allItems.length;i++){
     resizeMasonryItem(allItems[i]);
-  }
-}
-
-/**
- * Resize the items when all the images inside the masonry grid
- * finish loading. This will ensure that all the content inside our
- * masonry items is visible.
- *
- * @uses ImagesLoaded
- * @uses resizeMasonryItem
- */
-function waitForImages() {
-  var allItems = document.getElementsByClassName('masonry-brick');
-  for(var i=0;i<allItems.length;i++){
-    imagesLoaded( allItems[i], function(instance) {
-      var item = instance.elements[0];
-      resizeMasonryItem(item);
-    } );
   }
 }
 
