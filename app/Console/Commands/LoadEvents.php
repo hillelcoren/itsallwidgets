@@ -80,6 +80,7 @@ class LoadEvents extends Command
                 'rsvp_yes' => $item->yes_rsvp_count,
                 'rsvp_waitlist' => $item->waitlist_count,
                 'meetup_group_id' => $group->id,
+                'meetup_group_name' => $group->name,
                 'directions' => property_exists($item, 'how_to_find_us') ? $item->how_to_find_us : '',
                 'address' => $address,
                 'city' => $city,

@@ -171,6 +171,19 @@ class FlutterEventController extends Controller
         return 'SUCCESS';
     }
 
+    public function groups()
+    {
+        $events = FlutterEvent::orderBy('event_date')->approved()->get();
+
+        $str = '';
+
+        foreach ($events as $event) {
+            $str .= $event->event_date . '<br/>';
+        }
+
+        return $str;
+    }
+
     public function jsonFeed(Request $request)
     {
         $events = FlutterEvent::orderBy('event_date', 'desc')->approved()->get();

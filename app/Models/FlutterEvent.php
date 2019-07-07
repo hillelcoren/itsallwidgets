@@ -28,8 +28,9 @@ class FlutterEvent extends Model implements Feedable
         'rsvp_limit',
         'rsvp_yes',
         'rsvp_waitlist',
-        'meetup_group_id',
         'directions',
+        'meetup_group_id',
+        'meetup_group_name',
     ];
 
     protected $hidden = [
