@@ -149,12 +149,12 @@
     ];
     var markerMap = {
         @foreach ($events as $event)
-            {{ $event->id}}: ['{{ $event->eventLink() }}<br/>{{ substr(strip_tags($event->description), 0, 150) }}...', {{ $event->latitude }}, {{ $event->longitude }}],
+            {{ $event->id}}: ['{{ $event->eventLink() }}<br/>{{ substr(strip_tags($event->description), 0, 150) }}...', {{ $event->latitude }}, {{ $event->longitude }}, {{ $event->distance }}],
         @endforeach
     };
 
     $(function() {
-        @if ($hasLocation)
+        @if (false && $hasLocation)
             var map = L.map('map').setView([{{ cache(\Request::getClientIp() . '_latitude') ?: '26' }}, {{ cache(\Request::getClientIp() . '_longitude') ?: '0' }}], 2);
         @else
             var map = L.map('map').setView([26, 0], 2);
@@ -171,6 +171,8 @@
 
             @if (! filter_var(request()->study_jams, FILTER_VALIDATE_BOOLEAN))
                 setTimeout(function() {
+                    var nearestMarker = false;
+                    var nearestMarkerDistance = 0;
                     for (var i = 0; i < markerList.length; i++) {
                         var data = markerMap[markerList[i]];
                         marker = new L.marker([data[1],data[2]], {
@@ -182,6 +184,15 @@
                         })
                         .bindPopup(data[0])
                         .addTo(layerGroup);
+
+                        if (data[3] < nearestMarkerDistance) {
+                            nearestMarker = marker;
+                            nearestMarkerDistance = data[3];
+                        }
+                    }
+
+                    if (nearestMarker) {
+                        nearestMarker.openPopup();
                     }
                 }, 400);
             @endif
