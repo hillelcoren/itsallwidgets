@@ -499,6 +499,7 @@ methods: {
     },
 
     serverSearch: function() {
+        var app = app || this;
         var searchStr = this.search;
         var artifacts = this.artifacts;
 
@@ -533,17 +534,24 @@ methods: {
 
 },
 
+beforeMount() {
+    @if (request()->q || request()->search)
+        this.serverSearch();
+    @endif
+},
+
 mounted () {
     window.addEventListener('keyup', function(artifact) {
         if (artifact.keyCode == 27) {
             artifact.selectArtifact();
         }
     });
+
 },
 
 data: {
     artifacts: {!! $artifacts !!},
-    search: "{{ request()->search }}",
+    search: "{{ request()->q ?: request()->search }}",
     sort_by: getCachedSortBy(),
     selected_artifact: false,
     page_number: 1,
