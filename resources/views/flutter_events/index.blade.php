@@ -524,6 +524,12 @@ methods: {
     }
 },
 
+beforeMount () {
+    @if (filter_var(request()->study_jams, FILTER_VALIDATE_BOOLEAN))
+        this.updateMap();
+    @endif
+},
+
 mounted () {
     window.addEventListener('keyup', function(event) {
         if (event.keyCode == 27) {

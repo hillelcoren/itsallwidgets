@@ -25,6 +25,11 @@ class FlutterEvent extends Model implements Feedable
         'latitude',
         'longitude',
         'is_visible',
+        'rsvp_limit',
+        'rsvp_yes',
+        'rsvp_waitlist',
+        'meetup_group_id',
+        'directions',
     ];
 
     protected $hidden = [
