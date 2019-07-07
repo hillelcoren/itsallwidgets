@@ -13,7 +13,7 @@ class LoadArtifacts extends Command
      *
      * @var string
      */
-    protected $signature = 'itsallwidgets:load_artifacts';
+    protected $signature = 'itsallwidgets:load_artifacts {--all}';
 
     /**
      * The console command description.
@@ -48,89 +48,104 @@ class LoadArtifacts extends Command
         $data = file_get_contents('https://json.flutterweekly.net/issues.json');
         $data = json_decode($data);
 
-        foreach ($data->issues as $issue) {
-            //$this->info(json_encode($issue));
+        if ($this->option('all')) {
+            foreach ($data->issues as $issue) {
+                $this->parseIssue($issue);
+            }
+        } else {
+            $issue = $data->issues[count($data->issues) - 1];
+            $this->info($issue->file);
+            $this->parseIssue($issue);
+        }
 
-            $link = 'https://json.flutterweekly.net/' . $issue->file;
-            $artifacts = file_get_contents($link);
 
-            $artifacts = json_decode($artifacts);
-            $publishedDate = date('Y-m-d', strtotime($issue->publishedOn));
+        $this->info('Done');
+    }
 
-            foreach ($artifacts->articles as $artifact) {
-                //$this->info(json_encode($artifact));
+    private function parseIssue($issue)
+    {
+        $link = 'https://json.flutterweekly.net/' . $issue->file;
+        $artifacts = file_get_contents($link);
 
-                if (FlutterArtifact::where('url', '=', rtrim($artifact->url , '/'))
-                    ->orWhere('slug', '=', str_slug($artifact->title))
-                    ->first()) {
-                    $this->info('Exists: skipping...');
-                    continue;
-                }
+        $artifacts = json_decode($artifacts);
+        $publishedDate = date('Y-m-d', strtotime($issue->publishedOn));
 
-                $slug = str_slug($artifact->title);
+        foreach ($artifacts->articles as $artifact) {
+            //$this->info(json_encode($artifact));
 
-                if ($artifact->section == 'articles') {
-                    $type = 'article';
-                } elseif ($artifact->section == 'videos') {
-                    $type = 'video';
+            if (FlutterArtifact::where('url', '=', rtrim($artifact->url , '/'))
+                ->orWhere('slug', '=', str_slug($artifact->title))
+                ->first()) {
+                $this->info('Exists: skipping...');
+                continue;
+            }
+
+            $slug = str_slug($artifact->title);
+
+            if ($artifact->section == 'articles') {
+                $type = 'article';
+            } elseif ($artifact->section == 'videos') {
+                $type = 'video';
+            } else {
+                $type = 'library';
+            }
+
+            $item = [
+                'title' => $artifact->title,
+                'slug' => $slug,
+                'url' => $artifact->url,
+                'comment' => $artifact->description,
+                'type' => $type,
+                'source_url' => $link,
+                'published_date' => $publishedDate,
+                'is_approved' => true,
+            ];
+
+            // https://stackoverflow.com/a/9244634/497368
+            libxml_use_internal_errors(true);
+
+            if ($c = @file_get_contents($artifact->url)) {
+                $doc = new \DomDocument();
+                $doc->loadHTML($c);
+                $xp = new \domxpath($doc);
+
+                $item = $this->pasreMetaData($xp, $item);
+                $item = $this->parseSchema($xp, $item);
+                $item = $this->parseRepoUrl($xp, $item);
+
+                if ($type == 'video') {
+                    // load transcript
                 } else {
-                    $type = 'library';
+                    $item = $this->parseContents($doc, $item);
                 }
 
-                $item = [
-                    'title' => $artifact->title,
-                    'slug' => $slug,
-                    'url' => $artifact->url,
-                    'comment' => $artifact->description,
-                    'type' => $type,
-                    'source_url' => $link,
-                    'published_date' => $publishedDate,
-                    'is_approved' => true,
-                ];
+                $imageUrl = array_get($item, 'image_url');
+                $item['image_url'] = null;
 
-                // https://stackoverflow.com/a/9244634/497368
-                libxml_use_internal_errors(true);
+                $this->info(json_encode($item));
+                $artifact = $this->artifactRepo->store($item, 1);
 
-                if ($c = @file_get_contents($artifact->url)) {
-                    $doc = new \DomDocument();
-                    $doc->loadHTML($c);
-                    $xp = new \domxpath($doc);
-
-                    $item = $this->pasreMetaData($xp, $item);
-                    $item = $this->parseSchema($xp, $item);
-                    $item = $this->parseRepoUrl($xp, $item);
-                    $item = $this->parseContents($doc, $item);
-
-                    $imageUrl = array_get($item, 'image_url');
-                    $item['image_url'] = null;
-
-                    $this->info(json_encode($item));
-                    $artifact = $this->artifactRepo->store($item, 1);
-
-                    if ($imageUrl) {
-                        $parts = explode('?', $imageUrl);
-                        $imageUrl = count($parts) ? $parts[0] : '';
-                        $imageUrl = rtrim($imageUrl, '/');
-                        $parts = explode('.', $imageUrl);
-                        $extension = count($parts) > 1 ? '.' . $parts[count($parts) - 1] : '';
-                        if (strlen($extension) > 4) {
-                            $extension = '';
-                        }
-
-                        if ($contents = @file_get_contents($imageUrl)) {
-                            $url = '/thumbnails/artifact-' . $artifact->id . $extension;
-                            $file = public_path($url);
-                            file_put_contents($file, $contents);
-                            $artifact->image_url = $url;
-                        }
-
-                        $artifact->save();
+                if ($imageUrl) {
+                    $parts = explode('?', $imageUrl);
+                    $imageUrl = count($parts) ? $parts[0] : '';
+                    $imageUrl = rtrim($imageUrl, '/');
+                    $parts = explode('.', $imageUrl);
+                    $extension = count($parts) > 1 ? '.' . $parts[count($parts) - 1] : '';
+                    if (strlen($extension) > 4) {
+                        $extension = '';
                     }
+
+                    if ($contents = @file_get_contents($imageUrl)) {
+                        $url = '/thumbnails/artifact-' . $artifact->id . $extension;
+                        $file = public_path($url);
+                        file_put_contents($file, $contents);
+                        $artifact->image_url = $url;
+                    }
+
+                    $artifact->save();
                 }
             }
         }
-
-        $this->info('Done');
     }
 
     private function pasreMetaData($xp, $data)

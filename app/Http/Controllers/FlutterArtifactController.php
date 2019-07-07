@@ -43,6 +43,13 @@ class FlutterArtifactController extends Controller
         return response()->json($data);
     }
 
+    public function update()
+    {
+        \Artisan::call('itsallwidgets:load_artifacts');
+
+        return 'done';
+    }
+
     public function show()
     {
         return '';
