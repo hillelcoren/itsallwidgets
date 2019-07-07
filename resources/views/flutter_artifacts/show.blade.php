@@ -1,8 +1,9 @@
 @extends('master')
 
-@section('title', 'FlutterX')
-@section('description', 'A Searchable List of Flutter Resources')
-@section('image_url', asset('images/flutterx_twitter.png'))
+@section('title', $artifact->title)
+@section('description', $artifact->comment)
+@section('image_url', url($artifact->image_url))
+
 @section('header_title', 'A Searchable List of Flutter Resources')
 @section('header_button_url', false)
 
@@ -100,7 +101,7 @@
 							</div>
 
                             <div style="padding-top:0px;padding-bottom:18px;">
-                                <span class="tag is-white" style="padding-left:0px; padding-top:6px; color:#777">
+                                <span style="padding-left:0px; padding-top:6px; color:#777; font-size:14px;">
                                     Published on {{ $artifact->pretty_published_date }}
                                 </span>
                             </div>
