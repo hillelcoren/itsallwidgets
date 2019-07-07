@@ -108,7 +108,7 @@ class LoadEvents extends Command
 
             if ($contents = @file_get_contents($event->event_url)) {
                 $matches = [];
-                preg_match('/featured_photo(.*?)(https.*?)&/', $str, $matches);
+                preg_match('/featured_photo(.*?)(https.*?)&/', $contents, $matches);
 
                 if (count($matches) == 3) {
                     $imageUrl = $matches[2];
@@ -123,7 +123,6 @@ class LoadEvents extends Command
                     $doc = new \DomDocument();
                     $doc->loadHTML($c);
                     $xp = new \domxpath($doc);
-                    $imageUrl = false;
 
                     foreach ($xp->query("//meta[@property='og:image']") as $el) {
                         $imageUrl = $el->getAttribute("content");
