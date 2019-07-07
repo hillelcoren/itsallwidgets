@@ -17,22 +17,30 @@ function isFC() {
 }
 
 function isTest() {
+    return isValet() || isServe();
+}
+
+function isValet() {
     return strpos(request()->url(), '.test') !== false;
+}
+
+function isServe() {
+    return strpos(request()->url(), '127.0.0.1:') !== false;
 }
 
 
 function iawUrl() {
-    return isTest() ? 'http://itsallwidgets.test' : 'https://itsallwidgets.com';
+    return isTest() ? (isValet() ? 'http://itsallwidgets.test' : 'http://127.0.0.1:8000') : 'https://itsallwidgets.com';
 }
 
 function feUrl() {
-    return isTest() ? 'http://flutterevents.test' : 'https://flutterevents.com';
+    return isTest() ? (isValet() ? 'http://flutterevents.test' : 'http://127.0.0.1:8000/flutter-events')  : 'https://flutterevents.com';
 }
 
 function fxUrl() {
-    return isTest() ? 'http://flutterx.test' : 'https://flutterx.com';
+    return isTest() ? (isValet() ? 'http://flutterx.test' : 'http://127.0.0.1:8000/flutterx') : 'https://flutterx.com';
 }
 
 function fcUrl() {
-    return isTest() ? 'http://fluttercollective.test' : 'https://fluttercollective.com';
+    return isTest() ? (isValet() ? 'http://fluttercollective.test' : 'http://127.0.0.1:8000/flutter-collective') : 'https://fluttercollective.com';
 }
