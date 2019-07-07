@@ -302,20 +302,20 @@
 
                     </header>
 
-                    <div class="content" style="padding-left:16px; padding-right:16px; padding-top: 2px;">
-                        <p class="short-address" style="color: #666; font-size: 15px;">
+                    <div class="content" style="padding-left:16px; padding-right:16px; padding-top: 4px;">
+                        <div class="short-address" style="color: #666; font-size: 15px; padding-bottom: 36px;">
                             @{{ event.pretty_event_date }} • @{{ event.location }}
-                        </p>
+                        </div>
 
                         <div class="short-description" v-bind:title="event.short_description">
                             @{{ event.text_description }}
                         </div>
 
-                        <div style="height:250px">
+                        <div style="height:250px;padding-top:20px;">
                             <img v-if="event.image_url" v-bind:src="event.image_url + '?updated_at=' + event.updated_at" width="100%" style="max-height:250px"/>
                         </div>
 
-                        <div style="color:#666; padding-top:16px">
+                        <div style="color:#666; padding-top:30px">
                             @{{ event.rsvp_yes > 0 ? event.rsvp_yes + ' Attending' : '' }}
                             @{{ event.rsvp_yes > 0 && event.rsvp_limit > 0 ? '•' : '' }}
                             @{{ event.rsvp_limit > 0 ? event.rsvp_limit + ' Limit' : '' }}
