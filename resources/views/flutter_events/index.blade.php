@@ -430,7 +430,7 @@ function isStorageSupported() {
 };
 
 function getCachedSortBy() {
-    return (isStorageSupported() ? localStorage.getItem('sort_by') : false) || 'sort_date';
+    return (isStorageSupported() ? localStorage.getItem('flutterevents_sort_by') : false) || 'sort_date';
 }
 
 var app = new Vue({
@@ -491,7 +491,7 @@ methods: {
             return false;
         }
 
-        localStorage.setItem('sort_by', this.sort_by);
+        localStorage.setItem('flutterevents_sort_by', this.sort_by);
     },
 
     updateMap: function() {

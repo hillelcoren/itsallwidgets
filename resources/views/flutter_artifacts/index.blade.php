@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', 'Flutter X')
+@section('title', 'FlutterX')
 @section('description', 'A Searchable List of Flutter Resources')
 @section('image_url', asset('images/flutterx_twitter.png'))
 @section('header_title', 'A Searchable List of Flutter Resources')
@@ -425,11 +425,7 @@ function isStorageSupported() {
 };
 
 function getCachedSortBy() {
-    return (isStorageSupported() ? localStorage.getItem('sort_by') : false) || 'sort_newest';
-}
-
-function getCachedCardsPerRow() {
-    return (isStorageSupported() ? localStorage.getItem('cards_per_row') : false) || 4;
+    return (isStorageSupported() ? localStorage.getItem('flutterx_sort_by') : false) || 'sort_newest';
 }
 
 var app = new Vue({
@@ -442,11 +438,6 @@ watch: {
         },
     },
     sort_by: {
-        handler() {
-            app.saveFilters();
-        },
-    },
-    cards_per_row: {
         handler() {
             app.saveFilters();
         },
@@ -490,8 +481,7 @@ methods: {
             return false;
         }
 
-        localStorage.setItem('cards_per_row', this.cards_per_row);
-        localStorage.setItem('sort_by', this.sort_by);
+        localStorage.setItem('flutterx_sort_by', this.sort_by);
     },
 
     searchBackgroundColor: function() {
@@ -554,7 +544,6 @@ mounted () {
 data: {
     artifacts: {!! $artifacts !!},
     search: "{{ request()->search }}",
-    cards_per_row: getCachedCardsPerRow(),
     sort_by: getCachedSortBy(),
     selected_artifact: false,
     page_number: 1,
@@ -569,21 +558,6 @@ computed: {
             return {'is-active': true};
         } else {
             return {};
-        }
-    },
-
-    columnClass() {
-        switch(+this.cards_per_row) {
-            case 6:
-                return {'is-12': true};
-            case 5:
-                return {'is-6': true};
-            case 4:
-                return {'is-one-third': true};
-            case 3:
-                return {'is-one-quarter': true};
-            case 2:
-                return {'is-one-fifth': true};
         }
     },
 
