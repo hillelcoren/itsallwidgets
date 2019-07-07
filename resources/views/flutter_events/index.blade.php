@@ -311,6 +311,8 @@
                             @{{ event.text_description }}
                         </div>
 
+                        <img v-if="event.image_url" v-bind:src="event.image_url + '?updated_at=' + event.updated_at" width="100%"/>
+
                         <div style="color:#666; padding-top:16px">
                             @{{ event.rsvp_yes > 0 ? event.rsvp_yes + ' Attending' : '' }}
                             @{{ event.rsvp_yes > 0 && event.rsvp_limit > 0 ? '•' : '' }}
