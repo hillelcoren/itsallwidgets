@@ -124,7 +124,7 @@ class LoadEvents extends Command
                     $imageUrl = rtrim($imageUrl, '/');
                     $parts = explode('.', $imageUrl);
                     $extension = count($parts) > 1 ? '.' . $parts[count($parts) - 1] : '';
-                    if (strlen($extension) > 4) {
+                    if (strlen($extension) > 5) {
                         $extension = '';
                     }
 
