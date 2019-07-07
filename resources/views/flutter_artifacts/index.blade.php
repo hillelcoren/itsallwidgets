@@ -12,40 +12,55 @@
 
 @section('content')
 
-    <script src="https://unpkg.com/colcade@0/colcade.js"></script>
-
     <style>
 
-    /* Using floats */
-    .grid-col {
-        float: left;
-        width: 100%;
+    /* https://w3bits.com/css-masonry/ */
+    .masonry { /* Masonry container */
+      column-count: 4;
+      column-gap: 1.4em;
     }
 
-    .grid-item {
-        margin: 1.2em .6em 1.2em .6em;
+    .masonry .item { /* Masonry bricks or child elements */
+      background-color: #eee;
+      display: inline-block;
+      margin: 0 0 1em;
+      width: 100%;
     }
 
-    .clearfix {
-        overflow: auto;
+    /* The Masonry Brick */
+    .masonry .item {
+      background: #fff;
+      margin-top: 10px;
     }
 
-    /* 2 columns by default, hide columns 2 & 3 */
-    .grid-col--2, .grid-col--3, .grid-col--4 {
-        display: none
+    /* Masonry on large screens */
+    @media only screen and (min-width: 1024px) {
+      .masonry {
+        column-count: 4;
+      }
     }
 
-    /* 3 columns at medium size */
-    @media ( min-width: 768px ) {
-      .grid-col { width: 33.333%; }
-      .grid-col--2, .grid-col--4 { display: block; } /* show column 2 */
+    /* Masonry on medium-sized screens */
+    @media only screen and (max-width: 1023px) and (min-width: 768px) {
+      .masonry {
+        column-count: 3;
+      }
     }
 
-    /* 4 columns at large size */
-    @media ( min-width: 1080px ) {
-      .grid-col { width: 25%; }
-      .grid-col--3, .grid-col--4 { display: block; } /* show column 3 */
+    /* Masonry on small screens */
+    @media only screen and (max-width: 767px) and (min-width: 540px) {
+      .masonry {
+        column-count: 2;
+      }
     }
+
+    /* Masonry on small screens */
+    @media only screen and (max-width: 539px){
+      .masonry {
+        column-count: 1;
+      }
+    }
+
 
     div.artifact-links > a:hover {
         text-decoration: underline;
@@ -115,6 +130,16 @@
         .store-buttons img {
             max-width: 200px;
         }
+
+
+        /*
+        .is-hover-elevated {
+            -moz-filter: drop-shadow(0px 16px 16px #CCC);
+            -webkit-filter: drop-shadow(0px 16px 16px #CCC);
+            -o-filter: drop-shadow(0px 16px 16px #CCC);
+            filter: drop-shadow(0px 16px 16px #CCC);
+        }
+        */
     }
 
     </style>
@@ -163,19 +188,16 @@
     </section>
 
 
-<section class="section is-body-font clearfix" style="background-color:#fefefe">
+<div class="zcontainer">
+<section class="section is-body-font" style="background-color:#fefefe">
     <div class="container" v-cloak>
         <div v-if="filteredArtifacts.length == 0" class="is-wide has-text-centered is-vertical-center"
-            style="height:400px; text-align:center; font-size: 32px; color: #AAA">
+        style="height:400px; text-align:center; font-size: 32px; color: #AAA">
         <span v-if="is_searching">Searching...</span>
         <span v-if="! is_searching">No resources found</span>
     </div>
-    <div class="grid" data-colcade="columns: .grid-col, items: .grid-item">
-        <div class="grid-col grid-col--1"></div>
-        <div class="grid-col grid-col--2"></div>
-        <div class="grid-col grid-col--3"></div>
-        <div class="grid-col grid-col--4"></div>
-        <div v-for="artifact in filteredArtifacts" :key="artifact.id + artifact.contents" class="grid-item">
+    <div class="masonry">
+        <div v-for="artifact in filteredArtifacts" :key="artifact.id + artifact.contents" class="item">
             <div v-on:click="selectArtifact(artifact)" style="cursor:pointer">
                 <div class="flutter-artifact is-hover-elevated" v-bind:class="[artifact.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} ? 'is-owned' : '']">
 
@@ -272,111 +294,120 @@
             </div>
         </div>
     </div>
+</div>
 </section>
+</div>
+
 
 <div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_artifact">
-    <div class="modal-background" v-on:click="selectArtifact()"></div>
-    <div class="modal-card is-body-font">
-        <header class="modal-card-head">
-            <p class="modal-card-title"></p>
-            <button class="delete" aria-label="close" v-on:click="selectArtifact()"></button>
-        </header>
-        <section class="modal-card-body" @click.stop>
-            <div class="columns">
-                <div class="column is-8">
-                    <div style="font-size:24px; padding-bottom:10px;">
-                        @{{ selected_artifact.title }}
-                    </div>
+<div class="modal-background" v-on:click="selectArtifact()"></div>
+<div class="modal-card is-body-font">
+    <header class="modal-card-head">
+        <p class="modal-card-title"></p>
+        <button class="delete" aria-label="close" v-on:click="selectArtifact()"></button>
+    </header>
+    <section class="modal-card-body" @click.stop>
 
-                    <div style="border-bottom: 2px #368cd5 solid; width: 50px;"></div><br/>
+        <div class="columns">
+            <div class="column is-8">
 
-                    <div class="content">
-                        <a v-bind:href="selected_artifact.url" target="_blank" rel="nofollow">
-                            @{{ selected_artifact.url }}
-                        </a>
-                    </div>
-
-                    <div class="content">
-                        <div class="dropdown is-hoverable">
-                            <div class="dropdown-trigger is-slightly-elevated">
-                                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-                                    <span>
-                                        <i style="font-size: 20px" class="fa fa-share"></i> &nbsp;
-                                        Share Resource
-                                    </span>
-                                    <span class="icon is-small">
-                                        <i class="fas fa-angle-down" aria-hidden="true"></i>
-                                    </span>
-                                </button>
-                            </div>
-                            <div class="dropdown-menu" role="menu">
-                                <a href="https://www.facebook.com/sharer/sharer.php?u=#url" target="_blank" rel="nofollow">
-                                    <div class="dropdown-content">
-                                        <div class="dropdown-item">
-                                            <i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
-                                        </div>
-                                    </div>
-                                </a>
-                                <a v-bind:href="'https://twitter.com/share?text=' + encodeURIComponent(selected_artifact.title) + '&amp;url=' + encodeURIComponent('{{ url('/flutter-artifact') }}' + '/' + selected_artifact.slug)" target="_blank" rel="nofollow">
-                                    <div class="dropdown-content">
-                                        <div class="dropdown-item">
-                                            <i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <nav class="panel">
-                        <p class="panel-heading">
-                            Flutter Weekly
-                        </p>
-                        <div class="panel-block">
-                            <div class="block wrap">@{{ selected_artifact.comment }}</div>
-                        </div>
-                    </nav>
-
-                    <nav class="panel" v-if="selected_artifact.meta_description">
-                        <p class="panel-heading">
-                            Description
-                        </p>
-                        <div class="panel-block">
-                            <div class="block wrap">@{{ selected_artifact.meta_description }}</div>
-                        </div>
-                    </nav>
-
-                    <nav class="panel" v-if="selected_artifact.contents">
-                        <p class="panel-heading">
-                            Search Result
-                        </p>
-                        <div class="panel-block">
-                            <div class="block wrap">@{{ selected_artifact.contents }}</div>
-                        </div>
-                    </nav>
+                <div style="font-size:24px; padding-bottom:10px;">
+                    @{{ selected_artifact.title }}
                 </div>
-                <div class="column is-4 is-slightly-elevated" v-if="selected_artifact.image_url">
-                    <img v-bind:src="selected_artifact.image_url + '?updated_at=' + selected_artifact.updated_at" width="100%"/>
+
+                <div style="border-bottom: 2px #368cd5 solid; width: 50px;"></div><br/>
+
+                <div class="content">
+                    <a v-bind:href="selected_artifact.url" target="_blank" rel="nofollow">
+                        @{{ selected_artifact.url }}
+                    </a>
                 </div>
+
+                <div class="content">
+                    <div class="dropdown is-hoverable">
+                        <div class="dropdown-trigger is-slightly-elevated">
+                            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                                <span>
+                                    <i style="font-size: 20px" class="fa fa-share"></i> &nbsp;
+                                    Share Resource
+                                </span>
+                                <span class="icon is-small">
+                                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="dropdown-menu" role="menu">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=#url" target="_blank" rel="nofollow">
+                                <div class="dropdown-content">
+                                    <div class="dropdown-item">
+                                        <i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
+                                    </div>
+                                </div>
+                            </a>
+                            <a v-bind:href="'https://twitter.com/share?text=' + encodeURIComponent(selected_artifact.title) + '&amp;url=' + encodeURIComponent('{{ url('/flutter-artifact') }}' + '/' + selected_artifact.slug)" target="_blank" rel="nofollow">
+                                <div class="dropdown-content">
+                                    <div class="dropdown-item">
+                                        <i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <nav class="panel">
+                    <p class="panel-heading">
+                        Flutter Weekly
+                    </p>
+                    <div class="panel-block">
+                        <div class="block wrap">@{{ selected_artifact.comment }}</div>
+                    </div>
+                </nav>
+
+                <nav class="panel" v-if="selected_artifact.meta_description">
+                    <p class="panel-heading">
+                        Description
+                    </p>
+                    <div class="panel-block">
+                        <div class="block wrap">@{{ selected_artifact.meta_description }}</div>
+                    </div>
+                </nav>
+
+                <nav class="panel" v-if="selected_artifact.contents">
+                    <p class="panel-heading">
+                        Search Result
+                    </p>
+                    <div class="panel-block">
+                        <div class="block wrap">@{{ selected_artifact.contents }}</div>
+                    </div>
+                </nav>
             </div>
-        </section>
+            <div class="column is-4 is-slightly-elevated" v-if="selected_artifact.image_url">
+                <img v-bind:src="selected_artifact.image_url + '?updated_at=' + selected_artifact.updated_at" width="100%"/>
+            </div>
+        </div>
+
     </div>
+
+
+</section>
 </div>
 
 <center>
-    <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(-1)" v-if="page_number > 1">
-        <span class="icon-bug-fix">
-            <i style="font-size: 18px" class="fas fa-chevron-circle-left"></i> &nbsp;&nbsp;
-        </span>
-        Previous Page
-    </a> &nbsp;
-    <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)" v-if="page_number < unpaginatedFilteredArtifacts.length / 80">
-        Next Page &nbsp;&nbsp;
-        <span>
-            <i style="font-size: 18px" class="fas fa-chevron-circle-right"></i>
-        </span>
-    </a>
+
+<a class="button is-info is-slightly-elevated" v-on:click="adjustPage(-1)" v-if="page_number > 1">
+    <span class="icon-bug-fix">
+        <i style="font-size: 18px" class="fas fa-chevron-circle-left"></i> &nbsp;&nbsp;
+    </span>
+    Previous Page
+</a> &nbsp;
+<a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)" v-if="page_number < unpaginatedFilteredArtifacts.length / 80">
+    Next Page &nbsp;&nbsp;
+    <span>
+        <i style="font-size: 18px" class="fas fa-chevron-circle-right"></i>
+    </span>
+</a>
 </center>
 
 </div>
@@ -421,7 +452,6 @@ methods: {
     },
 
     selectArtifact: function(artifact) {
-        console.log('select: %s', artifact);
         if (document.body.clientWidth < 1000) {
             if (artifact) {
                 //window.location = '/' + artifact.slug;
@@ -516,6 +546,7 @@ mounted () {
             artifact.selectArtifact();
         }
     });
+
 },
 
 data: {
@@ -589,6 +620,7 @@ computed: {
     },
 
     filteredArtifacts() {
+
         artifacts = this.unpaginatedFilteredArtifacts;
 
         var startIndex = (this.page_number - 1) * 80;
@@ -600,69 +632,6 @@ computed: {
 }
 
 });
-
-
-
-/**
- * Set appropriate spanning to any masonry item
- *
- * Get different properties we already set for the masonry, calculate
- * height or spanning for any cell of the masonry grid based on its
- * content-wrapper's height, the (row) gap of the grid, and the size
- * of the implicit row tracks.
- *
- * @param item Object A brick/tile/cell inside the masonry
- */
-function resizeMasonryItem(item){
-  /* Get the grid object, its row-gap, and the size of its implicit rows */
-  var grid = document.getElementsByClassName('masonry')[0],
-      rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap')),
-      rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
-
-  /*
-   * Spanning for any brick = S
-   * Grid's row-gap = G
-   * Size of grid's implicitly create row-track = R
-   * Height of item content = H
-   * Net height of the item = H1 = H + G
-   * Net height of the implicit row-track = T = G + R
-   * S = H1 / T
-   */
-  var rowSpan = Math.ceil((item.querySelector('.masonry-content').getBoundingClientRect().height+rowGap)/(rowHeight+rowGap));
-
-  /* Set the spanning as calculated above (S) */
-  item.style.gridRowEnd = 'span '+rowSpan;
-}
-
-/**
- * Apply spanning to all the masonry items
- *
- * Loop through all the items and apply the spanning to them using
- * `resizeMasonryItem()` function.
- *
- * @uses resizeMasonryItem
- */
-function resizeAllMasonryItems(){
-  // Get all item class objects in one list
-  var allItems = document.getElementsByClassName('masonry-brick');
-
-  /*
-   * Loop through the above list and execute the spanning function to
-   * each list-item (i.e. each masonry item)
-   */
-  for(var i=0;i>allItems.length;i++){
-    resizeMasonryItem(allItems[i]);
-  }
-}
-
-/* Resize all the grid items on the load and resize events */
-var masonryEvents = ['load', 'resize'];
-masonryEvents.forEach( function(event) {
-  window.addEventListener(event, resizeAllMasonryItems);
-} );
-
-
-
 
 </script>
 

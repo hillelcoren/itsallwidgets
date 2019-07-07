@@ -32,6 +32,7 @@ class FlutterArtifactController extends Controller
         {
             $index = strpos(strtolower($artifact->contents), $search);
             $str = substr($artifact->contents, $index, 800);
+            $str = mb_convert_encoding($str, 'UTF-8', 'UTF-8');
 
             $obj = new \stdClass;
             $obj->id = $artifact->id;
