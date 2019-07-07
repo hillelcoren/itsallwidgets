@@ -154,7 +154,11 @@
     };
 
     $(function() {
-        var map = L.map('map').setView([26, 0], 2);
+        @if ($hasLocation)
+            var map = L.map('map').setView([{{ cache(\Request::getClientIp() . '_latitude') ?: '26' }}, {{ cache(\Request::getClientIp() . '_longitude') ?: '0' }}], 2);
+        @else
+            var map = L.map('map').setView([26, 0], 2);
+        @endif
         mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
 
         window.layerGroup = L.layerGroup().addTo(map);
