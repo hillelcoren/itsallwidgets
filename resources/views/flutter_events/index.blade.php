@@ -106,7 +106,7 @@
     }
 
     .columns.is-variable.is-6 {
-        --columnGap: 2rem;
+        --columnGap: 1.2rem;
     }
 
     .column {
@@ -311,7 +311,9 @@
                             @{{ event.text_description }}
                         </div>
 
-                        <img v-if="event.image_url" v-bind:src="event.image_url + '?updated_at=' + event.updated_at" width="100%"/>
+                        <div style="height:250px">
+                            <img v-if="event.image_url" v-bind:src="event.image_url + '?updated_at=' + event.updated_at" width="100%" style="max-height:250px"/>
+                        </div>
 
                         <div style="color:#666; padding-top:16px">
                             @{{ event.rsvp_yes > 0 ? event.rsvp_yes + ' Attending' : '' }}
