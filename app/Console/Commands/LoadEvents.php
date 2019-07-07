@@ -104,6 +104,41 @@ class LoadEvents extends Command
                 $event->save();
             }
 
+            // https://stackoverflow.com/a/9244634/497368
+            libxml_use_internal_errors(true);
+
+            if ($c = @file_get_contents('https://www.meetup.com/' . $group->urlname)) {
+                $doc = new \DomDocument();
+                $doc->loadHTML($c);
+                $xp = new \domxpath($doc);
+                $imageUrl = false;
+
+                foreach ($xp->query("//meta[@property='og:image']") as $el) {
+                    $imageUrl = $el->getAttribute("content");
+                    break;
+                }
+
+                if ($imageUrl) {
+                    $parts = explode('?', $imageUrl);
+                    $imageUrl = count($parts) ? $parts[0] : '';
+                    $imageUrl = rtrim($imageUrl, '/');
+                    $parts = explode('.', $imageUrl);
+                    $extension = count($parts) > 1 ? '.' . $parts[count($parts) - 1] : '';
+                    if (strlen($extension) > 4) {
+                        $extension = '';
+                    }
+
+                    if ($contents = @file_get_contents($imageUrl)) {
+                        $url = '/groups/group-' . $group->id . $extension;
+                        $file = public_path($url);
+                        file_put_contents($file, $contents);
+                        $event->image_url = $url;
+                    }
+
+                    $event->save();
+                }
+            }
+
             if (!isset($groups[$group->id])) {
                 $groups[$group->id] = true;
                 $this->info($group->name . ' - ' . $group->localized_location);

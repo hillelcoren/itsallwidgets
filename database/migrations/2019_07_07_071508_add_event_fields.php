@@ -20,6 +20,7 @@ class AddEventFields extends Migration
             $table->integer('meetup_group_id')->default(0);
             $table->text('directions')->nullable();
             $table->string('meetup_group_name')->nullable();
+            $table->string('image_url')->nullable();
         });
     }
 
@@ -37,6 +38,7 @@ class AddEventFields extends Migration
             $table->dropColumn('meetup_group_id');
             $table->dropColumn('directions');
             $table->dropColumn('meetup_group_name');
+            $table->dropColumn('image_url');
         });
     }
 }
