@@ -165,18 +165,22 @@
                 maxZoom: 18,
             }).addTo(map);
 
-            for (var i = 0; i < markerList.length; i++) {
-                var data = markerMap[markerList[i]];
-                marker = new L.marker([data[1],data[2]], {
-                    bounceOnAdd: true,
-                    bounceOnAddOptions: {
-                        duration: 500 + Math.floor(Math.random() * 801),
-                        height: 150 + Math.floor(Math.random() * 301),
-                    },
-                })
-                .bindPopup(data[0])
-                .addTo(layerGroup);
-            }
+            @if (! filter_var(request()->study_jams, FILTER_VALIDATE_BOOLEAN))
+                setTimeout(function() {
+                    for (var i = 0; i < markerList.length; i++) {
+                        var data = markerMap[markerList[i]];
+                        marker = new L.marker([data[1],data[2]], {
+                            bounceOnAdd: true,
+                            bounceOnAddOptions: {
+                                duration: 500 + Math.floor(Math.random() * 801),
+                                height: 150 + Math.floor(Math.random() * 301),
+                            },
+                        })
+                        .bindPopup(data[0])
+                        .addTo(layerGroup);
+                    }
+                }, 400);
+            @endif
         })
 
         function updateMapMarkers(events) {
@@ -508,7 +512,7 @@ methods: {
         if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
         this.bounceTimeout = setTimeout(function() {
             updateMapMarkers();
-        }, 500);
+        }, 1000);
     },
 
     searchBackgroundColor: function() {
