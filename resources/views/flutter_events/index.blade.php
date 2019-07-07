@@ -291,8 +291,8 @@
 
                     </header>
 
-                    <div class="content" style="padding-left:16px; padding-right:16px;">
-                        <p class="help short-address">
+                    <div class="content" style="padding-left:16px; padding-right:16px; padding-top: 2px;">
+                        <p class="short-address" style="color: #666; font-size: 15px;">
                             @{{ event.pretty_event_date }} • @{{ event.location }}
                         </p>
 
@@ -301,8 +301,7 @@
                         </div>
 
                         @if (true || (auth()->check() && auth()->user()->is_editor))
-                            <br/>
-                            <div>
+                            <div style="color:#666; padding-top:16px">
                                 @{{ event.rsvp_yes > 0 ? event.rsvp_yes + ' Attending' : '' }}
                                 @{{ event.rsvp_yes > 0 && event.rsvp_limit > 0 ? '•' : '' }}
                                 @{{ event.rsvp_limit > 0 ? event.rsvp_limit + ' Limit' : '' }}
