@@ -215,6 +215,12 @@
                             <i class="fas fa-search"></i>
                         </span>
 
+                        <div class="is-medium" v-on:click="toggleStudyJams()" style="padding-left: 20px; padding-right: 20px;">
+                            <input type="checkbox" name="openSourceSwitch"
+                            class="switch is-info" v-model="filter_study_jams">
+                            <label for="openSourceSwitch" style="padding-top:6px; font-size: 16px">STUDY JAMS &nbsp;</label>
+                        </div>
+
                         @if ($hasLocation)
                             <div class="is-medium filter-label">
                                 <label class="label is-medium" style="font-weight: normal; font-size: 16px"> DISTANCE </label>
@@ -455,6 +461,10 @@ watch: {
 },
 
 methods: {
+    toggleStudyJams: function() {
+        this.filter_study_jams = ! this.filter_study_jams;
+    },
+
     adjustPage: function(change) {
         this.page_number += change;
         document.body.scrollTop = 0; // For Safari
@@ -526,6 +536,7 @@ data: {
     events: {!! $events !!},
     search: "{{ request()->search }}",
     sort_by: getCachedSortBy(),
+    filter_study_jams: {{ filter_var(request()->study_jams, FILTER_VALIDATE_BOOLEAN) ? 'true' : 'false' }},
     selected_event: false,
     page_number: 1,
     filter_distance: 'filter_distance_any',
@@ -547,6 +558,7 @@ computed: {
         var search = this.search.toLowerCase().trim();
         var sort_by = this.sort_by;
         var distance = this.filter_distance;
+        var filter_study_jams = this.filter_study_jams;
 
         if (search || distance) {
             events = events.filter(function(item) {
@@ -573,6 +585,12 @@ computed: {
                 }
 
                 return false;
+            });
+        }
+
+        if (filter_study_jams) {
+            events = events.filter(function(item) {
+                return (item.event_name || '').toLowerCase().indexOf('study jam') >= 0;
             });
         }
 
