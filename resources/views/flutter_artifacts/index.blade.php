@@ -12,55 +12,9 @@
 
 @section('content')
 
+    <script src="https://unpkg.com/vue-masonry-css"></script>
+
     <style>
-
-    /* https://w3bits.com/css-masonry/ */
-    .masonry { /* Masonry container */
-      column-count: 4;
-      column-gap: 1.4em;
-    }
-
-    .masonry .item { /* Masonry bricks or child elements */
-      background-color: #eee;
-      display: inline-block;
-      margin: 0 0 1em;
-      width: 100%;
-    }
-
-    /* The Masonry Brick */
-    .masonry .item {
-      background: #fff;
-      margin-top: 10px;
-    }
-
-    /* Masonry on large screens */
-    @media only screen and (min-width: 1024px) {
-      .masonry {
-        column-count: 4;
-      }
-    }
-
-    /* Masonry on medium-sized screens */
-    @media only screen and (max-width: 1023px) and (min-width: 768px) {
-      .masonry {
-        column-count: 3;
-      }
-    }
-
-    /* Masonry on small screens */
-    @media only screen and (max-width: 767px) and (min-width: 540px) {
-      .masonry {
-        column-count: 2;
-      }
-    }
-
-    /* Masonry on small screens */
-    @media only screen and (max-width: 539px){
-      .masonry {
-        column-count: 1;
-      }
-    }
-
 
     div.artifact-links > a:hover {
         text-decoration: underline;
@@ -73,6 +27,10 @@
         -moz-transition: width 1s ease-in-out, left 1.5s ease-in-out;
         -o-transition: width 1s ease-in-out, left 1.5s ease-in-out;
         transition: width 1s ease-in-out, left 1.5s ease-in-out;
+    }
+
+    .item {
+        margin: 2em 0em 2em 0em;
     }
 
     .filter-control {
@@ -196,7 +154,7 @@
         <span v-if="is_searching">Searching...</span>
         <span v-if="! is_searching">No resources found</span>
     </div>
-    <div class="masonry">
+    <masonry :cols="{default: 4, 1000: 3, 800: 2, 600: 1}" :gutter="{default: '30px', 700: '15px'}">
         <div v-for="artifact in filteredArtifacts" :key="artifact.id + artifact.contents" class="item">
             <div v-on:click="selectArtifact(artifact)" style="cursor:pointer">
                 <div class="flutter-artifact is-hover-elevated" v-bind:class="[artifact.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} ? 'is-owned' : '']">
@@ -293,7 +251,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </masonry>
 </div>
 </section>
 </div>
