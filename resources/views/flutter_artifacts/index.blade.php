@@ -12,7 +12,7 @@
 
 @section('content')
 
-    <script src="https://unpkg.com/vue-masonry-css"></script>
+    <script src="{{ asset('js/vue-masonry.min.js') }}"></script>
 
     <style>
 
@@ -115,7 +115,6 @@
                             <i class="fas fa-search"></i>
                         </span>
 
-
                         <div class="is-medium filter-label">
                             <label class="label is-medium" style="font-weight: normal; font-size: 16px"> TYPE </label>
                         </div>
@@ -146,8 +145,7 @@
     </section>
 
 
-<div class="zcontainer">
-<section class="section is-body-font" style="background-color:#fefefe">
+<section class="section is-body-font" style="background-color:#fefefe; padding-top:14px">
     <div class="container" v-cloak>
         <div v-if="filteredArtifacts.length == 0" class="is-wide has-text-centered is-vertical-center"
         style="height:400px; text-align:center; font-size: 32px; color: #AAA">
@@ -254,7 +252,6 @@
     </masonry>
 </div>
 </section>
-</div>
 
 
 <div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_artifact">
