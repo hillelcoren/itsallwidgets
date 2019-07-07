@@ -108,7 +108,7 @@ class LoadEvents extends Command
 
             if ($contents = @file_get_contents($event->event_url)) {
                 $matches = [];
-                preg_match('/featured_photo(.*?)(https.*?)&/', $contents, $matches);
+                preg_match('/featured_photo&(.*?)(https.*?)&/', $contents, $matches);
 
                 if (count($matches) == 3) {
                     $imageUrl = $matches[2];
