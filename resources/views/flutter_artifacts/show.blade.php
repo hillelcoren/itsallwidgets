@@ -22,40 +22,10 @@
 				<div class="column is-8">
 					<nav class="breadcrumb" aria-label="breadcrumbs">
 						<ul>
-							<li><a href="{{ url('/') }}">All Resources</a></li>
+							<li><a href="{{ fxUrl() }}">All Resources</a></li>
 							<li class="is-active"><a href="#" aria-current="page">{{ $artifact->title }}</a></li>
 						</ul>
 					</nav>
-
-					@if (auth()->check() && auth()->user()->is_admin)
-						@if (! $artifact->is_approved)
-							<a class="button is-success is-medium is-slightly-elevated" href="{{ url('flutter-app/' . $artifact->slug . '/approve') }}">
-								<i style="font-size: 20px" class="fas fa-check"></i> &nbsp;
-								Approve
-							</a>
-							<a class="button is-danger is-medium is-slightly-elevated" href="{{ url('flutter-app/' . $artifact->slug . '/reject') }}">
-								<i style="font-size: 20px" class="fas fa-trash"></i> &nbsp;
-								Reject
-							</a>
-							<p>&nbsp;</p>
-						@endif
-					@endif
-
-					@if (auth()->check() && auth()->user()->is_editor && ! $artifact->featured)
-						<a class="button is-warning is-slightly-elevated" href="{{ url('flutter-app/' . $artifact->slug . '/feature') }}">
-							<i style="font-size: 20px" class="fas fa-star"></i> &nbsp;
-							Feature Application
-						</a>
-						<p>&nbsp;</p>
-					@endif
-
-					@if (auth()->check() && auth()->user()->owns($artifact))
-						<a class="button is-info is-slightly-elevated" href="{{ url('flutter-app/' . $artifact->slug . '/edit') }}">
-							<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
-							Edit Application
-						</a>
-						<p>&nbsp;</p>
-					@endif
 
 					<div class="content">
 						<h2 class="title">
@@ -124,7 +94,7 @@
 									<button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
 										<span>
 											<i style="font-size: 20px" class="fa fa-share"></i> &nbsp;
-											Share App
+											Share Resource
 										</span>
 										<span class="icon is-small">
 											<i class="fas fa-angle-down" aria-hidden="true"></i>
