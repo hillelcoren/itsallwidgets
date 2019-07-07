@@ -30,7 +30,7 @@
     }
 
     .item {
-        margin: 2em 0em 2em 0em;
+        margin: 1.6em 0em 1.6em 0em;
     }
 
     .filter-control {
@@ -154,7 +154,7 @@
         <span v-if="is_searching">Searching...</span>
         <span v-if="! is_searching">No resources found</span>
     </div>
-    <masonry :cols="{default: 4, 1000: 3, 800: 2, 600: 1}" :gutter="{default: '30px', 700: '15px'}">
+    <masonry :cols="{default: 4, 1000: 3, 800: 2, 600: 1}" :gutter="{default: '22px', 600: '15px'}">
         <div v-for="artifact in filteredArtifacts" :key="artifact.id + artifact.contents" class="item">
             <div v-on:click="selectArtifact(artifact)" style="cursor:pointer">
                 <div class="flutter-artifact is-hover-elevated" v-bind:class="[artifact.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} ? 'is-owned' : '']">
