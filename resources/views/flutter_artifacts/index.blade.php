@@ -409,13 +409,13 @@ methods: {
     selectArtifact: function(artifact) {
         if (document.body.clientWidth < 1000) {
             if (artifact) {
-                window.location = '/' + artifact.slug;
+                window.location = '/' + {!! isServe() ? "'flutterx/' + " : '' !!} artifact.slug;
             }
         } else {
             this.selected_artifact = artifact;
             if (history.pushState) {
                 if (artifact) {
-                    var route = '/' + artifact.slug;
+                    var route = '/' + {!! isServe() ? "'flutterx/' + " : '' !!} artifact.slug;
                     gtag('config', '{{ $tracking_id }}', {'page_path': route});
                     history.pushState(null, null, route);
                 } else {

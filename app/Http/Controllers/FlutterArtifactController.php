@@ -60,4 +60,25 @@ class FlutterArtifactController extends Controller
 
         return view('flutter_artifacts.show', $data);
     }
+
+    public function sitemap()
+    {
+        $str = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">";
+        $str .= '<url><loc>' . config('app.url') . '</loc><lastmod>' . date('Y-m-d') . '</lastmod><changefreq>daily</changefreq><priority>1</priority></url>';
+
+        $artifacts = FlutterArtifact::latest()->approved()->get();
+
+        foreach ($artifacts as $artifact) {
+            $str .= '<url>'
+            . '<loc>' . $artifact->url() . '</loc>'
+            . '<lastmod>' . $artifact->updated_at->format('Y-m-d') . '</lastmod>'
+            . '<changefreq>weekly</changefreq>'
+            . '<priority>0.5</priority>'
+            . '</url>';
+        }
+
+        $str .= '</urlset>';
+
+        return response($str)->header('Content-Type', 'application/xml');
+    }
 }

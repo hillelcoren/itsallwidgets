@@ -24,7 +24,8 @@ Route::group(['domain' => 'flutterevents.{env}'], function() {
 // TODO remove these
 Route::get('flutterx', 'FlutterArtifactController@index');
 Route::get('search', 'FlutterArtifactController@search');
-Route::get('{flutter_artifact}', 'FlutterArtifactController@show');
+Route::get('flutterx/sitemap.xml', 'FlutterArtifactController@sitemap');
+Route::get('flutterx/{flutter_artifact}', 'FlutterArtifactController@show');
 
 Route::group(['domain' => 'flutterx.{env}'], function() {
     Route::get('/', 'FlutterArtifactController@index');
@@ -32,8 +33,8 @@ Route::group(['domain' => 'flutterx.{env}'], function() {
     Route::get('update', 'FlutterArtifactController@update');
     Route::get('{flutter_artifact}', 'FlutterArtifactController@show');
     //Route::get('feed', 'FlutterEventController@jsonFeed');
-    //Route::get('sitemap.xml', 'FlutterEventController@sitemap');
-    //Route::get('{flutter_event}', 'FlutterEventController@show');
+    Route::get('sitemap.xml', 'FlutterArtifactController@sitemap');
+    Route::get('{flutter_artifact}', 'FlutterArtifactController@show');
 });
 
 
@@ -44,7 +45,7 @@ Route::get('flutter-apps', function () {
 Route::get('/', 'FlutterAppController@index');
 Route::get('about', 'HomeController@about');
 Route::get('terms', 'HomeController@terms');
-Route::get('sitemap.xml', 'FlutterAppController@sitemap');
+//Route::get('sitemap.xml', 'FlutterAppController@sitemap');
 
 Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle');
 Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');
