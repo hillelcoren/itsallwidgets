@@ -242,16 +242,19 @@
                                     <option value="filter_distance_500">500 miles</option>
                                 </select>
                             </div>
-                            <div class="is-medium filter-label">
-                                <label class="label is-medium" style="font-weight: normal; font-size: 16px"> SORT </label>
-                            </div>
-                            <div class="select is-medium filter-control" style="font-size: 16px; margin-right:50px">
-                                <select v-model="sort_by" onchange="$(this).blur()">
-                                    <option value="sort_date">DATE</option>
-                                    <option value="sort_distance">DISTANCE</option>
-                                </select>
-                            </div>
                         @endif
+                        <div class="is-medium filter-label">
+                            <label class="label is-medium" style="font-weight: normal; font-size: 16px"> SORT </label>
+                        </div>
+                        <div class="select is-medium filter-control" style="font-size: 16px; margin-right:50px">
+                            <select v-model="sort_by" onchange="$(this).blur()">
+                                <option value="sort_date">DATE</option>
+                                <option value="sort_attending">ATTENDING</option>
+                                @if ($hasLocation)
+                                    <option value="sort_distance">DISTANCE</option>
+                                @endif
+                            </select>
+                        </div>
                         <div>
                             <a class="button is-white is-slightly-elevated" href="{{ feUrl() }}/feed" target="_blank">
                                 <i style="font-size: 20px" class="fas fa-rss"></i> &nbsp;
@@ -620,7 +623,9 @@ computed: {
         }
 
         events.sort(function(itemA, itemB) {
-            if (sort_by == 'sort_distance' && itemA.distance != itemB.distance) {
+            if (sort_by == 'sort_attending' && itemA.rsvp_yes != itemB.rsvp_yes) {
+                return itemB.rsvp_yes - itemA.rsvp_yes;
+            } else if (sort_by == 'sort_distance' && itemA.distance != itemB.distance) {
                 return itemA.distance - itemB.distance;
             } else {
                 return (itemA.event_date || '').toLowerCase()
