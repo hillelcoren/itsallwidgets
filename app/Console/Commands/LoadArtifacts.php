@@ -71,7 +71,7 @@ class LoadArtifacts extends Command
         $artifacts = json_decode($artifacts);
         $publishedDate = date('Y-m-d', strtotime($issue->publishedOn));
 
-        foreach ($artifacts->articles as $artifact) {
+        foreach (array_reverse($artifacts->articles) as $artifact) {
             //$this->info(json_encode($artifact));
 
             if (FlutterArtifact::where('url', '=', rtrim($artifact->url , '/'))
