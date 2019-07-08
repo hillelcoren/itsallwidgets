@@ -17,9 +17,13 @@
 		<div class="container">
 
 			<div class="columns">
-				<div class="column is-4 is-elevated">
-					<img id="appImage" src="{{ $artifact->image_url }}"/>
-				</div>
+                @if ($artifact->image_url)
+    				<div class="column is-4 is-elevated">
+    					<img id="appImage" src="{{ $artifact->image_url }}"/>
+    				</div>
+                @else
+                    <div class="column is-4"></div>
+                @endif
 				<div class="column is-8">
 					<nav class="breadcrumb" aria-label="breadcrumbs">
 						<ul>
