@@ -243,8 +243,8 @@ class FlutterEventController extends Controller
         $str .= '<url><loc>' . config('app.url') . '</loc><lastmod>' . date('Y-m-d') . '</lastmod><changefreq>daily</changefreq><priority>1</priority></url>';
 
         $events = cache('flutter-event-list');
-        foreach ($events as $event) {
 
+        foreach ($events as $event) {
             $str .= '<url>'
             . '<loc>' . $event->url() . '</loc>'
             . '<lastmod>' . $event->updated_at->format('Y-m-d') . '</lastmod>'

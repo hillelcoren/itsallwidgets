@@ -18,13 +18,14 @@ Route::get('flutterx', 'FlutterArtifactController@index');
 Route::get('search', 'FlutterArtifactController@search');
 Route::get('flutterx/sitemap.xml', 'FlutterArtifactController@sitemap');
 Route::get('flutterx/{flutter_artifact}', 'FlutterArtifactController@show');
+Route::get('flutter-events/sitemap.xml', 'FlutterEventController@sitemap');
 Route::get('flutter-events/{flutter_event}', 'FlutterEventController@show');
 
 Route::group(['domain' => 'flutterevents.{env}'], function() {
     Route::get('/', 'FlutterEventController@index');
     Route::get('feed', 'FlutterEventController@jsonFeed');
     Route::get('flutter-groups', 'FlutterEventController@groups');
-    //Route::get('sitemap.xml', 'FlutterEventController@sitemap');
+    Route::get('sitemap.xml', 'FlutterEventController@sitemap');
     Route::get('{flutter_event}', 'FlutterEventController@show');
 });
 
