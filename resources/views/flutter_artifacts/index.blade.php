@@ -481,12 +481,11 @@ beforeMount() {
 },
 
 mounted () {
-    window.addEventListener('keyup', function(artifact) {
-        if (artifact.keyCode == 27) {
+    window.addEventListener('keyup', function(event) {
+        if (event.keyCode == 27) {
             app.selectArtifact();
         }
     });
-
 },
 
 data: {
