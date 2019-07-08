@@ -186,7 +186,7 @@
 
                             <span v-if="artifact.meta_publisher_twitter" class="">
                                 <a target="_blank" v-bind:href="'https://twitter.com/' + artifact.meta_publisher_twitter" v-on:click.stop rel="nofollow">
-                                    @{{ artifact.meta_publisher || artifact.meta_publisher_twitter }}
+                                    @@{{ artifact.meta_publisher_twitter }}
                                 </a>
                             </span>
                             <span v-if="!artifact.meta_publisher_twitter && artifact.meta_publisher">

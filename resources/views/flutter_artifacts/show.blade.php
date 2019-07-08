@@ -30,13 +30,15 @@
 
 					<div class="content">
 						<h2 class="title">
-							{{ $artifact->title }}
+                            <div>
+    							{{ $artifact->title }}
 
-                            &nbsp;&nbsp;
+                                &nbsp;&nbsp;
 
-                            <span class="button is-outlined is-small is-static is-{{ $artifact->type }}">
-                                {{ $artifact->pretty_type }}
-                            </span>
+                                <span class="button is-outlined is-small is-static is-{{ $artifact->type }}">
+                                    {{ $artifact->pretty_type }}
+                                </span>
+                            </div>
 
 							<div style="border-bottom: 2px #368cd5 solid; width: 50px; padding-top:12px;"/>
 						</h2>
@@ -99,6 +101,25 @@
 							<div class="block">
 								{!! nl2br(e($artifact->meta_description)) !!}
 							</div>
+
+                            <div>
+                                @if ($artifact->authorUrl())
+                                    <a href="{{ $artifact->authorUrl() }}" target="_blank">{{ $artifact->authorName() }}</a>
+                                @elseif ($artifact->authorName())
+                                    {{ $artifact->authorName() }}
+                                @endif
+
+                                @if ($artifact->hasAuthor() && $artifact->hasPublisher())
+                                    •
+                                @endif
+
+                                @if ($artifact->publisherUrl())
+                                    <a href="{{ $artifact->publisherUrl() }}" target="_blank">{{ '@' . $artifact->meta_publisher_twitter }}</a>
+                                @elseif ($artifact->publisherName())
+                                    {{ $artifact->publisherName() }}
+                                @endif
+                            </div>
+
 
                             <div style="padding-top:0px;padding-bottom:18px;">
                                 <span style="padding-left:0px; padding-top:6px; color:#777; font-size:14px;">

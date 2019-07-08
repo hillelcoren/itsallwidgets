@@ -139,6 +139,58 @@ class FlutterArtifact extends Model implements Feedable
         }
     }
 
+    public function hasAuthor()
+    {
+        return $this->authorUrl() || $this->authorName();
+    }
+
+    public function hasPublisher()
+    {
+        return $this->publisherUrl() || $this->publisherName();
+    }
+
+    public function authorUrl()
+    {
+        if ($this->meta_author_url) {
+            return $this->meta_author_url;
+        } elseif ($this->meta_author_twitter) {
+            return 'https://twitter.com/' . $this->meta_author_twitter;
+        } else {
+            return false;
+        }
+    }
+
+    public function authorName()
+    {
+        if ($this->meta_author) {
+            return $this->meta_author;
+        } elseif ($this->meta_author_twitter) {
+            return '@' . $this->meta_author_twitter;
+        } else {
+            return false;
+        }
+    }
+
+    public function publisherUrl()
+    {
+        if ($this->meta_publisher_twitter) {
+            return 'https://twitter.com/' . $this->meta_publisher_twitter;
+        } else {
+            return false;
+        }
+    }
+
+    public function publisherName()
+    {
+        if ($this->meta_publisher) {
+            return $this->meta_publisher;
+        } elseif ($this->meta_publisher_twitter) {
+            return '@' . $this->meta_publisher_twitter;
+        } else {
+            return false;
+        }
+    }
+
     public function toFeedItem()
     {
         /*
