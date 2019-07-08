@@ -264,6 +264,9 @@
     <section class="modal-card-body" @click.stop>
 
         <div class="columns">
+            <div class="column is-4 is-elevated" v-if="selected_artifact.image_url">
+                <img v-bind:src="selected_artifact.image_url + '?updated_at=' + selected_artifact.updated_at" width="100%"/>
+            </div>
             <div class="column is-8">
 
                 <div style="font-size:24px; padding-bottom:10px;">
@@ -273,7 +276,7 @@
                 <div style="border-bottom: 2px #368cd5 solid; width: 50px;"></div><br/>
 
                 <div class="content">
-                    <a v-bind:href="selected_artifact.url" target="_blank" rel="nofollow">
+                    <a v-bind:href="selected_artifact.url" target="_blank" rel="nofollow" style="font-size:20px">
                         @{{ selected_artifact.url }}
                     </a>
                 </div>
@@ -320,15 +323,6 @@
                     </div>
                 </nav>
 
-                <nav class="panel" v-if="selected_artifact.meta_description">
-                    <p class="panel-heading">
-                        Description
-                    </p>
-                    <div class="panel-block">
-                        <div class="block wrap">@{{ selected_artifact.meta_description }}</div>
-                    </div>
-                </nav>
-
                 <nav class="panel" v-if="selected_artifact.contents">
                     <p class="panel-heading">
                         Search Result
@@ -337,9 +331,6 @@
                         <div class="block wrap">@{{ selected_artifact.contents }}</div>
                     </div>
                 </nav>
-            </div>
-            <div class="column is-4 is-slightly-elevated" v-if="selected_artifact.image_url">
-                <img v-bind:src="selected_artifact.image_url + '?updated_at=' + selected_artifact.updated_at" width="100%"/>
             </div>
         </div>
 
@@ -425,12 +416,6 @@ methods: {
         }
     },
 
-    setFilter: function(filter) {
-        filter = filter || '';
-        this.selectArtifact();
-        this.search = filter.toLowerCase();
-    },
-
     saveFilters: function() {
         if (! isStorageSupported()) {
             return false;
@@ -498,7 +483,7 @@ beforeMount() {
 mounted () {
     window.addEventListener('keyup', function(artifact) {
         if (artifact.keyCode == 27) {
-            artifact.selectArtifact();
+            app.selectArtifact();
         }
     });
 
