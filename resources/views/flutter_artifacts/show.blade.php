@@ -18,7 +18,7 @@
 
 			<div class="columns">
 				<div class="column is-4 is-elevated">
-					<img id="appImage" src="{{ $artifact->image_url }}" width="1080" height="1920"/>
+					<img id="appImage" src="{{ $artifact->image_url }}"/>
 				</div>
 				<div class="column is-8">
 					<nav class="breadcrumb" aria-label="breadcrumbs">

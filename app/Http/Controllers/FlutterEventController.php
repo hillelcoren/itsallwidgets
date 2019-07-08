@@ -129,11 +129,14 @@ class FlutterEventController extends Controller
      * @param  FlutterEvent $slug
      * @return Response
      */
-    public function show($slug)
+    public function show($event)
     {
-        $event = $this->eventRepo->getBySlug($slug);
+        $data = [
+            'event' => $event,
+            'useBlackHeader' => true,
+        ];
 
-        return view('flutter_events.show', compact('event'));
+        return view('flutter_events.show', $data);
     }
 
     public function approve(ApproveFlutterEvent $request)

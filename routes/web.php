@@ -13,6 +13,13 @@
 
 Route::feeds();
 
+// TODO remove these
+Route::get('flutterx', 'FlutterArtifactController@index');
+Route::get('search', 'FlutterArtifactController@search');
+Route::get('flutterx/sitemap.xml', 'FlutterArtifactController@sitemap');
+Route::get('flutterx/{flutter_artifact}', 'FlutterArtifactController@show');
+Route::get('flutter-events/{flutter_event}', 'FlutterEventController@show');
+
 Route::group(['domain' => 'flutterevents.{env}'], function() {
     Route::get('/', 'FlutterEventController@index');
     Route::get('feed', 'FlutterEventController@jsonFeed');
@@ -20,12 +27,6 @@ Route::group(['domain' => 'flutterevents.{env}'], function() {
     //Route::get('sitemap.xml', 'FlutterEventController@sitemap');
     Route::get('{flutter_event}', 'FlutterEventController@show');
 });
-
-// TODO remove these
-Route::get('flutterx', 'FlutterArtifactController@index');
-Route::get('search', 'FlutterArtifactController@search');
-Route::get('flutterx/sitemap.xml', 'FlutterArtifactController@sitemap');
-Route::get('flutterx/{flutter_artifact}', 'FlutterArtifactController@show');
 
 Route::group(['domain' => 'flutterx.{env}'], function() {
     Route::get('/', 'FlutterArtifactController@index');
@@ -36,7 +37,6 @@ Route::group(['domain' => 'flutterx.{env}'], function() {
     Route::get('sitemap.xml', 'FlutterArtifactController@sitemap');
     Route::get('{flutter_artifact}', 'FlutterArtifactController@show');
 });
-
 
 Route::get('flutter-apps', function () {
     return redirect('/', 301);

@@ -188,6 +188,7 @@ class FlutterEvent extends Model implements Feedable
     public function getTextDescriptionAttribute()
     {
         $str = $this->description;
+        $str = str_replace("&amp;", "and", $str);
         $str = str_replace("<br/>", "\n", $str);
         $str = str_replace("</p> ", "</p>\n\n", $str);
 
