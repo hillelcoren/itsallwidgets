@@ -9,7 +9,7 @@ class FlutterArtifactController extends Controller
     public function index($tld)
     {
         if ($tld == 'dev') {
-            return rediect('https://flutterx.com');
+            return redirect('https://flutterx.com');
         }
 
         if (request()->clear_cache) {
