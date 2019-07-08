@@ -13,7 +13,7 @@
 
 Route::feeds();
 
-Route::group(['domain' => '127.0.0.1:8000'], function() {
+Route::group(['domain' => '127.0.0.1'], function() {
     Route::get('flutterx', 'FlutterArtifactController@index');
     Route::get('search', 'FlutterArtifactController@search');
     Route::get('flutterx/sitemap.xml', 'FlutterArtifactController@sitemap');
