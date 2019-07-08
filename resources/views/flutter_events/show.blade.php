@@ -2,7 +2,7 @@
 
 @section('title', $event->event_name)
 @section('description', $event->text_description)
-@section('image_url', url($event->image_url))
+@section('image_url', $event->image_url ? url($event->image_url) : '')
 
 @section('header_title', 'A Searchable List of Flutter Resources')
 @section('header_button_url', false)
