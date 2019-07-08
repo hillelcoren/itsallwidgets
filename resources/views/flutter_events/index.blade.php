@@ -365,6 +365,9 @@
     <section class="modal-card-body" @click.stop>
 
         <div class="columns">
+            <div class="column is-4 is-elevated" v-if="selected_event.image_url">
+                <img v-bind:src="selected_event.image_url + '?updated_at=' + selected_event.updated_at" width="100%"/>
+            </div>
             <div class="column is-8">
 
                 @if (auth()->check())
