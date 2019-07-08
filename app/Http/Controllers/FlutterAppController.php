@@ -83,12 +83,14 @@ class FlutterAppController extends Controller
             }
         }
 
+        /*
         if (! $banner) {
             $eventLink = '<b><a href="' . url(auth()->check() ? 'flutter-events' : 'auth/google?intended_url=flutter-events') . '">take over this banner</a></b>';
             $feedLink = '<b><a href="' . feUrl() . '/feed" target="_blank">event feed</a></b>';
             $banner = 'You can now ' . $eventLink . ' to promote a local Flutter event or use the ' . $feedLink . ' in your own app!';
         }
-
+        */
+        
         $data = [
             'apps' => cache('flutter-app-list') ?: FlutterApp::approved()->latest()->get(),
             'banner' => $banner,

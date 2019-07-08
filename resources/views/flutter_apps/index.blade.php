@@ -157,7 +157,14 @@ body {
     @if ($banner)
         <br/>
         <div class="container" v-cloak>
-            <div class="notification is-info">{!! $banner !!}</div>
+            <div class="notification is-info">
+                {!! $banner !!}
+                <div class="is-pulled-right">
+                    <b><a href="{{ feUrl() }}" target="_blank">
+                        View all events
+                    </a></b>
+                </div>
+            </div>
         </div>
     @endif
 
