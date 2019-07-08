@@ -28,6 +28,17 @@ function isServe() {
     return strpos(request()->url(), '127.0.0.1:') !== false;
 }
 
+function appName() {
+    if (isFE()) {
+        return 'Flutter Events';
+    } elseif (isFC()) {
+        return 'Flutter Collective';
+    } elseif (isFX()) {
+        return 'FlutterX';
+    } else {
+        return 'It\'s All Widgets!';
+    }
+}
 
 function iawUrl() {
     return isTest() ? (isValet() ? 'http://itsallwidgets.test' : 'http://127.0.0.1:8000') : 'https://itsallwidgets.com';
