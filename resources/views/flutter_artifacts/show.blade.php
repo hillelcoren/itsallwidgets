@@ -2,7 +2,7 @@
 
 @section('title', $artifact->title)
 @section('description', $artifact->comment)
-@section('image_url', url($artifact->image_url))
+@section('image_url', $artifact->image_url ? url($artifact->image_url) : '')
 
 @section('header_title', 'A Searchable List of Flutter Resources')
 @section('header_button_url', false)
