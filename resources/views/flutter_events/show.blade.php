@@ -1,7 +1,7 @@
 @extends('master')
 
-@section('title', $event->title)
-@section('description', $event->comment)
+@section('title', $event->event_name)
+@section('description', $event->text_description)
 @section('image_url', url($event->image_url))
 
 @section('header_title', 'A Searchable List of Flutter Resources')
