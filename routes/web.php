@@ -22,7 +22,7 @@ Route::group(['domain' => '127.0.0.1'], function() {
     Route::get('flutter-events/{flutter_event}', 'FlutterEventController@show');
 });
 
-Route::group(['domain' => 'flutterevents.{env}'], function() {
+Route::group(['domain' => 'flutterevents.{tld}'], function() {
     Route::get('/', 'FlutterEventController@index');
     Route::get('feed', 'FlutterEventController@jsonFeed');
     Route::get('flutter-groups', 'FlutterEventController@groups');
@@ -30,7 +30,7 @@ Route::group(['domain' => 'flutterevents.{env}'], function() {
     Route::get('{flutter_event}', 'FlutterEventController@show');
 });
 
-Route::group(['domain' => 'flutterx.{env}'], function() {
+Route::group(['domain' => 'flutterx.{tld}'], function() {
     Route::get('/', 'FlutterArtifactController@index');
     Route::get('search', 'FlutterArtifactController@search');
     Route::get('update', 'FlutterArtifactController@update');

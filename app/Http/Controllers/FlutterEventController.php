@@ -129,10 +129,10 @@ class FlutterEventController extends Controller
      * @param  FlutterEvent $slug
      * @return Response
      */
-    public function show($env, $event = false)
+    public function show($tld, $event = false)
     {
         if (! $event) {
-            $event = $env;
+            $event = $tld;
         }
 
         $data = [

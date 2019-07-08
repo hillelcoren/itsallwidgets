@@ -6,8 +6,12 @@ use App\Models\FlutterArtifact;
 
 class FlutterArtifactController extends Controller
 {
-    public function index()
+    public function index($tld)
     {
+        if ($tld == 'dev') {
+            return rediect('https://flutterx.com');
+        }
+
         if (request()->clear_cache) {
             cache()->forget('flutter-artifact-list');
             return redirect('/')->with('status', 'App cache has been cleared!');
@@ -56,10 +60,10 @@ class FlutterArtifactController extends Controller
         return 'done';
     }
 
-    public function show($env, $artifact = false)
+    public function show($tld, $artifact = false)
     {
         if (! $artifact) {
-            $artifact = $env;
+            $artifact = $tld;
         }
 
         $data = [
