@@ -195,7 +195,6 @@
                             <span v-if="!artifact.meta_publisher_twitter && !artifact.meta_publisher">
                                 @{{ artifact.domain }}
                             </span>
-
                         </div>
 
 
@@ -271,6 +270,12 @@
 
                 <div style="font-size:24px; padding-bottom:10px;">
                     @{{ selected_artifact.title }}
+
+                    &nbsp;&nbsp;
+
+                    <span v-bind:class="'button is-outlined is-small is-static is-' + selected_artifact.type_class">
+                        @{{ selected_artifact.pretty_type }}
+                    </span>
                 </div>
 
                 <div style="border-bottom: 2px #368cd5 solid; width: 50px;"></div><br/>
@@ -331,6 +336,43 @@
                         <div class="block wrap">@{{ selected_artifact.contents }}</div>
                     </div>
                 </nav>
+
+
+                <div>
+                    <span v-if="selected_artifact.meta_author_url" class="">
+                        <a target="_blank" v-bind:href="selected_artifact.meta_author_url" v-on:click.stop rel="nofollow">
+                            @{{ selected_artifact.meta_author }}
+                        </a>
+                    </span>
+                    <span v-if="!selected_artifact.meta_author_url && selected_artifact.meta_author_twitter" class="">
+                        <a target="_blank" v-bind:href="'https://twitter.com/' + selected_artifact.meta_author_twitter" v-on:click.stop rel="nofollow">
+                            @@{{ selected_artifact.meta_author_twitter }}
+                        </a>
+                    </span>
+
+                    <span v-if="(selected_artifact.meta_author_url || selected_artifact.meta_author_twitter) && (selected_artifact.meta_publisher_twitter || selected_artifact.meta_publisher)" class="">
+                        •
+                    </span>
+
+                    <span v-if="selected_artifact.meta_publisher_twitter" class="">
+                        <a target="_blank" v-bind:href="'https://twitter.com/' + selected_artifact.meta_publisher_twitter" v-on:click.stop rel="nofollow">
+                            @@{{ selected_artifact.meta_publisher_twitter }}
+                        </a>
+                    </span>
+                    <span v-if="!selected_artifact.meta_publisher_twitter && selected_artifact.meta_publisher">
+                        @{{ selected_artifact.meta_publisher }}
+                    </span>
+                    <span v-if="!selected_artifact.meta_publisher_twitter && !selected_artifact.meta_publisher">
+                        @{{ selected_artifact.domain }}
+                    </span>
+                </div>
+
+                <div style="padding-top:0px;padding-bottom:18px;">
+                    <span style="padding-left:0px; padding-top:6px; color:#777; font-size:14px;">
+                        Published on @{{ selected_artifact.pretty_published_date }}
+                    </span>
+                </div>
+
             </div>
         </div>
 
