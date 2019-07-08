@@ -17,6 +17,7 @@ class AddEventFields extends Migration
             $table->integer('rsvp_limit')->default(0);
             $table->integer('rsvp_yes')->default(0);
             $table->integer('rsvp_waitlist')->default(0);
+            $table->string('meetup_id')->nullable();
             $table->integer('meetup_group_id')->default(0);
             $table->text('directions')->nullable();
             $table->string('meetup_group_name')->nullable();
@@ -35,6 +36,7 @@ class AddEventFields extends Migration
             $table->dropColumn('rsvp_limit');
             $table->dropColumn('rsvp_yes');
             $table->dropColumn('rsvp_waitlist');
+            $table->dropColumn('meetup_id');
             $table->dropColumn('meetup_group_id');
             $table->dropColumn('directions');
             $table->dropColumn('meetup_group_name');

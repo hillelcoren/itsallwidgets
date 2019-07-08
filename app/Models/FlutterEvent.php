@@ -29,6 +29,7 @@ class FlutterEvent extends Model implements Feedable
         'rsvp_yes',
         'rsvp_waitlist',
         'directions',
+        'meetup_id',
         'meetup_group_id',
         'meetup_group_name',
     ];

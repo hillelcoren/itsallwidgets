@@ -392,7 +392,7 @@
                     </div>
 
                     <div class="content">
-                        <a v-bind:href="selected_event.event_url" target="_blank" rel="nofollow">
+                        <a v-bind:href="selected_event.event_url" target="_blank" rel="nofollow" style="font-size:20px">
                             @{{ selected_event.event_url }}
                         </a>
                     </div>

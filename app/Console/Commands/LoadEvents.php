@@ -50,7 +50,6 @@ class LoadEvents extends Command
         $groups = [];
 
         foreach ($data->events as $item) {
-
             $group = $item->group;
             $city = '';
             $country = '';
@@ -79,6 +78,7 @@ class LoadEvents extends Command
                 'rsvp_limit' => property_exists($item, 'rsvp_limit') ? $item->rsvp_limit : 0,
                 'rsvp_yes' => $item->yes_rsvp_count,
                 'rsvp_waitlist' => $item->waitlist_count,
+                'meetup_id' => $item->id,
                 'meetup_group_id' => $group->id,
                 'meetup_group_name' => $group->name,
                 'directions' => property_exists($item, 'how_to_find_us') ? $item->how_to_find_us : '',
@@ -89,13 +89,13 @@ class LoadEvents extends Command
                 'longitude' => $longitude,
             ];
 
-            $event = FlutterEvent::where('event_url', '=', rtrim($item->link, '/'))->first();
+            $event = FlutterEvent::where('meetup_id', '=', $item->id)->first();
 
             if ($event) {
                 $this->eventRepo->update($event, $data);
             } else {
                 $data['banner'] = 'Join us at $event in $city';
-                $data['slug'] = str_slug($item->name);
+                $data['slug'] = str_slug($group->name . '-' . $item->name);
                 $data['event_url'] = $item->link;
 
                 $event = $this->eventRepo->store($data, 1);
