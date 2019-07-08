@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Models\FlutterApp;
 use App\Models\FlutterEvent;
 use App\Models\PodcastEpisode;
+use App\Models\FlutterArtifact;
 use App\Observers\FlutterAppObserver;
 use App\Observers\FlutterEventObserver;
 use App\Observers\PodcastEpisodeObserver;
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         FlutterApp::observe(FlutterAppObserver::class);
+        FlutterArtifact::observe(FlutterArtifactObserver::class);
         FlutterEvent::observe(FlutterEventObserver::class);
         PodcastEpisode::observe(PodcastEpisodeObserver::class);
 
@@ -30,6 +32,11 @@ class AppServiceProvider extends ServiceProvider
             if (! cache('flutter-app-list')) {
                 Cache::rememberForever('flutter-app-list', function () {
                     return FlutterApp::approved()->latest()->get();
+                });
+            }
+            if (! cache('flutter-artifact-list')) {
+                Cache::rememberForever('flutter-artifact-list', function () {
+                    return FlutterArtifact::approved()->latest()->get();
                 });
             }
             if (! cache('flutter-event-list')) {

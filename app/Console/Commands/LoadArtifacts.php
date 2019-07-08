@@ -58,6 +58,7 @@ class LoadArtifacts extends Command
             $this->parseIssue($issue);
         }
 
+        file_get_contents('https://flutterx.com/?clear_cache=true');
 
         $this->info('Done');
     }

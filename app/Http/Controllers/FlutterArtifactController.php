@@ -8,10 +8,15 @@ class FlutterArtifactController extends Controller
 {
     public function index()
     {
+        if (request()->clear_cache) {
+            cache()->forget('flutter-artifact-list');
+            return redirect('/')->with('status', 'App cache has been cleared!');
+        }
+
         if (auth()->check() && auth()->user()->is_admin) {
             $artifacts = FlutterArtifact::latest()->get();
         } else {
-            $artifacts = FlutterArtifact::latest()->approved()->get();
+            $artifacts = cache('flutter-artifact-list');
         }
 
         $data = [
@@ -66,7 +71,7 @@ class FlutterArtifactController extends Controller
         $str = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">";
         $str .= '<url><loc>' . config('app.url') . '</loc><lastmod>' . date('Y-m-d') . '</lastmod><changefreq>daily</changefreq><priority>1</priority></url>';
 
-        $artifacts = FlutterArtifact::latest()->approved()->get();
+        $artifacts = cache('flutter-artifact-list');
 
         foreach ($artifacts as $artifact) {
             $str .= '<url>'

@@ -32,6 +32,11 @@ class FlutterEventController extends Controller
 
     public function index()
     {
+        if (request()->clear_cache) {
+            cache()->forget('flutter-event-list');
+            return redirect('/')->with('status', 'App cache has been cleared!');
+        }
+
         if (auth()->check() && auth()->user()->is_admin) {
             $events = FlutterEvent::orderBy('event_date', 'asc')->get();
         } else {
