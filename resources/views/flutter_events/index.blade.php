@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', 'Flutter Events')
+@section('title', 'An Open List of Flutter Events')
 @section('description', 'An Open List of Flutter Events')
 @section('image_url', asset('images/events_twitter.png'))
 @section('header_title', 'An Open List of Flutter Events')

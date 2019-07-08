@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', 'FlutterX')
+@section('title', 'A Searchable List of Flutter Resources')
 @section('description', 'A Searchable List of Flutter Resources')
 @section('image_url', asset('images/flutterx_twitter.png'))
 @section('header_title', 'A Searchable List of Flutter Resources')
