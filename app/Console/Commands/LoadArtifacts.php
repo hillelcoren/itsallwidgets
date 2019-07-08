@@ -81,7 +81,7 @@ class LoadArtifacts extends Command
                 continue;
             }
 
-            $slug = str_slug($artifact->description);
+            $slug = str_slug($artifact->title);
 
             if ($artifact->section == 'articles') {
                 $type = 'article';
