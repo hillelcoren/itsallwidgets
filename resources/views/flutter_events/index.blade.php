@@ -75,7 +75,7 @@
 
     .short-description {
         line-height: 1.5em;
-        height: 9em;
+        height: 4.5em;
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 2;
