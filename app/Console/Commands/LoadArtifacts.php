@@ -74,14 +74,14 @@ class LoadArtifacts extends Command
         foreach (array_reverse($artifacts->articles) as $artifact) {
             //$this->info(json_encode($artifact));
 
-            if (FlutterArtifact::where('url', '=', rtrim($publishedDate . '-' . $artifact->url , '/'))
-                ->orWhere('slug', '=', str_slug($artifact->title))
+            $slug = str_slug($publishedDate . '-' . $artifact->title);
+
+            if (FlutterArtifact::where('url', '=', rtrim($artifact->url , '/'))
+                ->orWhere('slug', '=', $slug)
                 ->first()) {
                 $this->info('Exists: skipping...');
                 continue;
             }
-
-            $slug = str_slug($artifact->title);
 
             if ($artifact->section == 'articles') {
                 $type = 'article';
