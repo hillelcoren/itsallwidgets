@@ -159,12 +159,12 @@
         @else
             var map = L.map('map').setView([26, 0], 2);
         @endif
-        mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+        mapLink = '<a href="https://openstreetmap.org">OpenStreetMap</a>';
 
         window.layerGroup = L.layerGroup().addTo(map);
 
         window.tileLayer = L.tileLayer(
-            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; ' + mapLink + ' Contributors',
                 maxZoom: 18,
             }).addTo(map);
