@@ -129,8 +129,12 @@ class FlutterEventController extends Controller
      * @param  FlutterEvent $slug
      * @return Response
      */
-    public function show($event)
+    public function show($env, $event = false)
     {
+        if (! $event) {
+            $event = $env;
+        }
+
         $data = [
             'event' => $event,
             'useBlackHeader' => true,

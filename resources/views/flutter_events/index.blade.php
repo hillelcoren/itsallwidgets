@@ -485,6 +485,11 @@ watch: {
             app.updateMap();
         },
     },
+    filter_study_jams: {
+        handler() {
+            app.updateMap();
+        },
+    },
     filter_distance: {
         handler() {
             app.updateMap();
@@ -545,7 +550,7 @@ methods: {
         if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
         this.bounceTimeout = setTimeout(function() {
             updateMapMarkers();
-        }, 1000);
+        }, 500);
     },
 
     searchBackgroundColor: function() {

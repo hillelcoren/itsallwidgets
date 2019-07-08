@@ -56,8 +56,12 @@ class FlutterArtifactController extends Controller
         return 'done';
     }
 
-    public function show($artifact)
+    public function show($env, $artifact = false)
     {
+        if (! $artifact) {
+            $artifact = $env;
+        }
+
         $data = [
             'useBlackHeader' => true,
             'artifact' => $artifact,
