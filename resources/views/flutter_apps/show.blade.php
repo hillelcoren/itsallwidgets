@@ -29,7 +29,9 @@
 
 			<div class="columns">
 				<div class="column is-4 is-elevated">
-					<img id="appImage" src="{{ $app->screenshotUrl() }}" width="1080" height="1920"/>
+					@if ($app->is_mobile)
+						<img id="appImage" src="{{ $app->screenshotUrl() }}" width="1080" height="1920"/>
+					@endif
 				</div>
 				<div class="column is-8">
 					<nav class="breadcrumb" aria-label="breadcrumbs">
@@ -166,6 +168,11 @@
 							<div class="block">
 								{!! nl2br(e($app->long_description)) !!}
 							</div>
+
+							@if ($app->is_web && $app->flutter_web_url)
+								<iframe sandbox="allow-scripts" src="{{ $app->flutter_web_url }}" allowTransparency="true" scrolling="no"
+			                        width="100%" height="700px" frameborder="0" style="border:none; overflow:hidden;"></iframe>
+							@endif
 
 							@if ($app->has_gif || $app->has_screenshot_1 || $app->has_screenshot_2 || $app->has_screenshot_3)
 								<div class="columns is-multiline is-2 is-variable">
