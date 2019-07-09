@@ -240,13 +240,13 @@ body {
                             </div>
 
                             @if (auth()->check() && auth()->user()->is_editor)
-                                <div v-if="filter_platform == 'platform_mobile'">
+                                <div v-if="app.is_web">
                                     <br/>
                                     @{{ Math.round(app.store_rating * 100) / 100 }} (@{{ app.store_review_count }}) • @{{ app.store_download_count }}+
                                 </div>
                             @endif
 
-                            <div v-if="filter_platform == 'platform_mobile'" class="app-stores" style="font-size:13px; padding-top:12px;">
+                            <div v-if="app.is_web" class="app-stores" style="font-size:13px; padding-top:12px;">
                                 <a v-bind:href="app.google_url" v-if="app.google_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
                                     GOOGLE PLAY
                                 </a>
