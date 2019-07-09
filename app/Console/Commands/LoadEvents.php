@@ -80,7 +80,7 @@ class LoadEvents extends Command
         $groups = [];
 
         foreach ($data as $item) {
-            if (property_exists($item, 'description')) {
+            if (! property_exists($item, 'description')) {
                 continue;
             }
 
