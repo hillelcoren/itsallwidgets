@@ -13,7 +13,7 @@ class LoadEvents extends Command
      *
      * @var string
      */
-    protected $signature = 'itsallwidgets:load_events';
+    protected $signature = 'itsallwidgets:load_events {--all}';
 
     /**
      * The console command description.
@@ -45,11 +45,35 @@ class LoadEvents extends Command
     {
         $this->info('Running...');
 
-        $data = file_get_contents('https://api.meetup.com/find/upcoming_events?page=100&text=flutter&radius=global&key=' . config('services.meetup.key'));
-        $data = json_decode($data);
+        if ($this->option('all')) {
+            $groups = FlutterEvent::groupBy('meetup_group_url')
+                ->orderBy('meetup_group_url')
+                ->get(['meetup_group_url']);
+
+            foreach ($groups as $group) {
+                $this->info('Loading ' . $group->meetup_group_url . '...');
+                $data = file_get_contents('https://api.meetup.com/' . $group->meetup_group_url . '/events?page=100&text=flutter&status=past&key=' . config('services.meetup.key'));
+                $data = json_decode($data);
+                $this->parseEvents($data);
+            }
+
+        } else {
+            $this->info('Loading upcoming events...');
+
+            $data = file_get_contents('https://api.meetup.com/find/upcoming_events?page=100&text=flutter&radius=global&key=' . config('services.meetup.key'));
+            $data = json_decode($data);
+
+            $this->parseEvents($data->events);
+        }
+
+        $this->info('Done');
+    }
+
+    private function parseEvents($data)
+    {
         $groups = [];
 
-        foreach ($data->events as $item) {
+        foreach ($data as $item) {
             $group = $item->group;
             $city = '';
             $country = '';
@@ -81,6 +105,7 @@ class LoadEvents extends Command
                 'meetup_id' => $item->id,
                 'meetup_group_id' => $group->id,
                 'meetup_group_name' => $group->name,
+                'meetup_group_url' => $group->urlname,
                 'directions' => property_exists($item, 'how_to_find_us') ? $item->how_to_find_us : '',
                 'address' => $address,
                 'city' => $city,
@@ -156,7 +181,5 @@ class LoadEvents extends Command
                 $this->info($group->name . ' - ' . $group->localized_location);
             }
         }
-
-        $this->info('Done');
     }
 }

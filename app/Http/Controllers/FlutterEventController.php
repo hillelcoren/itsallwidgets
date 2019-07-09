@@ -38,7 +38,7 @@ class FlutterEventController extends Controller
         }
 
         if (auth()->check() && auth()->user()->is_admin) {
-            $events = FlutterEvent::orderBy('event_date', 'asc')->get();
+            $events = FlutterEvent::orderBy('event_date', 'asc')->future()->get();
         } else {
             $events = FlutterEvent::orderBy('event_date', 'asc')->approved()->future()->get();
         }
