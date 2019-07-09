@@ -36,7 +36,7 @@
         </a>
     @else
         <a class="navbar-item" href="{{ url(auth()->check() ? 'submit' : 'auth/google') }}">
-            <i class="fas fa-bell"></i> &nbsp; Monthly Stats
+            <i class="fas fa-bell"></i> &nbsp; Stats
         </a>
     @endif
 @endif
