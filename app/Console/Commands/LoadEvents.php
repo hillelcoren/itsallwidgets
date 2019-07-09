@@ -54,10 +54,12 @@ class LoadEvents extends Command
                 if (! $group->meetup_group_url) {
                     continue;
                 }
-                
+
                 $this->info('Loading ' . $group->meetup_group_url . '...');
+
                 $data = file_get_contents('https://api.meetup.com/' . $group->meetup_group_url . '/events?page=100&text=flutter&status=past&key=' . config('services.meetup.key'));
                 $data = json_decode($data);
+
                 $this->parseEvents($data);
             }
 
@@ -78,6 +80,11 @@ class LoadEvents extends Command
         $groups = [];
 
         foreach ($data as $item) {
+            $searchStr = strtolower($item->name . $item->description . $group->name);
+            if (strpos($searchStr, 'flutter') === false) {
+                continue;
+            }
+
             $group = $item->group;
             $city = '';
             $country = '';
