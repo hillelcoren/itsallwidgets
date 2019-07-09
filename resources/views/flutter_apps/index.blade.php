@@ -240,12 +240,13 @@ body {
                             </div>
 
                             @if (auth()->check() && auth()->user()->is_editor)
-                                <br/><div>
+                                <div v-if="filter_platform == 'platform_mobile'">
+                                    <br/>
                                     @{{ Math.round(app.store_rating * 100) / 100 }} (@{{ app.store_review_count }}) • @{{ app.store_download_count }}+
                                 </div>
                             @endif
 
-                            <div class="app-stores" style="font-size:13px; padding-top:12px;">
+                            <div v-if="filter_platform == 'platform_mobile'" class="app-stores" style="font-size:13px; padding-top:12px;">
                                 <a v-bind:href="app.google_url" v-if="app.google_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
                                     GOOGLE PLAY
                                 </a>
@@ -268,8 +269,9 @@ body {
                             <img v-if="app.has_gif" v-bind:src="'/gifs/app-' + app.id + '.gif?updated_at=' + app.updated_at" width="1080" height="1920"/>
                             <img v-if="!app.has_gif" v-bind:src="'/screenshots/app-' + app.id + '.png?updated_at=' + app.updated_at" width="1080" height="1920"/>
                         </div>
-                        <div v-if="filter_platform == 'platform_web'">
-                            <iframe sandbox="allow-scripts" v-bind:src="app.flutter_web_url" allowTransparency="true" scrolling="no" frameborder="0" style="border:none; overflow:hidden;"></iframe>
+                        <div v-if="filter_platform == 'platform_web'" style="line-height:0px">
+                            <iframe sandbox="allow-scripts" v-bind:src="app.flutter_web_url" allowTransparency="true" scrolling="no"
+                                width="100%" height="700px" frameborder="0" style="border:none; overflow:hidden;"></iframe>
                         </div>
                     </div>
                 </div>
