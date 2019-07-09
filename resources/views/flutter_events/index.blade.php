@@ -240,7 +240,7 @@
                             <label for="openSourceSwitch" style="padding-top:6px; font-size: 16px">STUDY JAMS &nbsp;</label>
                         </div>
 
-                        @if ($hasLocation || true)
+                        @if ($hasLocation)
                             <div class="is-medium filter-label">
                                 <label class="label is-medium" style="font-weight: normal; font-size: 16px"> DISTANCE </label>
                             </div>
