@@ -435,33 +435,39 @@
                 <div class="column is-offset-4 is-1">
                     <a href="https://twitter.com/hillelcoren" target="_blank">
                         <img src="{{ asset('images/img_hillel.png') }}" width="72"/><br/>
-                        <div>@hillelcoren</div>
+                        <div>Hillel Coren</div>
                     </a>
                 </div><br/>
                 @if (isFE())
                     <div class="column is-1">
                         <a href="https://twitter.com/Nash0x7E2" target="_blank">
                             <img src="{{ asset('images/img_nash.png') }}" width="72"/><br/>
-                            <div>@Nash0x7E2</div>
+                            <div>Nash Ramdial</div>
                         </a>
                     </div><br/>
                     <div class="column is-1">
                         <a href="https://twitter.com/MendyMarcus" target="_blank">
                             <img src="{{ asset('images/img_mendy.png') }}" width="72"/><br/>
-                            <div>@MendyMarcus</div>
+                            <div>Mendy Marcus</div>
+                        </a>
+                    </div><br/>
+                    <div class="column is-1">
+                        <a href="https://twitter.com/pblead26" target="_blank">
+                            <img src="{{ asset('images/img_pooja.png') }}" width="72"/><br/>
+                            <div>Pooja Bhaumik</div>
                         </a>
                     </div><br/>
                 @elseif (isFX())
                     <div class="column is-1">
                         <a href="https://twitter.com/efthemess" target="_blank">
                             <img src="{{ asset('images/img_efthymios.png') }}" width="72"/><br/>
-                            <div>@efthemess</div>
+                            <div>Efthymis Sarmpanis</div>
                         </a>
                     </div><br/>
                     <div class="column is-1">
                         <a href="https://twitter.com/SergiAndReplace" target="_blank">
                             <img src="{{ asset('images/img_sergi.png') }}" width="72"/><br/>
-                            <div>@SergiAndReplace</div>
+                            <div>Sergi Martínez</div>
                         </a>
                     </div><br/>
                 @elseif (isFC())
@@ -470,19 +476,19 @@
                     <div class="column is-1">
                         <a href="https://twitter.com/ThomasBurkhartB" target="_blank">
                             <img src="{{ asset('images/img_thomas.png') }}" width="72"/><br/>
-                            <div>@ThomasBurkhartB</div>
+                            <div>Thomas Burkhart</div>
                         </a>
                     </div><br/>
                     <div class="column is-1">
                         <a href="https://twitter.com/devangelslondon" target="_blank">
                             <img src="{{ asset('images/img_simon.png') }}" width="72"/><br/>
-                            <div>@devangelslondon</div>
+                            <div>Simon Lightfoot</div>
                         </a>
                     </div><br/>
                     <div class="column is-1">
                         <a href="https://twitter.com/scottstoll2017" target="_blank">
                             <img src="{{ asset('images/img_scott.png') }}" width="72"/><br/>
-                            <div>@scottstoll2017</div>
+                            <div>Scott Stoll</div>
                         </a>
                     </div><br/>
                 @endif
