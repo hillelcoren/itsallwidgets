@@ -74,7 +74,7 @@ class LoadArtifacts extends Command
         foreach (array_reverse($artifacts->articles) as $artifact) {
             //$this->info(json_encode($artifact));
 
-            $slug = str_slug($publishedDate . '-' . $artifact->title);
+            $slug = str_slug($artifact->title . '-' . $publishedDate);
 
             if (FlutterArtifact::where('url', '=', rtrim($artifact->url , '/'))
                 ->orWhere('slug', '=', $slug)
