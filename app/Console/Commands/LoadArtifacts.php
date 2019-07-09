@@ -113,6 +113,7 @@ class LoadArtifacts extends Command
                 $item = $this->pasreMetaData($xp, $item);
                 $item = $this->parseSchema($xp, $item);
                 $item = $this->parseRepoUrl($xp, $item);
+                $item = $this->parseGifUrl($xp, $item);
 
                 if ($type == 'video') {
                     // load transcript
@@ -121,7 +122,9 @@ class LoadArtifacts extends Command
                 }
 
                 $imageUrl = array_get($item, 'image_url');
+                $gifUrl = array_get($item, 'gif_url');
                 $item['image_url'] = null;
+                $item['gif_url'] = null;
 
                 $this->info(json_encode($item));
                 $artifact = $this->artifactRepo->store($item, 1);
@@ -141,6 +144,17 @@ class LoadArtifacts extends Command
                         $file = public_path($url);
                         file_put_contents($file, $contents);
                         $artifact->image_url = $url;
+                    }
+
+                    $artifact->save();
+                }
+
+                if ($gifUrl) {
+                    if ($contents = @file_get_contents($gifUrl)) {
+                        $url = '/thumbnails/artifact-' . $artifact->id . '.gif';
+                        $file = public_path($url);
+                        file_put_contents($file, $contents);
+                        $artifact->gif_url = $url;
                     }
 
                     $artifact->save();
@@ -262,6 +276,23 @@ class LoadArtifacts extends Command
 
             if ($githubLinks[$url] >= 2) {
                 $data['repo_url'] = $url;
+            }
+        }
+
+        return $data;
+    }
+
+    private function parseGifUrl($xp, $data)
+    {
+        $githubLinks = [];
+
+        foreach ($xp->query("//img") as $el) {
+            $url = $el->getAttribute("src");
+            $matches = [];
+            preg_match('(http.*\.gif)', $url, $matches);
+
+            if (count($matches)) {
+                $data['gif_url'] = $matches[0];
             }
         }
 

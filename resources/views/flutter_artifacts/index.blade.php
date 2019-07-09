@@ -241,7 +241,7 @@
                         </center>
 
                         <div v-if="artifact.image_url" class="card-image" style="max-height:250px; overflow: hidden" style="vertical-align:center">
-                            <img v-bind:src="artifact.image_url + '?updated_at=' + artifact.updated_at" width="100%"/>
+                            <img v-bind:src="(artifact.gif_url || artifact.image_url) + '?updated_at=' + artifact.updated_at" width="100%"/>
                         </div>
                         <div style="height:20px" v-if="artifact.image_url"/>
                     </div>
@@ -264,7 +264,7 @@
 
         <div class="columns">
             <div class="column is-4 is-elevated" v-if="selected_artifact.image_url">
-                <img v-bind:src="selected_artifact.image_url + '?updated_at=' + selected_artifact.updated_at" width="100%"/>
+                <img v-bind:src="(selected_artifact.gif_url || selected_artifact.image_url) + '?updated_at=' + selected_artifact.updated_at" width="100%"/>
             </div>
             <div class="column is-8">
 

@@ -24,6 +24,7 @@ class FlutterArtifact extends Model implements Feedable
         'image_url',
         'source_url',
         'repo_url',
+        'gif_url',
         'is_approved',
         'is_visible',
         'meta_description',
