@@ -25,7 +25,7 @@
 
 @if (! isFX())
     <a class="navbar-item" href="{{ fxUrl() }}">
-        <i class="fas fa-book"></i> &nbsp; FlutterX
+        <i class="fas fa-laptop"></i> &nbsp; FlutterX
     </a>
 @endif
 
