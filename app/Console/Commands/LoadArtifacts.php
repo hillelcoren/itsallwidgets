@@ -126,7 +126,7 @@ class LoadArtifacts extends Command
                 $item['image_url'] = null;
                 $item['gif_url'] = null;
 
-                $this->info(json_encode($item));
+                //$this->info(json_encode($item));
                 $artifact = $this->artifactRepo->store($item, 1);
 
                 if ($imageUrl) {
@@ -292,7 +292,18 @@ class LoadArtifacts extends Command
             preg_match('(http.*\.gif)', $url, $matches);
 
             if (count($matches)) {
-                $data['gif_url'] = $matches[0];
+                $match = $matches[0];
+
+                if (strpos($match, 'spinner') !== false) {
+                    continue;
+                }
+
+                if (strpos($match, 'paypalobjects.com') !== false) {
+                    continue;
+                }
+
+                $data['gif_url'] = $match;
+                return $data;
             }
         }
 
