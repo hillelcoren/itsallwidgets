@@ -124,13 +124,6 @@ body {
                             class="switch is-info" v-model="filter_open_source">
                             <label for="openSourceSwitch" style="padding-top:6px; font-size: 16px">OPEN SOURCE &nbsp;</label>
                         </div>
-                        <div class="is-medium is-hidden-mobile" v-on:click="toggleGifs()" style="padding-left: 26px;">
-                            <input type="checkbox" name="gifsSwitch"
-                            class="switch is-info" v-model="filter_gifs">
-                            <label for="gifsSwitch" style="padding-top:6px; font-size: 16px">
-                                GIF &nbsp;
-                            </label>
-                        </div>
                         <div class="is-medium filter-label slider-control">
                             <label class="label is-medium" style="font-weight: normal; font-size: 16px">ZOOM</label>
                         </div>
@@ -257,11 +250,8 @@ body {
                         </div>
 
                         <div class="card-image" style="line-height:0px">
-                            <div v-if="app.has_gif">
-                                <i v-bind:id="app.title + '-video'" style="font-size: 26px; position: absolute; bottom: 20px; right: 20px;" class="fas fa-video"></i>
-                            </div>
-                            <img v-bind:id="app.slug + '-img'" v-bind:src="'/screenshots/app-' + app.id + '.png?updated_at=' + app.updated_at" width="1080" height="1920"/>
-                            <!-- <img v-bind:id="app.title + '-img'" src="/images/spacer.png" v-bind:data-src="'/screenshots/app-' + app.id + '.png?updated_at=' + app.updated_at" width="1080" height="1920" class="lazy"/> -->
+                            <img v-if="app.has_gif" v-bind:src="'/gifs/app-' + app.id + '.gif?updated_at=' + app.updated_at" width="1080" height="1920"/>
+                            <img v-if="!app.has_gif" v-bind:src="'/screenshots/app-' + app.id + '.png?updated_at=' + app.updated_at" width="1080" height="1920"/>
                         </div>
                     </div>
                 </div>
@@ -500,10 +490,6 @@ var app = new Vue({
             this.filter_open_source = ! this.filter_open_source;
         },
 
-        toggleGifs: function() {
-            this.filter_gifs = ! this.filter_gifs;
-        },
-
         adjustPage: function(change) {
             this.page_number += change;
             document.body.scrollTop = 0; // For Safari
@@ -516,11 +502,6 @@ var app = new Vue({
                 .addClass('animated flipInX')
                 .css('display', 'flex')
                 .css('visibility', 'visible');
-
-            if (app.has_gif) {
-                $('#' + app.slug + '-img').attr('src', '/gifs/app-' + app.id + '.gif?updated_at=' + app.updated_at);
-                $('#' + app.slug + '-video').hide();
-            }
         },
 
         onMouseOut: function(app, e) {
@@ -528,11 +509,6 @@ var app = new Vue({
                 .animateCss('animated flipOutX', function() {
                     $('#social-buttons-' + app.id).css('display', 'none')
                 });
-
-            if (app.has_gif) {
-                $('#' + app.slug + '-img').attr('src', '/screenshots/app-' + app.id + '.png?updated_at=' + app.updated_at);
-                $('#' + app.slug + '-video').show();
-            }
         },
 
         selectImage: function(type) {
@@ -600,7 +576,6 @@ var app = new Vue({
         apps: {!! $apps !!},
         search: "{{ request()->search }}",
         filter_open_source: {{ filter_var(request()->open_source, FILTER_VALIDATE_BOOLEAN) ? 'true' : 'false' }},
-        filter_gifs: false,
         cards_per_row: getCachedCardsPerRow(),
         sort_by: getCachedSortBy(),
         selected_app: false,
@@ -646,7 +621,6 @@ var app = new Vue({
             var apps = this.apps;
             var search = this.search.toLowerCase().trim();
             var filter_open_source = this.filter_open_source;
-            var filter_gifs = this.filter_gifs;
             var sort_by = this.sort_by;
 
             if (search) {
@@ -670,12 +644,6 @@ var app = new Vue({
             if (filter_open_source) {
                 apps = apps.filter(function(item) {
                     return item.repo_url;
-                });
-            }
-
-            if (filter_gifs) {
-                apps = apps.filter(function(item) {
-                    return item.has_gif;
                 });
             }
 

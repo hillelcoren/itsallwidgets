@@ -73,6 +73,7 @@ class LoadArtifacts extends Command
 
         foreach (array_reverse($artifacts->articles) as $artifact) {
             //$this->info(json_encode($artifact));
+            $this->info(json_encode($artifact->title));
 
             $slug = str_slug($artifact->title . '-' . $publishedDate);
 
@@ -301,6 +302,8 @@ class LoadArtifacts extends Command
                 if (strpos($match, 'paypalobjects.com') !== false) {
                     continue;
                 }
+
+                $this->info('## GIF URL ## ' . $match);
 
                 $data['gif_url'] = $match;
                 return $data;
