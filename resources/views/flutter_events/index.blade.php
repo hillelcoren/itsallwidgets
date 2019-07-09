@@ -234,19 +234,19 @@
                             <i class="fas fa-search"></i>
                         </span>
 
-                        <div class="is-medium" v-on:click="toggleStudyJams()" style="padding-left: 20px; padding-right: 20px;">
+                        <div class="is-medium" v-on:click="toggleStudyJams()" style="padding-left: 30px; padding-right: 10px;">
                             <input type="checkbox" name="openSourceSwitch"
                             class="switch is-info" v-model="filter_study_jams">
                             <label for="openSourceSwitch" style="padding-top:6px; font-size: 16px">STUDY JAMS &nbsp;</label>
                         </div>
 
-                        @if ($hasLocation)
+                        @if ($hasLocation || true)
                             <div class="is-medium filter-label">
                                 <label class="label is-medium" style="font-weight: normal; font-size: 16px"> DISTANCE </label>
                             </div>
                             <div class="select is-medium filter-control" style="font-size: 16px;">
                                 <select v-model="filter_distance" onchange="$(this).blur()">
-                                    <option value="filter_distance_any"></option>
+                                    <option value="filter_distance_any">ANY</option>
                                     <option value="filter_distance_50">50 miles</option>
                                     <option value="filter_distance_100">100 miles</option>
                                     <option value="filter_distance_250">250 miles</option>
@@ -476,6 +476,10 @@ function getCachedSortBy() {
     return (isStorageSupported() ? localStorage.getItem('flutterevents_sort_by') : false) || 'sort_date';
 }
 
+function getCachedFilterDistance() {
+    return (isStorageSupported() ? localStorage.getItem('flutterevents_filter_distance') : false) || 'filter_distance_any';
+}
+
 var app = new Vue({
 el: '#event',
 
@@ -493,6 +497,7 @@ watch: {
     filter_distance: {
         handler() {
             app.updateMap();
+            app.saveFilters();
         },
     },
     sort_by: {
@@ -544,6 +549,7 @@ methods: {
         }
 
         localStorage.setItem('flutterevents_sort_by', this.sort_by);
+        localStorage.setItem('flutterevents_filter_distance', this.filter_distance);
     },
 
     updateMap: function() {
@@ -587,7 +593,7 @@ data: {
     filter_study_jams: {{ filter_var(request()->study_jams, FILTER_VALIDATE_BOOLEAN) ? 'true' : 'false' }},
     selected_event: false,
     page_number: 1,
-    filter_distance: 'filter_distance_any',
+    filter_distance: getCachedFilterDistance(),
 },
 
 computed: {
