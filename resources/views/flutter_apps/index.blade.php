@@ -135,6 +135,7 @@ body {
                             step="1" min="2" max="6" type="range" v-model="cards_per_row">
                         </div>
 
+                        <!--
                         <div class="is-medium filter-label">
                             <label class="label is-medium" style="font-weight: normal; font-size: 16px">PLATFORM</label>
                         </div>
@@ -144,6 +145,7 @@ body {
                                 <option value="platform_web">WEB</option>
                             </select>
                         </div>
+                        -->
 
                         <div class="is-medium filter-label">
                             <label class="label is-medium" style="font-weight: normal; font-size: 16px">SORT</label>
@@ -489,6 +491,12 @@ function getCachedSortBy() {
 }
 
 function getCachedPlatform() {
+    @if (request()->platform == 'web')
+        return 'platform_web';
+    @elseif (request()->platform == 'mobile')
+        return 'platform_mobile';
+    @endif
+
     return (isStorageSupported() ? localStorage.getItem('filter_platform') : false) || 'platform_mobile';
 }
 
