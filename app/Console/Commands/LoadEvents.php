@@ -51,6 +51,10 @@ class LoadEvents extends Command
                 ->get(['meetup_group_url']);
 
             foreach ($groups as $group) {
+                if (! $group->meetup_group_url) {
+                    continue;
+                }
+                
                 $this->info('Loading ' . $group->meetup_group_url . '...');
                 $data = file_get_contents('https://api.meetup.com/' . $group->meetup_group_url . '/events?page=100&text=flutter&status=past&key=' . config('services.meetup.key'));
                 $data = json_decode($data);
