@@ -114,16 +114,19 @@ body {
             <div class="container">
                 <div class="field is-grouped is-grouped-multiline is-vertical-center">
                     <p class="control is-expanded has-icons-left">
+
                         <input v-model="search" class="input is-medium" type="text" placeholder="SEARCH" BAK-v-bind:placeholder="'Search ' + unpaginatedFilteredApps.length + ' apps and counting.."
                             autofocus="true" style="margin-top: 10px" v-bind:style="{ backgroundColor: searchBackgroundColor()}">
                         <span class="icon is-small is-left" style="margin-top: 10px">
                             <i class="fas fa-search"></i>
                         </span>
+
                         <div class="is-medium" v-on:click="toggleOpenSource()" style="padding-left: 26px;">
                             <input type="checkbox" name="openSourceSwitch"
                             class="switch is-info" v-model="filter_open_source">
                             <label for="openSourceSwitch" style="padding-top:6px; font-size: 16px">OPEN SOURCE &nbsp;</label>
                         </div>
+
                         <div class="is-medium filter-label slider-control">
                             <label class="label is-medium" style="font-weight: normal; font-size: 16px">ZOOM</label>
                         </div>
@@ -131,6 +134,17 @@ body {
                             <input class="slider is-fullwidth is-medium is-info"
                             step="1" min="2" max="6" type="range" v-model="cards_per_row">
                         </div>
+
+                        <div class="is-medium filter-label">
+                            <label class="label is-medium" style="font-weight: normal; font-size: 16px">PLATFORM</label>
+                        </div>
+                        <div class="select is-medium filter-control" style="font-size: 16px">
+                            <select v-model="filter_platform" onchange="$(this).blur()">
+                                <option value="platform_mobile">MOBILE</option>
+                                <option value="platform_web">WEB</option>
+                            </select>
+                        </div>
+
                         <div class="is-medium filter-label">
                             <label class="label is-medium" style="font-weight: normal; font-size: 16px">SORT</label>
                         </div>
@@ -141,6 +155,7 @@ body {
                                 <option value="sort_oldest">OLDEST</option>
                             </select>
                         </div>
+
                     </p>
                 </div>
             </div>
@@ -465,6 +480,10 @@ function getCachedSortBy() {
     return sortBy;
 }
 
+function getCachedPlatform() {
+    return (isStorageSupported() ? localStorage.getItem('filter_platform') : false) || 'platform_mobile';
+}
+
 function getCachedCardsPerRow() {
     return (isStorageSupported() ? localStorage.getItem('cards_per_row') : false) || 4;
 }
@@ -474,6 +493,11 @@ var app = new Vue({
 
     watch: {
         sort_by: {
+            handler() {
+                app.saveFilters();
+            },
+        },
+        filter_platform: {
             handler() {
                 app.saveFilters();
             },
@@ -549,6 +573,7 @@ var app = new Vue({
 
             localStorage.setItem('cards_per_row', this.cards_per_row);
             localStorage.setItem('sort_by', this.sort_by);
+            localStorage.setItem('filter_platform', this.filter_platform);
         },
 
         searchBackgroundColor: function() {
@@ -578,6 +603,7 @@ var app = new Vue({
         filter_open_source: {{ filter_var(request()->open_source, FILTER_VALIDATE_BOOLEAN) ? 'true' : 'false' }},
         cards_per_row: getCachedCardsPerRow(),
         sort_by: getCachedSortBy(),
+        filter_platform: getCachedPlatform(),
         selected_app: false,
         image_type: '.png',
         page_number: 1,

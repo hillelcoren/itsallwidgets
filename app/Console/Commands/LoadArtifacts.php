@@ -68,12 +68,14 @@ class LoadArtifacts extends Command
         $link = 'https://json.flutterweekly.net/' . $issue->file;
         $artifacts = file_get_contents($link);
 
+        $this->info('Issue: ' . $link);
+
         $artifacts = json_decode($artifacts);
         $publishedDate = date('Y-m-d', strtotime($issue->publishedOn));
 
         foreach (array_reverse($artifacts->articles) as $artifact) {
             //$this->info(json_encode($artifact));
-            $this->info(json_encode($artifact->title));
+            $this->info('Artifact: ' . $artifact->title);
 
             $slug = str_slug($artifact->title . '-' . $publishedDate);
 
@@ -299,6 +301,14 @@ class LoadArtifacts extends Command
                     continue;
                 }
 
+                if (strpos($match, 'loading') !== false) {
+                    continue;
+                }
+
+                if (strpos($match, 'new-icon') !== false) {
+                    continue;
+                }
+
                 if (strpos($match, 'paypalobjects.com') !== false) {
                     continue;
                 }
@@ -306,8 +316,6 @@ class LoadArtifacts extends Command
                 if (strpos($match, 'miro.medium.com') !== false) {
                     continue;
                 }
-
-                $this->info('## GIF URL ## ' . $match);
 
                 $data['gif_url'] = $match;
                 return $data;
