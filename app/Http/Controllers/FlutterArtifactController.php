@@ -6,7 +6,7 @@ use App\Models\FlutterArtifact;
 
 class FlutterArtifactController extends Controller
 {
-    public function index($tld)
+    public function index($tld = '')
     {
         if ($tld == 'dev') {
             return redirect('https://flutterx.com');
