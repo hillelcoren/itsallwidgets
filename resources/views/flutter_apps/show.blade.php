@@ -2,7 +2,7 @@
 
 @section('title', $app->title)
 @section('description', $app->short_description)
-@section('image_url', $app->screenshotUrl())
+@section('image_url', $app->is_mobile ? $app->screenshotUrl() : asset('images/background.jpg'))
 
 @section('content')
 

@@ -203,7 +203,7 @@ class FlutterAppController extends Controller
         $app->is_approved = true;
         $app->save();
 
-        if (auth()->user()->shouldSendTweet()) {
+        if ($app->is_mobile && auth()->user()->shouldSendTweet()) {
             $app->notify(new AppApproved());
         }
 
