@@ -17,7 +17,7 @@
     </a>
 @endif
 
-@if (! isFE() && ! isIAW())
+@if (! isFE())
     <a class="navbar-item" href="{{ feUrl() }}">
         <i class="fas fa-calendar"></i> &nbsp; Events
     </a>
@@ -25,7 +25,7 @@
 
 @if (! isFX())
     <a class="navbar-item" href="{{ fxUrl() }}">
-        <i class="fas fa-laptop"></i> &nbsp; FlutterX
+        <i class="fas fa-laptop"></i> &nbsp; Resources
     </a>
 @endif
 
