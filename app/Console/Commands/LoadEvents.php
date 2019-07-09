@@ -131,7 +131,7 @@ class LoadEvents extends Command
                 $this->eventRepo->update($event, $data);
             } else {
                 $data['banner'] = 'Join us at $event in $city';
-                $data['slug'] = str_slug($item->id . '-' . $group->name . '-' . $item->name);
+                $data['slug'] = str_slug($group->name . '-' . $item->name . '-' . $item->id);
                 $data['event_url'] = $item->link;
 
                 $event = $this->eventRepo->store($data, 1);
