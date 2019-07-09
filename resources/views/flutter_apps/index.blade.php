@@ -264,9 +264,12 @@ body {
                             </div>
                         </div>
 
-                        <div class="card-image" style="line-height:0px">
+                        <div v-if="filter_platform == 'platform_mobile'" class="card-image" style="line-height:0px">
                             <img v-if="app.has_gif" v-bind:src="'/gifs/app-' + app.id + '.gif?updated_at=' + app.updated_at" width="1080" height="1920"/>
                             <img v-if="!app.has_gif" v-bind:src="'/screenshots/app-' + app.id + '.png?updated_at=' + app.updated_at" width="1080" height="1920"/>
+                        </div>
+                        <div v-if="filter_platform == 'platform_web'">
+                            <iframe sandbox="allow-scripts" v-bind:src="app.flutter_web_url" allowTransparency="true" scrolling="no" frameborder="0" style="border:none; overflow:hidden;"></iframe>
                         </div>
                     </div>
                 </div>
