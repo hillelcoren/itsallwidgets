@@ -303,6 +303,10 @@ class LoadArtifacts extends Command
                     continue;
                 }
 
+                if (strpos($match, 'miro.medium.com') !== false) {
+                    continue;
+                }
+
                 $this->info('## GIF URL ## ' . $match);
 
                 $data['gif_url'] = $match;
