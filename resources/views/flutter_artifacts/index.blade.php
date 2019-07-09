@@ -263,8 +263,9 @@
     <section class="modal-card-body" @click.stop>
 
         <div class="columns">
-            <div class="column is-4 is-elevated" v-if="selected_artifact.image_url">
-                <img v-bind:src="(selected_artifact.gif_url || selected_artifact.image_url) + '?updated_at=' + selected_artifact.updated_at" width="100%"/>
+            <div class="column is-4 is-elevated" v-if="selected_artifact.gif_url || selected_artifact.image_url">
+                <img v-if="selected_artifact.image_url" v-bind:src="selected_artifact.image_url + '?updated_at=' + selected_artifact.updated_at" width="100%" style="padding-bottom:16px"/>
+                <img v-if="selected_artifact.gif_url" v-bind:src="selected_artifact.gif_url + '?updated_at=' + selected_artifact.updated_at" width="100%"/>
             </div>
             <div class="column is-8">
 

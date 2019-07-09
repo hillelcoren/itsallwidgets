@@ -17,9 +17,14 @@
 		<div class="container">
 
 			<div class="columns">
-                @if ($artifact->image_url)
+                @if ($artifact->image_url || $artifact->gif_url)
     				<div class="column is-4 is-elevated">
-    					<img id="appImage" src="{{ $artifact->image_url }}"/>
+                        @if ($artifact->image_url)
+		                   <img id="appImage" src="{{ $artifact->image_url }}" width="100%" style="padding-bottom:16px"/>
+                        @endif
+                        @if ($artifact->gif_url)
+                            <img id="appGif" src="{{ $artifact->gif_url }}" width="100%"/>
+                        @endif
     				</div>
                 @else
                     <div class="column is-4"></div>
