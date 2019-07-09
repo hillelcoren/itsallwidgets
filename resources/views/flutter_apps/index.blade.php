@@ -647,6 +647,7 @@ var app = new Vue({
             var apps = this.apps;
             var search = this.search.toLowerCase().trim();
             var filter_open_source = this.filter_open_source;
+            var filter_platform = this.filter_platform;
             var sort_by = this.sort_by;
 
             if (search) {
@@ -670,6 +671,16 @@ var app = new Vue({
             if (filter_open_source) {
                 apps = apps.filter(function(item) {
                     return item.repo_url;
+                });
+            }
+
+            if (filter_platform == 'platform_mobile') {
+                apps = apps.filter(function(item) {
+                    return item.is_mobile;
+                });
+            } else {
+                apps = apps.filter(function(item) {
+                    return item.is_web;
                 });
             }
 
