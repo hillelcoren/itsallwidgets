@@ -58,7 +58,7 @@
 					<div class="field">
 						<div class="field">
 							<label class="label">
-								Platforms
+								Platforms <span class="required">*</span>
 							</label>
 							<div class="control">
 								<label>
@@ -68,13 +68,13 @@
 								&nbsp;&nbsp;
 								<label>
 									{{ Form::hidden('is_web', 0) }}
-									<input name="is_mobile" type="checkbox" value="1" {{ $app->is_mobile ? 'CHECKED' : '' }}/> Web
+									<input name="is_web" type="checkbox" value="1" {{ $app->is_web ? 'CHECKED' : '' }}/> Web
 								</label>
 							</div>
 						</div>
 					</div>
 
-					<div class="field">
+					<div class="field" id="mobileRequiredField" style="display:{{ $app->is_mobile ? 'block' : 'none' }}">
 						<label class="label" for="screenshot">
 							PNG Screenshot • 1080px by 1920px <span class="required">*</span>
 						</label>
@@ -91,12 +91,13 @@
 					</div>
 
 
-					<div class="field">
+					<div class="field" id="webRequiredField" style="display:{{ $app->is_web ? 'block' : 'none' }}">
 						<label class="label" for="flutter_web_url">
 							Flutter Web URL <span class="required">*</span>
 						</label>
 						<div class="control">
-							{{ Form::text('flutter_web_url', $app->flutter_web_url, ['class' => 'input', 'required' => true, 'maxlength' => 250]) }}
+							{{ Form::url('flutter_web_url', $app->flutter_web_url, ['class' => 'input', 'required' => true, 'maxlength' => 250, 'placeholder' => 'https://example.com']) }}
+
 							@if ($errors->has('flutter_web_url'))
 								<span class="help is-danger">
 									{{ $errors->first('flutter_web_url') }}
