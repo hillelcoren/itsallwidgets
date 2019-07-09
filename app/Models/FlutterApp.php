@@ -29,6 +29,9 @@ class FlutterApp extends Model implements Feedable
         'has_screenshot_1',
         'has_screenshot_2',
         'has_screenshot_3',
+        'is_mobile',
+        'is_web',
+        'flutter_web_url',
     ];
 
     protected $hidden = [

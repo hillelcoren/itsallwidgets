@@ -56,6 +56,25 @@
 					</div>
 
 					<div class="field">
+						<div class="field">
+							<label class="label">
+								Platforms
+							</label>
+							<div class="control">
+								<label>
+									{{ Form::hidden('is_mobile', 0) }}
+									<input name="is_mobile" type="checkbox" value="1" {{ $app->is_mobile ? 'CHECKED' : '' }}/> Mobile
+								</lable>
+								&nbsp;&nbsp;
+								<label>
+									{{ Form::hidden('is_web', 0) }}
+									<input name="is_mobile" type="checkbox" value="1" {{ $app->is_mobile ? 'CHECKED' : '' }}/> Web
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="field">
 						<label class="label" for="screenshot">
 							PNG Screenshot • 1080px by 1920px <span class="required">*</span>
 						</label>
@@ -70,6 +89,22 @@
 							@endif
 						</div>
 					</div>
+
+
+					<div class="field">
+						<label class="label" for="flutter_web_url">
+							Flutter Web URL <span class="required">*</span>
+						</label>
+						<div class="control">
+							{{ Form::text('flutter_web_url', $app->flutter_web_url, ['class' => 'input', 'required' => true, 'maxlength' => 250]) }}
+							@if ($errors->has('flutter_web_url'))
+								<span class="help is-danger">
+									{{ $errors->first('flutter_web_url') }}
+								</span>
+							@endif
+						</div>
+					</div>
+
 
 					<div class="field">
 						<label class="label" for="short_description">
@@ -110,7 +145,7 @@
 			<p>&nbsp;</p>
 			<p>&nbsp;</p>
 
-			<div class="subtitle">Optional Images</div>
+			<div class="subtitle">Optional Mobile Images</div>
 
 			<article class="message is-elevated">
 				<div class="message-body">
