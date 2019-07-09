@@ -80,7 +80,12 @@ class LoadEvents extends Command
         $groups = [];
 
         foreach ($data as $item) {
+            if (property_exists($item, 'description')) {
+                continue;
+            }
+
             $searchStr = strtolower($item->name . $item->description . $item->group->name);
+
             if (strpos($searchStr, 'flutter') === false) {
                 continue;
             }
