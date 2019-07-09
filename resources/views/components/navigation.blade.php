@@ -11,12 +11,6 @@
     <i class="fas fa-globe"></i> &nbsp; {{ ucwords($url) }}
 </a>
 
-@if (isIAW())
-    <a class="navbar-item" href="{{ iawUrl() }}/about">
-        <i class="fas fa-info-circle"></i> &nbsp; About
-    </a>
-@endif
-
 @if (! isFE())
     <a class="navbar-item" href="{{ feUrl() }}">
         <i class="fas fa-calendar"></i> &nbsp; Events
@@ -36,7 +30,13 @@
         </a>
     @else
         <a class="navbar-item" href="{{ url(auth()->check() ? 'submit' : 'auth/google') }}">
-            <i class="fas fa-bell"></i> &nbsp; Stats
+            <i class="fas fa-bell"></i> &nbsp; Monthly Stats
         </a>
     @endif
+@endif
+
+@if (false && isIAW())
+    <a class="navbar-item" href="{{ iawUrl() }}/about">
+        <i class="fas fa-info-circle"></i> &nbsp; About
+    </a>
 @endif
