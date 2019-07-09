@@ -10,6 +10,14 @@
 		function onFormSubmit() {
 			$('#saveButton').addClass('is-loading').prop('disabled', true);
 		}
+
+		function updatePlatforms() {
+			$('#webRequiredField').toggle($('input[name=is_web]').is(':checked'));
+			$('#mobileRequiredField').toggle($('input[name=is_mobile]').is(':checked'));
+		}
+		$(function() {
+			updatePlatforms();
+		});
 	</script>
 
 	<p>&nbsp;</p>
@@ -63,12 +71,14 @@
 							<div class="control">
 								<label>
 									{{ Form::hidden('is_mobile', 0) }}
-									<input name="is_mobile" type="checkbox" value="1" {{ $app->is_mobile ? 'CHECKED' : '' }}/> Mobile
+									<input name="is_mobile" type="checkbox" onchange="updatePlatforms()"
+										value="1" {{ (old('is_mobile') !== null ? old('is_mobile') : $app->is_mobile) ? 'CHECKED' : '' }}/> Mobile
 								</lable>
 								&nbsp;&nbsp;
 								<label>
 									{{ Form::hidden('is_web', 0) }}
-									<input name="is_web" type="checkbox" value="1" {{ $app->is_web ? 'CHECKED' : '' }}/> Web
+									<input name="is_web" type="checkbox" onchange="updatePlatforms()"
+										value="1" {{ (old('is_web') !== null ? old('is_web') : $app->is_web) ? 'CHECKED' : '' }}/> Web
 								</label>
 							</div>
 						</div>
@@ -80,7 +90,7 @@
 						</label>
 						<div class="control">
 
-							{{ Form::file('screenshot', ['required' => $app->exists ? false : true]) }}
+							{{ Form::file('screenshot') }}
 
 							@if ($errors->has('screenshot'))
 								<span class="help is-danger">
@@ -96,7 +106,7 @@
 							Flutter Web URL <span class="required">*</span>
 						</label>
 						<div class="control">
-							{{ Form::url('flutter_web_url', $app->flutter_web_url, ['class' => 'input', 'required' => true, 'maxlength' => 250, 'placeholder' => 'https://example.com']) }}
+							{{ Form::url('flutter_web_url', $app->flutter_web_url, ['class' => 'input', 'maxlength' => 250, 'placeholder' => 'https://example.com']) }}
 
 							@if ($errors->has('flutter_web_url'))
 								<span class="help is-danger">

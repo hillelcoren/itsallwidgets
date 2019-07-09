@@ -107,6 +107,7 @@ class FlutterAppController extends Controller
     public function create()
     {
         $app = new FlutterApp;
+        $app->is_mobile = true;
 
         $data = [
             'app' => $app,

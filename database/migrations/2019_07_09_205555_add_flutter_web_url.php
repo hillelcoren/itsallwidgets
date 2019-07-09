@@ -16,7 +16,7 @@ class AddFlutterWebUrl extends Migration
         Schema::table('flutter_apps', function(Blueprint $table) {
             $table->boolean('is_mobile')->default(false);
             $table->boolean('is_web')->default(false);
-            $table->string('flutter_web_url')->default('');
+            $table->string('flutter_web_url')->nullable()->unique();
         });
 
         DB::statement('UPDATE flutter_apps SET is_mobile = 1;');
