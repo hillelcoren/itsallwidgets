@@ -78,7 +78,7 @@ body {
 }
 
 .column {
-    padding: 1rem 1rem 6rem 1rem;
+    padding: 1rem 1rem 2.4rem 1rem;
 }
 
 
@@ -135,7 +135,6 @@ body {
                             step="1" min="2" max="6" type="range" v-model="cards_per_row">
                         </div>
 
-                        <!--
                         <div class="is-medium filter-label">
                             <label class="label is-medium" style="font-weight: normal; font-size: 16px">PLATFORM</label>
                         </div>
@@ -145,7 +144,6 @@ body {
                                 <option value="platform_web">WEB</option>
                             </select>
                         </div>
-                        -->
 
                         <div class="is-medium filter-label">
                             <label class="label is-medium" style="font-weight: normal; font-size: 16px">SORT</label>

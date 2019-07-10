@@ -70,7 +70,7 @@ class FlutterAppController extends Controller
         $ip = \Request::getClientIp();
         $banner = false;
 
-        if (cache()->has($ip . '_latitude')) {
+        if (cache()->has($ip . '_latitude') && ! request()->platform) {
             $latitude = cache($ip . '_latitude');
             $longitude = cache($ip . '_longitude');
 
