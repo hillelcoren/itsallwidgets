@@ -170,7 +170,7 @@
 							</div>
 
 							@if ($app->is_web && $app->flutter_web_url)
-								<iframe sandbox="allow-scripts" src="{{ $app->flutter_web_url }}" allowTransparency="true" scrolling="no"
+								<iframe sandbox="allow-scripts allow-same-origin" src="{{ $app->flutter_web_url }}" allowTransparency="true" scrolling="no"
 			                        width="100%" height="700px" frameborder="0" style="border:none; overflow:hidden;"></iframe>
 							@endif
 
