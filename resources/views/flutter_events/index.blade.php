@@ -312,7 +312,7 @@
                         </div>
 
                         <div style="height:250px;padding-top:20px;">
-                            <img v-if="event.image_url" v-bind:src="event.image_url + '?updated_at=' + event.updated_at" width="100%" style="max-height:250px"/>
+                            <img v-if="event.image_url" v-bind:src="event.image_url + '?updated_at=' + event.updated_at" loading="lazy" width="100%" style="max-height:250px"/>
                         </div>
 
                         <div style="color:#666; padding-top:30px">

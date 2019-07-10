@@ -266,12 +266,12 @@ body {
                         </div>
 
                         <div v-if="filter_platform == 'platform_mobile'" class="card-image" style="line-height:0px">
-                            <img v-if="app.has_gif" v-bind:src="'/gifs/app-' + app.id + '.gif?updated_at=' + app.updated_at" width="1080" height="1920"/>
-                            <img v-if="!app.has_gif" v-bind:src="'/screenshots/app-' + app.id + '.png?updated_at=' + app.updated_at" width="1080" height="1920"/>
+                            <img v-if="app.has_gif" v-bind:src="'/gifs/app-' + app.id + '.gif?updated_at=' + app.updated_at" loading="lazy" width="1080" height="1920"/>
+                            <img v-if="!app.has_gif" v-bind:src="'/screenshots/app-' + app.id + '.png?updated_at=' + app.updated_at" loading="lazy" width="1080" height="1920"/>
                         </div>
                         <div v-if="filter_platform == 'platform_web'" style="line-height:0px">
                             <iframe sandbox="allow-scripts allow-same-origin" v-bind:src="app.flutter_web_url" allowTransparency="true" scrolling="no"
-                                width="100%" height="700px" frameborder="0" style="border:none; overflow:hidden;"></iframe>
+                                loading="lazy" width="100%" height="700px" frameborder="0" style="border:none; overflow:hidden;"></iframe>
                         </div>
                     </div>
                 </div>
@@ -416,7 +416,7 @@ body {
                     </div>
 
                     <iframe v-if="selected_app.is_web && selected_app.flutter_web_url" sandbox="allow-scripts allow-same-origin" v-bind:src="selected_app.flutter_web_url" allowTransparency="true" scrolling="no"
-                        width="100%" height="700px" frameborder="0" style="border:none; overflow:hidden;"></iframe>
+                        width="100%" height="800px" frameborder="0" style="border:none; overflow:hidden;"></iframe>
 
                     <div v-if="selected_app.has_gif || selected_app.has_screenshot_1 || selected_app.has_screenshot_2 || selected_app.has_screenshot_3">
                         <div class="columns is-multiline is-3 is-variable">
