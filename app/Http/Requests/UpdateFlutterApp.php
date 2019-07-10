@@ -35,8 +35,8 @@ class UpdateFlutterApp extends FormRequest
         $rules = [
             'title' => 'required|unique:flutter_apps,title,' . $app->id . ',id',
             'gif' => 'mimes:gif|dimensions:width=1080,height=1920|max:10000',
-            'flutter_web_url' => 'required_if:is_web,1|unique:flutter_apps,flutter_web_url,' . $app->id . ',id',
-            'screenshot' => 'image|mimes:png|dimensions:width=1080,height=1920|max:2500',
+            'flutter_web_url' => 'required_if:is_web,1|nullable|unique:flutter_apps,flutter_web_url,' . $app->id . ',id',
+            'screenshot' => 'image||nullable|mimes:png|dimensions:width=1080,height=1920|max:2500',
             'screenshot_1' => 'image|mimes:png|dimensions:width=1080,height=1920|max:2500',
             'screenshot_2' => 'image|mimes:png|dimensions:width=1080,height=1920|max:2500',
             'screenshot_3' => 'image|mimes:png|dimensions:width=1080,height=1920|max:2500',
