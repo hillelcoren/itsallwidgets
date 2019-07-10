@@ -271,7 +271,7 @@ body {
                         </div>
                         <div v-if="filter_platform == 'platform_web'" style="line-height:0px">
                             <iframe sandbox="allow-scripts allow-same-origin" v-bind:src="app.flutter_web_url" allowTransparency="true" scrolling="no"
-                                loading="lazy" width="100%" height="700px" frameborder="0" style="border:none; overflow:hidden;"></iframe>
+                                loading="lazy" width="100%" v-bind:height="cards_per_row == 6 ? 900 : 700" frameborder="0" style="border:none; overflow:hidden;"></iframe>
                         </div>
                     </div>
                 </div>
