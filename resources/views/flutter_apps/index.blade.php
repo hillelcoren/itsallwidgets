@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', 'List of Flutter apps')
+@section('title', 'List of ' . (request()->open_source ? 'open-source ' : '') . 'Flutter ' . (request()->platform ? request()->platform . ' ' : '') . 'apps')
 @section('description', 'An open list of example apps made with Flutter include many open source samples.')
 @section('image_url', asset('images/background.jpg'))
 
