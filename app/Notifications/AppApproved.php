@@ -34,6 +34,10 @@ class AppApproved extends Notification
             $tweet .= ' #iPhone';
         }
 
+        if ($app->is_web) {
+            $tweet .= ' #FlutterWeb';
+        }
+
         if ($app->repo_url) {
             $tweet .= ' #OpenSource';
         }
