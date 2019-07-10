@@ -189,6 +189,10 @@ class FlutterAppController extends Controller
     {
         $app = $this->appRepo->getBySlug($slug);
 
+        if (! $app) {
+            return redirect('/');
+        }
+
         return view('flutter_apps.show', compact('app'));
     }
 

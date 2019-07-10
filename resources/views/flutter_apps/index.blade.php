@@ -78,7 +78,7 @@ body {
 }
 
 .column {
-    padding: 1rem 1rem 2.4rem 1rem;
+    padding: 1rem 1rem 3rem 1rem;
 }
 
 

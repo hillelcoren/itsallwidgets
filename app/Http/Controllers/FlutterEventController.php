@@ -135,6 +135,10 @@ class FlutterEventController extends Controller
             $event = $tld;
         }
 
+        if (! $event) {
+            return redirect('/');
+        }
+
         $data = [
             'event' => $event,
             'useBlackHeader' => true,

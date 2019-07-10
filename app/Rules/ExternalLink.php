@@ -34,7 +34,7 @@ class ExternalLink implements Rule
         $domain2 = str_replace('www.', '', $this->domain2);
         $value = str_replace('www.', '', $value);
 
-        return strpos($value, $domain1) === 0 || strpos($value, $domain2) === 0;
+        return strpos($value, $domain1) === 0 || ($domain2 && strpos($value, $domain2) === 0);
     }
 
     /**
