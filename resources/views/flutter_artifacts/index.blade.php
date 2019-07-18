@@ -1,9 +1,9 @@
 @extends('master')
 
-@section('title', 'A Searchable List of Flutter Resources')
-@section('description', 'A Searchable List of Flutter Resources')
+@section('title', isGL() ? 'A Searchable List of Geula Resources' : 'A Searchable List of Flutter Resources')
+@section('description', isGL() ? 'A Searchable List of Geula Resources' : 'A Searchable List of Flutter Resources')
 @section('image_url', asset('images/flutterx_twitter.png'))
-@section('header_title', 'A Searchable List of Flutter Resources')
+@section('header_title', isGL() ? 'A Searchable List of Geula Resources' : 'A Searchable List of Flutter Resources')
 @section('header_button_url', false)
 
 @section('header_subtitle')

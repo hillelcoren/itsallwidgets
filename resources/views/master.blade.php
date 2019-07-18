@@ -41,7 +41,7 @@
 
     <meta charset="utf-8">
     <meta id="token" name="token" value="{{ csrf_token() }}">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <link rel="shortcut icon" href="{{ asset('/images/favicon.png') }}">
 
@@ -353,15 +353,23 @@
         <div class="hero-body hero-body-animate" style="padding-top:34px">
             <div class="container has-text-centered">
                 <div class="subtitle" style="font-weight:200; font-size:18px;">
-                    MADE WITH &nbsp;<i class="fas fa-heart" style="font-size:16px"></i>&nbsp; BY THE <a href="https://medium.com/flutter-community" target="_blank">FLUTTER COMMUNITY</a>
+                    @if (isGL())
+
+                    @else
+                        MADE WITH &nbsp;<i class="fas fa-heart" style="font-size:16px"></i>&nbsp; BY THE <a href="https://medium.com/flutter-community" target="_blank">FLUTTER COMMUNITY</a>
+                    @endif
                 </div>
                 <div class="title" style="font-size:38px; padding-top:8px;">
                     @yield('header_title', 'An open list of apps built with Flutter')
                 </div>
                 <div class="subtitle" style="font-size:18px; padding-bottom:6px;">
-                    @yield('header_subtitle', 'Feel free to add an app in progress and update it when it goes live')
+                    @if (isGL())
+
+                    @else
+                        @yield('header_subtitle', 'Feel free to add an app in progress and update it when it goes live')
+                    @endif                    
                 </div>
-                @if (!isFX() && (!request()->is('podcast*') || (auth()->check() && auth()->user()->is_admin)))
+                @if (!isFX() && !isGL() && (!request()->is('podcast*') || (auth()->check() && auth()->user()->is_admin)))
                     <a class="button is-elevated-dark" style="padding: 20px 32px 18px 32px"
                         href="@yield('header_button_url', url(auth()->check() ? 'submit' : 'auth/google?intended_url=submit'))">
                         <span class="icon">
@@ -505,7 +513,7 @@
 
             <br/> &nbsp; <br/>
 
-            @if (!isFX() && (!request()->is('podcast*') || (auth()->check() && auth()->user()->is_admin)))
+            @if (!isFX() && !isGL() && (!request()->is('podcast*') || (auth()->check() && auth()->user()->is_admin)))
                 <a class="button is-elevated-dark" style="padding: 20px 32px 18px 32px"
                     href="@yield('header_button_url', url(auth()->check() ? 'submit' : 'auth/google?intended_url=submit'))">
                     <span class="icon">
