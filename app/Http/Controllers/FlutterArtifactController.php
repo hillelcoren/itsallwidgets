@@ -24,7 +24,7 @@ class FlutterArtifactController extends Controller
         }
 
         $data = [
-            'useBlackHeader' => true,
+            'useBlackHeader' => isGL() ? false : true,
             'artifacts' => $artifacts,
         ];
 
