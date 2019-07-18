@@ -432,65 +432,74 @@
             <p>
 
             <div class="columns is-gapless is-centered" style="padding-top:12px;">
-                <div class="column is-offset-4 is-1">
-                    <a href="https://twitter.com/hillelcoren" target="_blank">
-                        <img src="{{ asset('images/img_hillel.png') }}" width="72"/><br/>
-                        <div>Hillel Coren</div>
-                    </a>
-                </div><br/>
-                @if (isFE())
-                    <div class="column is-1">
-                        <a href="https://twitter.com/Nash0x7E2" target="_blank">
-                            <img src="{{ asset('images/img_nash.png') }}" width="72"/><br/>
-                            <div>Nash Ramdial</div>
+                @if (isGL())
+                    <div class="column is-offset-4 is-1">
+                        <a href="https://twitter.com/charlottecoren" target="_blank">
+                            <img src="{{ asset('images/img_charlotte.jpg') }}" width="72"/><br/>
+                            <div>Charlotte Coren</div>
                         </a>
                     </div><br/>
-                    <div class="column is-1">
-                        <a href="https://twitter.com/MendyMarcus" target="_blank">
-                            <img src="{{ asset('images/img_mendy.png') }}" width="72"/><br/>
-                            <div>Mendy Marcus</div>
-                        </a>
-                    </div><br/>
-                    <div class="column is-1">
-                        <a href="https://twitter.com/pblead26" target="_blank">
-                            <img src="{{ asset('images/img_pooja.png') }}" width="72"/><br/>
-                            <div>Pooja Bhaumik</div>
-                        </a>
-                    </div><br/>
-                @elseif (isFX())
-                    <div class="column is-1">
-                        <a href="https://twitter.com/efthemess" target="_blank">
-                            <img src="{{ asset('images/img_efthymios.png') }}" width="72"/><br/>
-                            <div>Efthymis Sarmpanis</div>
-                        </a>
-                    </div><br/>
-                    <div class="column is-1">
-                        <a href="https://twitter.com/SergiAndReplace" target="_blank">
-                            <img src="{{ asset('images/img_sergi.png') }}" width="72"/><br/>
-                            <div>Sergi Martínez</div>
-                        </a>
-                    </div><br/>
-                @elseif (isFC())
-
                 @else
-                    <div class="column is-1">
-                        <a href="https://twitter.com/ThomasBurkhartB" target="_blank">
-                            <img src="{{ asset('images/img_thomas.png') }}" width="72"/><br/>
-                            <div>Thomas Burkhart</div>
+                    <div class="column is-offset-4 is-1">
+                        <a href="https://twitter.com/hillelcoren" target="_blank">
+                            <img src="{{ asset('images/img_hillel.png') }}" width="72"/><br/>
+                            <div>Hillel Coren</div>
                         </a>
                     </div><br/>
-                    <div class="column is-1">
-                        <a href="https://twitter.com/devangelslondon" target="_blank">
-                            <img src="{{ asset('images/img_simon.png') }}" width="72"/><br/>
-                            <div>Simon Lightfoot</div>
-                        </a>
-                    </div><br/>
-                    <div class="column is-1">
-                        <a href="https://twitter.com/scottstoll2017" target="_blank">
-                            <img src="{{ asset('images/img_scott.png') }}" width="72"/><br/>
-                            <div>Scott Stoll</div>
-                        </a>
-                    </div><br/>
+                    @if (isFE())
+                        <div class="column is-1">
+                            <a href="https://twitter.com/Nash0x7E2" target="_blank">
+                                <img src="{{ asset('images/img_nash.png') }}" width="72"/><br/>
+                                <div>Nash Ramdial</div>
+                            </a>
+                        </div><br/>
+                        <div class="column is-1">
+                            <a href="https://twitter.com/MendyMarcus" target="_blank">
+                                <img src="{{ asset('images/img_mendy.png') }}" width="72"/><br/>
+                                <div>Mendy Marcus</div>
+                            </a>
+                        </div><br/>
+                        <div class="column is-1">
+                            <a href="https://twitter.com/pblead26" target="_blank">
+                                <img src="{{ asset('images/img_pooja.png') }}" width="72"/><br/>
+                                <div>Pooja Bhaumik</div>
+                            </a>
+                        </div><br/>
+                    @elseif (isFX())
+                        <div class="column is-1">
+                            <a href="https://twitter.com/efthemess" target="_blank">
+                                <img src="{{ asset('images/img_efthymios.png') }}" width="72"/><br/>
+                                <div>Efthymis Sarmpanis</div>
+                            </a>
+                        </div><br/>
+                        <div class="column is-1">
+                            <a href="https://twitter.com/SergiAndReplace" target="_blank">
+                                <img src="{{ asset('images/img_sergi.png') }}" width="72"/><br/>
+                                <div>Sergi Martínez</div>
+                            </a>
+                        </div><br/>
+                    @elseif (isFC())
+
+                    @else
+                        <div class="column is-1">
+                            <a href="https://twitter.com/ThomasBurkhartB" target="_blank">
+                                <img src="{{ asset('images/img_thomas.png') }}" width="72"/><br/>
+                                <div>Thomas Burkhart</div>
+                            </a>
+                        </div><br/>
+                        <div class="column is-1">
+                            <a href="https://twitter.com/devangelslondon" target="_blank">
+                                <img src="{{ asset('images/img_simon.png') }}" width="72"/><br/>
+                                <div>Simon Lightfoot</div>
+                            </a>
+                        </div><br/>
+                        <div class="column is-1">
+                            <a href="https://twitter.com/scottstoll2017" target="_blank">
+                                <img src="{{ asset('images/img_scott.png') }}" width="72"/><br/>
+                                <div>Scott Stoll</div>
+                            </a>
+                        </div><br/>
+                    @endif
                 @endif
             </div>
 

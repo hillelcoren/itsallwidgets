@@ -7,36 +7,40 @@
         $url = 'showcase'
 @endphp
 
-<a class="navbar-item" href="https://flutter.dev/{{ $url }}" target="_blank">
-    <i class="fas fa-globe"></i> &nbsp; {{ ucwords($url) }}
-</a>
+@if (isGL())
 
-@if (! isFE())
-    <a class="navbar-item" href="{{ feUrl() }}">
-        <i class="fas fa-calendar"></i> &nbsp; Events
+@else 
+    <a class="navbar-item" href="https://flutter.dev/{{ $url }}" target="_blank">
+        <i class="fas fa-globe"></i> &nbsp; {{ ucwords($url) }}
     </a>
-@endif
 
-@if (! isFX())
-    <a class="navbar-item" href="{{ fxUrl() }}">
-        <i class="fas fa-laptop"></i> &nbsp; Resources
-    </a>
-@endif
-
-@if (isIAW())
-    @if (auth()->check())
-        <a class="navbar-item" href="{{ url('logout') }}">
-            <i class="fas fa-user-alt"></i> &nbsp; Logout
-        </a>
-    @else
-        <a class="navbar-item" href="{{ url(auth()->check() ? 'submit' : 'auth/google') }}">
-            <i class="fas fa-bell"></i> &nbsp; Monthly Stats
+    @if (! isFE())
+        <a class="navbar-item" href="{{ feUrl() }}">
+            <i class="fas fa-calendar"></i> &nbsp; Events
         </a>
     @endif
-@endif
 
-@if (false && isIAW())
-    <a class="navbar-item" href="{{ iawUrl() }}/about">
-        <i class="fas fa-info-circle"></i> &nbsp; About
-    </a>
+    @if (! isFX())
+        <a class="navbar-item" href="{{ fxUrl() }}">
+            <i class="fas fa-laptop"></i> &nbsp; Resources
+        </a>
+    @endif
+
+    @if (isIAW())
+        @if (auth()->check())
+            <a class="navbar-item" href="{{ url('logout') }}">
+                <i class="fas fa-user-alt"></i> &nbsp; Logout
+            </a>
+        @else
+            <a class="navbar-item" href="{{ url(auth()->check() ? 'submit' : 'auth/google') }}">
+                <i class="fas fa-bell"></i> &nbsp; Monthly Stats
+            </a>
+        @endif
+    @endif
+
+    @if (false && isIAW())
+        <a class="navbar-item" href="{{ iawUrl() }}/about">
+            <i class="fas fa-info-circle"></i> &nbsp; About
+        </a>
+    @endif
 @endif

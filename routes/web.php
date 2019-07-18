@@ -39,6 +39,14 @@ Route::group(['domain' => 'flutterx.{tld}'], function() {
     Route::get('{flutter_artifact}', 'FlutterArtifactController@show');
 });
 
+Route::group(['domain' => 'geu.{tld}'], function() {
+    Route::get('/', 'FlutterArtifactController@index');
+    Route::get('search', 'FlutterArtifactController@search');
+    Route::get('update', 'FlutterArtifactController@update');
+    Route::get('sitemap.xml', 'FlutterArtifactController@sitemap');
+    Route::get('{flutter_artifact}', 'FlutterArtifactController@show');
+});
+
 Route::get('flutter-apps', function () {
     return redirect('/', 301);
 });

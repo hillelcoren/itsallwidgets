@@ -16,6 +16,10 @@ function isFC() {
     return strpos(request()->url(), 'fluttercollective.') !== false;
 }
 
+function isGL() {
+    return strpos(request()->url(), 'geu.la') !== false;
+}
+
 function isTest() {
     return isValet() || isServe();
 }
@@ -29,7 +33,9 @@ function isServe() {
 }
 
 function appName() {
-    if (isFE()) {
+    if (isGL()) {
+        return 'Geu.la';
+    } elseif (isFE()) {
         return 'Flutter Events';
     } elseif (isFC()) {
         return 'Flutter Collective';
@@ -54,4 +60,8 @@ function fxUrl() {
 
 function fcUrl() {
     return isTest() ? (isValet() ? 'http://fluttercollective.test' : 'http://127.0.0.1:8000/flutter-collective') : 'https://fluttercollective.com';
+}
+
+function glUrl() {
+    return isTest() ? (isValet() ? 'http://geu.test' : 'http://127.0.0.1:8000/flutterx') : 'https://geu.la';
 }
