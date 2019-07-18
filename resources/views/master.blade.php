@@ -31,7 +31,7 @@
     <meta property="og:description" content="@yield('description')">
     <meta property="og:image" content="@yield('image_url')?clear_cache=1">
     <meta property="og:url" content="{{ request()->url() }}">
-    <meta property="og:site_name" content="It's All Widgets!">
+    <meta property="og:site_name" content="{{ appName() }}">
 
     <meta name="twitter:title" content="@yield('title') | {{ appName() }}">
     <meta name="twitter:description" content="@yield('description')">
@@ -322,9 +322,13 @@
                 <div class="container">
                     <div class="navbar-brand">
                         <div class="navbar-animate">
-                            <a href="{{ iawUrl() }}">
-                                <img src="{{ asset('images/logo.png') }}" width="240" style="padding-top: 12px; padding-left: 12px;"/>
-                            </a>
+                            @if (isGL())
+
+                            @else
+                                <a href="{{ iawUrl() }}">
+                                    <img src="{{ asset('images/logo.png') }}" width="240" style="padding-top: 12px; padding-left: 12px;"/>
+                                </a>
+                            @endif
                         </div>
                         <span class="navbar-burger burger" data-target="navMenu">
                             <span></span>
@@ -367,7 +371,7 @@
 
                     @else
                         @yield('header_subtitle', 'Feel free to add an app in progress and update it when it goes live')
-                    @endif                    
+                    @endif
                 </div>
                 @if (!isFX() && !isGL() && (!request()->is('podcast*') || (auth()->check() && auth()->user()->is_admin)))
                     <a class="button is-elevated-dark" style="padding: 20px 32px 18px 32px"
