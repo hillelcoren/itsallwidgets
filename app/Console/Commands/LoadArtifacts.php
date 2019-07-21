@@ -57,14 +57,11 @@ class LoadArtifacts extends Command
 
     public function handleGeula()
     {
-        $feeds = [
-            'https://achduthalev.org/feed',
-        ];
+        $feeds = explode(',', config('services.feed_urls'));
 
         foreach ($feeds as $feed) {
             $xml = simplexml_load_file($feed);
             foreach ($xml->channel->item as $item) {
-
                 $data = [
                     'title' => ucwords(strtolower($item->title)),
                     'url' => $item->link,
@@ -135,6 +132,7 @@ class LoadArtifacts extends Command
 
     private function parseResource($item)
     {
+        $this->info('Parse: ' . $item['title']);
         $slug = str_slug($item['title'] . '-' . $item['published_date']);
 
         if (FlutterArtifact::where('url', '=', rtrim($item['url'] , '/'))
