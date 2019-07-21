@@ -242,7 +242,7 @@
                             </div>
                         </center>
 
-                        <div v-if="artifact.image_url" class="card-image" style="max-height:250px; overflow: hidden" style="vertical-align:center">
+                        <div v-if="artifact.gif_url || artifact.image_url" class="card-image" style="max-height:250px; overflow: hidden" style="vertical-align:center">
                             <img v-bind:src="(artifact.gif_url || artifact.image_url) + '?updated_at=' + artifact.updated_at" loading="lazy" width="100%"/>
                         </div>
                         <div style="height:20px" v-if="artifact.image_url"/>

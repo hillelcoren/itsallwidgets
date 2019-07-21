@@ -166,12 +166,15 @@ class LoadArtifacts extends Command
                 $item = $this->parseContents($doc, $item);
             }
 
+            if (! array_get($item, 'image_url')) {
+                $item = $this->parseImageUrl($xp, $item);
+            }
+
             $imageUrl = array_get($item, 'image_url');
             $gifUrl = array_get($item, 'gif_url');
             $item['image_url'] = null;
             $item['gif_url'] = null;
 
-            //$this->info(json_encode($item));
             $artifact = $this->artifactRepo->store($item, 1);
 
             if ($imageUrl) {
@@ -328,8 +331,6 @@ class LoadArtifacts extends Command
 
     private function parseGifUrl($xp, $data)
     {
-        $githubLinks = [];
-
         foreach ($xp->query("//img") as $el) {
             $url = $el->getAttribute("src");
             $matches = [];
@@ -360,6 +361,27 @@ class LoadArtifacts extends Command
 
                 $data['gif_url'] = $match;
                 return $data;
+            }
+        }
+
+        return $data;
+    }
+
+    private function parseImageUrl($xp, $data)
+    {
+        $max = 0;
+
+        foreach ($xp->query("//img") as $el) {
+            $url = $el->getAttribute("src");
+            $width = intval($el->getAttribute("width"));
+            $height = intval($el->getAttribute("height"));
+
+            $size = $width * $height;
+            $this->info("url: $url, width: $width, height: $height");
+
+            if ($size > $max) {
+                $max = $size;
+                $data['image_url'] = $url;
             }
         }
 
