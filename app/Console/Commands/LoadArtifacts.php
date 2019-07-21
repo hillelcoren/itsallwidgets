@@ -64,6 +64,7 @@ class LoadArtifacts extends Command
         foreach ($feeds as $feed) {
             $xml = simplexml_load_file($feed);
             foreach ($xml->channel->item as $item) {
+
                 $data = [
                     'title' => ucwords(strtolower($item->title)),
                     'url' => $item->link,
@@ -71,6 +72,7 @@ class LoadArtifacts extends Command
                     'source_url' => $feed,
                     'published_date' => date('Y-m-d', strtotime($item->pubDate)),
                     'meta_author' => $item->children('dc', true)->creator,
+                    'meta_description' => $item->description,
                 ];
 
                 $this->parseResource($data);
@@ -146,7 +148,6 @@ class LoadArtifacts extends Command
         $item['slug'] = $slug;
         $item['is_approved'] = 1;
 
-
         // https://stackoverflow.com/a/9244634/497368
         libxml_use_internal_errors(true);
 
@@ -175,6 +176,10 @@ class LoadArtifacts extends Command
             $item['image_url'] = null;
             $item['gif_url'] = null;
 
+            $item['title'] = html_entity_decode($item['title']);
+            $item['meta_description'] = html_entity_decode($item['meta_description']);
+
+
             $artifact = $this->artifactRepo->store($item, 1);
 
             if ($imageUrl) {
@@ -188,10 +193,12 @@ class LoadArtifacts extends Command
                 }
 
                 if ($contents = @file_get_contents($imageUrl)) {
-                    $url = '/thumbnails/artifact-' . $artifact->id . $extension;
-                    $file = public_path($url);
-                    file_put_contents($file, $contents);
-                    $artifact->image_url = $url;
+                    if (strlen($contents) > 10000) {
+                        $url = '/thumbnails/artifact-' . $artifact->id . $extension;
+                        $file = public_path($url);
+                        file_put_contents($file, $contents);
+                        $artifact->image_url = $url;
+                    }
                 }
 
                 $artifact->save();
@@ -377,7 +384,6 @@ class LoadArtifacts extends Command
             $height = intval($el->getAttribute("height"));
 
             $size = $width * $height;
-            $this->info("url: $url, width: $width, height: $height");
 
             if ($size > $max) {
                 $max = $size;

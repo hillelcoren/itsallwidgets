@@ -17,6 +17,7 @@ function isFC() {
 }
 
 function isGL() {
+    return true;
     return strpos(request()->url(), 'geu.la') !== false;
 }
 

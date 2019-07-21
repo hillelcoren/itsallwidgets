@@ -70,9 +70,12 @@ class FlutterArtifactController extends Controller
         }
 
         $data = [
-            'useBlackHeader' => true,
             'artifact' => $artifact,
         ];
+
+        if (!isGL()) {
+            $data['useBlackHeader'] = true;
+        }
 
         return view('flutter_artifacts.show', $data);
     }

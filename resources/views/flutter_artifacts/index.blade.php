@@ -220,8 +220,17 @@
                         </div>
 
                         <div v-bind:title="artifact.short_description" style="word-break:break-word;">
-                            @{{ artifact.contents ? artifact.contents.substr(0, 200) : artifact.comment }}
-                        </div>
+                            <div v-if="artifact.contents">
+                                @{{ artifact.contents }}
+                            </div>
+                            <div v-if="artifact.comment && !artifact.contents">
+                                @{{ artifact.comment }}
+                            </div>
+                            <div v-if="artifact.meta_description && !artifact.comment && !artifact.contents">
+                                @{{ artifact.meta_description }}
+                            </div>
+                        </div><br/>
+
 
                         <center>
                             <div class="artifact-links" style="font-size:13px; padding-top:16px; padding-bottom:16px">
@@ -322,14 +331,20 @@
 
                 </div>
 
-                <nav class="panel">
-                    <p class="panel-heading">
-                        Flutter Weekly
-                    </p>
+                @if (isGL())
                     <div class="panel-block">
-                        <div class="block wrap">@{{ selected_artifact.comment }}</div>
+                        <div class="block wrap">@{{ selected_artifact.meta_description }}</div>
                     </div>
-                </nav>
+                @else
+                    <nav class="panel">
+                        <p class="panel-heading">
+                            Flutter Weekly
+                        </p>
+                        <div class="panel-block">
+                            <div class="block wrap">@{{ selected_artifact.comment }}</div>
+                        </div>
+                    </nav>
+                @endif
 
                 <nav class="panel" v-if="selected_artifact.contents">
                     <p class="panel-heading">

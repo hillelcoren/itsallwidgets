@@ -107,9 +107,9 @@
 
 							<br/>&nbsp;<br/>
 
-							<div class="block">
-								{!! nl2br(e($artifact->meta_description)) !!}
-							</div>
+                            <div class="panel-block">
+	                            <div class="block wrap">{!! nl2br(e($artifact->meta_description)) !!}</div>
+							</div><br/>
 
                             <div>
                                 @if ($artifact->authorUrl())
