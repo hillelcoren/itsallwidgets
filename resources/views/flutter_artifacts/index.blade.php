@@ -123,7 +123,9 @@
                                 <option value="filter_type_all">ALL</option>
                                 <option value="filter_type_articles">ARTICLES</option>
                                 <option value="filter_type_videos">VIDEOS</option>
-                                <option value="filter_type_libraries">LIBRARIES</option>
+                                @if (!isGL())
+                                    <option value="filter_type_libraries">LIBRARIES</option>
+                                @endif
                             </select>
                         </div>
 
