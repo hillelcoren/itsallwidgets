@@ -453,7 +453,7 @@
                 @if (isGL())
                     <div class="column is-offset-4 is-1">
                         <a href="https://twitter.com/charlottecoren" target="_blank">
-                            <img src="{{ asset('images/img_charlotte.jpg') }}" width="72"/><br/>
+                            <img src="{{ asset('images/img_charlotte.png') }}" width="72"/><br/>
                             <div>Chana Vered Coren</div>
                         </a>
                     </div><br/>
