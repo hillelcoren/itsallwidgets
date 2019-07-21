@@ -17,6 +17,7 @@ Route::group(['domain' => '127.0.0.1'], function() {
     Route::get('flutterx', 'FlutterArtifactController@index');
     Route::get('search', 'FlutterArtifactController@search');
     Route::get('flutterx/sitemap.xml', 'FlutterArtifactController@sitemap');
+    Route::get('flutterx/{flutter_artifact}/hide-me', 'FlutterArtifactController@hide');
     Route::get('flutterx/{flutter_artifact}', 'FlutterArtifactController@show');
     Route::get('flutter-events/feed', 'FlutterEventController@jsonFeed');
     Route::get('flutter-events/sitemap.xml', 'FlutterEventController@sitemap');
@@ -44,6 +45,7 @@ Route::group(['domain' => 'geu.{tld}'], function() {
     Route::get('search', 'FlutterArtifactController@search');
     Route::get('update', 'FlutterArtifactController@update');
     Route::get('sitemap.xml', 'FlutterArtifactController@sitemap');
+    Route::get('{flutter_artifact}/hide-me', 'FlutterArtifactController@hide');
     Route::get('{flutter_artifact}', 'FlutterArtifactController@show');
 });
 

@@ -80,6 +80,20 @@ class FlutterArtifactController extends Controller
         return view('flutter_artifacts.show', $data);
     }
 
+    public function hide($tld, $artifact = false)
+    {
+        if (! $artifact) {
+            $artifact = $tld;
+        }
+
+        if (isGL()) {
+            $artifact->is_visible = false;
+            $artifact->save();
+        }
+
+        return redirect(url('/') . '?clear_cache=true');
+    }
+
     public function sitemap()
     {
         $str = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">";

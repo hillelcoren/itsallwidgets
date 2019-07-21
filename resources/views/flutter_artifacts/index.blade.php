@@ -221,13 +221,13 @@
 
                         <div v-bind:title="artifact.short_description" style="word-break:break-word;">
                             <div v-if="artifact.contents">
-                                @{{ artifact.contents }}
+                                @{{ artifact.contents.substr(0, 200) }}
                             </div>
                             <div v-if="artifact.comment && !artifact.contents">
                                 @{{ artifact.comment }}
                             </div>
                             <div v-if="artifact.meta_description && !artifact.comment && !artifact.contents">
-                                @{{ artifact.meta_description }}
+                                @{{ artifact.meta_description.substr(0, 200).trim() }}...
                             </div>
                         </div><br/>
 
@@ -334,7 +334,7 @@
                 @if (isGL())
                     <div class="panel-block">
                         <div class="block wrap">@{{ selected_artifact.meta_description }}</div>
-                    </div>
+                    </div><br/>
                 @else
                     <nav class="panel">
                         <p class="panel-heading">
