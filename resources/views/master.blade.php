@@ -358,7 +358,7 @@
             <div class="container has-text-centered">
                 <div class="subtitle" style="font-weight:200; font-size:18px;">
                     @if (isGL())
-
+                        Geula: The global revelation of a higher reality
                     @else
                         MADE WITH &nbsp;<i class="fas fa-heart" style="font-size:16px"></i>&nbsp; BY THE <a href="https://medium.com/flutter-community" target="_blank">FLUTTER COMMUNITY</a>
                     @endif
@@ -368,7 +368,7 @@
                 </div>
                 <div class="subtitle" style="font-size:18px; padding-bottom:6px;">
                     @if (isGL())
-
+                        Made with &nbsp;<i class="fas fa-heart" style="font-size:16px"></i>&nbsp; to bring Geula!
                     @else
                         @yield('header_subtitle', 'Feel free to add an app in progress and update it when it goes live')
                     @endif
@@ -431,10 +431,16 @@
             <img src="{{ asset('images/thank_you.png') }}" width="330"/>
 
             <p>
-                <div style="font-size:16px; letter-spacing:2px; padding-bottom:6px; font-weight:600">
-                    TO THE <a href="https://flutter.dev" target="_blank">FLUTTER</a> & <a href="https://www.dartlang.org/" target="_blank">DART</a> TEAMS
-                </div>
-                for this amazing platform!
+                @if (isGL())
+                    <div style="font-size:16px; letter-spacing:2px; padding-bottom:6px; font-weight:600">
+                        To the Gate Of Unity Community
+                    </div>
+                @else
+                    <div style="font-size:16px; letter-spacing:2px; padding-bottom:6px; font-weight:600">
+                        TO THE <a href="https://flutter.dev" target="_blank">FLUTTER</a> & <a href="https://www.dartlang.org/" target="_blank">DART</a> TEAMS
+                    </div>
+                    for this amazing platform!
+                @endif
             </p>
 
             <p style="padding-top:16px;">
@@ -448,7 +454,7 @@
                     <div class="column is-offset-4 is-1">
                         <a href="https://twitter.com/charlottecoren" target="_blank">
                             <img src="{{ asset('images/img_charlotte.jpg') }}" width="72"/><br/>
-                            <div>Charlotte Coren</div>
+                            <div>Chana Vered Coren</div>
                         </a>
                     </div><br/>
                 @else
