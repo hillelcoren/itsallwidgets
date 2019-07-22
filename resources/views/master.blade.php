@@ -43,7 +43,12 @@
     <meta id="token" name="token" value="{{ csrf_token() }}">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <link rel="shortcut icon" href="{{ asset('/images/favicon.png') }}">
+
+    @if (isGL())
+
+    @else
+        <link rel="shortcut icon" href="{{ asset('/images/favicon.png') }}">
+    @endif
 
     <link href="https://fonts.googleapis.com/css?family=Overpass:200,400,600" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/bulma.min.css') }}">
@@ -358,7 +363,7 @@
             <div class="container has-text-centered">
                 <div class="subtitle" style="font-weight:200; font-size:18px;">
                     @if (isGL())
-                        Geula: The global revelation of a higher reality
+                        MADE WITH &nbsp;<i class="fas fa-heart" style="font-size:16px"></i>&nbsp; TO BRING GEULA!
                     @else
                         MADE WITH &nbsp;<i class="fas fa-heart" style="font-size:16px"></i>&nbsp; BY THE <a href="https://medium.com/flutter-community" target="_blank">FLUTTER COMMUNITY</a>
                     @endif
@@ -368,7 +373,7 @@
                 </div>
                 <div class="subtitle" style="font-size:18px; padding-bottom:6px;">
                     @if (isGL())
-                        Made with &nbsp;<i class="fas fa-heart" style="font-size:16px"></i>&nbsp; to bring Geula!
+                        The global revelation of a higher reality
                     @else
                         @yield('header_subtitle', 'Feel free to add an app in progress and update it when it goes live')
                     @endif
