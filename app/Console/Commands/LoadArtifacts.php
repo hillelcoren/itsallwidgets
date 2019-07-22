@@ -84,7 +84,6 @@ class LoadArtifacts extends Command
             $feed = 'https://www.youtube.com/feeds/videos.xml?channel_id=' . $channel;
             $xml = simplexml_load_file($feed);
             foreach ($xml->entry as $item) {
-                $this->info($item->asXML());
                 $data = [
                     'title' => $item->title,
                     'url' => $item->link['href'],
