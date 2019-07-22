@@ -45,7 +45,7 @@ Route::group(['domain' => 'geu.{tld}'], function() {
     Route::get('search', 'FlutterArtifactController@search');
     Route::get('update', 'FlutterArtifactController@update');
     Route::get('sitemap.xml', 'FlutterArtifactController@sitemap');
-    Route::get('{flutter_artifact}/hide-me', 'FlutterArtifactController@hide');
+    Route::get('{flutter_artifact}/hideme', 'FlutterArtifactController@hide');
     Route::get('{flutter_artifact}', 'FlutterArtifactController@show');
 });
 

@@ -57,19 +57,44 @@ class LoadArtifacts extends Command
 
     public function handleGeula()
     {
-        $feeds = explode(',', config('services.feed_urls'));
+        /*
+        // handle blogs
+        $feeds = explode(',', config('services.feeds.blogs'));
 
         foreach ($feeds as $feed) {
             $xml = simplexml_load_file($feed);
             foreach ($xml->channel->item as $item) {
                 $data = [
-                    'title' => ucwords(strtolower($item->title)),
+                    'title' => $item->title,
                     'url' => $item->link,
                     'type' => 'article',
                     'source_url' => $feed,
                     'published_date' => date('Y-m-d', strtotime($item->pubDate)),
                     'meta_author' => $item->children('dc', true)->creator,
                     'meta_description' => $item->description,
+                ];
+
+                $this->parseResource($data);
+            }
+        }
+        */
+
+        // handle videos
+        $feeds = explode(',', config('services.feeds.videos'));
+
+        foreach ($feeds as $channel) {
+            $feed = 'https://www.youtube.com/feeds/videos.xml?channel_id=' . $channel;
+            $xml = simplexml_load_file($feed);
+            foreach ($xml->entry as $item) {
+                $data = [
+                    'title' => $item->title,
+                    'url' => $item->link['href'],
+                    'type' => 'video',
+                    'source_url' => $feed,
+                    'published_date' => date('Y-m-d', strtotime($item->published)),
+                    'meta_author' => $item->author->name,
+                    'meta_description' => $item->children('media', true)->group->description,
+                    'image_url' => 'https://i1.ytimg.com/vi/' . $item->children('yt', true)->videoId . '/hqdefault.jpg',
                 ];
 
                 $this->parseResource($data);

@@ -62,6 +62,9 @@ return [
         'key' => env('MEETUP_API_KEY'),
     ],
 
-    'feed_urls' => env('FEED_URLS'),
-    
+    'feeds' => [
+        'blogs' => env('FEED_BLOGS'),
+        'videos' => env('FEED_VIDEOS'),
+    ],
+
 ];
