@@ -179,11 +179,11 @@ body {
         </div>
         <div class="columns is-multiline is-6 is-variable">
             <div v-for="app in filteredApps" :key="app.id" class="column" v-bind:class="columnClass">
-                <div v-on:click="selectApp(app)" v-on:mouseenter="onMouseOver(app)" v-on:mouseleave="onMouseOut(app)" style="cursor:pointer">
+                <div v-on:click="selectApp(app)" style="cursor:pointer">
                     <div class="flutter-app is-hover-elevated" v-bind:class="[app.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} ? 'is-owned' : '']">
-
                         <div class="is-pulled-right field is-grouped is-grouped-multiline is-vertical-center"
-                            style="padding-top:6px; padding-right:4px; visibility:hidden; display: none;" v-bind:id="['social-buttons-' + app.id]">
+                            style="padding-top:6px; padding-right:4px;">
+                            <!--
                             <span v-if="app.facebook_url && cards_per_row > 3">
                                 <a v-bind:href="app.facebook_url" class="card-header-icon" target="_blank" v-on:click.stop rel="nofollow">
                                     <i style="font-size: 20px; color: #888" class="fab fa-facebook"></i>
@@ -205,6 +205,7 @@ body {
                                 </span>
                                 </span>
                             </span>
+                            -->
                             <span v-if="app.repo_url">
                                 <span class="icon-bug-fix">
                                 <span class="icon-bug-fix">
@@ -541,7 +542,9 @@ var app = new Vue({
             document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
         },
 
+        /*
         onMouseOver: function(app) {
+            console.log('over');
             $('#social-buttons-' + app.id)
                 .removeClass('animated flipOutX')
                 .addClass('animated flipInX')
@@ -550,12 +553,14 @@ var app = new Vue({
         },
 
         onMouseOut: function(app, e) {
+            console.log('out');
             $('#social-buttons-' + app.id)
                 .animateCss('animated flipOutX', function() {
                     $('#social-buttons-' + app.id).css('display', 'none')
                 });
         },
-
+        */
+        
         selectImage: function(type) {
             this.image_type = type;
         },
