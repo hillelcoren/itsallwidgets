@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
         try {
             if (! cache('flutter-app-list')) {
                 Cache::rememberForever('flutter-app-list', function () {
-                    return FlutterApp::approved()->latest()->get();
+                    return FlutterApp::approved()->visible()->latest()->get();
                 });
             }
             if (! cache('flutter-artifact-list')) {

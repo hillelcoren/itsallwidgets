@@ -297,25 +297,32 @@ body {
                 </div>
                 <div v-bind:class="modalColumClass">
 
-                    @if (auth()->check())
-                        @if(auth()->user()->is_editor)
-                            <div v-if="selected_app.featured == 0">
-                                <a class="button is-warning is-slightly-elevated" v-bind:href="'/flutter-app/' + selected_app.slug + '/feature'">
-                                    <i style="font-size: 20px" class="fas fa-star"></i> &nbsp;
-                                    Feature Application
+                    <div>
+                        @if (auth()->check())
+                            <span v-if="selected_app.user_id == {{ auth()->user()->id }}">
+                                <a class="button is-info is-slightly-elevated" v-bind:href="'/flutter-app/' + selected_app.slug + '/edit'">
+                                    <i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
+                                    Edit Application
                                 </a>
-                                <p>&nbsp;</p>
-                            </div>
-                        @endif
+                                &nbsp;&nbsp;
+                            </span>
 
-                        <div v-if="selected_app.user_id == {{ auth()->user()->id }}">
-                            <a class="button is-info is-slightly-elevated" v-bind:href="'/flutter-app/' + selected_app.slug + '/edit'">
-                                <i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
-                                Edit Application
-                            </a>
-                            <p>&nbsp;</p>
-                        </div>
-                    @endif
+                            @if (auth()->user()->is_editor)
+                                <span v-if="selected_app.featured == 0">
+                                    <a class="button is-warning is-slightly-elevated" v-bind:href="'/flutter-app/' + selected_app.slug + '/feature'">
+                                        <i style="font-size: 20px" class="fas fa-star"></i> &nbsp;
+                                        Feature Application
+                                    </a>
+                                    &nbsp;&nbsp;
+                                </span>
+                                <a class="button is-danger is-slightly-elevated" v-bind:href="'/flutter-app/' + selected_app.slug + '/hide'">
+                                    <i style="font-size: 20px" class="fas fa-trash"></i> &nbsp;
+                                    Hide Application
+                                </a>
+                            @endif
+                        @endif
+                    </div>
+                    <p>&nbsp;</p>
 
                     <div class="content">
                         <div style="font-size:24px; padding-bottom:10px;">

@@ -85,6 +85,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('submit', 'FlutterAppController@create');
     Route::post('submit', 'FlutterAppController@store')->middleware('slug');
 
+    Route::get('flutter-app/{flutter_app}/hide', 'FlutterAppController@hide');
     Route::get('flutter-app/{flutter_app}/feature', 'FlutterAppController@feature');
     Route::get('flutter-app/{flutter_app}/approve', 'FlutterAppController@approve');
     Route::get('flutter-app/{flutter_app}/reject', 'FlutterAppController@reject');

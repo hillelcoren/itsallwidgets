@@ -12,6 +12,7 @@ use App\Http\Requests\UpdateFlutterApp;
 use App\Http\Requests\ApproveFlutterApp;
 use App\Http\Requests\FeatureFlutterApp;
 use App\Http\Requests\RejectFlutterApp;
+use App\Http\Requests\HideFlutterApp;
 use Illuminate\Http\Request;
 use App\Repositories\FlutterAppRepository;
 use App\Repositories\FlutterEventRepository;
@@ -221,6 +222,16 @@ class FlutterAppController extends Controller
         $app->user->notify(new AppRejected($app));
 
         return redirect('/')->with('status', 'App has been rejected!');
+    }
+
+    public function hide(HideFlutterApp $request)
+    {
+        $app = $request->flutter_app;
+
+        $app->is_visible = false;
+        $app->save();
+
+        return redirect('/')->with('status', 'App has been hidden!');
     }
 
     public function feature(FeatureFlutterApp $request)
