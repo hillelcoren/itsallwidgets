@@ -9,14 +9,10 @@
 
 @if (isGL())
 
-@else 
-    <a class="navbar-item" href="https://flutter.dev/{{ $url }}" target="_blank">
-        <i class="fas fa-globe"></i> &nbsp; {{ ucwords($url) }}
-    </a>
-
-    @if (! isFE())
-        <a class="navbar-item" href="{{ feUrl() }}">
-            <i class="fas fa-calendar"></i> &nbsp; Events
+@else
+    @if (! isFP())
+        <a class="navbar-item" href="{{ fpUrl() }}">
+            <i class="fas fa-users"></i> &nbsp; Developers
         </a>
     @endif
 
@@ -25,6 +21,16 @@
             <i class="fas fa-laptop"></i> &nbsp; Resources
         </a>
     @endif
+
+    @if (! isFE())
+        <a class="navbar-item" href="{{ feUrl() }}">
+            <i class="fas fa-calendar"></i> &nbsp; Events
+        </a>
+    @endif
+
+    <a class="navbar-item" href="https://flutter.dev/{{ $url }}" target="_blank">
+        <i class="fas fa-globe"></i> &nbsp; {{ ucwords($url) }}
+    </a>
 
     @if (isIAW())
         @if (auth()->check())

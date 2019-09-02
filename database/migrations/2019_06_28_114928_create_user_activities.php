@@ -19,7 +19,7 @@ class CreateUserActivities extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('activity_id');
             $table->enum('activity_type', ['flutter_app', 'flutter_artifact', 'flutter_event']);
-            $table->boolean('is_visible')->default(false);
+            $table->boolean('is_visible')->default(true);
             $table->unique(['user_id', 'activity_id', 'activity_type']);
         });
 

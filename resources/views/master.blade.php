@@ -501,7 +501,7 @@
                                 <div>Sergi Martínez</div>
                             </a>
                         </div><br/>
-                    @elseif (isFC())
+                    @elseif (isFP())
 
                     @else
                         <div class="column is-1">

@@ -5,15 +5,15 @@ function isIAW() {
 }
 
 function isFE() {
-    return strpos(request()->url(), 'flutterevents.') !== false;
+    return strpos(request()->url(), 'flutterevents') !== false || strpos(request()->url(), 'flutter-events') !== false;
 }
 
 function isFX() {
-    return strpos(request()->url(), 'flutterx.') !== false;
+    return strpos(request()->url(), 'flutterx') !== false;
 }
 
-function isFC() {
-    return strpos(request()->url(), 'fluttercollective.') !== false;
+function isFP() {
+    return strpos(request()->url(), 'flutterpro') !== false;
 }
 
 function isGL() {
@@ -37,8 +37,8 @@ function appName() {
         return 'Geu.la';
     } elseif (isFE()) {
         return 'Flutter Events';
-    } elseif (isFC()) {
-        return 'Flutter Collective';
+    } elseif (isFP()) {
+        return 'Flutter Pro';
     } elseif (isFX()) {
         return 'FlutterX';
     } else {
@@ -58,8 +58,8 @@ function fxUrl() {
     return isTest() ? (isValet() ? 'http://flutterx.test' : 'http://127.0.0.1:8000/flutterx') : 'https://flutterx.com';
 }
 
-function fcUrl() {
-    return isTest() ? (isValet() ? 'http://fluttercollective.test' : 'http://127.0.0.1:8000/flutter-collective') : 'https://fluttercollective.com';
+function fpUrl() {
+    return isTest() ? (isValet() ? 'http://flutterpro.test' : 'http://127.0.0.1:8000/flutterpro') : 'https://flutterpro.dev';
 }
 
 function glUrl() {
