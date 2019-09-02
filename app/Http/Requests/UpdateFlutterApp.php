@@ -42,6 +42,7 @@ class UpdateFlutterApp extends FormRequest
             'screenshot_3' => 'image|mimes:png|dimensions:width=1080,height=1920|max:2500',
             'short_description' => 'required|max:250',
             'long_description' => 'required',
+            'repo_url' => [new ExternalLink('https://github.com/', 'https://bitbucket.org/')],
             'google_url' => [new ExternalLink('https://play.google.com/')],
             'apple_url' => [new ExternalLink('https://itunes.apple.com/', 'https://apps.apple.com/')],
             'facebook_url' => [new ExternalLink('https://www.facebook.com/')],
