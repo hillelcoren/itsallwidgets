@@ -120,4 +120,12 @@ class FlutterApp extends Model implements Feedable
 
         return '@' . $part;
     }
+
+    /**
+     * Get all of the owning activity models.
+     */
+    public function activity()
+    {
+        return $this->morphTo();
+    }
 }
