@@ -1,11 +1,11 @@
 @extends('master')
 
-@section('title', 'Profile | Flutter Pro')
+@section('title', 'Flutter Pro')
 @section('description', 'A Showcase for Passionate Flutter Developers')
 @section('image_url', asset('images/background.jpg'))
 
 @section('header_title', 'A Showcase for Passionate Flutter Developers')
-@section('header_button_url', iawUrl() . '/auth/google?intended_url=join_pro')
+@section('header_button_url', iawUrl() . '/auth/google?intended_url=profile/edit')
 @section('header_button_label', 'MANAGE PROFILE')
 @section('header_button_icon', 'fas fa-user')
 
@@ -111,23 +111,22 @@
 						</label>
 						<div class="control">
 							<div>
-								{{ Form::hidden('is_visible', 0) }}
-								<input name="is_visible" type="checkbox" value="1" {{ $user->is_pro ? 'CHECKED' : '' }}> It's All Widgets!
+								{{ Form::hidden('is_pro_iaw', 0) }}
+								<input name="is_visible" type="checkbox" value="1" {{ $user->is_pro_iaw ? 'CHECKED' : '' }}> It's All Widgets!
 							</div>
 
 							<div>
-								{{ Form::hidden('is_visible', 0) }}
-								<input name="is_visible" type="checkbox" value="1" {{ $user->is_pro ? 'CHECKED' : '' }}> FlutterX
+								{{ Form::hidden('is_pro_fx', 0) }}
+								<input name="is_visible" type="checkbox" value="1" {{ $user->is_pro_fx ? 'CHECKED' : '' }}> FlutterX
 							</div>
 
 							<div>
-								{{ Form::hidden('is_visible', 0) }}
-								<input name="is_visible" type="checkbox" value="1" {{ $user->is_pro ? 'CHECKED' : '' }}> Flutter Events
+								{{ Form::hidden('is_pro_fe', 0) }}
+								<input name="is_visible" type="checkbox" value="1" {{ $user->is_pro_fe ? 'CHECKED' : '' }}> Flutter Events
 							</div>
 
 						</div>
 					</div>
-
 
 				</div>
 

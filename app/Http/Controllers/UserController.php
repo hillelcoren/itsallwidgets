@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Http\Requests\UpdateProProfile;
 
 class UserController extends Controller
 {
@@ -22,34 +23,19 @@ class UserController extends Controller
         return view('user.edit', $data);
     }
 
-    public function update()
+    public function show()
     {
-        return view('user.edit');
+        return view('user.show');
     }
 
-    public function joinPro()
+    public function update(UpdateProProfile $request)
     {
         $user = auth()->user();
-
-        if ($user->is_pro) {
-            return redirect('/profile');
-        }
-
-        $handle = str_slug($user->name, '');
-        $counter = 1;
-
-        if (User::whereHandle($handle)->count()) {
-            while (User::whereHandle($handle . $counter)->count()) {
-                $counter++;
-            }
-
-            $handle = $handle . $counter;
-        }
-
-        $user->is_pro = true;
-        $user->handle = $handle;
+        $user->fill($request->all());
         $user->save();
 
-        return redirect('/profile');
+        return redirect('/profile/edit')->with(
+            'status',
+            'Your profile has been successfully updated!');
     }
 }

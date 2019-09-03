@@ -87,9 +87,9 @@ Route::get('podcast/episodes/{episode}/{title?}', 'PodcastController@show');
 Route::get('flutter-events', 'FlutterEventController@index');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('join_pro', 'UserController@joinPro');
-    Route::get('profile', 'UserController@edit');
+    Route::get('profile', 'UserController@show');
     Route::put('profile', 'UserController@update');
+    Route::get('profile/edit', 'UserController@edit');
 
     Route::get('submit', 'FlutterAppController@create');
     Route::post('submit', 'FlutterAppController@store')->middleware('slug');

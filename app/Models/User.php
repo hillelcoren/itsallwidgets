@@ -19,6 +19,17 @@ class User extends Authenticatable
         'email',
         'google_id',
         'avatar_url',
+        'profile_url',
+        'website_url',
+        'github_url',
+        'youtube_url',
+        'twitter_url',
+        'medium_url',
+        'linkedin_url',
+        'bio',
+        'is_pro_iaw',
+        'is_pro_fe',
+        'is_pro_fx',
     ];
 
     /**
