@@ -10,11 +10,13 @@
 @if (isGL())
 
 @else
+    <!--
     @if (! isFP())
         <a class="navbar-item" href="{{ fpUrl() }}">
             <i class="fas fa-users"></i> &nbsp; Developers
         </a>
     @endif
+    -->
 
     @if (! isFX())
         <a class="navbar-item" href="{{ fxUrl() }}">
