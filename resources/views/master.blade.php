@@ -23,7 +23,7 @@
     @endif
 
     <title>@yield('title') | {{ appName() }}</title>
-    <meta name="description" content="@yield('description')">
+    <meta name="description" content="@yield('description')" test>
 
     @include('feed::links')
 
