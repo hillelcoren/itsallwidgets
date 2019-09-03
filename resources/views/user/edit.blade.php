@@ -24,14 +24,22 @@
 	}
 	</script>
 
+    <section class="hero is-light is-small is-body-font">
+        <div class="hero-body">
+            <div class="container">
+                <div class="column is-8 is-offset-2">
+                    <h2 class="title">Flutter Pro Profile</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <p>&nbsp;</p>
 	<p>&nbsp;</p>
-	<p>&nbsp;</p>
+
 
 	<div class="container is-body-font">
 		<div class="column is-8 is-offset-2">
-
-			<h2 class="title">Developer Profile</h2>
-			<p>&nbsp;</p>
 
 			@if (isset($errors) && $errors->count())
 				<div class="notification is-warning">
@@ -67,25 +75,6 @@
 					</div>
 
 					<div class="field">
-						<label class="label" for="email">
-							Email <span class="required">*</span>
-						</label>
-						<div class="control has-icons-left">
-							{{ Form::text('name', $user->email, ['class' => 'input', 'required' => true]) }}
-
-							<span class="icon is-small is-left">
-								<i class="fas fa-envelope"></i>
-							</span>
-
-							@if ($errors->has('email'))
-								<span class="help is-danger">
-									{{ $errors->first('email') }}
-								</span>
-							@endif
-						</div>
-					</div>
-
-					<div class="field">
 						<label class="label" for="handle">
 							Handle <span class="required">*</span>
 						</label>
@@ -110,19 +99,25 @@
 							Sources
 						</label>
 						<div class="control">
-							<div>
-								{{ Form::hidden('is_pro_iaw', 0) }}
-								<input name="is_visible" type="checkbox" value="1" {{ $user->is_pro_iaw ? 'CHECKED' : '' }}> It's All Widgets!
+							<div style="padding-bottom:8px;padding-top:4px;">
+                                <label class="checkbox">
+                                    {{ Form::hidden('is_pro_iaw', 0) }}
+    								<input name="is_pro_iaw" type="checkbox" value="1" {{ $user->is_pro_iaw ? 'CHECKED' : '' }}> It's All Widgets!
+                                </label>
+							</div>
+
+							<div style="padding-bottom:8px">
+                                <label class="checkbox">
+                                    {{ Form::hidden('is_pro_fx', 0) }}
+    								<input name="is_pro_fx" type="checkbox" value="1" {{ $user->is_pro_fx ? 'CHECKED' : '' }}> FlutterX
+                                </label>
 							</div>
 
 							<div>
-								{{ Form::hidden('is_pro_fx', 0) }}
-								<input name="is_visible" type="checkbox" value="1" {{ $user->is_pro_fx ? 'CHECKED' : '' }}> FlutterX
-							</div>
-
-							<div>
-								{{ Form::hidden('is_pro_fe', 0) }}
-								<input name="is_visible" type="checkbox" value="1" {{ $user->is_pro_fe ? 'CHECKED' : '' }}> Flutter Events
+                                <label class="checkbox">
+                                    {{ Form::hidden('is_pro_fe', 0) }}
+    								<input name="is_pro_fe" type="checkbox" value="1" {{ $user->is_pro_fe ? 'CHECKED' : '' }}> Flutter Events
+                                </label>
 							</div>
 
 						</div>
