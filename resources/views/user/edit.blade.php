@@ -85,6 +85,10 @@
 								<i class="fas fa-at"></i>
 							</span>
 
+                            <span class="help">
+                                Profile Link: <a href="https://flutterpro.dev/{{ $user->handle }}" target="_blank">https://flutterpro.dev/{{ $user->handle }}</a>
+                            </span>
+
 							@if ($errors->has('handle'))
 								<span class="help is-danger">
 									{{ $errors->first('handle') }}
