@@ -5,14 +5,15 @@
 @section('image_url', asset('images/background.jpg'))
 
 @section('header_title', 'A Showcase for Passionate Flutter Developers')
-@section('header_button_url', 'auth/google?intended_url=profile')
+@section('header_button_url', iawUrl() . '/auth/google?intended_url=join_pro')
 @section('header_button_label', 'MANAGE PROFILE')
+@section('header_button_icon', 'fas fa-user')
 
 @section('header_subtitle')
     Profiles are updated automatically from
-        <a href="{{ iawUrl() }}">It's All Widgets!</a>,
-        <a href="{{ fxUrl() }}">FlutterX</a> and
-        <a href="{{ feUrl() }}">Flutter Events</a>
+        <a href="{{ fxUrl() }}">FlutterX</a>,
+        <a href="{{ feUrl() }}">Flutter Events</a> and
+        <a href="{{ iawUrl() }}">It's All Widgets!</a>
 @endsection
 
 @section('head')

@@ -5,8 +5,16 @@
 @section('image_url', asset('images/background.jpg'))
 
 @section('header_title', 'A Showcase for Passionate Flutter Developers')
-@section('header_button_url', 'auth/google?intended_url=profile')
+@section('header_button_url', iawUrl() . '/auth/google?intended_url=join_pro')
 @section('header_button_label', 'MANAGE PROFILE')
+@section('header_button_icon', 'fas fa-user')
+
+@section('header_subtitle')
+    Profiles are updated automatically from
+        <a href="{{ fxUrl() }}">FlutterX</a>,
+        <a href="{{ feUrl() }}">Flutter Events</a> and
+        <a href="{{ iawUrl() }}">It's All Widgets!</a>
+@endsection
 
 @section('content')
 
@@ -95,6 +103,31 @@
 							@endif
 						</div>
 					</div>
+
+
+					<div class="field">
+						<label class="label" for="title">
+							Sources
+						</label>
+						<div class="control">
+							<div>
+								{{ Form::hidden('is_visible', 0) }}
+								<input name="is_visible" type="checkbox" value="1" {{ $user->is_pro ? 'CHECKED' : '' }}> It's All Widgets!
+							</div>
+
+							<div>
+								{{ Form::hidden('is_visible', 0) }}
+								<input name="is_visible" type="checkbox" value="1" {{ $user->is_pro ? 'CHECKED' : '' }}> FlutterX
+							</div>
+
+							<div>
+								{{ Form::hidden('is_visible', 0) }}
+								<input name="is_visible" type="checkbox" value="1" {{ $user->is_pro ? 'CHECKED' : '' }}> Flutter Events
+							</div>
+
+						</div>
+					</div>
+
 
 				</div>
 
@@ -262,7 +295,7 @@
 			<div class="columns is-centered is-mobile">
 
 				<div class="control">
-					<a href="{{ url('/') }}" class="button is-medium is-outlined is-slightly-elevated">
+					<a href="{{ fpUrl() }}" class="button is-medium is-outlined is-slightly-elevated">
 						<i style="font-size: 20px" class="fa fa-times-circle"></i> &nbsp; Cancel
 					</a> &nbsp;
 					<button id="saveButton" class="button is-info is-medium is-slightly-elevated">
