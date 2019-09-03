@@ -25,6 +25,10 @@ Route::group(['domain' => '127.0.0.1'], function() {
     Route::get('flutter-events/{flutter_event}', 'FlutterEventController@show');
 });
 
+Route::group(['domain' => 'flutterpro.{tld}'], function() {
+    Route::get('/', 'FlutterProController@index');
+});
+
 Route::group(['domain' => 'flutterevents.{tld}'], function() {
     Route::get('/', 'FlutterEventController@index');
     Route::get('feed', 'FlutterEventController@jsonFeed');
