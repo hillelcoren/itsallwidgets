@@ -1,8 +1,12 @@
 @extends('master')
 
-@section('title', 'Profile | It\'s All Widget!')
-@section('description', 'Profile | It\'s All Widget!')
+@section('title', 'Profile | Flutter Pro')
+@section('description', 'A Showcase for Passionate Flutter Developers')
 @section('image_url', asset('images/background.jpg'))
+
+@section('header_title', 'A Showcase for Passionate Flutter Developers')
+@section('header_button_url', 'auth/google?intended_url=profile')
+@section('header_button_label', 'MANAGE PROFILE')
 
 @section('content')
 

@@ -6,7 +6,7 @@
 
 @section('header_title', 'A Showcase for Passionate Flutter Developers')
 @section('header_button_url', 'auth/google?intended_url=profile')
-@section('header_button_label', 'JOIN FLUTTER PRO')
+@section('header_button_label', 'MANAGE PROFILE')
 
 @section('header_subtitle')
     Profiles are updated automatically from

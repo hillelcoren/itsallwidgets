@@ -8,8 +8,15 @@ class UserController extends Controller
 {
     public function edit()
     {
+        $user = auth()->user();
+
+        if (!$user->is_pro) {
+            return redirect('/');
+        }
+
         $data = [
-            'user' => auth()->user(),
+            'user' => $user,
+            'useBlackHeader' => true,
         ];
 
         return view('user.edit', $data);
@@ -25,7 +32,7 @@ class UserController extends Controller
         $user = auth()->user();
 
         if ($user->is_pro) {
-            //return redirect('/profile');
+            return redirect('/profile');
         }
 
         $handle = str_slug($user->name, '');
@@ -38,8 +45,6 @@ class UserController extends Controller
 
             $handle = $handle . $counter;
         }
-
-        dd($handle);
 
         $user->is_pro = true;
         $user->handle = $handle;
