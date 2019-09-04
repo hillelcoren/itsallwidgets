@@ -229,6 +229,6 @@ class FlutterEvent extends Model implements Feedable
 
     public function matchesUser($user)
     {
-        return false;
+        return strpos(strtolower($this->description), strtolower($user->name)) !== false;
     }
 }

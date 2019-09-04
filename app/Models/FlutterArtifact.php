@@ -215,6 +215,27 @@ class FlutterArtifact extends Model implements Feedable
 
     public function matchesUser($user)
     {
+        if ($this->meta_author && $this->meta_author == $user->name) {
+            return true;
+        }
+
+        if ($this->meta_author_twitter && 'https://twitter.com/' . strtolower(rtrim($this->meta_author_twitter, '/')) == strtolower($user->twitter_url)) {
+            return true;
+        }
+
+        $urls = [
+            $user->medium_url,
+            $user->github_url,
+            $user->youtube_url,
+            $user->website_url,
+        ];
+
+        foreach ($urls as $url) {
+            if ($url && strtolower($url) == strtolower(rtrim($this->meta_author_url, '/'))) {
+                return true;
+            }
+        }
+
         return false;
     }
 }
