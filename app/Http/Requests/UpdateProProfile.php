@@ -27,6 +27,7 @@ class UpdateProProfile extends FormRequest
         $user = auth()->user();
 
         $rules = [
+            'name' => 'required',
             'handle' => 'required|unique:users,handle,' . $user->id . ',id',
             'avatar' => 'image||nullable|mimes:png|dimensions:width=1080,height=1920|max:2500',
             'bio' => 'max:1000',

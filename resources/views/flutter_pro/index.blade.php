@@ -10,7 +10,7 @@
 @section('header_button_icon', 'fas fa-user')
 
 @section('header_subtitle')
-    Profiles are updated automatically from
+    Profiles are sourced from
         <a href="{{ fxUrl() }}">FlutterX</a>,
         <a href="{{ feUrl() }}">Flutter Events</a> and
         <a href="{{ iawUrl() }}">It's All Widgets!</a>

@@ -4,7 +4,10 @@
 @section('description', 'An Open List of Flutter Events')
 @section('image_url', asset('images/events_twitter.png'))
 @section('header_title', 'An Open List of Flutter Events')
-@section('header_subtitle', 'Events are synced with Meetup.com or can be added manually')
+
+@section('header_subtitle')
+    Events are sourced from <a href="https://www.meetup.com/find/?allMeetups=false&keywords=flutter&radius=Infinity" target="_blank">Meetup.com</a> or can be added manually
+@endsection
 
 @section('header_button_url', url(auth()->check() ? 'flutter-event/submit' : 'auth/google?intended_url=flutter-event/submit'))
 @section('header_button_label', 'SUBMIT EVENT')

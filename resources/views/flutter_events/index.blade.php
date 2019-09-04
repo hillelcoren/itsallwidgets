@@ -8,7 +8,7 @@
 @section('header_button_label', 'SUBMIT EVENT')
 
 @section('header_subtitle')
-    Events are synced with <a href="https://www.meetup.com/find/?allMeetups=false&keywords=flutter&radius=Infinity" target="_blank">Meetup.com</a> or can be added manually
+    Events are sourced from <a href="https://www.meetup.com/find/?allMeetups=false&keywords=flutter&radius=Infinity" target="_blank">Meetup.com</a> or can be added manually
 @endsection
 
 @section('head')

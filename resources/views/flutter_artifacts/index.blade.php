@@ -7,7 +7,7 @@
 @section('header_button_url', false)
 
 @section('header_subtitle')
-    Sourced from the <a href="https://flutterweekly.net" target="_blank">Flutter Weekly Newsletter</a>
+    Resources are sourced from the <a href="https://flutterweekly.net" target="_blank">Flutter Weekly Newsletter</a>
 @endsection
 
 @section('content')

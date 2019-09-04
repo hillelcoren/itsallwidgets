@@ -10,7 +10,7 @@
 @section('header_button_icon', 'fas fa-user')
 
 @section('header_subtitle')
-    Profiles are updated automatically from
+    Profiles are sourced from
         <a href="{{ fxUrl() }}">FlutterX</a>,
         <a href="{{ feUrl() }}">Flutter Events</a> and
         <a href="{{ iawUrl() }}">It's All Widgets!</a>
@@ -28,7 +28,7 @@
         <div class="hero-body">
             <div class="container">
                 <div class="column is-8 is-offset-2">
-                    <h2 class="title">Flutter Pro Profile</h2>
+                    <h2 class="title">Developer Profile</h2>
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
 
 					<div class="field">
 						<label class="label" for="name">
-							Name <span class="required">*</span>
+							Name
 						</label>
 						<div class="control has-icons-left">
 							{{ Form::text('name', $user->name, ['class' => 'input', 'required' => true]) }}
@@ -76,7 +76,7 @@
 
 					<div class="field">
 						<label class="label" for="handle">
-							Handle <span class="required">*</span>
+							Handle
 						</label>
 						<div class="control has-icons-left">
 							{{ Form::text('handle', $user->handle, ['class' => 'input', 'required' => true]) }}
@@ -86,7 +86,7 @@
 							</span>
 
                             <span class="help">
-                                Profile Link: <a href="https://flutterpro.dev/{{ $user->handle }}" target="_blank">https://flutterpro.dev/{{ $user->handle }}</a>
+                                Profile Link <a href="https://flutterpro.dev/{{ $user->handle }}" target="_blank">https://flutterpro.dev/{{ $user->handle }}</a>
                             </span>
 
 							@if ($errors->has('handle'))
@@ -103,25 +103,34 @@
 							Sources
 						</label>
 						<div class="control">
-							<div style="padding-bottom:8px;padding-top:4px;">
+							<div style="padding-bottom:12px;padding-top:4px;">
                                 <label class="checkbox">
                                     {{ Form::hidden('is_pro_iaw', 0) }}
-    								<input name="is_pro_iaw" type="checkbox" value="1" {{ $user->is_pro_iaw ? 'CHECKED' : '' }}> It's All Widgets!
+    								<input name="is_pro_iaw" type="checkbox" value="1" {{ $user->is_pro_iaw ? 'CHECKED' : '' }}> Applications
                                 </label>
+                                <div class="help">
+                                    Sourced from <a href="https://itsallwidgets.com" target="_blank">https://itsallwidgets.com</a>
+                                </div>
 							</div>
 
-							<div style="padding-bottom:8px">
+							<div style="padding-bottom:12px">
                                 <label class="checkbox">
                                     {{ Form::hidden('is_pro_fx', 0) }}
-    								<input name="is_pro_fx" type="checkbox" value="1" {{ $user->is_pro_fx ? 'CHECKED' : '' }}> FlutterX
+    								<input name="is_pro_fx" type="checkbox" value="1" {{ $user->is_pro_fx ? 'CHECKED' : '' }}> Resources
                                 </label>
+                                <div class="help">
+                                    Sourced from <a href="https://flutterx.com" target="_blank">https://flutterx.com</a>
+                                </div>
 							</div>
 
 							<div>
                                 <label class="checkbox">
                                     {{ Form::hidden('is_pro_fe', 0) }}
-    								<input name="is_pro_fe" type="checkbox" value="1" {{ $user->is_pro_fe ? 'CHECKED' : '' }}> Flutter Events
+    								<input name="is_pro_fe" type="checkbox" value="1" {{ $user->is_pro_fe ? 'CHECKED' : '' }}> Talks
                                 </label>
+                                <div class="help">
+                                    Sourced from <a href="https://flutterevents.com" target="_blank">https://flutterevents.com</a>
+                                </div>
 							</div>
 
 						</div>
