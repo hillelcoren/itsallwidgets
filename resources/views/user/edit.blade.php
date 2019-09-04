@@ -103,7 +103,7 @@
 							Sources
 						</label>
 						<div class="control">
-							<div style="padding-bottom:12px;padding-top:4px;">
+							<div style="padding-bottom:14px;padding-top:4px;">
                                 <label class="checkbox">
                                     {{ Form::hidden('is_pro_iaw', 0) }}
     								<input name="is_pro_iaw" type="checkbox" value="1" {{ $user->is_pro_iaw ? 'CHECKED' : '' }}> Applications
@@ -113,7 +113,7 @@
                                 </div>
 							</div>
 
-							<div style="padding-bottom:12px">
+							<div style="padding-bottom:14px">
                                 <label class="checkbox">
                                     {{ Form::hidden('is_pro_fx', 0) }}
     								<input name="is_pro_fx" type="checkbox" value="1" {{ $user->is_pro_fx ? 'CHECKED' : '' }}> Resources
