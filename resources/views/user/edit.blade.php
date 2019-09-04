@@ -324,7 +324,7 @@
 
                     <div class="field">
 						<label class="label" for="is_pro">
-							Flutter Pro
+							Flutter Pro Profile
 						</label>
 						<div class="control">
                             <label class="checkbox">
@@ -336,7 +336,7 @@
 
                     <div class="field">
 						<label class="label" for="is_subscribed">
-							Newsletter
+							It's All Widgets! Newsletter
 						</label>
 						<div class="control">
                             <label class="checkbox">
