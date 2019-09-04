@@ -354,7 +354,7 @@
 			<article class="message is-dark is-elevated">
 				<div class="message-body">
 
-                    <div class="field">
+                    <div class="field" style="padding-bottom:12px">
 						<label class="label" for="is_pro">
 							Flutter Pro Profile
 						</label>
@@ -366,7 +366,7 @@
 						</div>
 					</div>
 
-                    <div class="field">
+                    <div class="field" style="padding-bottom:12px">
 						<label class="label" for="is_subscribed">
 							It's All Widgets! Newsletter
 						</label>
@@ -374,6 +374,18 @@
                             <label class="checkbox">
                                 {{ Form::hidden('is_subscribed', 0) }}
 								<input name="is_subscribed" type="checkbox" value="1" {{ $user->is_subscribed ? 'CHECKED' : '' }}> Subscribe
+                            </label>
+						</div>
+					</div>
+
+                    <div class="field">
+						<label class="label" for="is_for_hire">
+							Available for Hire
+						</label>
+						<div class="control">
+                            <label class="checkbox">
+                                {{ Form::hidden('is_for_hire', 0) }}
+								<input name="is_for_hire" type="checkbox" value="1" {{ $user->is_for_hire ? 'CHECKED' : '' }}> Yes
                             </label>
 						</div>
 					</div>

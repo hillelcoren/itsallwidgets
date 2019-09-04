@@ -20,6 +20,7 @@ class AddProfileFields extends Migration
             $table->boolean('is_subscribed')->default(true);
             $table->string('profile_key')->nullable()->unique();
             $table->string('country_code')->nullable()->default('');
+            $table->boolean('is_for_hire')->default(false);
         });
 
         Schema::table('users', function(Blueprint $table) {
