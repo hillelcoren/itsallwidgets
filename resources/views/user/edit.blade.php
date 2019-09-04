@@ -106,10 +106,6 @@
                                 <label class="checkbox">
                                     {{ Form::hidden('is_pro_iaw', 0) }}
     								<input name="is_pro_iaw" type="checkbox" value="1" {{ $user->is_pro_iaw ? 'CHECKED' : '' }}> Applications
-
-                                    @if ($user->is_pro && ! $user->is_pro_iaw)
-                                        • <span class="has-text-info has-text-weight-bold">Enable this option to display your Flutter apps</span>
-                                    @endif
                                 </label>
                                 <div class="help">
                                     Sourced from <a href="https://itsallwidgets.com" target="_blank">https://itsallwidgets.com</a>

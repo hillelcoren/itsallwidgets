@@ -330,9 +330,23 @@
                             @if (isGL())
 
                             @else
-                                <a href="{{ iawUrl() }}">
-                                    <img src="{{ asset('images/logo.png') }}" width="240" style="padding-top: 12px; padding-left: 12px;"/>
-                                </a>
+                                @if (isFP())
+                                    <a href="{{ fpUrl() }}">
+                                        <img src="{{ asset('images/logo_flutterpro.png') }}" width="240" style="padding-top: 12px; padding-left: 12px;"/>
+                                    </a>
+                                @elseif (isFE())
+                                    <a href="{{ feUrl() }}">
+                                        <img src="{{ asset('images/logo_flutterevents.png') }}" width="240" style="padding-top: 12px; padding-left: 12px;"/>
+                                    </a>
+                                @elseif (isFX())
+                                    <a href="{{ fxUrl() }}">
+                                        <img src="{{ asset('images/logo_flutterx.png') }}" width="240" style="padding-top: 12px; padding-left: 12px;"/>
+                                    </a>
+                                @else
+                                    <a href="{{ iawUrl() }}">
+                                        <img src="{{ asset('images/logo.png') }}" width="240" style="padding-top: 12px; padding-left: 12px;"/>
+                                    </a>
+                                @endif
                             @endif
                         </div>
                         <span class="navbar-burger burger" data-target="navMenu">

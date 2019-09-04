@@ -14,7 +14,7 @@ class AddProfileFields extends Migration
     public function up()
     {
         Schema::table('users', function(Blueprint $table) {
-            $table->boolean('is_pro_iaw')->default(false);
+            $table->boolean('is_pro_iaw')->default(true);
             $table->boolean('is_pro_fe')->default(true);
             $table->boolean('is_pro_fx')->default(true);
             $table->string('profile_key')->nullable()->unique();
