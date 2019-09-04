@@ -128,4 +128,10 @@ class FlutterApp extends Model implements Feedable
     {
         return $this->morphTo();
     }
+
+    public function matchesUser($user)
+    {
+        return $user->id == $this->user_id;
+    }
+
 }

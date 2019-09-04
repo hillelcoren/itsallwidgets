@@ -212,4 +212,9 @@ class FlutterArtifact extends Model implements Feedable
     {
         return $this->morphTo();
     }
+
+    public function matchesUser($user)
+    {
+        return false;
+    }
 }

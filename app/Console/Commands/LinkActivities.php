@@ -82,29 +82,36 @@ class LinkActivities extends Command
 
         $total = sizeOf($activities);
         $count = 0;
-        foreach ($activities as $activity) {
 
-            $this->info($type . ' activity ' . $activity->id);
+        foreach ($users as $user)
+        {
+            foreach ($activities as $activity)
+            {
+                $this->info($type . ' activity ' . $activity->id);
 
-            if (UserActivity::where([
-                ['activity_type', '=', $type],
-                ['activity_id', '=', $activity->id],
-            ])->first()) {
-                $this->info($type . ' activity ' . $activity->id . ' exists: skipping...');
-                continue;
+                if (! $activity->matchesUser($user)) {
+                    $this->info($type . ' activity ' . $activity->id . ' not a match: skipping...');
+                    continue;
+                }
+
+                if (UserActivity::where([
+                    ['activity_type', '=', $type],
+                    ['activity_id', '=', $activity->id],
+                ])->first()) {
+                    $this->info($type . ' activity ' . $activity->id . ' exists: skipping...');
+                    continue;
+                }
+
+                try {
+                    $this->info('LINKING');
+                    $this->activityRepo->store($activity->user_id, $activity->id, $type);
+                    $count++;
+                } catch (Exception $e) {
+                    $this->error('Error while linking artifact: ' . $activity->id);
+                }
             }
-
-            /*
-            try {
-                $this->activityRepo->store($activity->user_id, $activity->id, $type);
-                $count++;
-            } catch (Exception $e) {
-                $this->error('Error while linking artifact: ' . $activity->id);
-            }
-            */
         }
 
         $this->info($message . 'Done. Linked ' . $count . '/' . $total);
     }
-
 }
