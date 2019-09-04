@@ -55,16 +55,13 @@
         </section>
 
         <section class="section is-body-font" style="background-color:#fefefe">
-            <div class="container" v-cloak>
-                <div v-if="profiles.length == 0" class="is-wide has-text-centered is-vertical-center" style="height:400px; text-align:center; font-size: 32px; color: #AAA">
-                    Loading...
-                </div>
-                <div v-if="profiles.length > 0 && filteredProfiles.length == 0" class="is-wide has-text-centered is-vertical-center"
-                    style="height:400px; text-align:center; font-size: 32px; color: #AAA">
-                    No developers found
-                </div>
-            </div>
 
+            <div class="container" v-cloak>
+                <div v-if="filteredProfiles.length == 0" class="is-wide has-text-centered is-vertical-center"
+                style="height:400px; text-align:center; font-size: 32px; color: #AAA">
+                <span v-if="is_searching">Loading...</span>
+                <span v-if="! is_searching">No developers found</span>
+            </div>
 
             <div class="columns is-multiline is-6 is-variable">
                 <div v-for="profile in filteredProfiles" :key="profile.id" class="column" v-bind:class="columnClass">
@@ -116,6 +113,11 @@ var app = new Vue({
     el: '#app',
 
     watch: {
+        search: {
+            handler() {
+                app.serverSearch();
+            },
+        },
         sort_by: {
             handler() {
                 app.saveFilters();
@@ -148,13 +150,54 @@ var app = new Vue({
             if (! this.search) {
                 return '#FFFFFF';
             } else {
-                if (this.filteredProfiles.length) {
+                if (this.is_searching) {
+                    return '#FFFFBB';
+                } else if (this.filteredProfiles.length) {
                     return '#FFFFBB';
                 } else {
                     return '#FFC9D9';
                 }
             }
-        }
+        },
+
+        serverSearch: function() {
+            var app = app || this;
+            var searchStr = this.search;
+            var profiles = this.profiles;
+
+            app.$set(app, 'is_searching', true);
+            if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
+
+            this.bounceTimeout = setTimeout(function() {
+                if (searchStr && searchStr.length >= 3) {
+                    $.get('/search_pro?search=' + encodeURIComponent(searchStr), function (data) {
+                        console.log(data);
+                        app.$set(app, 'is_searching', false);
+                        app.$set(app, 'profiles', data);
+
+                        /*
+                        var profileMap = {};
+                        for (var i=0; i<data.length; i++) {
+                            var profile = data[i];
+                            //profileMap[pr.id] = artifact.contents;
+                        }
+
+                        for (var i=0; i<profiles.length; i++) {
+                            var profile = profiles[i];
+                            //app.$set(artifacts[i], 'contents', (artifactMap[artifact.id] || ''));
+                        }
+                        */
+                    });
+                } else {
+                    app.$set(app, 'is_searching', false);
+                    for (var i=0; i<profiles.length; i++) {
+                        //app.$set(artifacts[i], 'contents', '');
+                    }
+                }
+
+            }, 500);
+        },
+
     },
 
     mounted () {
@@ -171,6 +214,7 @@ var app = new Vue({
         sort_by: getCachedSortBy(),
         selected_profile: false,
         page_number: 1,
+        is_searching: false,
     },
 
     computed: {

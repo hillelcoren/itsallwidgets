@@ -16,9 +16,26 @@ class FlutterProController extends Controller
         return view('flutter_pro.index', $data);
     }
 
-    public function data()
+    public function search()
     {
-        //return json('');
+        $data = [];
+        $search = strtolower(request()->search);
+        //$profiles = User::whereIsPro(true)->search($search)->get();
+        $profiles = User::whereIsPro(true)->get();
+
+        foreach ($profiles as $profile)
+        {
+            //$str = mb_convert_encoding($str, 'UTF-8', 'UTF-8');
+
+            $obj = new \stdClass;
+            $obj->id = $profile->id;
+            $obj->name = $profile->name;
+            //$obj->contents = $str;
+
+            $data[] = $obj;
+        }
+
+        return response()->json($data);
     }
 
     public function edit()
