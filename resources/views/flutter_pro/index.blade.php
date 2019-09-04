@@ -53,6 +53,171 @@
                 </div>
             </div>
         </section>
+</div>
 
+        <script>
+
+        function isStorageSupported() {
+            try {
+                return 'localStorage' in window && window['localStorage'] !== null;
+            } catch (e) {
+                return false;
+            }
+        };
+
+        function getCachedSortBy() {
+            return (isStorageSupported() ? localStorage.getItem('pro_sort_by') : false) || 'sort_featured';
+        }
+
+        var app = new Vue({
+            el: '#app',
+
+            watch: {
+                sort_by: {
+                    handler() {
+                        app.saveFilters();
+                    },
+                },
+            },
+
+            methods: {
+
+                adjustPage: function(change) {
+                    this.page_number += change;
+                    document.body.scrollTop = 0; // For Safari
+                    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+                },
+
+                setFilter: function(filter) {
+                    filter = filter || '';
+                    this.search = filter.toLowerCase();
+                },
+
+                saveFilters: function() {
+                    if (! isStorageSupported()) {
+                        return false;
+                    }
+
+                    localStorage.setItem('sort_by', this.sort_by);
+                },
+
+                searchBackgroundColor: function() {
+                    if (! this.search) {
+                        return '#FFFFFF';
+                    } else {
+                        if (this.filteredApps.length) {
+                            return '#FFFFBB';
+                        } else {
+                            return '#FFC9D9';
+                        }
+                    }
+                }
+            },
+
+            mounted () {
+                window.addEventListener('keyup', function(event) {
+                    if (event.keyCode == 27) {
+                        //app.selectApp();
+                    }
+                });
+            },
+
+            data: {
+                profiles: [],
+                search: "{{ request()->search }}",
+                sort_by: getCachedSortBy(),
+                selected_profile: false,
+                page_number: 1,
+            },
+
+            computed: {
+
+                modalClass() {
+                    if (this.selected_profile) {
+                        return {'is-active': true};
+                    } else {
+                        return {};
+                    }
+                },
+
+                modalColumClass() {
+                    if (this.selected_profile.is_mobile) {
+                        return 'column is-8';
+                    } else {
+                        return 'column is-12'
+                    }
+                },
+
+                unpaginatedFilteredProfiles() {
+
+                    var profiles = this.profiles;
+                    var search = this.search.toLowerCase().trim();
+                    var sort_by = this.sort_by;
+
+                    if (search) {
+                        apps = apps.filter(function(item) {
+                            /*
+                            if (item.title.toLowerCase().indexOf(search) >= 0) {
+                                return true;
+                            }
+                            */
+
+                            return false;
+                        });
+                    }
+
+                    apps.sort(function(itemA, itemB) {
+                        var timeA = false;//new Date(itemA.created_at).getTime();
+                        var timeB = false;//new Date(itemB.created_at).getTime();
+
+                        if (sort_by == 'sort_newest') {
+                            return timeB - timeA;
+                        } else {
+                            /*
+                            var itemARating = itemA.store_rating;
+                            if (itemA.store_download_count < 500) {
+                                itemARating -= 1;
+                            } else if (itemA.store_download_count < 1000) {
+                                itemARating -= .5;
+                            }
+
+                            var itemBRating = itemB.store_rating;
+                            if (itemB.store_download_count < 500) {
+                                itemBRating -= 1;
+                            } else if (itemB.store_download_count < 1000) {
+                                itemBRating -= .5;
+                            }
+
+                            if (itemA.featured != itemB.featured) {
+                                return itemB.featured - itemA.featured;
+                            } else if (itemARating != itemBRating) {
+                                return itemBRating - itemARating;
+                            } else if (itemA.store_review_count != itemB.store_review_count) {
+                                return itemB.store_review_count - itemA.store_review_count;
+                            } else {
+                                return timeB - timeA;
+                            }
+                            */
+                        }
+                    });
+
+                    return apps;
+                },
+
+                filteredApps() {
+
+                    profiles = this.unpaginatedFilteredProfiles;
+
+                    var startIndex = (this.page_number - 1) * 40;
+                    var endIndex = startIndex + 40;
+                    profiles = profiles.slice(startIndex, endIndex);
+
+                    return profiles;
+                },
+            }
+
+        });
+
+        </script>
 
 @endsection

@@ -162,7 +162,7 @@
 
                     <div class="field">
 						<label class="label" for="avatar">
-							Avatar Image
+							Image
 						</label>
 						<div class="control">
 
