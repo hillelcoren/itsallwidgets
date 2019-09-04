@@ -102,36 +102,39 @@
 							Sources
 						</label>
 						<div class="control">
-							<div style="padding-bottom:14px;padding-top:4px;">
-                                <label class="checkbox">
-                                    {{ Form::hidden('is_pro_iaw', 0) }}
-    								<input name="is_pro_iaw" type="checkbox" value="1" {{ $user->is_pro_iaw ? 'CHECKED' : '' }}> Applications
-                                </label>
-                                <div class="help">
-                                    Sourced from <a href="https://itsallwidgets.com" target="_blank">https://itsallwidgets.com</a>
-                                </div>
-							</div>
+                            @if ($user->is_pro)
+    							<div style="padding-bottom:14px;padding-top:4px;">
+                                    <label class="checkbox">
+                                        {{ Form::hidden('is_pro_iaw', 0) }}
+        								<input name="is_pro_iaw" type="checkbox" value="1" {{ $user->is_pro_iaw ? 'CHECKED' : '' }}> Applications
+                                    </label>
+                                    <div class="help">
+                                        Sourced from <a href="https://itsallwidgets.com" target="_blank">https://itsallwidgets.com</a>
+                                    </div>
+    							</div>
 
-							<div style="padding-bottom:14px">
-                                <label class="checkbox">
-                                    {{ Form::hidden('is_pro_fx', 0) }}
-    								<input name="is_pro_fx" type="checkbox" value="1" {{ $user->is_pro_fx ? 'CHECKED' : '' }}> Resources
-                                </label>
-                                <div class="help">
-                                    Sourced from <a href="https://flutterx.com" target="_blank">https://flutterx.com</a>
-                                </div>
-							</div>
+    							<div style="padding-bottom:14px">
+                                    <label class="checkbox">
+                                        {{ Form::hidden('is_pro_fx', 0) }}
+        								<input name="is_pro_fx" type="checkbox" value="1" {{ $user->is_pro_fx ? 'CHECKED' : '' }}> Resources
+                                    </label>
+                                    <div class="help">
+                                        Sourced from <a href="https://flutterx.com" target="_blank">https://flutterx.com</a>
+                                    </div>
+    							</div>
 
-							<div>
-                                <label class="checkbox">
-                                    {{ Form::hidden('is_pro_fe', 0) }}
-    								<input name="is_pro_fe" type="checkbox" value="1" {{ $user->is_pro_fe ? 'CHECKED' : '' }}> Talks
-                                </label>
-                                <div class="help">
-                                    Sourced from <a href="https://flutterevents.com" target="_blank">https://flutterevents.com</a>
-                                </div>
-							</div>
-
+    							<div>
+                                    <label class="checkbox">
+                                        {{ Form::hidden('is_pro_fe', 0) }}
+        								<input name="is_pro_fe" type="checkbox" value="1" {{ $user->is_pro_fe ? 'CHECKED' : '' }}> Talks
+                                    </label>
+                                    <div class="help">
+                                        Sourced from <a href="https://flutterevents.com" target="_blank">https://flutterevents.com</a>
+                                    </div>
+    							</div>
+                            @else
+                                <span style="color:#888">Enable Flutter Pro to configure sources</span>
+                            @endif
 						</div>
 					</div>
 
