@@ -56,13 +56,12 @@
 
         <section class="section is-body-font" style="background-color:#fefefe">
             <div class="container" v-cloak>
-                <div v-if="profiles.length == 0" class="is-wide has-text-centered is-vertical-center"
-                style="height:400px; text-align:center; font-size: 32px; color: #AAA">
-                Loading...
+                <div v-if="profiles.length == 0" class="is-wide has-text-centered is-vertical-center" style="height:400px; text-align:center; font-size: 32px; color: #AAA">
+                    Loading...
                 </div>
                 <div v-if="profiles.length > 0 && filteredProfiles.length == 0" class="is-wide has-text-centered is-vertical-center"
-                style="height:400px; text-align:center; font-size: 32px; color: #AAA">
-                No developers found
+                    style="height:400px; text-align:center; font-size: 32px; color: #AAA">
+                    No developers found
                 </div>
             </div>
         </section>
