@@ -17,6 +17,7 @@ class AddProfileFields extends Migration
             $table->boolean('is_pro_iaw')->default(false);
             $table->boolean('is_pro_fe')->default(true);
             $table->boolean('is_pro_fx')->default(true);
+            $table->string('profile_key')->nullable()->unique();
         });
 
         Schema::table('users', function(Blueprint $table) {
@@ -52,6 +53,7 @@ class AddProfileFields extends Migration
             $table->dropColumn('is_pro_iaw');
             $table->dropColumn('is_pro_fe');
             $table->dropColumn('is_pro_fx');
+            $table->dropColumn('profile_key');
         });
     }
 }
