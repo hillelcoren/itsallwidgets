@@ -5,15 +5,15 @@ function isIAW() {
 }
 
 function isFE() {
-    return strpos(request()->url(), 'flutterevents') !== false || strpos(request()->url(), 'flutter-events') !== false;
+    return strpos(request()->url(), 'flutterevents.') !== false || strpos(request()->url(), iawUrl() . '/flutter-events') !== false;
 }
 
 function isFX() {
-    return strpos(request()->url(), 'flutterx') !== false;
+    return strpos(request()->url(), 'flutterx.') !== false;
 }
 
 function isFP() {
-    return strpos(request()->url(), 'flutterpro') !== false;
+    return strpos(request()->url(), 'flutterpro.') !== false || strpos(request()->url(), iawUrl() . '/profile') !== false;
 }
 
 function isGL() {
@@ -59,7 +59,7 @@ function fxUrl() {
 }
 
 function fpUrl() {
-    return isTest() ? (isValet() ? 'http://flutterpro.test' : 'http://127.0.0.1:8000/flutterpro') : 'https://flutterpro.dev';
+    return isTest() ? (isValet() ? 'http://flutterpro.test' : 'http://127.0.0.1:8000/profiles') : 'https://flutterpro.dev';
 }
 
 function glUrl() {
