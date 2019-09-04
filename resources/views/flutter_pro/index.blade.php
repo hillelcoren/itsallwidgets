@@ -64,7 +64,7 @@
             </div>
 
             <div class="columns is-multiline is-6 is-variable">
-                <div v-for="profile in filteredProfiles" :key="profile.id" class="column" v-bind:class="columnClass">
+                <div v-for="profile in filteredProfiles" :key="profile.id" class="column">
                     <div v-on:click="selectProfile(profile)" style="cursor:pointer">
                         <div class="flutter-app is-hover-elevated">
 
@@ -172,8 +172,8 @@ var app = new Vue({
                 if (searchStr && searchStr.length >= 3) {
                     $.get('/search_pro?search=' + encodeURIComponent(searchStr), function (data) {
                         console.log(data);
-                        app.$set(app, 'is_searching', false);
                         app.$set(app, 'profiles', data);
+                        app.$set(app, 'is_searching', false);
 
                         /*
                         var profileMap = {};
@@ -227,14 +227,6 @@ var app = new Vue({
             }
         },
 
-        modalColumClass() {
-            if (this.selected_profile.is_mobile) {
-                return 'column is-8';
-            } else {
-                return 'column is-12'
-            }
-        },
-
         unpaginatedFilteredProfiles() {
 
             var profiles = this.profiles;
@@ -249,7 +241,7 @@ var app = new Vue({
                 }
                 */
 
-                return false;
+                return true;
             });
         }
 
