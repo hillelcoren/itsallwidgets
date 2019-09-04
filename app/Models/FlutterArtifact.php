@@ -236,9 +236,19 @@ class FlutterArtifact extends Model implements Feedable
         ];
 
         foreach ($urls as $url) {
-            if ($url && strtolower($url) == strtolower(rtrim($this->meta_author_url, '/'))) {
+            if (! $url) {
+                continue;
+            }
+
+            $url = strtolower($url);
+
+            if (strpos(strtolower(rtrim($this->url, '/')), $url) == 0) {
                 return true;
             }
+
+            if (strpos(strtolower(rtrim($this->meta_author_url, '/')), $url) == 0) {
+                return true;
+            }                    
         }
 
         return false;
