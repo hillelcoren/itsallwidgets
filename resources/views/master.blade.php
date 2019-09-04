@@ -291,7 +291,7 @@
             @if (isFP())
                 'animated zoomInLeft'
             @elseif (isFX())
-                'animated bounceIn'
+                'animated zoomIn'
             @elseif (isFE())
                 'animated fadeInDown'
             @else
