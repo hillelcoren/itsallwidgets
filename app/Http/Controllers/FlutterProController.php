@@ -16,6 +16,11 @@ class FlutterProController extends Controller
         return view('flutter_pro.index', $data);
     }
 
+    public function data()
+    {
+        //return json('');
+    }
+
     public function edit()
     {
         $user = auth()->user();

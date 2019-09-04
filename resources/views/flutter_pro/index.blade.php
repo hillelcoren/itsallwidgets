@@ -23,8 +23,36 @@
 
 @section('content')
 
-    <center style="padding-top:150px; padding-bottom:150px; font-size:26px; color:#CCC">
-        COMING SOON
-    </center>
+
+    <div id="app">
+
+        <section class="hero is-light is-small is-body-font">
+            <div class="hero-body">
+                <div class="container">
+                    <div class="field is-grouped is-grouped-multiline is-vertical-center">
+                        <p class="control is-expanded has-icons-left">
+
+                            <input v-model="search" class="input is-medium" type="text" placeholder="SEARCH" BAK-v-bind:placeholder="'Search ' + unpaginatedFilteredApps.length + ' apps and counting.."
+                                autofocus="true" style="margin-top: 10px" v-bind:style="{ backgroundColor: searchBackgroundColor()}">
+                            <span class="icon is-small is-left" style="margin-top: 10px">
+                                <i class="fas fa-search"></i>
+                            </span>
+
+                            <div class="is-medium filter-label" style="padding-left: 26px;">
+                                <label class="label is-medium" style="font-weight: normal; font-size: 16px">SORT</label>
+                            </div>
+                            <div class="select is-medium filter-control" style="padding-left: 14px; font-size: 16px">
+                                <select v-model="sort_by" onchange="$(this).blur()">
+                                    <option value="sort_featured">FEATURED</option>
+                                    <option value="sort_newest">NEWEST</option>
+                                </select>
+                            </div>
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
 @endsection
