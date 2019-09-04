@@ -428,9 +428,9 @@
 				<p>&nbsp;</p>
 			@endif
 
-			@if (! auth()->user()->is_pro_iaw)
+			@if (auth()->user()->is_pro && ! auth()->user()->is_pro_iaw)
 				<div class="has-text-centered">
-					<input name="flutterpro" id="flutterpro" type="checkbox" value="1" required>
+					<input name="flutterpro" id="flutterpro" type="checkbox" value="1">
 					<label for="flutterpro">
 						&nbsp; Include apps in my {{ link_to(iawUrl() . '/profile/edit', 'flutterpro.dev', ['target' => '_blank']) }} profile [optional]
 					</label>

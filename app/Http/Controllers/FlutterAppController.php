@@ -172,6 +172,12 @@ class FlutterAppController extends Controller
         $input = $request->all();
         $app = $this->appRepo->update($app, $input);
 
+        if ($request->flutterpro) {
+            $user = auth()->user();
+            $user->is_pro_iaw = true;
+            $user->save();
+        }
+
         dispatch(new UploadScreenshot($app, 'screenshot'));
 
         return redirect('/flutter-app/' . $app->slug)->with(
