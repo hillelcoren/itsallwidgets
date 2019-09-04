@@ -32,6 +32,7 @@ class User extends Authenticatable
         'is_pro_fe',
         'is_pro_fx',
         'is_subscribed',
+        'country_code',
     ];
 
     /**

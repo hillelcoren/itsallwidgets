@@ -19,6 +19,7 @@ class AddProfileFields extends Migration
             $table->boolean('is_pro_fx')->default(true);
             $table->boolean('is_subscribed')->default(true);
             $table->string('profile_key')->nullable()->unique();
+            $table->string('country_code')->nullable()->default('');
         });
 
         Schema::table('users', function(Blueprint $table) {
@@ -56,6 +57,7 @@ class AddProfileFields extends Migration
             $table->dropColumn('is_pro_fx');
             $table->dropColumn('profile_key');
             $table->dropColumn('is_subscribed');
+            $table->dropColumn('country_code');
         });
     }
 }

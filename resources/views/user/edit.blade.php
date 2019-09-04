@@ -16,12 +16,23 @@
         <a href="{{ iawUrl() }}">It's All Widgets!</a>
 @endsection
 
+@section('head')
+    <link rel="stylesheet" href="/css/countrySelect.min.css"/>
+    <script src="/js/countrySelect.min.js"></script>
+@endsection
+
 @section('content')
 
 	<script>
-	function onFormSubmit() {
-		$('#saveButton').addClass('is-loading').prop('disabled', true);
-	}
+        $(function() {
+            $("#country").countrySelect({
+                defaultCountry: "{{ $user->country_code }}",
+            });
+        })
+
+    	function onFormSubmit() {
+    		$('#saveButton').addClass('is-loading').prop('disabled', true);
+    	}
 	</script>
 
     <section class="hero is-light is-small is-body-font">
@@ -36,7 +47,6 @@
 
     <p>&nbsp;</p>
 	<p>&nbsp;</p>
-
 
 	<div class="container is-body-font">
 		<div class="column is-8 is-offset-2">
@@ -182,6 +192,30 @@
 						</div>
 					</div>
 
+                    <div class="field">
+						<label class="label" for="country_code">
+							Country
+						</label>
+						<div class="control has-icons-left">
+
+							{{ Form::text('country', '', ['class' => 'input', 'id' => 'country']) }}
+
+                            <span style="display:none">
+                                {{ Form::text('country_code', $user->country_code, ['class' => 'input', 'id' => 'country_code']) }}
+                            </span>
+
+							<span class="icon is-small is-left">
+								<i class="fas fa-globe"></i>
+							</span>
+
+							@if ($errors->has('country_code'))
+								<span class="help is-danger">
+									{{ $errors->first('country_code') }}
+								</span>
+							@endif
+						</div>
+					</div>
+
 					<div class="field">
 						<label class="label" for="website_url">
 							Website
@@ -201,8 +235,6 @@
 							@endif
 						</div>
 					</div>
-
-
 
 					<div class="field">
 						<label class="label" for="github_url">
