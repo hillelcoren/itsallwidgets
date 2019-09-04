@@ -64,9 +64,9 @@
             </div>
 
             <div class="columns is-multiline is-6 is-variable">
-                <div v-for="profile in filteredProfiles" :key="profile.id" class="column">
+                <div v-for="profile in filteredProfiles" :key="profile.id" class="column is-one-third">
                     <div v-on:click="selectProfile(profile)" style="cursor:pointer">
-                        <div class="flutter-app is-hover-elevated">
+                        <div class="flutter-app is-hover-elevated has-text-centered">
 
                             <header style="padding: 16px">
 
@@ -76,7 +76,7 @@
                                     @{{ profile.name }}
 
                                 </p>
-                                <div style="border-bottom: 2px #368cd5 solid; width: 50px"/>
+                                <div style="border-bottom: 2px #368cd5 solid; margin-left:40%; margin-right: 40%;"></div>
 
                             </header>
 
