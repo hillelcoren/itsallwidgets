@@ -130,7 +130,7 @@ class LoadArtifacts extends Command
 
         foreach (array_reverse($artifacts->articles) as $artifact) {
             //$this->info(json_encode($artifact));
-            $this->info('Artifact: ' . $artifact->title);
+            //$this->info('Artifact: ' . $artifact->title);
 
             if ($artifact->section == 'articles') {
                 $type = 'article';
@@ -155,7 +155,6 @@ class LoadArtifacts extends Command
 
     private function parseResource($item)
     {
-        $this->info('Parse: ' . $item['title']);
         $slug = str_slug($item['title'] . '-' . $item['published_date']);
 
         if (FlutterArtifact::where('url', '=', rtrim($item['url'] , '/'))
