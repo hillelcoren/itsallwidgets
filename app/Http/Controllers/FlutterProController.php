@@ -34,8 +34,18 @@ class FlutterProController extends Controller
 
     public function show($handle)
     {
-        return "handle: $handle";
-        return view('user.show');
+        $user = User::whereHandle(strtolower($handle))->first();
+
+        if (! $user) {
+            return redirect(fpUrl());
+        }
+
+        $data = [
+            'user' => $user,
+            'useBlackHeader' => true,
+        ];
+
+        return view('user.show', $data);
     }
 
     public function update(UpdateProProfile $request)
