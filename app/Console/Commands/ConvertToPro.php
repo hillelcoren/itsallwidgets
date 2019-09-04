@@ -79,8 +79,8 @@ class ConvertToPro extends Command
         $user->save();
 
         if ($user->avatar_url && $contents = file_get_contents($user->avatar_url . '0')) {
-            $file = public_path('/avatars/avatar-pro-' . $user->id . '.jpg');
-            file_put_contents($file, $contents);
+            $output = public_path("avatars/avatar-pro-{$user->id}.png");
+            imagepng(imagecreatefromstring($contents), $output);
         }
     }
 }
