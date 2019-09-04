@@ -20,10 +20,6 @@ class FlutterProController extends Controller
     {
         $user = auth()->user();
 
-        if (!$user->is_pro) {
-            return redirect('/');
-        }
-
         $data = [
             'user' => $user,
             'useBlackHeader' => true,
