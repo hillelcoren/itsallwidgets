@@ -32,7 +32,7 @@
                     <div class="field is-grouped is-grouped-multiline is-vertical-center">
                         <p class="control is-expanded has-icons-left">
 
-                            <input v-model="search" class="input is-medium" type="text" placeholder="SEARCH" BAK-v-bind:placeholder="'Search ' + unpaginatedFilteredApps.length + ' apps and counting.."
+                            <input v-model="search" class="input is-medium" type="text" placeholder="SEARCH"
                             autofocus="true" style="margin-top: 10px" v-bind:style="{ backgroundColor: searchBackgroundColor()}">
                             <span class="icon is-small is-left" style="margin-top: 10px">
                                 <i class="fas fa-search"></i>
@@ -50,6 +50,15 @@
 
                         </p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section is-body-font" style="background-color:#fefefe">
+            <div class="container" v-cloak>
+                <div v-if="filteredProfiles.length == 0" class="is-wide has-text-centered is-vertical-center"
+                style="height:400px; text-align:center; font-size: 32px; color: #AAA">
+                No developers found
                 </div>
             </div>
         </section>
@@ -105,7 +114,7 @@
                 if (! this.search) {
                     return '#FFFFFF';
                 } else {
-                    if (this.filteredApps.length) {
+                    if (this.filteredProfiles.length) {
                         return '#FFFFBB';
                     } else {
                         return '#FFC9D9';
@@ -155,7 +164,7 @@
                 var sort_by = this.sort_by;
 
                 if (search) {
-                    apps = apps.filter(function(item) {
+                    profiles = profiles.filter(function(item) {
                         /*
                         if (item.title.toLowerCase().indexOf(search) >= 0) {
                         return true;
@@ -166,7 +175,7 @@
                 });
             }
 
-            apps.sort(function(itemA, itemB) {
+            profiles.sort(function(itemA, itemB) {
                 var timeA = false;//new Date(itemA.created_at).getTime();
                 var timeB = false;//new Date(itemB.created_at).getTime();
 
@@ -201,10 +210,10 @@ return timeB - timeA;
 }
 });
 
-return apps;
+return profiles;
 },
 
-filteredApps() {
+filteredProfiles() {
 
     profiles = this.unpaginatedFilteredProfiles;
 
