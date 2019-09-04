@@ -508,6 +508,12 @@
                                 <div>Efthymis Sarmpanis</div>
                             </a>
                         </div><br/>
+                        <div class="column is-1">
+                            <a href="https://twitter.com/flschweiger" target="_blank">
+                                <img src="{{ asset('images/img_frederik.png') }}" width="72"/><br/>
+                                <div>Frederik Schweiger</div>
+                            </a>
+                        </div><br/>
                     @else
                         <div class="column is-1">
                             <a href="https://twitter.com/ThomasBurkhartB" target="_blank">

@@ -9,7 +9,7 @@ function isFE() {
 }
 
 function isFX() {
-    return strpos(request()->url(), 'flutterx.') !== false;
+    return strpos(request()->url(), 'flutterx.') !== false || strpos(request()->url(), iawUrl() . '/flutterx') !== false;
 }
 
 function isFP() {
