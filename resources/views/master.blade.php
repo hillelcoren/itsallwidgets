@@ -287,7 +287,18 @@
     });
 
     $(function() {
-        $('div.navbar-animate').addClass('animated tada').css('visibility', 'visible');
+        $('div.navbar-animate').addClass(
+            @if (isFP())
+                'animated zoomInLeft'
+            @elseif (isFX())
+                'animated bounceIn'
+            @elseif (isFE())
+                'animated fadeInDown'
+            @else
+                'animated tada'
+            @endif
+        ).css('visibility', 'visible');
+
         $('.hero-body-animate .title, .hero-body-animate .subtitle, .hero-body-animate .button').addClass('animated fadeIn').css('visibility', 'visible');
         if (document.body.clientWidth > 1000) {
             $('span.navbar-item').addClass('animated slideInDown').css('visibility', 'visible');
@@ -332,15 +343,30 @@
                             @else
                                 @if (isFP())
                                     <a href="{{ fpUrl() }}">
-                                        <img src="{{ asset('images/logo_flutterpro.png') }}" width="240" style="padding-top: 12px; padding-left: 12px;"/>
+                                        <div style="display:inline-block;vertical-align:top;">
+                                            <img src="{{ asset('images/logo_blank.png') }}" width="80" style="padding-top: 12px; padding-left: 12px;"></img>
+                                        </div>
+                                        <div style="display:inline-block; font-size: 32px; padding-top:26px; padding-left:8px; font-weight: bold">
+                                            Flutter Pro
+                                        </div>
                                     </a>
                                 @elseif (isFE())
                                     <a href="{{ feUrl() }}">
-                                        <img src="{{ asset('images/logo_flutterevents.png') }}" width="240" style="padding-top: 12px; padding-left: 12px;"/>
+                                        <div style="display:inline-block;vertical-align:top;">
+                                            <img src="{{ asset('images/logo_blank.png') }}" width="80" style="padding-top: 12px; padding-left: 12px;"/>
+                                        </div>
+                                        <div style="display:inline-block; font-size: 32px; padding-top:26px; padding-left:8px; font-weight: bold">
+                                            Flutter Events
+                                        </div>
                                     </a>
                                 @elseif (isFX())
                                     <a href="{{ fxUrl() }}">
-                                        <img src="{{ asset('images/logo_flutterx.png') }}" width="240" style="padding-top: 12px; padding-left: 12px;"/>
+                                        <div style="display:inline-block;vertical-align:top;">
+                                            <img src="{{ asset('images/logo_blank.png') }}" width="80" style="padding-top: 12px; padding-left: 12px;"/>
+                                        </div>
+                                        <div style="display:inline-block; font-size: 32px; padding-top:26px; padding-left:8px; font-weight: bold">
+                                            FlutterX
+                                        </div>
                                     </a>
                                 @else
                                     <a href="{{ iawUrl() }}">
