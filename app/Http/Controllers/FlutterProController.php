@@ -51,7 +51,7 @@ class FlutterProController extends Controller
         $user->save();
 
         if ($input = $_FILES['avatar']['tmp_name']) {
-            $output = public_path("avatars/avatar-pro-{$user->id}.png");
+            $output = public_path("avatars/{$user->profile_key}.png");
             imagepng(imagecreatefromstring(file_get_contents($input)), $output);
         }
 
