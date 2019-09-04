@@ -6,6 +6,7 @@ use App\Models\FlutterApp;
 use App\Models\FlutterArtifact;
 use App\Models\FlutterEvent;
 use App\Models\UserActivity;
+use App\Models\User;
 use Exception;
 use Illuminate\Console\Command;
 use App\Repositories\UserActivityRepository;
@@ -50,29 +51,31 @@ class LinkActivities extends Command
     {
         $this->info('Running...');
 
-        $this->linkEvents();
-        $this->linkArtifacts();
-        $this->linkApps();
+        $users = User::whereIsPro(true)->orderBy('id')->get();
+
+        $this->linkEvents($users);
+        $this->linkArtifacts($users);
+        $this->linkApps($users);
 
         $this->info('Done');
     }
 
-    private function linkEvents(): void
+    private function linkEvents($users): void
     {
-        $this->linkActivities(FlutterEvent::all(), 'flutter_event');
+        $this->linkActivities(FlutterEvent::all(), 'flutter_event', $users);
     }
 
-    private function linkApps(): void
+    private function linkApps($users): void
     {
-        $this->linkActivities(FlutterApp::all(), 'flutter_app');
+        $this->linkActivities(FlutterApp::all(), 'flutter_app', $users);
     }
 
-    private function linkArtifacts(): void
+    private function linkArtifacts($users): void
     {
-        $this->linkActivities(FlutterArtifact::all(), 'flutter_artifact');
+        $this->linkActivities(FlutterArtifact::all(), 'flutter_artifact', $users);
     }
 
-    private function linkActivities($activities, $type): void
+    private function linkActivities($activities, $type, $users): void
     {
         $message = 'Linking Activities of ' . $type . '...';
         $this->info($message);
@@ -80,6 +83,9 @@ class LinkActivities extends Command
         $total = sizeOf($activities);
         $count = 0;
         foreach ($activities as $activity) {
+
+            $this->info($type . ' activity ' . $activity->id);
+
             if (UserActivity::where([
                 ['activity_type', '=', $type],
                 ['activity_id', '=', $activity->id],
@@ -87,12 +93,15 @@ class LinkActivities extends Command
                 $this->info($type . ' activity ' . $activity->id . ' exists: skipping...');
                 continue;
             }
+
+            /*
             try {
                 $this->activityRepo->store($activity->user_id, $activity->id, $type);
                 $count++;
             } catch (Exception $e) {
                 $this->error('Error while linking artifact: ' . $activity->id);
             }
+            */
         }
 
         $this->info($message . 'Done. Linked ' . $count . '/' . $total);
