@@ -44,7 +44,7 @@ class ConvertToPro extends Command
 
     public function handle()
     {
-        $this->info('Running...');
+        //$this->info('Running...');
 
         if ($this->user) {
             $this->convertUser($this->user);
@@ -54,7 +54,7 @@ class ConvertToPro extends Command
             }
         }
 
-        $this->info('Done');
+        //$this->info('Done');
     }
 
     public function convertUser($user)
@@ -78,7 +78,17 @@ class ConvertToPro extends Command
         $user->handle = $handle;
         $user->save();
 
-        if ($user->avatar_url && $contents = file_get_contents($user->avatar_url . '0')) {
+        $url = $user->avatar_url;
+
+        if (strpos($url, '/photo.jpg?sz=50') != null) {
+            $url = rtrim($url, '50') . '300';
+        } else if (strpos($url, '/photo.jpg') != null) {
+            $url = $url . '?sz=300';
+        } else {
+            $url = $url . '=s300-c';
+        }
+
+        if ($url && $contents = file_get_contents($url)) {
             $output = public_path("avatars/avatar-pro-{$user->id}.png");
             imagepng(imagecreatefromstring($contents), $output);
         }

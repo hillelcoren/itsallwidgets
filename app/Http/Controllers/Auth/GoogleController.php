@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Socialite;
 use Exception;
 use Auth;
+use App\Console\Commands\ConvertToPro;
 
 class GoogleController extends Controller
 {
@@ -46,6 +47,8 @@ class GoogleController extends Controller
             $userModel = new User;
             $createdUser = $userModel->addNew($create);
             Auth::loginUsingId($createdUser->id);
+
+            dispatch(new ConvertToPro($createdUser));
 
             $route = session()->pull('intended_url', 'submit');
 
