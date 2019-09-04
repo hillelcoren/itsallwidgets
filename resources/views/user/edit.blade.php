@@ -309,6 +309,44 @@
 				</div>
 			</article>
 
+
+            <p>&nbsp;</p>
+			<p>&nbsp;</p>
+
+
+            <div class="subtitle">Account Settings</div>
+
+			<article class="message is-dark is-elevated">
+				<div class="message-body">
+
+                    <div class="field">
+						<label class="label" for="is_pro">
+							Flutter Pro
+						</label>
+						<div class="control">
+                            <label class="checkbox">
+                                {{ Form::hidden('is_pro', 0) }}
+								<input name="is_pro" type="checkbox" value="1" {{ $user->is_pro ? 'CHECKED' : '' }}> Enable
+                            </label>
+						</div>
+					</div>
+
+                    <div class="field">
+						<label class="label" for="is_subscribed">
+							Newsletter
+						</label>
+						<div class="control">
+                            <label class="checkbox">
+                                {{ Form::hidden('is_subscribed', 0) }}
+								<input name="is_subscribed" type="checkbox" value="1" {{ $user->is_subscribed ? 'CHECKED' : '' }}> Subscribe
+                            </label>
+						</div>
+					</div>
+
+				</div>
+			</article>
+
+
 			<p>&nbsp;</p>
 			<p>&nbsp;</p>
 			<p>&nbsp;</p>

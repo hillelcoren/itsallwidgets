@@ -27,9 +27,11 @@ class User extends Authenticatable
         'medium_url',
         'linkedin_url',
         'bio',
+        'is_pro',
         'is_pro_iaw',
         'is_pro_fe',
         'is_pro_fx',
+        'is_subscribed',
     ];
 
     /**

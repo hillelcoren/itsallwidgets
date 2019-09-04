@@ -17,6 +17,7 @@ class AddProfileFields extends Migration
             $table->boolean('is_pro_iaw')->default(true);
             $table->boolean('is_pro_fe')->default(true);
             $table->boolean('is_pro_fx')->default(true);
+            $table->boolean('is_subscribed')->default(true);
             $table->string('profile_key')->nullable()->unique();
         });
 
@@ -54,6 +55,7 @@ class AddProfileFields extends Migration
             $table->dropColumn('is_pro_fe');
             $table->dropColumn('is_pro_fx');
             $table->dropColumn('profile_key');
+            $table->dropColumn('is_subscribed');
         });
     }
 }
