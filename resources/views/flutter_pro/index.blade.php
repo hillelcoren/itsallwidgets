@@ -168,7 +168,7 @@
                 if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
 
                 this.bounceTimeout = setTimeout(function() {
-                    if (searchStr && searchStr.length >= 3) {
+                    if (!profiles.length || (searchStr && searchStr.length >= 3)) {
                         $.get('/search_pro?search=' + encodeURIComponent(searchStr), function (data) {
                             console.log(data);
                             app.$set(app, 'profiles', data);
@@ -184,6 +184,10 @@
                 }, 500);
             },
 
+        },
+
+        beforeMount(){
+           this.serverSearch();
         },
 
         mounted () {
