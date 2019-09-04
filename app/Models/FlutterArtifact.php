@@ -219,6 +219,10 @@ class FlutterArtifact extends Model implements Feedable
             return true;
         }
 
+        if ($user->website_url && strpos(strtolower($this->url), strtolower($user->website_url)) !== false) {
+            return true;
+        }
+
         if ($this->meta_author_twitter && 'https://twitter.com/' . strtolower(rtrim($this->meta_author_twitter, '/')) == strtolower($user->twitter_url)) {
             return true;
         }
@@ -228,6 +232,7 @@ class FlutterArtifact extends Model implements Feedable
             $user->github_url,
             $user->youtube_url,
             $user->website_url,
+            $user->linkedin_url,
         ];
 
         foreach ($urls as $url) {
