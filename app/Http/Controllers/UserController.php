@@ -34,6 +34,11 @@ class UserController extends Controller
         $user->fill($request->all());
         $user->save();
 
+        if ($input = $_FILES['avatar']['tmp_name']) {
+            $output = public_path("avatars/avatar-pro-{$user->id}.png");
+            imagepng(imagecreatefromstring(file_get_contents($input)), $output);
+        }
+
         return redirect('/profile/edit')->with(
             'status',
             'Your profile has been successfully updated!');

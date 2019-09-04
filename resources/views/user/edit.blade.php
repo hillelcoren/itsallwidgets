@@ -97,7 +97,6 @@
 						</div>
 					</div>
 
-
 					<div class="field">
 						<label class="label" for="title">
 							Sources
@@ -147,6 +146,22 @@
 
 			<article class="message is-dark is-elevated">
 				<div class="message-body">
+
+                    <div class="field">
+						<label class="label" for="avatar">
+							Avatar Image
+						</label>
+						<div class="control">
+
+							{{ Form::file('avatar') }}
+
+							@if ($errors->has('avatar'))
+								<span class="help is-danger">
+									{{ $errors->first('avatar') }}
+								</span>
+							@endif
+						</div>
+					</div>
 
 					<div class="field">
 						<label class="label" for="bio">
