@@ -96,7 +96,7 @@
 							</span>
 
                             <span class="help">
-                                Profile Link <a href="https://flutterpro.dev/{{ $user->handle }}" target="_blank">https://flutterpro.dev/{{ $user->handle }}</a>
+                                Profile Link <a href="https://flutterpro.dev/{{ $user->handle }}" target="_blank">flutterpro.dev/{{ $user->handle }}</a>
                             </span>
 
 							@if ($errors->has('handle'))
@@ -119,7 +119,7 @@
         								<input name="is_pro_iaw" type="checkbox" value="1" {{ $user->is_pro_iaw ? 'CHECKED' : '' }}> Applications
                                     </label>
                                     <div class="help">
-                                        Sourced from <a href="https://itsallwidgets.com" target="_blank">https://itsallwidgets.com</a>
+                                        Sourced from <a href="https://itsallwidgets.com" target="_blank">itsallwidgets.com</a>
                                     </div>
     							</div>
 
@@ -129,7 +129,7 @@
         								<input name="is_pro_fx" type="checkbox" value="1" {{ $user->is_pro_fx ? 'CHECKED' : '' }}> Resources
                                     </label>
                                     <div class="help">
-                                        Sourced from <a href="https://flutterx.com" target="_blank">https://flutterx.com</a>
+                                        Sourced from <a href="https://flutterx.com" target="_blank">flutterx.com</a>
                                     </div>
     							</div>
 
@@ -139,7 +139,7 @@
         								<input name="is_pro_fe" type="checkbox" value="1" {{ $user->is_pro_fe ? 'CHECKED' : '' }}> Talks
                                     </label>
                                     <div class="help">
-                                        Sourced from <a href="https://flutterevents.com" target="_blank">https://flutterevents.com</a>
+                                        Sourced from <a href="https://flutterevents.com" target="_blank">flutterevents.com</a>
                                     </div>
     							</div>
                             @else
