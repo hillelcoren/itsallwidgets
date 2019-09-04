@@ -87,10 +87,10 @@ class LinkActivities extends Command
         {
             foreach ($activities as $activity)
             {
-                $this->info($type . ' activity ' . $activity->id);
+                //$this->info($type . ' activity ' . $activity->id);
 
                 if (! $activity->matchesUser($user)) {
-                    $this->info($type . ' activity ' . $activity->id . ' not a match: skipping...');
+                    //$this->info($type . ' activity ' . $activity->id . ' not a match: skipping...');
                     continue;
                 }
 
