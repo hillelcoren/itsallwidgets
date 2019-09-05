@@ -228,4 +228,23 @@ class FlutterEvent extends Model implements Feedable
     {
         return strpos(strtolower($this->description), strtolower($user->name)) !== false;
     }
+
+    public function activityLinkURL()
+    {
+        return $this->event_url;
+    }
+
+    public function activityLinkTitle()
+    {
+        return $this->event_name;
+    }
+
+    public function activityMessage()
+    {
+        if ($this->event_date < date('Y-m-d')) {
+            return 'Will be speaking at :link';
+        } else {
+            return 'Gave a talk at :link';
+        }
+    }
 }

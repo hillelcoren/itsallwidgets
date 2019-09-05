@@ -250,4 +250,20 @@ class FlutterArtifact extends Model implements Feedable
 
         return false;
     }
+
+    public function activityLinkURL()
+    {
+        return $this->url;
+    }
+
+    public function activityLinkTitle()
+    {
+        return $this->title;
+    }
+
+    public function activityMessage()
+    {
+        return 'Shared :link';
+    }
+
 }

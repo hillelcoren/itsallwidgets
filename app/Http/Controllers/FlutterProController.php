@@ -21,7 +21,7 @@ class FlutterProController extends Controller
         $data = [];
         $search = strtolower(request()->search);
         //$profiles = User::whereIsPro(true)->search($search)->get();
-        $users = User::whereIsPro(true)->with('userActivities')->limit(1)->get();
+        $users = User::whereIsPro(true)->with('userActivities')->limit(12)->get();
 
         foreach ($users as $user)
         {
@@ -49,10 +49,10 @@ class FlutterProController extends Controller
             $activity = $activities[0];
 
             $obj->activity_count = $activities->count();
-            $obj->activity_message = $activity->activity->id;
-            $obj->activity_url = $activity->activity_type;
+            $obj->activity_message = $activity->activity->activityMessage();
+            $obj->activity_link_url = $activity->activity->activityLinkURL();
+            $obj->activity_link_title = $activity->activity->activityLinkTitle();
 
-            echo(json_encode($obj));exit;
             $data[] = $obj;
         }
 

@@ -131,9 +131,18 @@ class FlutterApp extends Model implements Feedable
         return $user->id == $this->user_id;
     }
 
-    public function activityURL()
+    public function activityLinkURL()
     {
-        
+        return $this->url();
     }
 
+    public function activityLinkTitle()
+    {
+        return $this->title;
+    }
+
+    public function activityMessage()
+    {
+        return 'Shared their app :link';
+    }
 }
