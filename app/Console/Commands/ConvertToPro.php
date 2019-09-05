@@ -91,7 +91,7 @@ class ConvertToPro extends Command
                 $url = $url . '=s300-c';
             }
 
-            if ($user->avatar_url && $contents = file_get_contents($url)) {
+            if ($user->avatar_url && $contents = @file_get_contents($url)) {
                 $output = public_path("avatars/{$user->profile_key}.png");
                 imagepng(imagecreatefromstring($contents), $output);
                 $user->image_url = "avatars/{$user->profile_key}.png";
