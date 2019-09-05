@@ -13,6 +13,7 @@ use App\Observers\PodcastEpisodeObserver;
 use Cache;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,12 @@ class AppServiceProvider extends ServiceProvider
     */
     public function boot()
     {
+        Relation::morphMap([
+            'flutter_app' => 'App\Models\FlutterApp',
+            'flutter_event' => 'App\Models\FlutterEvent',
+            'flutter_artifact' => 'App\Models\FlutterArtifact',
+        ]);
+
         FlutterApp::observe(FlutterAppObserver::class);
         FlutterArtifact::observe(FlutterArtifactObserver::class);
         FlutterEvent::observe(FlutterEventObserver::class);

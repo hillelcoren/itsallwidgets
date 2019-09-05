@@ -26,6 +26,16 @@
     height: 300px;
 }
 
+
+.fa-github,
+.fa-twitter,
+.fa-medium,
+.fa-linkedin,
+.fa-youtube {
+    color: #888 !important;
+    font-size: 22px !important;
+}
+
 .fa-github:hover,
 .fa-twitter:hover,
 .fa-medium:hover,
@@ -109,35 +119,35 @@
                                 <span v-if="profile.github_url">
                                     <span class="icon-bug-fix" style="padding:12px">
                                         <a v-if="profile.github_url" v-bind:href="profile.github_url" target="_blank" v-on:click.stop rel="nofollow">
-                                            <i style="font-size: 25px; color: #888;" class="fab fa-github"></i>
+                                            <i class="fab fa-github"></i>
                                         </a>
                                     </span>
                                 </span>
                                 <span v-if="profile.youtube_url">
                                     <span class="icon-bug-fix" style="padding:12px">
                                         <a v-bind:href="profile.youtube_url" target="_blank" v-on:click.stop rel="nofollow">
-                                            <i style="font-size: 25px; color: #888" class="fab fa-youtube"></i>
+                                            <i class="fab fa-youtube"></i>
                                         </a>
                                     </span>
                                 </span>
                                 <span v-if="profile.twitter_url">
                                     <span class="icon-bug-fix" style="padding:12px">
                                         <a v-bind:href="profile.twitter_url" target="_blank" v-on:click.stop rel="nofollow">
-                                            <i style="font-size: 25px; color: #888" class="fab fa-twitter"></i>
+                                            <i class="fab fa-twitter"></i>
                                         </a>
                                     </span>
                                 </span>
                                 <span v-if="profile.medium_url">
                                     <span class="icon-bug-fix" style="padding:12px">
                                         <a v-bind:href="profile.medium_url" target="_blank" v-on:click.stop rel="nofollow">
-                                            <i style="font-size: 25px; color: #888" class="fab fa-medium"></i>
+                                            <i class="fab fa-medium"></i>
                                         </a>
                                     </span>
                                 </span>
                                 <span v-if="profile.linkedin_url">
                                     <span class="icon-bug-fix" style="padding:12px">
                                         <a v-bind:href="profile.linkedin_url" target="_blank" v-on:click.stop rel="nofollow">
-                                            <i style="font-size: 25px; color: #888" class="fab fa-linkedin"></i>
+                                            <i class="fab fa-linkedin"></i>
                                         </a>
                                     </span>
                                 </span>

@@ -25,19 +25,12 @@ class UserActivity extends Model implements Feedable
         return $this->belongsTo('App\Models\User');
     }
 
-    public function flutterApps()
+    /**
+     * Get all of the owning activity models.
+     */
+    public function activity()
     {
-        return $this->morphMany('App\FlutterApp', 'activity');
-    }
-
-    public function flutterEvents()
-    {
-        return $this->morphMany('App\FlutterEvent', 'activity');
-    }
-
-    public function flutterArtifacts()
-    {
-        return $this->morphMany('App\FlutterArtifact', 'activity');
+        return $this->morphTo();
     }
 
     /**

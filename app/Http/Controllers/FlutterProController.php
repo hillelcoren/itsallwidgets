@@ -21,25 +21,29 @@ class FlutterProController extends Controller
         $data = [];
         $search = strtolower(request()->search);
         //$profiles = User::whereIsPro(true)->search($search)->get();
-        $profiles = User::whereIsPro(true)->get();
+        $users = User::whereIsPro(true)->limit(12)->get();
 
-        foreach ($profiles as $profile)
+        foreach ($users as $user)
         {
             //$str = mb_convert_encoding($str, 'UTF-8', 'UTF-8');
-
             $obj = new \stdClass;
-            $obj->id = $profile->profile_key;
-            $obj->name = $profile->name;
-            $obj->handle = $profile->handle;
-            $obj->bio = $profile->bio;
-            $obj->country_code = $profile->country_code;
-            $obj->is_for_hire = $profile->is_for_hire;
-            $obj->website_url = $profile->website_url;
-            $obj->github_url = $profile->github_url;
-            $obj->youtube_url = $profile->youtube_url;
-            $obj->twitter_url = $profile->twitter_url;
-            $obj->medium_url = $profile->medium_url;
-            $obj->linkedin_url = $profile->linkedin_url;
+            $obj->id = $user->profile_key;
+            $obj->name = $user->name;
+            $obj->handle = $user->handle;
+            $obj->bio = $user->bio;
+            $obj->country_code = $user->country_code;
+            $obj->is_for_hire = $user->is_for_hire;
+            $obj->website_url = $user->website_url;
+            $obj->github_url = $user->github_url;
+            $obj->youtube_url = $user->youtube_url;
+            $obj->twitter_url = $user->twitter_url;
+            $obj->medium_url = $user->medium_url;
+            $obj->linkedin_url = $user->linkedin_url;
+
+            $activity = $user->userActivities->first();
+            dd($activity->activity);
+            dd($activity->activity_id . ': ' . $activity->activity_type);
+
 
             $data[] = $obj;
         }

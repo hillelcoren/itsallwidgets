@@ -121,12 +121,9 @@ class FlutterApp extends Model implements Feedable
         return '@' . $part;
     }
 
-    /**
-     * Get all of the owning activity models.
-     */
-    public function activity()
+    public function activities()
     {
-        return $this->morphTo();
+        return $this->morphMany('App\Models\UserActivity', 'activity');
     }
 
     public function matchesUser($user)

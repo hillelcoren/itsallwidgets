@@ -48,6 +48,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function userActivities()
+    {
+        return $this->hasMany('App\Models\UserActivity')->orderBy('id', 'desc');
+    }
+
     public function addNew($input)
     {
         $check = static::where('google_id', $input['google_id'])->first();

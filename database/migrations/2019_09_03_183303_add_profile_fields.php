@@ -59,6 +59,7 @@ class AddProfileFields extends Migration
             $table->dropColumn('profile_key');
             $table->dropColumn('is_subscribed');
             $table->dropColumn('country_code');
+            $table->dropColumn('is_for_hire');
         });
     }
 }
