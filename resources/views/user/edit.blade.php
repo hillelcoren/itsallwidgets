@@ -161,6 +161,26 @@
 				<div class="message-body">
 
                     <div class="field">
+						<label class="label" for="profile_url">
+							Flutter Web
+						</label>
+						<div class="control has-icons-left">
+
+							{{ Form::url('profile_url', $user->profile_url, ['class' => 'input', 'placeholder' => 'https://example.com']) }}
+
+							<span class="icon is-small is-left">
+								<i class="fas fa-globe"></i>
+							</span>
+
+							@if ($errors->has('profile_url'))
+								<span class="help is-danger">
+									{{ $errors->first('profile_url') }}
+								</span>
+							@endif
+						</div>
+					</div>
+
+                    <div class="field">
 						<label class="label" for="avatar">
 							Image
 						</label>
