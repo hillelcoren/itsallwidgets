@@ -25,6 +25,7 @@ class AddProfileFields extends Migration
             $table->string('country_code')->nullable()->default('');
             $table->boolean('is_for_hire')->default(false);
             $table->date('last_activity')->nullable();
+            $table->string('image_url')->nullable()->default('');
         });
 
         Schema::table('users', function(Blueprint $table) {
@@ -71,6 +72,9 @@ class AddProfileFields extends Migration
             $table->dropColumn('is_for_hire');
             $table->dropColumn('instagram_url');
             $table->dropColumn('last_activity');
+            $table->dropColumn('image_url');
         });
+
+        DB::statement('ALTER TABLE users DROP INDEX fulltext_index;');
     }
 }

@@ -46,6 +46,7 @@ class FlutterProController extends Controller
             //$str = mb_convert_encoding($str, 'UTF-8', 'UTF-8');
             $obj = new \stdClass;
             $obj->id = $user->profile_key;
+            $obj->image_url = $user->image_url;
             $obj->name = $user->name;
             $obj->handle = $user->handle;
             $obj->bio = $user->bio;

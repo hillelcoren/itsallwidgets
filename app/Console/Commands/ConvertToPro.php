@@ -77,7 +77,6 @@ class ConvertToPro extends Command
         $user->is_pro = true;
         $user->handle = $handle;
         $user->profile_key = str_random(64);
-        $user->save();
 
         $url = $user->avatar_url;
 
@@ -92,6 +91,9 @@ class ConvertToPro extends Command
         if ($user->avatar_url && $contents = file_get_contents($url)) {
             $output = public_path("avatars/{$user->profile_key}.png");
             imagepng(imagecreatefromstring($contents), $output);
+            $user->image_url = $output;
         }
+
+        $user->save();
     }
 }

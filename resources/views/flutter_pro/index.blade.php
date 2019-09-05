@@ -117,8 +117,12 @@ padding: 1rem 1rem 4rem 1rem;
 
                                 <header style="padding-top: 25px">
                                     <div style="height: 100px">
-                                        <img v-bind:src="'/avatars/' + profile.id + '.png'" style="border-radius: 50%; width: 120px;"
-                                        onerror="this.onerror=null; this.src='/images/flutter_logo.png'; this.style['border-radius'] = 0; this.style.width = '96px'"/>
+                                        <span v-if="profile.image_url">
+                                            <img v-bind:src="profile.image_url" style="border-radius: 50%; width: 120px;"/>
+                                        </span>
+                                        <span v-if="!profile.image_url">
+                                            <img v-bind:src="/images/flutter_logo.png" style="border-radius: 50%; width: 120px;"/>
+                                        </span>
                                     </div><br/>
 
                                     <p class="no-wrap" style="font-size:22px; padding-top:20px; padding-bottom:8px;">

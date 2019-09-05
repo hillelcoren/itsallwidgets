@@ -19,6 +19,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'image_url',
         'google_id',
         'avatar_url',
         'profile_url',
@@ -37,6 +38,7 @@ class User extends Authenticatable
         'is_subscribed',
         'country_code',
         'is_for_hire',
+        'last_activity',
     ];
 
     /**
