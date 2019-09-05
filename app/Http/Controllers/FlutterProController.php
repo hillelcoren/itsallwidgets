@@ -107,6 +107,9 @@ class FlutterProController extends Controller
 
     public function show($handle)
     {
+        // TODO remove this
+        return redirect('https://flutterpro.dev');
+
         $user = User::whereHandle(strtolower($handle))->first();
 
         if (! $user) {
