@@ -85,7 +85,7 @@ class LinkActivities extends Command
 
         foreach ($users as $user)
         {
-            if (strlen($user->name) < 6) {
+            if (strlen($user->name) < 10) {
                 continue;
             }
 
