@@ -112,7 +112,7 @@ class User extends Authenticatable
 
     public function jsonUrl()
     {
-        return url('/' . $this->handle . '/json');
+        return fpUrl() . '/' . $this->handle . '/json';
     }
 
     public function isActivityTypeActive($type)
