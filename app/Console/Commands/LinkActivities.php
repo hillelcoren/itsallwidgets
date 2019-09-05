@@ -99,13 +99,19 @@ class LinkActivities extends Command
                     continue;
                 }
 
-                try {
-                    $this->info('LINKING');
-                    $this->activityRepo->store($activity->user_id, $activity->id, $type);
-                    $count++;
-                } catch (Exception $e) {
-                    $this->error('Error while linking artifact: ' . $activity->id);
+                $this->info('LINKING');
+
+                if ($type == 'flutter_app') {
+                    $user->count_apps++;
+                } else if ($type == 'flutter_event') {
+                    $user->count_events++;
+                } else {
+                    $user->count_artifacts++;
                 }
+                $user->save();
+
+                $this->activityRepo->store($activity->user_id, $activity->id, $type);
+                $count++;
             }
         }
 

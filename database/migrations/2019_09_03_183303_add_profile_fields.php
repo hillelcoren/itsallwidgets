@@ -18,6 +18,9 @@ class AddProfileFields extends Migration
             $table->boolean('is_pro_fe')->default(true);
             $table->boolean('is_pro_fx')->default(true);
             $table->boolean('is_subscribed')->default(true);
+            $table->integer('count_apps')->default(0);
+            $table->integer('count_events')->default(0);
+            $table->integer('count_artifacts')->default(0);
             $table->string('profile_key')->nullable()->unique();
             $table->string('country_code')->nullable()->default('');
             $table->boolean('is_for_hire')->default(false);
@@ -63,6 +66,9 @@ class AddProfileFields extends Migration
             $table->dropColumn('country_code');
             $table->dropColumn('is_for_hire');
             $table->dropColumn('instagram_url');
+            $table->dropColumn('count_apps');
+            $table->dropColumn('count_events');
+            $table->dropColumn('count_artifacts');
         });
     }
 }

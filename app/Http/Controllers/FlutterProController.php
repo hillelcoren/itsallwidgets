@@ -33,7 +33,7 @@ class FlutterProController extends Controller
         if ($sortBy == 'newest') {
             $users->orderBy('id', 'desc');
         } else {
-            
+
         }
 
         foreach ($users->get() as $user)
