@@ -59,40 +59,44 @@ class ConvertToPro extends Command
 
     public function convertUser($user)
     {
-        if ($user->is_pro) {
-            return;
+        $user->is_pro = true;
+
+        if (! $usr->profile_key) {
+            $user->profile_key = str_random(64);
         }
 
-        $handle = str_slug($user->name, '');
-        $counter = 1;
+        if (! $user->handle) {
+            $handle = str_slug($user->name, '');
+            $counter = 1;
 
-        if (User::whereHandle($handle)->count()) {
-            while (User::whereHandle($handle . $counter)->count()) {
-                $counter++;
+            if (User::whereHandle($handle)->count()) {
+                while (User::whereHandle($handle . $counter)->count()) {
+                    $counter++;
+                }
+
+                $handle = $handle . $counter;
             }
 
-            $handle = $handle . $counter;
+            $user->handle = $handle;
         }
 
-        $user->is_pro = true;
-        $user->handle = $handle;
-        $user->profile_key = str_random(64);
+        if (! $user->image_url) {
+            $url = $user->avatar_url;
 
-        $url = $user->avatar_url;
+            if (strpos($url, '/photo.jpg?sz=50') != null) {
+                $url = rtrim($url, '50') . '300';
+            } else if (strpos($url, '/photo.jpg') != null) {
+                $url = $url . '?sz=300';
+            } else {
+                $url = $url . '=s300-c';
+            }
 
-        if (strpos($url, '/photo.jpg?sz=50') != null) {
-            $url = rtrim($url, '50') . '300';
-        } else if (strpos($url, '/photo.jpg') != null) {
-            $url = $url . '?sz=300';
-        } else {
-            $url = $url . '=s300-c';
-        }
-
-        if ($user->avatar_url && $contents = file_get_contents($url)) {
-            $output = public_path("avatars/{$user->profile_key}.png");
-            imagepng(imagecreatefromstring($contents), $output);
-            $user->image_url = "avatars/{$user->profile_key}.png";
-        }
+            if ($user->avatar_url && $contents = file_get_contents($url)) {
+                $output = public_path("avatars/{$user->profile_key}.png");
+                imagepng(imagecreatefromstring($contents), $output);
+                $user->image_url = "avatars/{$user->profile_key}.png";
+            }
+        }            
 
         $user->save();
     }
