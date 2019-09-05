@@ -70,9 +70,13 @@ class FlutterProController extends Controller
             $str = '<pre>' . json_encode($user->toObject(), JSON_PRETTY_PRINT) . '</pre';
 
             if (request()->instructions) {
+                /*
                 $str = 'You can use the <a href="' . $user->jsonUrl() . '" target="_blank">JSON feed</a> to create a custom profile with <a href="https://flutter.dev/web" target="_blank">Flutter Web</a>.<p/>'
                     . 'Once the page is setup <a href="' . iawUrl() . '/auth/google?intended_url=profile/edit" target="_blank">click here</a> to configure the Flutter Web URL.'
                     . $str;
+                    */
+
+                $str = 'You can use the JSON feed to create a custom profile with Flutter Web.<p/>' . $user->jsonUrl() . '<p/>' . $str;
             }
 
             return $str;
