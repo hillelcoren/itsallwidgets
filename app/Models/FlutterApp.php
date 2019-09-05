@@ -147,13 +147,15 @@ class FlutterApp extends Model implements Feedable
 
     public function activityMessage()
     {
-        return substr($this->short_description . ' ' . $this->long_description, 0, 300);
+        return substr($this->short_description . '. ' . $this->long_description, 0, 300);
     }
 
     public function toObject()
     {
         $obj = new \stdClass;
         $obj->name = $this->title;
+        $obj->description = $this->short_description;
+        $obj->url = $this->url();
 
         return $obj;
     }
