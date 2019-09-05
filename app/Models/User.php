@@ -110,9 +110,14 @@ class User extends Authenticatable
         return static::where('is_admin', '=', true)->first();
     }
 
+    public function url()
+    {
+        return fpUrl() . '/' . $this->handle;
+    }
+
     public function jsonUrl($isPretty = false)
     {
-        return fpUrl() . '/' . $this->handle . '/json' . ($isPretty ? '?pretty=true' : '');
+        return $this->url() . '/json' . ($isPretty ? '?pretty=true' : '');
     }
 
     public function isActivityTypeActive($type)

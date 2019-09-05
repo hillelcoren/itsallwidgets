@@ -63,7 +63,13 @@ class FlutterProController extends Controller
         }
 
         if (request()->pretty) {
-            return '<pre>' . json_encode($user->toObject(), JSON_PRETTY_PRINT) . '</pre';
+            $str = '<pre>' . json_encode($user->toObject(), JSON_PRETTY_PRINT) . '</pre';
+
+            if (request()->instructions) {
+                $str = 'You can use the <a href="' . $user->jsonUrl() . '" target="_blank">JSON feed</a> to create a custom profile with <a href="" target="_blank">Flutter Web</a>.' . $str;
+            }
+
+            return $str;
         } else {
             return response()->json($user->toObject());
         }
