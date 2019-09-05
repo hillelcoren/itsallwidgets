@@ -76,9 +76,9 @@ class FlutterProController extends Controller
                 }
 
                 $obj->activity_count = $activities->count();
-                $obj->activity_message = $activity->activity->activityMessage();
+                $obj->activity_message = mb_convert_encoding($activity->activity->activityMessage(), 'UTF-8', 'UTF-8');
                 $obj->activity_link_url = $activity->activity->activityLinkURL();
-                $obj->activity_link_title = $activity->activity->activityLinkTitle();
+                $obj->activity_link_title = mb_convert_encoding($activity->activity->activityLinkTitle(), 'UTF-8', 'UTF-8');
 
                 break;
             }
