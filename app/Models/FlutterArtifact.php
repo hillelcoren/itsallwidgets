@@ -212,6 +212,10 @@ class FlutterArtifact extends Model implements Feedable
 
     public function matchesUser($user)
     {
+        if (! $this->is_approved || ! $this->is_visible) {
+            return false;
+        }
+
         if ($this->meta_author && strtolower($this->meta_author) == strtolower($user->name)) {
             return true;
         }

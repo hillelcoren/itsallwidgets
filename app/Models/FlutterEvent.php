@@ -226,6 +226,10 @@ class FlutterEvent extends Model implements Feedable
 
     public function matchesUser($user)
     {
+        if (! $this->is_approved || ! $this->is_visible) {
+            return false;
+        }
+
         return strpos(strtolower($this->description), strtolower($user->name)) !== false;
     }
 

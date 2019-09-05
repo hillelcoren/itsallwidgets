@@ -128,6 +128,10 @@ class FlutterApp extends Model implements Feedable
 
     public function matchesUser($user)
     {
+        if (! $this->is_approved || ! $this->is_visible) {
+            return false;
+        }
+
         return $user->id == $this->user_id;
     }
 
