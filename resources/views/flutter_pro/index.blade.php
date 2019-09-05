@@ -215,21 +215,20 @@ padding: 1rem 1rem 4rem 1rem;
                     </a>
                 </center>
 
+                <div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_profile">
+                    <div class="modal-background" v-on:click="selectProfile()"></div>
+                    <div class="modal-card is-body-font">
+                        <header class="modal-card-head">
+                            <p class="modal-card-title"></p>
+                            <button class="delete" aria-label="close" v-on:click="selectProfile()"></button>
+                        </header>
+                        <section class="modal-card-body" @click.stop>
+                            TESTING
 
-            </div>
-
-            <div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_profile">
-                <div class="modal-background" v-on:click="selectProfile()"></div>
-                <div class="modal-card is-body-font">
-                    <header class="modal-card-head">
-                        <p class="modal-card-title"></p>
-                        <button class="delete" aria-label="close" v-on:click="selectProfile()"></button>
-                    </header>
-                    <section class="modal-card-body" @click.stop>
-                        TESTING
-
-                    </section>
+                        </section>
+                    </div>
                 </div>
+
             </div>
 
             <script>
@@ -314,7 +313,7 @@ padding: 1rem 1rem 4rem 1rem;
                             this.selected_profile = profile;
                             if (history.pushState) {
                                 if (app) {
-                                    var route = '/' + profile.handle;
+                                    var route = '/' + (profile ? profile.handle : '');
                                     gtag('config', '{{ $tracking_id }}', {'page_path': route});
                                     history.pushState(null, null, route);
                                 } else {
