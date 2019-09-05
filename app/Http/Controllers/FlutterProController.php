@@ -24,9 +24,7 @@ class FlutterProController extends Controller
 
         $users = User::whereIsPro(true)
             ->whereNotNull('last_activity')
-            ->with('userActivities')
-            ->limit(12)
-            ->offset(((request()->page ?: 1) - 1) * 12);
+            ->with('userActivities');
 
         if ($search) {
             $users->search($search);
@@ -45,6 +43,8 @@ class FlutterProController extends Controller
         } else {
             $users->orderByRaw(\DB::raw("count_apps + count_artifacts + (count_events*2) DESC"));
         }
+
+        $users->limit(12)->offset(((request()->page ?: 1) - 1) * 12);
 
         foreach ($users->get() as $user)
         {
