@@ -121,17 +121,17 @@ padding: 1rem 1rem 4rem 1rem;
                                             <img v-bind:src="profile.image_url" style="border-radius: 50%; width: 120px;"/>
                                         </span>
                                         <span v-if="!profile.image_url">
-                                            <img v-bind:src="/images/flutter_logo.png" style="border-radius: 50%; width: 120px;"/>
+                                            <img src="/images/flutter_logo.png" style="width: 94px;"/>
                                         </span>
                                     </div><br/>
 
-                                    <p class="no-wrap" style="font-size:22px; padding-top:20px; padding-bottom:8px;">
+                                    <p class="no-wrap" style="font-size:22px; padding-top:18px; padding-bottom:14px;">
                                         @{{ profile.name }}
                                     </p>
                                     <div style="border-bottom: 2px #368cd5 solid; margin-left:40%; margin-right: 40%;"></div>
                                 </header>
 
-                                <div class="content" style="padding-left:16px; padding-right:16px; padding-top: 0px;">
+                                <div class="content" style="padding-left:16px; padding-right:16px; padding-top: 2px;">
 
                                     <div class="short-description" style="padding-top:16px;">
                                         <a v-bind:href="profile.activity_link_url" target="_blank" v-on:click.stop rel="nofollow">
