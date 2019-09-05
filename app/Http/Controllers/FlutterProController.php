@@ -64,6 +64,19 @@ class FlutterProController extends Controller
             $obj->medium_url = $user->medium_url;
             $obj->linkedin_url = $user->linkedin_url;
             $obj->instagram_url = $user->instagram_url;
+
+            $counts = [];
+            if ($user->count_apps > 0) {
+                $counts[] = $user->count_apps . ($user->count_apps == 1 ? ' App' : ' Apps');
+            }
+            if ($user->count_artifacts > 0) {
+                $counts[] = $user->count_artifacts . ($user->count_artifacts == 1 ? ' Resource' : ' Resources');
+            }
+            if ($user->count_events > 0) {
+                $counts[] = $user->count_events . ($user->count_events == 1 ? ' Event' : ' Events');
+            }
+
+            $obj->counts = join(' • ', $counts);
             $obj->activity_count = 0;
             $obj->activity_message = '';
             $obj->activity_link_url = '';

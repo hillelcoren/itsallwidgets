@@ -23,14 +23,14 @@
 .profile-panel {
     background-color: white;
     border-radius: 8px;
-    height: 360px;
+    height: 408px;
 }
 
 .short-description {
     padding-left: 16px;
     padding-right: 16px;
     line-height: 1.5em;
-    height: 5em;
+    height: 5.0em;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -107,7 +107,7 @@ padding: 1rem 1rem 4rem 1rem;
         <section class="section is-body-font" style="background-color:#fefefe">
 
             <div class="container" v-cloak>
-                <div v-if="filteredProfiles.length == 0" class="is-wide has-text-centered is-vertical-center" style="height:400px; text-align:center; font-size: 32px; color: #AAA">
+                <div v-if="filteredProfiles.length == 0" class="is-wide has-text-centered is-vertical-center" style="text-align:center; font-size: 32px; color: #AAA">
                     <span v-if="is_searching">Loading...</span>
                     <span v-if="! is_searching">No developers found</span>
                 </div>
@@ -141,6 +141,10 @@ padding: 1rem 1rem 4rem 1rem;
 
                                             • @{{ profile.activity_message }}
                                         </div>
+                                    </div>
+
+                                    <div style="color:#888; font-size:15px; padding-bottom:20px">
+                                        @{{ profile.counts }}
                                     </div>
 
                                     <span v-if="profile.github_url">
