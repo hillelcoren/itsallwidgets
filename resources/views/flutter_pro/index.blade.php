@@ -105,274 +105,262 @@ padding: 1rem 1rem 4rem 1rem;
         <section class="section is-body-font" style="background-color:#fefefe">
 
             <div class="container" v-cloak>
-                <div v-if="filteredProfiles.length == 0" class="is-wide has-text-centered is-vertical-center"
-                style="height:400px; text-align:center; font-size: 32px; color: #AAA">
-                <span v-if="is_searching">Loading...</span>
-                <span v-if="! is_searching">No developers found</span>
-            </div>
-
-            <div class="columns is-multiline is-6 is-variable">
-                <div v-for="profile in filteredProfiles" :key="profile.id" class="column is-one-third">
-                    <div v-on:click="selectProfile(profile)" style="cursor:pointer">
-                        <div class="profile-panel is-hover-elevated has-text-centered">
-
-                            <header style="padding-top: 25px">
-                                <div style="height: 100px">
-                                    <img v-bind:src="'/avatars/' + profile.id + '.png'" style="border-radius: 50%; width: 120px;"
-                                    onerror="this.onerror=null; this.src='/images/flutter_logo.png'; this.style['border-radius'] = 0; this.style.width = '96px'"/>
-                                </div><br/>
-
-                                <p class="no-wrap" style="font-size:22px; padding-top:20px; padding-bottom:8px;">
-                                    @{{ profile.name }}
-                                </p>
-                                <div style="border-bottom: 2px #368cd5 solid; margin-left:40%; margin-right: 40%;"></div>
-                            </header>
-
-                            <div class="content" style="padding-left:16px; padding-right:16px; padding-top: 0px;">
-
-                                <div class="short-description" style="padding-top:16px;">
-                                    <a v-bind:href="profile.activity_link_url" target="_blank" v-on:click.stop rel="nofollow">
-                                        @{{ profile.activity_link_title }}</a>
-
-                                        • @{{ profile.activity_message }}
-                                    </div>
-                                </div>
-
-                                <span v-if="profile.github_url">
-                                    <span class="icon-bug-fix" style="padding:12px">
-                                        <a v-if="profile.github_url" v-bind:href="profile.github_url" target="_blank" v-on:click.stop rel="nofollow">
-                                            <i class="fab fa-github"></i>
-                                        </a>
-                                    </span>
-                                </span>
-                                <span v-if="profile.youtube_url">
-                                    <span class="icon-bug-fix" style="padding:12px">
-                                        <a v-bind:href="profile.youtube_url" target="_blank" v-on:click.stop rel="nofollow">
-                                            <i class="fab fa-youtube"></i>
-                                        </a>
-                                    </span>
-                                </span>
-                                <span v-if="profile.twitter_url">
-                                    <span class="icon-bug-fix" style="padding:12px">
-                                        <a v-bind:href="profile.twitter_url" target="_blank" v-on:click.stop rel="nofollow">
-                                            <i class="fab fa-twitter"></i>
-                                        </a>
-                                    </span>
-                                </span>
-                                <span v-if="profile.medium_url">
-                                    <span class="icon-bug-fix" style="padding:12px">
-                                        <a v-bind:href="profile.medium_url" target="_blank" v-on:click.stop rel="nofollow">
-                                            <i class="fab fa-medium"></i>
-                                        </a>
-                                    </span>
-                                </span>
-                                <span v-if="profile.linkedin_url">
-                                    <span class="icon-bug-fix" style="padding:12px">
-                                        <a v-bind:href="profile.linkedin_url" target="_blank" v-on:click.stop rel="nofollow">
-                                            <i class="fab fa-linkedin"></i>
-                                        </a>
-                                    </span>
-                                </span>
-                                <span v-if="profile.instagram_url">
-                                    <span class="icon-bug-fix" style="padding:12px">
-                                        <a v-bind:href="profile.instagram_url" target="_blank" v-on:click.stop rel="nofollow">
-                                            <i class="fab fa-instagram"></i>
-                                        </a>
-                                    </span>
-                                </span>
-                            </div>
-
-                        </div>
-                        <p>&nbsp;</p>
-                    </div>
+                <div v-if="filteredProfiles.length == 0" class="is-wide has-text-centered is-vertical-center" style="height:400px; text-align:center; font-size: 32px; color: #AAA">
+                    <span v-if="is_searching">Loading...</span>
+                    <span v-if="! is_searching">No developers found</span>
                 </div>
 
+                <div class="columns is-multiline is-6 is-variable">
+                    <div v-for="profile in filteredProfiles" :key="profile.id" class="column is-one-third">
+                        <div v-on:click="selectProfile(profile)" style="cursor:pointer">
+                            <div class="profile-panel is-hover-elevated has-text-centered">
 
-            </section>
+                                <header style="padding-top: 25px">
+                                    <div style="height: 100px">
+                                        <img v-bind:src="'/avatars/' + profile.id + '.png'" style="border-radius: 50%; width: 120px;"
+                                        onerror="this.onerror=null; this.src='/images/flutter_logo.png'; this.style['border-radius'] = 0; this.style.width = '96px'"/>
+                                    </div><br/>
 
-            <center>
+                                    <p class="no-wrap" style="font-size:22px; padding-top:20px; padding-bottom:8px;">
+                                        @{{ profile.name }}
+                                    </p>
+                                    <div style="border-bottom: 2px #368cd5 solid; margin-left:40%; margin-right: 40%;"></div>
+                                </header>
 
-                <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(-1)" v-if="page_number > 1">
-                    <span class="icon-bug-fix">
-                        <i style="font-size: 18px" class="fas fa-chevron-circle-left"></i> &nbsp;&nbsp;
-                    </span>
-                    Previous Page
-                </a> &nbsp;
-                <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)">
-                    Next Page &nbsp;&nbsp;
-                    <span>
-                        <i style="font-size: 18px" class="fas fa-chevron-circle-right"></i>
-                    </span>
-                </a>
-            </center>
+                                <div class="content" style="padding-left:16px; padding-right:16px; padding-top: 0px;">
+
+                                    <div class="short-description" style="padding-top:16px;">
+                                        <a v-bind:href="profile.activity_link_url" target="_blank" v-on:click.stop rel="nofollow">
+                                            @{{ profile.activity_link_title }}</a>
+
+                                            • @{{ profile.activity_message }}
+                                        </div>
+                                    </div>
+
+                                    <span v-if="profile.github_url">
+                                        <span class="icon-bug-fix" style="padding:12px">
+                                            <a v-if="profile.github_url" v-bind:href="profile.github_url" target="_blank" v-on:click.stop rel="nofollow">
+                                                <i class="fab fa-github"></i>
+                                            </a>
+                                        </span>
+                                    </span>
+                                    <span v-if="profile.youtube_url">
+                                        <span class="icon-bug-fix" style="padding:12px">
+                                            <a v-bind:href="profile.youtube_url" target="_blank" v-on:click.stop rel="nofollow">
+                                                <i class="fab fa-youtube"></i>
+                                            </a>
+                                        </span>
+                                    </span>
+                                    <span v-if="profile.twitter_url">
+                                        <span class="icon-bug-fix" style="padding:12px">
+                                            <a v-bind:href="profile.twitter_url" target="_blank" v-on:click.stop rel="nofollow">
+                                                <i class="fab fa-twitter"></i>
+                                            </a>
+                                        </span>
+                                    </span>
+                                    <span v-if="profile.medium_url">
+                                        <span class="icon-bug-fix" style="padding:12px">
+                                            <a v-bind:href="profile.medium_url" target="_blank" v-on:click.stop rel="nofollow">
+                                                <i class="fab fa-medium"></i>
+                                            </a>
+                                        </span>
+                                    </span>
+                                    <span v-if="profile.linkedin_url">
+                                        <span class="icon-bug-fix" style="padding:12px">
+                                            <a v-bind:href="profile.linkedin_url" target="_blank" v-on:click.stop rel="nofollow">
+                                                <i class="fab fa-linkedin"></i>
+                                            </a>
+                                        </span>
+                                    </span>
+                                    <span v-if="profile.instagram_url">
+                                        <span class="icon-bug-fix" style="padding:12px">
+                                            <a v-bind:href="profile.instagram_url" target="_blank" v-on:click.stop rel="nofollow">
+                                                <i class="fab fa-instagram"></i>
+                                            </a>
+                                        </span>
+                                    </span>
+                                </div>
+
+                            </div>
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
 
 
-        </div>
+                </section>
 
-        <script>
+                <center>
 
-        function isStorageSupported() {
-            try {
-                return 'localStorage' in window && window['localStorage'] !== null;
-            } catch (e) {
-                return false;
+                    <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(-1)" v-if="page_number > 1">
+                        <span class="icon-bug-fix">
+                            <i style="font-size: 18px" class="fas fa-chevron-circle-left"></i> &nbsp;&nbsp;
+                        </span>
+                        Previous Page
+                    </a> &nbsp;
+                    <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)">
+                        Next Page &nbsp;&nbsp;
+                        <span>
+                            <i style="font-size: 18px" class="fas fa-chevron-circle-right"></i>
+                        </span>
+                    </a>
+                </center>
+
+
+            </div>
+
+            <script>
+
+            function isStorageSupported() {
+                try {
+                    return 'localStorage' in window && window['localStorage'] !== null;
+                } catch (e) {
+                    return false;
+                }
+            };
+
+            function getCachedSortBy() {
+                return (isStorageSupported() ? localStorage.getItem('pro_sort_by') : false) || 'sort_featured';
             }
-        };
 
-        function getCachedSortBy() {
-            return (isStorageSupported() ? localStorage.getItem('pro_sort_by') : false) || 'sort_featured';
-        }
+            var app = new Vue({
+                el: '#app',
 
-        var app = new Vue({
-            el: '#app',
-
-            watch: {
-                search: {
-                    handler() {
-                        app.serverSearch();
+                watch: {
+                    search: {
+                        handler() {
+                            app.serverSearch();
+                        },
+                    },
+                    page_number: {
+                        handler() {
+                            app.serverSearch();
+                        },
+                    },
+                    sort_by: {
+                        handler() {
+                            app.serverSearch();
+                            app.saveFilters();
+                        },
                     },
                 },
-                page_number: {
-                    handler() {
-                        app.serverSearch();
+
+                methods: {
+
+                    adjustPage: function(change) {
+                        this.page_number += change;
+                        document.body.scrollTop = 0; // For Safari
+                        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
                     },
-                },
-                sort_by: {
-                    handler() {
-                        app.serverSearch();
-                        app.saveFilters();
+
+                    setFilter: function(filter) {
+                        filter = filter || '';
+                        this.search = filter.toLowerCase();
                     },
-                },
-            },
 
-            methods: {
-
-                adjustPage: function(change) {
-                    this.page_number += change;
-                    document.body.scrollTop = 0; // For Safari
-                    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-                },
-
-                setFilter: function(filter) {
-                    filter = filter || '';
-                    this.search = filter.toLowerCase();
-                },
-
-                saveFilters: function() {
-                    if (! isStorageSupported()) {
-                        return false;
-                    }
-
-                    localStorage.setItem('sort_by', this.sort_by);
-                },
-
-                searchBackgroundColor: function() {
-                    if (! this.search) {
-                        return '#FFFFFF';
-                    } else {
-                        if (this.is_searching) {
-                            return '#FFFFBB';
-                        } else if (this.filteredProfiles.length) {
-                            return '#FFFFBB';
-                        } else {
-                            return '#FFC9D9';
+                    saveFilters: function() {
+                        if (! isStorageSupported()) {
+                            return false;
                         }
-                    }
-                },
 
-                serverSearch: function() {
-                    var app = app || this;
-                    var searchStr = this.search;
-                    var profiles = this.profiles;
-                    var sortBy = this.sort_by;
-                    var page = this.page_number;
+                        localStorage.setItem('sort_by', this.sort_by);
+                    },
 
-                    app.$set(app, 'is_searching', true);
-                    if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
-
-                    this.bounceTimeout = setTimeout(function() {
-                        $.get('/search_pro?search=' + encodeURIComponent(searchStr) + '&sort_by=' + sortBy + '&page=' + page,
-                            function (data) {
-                            console.log(data);
-                            app.$set(app, 'profiles', data);
-                            app.$set(app, 'is_searching', false);
-                        });
-                    }, 500);
-                },
-
-            },
-
-            beforeMount(){
-                this.serverSearch();
-            },
-
-            mounted () {
-                window.addEventListener('keyup', function(event) {
-                    if (event.keyCode == 27) {
-                        //app.selectApp();
-                    }
-                });
-            },
-
-            data: {
-                profiles: [],
-                search: "{{ request()->search }}",
-                sort_by: getCachedSortBy(),
-                selected_profile: false,
-                page_number: 1,
-                is_searching: false,
-            },
-
-            computed: {
-
-                modalClass() {
-                    if (this.selected_profile) {
-                        return {'is-active': true};
-                    } else {
-                        return {};
-                    }
-                },
-
-                unpaginatedFilteredProfiles() {
-
-                    var profiles = this.profiles;
-                    var search = this.search.toLowerCase().trim();
-                    var sort_by = this.sort_by;
-
-                    if (search) {
-                        profiles = profiles.filter(function(item) {
-
-                            return true;
-                        });
-                    }
-
-                    profiles.sort(function(itemA, itemB) {
-                        var timeA = false;//new Date(itemA.created_at).getTime();
-                        var timeB = false;//new Date(itemB.created_at).getTime();
-
-                        if (sort_by == 'sort_newest') {
-                            return timeB - timeA;
+                    searchBackgroundColor: function() {
+                        if (! this.search) {
+                            return '#FFFFFF';
                         } else {
+                            if (this.is_searching) {
+                                return '#FFFFBB';
+                            } else if (this.filteredProfiles.length) {
+                                return '#FFFFBB';
+                            } else {
+                                return '#FFC9D9';
+                            }
+                        }
+                    },
+
+                    serverSearch: function() {
+                        var app = app || this;
+                        var searchStr = this.search;
+                        var profiles = this.profiles;
+                        var sortBy = this.sort_by;
+                        var page = this.page_number;
+
+                        app.$set(app, 'is_searching', true);
+                        if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
+
+                        this.bounceTimeout = setTimeout(function() {
+                            $.get('/search_pro?search=' + encodeURIComponent(searchStr) + '&sort_by=' + sortBy + '&page=' + page,
+                            function (data) {
+                                console.log(data);
+                                app.$set(app, 'profiles', data);
+                                app.$set(app, 'is_searching', false);
+                            });
+                        }, 500);
+                    },
+
+                },
+
+                beforeMount(){
+                    this.serverSearch();
+                },
+
+                mounted () {
+                    window.addEventListener('keyup', function(event) {
+                        if (event.keyCode == 27) {
+                            //app.selectApp();
                         }
                     });
-
-                    return profiles;
                 },
 
-                filteredProfiles() {
-
-                    profiles = this.unpaginatedFilteredProfiles;
-
-                    var startIndex = (this.page_number - 1) * 40;
-                    var endIndex = startIndex + 40;
-                    profiles = profiles.slice(startIndex, endIndex);
-
-                    return profiles;
+                data: {
+                    profiles: [],
+                    search: "{{ request()->search }}",
+                    sort_by: getCachedSortBy(),
+                    selected_profile: false,
+                    page_number: 1,
+                    is_searching: false,
                 },
-            }
 
-        });
+                computed: {
 
-        </script>
+                    modalClass() {
+                        if (this.selected_profile) {
+                            return {'is-active': true};
+                        } else {
+                            return {};
+                        }
+                    },
 
-    @endsection
+                    filteredProfiles() {
+
+                        var profiles = this.profiles;
+                        var search = this.search.toLowerCase().trim();
+                        var sort_by = this.sort_by;
+
+                        if (search) {
+                            profiles = profiles.filter(function(item) {
+
+                                return true;
+                            });
+                        }
+
+                        profiles.sort(function(itemA, itemB) {
+                            var timeA = false;//new Date(itemA.created_at).getTime();
+                            var timeB = false;//new Date(itemB.created_at).getTime();
+
+                            if (sort_by == 'sort_newest') {
+                                return timeB - timeA;
+                            } else {
+                            }
+                        });
+
+                        return profiles;
+                    },
+                }
+
+            });
+
+            </script>
+
+        @endsection
