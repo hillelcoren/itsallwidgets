@@ -13,7 +13,6 @@ class AddProfileFields extends Migration
      */
     public function up()
     {
-        /*
         Schema::table('users', function(Blueprint $table) {
             $table->boolean('is_pro_iaw')->default(true);
             $table->boolean('is_pro_fe')->default(true);
@@ -27,9 +26,6 @@ class AddProfileFields extends Migration
             $table->boolean('is_for_hire')->default(false);
             $table->date('last_activity')->nullable();
             $table->string('image_url')->nullable()->default('');
-        });
-
-        Schema::table('users', function(Blueprint $table) {
             $table->string('profile_url')->nullable()->default('');
             $table->string('website_url')->nullable()->default('');
             $table->string('github_url')->nullable()->default('');
@@ -38,10 +34,6 @@ class AddProfileFields extends Migration
             $table->string('medium_url')->nullable()->default('');
             $table->string('linkedin_url')->nullable()->default('');
             $table->string('instagram_url')->nullable()->default('');
-        });
-        */
-
-        Schema::table('users', function(Blueprint $table) {
             $table->string('handle')->nullable()->unique();
             $table->text('bio')->nullable();
             $table->boolean('is_pro')->default(false);
