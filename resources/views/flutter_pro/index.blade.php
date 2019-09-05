@@ -23,6 +23,7 @@
 .profile-panel {
     background-color: white;
     border-radius: 8px;
+    height: 300px;
 }
 
 /*
@@ -86,9 +87,9 @@
 
                             <header style="padding: 16px">
 
-                                <div>
+                                <div style="height: 100px">
                                     <img v-bind:src="'/avatars/' + profile.id + '.png'" style="border-radius: 50%; width: 120px;"
-                                        onerror="this.onerror=null; this.src='/images/flutter_logo.png'; this.style['border-radius'] = 0; this.style.width = '95px'"/>
+                                        onerror="this.onerror=null; this.src='/images/flutter_logo.png'; this.style['border-radius'] = 0; this.style.width = '96px'"/>
                                 </div><br/>
 
                                 <p class="no-wrap" style="font-size:22px; padding-bottom:10px;">
