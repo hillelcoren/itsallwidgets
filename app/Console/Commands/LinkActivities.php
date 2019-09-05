@@ -53,9 +53,9 @@ class LinkActivities extends Command
 
         $users = User::whereIsPro(true)->orderBy('id')->get();
 
+        $this->linkApps($users);
         $this->linkEvents($users);
         $this->linkArtifacts($users);
-        $this->linkApps($users);
 
         $this->info('Done');
     }

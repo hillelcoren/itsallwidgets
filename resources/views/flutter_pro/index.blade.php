@@ -295,7 +295,6 @@ padding: 1rem 1rem 4rem 1rem;
                         this.bounceTimeout = setTimeout(function() {
                             $.get('/search_pro?search=' + encodeURIComponent(searchStr) + '&sort_by=' + sortBy + '&page=' + page,
                             function (data) {
-                                console.log(data);
                                 app.$set(app, 'profiles', data);
                                 app.$set(app, 'is_searching', false);
                             });
