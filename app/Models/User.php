@@ -131,12 +131,14 @@ class User extends Authenticatable
     public function toObject()
     {
         $obj = new \stdClass;
-        $obj->id = $this->profile_key;
-        $obj->image_url = $this->image_url;
+        if (request()->counts) {
+            $obj->id = $this->profile_key;
+            $obj->image_url = $this->image_url;
+            $obj->profile_url = $this->profile_url ?: $this->jsonUrl(true);
+        }
         $obj->name = $this->name;
         $obj->handle = $this->handle;
         $obj->bio = $this->bio;
-        $obj->profile_url = $this->profile_url ?: $this->jsonUrl(true);
         $obj->country_code = $this->country_code;
         $obj->is_for_hire = $this->is_for_hire;
         $obj->website_url = $this->website_url;
@@ -147,22 +149,25 @@ class User extends Authenticatable
         $obj->linkedin_url = $this->linkedin_url;
         $obj->instagram_url = $this->instagram_url;
 
-        $counts = [];
-        if ($this->count_apps > 0) {
-            $counts[] = $this->count_apps . ($this->count_apps == 1 ? ' App' : ' Apps');
-        }
-        if ($this->count_artifacts > 0) {
-            $counts[] = $this->count_artifacts . ($this->count_artifacts == 1 ? ' Resource' : ' Resources');
-        }
-        if ($this->count_events > 0) {
-            $counts[] = $this->count_events . ($this->count_events == 1 ? ' Event' : ' Events');
+        if (request()->counts) {
+            $counts = [];
+            if ($this->count_apps > 0) {
+                $counts[] = $this->count_apps . ($this->count_apps == 1 ? ' App' : ' Apps');
+            }
+            if ($this->count_artifacts > 0) {
+                $counts[] = $this->count_artifacts . ($this->count_artifacts == 1 ? ' Resource' : ' Resources');
+            }
+            if ($this->count_events > 0) {
+                $counts[] = $this->count_events . ($this->count_events == 1 ? ' Event' : ' Events');
+            }
+
+            $obj->counts = join(' • ', $counts);
+            $obj->activity_count = 0;
+            $obj->activity_message = '';
+            $obj->activity_link_url = '';
+            $obj->activity_link_title = '';
         }
 
-        $obj->counts = join(' • ', $counts);
-        $obj->activity_count = 0;
-        $obj->activity_message = '';
-        $obj->activity_link_url = '';
-        $obj->activity_link_title = '';
         $obj->activities = [];
 
         $activities = $this->userActivities;
@@ -173,7 +178,7 @@ class User extends Authenticatable
                 continue;
             }
 
-            if (! $obj->activity_message) {
+            if (request()->counts && ! $obj->activity_message) {
                 $obj->activity_count = $activities->count();
                 $obj->activity_message = mb_convert_encoding($activity->activity->activityMessage(), 'UTF-8', 'UTF-8');
                 $obj->activity_link_url = $activity->activity->activityLinkURL();
