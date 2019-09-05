@@ -17,7 +17,6 @@ Route::group(['domain' => '127.0.0.1'], function() {
     Route::get('profiles', 'FlutterProController@index');
     Route::get('profiles/{handle}', 'FlutterProController@show');
     Route::get('search_pro', 'FlutterProController@search');
-    Route::get('{handle}', 'FlutterProController@show');
     Route::get('flutterx', 'FlutterArtifactController@index');
     Route::get('search', 'FlutterArtifactController@search');
     Route::get('flutterx/sitemap.xml', 'FlutterArtifactController@sitemap');
