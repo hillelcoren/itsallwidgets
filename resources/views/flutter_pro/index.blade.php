@@ -218,6 +218,21 @@ padding: 1rem 1rem 4rem 1rem;
 
             </div>
 
+            <div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_profile">
+                <div class="modal-background" v-on:click="selectApp()"></div>
+                <div class="modal-card is-body-font">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title"></p>
+                        <button class="delete" aria-label="close" v-on:click="selectApp()"></button>
+                    </header>
+                    <section class="modal-card-body" @click.stop>
+
+
+
+                    </section>
+                </div>
+            </div>
+
             <script>
 
             function isStorageSupported() {
@@ -264,6 +279,7 @@ padding: 1rem 1rem 4rem 1rem;
 
                     setFilter: function(filter) {
                         filter = filter || '';
+                        this.selectProfile();
                         this.search = filter.toLowerCase();
                     },
 
@@ -285,6 +301,26 @@ padding: 1rem 1rem 4rem 1rem;
                                 return '#FFFFBB';
                             } else {
                                 return '#FFC9D9';
+                            }
+                        }
+                    },
+
+                    selectProfile: function(profile) {
+
+                        if (false && document.body.clientWidth < 1000) {
+                            if (app) {
+                                window.location = '/' + profile.handle;
+                            }
+                        } else {
+                            this.selected_profile = profile;
+                            if (history.pushState) {
+                                if (app) {
+                                    var route = '/' + profile.handle;
+                                    gtag('config', '{{ $tracking_id }}', {'page_path': route});
+                                    history.pushState(null, null, route);
+                                } else {
+                                    history.pushState(null, null, '/');
+                                }
                             }
                         }
                     },
@@ -317,7 +353,7 @@ padding: 1rem 1rem 4rem 1rem;
                 mounted () {
                     window.addEventListener('keyup', function(event) {
                         if (event.keyCode == 27) {
-                            //app.selectApp();
+                            app.selectProfile();
                         }
                     });
                 },
