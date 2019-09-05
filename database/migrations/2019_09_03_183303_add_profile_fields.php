@@ -29,15 +29,6 @@ class AddProfileFields extends Migration
             $table->string('image_url')->nullable()->default('');
         });
         */
-        Schema::table('users', function(Blueprint $table) {
-            //$table->dropColumn('profile_url');
-            $table->dropColumn('website_url');
-            $table->dropColumn('github_url');
-            $table->dropColumn('youtube_url');
-            $table->dropColumn('twitter_url');
-            $table->dropColumn('medium_url');
-            $table->dropColumn('linkedin_url');
-        });
 
         Schema::table('users', function(Blueprint $table) {
             $table->string('profile_url')->nullable()->default('');
