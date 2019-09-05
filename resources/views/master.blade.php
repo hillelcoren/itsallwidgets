@@ -50,7 +50,7 @@
         <link rel="shortcut icon" href="{{ asset('/images/favicon.png') }}">
     @endif
 
-    <link href="https://fonts.googleapis.com/css?family=Overpass:200,400,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Overpass:200,400,800" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/bulma.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bulma-extensions.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
@@ -289,7 +289,7 @@
     $(function() {
         $('div.navbar-animate').addClass(
             @if (isFP())
-                'animated zoomIn'
+                'animated zoomInLeft'
             @elseif (isFX())
                 'animated zoomIn'
             @elseif (isFE())
