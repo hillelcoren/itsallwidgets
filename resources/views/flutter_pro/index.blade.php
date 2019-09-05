@@ -197,7 +197,7 @@ padding: 1rem 1rem 4rem 1rem;
                         </span>
                         Previous Page
                     </a> &nbsp;
-                    <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)">
+                    <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)" v-if="filteredProfiles.length == 12">
                         Next Page &nbsp;&nbsp;
                         <span>
                             <i style="font-size: 18px" class="fas fa-chevron-circle-right"></i>
