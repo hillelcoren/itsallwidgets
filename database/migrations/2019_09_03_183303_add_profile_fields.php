@@ -13,6 +13,7 @@ class AddProfileFields extends Migration
      */
     public function up()
     {
+        /*
         Schema::table('users', function(Blueprint $table) {
             $table->boolean('is_pro_iaw')->default(true);
             $table->boolean('is_pro_fe')->default(true);
@@ -27,9 +28,9 @@ class AddProfileFields extends Migration
             $table->date('last_activity')->nullable();
             $table->string('image_url')->nullable()->default('');
         });
-
+        */
         Schema::table('users', function(Blueprint $table) {
-            $table->dropColumn('profile_url');
+            //$table->dropColumn('profile_url');
             $table->dropColumn('website_url');
             $table->dropColumn('github_url');
             $table->dropColumn('youtube_url');
