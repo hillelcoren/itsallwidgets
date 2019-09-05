@@ -109,4 +109,17 @@ class User extends Authenticatable
     {
         return static::where('is_admin', '=', true)->first();
     }
+
+    public function isActivityTypeActive($type)
+    {
+        if ($type == 'flutter_app' && $this->is_pro_iaw) {
+            return true;
+        } else if ($type == 'flutter_event' && $this->is_pro_fe) {
+            return true;
+        } else if ($type == 'flutter_artifact' && $this->is_pro_fx) {
+            return true;
+        }
+
+        return false;
+    }
 }

@@ -87,6 +87,10 @@ class LinkActivities extends Command
         {
             foreach ($activities as $activity)
             {
+                if (! $user->isActivityTypeActive($type)) {
+                    continue;
+                }
+
                 if (! $activity->matchesUser($user)) {
                     continue;
                 }

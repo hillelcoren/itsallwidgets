@@ -38,7 +38,7 @@ class FlutterProController extends Controller
             $users->orderBy('last_activity', 'desc');
         } else {
             //$users->orderByRaw(\DB::raw("count_apps + (count_artifacts*2) + (count_events*3) DESC"));
-            $users->orderByRaw(\DB::raw("count_apps + count_artifacts + count_events DESC"));
+            $users->orderByRaw(\DB::raw("count_apps + count_artifacts + count_events DESC, id DESC"));
         }
 
         foreach ($users->get() as $user)
@@ -59,6 +59,10 @@ class FlutterProController extends Controller
             $obj->medium_url = $user->medium_url;
             $obj->linkedin_url = $user->linkedin_url;
             $obj->instagram_url = $user->instagram_url;
+            $obj->activity_count = 0;
+            $obj->activity_message = '';
+            $obj->activity_link_url = '';
+            $obj->activity_link_title = '';
 
             $activities = $user->userActivities;
 
@@ -66,12 +70,19 @@ class FlutterProController extends Controller
                 continue;
             }
 
-            $activity = $activities[0];
+            foreach ($activities as $activity) {
 
-            $obj->activity_count = $activities->count();
-            $obj->activity_message = $activity->activity->activityMessage();
-            $obj->activity_link_url = $activity->activity->activityLinkURL();
-            $obj->activity_link_title = $activity->activity->activityLinkTitle();
+                if (! $user->isActivityTypeActive($activity->activity_type)) {
+                    continue;
+                }
+
+                $obj->activity_count = $activities->count();
+                $obj->activity_message = $activity->activity->activityMessage();
+                $obj->activity_link_url = $activity->activity->activityLinkURL();
+                $obj->activity_link_title = $activity->activity->activityLinkTitle();
+
+                break;
+            }
 
             $data[] = $obj;
         }

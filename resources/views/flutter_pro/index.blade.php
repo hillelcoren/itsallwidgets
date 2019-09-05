@@ -95,7 +95,6 @@ padding: 1rem 1rem 4rem 1rem;
                                     <option value="sort_newest">NEWEST</option>
                                 </select>
                             </div>
-
                         </p>
                     </div>
                 </div>
