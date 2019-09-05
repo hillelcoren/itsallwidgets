@@ -23,7 +23,19 @@
 .profile-panel {
     background-color: white;
     border-radius: 8px;
-    height: 300px;
+    height: 340px;
+}
+
+.short-description {
+    padding-left: 16px;
+    padding-right: 16px;
+    line-height: 1.5em;
+    height: 4.5em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
 }
 
 
@@ -153,7 +165,7 @@
                                 </span>
                             </div>
 
-                            <div>
+                            <div class="short-description">
                                 @{{ profile.activity_message_intro }}
 
                                 <a v-bind:href="profile.activity_link_url" target="_blank" v-on:click.stop rel="nofollow">
