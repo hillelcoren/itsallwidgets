@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Traits\FullTextSearch;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use FullTextSearch;
 
     /**
     * The attributes that are mass assignable.
@@ -46,6 +48,20 @@ class User extends Authenticatable
         'email',
         'google_id',
         'remember_token',
+    ];
+
+    protected $searchable = [
+        'name',
+        'handle',
+        'bio',
+        'country_code',
+        'website_url',
+        'github_url',
+        'youtube_url',
+        'twitter_url',
+        'medium_url',
+        'linkedin_url',
+        'instagram_url',
     ];
 
     public function userActivities()

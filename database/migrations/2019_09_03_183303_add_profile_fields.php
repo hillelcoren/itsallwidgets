@@ -41,8 +41,10 @@ class AddProfileFields extends Migration
             $table->string('twitter_url')->nullable()->default('');
             $table->string('medium_url')->nullable()->default('');
             $table->string('linkedin_url')->nullable()->default('');
+            $table->string('instagram_url')->nullable()->default('');
         });
 
+        DB::statement('ALTER TABLE users ADD FULLTEXT fulltext_index (name, handle, bio, country_code, website_url, github_url, youtube_url, twitter_url, medium_url, linkedin_url, instagram_url)');
     }
 
     /**
@@ -60,6 +62,7 @@ class AddProfileFields extends Migration
             $table->dropColumn('is_subscribed');
             $table->dropColumn('country_code');
             $table->dropColumn('is_for_hire');
+            $table->dropColumn('instagram_url');
         });
     }
 }

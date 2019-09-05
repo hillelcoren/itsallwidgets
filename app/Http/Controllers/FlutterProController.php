@@ -20,10 +20,15 @@ class FlutterProController extends Controller
     {
         $data = [];
         $search = strtolower(request()->search);
-        //$profiles = User::whereIsPro(true)->search($search)->get();
-        $users = User::whereIsPro(true)->with('userActivities')->limit(12)->get();
+        $users = User::whereIsPro(true)
+            ->with('userActivities')
+            ->limit(12);
 
-        foreach ($users as $user)
+        if ($search) {
+            $users->search($search);
+        }
+
+        foreach ($users->get() as $user)
         {
             //$str = mb_convert_encoding($str, 'UTF-8', 'UTF-8');
             $obj = new \stdClass;
