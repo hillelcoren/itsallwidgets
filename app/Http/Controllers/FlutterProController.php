@@ -54,8 +54,12 @@ class FlutterProController extends Controller
         return response()->json($data);
     }
 
-    public function json($handle)
+    public function json($tld, $handle = false)
     {
+        if (! $handle) {
+            $handle = $tld;
+        }
+
         $user = User::whereHandle(strtolower($handle))->first();
 
         if (! $user) {
@@ -89,8 +93,12 @@ class FlutterProController extends Controller
         return view('user.edit', $data);
     }
 
-    public function show($handle)
+    public function show($tld, $handle = false)
     {
+        if (! $handle) {
+            $handle = $tld;
+        }
+
         $user = User::whereHandle(strtolower($handle))->first();
 
         if (! $user) {
