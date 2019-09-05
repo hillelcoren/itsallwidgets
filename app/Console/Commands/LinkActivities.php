@@ -117,7 +117,7 @@ class LinkActivities extends Command
                 $user->last_activity = date('Y-m-d');
                 $user->save();
 
-                $this->activityRepo->store($activity->user_id, $activity->id, $type);
+                $this->activityRepo->store($user->id, $activity->id, $type);
                 $count++;
             }
         }
