@@ -18,6 +18,22 @@
 
 @section('head')
 
+<style>
+
+.profile-panel {
+    background-color: white;
+    border-radius: 8px;
+}
+
+/*
+.column {
+    padding: 1rem 1rem 4rem 1rem;
+}
+*/
+
+</style>
+
+
 @endsection
 
 
@@ -66,15 +82,17 @@
             <div class="columns is-multiline is-6 is-variable">
                 <div v-for="profile in filteredProfiles" :key="profile.id" class="column is-one-third">
                     <div v-on:click="selectProfile(profile)" style="cursor:pointer">
-                        <div class="flutter-app is-hover-elevated has-text-centered">
+                        <div class="profile-panel is-hover-elevated has-text-centered">
 
                             <header style="padding: 16px">
 
-                                <p class="no-wrap" v-bind:title="profile.name" style="font-size:22px; padding-bottom:10px;">
+                                <div>
+                                    <img v-bind:src="'/avatars/' + profile.id + '.png'" style="border-radius: 50%; width: 120px;"
+                                        onerror="this.onerror=null; this.src='/images/flutter_logo.png'; this.style['border-radius'] = 0; this.style.width = '95px'"/>
+                                </div><br/>
 
-
+                                <p class="no-wrap" style="font-size:22px; padding-bottom:10px;">
                                     @{{ profile.name }}
-
                                 </p>
                                 <div style="border-bottom: 2px #368cd5 solid; margin-left:40%; margin-right: 40%;"></div>
 
@@ -187,7 +205,7 @@
         },
 
         beforeMount(){
-           this.serverSearch();
+            this.serverSearch();
         },
 
         mounted () {
