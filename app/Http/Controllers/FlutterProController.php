@@ -62,7 +62,11 @@ class FlutterProController extends Controller
             return redirect(fpUrl());
         }
 
-        return response()->json($user->toObject());
+        if (request()->pretty) {
+            return '<pre>' . json_encode($user->toObject(), JSON_PRETTY_PRINT) . '</pre';
+        } else {
+            return response()->json($user->toObject());
+        }
     }
 
     public function edit()

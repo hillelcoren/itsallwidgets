@@ -110,9 +110,9 @@ class User extends Authenticatable
         return static::where('is_admin', '=', true)->first();
     }
 
-    public function jsonUrl()
+    public function jsonUrl($isPretty = false)
     {
-        return fpUrl() . '/' . $this->handle . '/json';
+        return fpUrl() . '/' . $this->handle . '/json' . ($isPretty ? '?pretty=true' : '');
     }
 
     public function isActivityTypeActive($type)
@@ -136,7 +136,7 @@ class User extends Authenticatable
         $obj->name = $this->name;
         $obj->handle = $this->handle;
         $obj->bio = $this->bio;
-        $obj->profile_url = $this->profile_url ?: $this->jsonUrl();
+        $obj->profile_url = $this->profile_url ?: $this->jsonUrl(true);
         $obj->country_code = $this->country_code;
         $obj->is_for_hire = $this->is_for_hire;
         $obj->website_url = $this->website_url;
