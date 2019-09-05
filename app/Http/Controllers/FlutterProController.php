@@ -49,7 +49,6 @@ class FlutterProController extends Controller
             $activity = $activities[0];
 
             $obj->activity_count = $activities->count();
-            $obj->activity_message_intro = $activity->activity->activityMessageIntro();
             $obj->activity_message = $activity->activity->activityMessage();
             $obj->activity_link_url = $activity->activity->activityLinkURL();
             $obj->activity_link_title = $activity->activity->activityLinkTitle();

@@ -239,15 +239,6 @@ class FlutterEvent extends Model implements Feedable
         return $this->event_name;
     }
 
-    public function activityMessageIntro()
-    {
-        if ($this->event_date < date('Y-m-d')) {
-            return 'Will be speaking at';
-        } else {
-            return 'Gave a talk at';
-        }
-    }
-
     public function activityMessage()
     {
         return substr($this->description, 0, 300);

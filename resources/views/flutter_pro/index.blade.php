@@ -23,14 +23,14 @@
 .profile-panel {
     background-color: white;
     border-radius: 8px;
-    height: 340px;
+    height: 360px;
 }
 
 .short-description {
     padding-left: 16px;
     padding-right: 16px;
     line-height: 1.5em;
-    height: 4.5em;
+    height: 5em;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -58,7 +58,7 @@
 
 /*
 .column {
-    padding: 1rem 1rem 4rem 1rem;
+padding: 1rem 1rem 4rem 1rem;
 }
 */
 
@@ -118,16 +118,32 @@
                             <header style="padding-top: 25px">
                                 <div style="height: 100px">
                                     <img v-bind:src="'/avatars/' + profile.id + '.png'" style="border-radius: 50%; width: 120px;"
-                                        onerror="this.onerror=null; this.src='/images/flutter_logo.png'; this.style['border-radius'] = 0; this.style.width = '96px'"/>
+                                    onerror="this.onerror=null; this.src='/images/flutter_logo.png'; this.style['border-radius'] = 0; this.style.width = '96px'"/>
                                 </div><br/>
 
-                                <p class="no-wrap" style="font-size:22px; padding:20px;">
+                                <p class="no-wrap" style="font-size:22px; padding-top:20px; padding-bottom:8px;">
                                     @{{ profile.name }}
                                 </p>
                                 <div style="border-bottom: 2px #368cd5 solid; margin-left:40%; margin-right: 40%;"></div>
                             </header>
 
-                            <div class="content" style="padding-left:16px; padding-right:16px;">
+                            <div class="content" style="padding-left:16px; padding-right:16px; padding-top: 0px;">
+
+                                <div class="short-description" style="padding-top:16px;">
+                                    <a v-bind:href="profile.activity_link_url" target="_blank" v-on:click.stop rel="nofollow">
+                                        @{{ profile.activity_link_title }}</a>
+
+                                        • @{{ profile.activity_message }}
+                                    </div>
+                                </div>
+
+                                <div v-if="profile.activity_count > 1">
+                                    @{{ profile.activity_count - 1 }} more
+                                </div>
+                                <div v-if="profile.activity_count <= 1">
+                                    &nbsp;
+                                </div>
+
                                 <span v-if="profile.github_url">
                                     <span class="icon-bug-fix" style="padding:12px">
                                         <a v-if="profile.github_url" v-bind:href="profile.github_url" target="_blank" v-on:click.stop rel="nofollow">
@@ -165,190 +181,179 @@
                                 </span>
                             </div>
 
-                            <div class="short-description">
-                                @{{ profile.activity_message_intro }}
-
-                                <a v-bind:href="profile.activity_link_url" target="_blank" v-on:click.stop rel="nofollow">
-                                    @{{ profile.activity_link_title }}</a>.
-
-                                @{{ profile.activity_message }}
-
-                            </div>
-
                         </div>
+                        <p>&nbsp;</p>
                     </div>
-                    <p>&nbsp;</p>
                 </div>
-            </div>
 
 
-        </section>
+            </section>
 
-    </div>
+        </div>
 
-    <script>
+        <script>
 
-    function isStorageSupported() {
-        try {
-            return 'localStorage' in window && window['localStorage'] !== null;
-        } catch (e) {
-            return false;
+        function isStorageSupported() {
+            try {
+                return 'localStorage' in window && window['localStorage'] !== null;
+            } catch (e) {
+                return false;
+            }
+        };
+
+        function getCachedSortBy() {
+            return (isStorageSupported() ? localStorage.getItem('pro_sort_by') : false) || 'sort_featured';
         }
-    };
 
-    function getCachedSortBy() {
-        return (isStorageSupported() ? localStorage.getItem('pro_sort_by') : false) || 'sort_featured';
-    }
+        var app = new Vue({
+            el: '#app',
 
-    var app = new Vue({
-        el: '#app',
-
-        watch: {
-            search: {
-                handler() {
-                    app.serverSearch();
+            watch: {
+                search: {
+                    handler() {
+                        app.serverSearch();
+                    },
+                },
+                sort_by: {
+                    handler() {
+                        app.saveFilters();
+                    },
                 },
             },
-            sort_by: {
-                handler() {
-                    app.saveFilters();
+
+            methods: {
+
+                adjustPage: function(change) {
+                    this.page_number += change;
+                    document.body.scrollTop = 0; // For Safari
+                    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
                 },
-            },
-        },
 
-        methods: {
+                setFilter: function(filter) {
+                    filter = filter || '';
+                    this.search = filter.toLowerCase();
+                },
 
-            adjustPage: function(change) {
-                this.page_number += change;
-                document.body.scrollTop = 0; // For Safari
-                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-            },
-
-            setFilter: function(filter) {
-                filter = filter || '';
-                this.search = filter.toLowerCase();
-            },
-
-            saveFilters: function() {
-                if (! isStorageSupported()) {
-                    return false;
-                }
-
-                localStorage.setItem('sort_by', this.sort_by);
-            },
-
-            searchBackgroundColor: function() {
-                if (! this.search) {
-                    return '#FFFFFF';
-                } else {
-                    if (this.is_searching) {
-                        return '#FFFFBB';
-                    } else if (this.filteredProfiles.length) {
-                        return '#FFFFBB';
-                    } else {
-                        return '#FFC9D9';
+                saveFilters: function() {
+                    if (! isStorageSupported()) {
+                        return false;
                     }
-                }
-            },
 
-            serverSearch: function() {
-                var app = app || this;
-                var searchStr = this.search;
-                var profiles = this.profiles;
+                    localStorage.setItem('sort_by', this.sort_by);
+                },
 
-                app.$set(app, 'is_searching', true);
-                if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
-
-                this.bounceTimeout = setTimeout(function() {
-                    if (!profiles.length || (searchStr && searchStr.length >= 3)) {
-                        $.get('/search_pro?search=' + encodeURIComponent(searchStr), function (data) {
-                            console.log(data);
-                            app.$set(app, 'profiles', data);
-                            app.$set(app, 'is_searching', false);
-                        });
+                searchBackgroundColor: function() {
+                    if (! this.search) {
+                        return '#FFFFFF';
                     } else {
-                        app.$set(app, 'is_searching', false);
-                        for (var i=0; i<profiles.length; i++) {
-                            //app.$set(artifacts[i], 'contents', '');
+                        if (this.is_searching) {
+                            return '#FFFFBB';
+                        } else if (this.filteredProfiles.length) {
+                            return '#FFFFBB';
+                        } else {
+                            return '#FFC9D9';
                         }
                     }
+                },
 
-                }, 500);
+                serverSearch: function() {
+                    var app = app || this;
+                    var searchStr = this.search;
+                    var profiles = this.profiles;
+
+                    app.$set(app, 'is_searching', true);
+                    if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
+
+                    this.bounceTimeout = setTimeout(function() {
+                        if (!profiles.length || (searchStr && searchStr.length >= 3)) {
+                            $.get('/search_pro?search=' + encodeURIComponent(searchStr), function (data) {
+                                console.log(data);
+                                app.$set(app, 'profiles', data);
+                                app.$set(app, 'is_searching', false);
+                            });
+                        } else {
+                            app.$set(app, 'is_searching', false);
+                            for (var i=0; i<profiles.length; i++) {
+                                //app.$set(artifacts[i], 'contents', '');
+                            }
+                        }
+
+                    }, 500);
+                },
+
             },
 
-        },
-
-        beforeMount(){
-            this.serverSearch();
-        },
-
-        mounted () {
-            window.addEventListener('keyup', function(event) {
-                if (event.keyCode == 27) {
-                    //app.selectApp();
-                }
-            });
-        },
-
-        data: {
-            profiles: [],
-            search: "{{ request()->search }}",
-            sort_by: getCachedSortBy(),
-            selected_profile: false,
-            page_number: 1,
-            is_searching: false,
-        },
-
-        computed: {
-
-            modalClass() {
-                if (this.selected_profile) {
-                    return {'is-active': true};
-                } else {
-                    return {};
-                }
+            beforeMount(){
+                this.serverSearch();
             },
 
-            unpaginatedFilteredProfiles() {
-
-                var profiles = this.profiles;
-                var search = this.search.toLowerCase().trim();
-                var sort_by = this.sort_by;
-
-                if (search) {
-                    profiles = profiles.filter(function(item) {
-
-                        return true;
-                    });
-                }
-
-                profiles.sort(function(itemA, itemB) {
-                    var timeA = false;//new Date(itemA.created_at).getTime();
-                    var timeB = false;//new Date(itemB.created_at).getTime();
-
-                    if (sort_by == 'sort_newest') {
-                        return timeB - timeA;
-                    } else {
+            mounted () {
+                window.addEventListener('keyup', function(event) {
+                    if (event.keyCode == 27) {
+                        //app.selectApp();
                     }
                 });
-
-                return profiles;
             },
 
-            filteredProfiles() {
-
-                profiles = this.unpaginatedFilteredProfiles;
-
-                var startIndex = (this.page_number - 1) * 40;
-                var endIndex = startIndex + 40;
-                profiles = profiles.slice(startIndex, endIndex);
-
-                return profiles;
+            data: {
+                profiles: [],
+                search: "{{ request()->search }}",
+                sort_by: getCachedSortBy(),
+                selected_profile: false,
+                page_number: 1,
+                is_searching: false,
             },
-        }
 
-    });
+            computed: {
 
-    </script>
+                modalClass() {
+                    if (this.selected_profile) {
+                        return {'is-active': true};
+                    } else {
+                        return {};
+                    }
+                },
 
-@endsection
+                unpaginatedFilteredProfiles() {
+
+                    var profiles = this.profiles;
+                    var search = this.search.toLowerCase().trim();
+                    var sort_by = this.sort_by;
+
+                    if (search) {
+                        profiles = profiles.filter(function(item) {
+
+                            return true;
+                        });
+                    }
+
+                    profiles.sort(function(itemA, itemB) {
+                        var timeA = false;//new Date(itemA.created_at).getTime();
+                        var timeB = false;//new Date(itemB.created_at).getTime();
+
+                        if (sort_by == 'sort_newest') {
+                            return timeB - timeA;
+                        } else {
+                        }
+                    });
+
+                    return profiles;
+                },
+
+                filteredProfiles() {
+
+                    profiles = this.unpaginatedFilteredProfiles;
+
+                    var startIndex = (this.page_number - 1) * 40;
+                    var endIndex = startIndex + 40;
+                    profiles = profiles.slice(startIndex, endIndex);
+
+                    return profiles;
+                },
+            }
+
+        });
+
+        </script>
+
+    @endsection
