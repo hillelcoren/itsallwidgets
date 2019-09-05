@@ -110,6 +110,11 @@ class User extends Authenticatable
         return static::where('is_admin', '=', true)->first();
     }
 
+    public function jsonUrl()
+    {
+        return url('/' . $this->handle . '/json');
+    }
+
     public function isActivityTypeActive($type)
     {
         if ($type == 'flutter_app' && $this->is_pro_iaw) {
@@ -131,6 +136,7 @@ class User extends Authenticatable
         $obj->name = $this->name;
         $obj->handle = $this->handle;
         $obj->bio = $this->bio;
+        $obj->profile_url = $this->profile_url ?: $this->jsonUrl();
         $obj->country_code = $this->country_code;
         $obj->is_for_hire = $this->is_for_hire;
         $obj->website_url = $this->website_url;
