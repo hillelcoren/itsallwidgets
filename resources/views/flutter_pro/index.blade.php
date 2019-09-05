@@ -258,19 +258,11 @@ padding: 1rem 1rem 4rem 1rem;
                     if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
 
                     this.bounceTimeout = setTimeout(function() {
-                        if (!profiles.length || (searchStr && searchStr.length >= 3)) {
-                            $.get('/search_pro?search=' + encodeURIComponent(searchStr), function (data) {
-                                console.log(data);
-                                app.$set(app, 'profiles', data);
-                                app.$set(app, 'is_searching', false);
-                            });
-                        } else {
+                        $.get('/search_pro?search=' + encodeURIComponent(searchStr), function (data) {
+                            console.log(data);
+                            app.$set(app, 'profiles', data);
                             app.$set(app, 'is_searching', false);
-                            for (var i=0; i<profiles.length; i++) {
-                                //app.$set(artifacts[i], 'contents', '');
-                            }
-                        }
-
+                        });
                     }, 500);
                 },
 
