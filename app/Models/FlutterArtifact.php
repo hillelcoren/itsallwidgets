@@ -274,7 +274,7 @@ class FlutterArtifact extends Model implements Feedable
     {
         $obj = new \stdClass;
         $obj->name = $this->title;
-        $obj->description = $this->meta_description;
+        $obj->description = mb_convert_encoding($this->meta_description, 'UTF-8', 'UTF-8');
         $obj->url = $this->url;
 
         return $obj;

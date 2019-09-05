@@ -54,6 +54,17 @@ class FlutterProController extends Controller
         return response()->json($data);
     }
 
+    public function json($handle)
+    {
+        $user = User::whereHandle(strtolower($handle))->first();
+
+        if (! $user) {
+            return redirect(fpUrl());
+        }
+
+        return response()->json($user->toObject());
+    }
+
     public function edit()
     {
         $user = auth()->user();
