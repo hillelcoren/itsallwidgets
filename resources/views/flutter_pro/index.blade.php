@@ -91,6 +91,7 @@ padding: 1rem 1rem 4rem 1rem;
                             <div class="select is-medium filter-control" style="padding-left: 14px; font-size: 16px">
                                 <select v-model="sort_by" onchange="$(this).blur()">
                                     <option value="sort_featured">FEATURED</option>
+                                    <option value="sort_activity">ACTIVITY</option>
                                     <option value="sort_newest">NEWEST</option>
                                 </select>
                             </div>
@@ -267,7 +268,7 @@ padding: 1rem 1rem 4rem 1rem;
                     if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
 
                     this.bounceTimeout = setTimeout(function() {
-                        $.get('/search_pro?search=' + encodeURIComponent(searchStr) + '&sort=' + sortBy, function (data) {
+                        $.get('/search_pro?search=' + encodeURIComponent(searchStr) + '&sort_by=' + sortBy, function (data) {
                             console.log(data);
                             app.$set(app, 'profiles', data);
                             app.$set(app, 'is_searching', false);
