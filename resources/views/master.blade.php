@@ -60,6 +60,10 @@
 
     <style>
 
+    [v-cloak] {
+      display: none;
+    }
+
     a {
         color: #368cd5;
     }

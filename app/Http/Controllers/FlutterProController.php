@@ -23,6 +23,7 @@ class FlutterProController extends Controller
         $sortBy = strtolower(request()->sort_by);
 
         $users = User::whereIsPro(true)
+            ->whereNotNull('last_activity')
             ->with('userActivities')
             ->limit(12);
 
@@ -35,7 +36,8 @@ class FlutterProController extends Controller
         } else if ($sortBy == 'sort_activity') {
             $users->orderBy('last_activity', 'desc');
         } else {
-            $users->orderByRaw(\DB::raw("count_apps + (count_artifacts*2) + (count_events*3) DESC"));
+            //$users->orderByRaw(\DB::raw("count_apps + (count_artifacts*2) + (count_events*3) DESC"));
+            $users->orderByRaw(\DB::raw("count_apps + count_artifacts + count_events DESC"));
         }
 
         foreach ($users->get() as $user)
