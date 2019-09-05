@@ -131,4 +131,9 @@ class FlutterApp extends Model implements Feedable
         return $user->id == $this->user_id;
     }
 
+    public function activityURL()
+    {
+        
+    }
+
 }
