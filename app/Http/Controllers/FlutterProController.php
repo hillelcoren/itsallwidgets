@@ -20,12 +20,20 @@ class FlutterProController extends Controller
     {
         $data = [];
         $search = strtolower(request()->search);
+        $sortBy = strtolower(request()->sort_by);
+
         $users = User::whereIsPro(true)
             ->with('userActivities')
             ->limit(12);
 
         if ($search) {
             $users->search($search);
+        }
+
+        if ($sortBy == 'newest') {
+            $users->orderBy('id', 'desc');
+        } else {
+            
         }
 
         foreach ($users->get() as $user)

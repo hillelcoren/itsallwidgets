@@ -216,6 +216,7 @@ padding: 1rem 1rem 4rem 1rem;
                 },
                 sort_by: {
                     handler() {
+                        app.serverSearch();
                         app.saveFilters();
                     },
                 },
@@ -260,12 +261,13 @@ padding: 1rem 1rem 4rem 1rem;
                     var app = app || this;
                     var searchStr = this.search;
                     var profiles = this.profiles;
+                    var sortBy = this.sort_by;
 
                     app.$set(app, 'is_searching', true);
                     if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
 
                     this.bounceTimeout = setTimeout(function() {
-                        $.get('/search_pro?search=' + encodeURIComponent(searchStr), function (data) {
+                        $.get('/search_pro?search=' + encodeURIComponent(searchStr) + '&sort=' + sortBy, function (data) {
                             console.log(data);
                             app.$set(app, 'profiles', data);
                             app.$set(app, 'is_searching', false);
