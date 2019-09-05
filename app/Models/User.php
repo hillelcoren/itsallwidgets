@@ -122,4 +122,61 @@ class User extends Authenticatable
 
         return false;
     }
+
+    public function toObject()
+    {
+        $obj = new \stdClass;
+        $obj->id = $this->profile_key;
+        $obj->image_url = $this->image_url;
+        $obj->name = $this->name;
+        $obj->handle = $this->handle;
+        $obj->bio = $this->bio;
+        $obj->country_code = $this->country_code;
+        $obj->is_for_hire = $this->is_for_hire;
+        $obj->website_url = $this->website_url;
+        $obj->github_url = $this->github_url;
+        $obj->youtube_url = $this->youtube_url;
+        $obj->twitter_url = $this->twitter_url;
+        $obj->medium_url = $this->medium_url;
+        $obj->linkedin_url = $this->linkedin_url;
+        $obj->instagram_url = $this->instagram_url;
+
+        $counts = [];
+        if ($this->count_apps > 0) {
+            $counts[] = $this->count_apps . ($this->count_apps == 1 ? ' App' : ' Apps');
+        }
+        if ($this->count_artifacts > 0) {
+            $counts[] = $this->count_artifacts . ($this->count_artifacts == 1 ? ' Resource' : ' Resources');
+        }
+        if ($this->count_events > 0) {
+            $counts[] = $this->count_events . ($this->count_events == 1 ? ' Event' : ' Events');
+        }
+
+        $obj->counts = join(' • ', $counts);
+        $obj->activity_count = 0;
+        $obj->activity_message = '';
+        $obj->activity_link_url = '';
+        $obj->activity_link_title = '';
+        $obj->activities = [];
+
+        $activities = $this->userActivities;
+
+        foreach ($activities as $activity) {
+
+            if (! $this->isActivityTypeActive($activity->activity_type)) {
+                continue;
+            }
+
+            if (! $obj->activity_message) {
+                $obj->activity_count = $activities->count();
+                $obj->activity_message = mb_convert_encoding($activity->activity->activityMessage(), 'UTF-8', 'UTF-8');
+                $obj->activity_link_url = $activity->activity->activityLinkURL();
+                $obj->activity_link_title = mb_convert_encoding($activity->activity->activityLinkTitle(), 'UTF-8', 'UTF-8');
+            }
+
+            $obj->activities[] = $activity->activity->toObject();
+        }
+
+        return $obj;
+    }
 }

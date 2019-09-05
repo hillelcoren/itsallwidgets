@@ -48,64 +48,7 @@ class FlutterProController extends Controller
 
         foreach ($users->get() as $user)
         {
-            //$str = mb_convert_encoding($str, 'UTF-8', 'UTF-8');
-            $obj = new \stdClass;
-            $obj->id = $user->profile_key;
-            $obj->image_url = $user->image_url;
-            $obj->name = $user->name;
-            $obj->handle = $user->handle;
-            $obj->bio = $user->bio;
-            $obj->country_code = $user->country_code;
-            $obj->is_for_hire = $user->is_for_hire;
-            $obj->website_url = $user->website_url;
-            $obj->github_url = $user->github_url;
-            $obj->youtube_url = $user->youtube_url;
-            $obj->twitter_url = $user->twitter_url;
-            $obj->medium_url = $user->medium_url;
-            $obj->linkedin_url = $user->linkedin_url;
-            $obj->instagram_url = $user->instagram_url;
-
-            $counts = [];
-            if ($user->count_apps > 0) {
-                $counts[] = $user->count_apps . ($user->count_apps == 1 ? ' App' : ' Apps');
-            }
-            if ($user->count_artifacts > 0) {
-                $counts[] = $user->count_artifacts . ($user->count_artifacts == 1 ? ' Resource' : ' Resources');
-            }
-            if ($user->count_events > 0) {
-                $counts[] = $user->count_events . ($user->count_events == 1 ? ' Event' : ' Events');
-            }
-
-            $obj->counts = join(' • ', $counts);
-            $obj->activity_count = 0;
-            $obj->activity_message = '';
-            $obj->activity_link_url = '';
-            $obj->activity_link_title = '';
-            $obj->activities = [];
-
-            $activities = $user->userActivities;
-
-            if ($activities->count() == 0) {
-                continue;
-            }
-
-            foreach ($activities as $activity) {
-
-                if (! $user->isActivityTypeActive($activity->activity_type)) {
-                    continue;
-                }
-
-                if (! $obj->activity_message) {
-                    $obj->activity_count = $activities->count();
-                    $obj->activity_message = mb_convert_encoding($activity->activity->activityMessage(), 'UTF-8', 'UTF-8');
-                    $obj->activity_link_url = $activity->activity->activityLinkURL();
-                    $obj->activity_link_title = mb_convert_encoding($activity->activity->activityLinkTitle(), 'UTF-8', 'UTF-8');
-                }
-
-                $obj->activities[] = $activity->activity->toObject();
-            }
-
-            $data[] = $obj;
+            $data[] = $user->toObject();
         }
 
         return response()->json($data);
