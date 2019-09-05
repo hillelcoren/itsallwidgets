@@ -9,7 +9,7 @@ class FlutterProController extends Controller
 {
     public function index()
     {
-        if (! auth()->check() || ! auth()->check()->is_admin) {
+        if (! auth()->check() || ! auth()->user()->is_admin) {
             return redirect('https://itsallwidgets.com');
         }
 
