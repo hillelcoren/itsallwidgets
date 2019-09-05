@@ -141,8 +141,13 @@ class FlutterApp extends Model implements Feedable
         return $this->title;
     }
 
+    public function activityMessageIntro()
+    {
+        return 'Shared their app';
+    }
+
     public function activityMessage()
     {
-        return 'Shared their app :link';
+        return substr($this->short_description . ' ' . $this->long_description, 0, 300);
     }
 }

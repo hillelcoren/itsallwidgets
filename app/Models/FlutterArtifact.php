@@ -261,9 +261,13 @@ class FlutterArtifact extends Model implements Feedable
         return $this->title;
     }
 
-    public function activityMessage()
+    public function activityMessageIntro()
     {
-        return 'Shared :link';
+        return 'Shared';
     }
 
+    public function activityMessage()
+    {
+        return substr($this->meta_description, 0, 300);
+    }
 }

@@ -103,7 +103,7 @@
                     <div v-on:click="selectProfile(profile)" style="cursor:pointer">
                         <div class="profile-panel is-hover-elevated has-text-centered">
 
-                            <header style="padding: 25px">
+                            <header style="padding-top: 25px">
                                 <div style="height: 100px">
                                     <img v-bind:src="'/avatars/' + profile.id + '.png'" style="border-radius: 50%; width: 120px;"
                                         onerror="this.onerror=null; this.src='/images/flutter_logo.png'; this.style['border-radius'] = 0; this.style.width = '96px'"/>
@@ -151,6 +151,16 @@
                                         </a>
                                     </span>
                                 </span>
+                            </div>
+
+                            <div>
+                                @{{ profile.activity_message_intro }}
+
+                                <a v-bind:href="profile.activity_link_url" target="_blank" v-on:click.stop rel="nofollow">
+                                    @{{ profile.activity_link_title }}</a>.
+
+                                @{{ profile.activity_message }}
+
                             </div>
 
                         </div>
