@@ -96,7 +96,7 @@
 							</span>
 
                             <span class="help">
-                                Profile Link <a href="https://flutterpro.dev/{{ $user->handle }}" target="_blank">flutterpro.dev/{{ $user->handle }}</a>
+                                Profile Link <a href="{{ $user->url() }}" target="_blank">flutterpro.dev/{{ $user->handle }}</a>
                             </span>
 
 							@if ($errors->has('handle'))
@@ -171,6 +171,10 @@
 							<span class="icon is-small is-left">
 								<i class="fas fa-globe"></i>
 							</span>
+
+                            <span class="help">
+                                JSON Feed <a href="{{ $user->jsonUrl() }}" target="_blank">flutterpro.dev/{{ $user->handle }}/json</a>
+                            </span>
 
 							@if ($errors->has('profile_url'))
 								<span class="help is-danger">
@@ -403,6 +407,9 @@
                                 {{ Form::hidden('is_pro', 0) }}
 								<input name="is_pro" type="checkbox" value="1" {{ $user->is_pro ? 'CHECKED' : '' }}> Enable
                             </label>
+                            <div class="help">
+                                List developer on <a href="https://flutterpro.dev" target="_blank">flutterpro.dev</a>
+                            </div>
 						</div>
 					</div>
 
@@ -415,6 +422,9 @@
                                 {{ Form::hidden('is_subscribed', 0) }}
 								<input name="is_subscribed" type="checkbox" value="1" {{ $user->is_subscribed ? 'CHECKED' : '' }}> Subscribe
                             </label>
+                            <div class="help">
+                                In the future we plan to send emails sharing interesting statistics
+                            </div>
 						</div>
 					</div>
 
@@ -427,6 +437,9 @@
                                 {{ Form::hidden('is_for_hire', 0) }}
 								<input name="is_for_hire" type="checkbox" value="1" {{ $user->is_for_hire ? 'CHECKED' : '' }}> Yes
                             </label>
+                            <div class="help">
+                                Enable potential clients to see you're available to take on work
+                            </div>
 						</div>
 					</div>
 
