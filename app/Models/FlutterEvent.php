@@ -259,4 +259,12 @@ class FlutterEvent extends Model implements Feedable
     {
         return substr($this->description, 0, 300);
     }
+
+    public function toObject()
+    {
+        $obj = new \stdClass;
+        $obj->name = $this->event_name;
+
+        return $obj;
+    }
 }

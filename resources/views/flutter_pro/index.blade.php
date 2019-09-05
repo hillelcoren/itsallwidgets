@@ -219,12 +219,13 @@ padding: 1rem 1rem 4rem 1rem;
                     <div class="modal-background" v-on:click="selectProfile()"></div>
                     <div class="modal-card is-body-font">
                         <header class="modal-card-head">
-                            <p class="modal-card-title"></p>
+                            <p class="modal-card-title">
+                                @{{ selected_profile.name }}
+                            </p>
                             <button class="delete" aria-label="close" v-on:click="selectProfile()"></button>
                         </header>
                         <section class="modal-card-body" @click.stop>
-                            TESTING
-
+                            
                         </section>
                     </div>
                 </div>

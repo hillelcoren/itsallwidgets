@@ -149,4 +149,12 @@ class FlutterApp extends Model implements Feedable
     {
         return substr($this->short_description . ' ' . $this->long_description, 0, 300);
     }
+
+    public function toObject()
+    {
+        $obj = new \stdClass;
+        $obj->name = $this->title;
+
+        return $obj;
+    }
 }

@@ -269,4 +269,12 @@ class FlutterArtifact extends Model implements Feedable
     {
         return substr($this->meta_description, 0, 300);
     }
+
+    public function toObject()
+    {
+        $obj = new \stdClass;
+        $obj->name = $this->title;
+
+        return $obj;
+    }
 }

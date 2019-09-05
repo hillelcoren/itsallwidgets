@@ -81,6 +81,7 @@ class FlutterProController extends Controller
             $obj->activity_message = '';
             $obj->activity_link_url = '';
             $obj->activity_link_title = '';
+            $obj->activities = [];
 
             $activities = $user->userActivities;
 
@@ -94,12 +95,14 @@ class FlutterProController extends Controller
                     continue;
                 }
 
-                $obj->activity_count = $activities->count();
-                $obj->activity_message = mb_convert_encoding($activity->activity->activityMessage(), 'UTF-8', 'UTF-8');
-                $obj->activity_link_url = $activity->activity->activityLinkURL();
-                $obj->activity_link_title = mb_convert_encoding($activity->activity->activityLinkTitle(), 'UTF-8', 'UTF-8');
+                if (! $obj->activity_message) {
+                    $obj->activity_count = $activities->count();
+                    $obj->activity_message = mb_convert_encoding($activity->activity->activityMessage(), 'UTF-8', 'UTF-8');
+                    $obj->activity_link_url = $activity->activity->activityLinkURL();
+                    $obj->activity_link_title = mb_convert_encoding($activity->activity->activityLinkTitle(), 'UTF-8', 'UTF-8');
+                }
 
-                break;
+                $obj->activities[] = $activity->activity->toObject();
             }
 
             $data[] = $obj;
