@@ -26,6 +26,14 @@
     height: 300px;
 }
 
+.fa-github:hover,
+.fa-twitter:hover,
+.fa-medium:hover,
+.fa-linkedin:hover,
+.fa-youtube:hover {
+    color: black !important;
+}
+
 /*
 .column {
     padding: 1rem 1rem 4rem 1rem;
@@ -86,7 +94,6 @@
                         <div class="profile-panel is-hover-elevated has-text-centered">
 
                             <header style="padding: 25px">
-
                                 <div style="height: 100px">
                                     <img v-bind:src="'/avatars/' + profile.id + '.png'" style="border-radius: 50%; width: 120px;"
                                         onerror="this.onerror=null; this.src='/images/flutter_logo.png'; this.style['border-radius'] = 0; this.style.width = '96px'"/>
@@ -96,10 +103,44 @@
                                     @{{ profile.name }}
                                 </p>
                                 <div style="border-bottom: 2px #368cd5 solid; margin-left:40%; margin-right: 40%;"></div>
-
                             </header>
 
                             <div class="content" style="padding-left:16px; padding-right:16px;">
+                                <span v-if="profile.github_url">
+                                    <span class="icon-bug-fix" style="padding:12px">
+                                        <a v-if="profile.github_url" v-bind:href="profile.github_url" target="_blank" v-on:click.stop rel="nofollow">
+                                            <i style="font-size: 25px; color: #888;" class="fab fa-github"></i>
+                                        </a>
+                                    </span>
+                                </span>
+                                <span v-if="profile.youtube_url">
+                                    <span class="icon-bug-fix" style="padding:12px">
+                                        <a v-bind:href="profile.youtube_url" target="_blank" v-on:click.stop rel="nofollow">
+                                            <i style="font-size: 25px; color: #888" class="fab fa-youtube"></i>
+                                        </a>
+                                    </span>
+                                </span>
+                                <span v-if="profile.twitter_url">
+                                    <span class="icon-bug-fix" style="padding:12px">
+                                        <a v-bind:href="profile.twitter_url" target="_blank" v-on:click.stop rel="nofollow">
+                                            <i style="font-size: 25px; color: #888" class="fab fa-twitter"></i>
+                                        </a>
+                                    </span>
+                                </span>
+                                <span v-if="profile.medium_url">
+                                    <span class="icon-bug-fix" style="padding:12px">
+                                        <a v-bind:href="profile.medium_url" target="_blank" v-on:click.stop rel="nofollow">
+                                            <i style="font-size: 25px; color: #888" class="fab fa-medium"></i>
+                                        </a>
+                                    </span>
+                                </span>
+                                <span v-if="profile.linkedin_url">
+                                    <span class="icon-bug-fix" style="padding:12px">
+                                        <a v-bind:href="profile.linkedin_url" target="_blank" v-on:click.stop rel="nofollow">
+                                            <i style="font-size: 25px; color: #888" class="fab fa-linkedin"></i>
+                                        </a>
+                                    </span>
+                                </span>
                             </div>
 
                         </div>

@@ -30,7 +30,16 @@ class FlutterProController extends Controller
             $obj = new \stdClass;
             $obj->id = $profile->profile_key;
             $obj->name = $profile->name;
-            //$obj->contents = $str;
+            $obj->handle = $profile->handle;
+            $obj->bio = $profile->bio;
+            $obj->country_code = $profile->country_code;
+            $obj->is_for_hire = $profile->is_for_hire;
+            $obj->website_url = $profile->website_url;
+            $obj->github_url = $profile->github_url;
+            $obj->youtube_url = $profile->youtube_url;
+            $obj->twitter_url = $profile->twitter_url;
+            $obj->medium_url = $profile->medium_url;
+            $obj->linkedin_url = $profile->linkedin_url;
 
             $data[] = $obj;
         }
