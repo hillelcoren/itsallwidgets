@@ -230,6 +230,10 @@ class FlutterEvent extends Model implements Feedable
             return false;
         }
 
+        if (! $this->description || ! $user->name) {
+            return false;
+        }
+
         return strpos(strtolower($this->description), strtolower($user->name)) !== false;
     }
 

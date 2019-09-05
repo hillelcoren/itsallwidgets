@@ -96,6 +96,7 @@ class LinkActivities extends Command
                 }
 
                 if (UserActivity::where([
+                    ['user_id', '=', $user->id],
                     ['activity_type', '=', $type],
                     ['activity_id', '=', $activity->id],
                 ])->first()) {
