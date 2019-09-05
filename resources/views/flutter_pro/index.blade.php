@@ -219,15 +219,14 @@ padding: 1rem 1rem 4rem 1rem;
             </div>
 
             <div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_profile">
-                <div class="modal-background" v-on:click="selectApp()"></div>
+                <div class="modal-background" v-on:click="selectProfile()"></div>
                 <div class="modal-card is-body-font">
                     <header class="modal-card-head">
                         <p class="modal-card-title"></p>
-                        <button class="delete" aria-label="close" v-on:click="selectApp()"></button>
+                        <button class="delete" aria-label="close" v-on:click="selectProfile()"></button>
                     </header>
                     <section class="modal-card-body" @click.stop>
-
-
+                        TESTING
 
                     </section>
                 </div>
