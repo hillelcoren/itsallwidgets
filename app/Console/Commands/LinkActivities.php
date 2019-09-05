@@ -51,8 +51,6 @@ class LinkActivities extends Command
     {
         $this->info('Running...');
 
-        \DB::statement('update users set count_apps = 0, count_events = 0, count_artifacts = 0');
-
         $users = User::whereIsPro(true)->orderBy('id')->get();
 
         $this->linkEvents($users);
@@ -101,17 +99,6 @@ class LinkActivities extends Command
                     continue;
                 }
 
-                if ($type == 'flutter_app') {
-                    $user->count_apps++;
-                } else if ($type == 'flutter_event') {
-                    $user->count_events++;
-                } else {
-                    $user->count_artifacts++;
-                }
-
-                $user->last_activity = date('Y-m-d');
-                $user->save();
-
                 if (UserActivity::where([
                     ['user_id', '=', $user->id],
                     ['activity_type', '=', $type],
@@ -123,6 +110,15 @@ class LinkActivities extends Command
 
                 $this->info('LINKING');
 
+                if ($type == 'flutter_app') {
+                    $user->count_apps++;
+                } else if ($type == 'flutter_event') {
+                    $user->count_events++;
+                } else {
+                    $user->count_artifacts++;
+                }
+
+                $user->last_activity = date('Y-m-d');
                 $user->save();
 
                 $this->activityRepo->store($user->id, $activity->id, $type);
