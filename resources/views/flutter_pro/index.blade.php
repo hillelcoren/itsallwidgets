@@ -85,14 +85,14 @@
                     <div v-on:click="selectProfile(profile)" style="cursor:pointer">
                         <div class="profile-panel is-hover-elevated has-text-centered">
 
-                            <header style="padding: 16px">
+                            <header style="padding: 25px">
 
                                 <div style="height: 100px">
                                     <img v-bind:src="'/avatars/' + profile.id + '.png'" style="border-radius: 50%; width: 120px;"
                                         onerror="this.onerror=null; this.src='/images/flutter_logo.png'; this.style['border-radius'] = 0; this.style.width = '96px'"/>
                                 </div><br/>
 
-                                <p class="no-wrap" style="font-size:22px; padding-bottom:10px;">
+                                <p class="no-wrap" style="font-size:22px; padding:20px;">
                                     @{{ profile.name }}
                                 </p>
                                 <div style="border-bottom: 2px #368cd5 solid; margin-left:40%; margin-right: 40%;"></div>
