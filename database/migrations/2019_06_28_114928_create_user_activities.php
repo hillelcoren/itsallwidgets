@@ -26,19 +26,6 @@ class CreateUserActivities extends Migration
         Schema::table('user_activities', function(Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
-
-        Schema::table('users', function(Blueprint $table) {
-            $table->string('handle')->nullable()->unique();
-            $table->text('bio')->nullable();
-            $table->boolean('is_pro')->default(false);
-            $table->string('profile_url')->default('');
-            $table->string('website_url')->default('');
-            $table->string('github_url')->default('');
-            $table->string('youtube_url')->default('');
-            $table->string('twitter_url')->default('');
-            $table->string('medium_url')->default('');
-            $table->string('linkedin_url')->default('');
-        });
     }
 
     /**

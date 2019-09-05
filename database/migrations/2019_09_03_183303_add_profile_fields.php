@@ -28,7 +28,6 @@ class AddProfileFields extends Migration
             $table->date('last_activity')->nullable();
             $table->string('image_url')->nullable()->default('');
         });
-        */
 
         Schema::table('users', function(Blueprint $table) {
             $table->string('profile_url')->nullable()->default('');
@@ -39,6 +38,13 @@ class AddProfileFields extends Migration
             $table->string('medium_url')->nullable()->default('');
             $table->string('linkedin_url')->nullable()->default('');
             $table->string('instagram_url')->nullable()->default('');
+        });
+        */
+
+        Schema::table('users', function(Blueprint $table) {
+            $table->string('handle')->nullable()->unique();
+            $table->text('bio')->nullable();
+            $table->boolean('is_pro')->default(false);
         });
 
         DB::statement('ALTER TABLE users ADD FULLTEXT fulltext_index (name, handle, bio, country_code, website_url, github_url, youtube_url, twitter_url, medium_url, linkedin_url, instagram_url)');
