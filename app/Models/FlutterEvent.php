@@ -234,6 +234,14 @@ class FlutterEvent extends Model implements Feedable
             return false;
         }
 
+        if (in_array(strtolower($user->name), [
+            'mobile developer',
+            'flutter developer',
+            'continuous integration',
+        ])) {
+            return false;
+        }
+
         return strpos(strtolower($this->description), strtolower($user->name)) !== false;
     }
 
