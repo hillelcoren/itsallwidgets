@@ -61,7 +61,7 @@ class ConvertToPro extends Command
     {
         $user->is_pro = true;
 
-        if (! $usr->profile_key) {
+        if (! $user->profile_key) {
             $user->profile_key = str_random(64);
         }
 
@@ -96,7 +96,7 @@ class ConvertToPro extends Command
                 imagepng(imagecreatefromstring($contents), $output);
                 $user->image_url = "avatars/{$user->profile_key}.png";
             }
-        }            
+        }
 
         $user->save();
     }
