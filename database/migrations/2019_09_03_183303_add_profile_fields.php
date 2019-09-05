@@ -24,6 +24,7 @@ class AddProfileFields extends Migration
             $table->string('profile_key')->nullable()->unique();
             $table->string('country_code')->nullable()->default('');
             $table->boolean('is_for_hire')->default(false);
+            $table->date('last_activity')->nullable();
         });
 
         Schema::table('users', function(Blueprint $table) {
@@ -61,14 +62,15 @@ class AddProfileFields extends Migration
             $table->dropColumn('is_pro_iaw');
             $table->dropColumn('is_pro_fe');
             $table->dropColumn('is_pro_fx');
-            $table->dropColumn('profile_key');
             $table->dropColumn('is_subscribed');
-            $table->dropColumn('country_code');
-            $table->dropColumn('is_for_hire');
-            $table->dropColumn('instagram_url');
             $table->dropColumn('count_apps');
             $table->dropColumn('count_events');
             $table->dropColumn('count_artifacts');
+            $table->dropColumn('profile_key');
+            $table->dropColumn('country_code');
+            $table->dropColumn('is_for_hire');
+            $table->dropColumn('instagram_url');
+            $table->dropColumn('last_activity');
         });
     }
 }

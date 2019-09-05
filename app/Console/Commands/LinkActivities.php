@@ -108,6 +108,7 @@ class LinkActivities extends Command
                 } else {
                     $user->count_artifacts++;
                 }
+                $user->last_activity = date('Y-m-d');
                 $user->save();
 
                 $this->activityRepo->store($activity->user_id, $activity->id, $type);
