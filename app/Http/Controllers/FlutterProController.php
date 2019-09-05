@@ -25,7 +25,8 @@ class FlutterProController extends Controller
         $users = User::whereIsPro(true)
             ->whereNotNull('last_activity')
             ->with('userActivities')
-            ->limit(12);
+            ->limit(3)
+            ->offset(((request()->page ?: 1) - 1) * 3);
 
         if ($search) {
             $users->search($search);

@@ -190,6 +190,23 @@ padding: 1rem 1rem 4rem 1rem;
 
             </section>
 
+            <center>
+
+                <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(-1)" v-if="page_number > 1">
+                    <span class="icon-bug-fix">
+                        <i style="font-size: 18px" class="fas fa-chevron-circle-left"></i> &nbsp;&nbsp;
+                    </span>
+                    Previous Page
+                </a> &nbsp;
+                <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)">
+                    Next Page &nbsp;&nbsp;
+                    <span>
+                        <i style="font-size: 18px" class="fas fa-chevron-circle-right"></i>
+                    </span>
+                </a>
+            </center>
+
+
         </div>
 
         <script>
@@ -211,6 +228,11 @@ padding: 1rem 1rem 4rem 1rem;
 
             watch: {
                 search: {
+                    handler() {
+                        app.serverSearch();
+                    },
+                },
+                page_number: {
                     handler() {
                         app.serverSearch();
                     },
@@ -263,12 +285,14 @@ padding: 1rem 1rem 4rem 1rem;
                     var searchStr = this.search;
                     var profiles = this.profiles;
                     var sortBy = this.sort_by;
+                    var page = this.page_number;
 
                     app.$set(app, 'is_searching', true);
                     if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
 
                     this.bounceTimeout = setTimeout(function() {
-                        $.get('/search_pro?search=' + encodeURIComponent(searchStr) + '&sort_by=' + sortBy, function (data) {
+                        $.get('/search_pro?search=' + encodeURIComponent(searchStr) + '&sort_by=' + sortBy + '&page=' + page,
+                            function (data) {
                             console.log(data);
                             app.$set(app, 'profiles', data);
                             app.$set(app, 'is_searching', false);
