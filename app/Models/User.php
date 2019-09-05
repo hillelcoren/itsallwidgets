@@ -133,14 +133,21 @@ class User extends Authenticatable
         return false;
     }
 
+    function profileUrl()
+    {
+        return $this->profile_url ?: $this->jsonUrl(true) . '&instructions=true';
+    }
+
     public function toObject()
     {
         $obj = new \stdClass;
+
         if (request()->counts) {
             $obj->id = $this->profile_key;
             $obj->image_url = $this->image_url;
-            $obj->profile_url = $this->profile_url ?: $this->jsonUrl(true) . '&instructions=true';
+            $obj->profile_url = $this->profileUrl();
         }
+
         $obj->name = $this->name;
         $obj->handle = $this->handle;
         $obj->bio = $this->bio;

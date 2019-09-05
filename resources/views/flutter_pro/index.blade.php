@@ -226,7 +226,7 @@ padding: 1rem 1rem 4rem 1rem;
                         </header>
                         <section class="modal-card-body" @click.stop>
                             <iframe sandbox="allow-scripts allow-same-origin" v-bind:src="selected_profile.profile_url" allowTransparency="true" scrolling="no"
-                                loading="lazy" width="100%" v-bind:height="700" frameborder="0" style="border:none; overflow:hidden;"></iframe>
+                                loading="lazy" width="100%" height="700" frameborder="0" style="border:none; overflow:hidden;"></iframe>
                         </section>
                     </div>
                 </div>
