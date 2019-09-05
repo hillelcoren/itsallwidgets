@@ -139,7 +139,7 @@ class User extends Authenticatable
         if (request()->counts) {
             $obj->id = $this->profile_key;
             $obj->image_url = $this->image_url;
-            $obj->profile_url = $this->profile_url ?: $this->jsonUrl(true);
+            $obj->profile_url = $this->profile_url ?: $this->jsonUrl(true) . '&instructions=true';
         }
         $obj->name = $this->name;
         $obj->handle = $this->handle;
