@@ -93,6 +93,9 @@ padding: 1rem 1rem 4rem 1rem;
                                     <option value="sort_featured">FEATURED</option>
                                     <!-- <option value="sort_activity">ACTIVITY</option> -->
                                     <option value="sort_newest">NEWEST</option>
+                                    <option value="sort_apps">APPS</option>
+                                    <option value="sort_artifacts">RESOURCES</option>
+                                    <option value="sort_events">EVENTS</option>
                                 </select>
                             </div>
                         </p>
