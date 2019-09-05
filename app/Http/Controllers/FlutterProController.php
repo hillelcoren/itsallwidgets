@@ -9,6 +9,10 @@ class FlutterProController extends Controller
 {
     public function index()
     {
+        if (! auth()->check() || ! auth()->check()->is_admin) {
+            return redirect('https://itsallwidgets.com');
+        }
+
         $data = [
             'useBlackHeader' => true,
         ];
