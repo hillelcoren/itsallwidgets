@@ -44,6 +44,7 @@ class FlutterProController extends Controller
             $obj->twitter_url = $user->twitter_url;
             $obj->medium_url = $user->medium_url;
             $obj->linkedin_url = $user->linkedin_url;
+            $obj->instagram_url = $user->instagram_url;
 
             $activities = $user->userActivities;
 

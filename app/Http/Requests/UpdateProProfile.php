@@ -38,6 +38,7 @@ class UpdateProProfile extends FormRequest
             'twitter_url' => [new ExternalLink('https://twitter.com/')],
             'medium_url' => [new ExternalLink('https://medium.com/')],
             'linkedin_url' => [new ExternalLink('https://linkedin.com/')],
+            'instagram_url' => [new ExternalLink('https://instagram.com/')],
         ];
 
         return $rules;

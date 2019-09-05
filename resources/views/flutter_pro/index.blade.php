@@ -172,6 +172,13 @@ padding: 1rem 1rem 4rem 1rem;
                                         </a>
                                     </span>
                                 </span>
+                                <span v-if="profile.instagram_url">
+                                    <span class="icon-bug-fix" style="padding:12px">
+                                        <a v-bind:href="profile.instagram_url" target="_blank" v-on:click.stop rel="nofollow">
+                                            <i class="fab fa-instagram"></i>
+                                        </a>
+                                    </span>
+                                </span>
                             </div>
 
                         </div>

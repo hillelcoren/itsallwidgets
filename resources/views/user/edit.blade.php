@@ -320,7 +320,7 @@
 					</div>
 
 
-					<div class="field">
+                    <div class="field">
 						<label class="label" for="linkedin_url">
 							LinkedIn
 						</label>
@@ -335,6 +335,26 @@
 							@if ($errors->has('linkedin_url'))
 								<span class="help is-danger">
 									{{ $errors->first('linkedin_url') }}
+								</span>
+							@endif
+						</div>
+					</div>
+
+                    <div class="field">
+						<label class="label" for="instagram_url">
+							Instagram
+						</label>
+						<div class="control has-icons-left">
+
+							{{ Form::url('instagram_url', $user->instagram_url, ['class' => 'input', 'placeholder' => 'https://instagram.com']) }}
+
+							<span class="icon is-small is-left">
+								<i class="fab fa-instagram"></i>
+							</span>
+
+							@if ($errors->has('instagram_url'))
+								<span class="help is-danger">
+									{{ $errors->first('instagram_url') }}
 								</span>
 							@endif
 						</div>

@@ -28,6 +28,7 @@ class User extends Authenticatable
         'twitter_url',
         'medium_url',
         'linkedin_url',
+        'instagram_url',
         'bio',
         'is_pro',
         'is_pro_iaw',
