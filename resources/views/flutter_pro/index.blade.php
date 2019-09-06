@@ -109,12 +109,12 @@ padding: 1rem 1rem 4rem 1rem;
         <section class="section is-body-font" style="background-color:#fefefe">
 
             <div class="container" v-cloak>
-                <div v-if="filteredProfiles.length == 0" class="is-wide has-text-centered is-vertical-center" style="text-align:center; font-size: 32px; color: #AAA">
+                <div v-if="filteredProfiles.length == 0 || is_searching" class="is-wide has-text-centered is-vertical-center" style="text-align:center; font-size: 32px; color: #AAA">
                     <span v-if="is_searching">Loading...</span>
                     <span v-if="! is_searching">No developers found</span>
                 </div>
 
-                <div class="columns is-multiline is-6 is-variable">
+                <div class="columns is-multiline is-6 is-variable" v-if="! is_searching">
                     <div v-for="profile in filteredProfiles" :key="profile.id" class="column is-one-third">
                         <div v-on:click="selectProfile(profile)" style="cursor:pointer">
                             <div class="profile-panel is-hover-elevated has-text-centered">
