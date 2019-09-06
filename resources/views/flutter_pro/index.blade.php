@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('title', 'A Showcase for Passionate Flutter Developers')
-@section('description', 'A Showcase for Passionate Flutter Developers')
+@section('description', 'Profiles are sourced from FlutterX, Flutter Events and It\'s All Widgets!')
 @section('image_url', asset('images/flutterpro_twitter.png'))
 
 @section('header_title', 'A Showcase for Passionate Flutter Developers')
