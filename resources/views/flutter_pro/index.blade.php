@@ -120,7 +120,8 @@ padding: 1rem 1rem 4rem 1rem;
                                 <header style="padding-top: 25px">
                                     <div style="height: 100px">
                                         <span v-if="profile.image_url">
-                                            <img v-bind:src="profile.image_url" style="border-radius: 50%; width: 120px;"/>
+                                            <img v-bind:src="profile.image_url + '?clear_cache=' + profile.updated_at"
+                                                style="border-radius: 50%; width: 120px;"/>
                                         </span>
                                         <span v-if="!profile.image_url">
                                             <img src="/images/flutter_logo.png" style="width: 94px;"/>
