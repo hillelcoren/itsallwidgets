@@ -267,6 +267,7 @@ class FlutterEvent extends Model implements Feedable
         $obj->type = 'event';
         $obj->description = mb_convert_encoding($this->description, 'UTF-8', 'UTF-8');
         $obj->url = $this->event_url;
+        $obj->image_url = $this->image_url;
 
         return $obj;
     }

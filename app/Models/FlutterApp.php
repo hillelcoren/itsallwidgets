@@ -92,7 +92,7 @@ class FlutterApp extends Model implements Feedable
     {
         $suffix = $number ? '-' . $number : '';
 
-        return url('screenshots/app-' . $this->id . $suffix . '.png?updated_at=' . $this->updated_at->format('Y-m-d%20H:m:s'));
+        return iawUrl() . '/screenshots/app-' . $this->id . $suffix . '.png?updated_at=' . $this->updated_at->format('Y-m-d%20H:m:s');
     }
 
     public function gifUrl()
@@ -157,6 +157,7 @@ class FlutterApp extends Model implements Feedable
         $obj->type = 'app';
         $obj->description = mb_convert_encoding($this->short_description, 'UTF-8', 'UTF-8');
         $obj->url = $this->url();
+        $obj->image_url = $this->screenshotUrl();
 
         return $obj;
     }

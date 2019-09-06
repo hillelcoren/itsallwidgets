@@ -182,7 +182,11 @@ class User extends Authenticatable
             $obj->activity_link_title = '';
         }
 
-        $obj->activities = [];
+        $obj->apps = [];
+        $obj->articles = [];
+        $obj->videos = [];
+        $obj->libraries = [];
+        $obj->events = [];
 
         $activities = $this->userActivities;
 
@@ -199,7 +203,41 @@ class User extends Authenticatable
                 $obj->activity_link_title = mb_convert_encoding($activity->activity->activityLinkTitle(), 'UTF-8', 'UTF-8');
             }
 
-            $obj->activities[] = $activity->activity->toObject();
+            $activityObj = $activity->activity->toObject();
+
+            if ($activityObj->type == 'app') {
+                $type = 'apps';
+            } else if ($activityObj->type == 'article') {
+                $type = 'articles';
+            } else if ($activityObj->type == 'video') {
+                $type = 'videos';
+            } else if ($activityObj->type == 'library') {
+                $type = 'libraries';
+            } else if ($activityObj->type == 'event') {
+                $type = 'events';
+            }
+
+            unset($activityObj->type);
+            
+            $obj->{$type}[] = $activityObj;
+        }
+
+        if (request()->pretty) {
+            if (! count($obj->apps)) {
+                unset($obj->apps);
+            }
+            if (! count($obj->articles)) {
+                unset($obj->articles);
+            }
+            if (! count($obj->videos)) {
+                unset($obj->videos);
+            }
+            if (! count($obj->libraries)) {
+                unset($obj->libraries);
+            }
+            if (! count($obj->events)) {
+                unset($obj->events);
+            }
         }
 
         return $obj;
