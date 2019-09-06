@@ -87,11 +87,12 @@ padding: 1rem 1rem 4rem 1rem;
                                 <i class="fas fa-search"></i>
                             </span>
 
-                            <div class="is-medium filter-label">
+                            <div class="is-medium filter-label" style="padding-left: 26px;">
                                 <label class="label is-medium" style="font-weight: normal; font-size: 16px">PLATFORM</label>
                             </div>
-                            <div class="select is-medium filter-control" style="font-size: 16px">
+                            <div class="select is-medium filter-control" style="padding-left: 14px; font-size: 16px">
                                 <select v-model="filter_platform" onchange="$(this).blur()">
+                                    <option value="">ALL</option>
                                     <option value="github">GitHub</option>
                                     <option value="youtube">YouTube</option>
                                     <option value="twitter">Twitter</option>
@@ -123,7 +124,9 @@ padding: 1rem 1rem 4rem 1rem;
         <section class="section is-body-font" style="background-color:#fefefe">
 
             <div class="container" v-cloak>
-                <div v-if="filteredProfiles.length == 0 || is_searching" class="is-wide has-text-centered is-vertical-center" style="text-align:center; font-size: 32px; color: #AAA">
+                <div v-if="filteredProfiles.length == 0 || is_searching"
+                    class="is-wide has-text-centered is-vertical-center"
+                    style="text-align:center; font-size: 32px; color: #AAA; padding-top: 150px; padding-bottom: 150px;">
                     <span v-if="is_searching">Loading...</span>
                     <span v-if="! is_searching">No developers found</span>
                 </div>
@@ -269,6 +272,11 @@ padding: 1rem 1rem 4rem 1rem;
 
                 watch: {
                     search: {
+                        handler() {
+                            app.serverSearch();
+                        },
+                    },
+                    filter_platform: {
                         handler() {
                             app.serverSearch();
                         },
