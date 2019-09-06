@@ -2,7 +2,7 @@
 
 @section('title', 'A Showcase for Passionate Flutter Developers')
 @section('description', 'A Showcase for Passionate Flutter Developers')
-@section('image_url', asset('images/background.jpg'))
+@section('image_url', asset('images/flutterpro_twitter.png'))
 
 @section('header_title', 'A Showcase for Passionate Flutter Developers')
 @section('header_button_url', iawUrl() . '/auth/google?intended_url=profile/edit')
