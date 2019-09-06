@@ -125,48 +125,45 @@ padding: 1rem 1rem 4rem 1rem;
 
             <div class="container" v-cloak>
                 <div v-if="filteredProfiles.length == 0 || is_searching"
-                    class="is-wide has-text-centered is-vertical-center"
-                    style="text-align:center; font-size: 32px; color: #AAA; padding-top: 150px; padding-bottom: 150px;">
-                    <span v-if="is_searching">Loading...</span>
-                    <span v-if="! is_searching">No developers found</span>
-                </div>
+                class="is-wide has-text-centered is-vertical-center"
+                style="text-align:center; font-size: 32px; color: #AAA; padding-top: 150px; padding-bottom: 150px;">
+                <span v-if="is_searching">Loading...</span>
+                <span v-if="! is_searching">No developers found</span>
+            </div>
 
-                <div class="columns is-multiline is-6 is-variable" v-if="! is_searching">
-                    <div v-for="profile in filteredProfiles" :key="profile.id" class="column is-one-third">
-                        <div v-on:click="selectProfile(profile)" style="cursor:pointer">
-                            <div class="profile-panel is-hover-elevated has-text-centered">
+            <div class="columns is-multiline is-6 is-variable" v-if="! is_searching">
+                <div v-for="profile in filteredProfiles" :key="profile.id" class="column is-one-third">
+                    <div v-on:click="selectProfile(profile)" style="cursor:pointer">
+                        <div class="profile-panel is-hover-elevated has-text-centered">
 
-                                <header style="padding-top: 25px">
-                                    <div style="height: 100px">
-                                        <span v-if="profile.image_url">
-                                            <img v-bind:src="profile.image_url + '?clear_cache=' + profile.updated_at"
-                                                style="border-radius: 50%; width: 120px;"/>
-                                        </span>
-                                        <span v-if="!profile.image_url">
-                                            <img src="/images/flutter_logo.png" style="width: 94px;"/>
-                                        </span>
-                                    </div><br/>
+                            <header style="padding-top: 25px">
+                                <div style="height: 100px">
+                                    <span v-if="profile.image_url">
+                                        <img v-bind:src="profile.image_url + '?clear_cache=' + profile.updated_at"
+                                        style="border-radius: 50%; width: 120px;"/>
+                                    </span>
+                                    <span v-if="!profile.image_url">
+                                        <img src="/images/flutter_logo.png" style="width: 94px;"/>
+                                    </span>
+                                </div><br/>
 
-                                    <p class="no-wrap" style="font-size:22px; padding-top:18px; padding-bottom:14px;">
-                                        @{{ profile.name }}
-                                    </p>
-                                    <div style="border-bottom: 2px #368cd5 solid; margin-left:40%; margin-right: 40%;"></div>
-                                </header>
+                                <p class="no-wrap" style="font-size:22px; padding-top:18px; padding-bottom:14px;">
+                                    @{{ profile.name }}
+                                </p>
+                                <div style="border-bottom: 2px #368cd5 solid; margin-left:40%; margin-right: 40%;"></div>
+                            </header>
 
-                                <div class="content" style="padding-left:16px; padding-right:16px; padding-top: 2px;">
+                            <div class="content" style="padding-left:16px; padding-right:16px; padding-top: 2px;">
 
-                                    <div class="short-description" style="padding-top:16px;">
-                                        <a v-bind:href="profile.activity_link_url" target="_blank" v-on:click.stop rel="nofollow">
-                                            @{{ profile.activity_link_title }}</a>
+                                <div class="short-description" style="padding-top:16px;">
+                                    <a v-bind:href="profile.activity_link_url" target="_blank" v-on:click.stop rel="nofollow">
+                                        @{{ profile.activity_link_title }}</a>
 
-                                            • @{{ profile.activity_message }}
-                                        </div>
+                                        • @{{ profile.activity_message }}
                                     </div>
+                                </div>
 
-                                    <div style="color:#888; font-size:15px; padding-top: 6px; padding-bottom:20px;">
-                                        @{{ profile.counts }}
-                                    </div>
-
+                                <div style="padding-bottom:20px;">
                                     <span v-if="profile.github_url">
                                         <span class="icon-bug-fix" style="padding:12px">
                                             <a v-if="profile.github_url" v-bind:href="profile.github_url" target="_blank" v-on:click.stop rel="nofollow">
@@ -211,232 +208,238 @@ padding: 1rem 1rem 4rem 1rem;
                                     </span>
                                 </div>
 
+                                <div style="color:#888; font-size:15px;">
+                                    @{{ profile.counts }}
+                                </div>
+
                             </div>
-                            <p>&nbsp;</p>
+
                         </div>
-                    </div>
-
-
-                </section>
-
-                <center>
-
-                    <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(-1)" v-if="page_number > 1">
-                        <span class="icon-bug-fix">
-                            <i style="font-size: 18px" class="fas fa-chevron-circle-left"></i> &nbsp;&nbsp;
-                        </span>
-                        Previous Page
-                    </a> &nbsp;
-                    <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)">
-                        Next Page &nbsp;&nbsp;
-                        <span>
-                            <i style="font-size: 18px" class="fas fa-chevron-circle-right"></i>
-                        </span>
-                    </a>
-                </center>
-
-                <div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_profile">
-                    <div class="modal-background" v-on:click="selectProfile()"></div>
-                    <div class="modal-card is-body-font">
-                        <header class="modal-card-head">
-                            <p class="modal-card-title">
-                                @{{ selected_profile.name }}
-                            </p>
-                            <button class="delete" aria-label="close" v-on:click="selectProfile()"></button>
-                        </header>
-                        <section class="modal-card-body" @click.stop>
-                            <iframe sandbox="allow-scripts allow-same-origin" v-bind:src="selected_profile.profile_url" allowTransparency="true" scrolling="no"
-                                loading="lazy" width="100%" height="700" frameborder="0" style="border:none; overflow:hidden;"></iframe>
-                        </section>
+                        <p>&nbsp;</p>
                     </div>
                 </div>
 
+
+            </section>
+
+            <center>
+
+                <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(-1)" v-if="page_number > 1">
+                    <span class="icon-bug-fix">
+                        <i style="font-size: 18px" class="fas fa-chevron-circle-left"></i> &nbsp;&nbsp;
+                    </span>
+                    Previous Page
+                </a> &nbsp;
+                <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)">
+                    Next Page &nbsp;&nbsp;
+                    <span>
+                        <i style="font-size: 18px" class="fas fa-chevron-circle-right"></i>
+                    </span>
+                </a>
+            </center>
+
+            <div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_profile">
+                <div class="modal-background" v-on:click="selectProfile()"></div>
+                <div class="modal-card is-body-font">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title">
+                            @{{ selected_profile.name }}
+                        </p>
+                        <button class="delete" aria-label="close" v-on:click="selectProfile()"></button>
+                    </header>
+                    <section class="modal-card-body" @click.stop>
+                        <iframe sandbox="allow-scripts allow-same-origin" v-bind:src="selected_profile.profile_url" allowTransparency="true" scrolling="no"
+                        loading="lazy" width="100%" height="700" frameborder="0" style="border:none; overflow:hidden;"></iframe>
+                    </section>
+                </div>
             </div>
 
-            <script>
+        </div>
 
-            function isStorageSupported() {
-                try {
-                    return 'localStorage' in window && window['localStorage'] !== null;
-                } catch (e) {
-                    return false;
-                }
-            };
+        <script>
 
-            function getCachedSortBy() {
-                return (isStorageSupported() ? localStorage.getItem('pro_sort_by') : false) || 'sort_featured';
+        function isStorageSupported() {
+            try {
+                return 'localStorage' in window && window['localStorage'] !== null;
+            } catch (e) {
+                return false;
             }
+        };
 
-            var app = new Vue({
-                el: '#app',
+        function getCachedSortBy() {
+            return (isStorageSupported() ? localStorage.getItem('pro_sort_by') : false) || 'sort_featured';
+        }
 
-                watch: {
-                    search: {
-                        handler() {
-                            app.serverSearch();
-                        },
-                    },
-                    filter_platform: {
-                        handler() {
-                            app.serverSearch();
-                        },
-                    },
-                    page_number: {
-                        handler() {
-                            app.serverSearch();
-                        },
-                    },
-                    sort_by: {
-                        handler() {
-                            app.serverSearch();
-                            app.saveFilters();
-                        },
+        var app = new Vue({
+            el: '#app',
+
+            watch: {
+                search: {
+                    handler() {
+                        app.serverSearch();
                     },
                 },
-
-                methods: {
-
-                    adjustPage: function(change) {
-                        this.page_number += change;
-                        document.body.scrollTop = 0; // For Safari
-                        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+                filter_platform: {
+                    handler() {
+                        app.serverSearch();
                     },
-
-                    setFilter: function(filter) {
-                        filter = filter || '';
-                        this.selectProfile();
-                        this.search = filter.toLowerCase();
+                },
+                page_number: {
+                    handler() {
+                        app.serverSearch();
                     },
-
-                    saveFilters: function() {
-                        if (! isStorageSupported()) {
-                            return false;
-                        }
-
-                        localStorage.setItem('sort_by', this.sort_by);
+                },
+                sort_by: {
+                    handler() {
+                        app.serverSearch();
+                        app.saveFilters();
                     },
+                },
+            },
 
-                    searchBackgroundColor: function() {
-                        if (! this.search) {
-                            return '#FFFFFF';
+            methods: {
+
+                adjustPage: function(change) {
+                    this.page_number += change;
+                    document.body.scrollTop = 0; // For Safari
+                    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+                },
+
+                setFilter: function(filter) {
+                    filter = filter || '';
+                    this.selectProfile();
+                    this.search = filter.toLowerCase();
+                },
+
+                saveFilters: function() {
+                    if (! isStorageSupported()) {
+                        return false;
+                    }
+
+                    localStorage.setItem('sort_by', this.sort_by);
+                },
+
+                searchBackgroundColor: function() {
+                    if (! this.search) {
+                        return '#FFFFFF';
+                    } else {
+                        if (this.is_searching) {
+                            return '#FFFFBB';
+                        } else if (this.filteredProfiles.length) {
+                            return '#FFFFBB';
                         } else {
-                            if (this.is_searching) {
-                                return '#FFFFBB';
-                            } else if (this.filteredProfiles.length) {
-                                return '#FFFFBB';
-                            } else {
-                                return '#FFC9D9';
-                            }
+                            return '#FFC9D9';
                         }
-                    },
+                    }
+                },
 
-                    selectProfile: function(profile) {
+                selectProfile: function(profile) {
 
-                        if (false && document.body.clientWidth < 1000) {
+                    if (false && document.body.clientWidth < 1000) {
+                        if (app) {
+                            window.location = '/' + profile.handle;
+                        }
+                    } else {
+                        this.selected_profile = profile;
+                        if (history.pushState) {
                             if (app) {
-                                window.location = '/' + profile.handle;
-                            }
-                        } else {
-                            this.selected_profile = profile;
-                            if (history.pushState) {
-                                if (app) {
-                                    var route = '/' + (profile ? profile.handle : '');
-                                    gtag('config', '{{ $tracking_id }}', {'page_path': route});
-                                    history.pushState(null, null, route);
-                                } else {
-                                    history.pushState(null, null, '/');
-                                }
+                                var route = '/' + (profile ? profile.handle : '');
+                                gtag('config', '{{ $tracking_id }}', {'page_path': route});
+                                history.pushState(null, null, route);
+                            } else {
+                                history.pushState(null, null, '/');
                             }
                         }
-                    },
-
-                    serverSearch: function() {
-                        var app = app || this;
-                        var searchStr = this.search;
-                        var profiles = this.profiles;
-                        var sortBy = this.sort_by;
-                        var page = this.page_number;
-                        var platform = this.filter_platform;
-
-                        app.$set(app, 'is_searching', true);
-                        if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
-
-                        this.bounceTimeout = setTimeout(function() {
-                            $.get('/search_pro?counts=true&search='
-                                + encodeURIComponent(searchStr)
-                                + '&sort_by=' + sortBy
-                                + '&page=' + page
-                                + '&platform=' + platform,
-                            function (data) {
-                                app.$set(app, 'profiles', data);
-                                app.$set(app, 'is_searching', false);
-                            });
-                        }, 500);
-                    },
-
+                    }
                 },
 
-                beforeMount(){
-                    this.serverSearch();
+                serverSearch: function() {
+                    var app = app || this;
+                    var searchStr = this.search;
+                    var profiles = this.profiles;
+                    var sortBy = this.sort_by;
+                    var page = this.page_number;
+                    var platform = this.filter_platform;
+
+                    app.$set(app, 'is_searching', true);
+                    if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
+
+                    this.bounceTimeout = setTimeout(function() {
+                        $.get('/search_pro?counts=true&search='
+                        + encodeURIComponent(searchStr)
+                        + '&sort_by=' + sortBy
+                        + '&page=' + page
+                        + '&platform=' + platform,
+                        function (data) {
+                            app.$set(app, 'profiles', data);
+                            app.$set(app, 'is_searching', false);
+                        });
+                    }, 500);
                 },
 
-                mounted () {
-                    window.addEventListener('keyup', function(event) {
-                        if (event.keyCode == 27) {
-                            app.selectProfile();
+            },
+
+            beforeMount(){
+                this.serverSearch();
+            },
+
+            mounted () {
+                window.addEventListener('keyup', function(event) {
+                    if (event.keyCode == 27) {
+                        app.selectProfile();
+                    }
+                });
+            },
+
+            data: {
+                profiles: [],
+                search: "{{ request()->search }}",
+                sort_by: getCachedSortBy(),
+                selected_profile: false,
+                page_number: 1,
+                filter_platform: '',
+                is_searching: false,
+            },
+
+            computed: {
+
+                modalClass() {
+                    if (this.selected_profile) {
+                        return {'is-active': true};
+                    } else {
+                        return {};
+                    }
+                },
+
+                filteredProfiles() {
+
+                    var profiles = this.profiles;
+                    var search = this.search.toLowerCase().trim();
+                    var sort_by = this.sort_by;
+
+                    if (search) {
+                        profiles = profiles.filter(function(item) {
+
+                            return true;
+                        });
+                    }
+
+                    profiles.sort(function(itemA, itemB) {
+                        var timeA = false;//new Date(itemA.created_at).getTime();
+                        var timeB = false;//new Date(itemB.created_at).getTime();
+
+                        if (sort_by == 'sort_newest') {
+                            return timeB - timeA;
+                        } else {
                         }
                     });
+
+                    return profiles;
                 },
+            }
 
-                data: {
-                    profiles: [],
-                    search: "{{ request()->search }}",
-                    sort_by: getCachedSortBy(),
-                    selected_profile: false,
-                    page_number: 1,
-                    filter_platform: '',
-                    is_searching: false,
-                },
+        });
 
-                computed: {
+        </script>
 
-                    modalClass() {
-                        if (this.selected_profile) {
-                            return {'is-active': true};
-                        } else {
-                            return {};
-                        }
-                    },
-
-                    filteredProfiles() {
-
-                        var profiles = this.profiles;
-                        var search = this.search.toLowerCase().trim();
-                        var sort_by = this.sort_by;
-
-                        if (search) {
-                            profiles = profiles.filter(function(item) {
-
-                                return true;
-                            });
-                        }
-
-                        profiles.sort(function(itemA, itemB) {
-                            var timeA = false;//new Date(itemA.created_at).getTime();
-                            var timeB = false;//new Date(itemB.created_at).getTime();
-
-                            if (sort_by == 'sort_newest') {
-                                return timeB - timeA;
-                            } else {
-                            }
-                        });
-
-                        return profiles;
-                    },
-                }
-
-            });
-
-            </script>
-
-        @endsection
+    @endsection
