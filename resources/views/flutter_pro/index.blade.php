@@ -164,6 +164,7 @@ padding: 1rem 1rem 4rem 1rem;
                                 </div>
 
                                 <div style="padding-bottom:20px;">
+                                    &nbsp;
                                     <span v-if="profile.github_url">
                                         <span class="icon-bug-fix" style="padding:12px">
                                             <a v-if="profile.github_url" v-bind:href="profile.github_url" target="_blank" v-on:click.stop rel="nofollow">
