@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', 'Flutter Pro')
+@section('title', 'A Showcase for Passionate Flutter Developers')
 @section('description', 'A Showcase for Passionate Flutter Developers')
 @section('image_url', asset('images/background.jpg'))
 
