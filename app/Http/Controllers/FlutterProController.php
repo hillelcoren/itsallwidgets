@@ -21,6 +21,7 @@ class FlutterProController extends Controller
         $data = [];
         $search = strtolower(request()->search);
         $sortBy = strtolower(request()->sort_by);
+        $platform = strtolower(request()->platform);
 
         $users = User::whereIsPro(true)
         ->whereNotNull('last_activity')
@@ -28,6 +29,20 @@ class FlutterProController extends Controller
 
         if ($search) {
             $users->search($search);
+        }
+
+        if ($platform == 'github') {
+            $users->where('github_url', '!=', '');
+        } else if ($platform == 'youtube') {
+            $users->where('youtube_url', '!=', '');
+        } else if ($platform == 'twitter') {
+            $users->where('twitter_url', '!=', '');
+        } else if ($platform == 'medium') {
+            $users->where('medium_url', '!=', '');
+        } else if ($platform == 'linkedin') {
+            $users->where('linkedin_url', '!=', '');
+        } else if ($platform == 'instagram') {
+            $users->where('instagram_url', '!=', '');
         }
 
         if ($sortBy == 'sort_newest') {

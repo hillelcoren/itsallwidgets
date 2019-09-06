@@ -87,6 +87,20 @@ padding: 1rem 1rem 4rem 1rem;
                                 <i class="fas fa-search"></i>
                             </span>
 
+                            <div class="is-medium filter-label">
+                                <label class="label is-medium" style="font-weight: normal; font-size: 16px">PLATFORM</label>
+                            </div>
+                            <div class="select is-medium filter-control" style="font-size: 16px">
+                                <select v-model="filter_platform" onchange="$(this).blur()">
+                                    <option value="github">GitHub</option>
+                                    <option value="youtube">YouTube</option>
+                                    <option value="twitter">Twitter</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="linkedin">LinkedIn</option>
+                                    <option value="instagram">Instagram</option>
+                                </select>
+                            </div>
+
                             <div class="is-medium filter-label" style="padding-left: 26px;">
                                 <label class="label is-medium" style="font-weight: normal; font-size: 16px">SORT</label>
                             </div>
@@ -334,12 +348,17 @@ padding: 1rem 1rem 4rem 1rem;
                         var profiles = this.profiles;
                         var sortBy = this.sort_by;
                         var page = this.page_number;
+                        var platform = this.filter_platform;
 
                         app.$set(app, 'is_searching', true);
                         if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
 
                         this.bounceTimeout = setTimeout(function() {
-                            $.get('/search_pro?counts=true&search=' + encodeURIComponent(searchStr) + '&sort_by=' + sortBy + '&page=' + page,
+                            $.get('/search_pro?counts=true&search='
+                                + encodeURIComponent(searchStr)
+                                + '&sort_by=' + sortBy
+                                + '&page=' + page
+                                + '&platform=' + platform,
                             function (data) {
                                 app.$set(app, 'profiles', data);
                                 app.$set(app, 'is_searching', false);
@@ -367,6 +386,7 @@ padding: 1rem 1rem 4rem 1rem;
                     sort_by: getCachedSortBy(),
                     selected_profile: false,
                     page_number: 1,
+                    filter_platform: '',
                     is_searching: false,
                 },
 
