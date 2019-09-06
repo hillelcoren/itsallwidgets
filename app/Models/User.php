@@ -151,7 +151,7 @@ class User extends Authenticatable
 
         $obj->name = $this->name;
         $obj->handle = $this->handle;
-        $obj->bio = $this->bio;
+        $obj->bio = $this->bio ?: '';
         $obj->country_code = $this->country_code;
         $obj->is_for_hire = (bool) $this->is_for_hire;
         $obj->website_url = $this->website_url;
