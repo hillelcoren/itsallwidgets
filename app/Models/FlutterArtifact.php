@@ -243,6 +243,12 @@ class FlutterArtifact extends Model implements Feedable
 
             $url = strtolower($url);
 
+            if (in_array($url, [
+                'https://medium.com/flutter-community',
+            ])) {
+                continue;
+            }
+
             if (strpos(strtolower(rtrim($this->url, '/')), $url) === 0) {
                 return true;
             }
