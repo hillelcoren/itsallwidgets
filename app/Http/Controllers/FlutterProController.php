@@ -67,7 +67,7 @@ class FlutterProController extends Controller
         }
 
         if (request()->pretty) {
-            $str = '<pre>' . json_encode($user->toObject(), JSON_PRETTY_PRINT) . '</pre';
+            $str = '<pre>' . e(json_encode($user->toObject(), JSON_PRETTY_PRINT)) . '</pre';
 
             if (request()->instructions) {
                 /*
