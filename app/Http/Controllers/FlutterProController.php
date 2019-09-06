@@ -130,6 +130,7 @@ class FlutterProController extends Controller
         $user->twitter_url = rtrim($user->twitter_url, '/');
         $user->medium_url = rtrim($user->medium_url, '/');
         $user->linkedin_url = rtrim($user->linkedin_url, '/');
+        $user->instagram_url = rtrim($user->instagram_url, '/');
         $user->save();
 
         if ($input = $_FILES['avatar']['tmp_name']) {
