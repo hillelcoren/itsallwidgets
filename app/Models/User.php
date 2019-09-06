@@ -161,7 +161,7 @@ class User extends Authenticatable
         $obj->medium_url = $this->medium_url;
         $obj->linkedin_url = $this->linkedin_url;
         $obj->instagram_url = $this->instagram_url;
-        $obj->updated_at = $this->updated_at;
+        $obj->updated_at = $this->updated_at ? $this->updated_at->toIso8601String() : '';
 
         if (request()->counts) {
             $counts = [];
