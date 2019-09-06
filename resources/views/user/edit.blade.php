@@ -408,7 +408,7 @@
 								<input name="is_pro" type="checkbox" value="1" {{ $user->is_pro ? 'CHECKED' : '' }}> Enable
                             </label>
                             <div class="help">
-                                List developer on <a href="https://flutterpro.dev" target="_blank">flutterpro.dev</a>
+                                Show developer profile on <a href="https://flutterpro.dev" target="_blank">flutterpro.dev</a>
                             </div>
 						</div>
 					</div>
