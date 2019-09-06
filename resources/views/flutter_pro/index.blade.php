@@ -23,14 +23,14 @@
 .profile-panel {
     background-color: white;
     border-radius: 8px;
-    height: 408px;
+    height: 420px;
 }
 
 .short-description {
     padding-left: 16px;
     padding-right: 16px;
     line-height: 1.5em;
-    height: 5.0em;
+    height: 5.3em;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -43,6 +43,7 @@
 .fa-twitter,
 .fa-medium,
 .fa-linkedin,
+.fa-instagram,
 .fa-youtube {
     color: #888 !important;
     font-size: 22px !important;
@@ -52,6 +53,7 @@
 .fa-twitter:hover,
 .fa-medium:hover,
 .fa-linkedin:hover,
+.fa-instagram:hover,
 .fa-youtube:hover {
     color: black !important;
 }
@@ -144,7 +146,7 @@ padding: 1rem 1rem 4rem 1rem;
                                         </div>
                                     </div>
 
-                                    <div style="color:#888; font-size:15px; padding-bottom:20px">
+                                    <div style="color:#888; font-size:15px; padding-top: 6px; padding-bottom:20px;">
                                         @{{ profile.counts }}
                                     </div>
 
