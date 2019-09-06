@@ -23,8 +23,8 @@ class FlutterProController extends Controller
         $sortBy = strtolower(request()->sort_by);
 
         $users = User::whereIsPro(true)
-            ->whereNotNull('last_activity')
-            ->with('userActivities');
+        ->whereNotNull('last_activity')
+        ->with('userActivities');
 
         if ($search) {
             $users->search($search);
@@ -72,14 +72,14 @@ class FlutterProController extends Controller
             if (request()->instructions) {
                 /*
                 $str = 'You can use the <a href="' . $user->jsonUrl() . '" target="_blank">JSON feed</a> to create a custom profile with <a href="https://flutter.dev/web" target="_blank">Flutter Web</a>.<p/>'
-                    . 'Once the page is setup <a href="' . iawUrl() . '/auth/google?intended_url=profile/edit" target="_blank">click here</a> to configure the Flutter Web URL.'
-                    . $str;
-                    */
+                . 'Once the page is setup <a href="' . iawUrl() . '/auth/google?intended_url=profile/edit" target="_blank">click here</a> to configure the Flutter Web URL.'
+                . $str;
+                */
 
                 $str = 'You can use the JSON feed to create a custom profile with Flutter Web<p/>'
-                    . $user->jsonUrl() . '<p/>'
-                    . 'To make it shareable you just need to accept the developer handle as a query parameter<p/>'
-                    . $str;
+                . $user->jsonUrl() . '<p/>'
+                . 'To make it shareable you just need to accept the developer handle as a query parameter<p/>'
+                . $str;
             }
 
             return $str;
@@ -135,11 +135,33 @@ class FlutterProController extends Controller
         if ($input = $_FILES['avatar']['tmp_name']) {
             $output = public_path("avatars/{$user->profile_key}.png");
             imagepng(imagecreatefromstring(file_get_contents($input)), $output);
+            $this->resize_png($output, $output, 300, 300);
         }
 
         return redirect('/profile/edit')->with(
-            'status',
-            'Your profile has been successfully updated!');
+        'status',
+        'Your profile has been successfully updated!');
+    }
+
+    // https://www.php.net/manual/en/function.imagepng.php#60128
+    function resize_png($src,$dst,$dstw,$dsth) {
+        list($width, $height, $type, $attr) = getimagesize($src);
+        $im = imagecreatefrompng($src);
+        $tim = imagecreatetruecolor($dstw,$dsth);
+        imagecopyresampled($tim,$im,0,0,0,0,$dstw,$dsth,$width,$height);
+        $tim = $this->toPalette2($tim,false,255);
+        imagepng($tim,$dst);
+    }
+
+    function toPalette2($image, $dither, $ncolors) {
+        $width = imagesx( $image );
+        $height = imagesy( $image );
+        $colors_handle = ImageCreateTrueColor( $width, $height );
+        ImageCopyMerge( $colors_handle, $image, 0, 0, 0, 0, $width, $height, 100 );
+        ImageTrueColorToPalette( $image, $dither, $ncolors );
+        ImageColorMatch( $colors_handle, $image );
+        ImageDestroy($colors_handle);
+        return $image;
     }
 
 }

@@ -29,7 +29,7 @@ class UpdateProProfile extends FormRequest
         $rules = [
             'name' => 'required',
             'handle' => 'required|unique:users,handle,' . $user->id . ',id',
-            'avatar' => 'image|nullable|dimensions:ratio=1/1|width:300',
+            'avatar' => 'image|nullable|dimensions:ratio=1/1',
             'bio' => 'max:1000',
             'profile_url' => 'nullable|url',
             'website_url' => 'nullable|url',
