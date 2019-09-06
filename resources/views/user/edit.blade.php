@@ -228,10 +228,6 @@
                                 {{ Form::text('country_code', $user->country_code, ['class' => 'input', 'id' => 'country_code']) }}
                             </span>
 
-							<span class="icon is-small is-left">
-								<i class="fas fa-globe"></i>
-							</span>
-
 							@if ($errors->has('country_code'))
 								<span class="help is-danger">
 									{{ $errors->first('country_code') }}
@@ -262,7 +258,7 @@
 
 					<div class="field">
 						<label class="label" for="github_url">
-							6itHub
+							GitHub
 						</label>
 						<div class="control has-icons-left">
 
