@@ -76,7 +76,10 @@ class FlutterProController extends Controller
                     . $str;
                     */
 
-                $str = 'You can use the JSON feed to create a custom profile with Flutter Web.<p/>' . $user->jsonUrl() . '<p/>' . $str;
+                $str = 'You can use the JSON feed to create a custom profile with Flutter Web<p/>'
+                    . $user->jsonUrl() . '<p/>'
+                    . 'To make it shareable you just need to accept the developer handle as a query parameter<p/>'
+                    . $str;
             }
 
             return $str;
