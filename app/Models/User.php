@@ -153,7 +153,7 @@ class User extends Authenticatable
         $obj->handle = $this->handle;
         $obj->bio = $this->bio;
         $obj->country_code = $this->country_code;
-        $obj->is_for_hire = $this->is_for_hire;
+        $obj->is_for_hire = (bool) $this->is_for_hire;
         $obj->website_url = $this->website_url;
         $obj->github_url = $this->github_url;
         $obj->youtube_url = $this->youtube_url;

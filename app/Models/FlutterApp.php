@@ -102,7 +102,7 @@ class FlutterApp extends Model implements Feedable
 
     public function url()
     {
-        return url('flutter-app/' . $this->slug);
+        return iawUrl() . '/flutter-app/' . $this->slug;
     }
 
     public function twitterHandle()
