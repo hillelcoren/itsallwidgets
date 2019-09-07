@@ -87,7 +87,7 @@ padding: 1rem 1rem 4rem 1rem;
                                 <i class="fas fa-search"></i>
                             </span>
 
-                            <div class="is-medium" v-on:click="toggleForHire()" style="padding-left: 26px;">
+                            <div class="is-medium" v-on:click="toggleForHire()" style="padding-left: 20px;">
                                 <input type="checkbox" name="forHireSwitch"
                                 class="switch is-info" v-model="filter_for_hire">
                                 <label for="openSourceSwitch" style="padding-top:6px; font-size: 16px">FOR HIRE &nbsp;</label>
@@ -387,7 +387,7 @@ padding: 1rem 1rem 4rem 1rem;
                         + '&sort_by=' + sortBy
                         + '&page=' + page
                         + '&platform=' + platform;
-                        console.log('for hire: ' + forHire);
+
                         if (forHire) {
                             url += '&for_hire=true';
                         }
