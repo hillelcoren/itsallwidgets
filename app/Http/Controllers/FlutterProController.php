@@ -31,6 +31,10 @@ class FlutterProController extends Controller
             $users->search($search);
         }
 
+        if (request()->has('for_hire')) {
+            $users->where('is_for_hire', '=', 1);
+        }
+
         if ($platform == 'github') {
             $users->where('github_url', '!=', '');
         } else if ($platform == 'youtube') {

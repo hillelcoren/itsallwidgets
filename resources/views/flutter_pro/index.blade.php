@@ -87,6 +87,12 @@ padding: 1rem 1rem 4rem 1rem;
                                 <i class="fas fa-search"></i>
                             </span>
 
+                            <div class="is-medium" v-on:click="toggleForHire()" style="padding-left: 26px;">
+                                <input type="checkbox" name="forHireSwitch"
+                                class="switch is-info" v-model="filter_for_hire">
+                                <label for="openSourceSwitch" style="padding-top:6px; font-size: 16px">FOR HIRE &nbsp;</label>
+                            </div>
+
                             <div class="is-medium filter-label" style="padding-left: 26px;">
                                 <label class="label is-medium" style="font-weight: normal; font-size: 16px">PLATFORM</label>
                             </div>
@@ -285,6 +291,11 @@ padding: 1rem 1rem 4rem 1rem;
                         app.serverSearch();
                     },
                 },
+                filter_for_hire: {
+                    handler() {
+                        app.serverSearch();
+                    },
+                },
                 page_number: {
                     handler() {
                         app.serverSearch();
@@ -299,6 +310,10 @@ padding: 1rem 1rem 4rem 1rem;
             },
 
             methods: {
+
+                toggleForHire: function() {
+                    this.filter_for_hire = ! this.filter_for_hire;
+                },
 
                 adjustPage: function(change) {
                     this.page_number += change;
@@ -361,16 +376,23 @@ padding: 1rem 1rem 4rem 1rem;
                     var sortBy = this.sort_by;
                     var page = this.page_number;
                     var platform = this.filter_platform;
+                    var forHire = this.filter_for_hire;
 
                     app.$set(app, 'is_searching', true);
                     if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
 
                     this.bounceTimeout = setTimeout(function() {
-                        $.get('/search_pro?counts=true&search='
+                        var url = '/search_pro?counts=true&search='
                         + encodeURIComponent(searchStr)
                         + '&sort_by=' + sortBy
                         + '&page=' + page
-                        + '&platform=' + platform,
+                        + '&platform=' + platform;
+                        console.log('for hire: ' + forHire);
+                        if (forHire) {
+                            url += '&for_hire=true';
+                        }
+
+                        $.get(url,
                         function (data) {
                             app.$set(app, 'profiles', data);
                             app.$set(app, 'is_searching', false);
@@ -395,6 +417,7 @@ padding: 1rem 1rem 4rem 1rem;
             data: {
                 profiles: [],
                 search: "{{ request()->search }}",
+                filter_for_hire: {{ request()->has('for_hire') ? 'true' : 'false' }},
                 sort_by: getCachedSortBy(),
                 selected_profile: false,
                 page_number: 1,
