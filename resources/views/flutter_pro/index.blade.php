@@ -10,10 +10,14 @@
 @section('header_button_icon', 'fas fa-user')
 
 @section('header_subtitle')
-    Profiles are sourced from
-    <a href="{{ fxUrl() }}">FlutterX</a>,
-    <a href="{{ feUrl() }}">Flutter Events</a> and
-    <a href="{{ iawUrl() }}">It's All Widgets!</a>
+    @if (request()->has('for_hire'))
+        Hire some of the best <a href="https://flutter.dev" target="_blank">Flutter</a> developers on the planet
+    @else
+        Profiles are sourced from
+        <a href="{{ fxUrl() }}">FlutterX</a>,
+        <a href="{{ feUrl() }}">Flutter Events</a> and
+        <a href="{{ iawUrl() }}">It's All Widgets!</a>
+    @endif
 @endsection
 
 @section('head')
