@@ -601,7 +601,17 @@
         </div>
     </footer>
 
-
+    <section class="hero is-dark is-small is-body-font"
+            style="text-align:center; letter-spacing: 3px; font-size: 16px;">
+        <div class="hero-body">
+            <div class="container">
+                <a href="{{ iawUrl() }}">IT'S&nbsp;ALL&nbsp;WIDGETS!</a> &nbsp;&nbsp; • &nbsp;&nbsp;
+                <a href="{{ feUrl() }}">FLUTTER&nbsp;EVENTS</a> &nbsp;&nbsp; • &nbsp;&nbsp;
+                <a href="{{ fxUrl() }}">FLUTTERX</a> &nbsp;&nbsp; • &nbsp;&nbsp;
+                <a href="{{ fpUrl() }}">FLUTTER&nbsp;PRO</a>
+            </div>
+        </div>
+    </section>
 
 </body>
 </html>

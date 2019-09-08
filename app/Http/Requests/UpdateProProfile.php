@@ -36,7 +36,7 @@ class UpdateProProfile extends FormRequest
             'github_url' => [new ExternalLink('https://github.com/')],
             'youtube_url' => [new ExternalLink('https://www.youtube.com/')],
             'twitter_url' => [new ExternalLink('https://twitter.com/')],
-            'medium_url' => [new ExternalLink('https://medium.com/')],
+            'medium_url' => [new ExternalLink('https://medium.com/@')],
             'linkedin_url' => [new ExternalLink('https://linkedin.com/')],
             'instagram_url' => [new ExternalLink('https://instagram.com/')],
         ];
