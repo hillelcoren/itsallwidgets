@@ -13,7 +13,7 @@ class LoadEvents extends Command
      *
      * @var string
      */
-    protected $signature = 'itsallwidgets:load_events {--all}';
+    protected $signature = 'itsallwidgets:load_events {--all} {--file=}';
 
     /**
      * The console command description.
@@ -57,7 +57,7 @@ class LoadEvents extends Command
 
                 $this->info('Loading ' . $group->meetup_group_url . '...');
 
-                $data = file_get_contents('https://api.meetup.com/' . $group->meetup_group_url . '/events?page=100&text=flutter&status=past&key=' . config('services.meetup.key'));
+                $data = file_get_contents('https://api.meetup.com/' . $group->meetup_group_url . '/events?page=1000&text=flutter&status=past&key=' . config('services.meetup.key'));
                 $data = json_decode($data);
 
                 $this->parseEvents($data);
@@ -66,9 +66,13 @@ class LoadEvents extends Command
         } else {
             $this->info('Loading upcoming events...');
 
-            $data = file_get_contents('https://api.meetup.com/find/upcoming_events?page=100&text=flutter&radius=global&key=' . config('services.meetup.key'));
-            $data = json_decode($data);
+            if ($file = $this->option('file')) {
+                $data = file_get_contents($file);
+            } else {
+                $data = file_get_contents('https://api.meetup.com/find/upcoming_events?page=1000&text=flutter&radius=global&key=' . config('services.meetup.key'));
+            }
 
+            $data = json_decode($data);
             $this->parseEvents($data->events);
         }
 
