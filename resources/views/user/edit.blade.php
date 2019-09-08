@@ -162,7 +162,7 @@
 
                     <div class="field">
 						<label class="label" for="profile_url">
-							Flutter Web
+							Flutter Web Portfolio
 						</label>
 						<div class="control has-icons-left">
 
@@ -191,6 +191,8 @@
 						<div class="control">
 
 							{{ Form::file('avatar') }}
+
+                            <div class="help">The image can be any size but needs to be a sqaure</div>
 
 							@if ($errors->has('avatar'))
 								<span class="help is-danger">
