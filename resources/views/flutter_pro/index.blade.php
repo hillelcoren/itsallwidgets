@@ -259,17 +259,17 @@ padding: 1rem 1rem 4rem 1rem;
 
             <div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_profile">
                 <div class="modal-background" v-on:click="selectProfile()"></div>
-                <div class="modal-card is-body-font">
+                <div class="modal-card is-body-font" style="padding:0" @click.stop>
+                    <!--
                     <header class="modal-card-head">
                         <p class="modal-card-title">
                             @{{ selected_profile.name }}
                         </p>
                         <button class="delete" aria-label="close" v-on:click="selectProfile()"></button>
                     </header>
-                    <section class="modal-card-body" @click.stop>
-                        <iframe sandbox="allow-scripts allow-same-origin" v-bind:src="selected_profile.profile_url" allowTransparency="true" scrolling="no"
-                        loading="lazy" width="100%" height="700" frameborder="0" style="border:none; overflow:hidden;"></iframe>
-                    </section>
+                    -->
+                    <iframe sandbox="allow-scripts allow-same-origin allow-top-navigation allow-popups" v-bind:src="selected_profile.profile_url" allowTransparency="true" scrolling="no"
+                        loading="lazy" width="100%" height="800" frameBorder="0" style="border:none; overflow:hidden;"></iframe>
                 </div>
             </div>
 
@@ -384,7 +384,7 @@ padding: 1rem 1rem 4rem 1rem;
                                 gtag('config', '{{ $tracking_id }}', {'page_path': route});
                                 history.pushState(null, null, route);
                             } else {
-                                history.pushState(null, null, '/');
+                                history.pushState(null, null, '{{ isTest() ? '/profiles' : '/' }}' );
                             }
                         }
                     }
