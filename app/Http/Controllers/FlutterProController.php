@@ -52,7 +52,7 @@ class FlutterProController extends Controller
         if ($sortBy == 'sort_newest') {
             $users->orderBy('id', 'desc');
         } else if ($sortBy == 'sort_activity') {
-            $users->orderBy('last_activity', 'desc');
+            $users->orderBy('last_activity', 'desc')->orderBy('id', 'desc');
         } else if ($sortBy == 'sort_apps') {
             $users->orderBy('count_apps', 'desc');
         } else if ($sortBy == 'sort_artifacts') {
