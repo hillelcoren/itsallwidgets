@@ -605,10 +605,10 @@
             style="text-align:center; letter-spacing: 4px; font-size: 16px;">
         <div class="hero-body">
             <div class="container">
-                <a href="{{ iawUrl() }}">IT'S&nbsp;ALL&nbsp;WIDGETS!</a> &nbsp;&nbsp; • &nbsp;&nbsp;
-                <a href="{{ feUrl() }}">FLUTTER&nbsp;EVENTS</a> &nbsp;&nbsp; • &nbsp;&nbsp;
-                <a href="{{ fxUrl() }}">FLUTTERX</a> &nbsp;&nbsp; • &nbsp;&nbsp;
-                <a href="{{ fpUrl() }}">FLUTTER&nbsp;PRO</a>
+                <a href="{{ iawUrl() }}" title="An open list of apps built with Flutter">IT'S&nbsp;ALL&nbsp;WIDGETS!</a> &nbsp;&nbsp; • &nbsp;&nbsp;
+                <a href="{{ feUrl() }}" title="An Open List of Flutter Events">FLUTTER&nbsp;EVENTS</a> &nbsp;&nbsp; • &nbsp;&nbsp;
+                <a href="{{ fxUrl() }}" title="A Searchable List of Flutter Resources">FLUTTERX</a> &nbsp;&nbsp; • &nbsp;&nbsp;
+                <a href="{{ fpUrl() }}" title="A Showcase for Passionate Flutter Developers">FLUTTER&nbsp;PRO</a>
             </div>
         </div>
     </section>
