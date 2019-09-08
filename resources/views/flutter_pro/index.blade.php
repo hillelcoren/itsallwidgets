@@ -91,12 +91,19 @@ padding: 1rem 1rem 4rem 1rem;
                                 <i class="fas fa-search"></i>
                             </span>
 
+                            <div class="is-medium" v-on:click="togglePortfolio()" style="padding-left: 20px;">
+                                <input type="checkbox" name="portfolioSwitch"
+                                class="switch is-info" v-model="filter_portfolio">
+                                <label for="portfolioSwitch" style="padding-top:6px; font-size: 16px">PORTFOLIO &nbsp;</label>
+                            </div>
+
                             <div class="is-medium" v-on:click="toggleForHire()" style="padding-left: 20px;">
                                 <input type="checkbox" name="forHireSwitch"
                                 class="switch is-info" v-model="filter_for_hire">
                                 <label for="openSourceSwitch" style="padding-top:6px; font-size: 16px">FOR HIRE &nbsp;</label>
                             </div>
 
+                            <!--
                             <div class="is-medium filter-label" style="padding-left: 26px;">
                                 <label class="label is-medium" style="font-weight: normal; font-size: 16px">PLATFORM</label>
                             </div>
@@ -111,6 +118,7 @@ padding: 1rem 1rem 4rem 1rem;
                                     <option value="instagram">Instagram</option>
                                 </select>
                             </div>
+                            -->
 
                             <div class="is-medium filter-label" style="padding-left: 26px;">
                                 <label class="label is-medium" style="font-weight: normal; font-size: 16px">SORT</label>
@@ -295,6 +303,11 @@ padding: 1rem 1rem 4rem 1rem;
                         app.serverSearch();
                     },
                 },
+                filter_portfolio: {
+                    handler() {
+                        app.serverSearch();
+                    },
+                },
                 filter_for_hire: {
                     handler() {
                         app.serverSearch();
@@ -317,6 +330,10 @@ padding: 1rem 1rem 4rem 1rem;
 
                 toggleForHire: function() {
                     this.filter_for_hire = ! this.filter_for_hire;
+                },
+
+                togglePortfolio: function() {
+                    this.filter_portfolio = ! this.filter_portfolio;
                 },
 
                 adjustPage: function(change) {
@@ -381,6 +398,7 @@ padding: 1rem 1rem 4rem 1rem;
                     var page = this.page_number;
                     var platform = this.filter_platform;
                     var forHire = this.filter_for_hire;
+                    var portfolio = this.filter_portfolio;
 
                     app.$set(app, 'is_searching', true);
                     if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
@@ -394,6 +412,10 @@ padding: 1rem 1rem 4rem 1rem;
 
                         if (forHire) {
                             url += '&for_hire=true';
+                        }
+
+                        if (portfolio) {
+                            url += '&portfolio=true';
                         }
 
                         $.get(url,
@@ -422,6 +444,7 @@ padding: 1rem 1rem 4rem 1rem;
                 profiles: [],
                 search: "{{ request()->search }}",
                 filter_for_hire: {{ request()->has('for_hire') ? 'true' : 'false' }},
+                filter_portfolio: {{ request()->has('portfolio') ? 'true' : 'false' }},
                 sort_by: getCachedSortBy(),
                 selected_profile: false,
                 page_number: 1,
