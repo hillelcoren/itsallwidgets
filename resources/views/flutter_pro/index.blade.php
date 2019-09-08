@@ -268,7 +268,7 @@ padding: 1rem 1rem 4rem 1rem;
                         <button class="delete" aria-label="close" v-on:click="selectProfile()"></button>
                     </header>
                     -->
-                    <iframe sandbox="allow-scripts allow-same-origin allow-top-navigation allow-popups" v-bind:src="selected_profile.profile_url" allowTransparency="true" scrolling="no"
+                    <iframe sandbox="allow-scripts allow-same-origin allow-top-navigation allow-popups" v-bind:src="selected_profile.profile_url" allowTransparency="true"
                         loading="lazy" width="100%" height="800" frameBorder="0" style="border:none; overflow:hidden; background-color: white;"></iframe>
                 </div>
             </div>

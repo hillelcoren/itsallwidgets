@@ -271,7 +271,7 @@ body {
                             <img v-if="!app.has_gif" v-bind:src="'/screenshots/app-' + app.id + '.png?updated_at=' + app.updated_at" loading="lazy" width="1080" height="1920"/>
                         </div>
                         <div v-if="filter_platform == 'platform_web'" style="line-height:0px">
-                            <iframe sandbox="allow-scripts allow-same-origin allow-top-navigation allow-popups" v-bind:src="app.flutter_web_url" allowTransparency="true" scrolling="no"
+                            <iframe sandbox="allow-scripts allow-same-origin allow-top-navigation allow-popups" v-bind:src="app.flutter_web_url" allowTransparency="true"
                                 loading="lazy" width="100%" v-bind:height="cards_per_row == 6 ? 900 : 700" frameBorder="0" style="border:none; overflow:hidden;"></iframe>
                         </div>
                     </div>
