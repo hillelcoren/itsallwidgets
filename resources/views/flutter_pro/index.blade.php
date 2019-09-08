@@ -269,7 +269,7 @@ padding: 1rem 1rem 4rem 1rem;
                     </header>
                     -->
                     <iframe sandbox="allow-scripts allow-same-origin allow-top-navigation allow-popups" v-bind:src="selected_profile.profile_url" allowTransparency="true" scrolling="no"
-                        loading="lazy" width="100%" height="800" frameBorder="0" style="border:none; overflow:hidden;"></iframe>
+                        loading="lazy" width="100%" height="800" frameBorder="0" style="border:none; overflow:hidden; background-color: white;"></iframe>
                 </div>
             </div>
 
