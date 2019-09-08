@@ -602,7 +602,7 @@
     </footer>
 
     <section class="hero is-dark is-small is-body-font"
-            style="text-align:center; letter-spacing: 3px; font-size: 16px;">
+            style="text-align:center; letter-spacing: 4px; font-size: 16px;">
         <div class="hero-body">
             <div class="container">
                 <a href="{{ iawUrl() }}">IT'S&nbsp;ALL&nbsp;WIDGETS!</a> &nbsp;&nbsp; • &nbsp;&nbsp;
