@@ -160,14 +160,9 @@ class LoadArtifacts extends Command
     private function parseResource($item)
     {
         $slug = str_slug($item['title'] . '-' . $item['published_date']);
-
-        if (FlutterArtifact::where('url', '=', rtrim($item['url'] , '/'))
+        $artifact = FlutterArtifact::where('url', '=', rtrim($item['url'] , '/'))
             ->orWhere('slug', '=', $slug)
-            ->first()) {
-
-            $this->info('Exists: skipping...');
-            return;
-        }
+            ->first();
 
         $item['slug'] = $slug;
         $item['is_approved'] = 1;
@@ -208,40 +203,45 @@ class LoadArtifacts extends Command
             $item['title'] = html_entity_decode($item['title']);
             $item['meta_description'] = html_entity_decode($item['meta_description']);
 
+            if ($artifact) {
+                $this->info('Updating: ' . $item['title']);
+                $artifact = $this->artifactRepo->update($artifact, $item);
+            } else {
+                $this->info('Storing: ' . $item['title']);
+                $artifact = $this->artifactRepo->store($item, 1);
 
-            $artifact = $this->artifactRepo->store($item, 1);
+                if ($imageUrl) {
+                    $parts = explode('?', $imageUrl);
+                    $imageUrl = count($parts) ? $parts[0] : '';
+                    $imageUrl = rtrim($imageUrl, '/');
+                    $parts = explode('.', $imageUrl);
+                    $extension = count($parts) > 1 ? '.' . $parts[count($parts) - 1] : '';
+                    if (strlen($extension) > 5) {
+                        $extension = '';
+                    }
 
-            if ($imageUrl) {
-                $parts = explode('?', $imageUrl);
-                $imageUrl = count($parts) ? $parts[0] : '';
-                $imageUrl = rtrim($imageUrl, '/');
-                $parts = explode('.', $imageUrl);
-                $extension = count($parts) > 1 ? '.' . $parts[count($parts) - 1] : '';
-                if (strlen($extension) > 5) {
-                    $extension = '';
+                    if ($contents = @file_get_contents($imageUrl)) {
+                        if (strlen($contents) > 10000) {
+                            $url = '/thumbnails/artifact-' . $artifact->id . $extension;
+                            $file = public_path($url);
+                            file_put_contents($file, $contents);
+                            $artifact->image_url = $url;
+                        }
+                    }
+
+                    $artifact->save();
                 }
 
-                if ($contents = @file_get_contents($imageUrl)) {
-                    if (strlen($contents) > 10000) {
-                        $url = '/thumbnails/artifact-' . $artifact->id . $extension;
+                if ($gifUrl) {
+                    if ($contents = @file_get_contents($gifUrl)) {
+                        $url = '/thumbnails/artifact-' . $artifact->id . '.gif';
                         $file = public_path($url);
                         file_put_contents($file, $contents);
-                        $artifact->image_url = $url;
+                        $artifact->gif_url = $url;
                     }
+
+                    $artifact->save();
                 }
-
-                $artifact->save();
-            }
-
-            if ($gifUrl) {
-                if ($contents = @file_get_contents($gifUrl)) {
-                    $url = '/thumbnails/artifact-' . $artifact->id . '.gif';
-                    $file = public_path($url);
-                    file_put_contents($file, $contents);
-                    $artifact->gif_url = $url;
-                }
-
-                $artifact->save();
             }
         }
     }
