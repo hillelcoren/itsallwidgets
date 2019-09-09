@@ -140,11 +140,6 @@ class LoadArtifacts extends Command
                 $type = 'article';
             }
 
-            // TODO REMOVE
-            if ($type != 'video') {
-                continue;
-            }
-
             $data = [
                 'title' => $artifact->title,
                 'url' => rtrim($artifact->url, '/'),
@@ -306,17 +301,13 @@ class LoadArtifacts extends Command
     {
         $videoId = false;
 
-        $this->info("\n\nparse: " . $data['url']); // TODO REMOVE
-
         preg_match('/\?v=([\w\-]{11})/', $data['url'], $matches);
         if (count($matches) >= 1) {
             $videoId = $matches[1];
-            $this->info('match v: ' . $videoId); // TODO REMOVE
         } else {
             preg_match('/youtu\.be\/([\w\-]{11})$/', $data['url'], $matches);
             if (count($matches) >= 1) {
                 $videoId = $matches[1];
-                $this->info('match be: ' . $videoId); // TODO REMOVE
             }
         }
 
@@ -336,7 +327,6 @@ class LoadArtifacts extends Command
             }
 
             if ($videoDetails->author) {
-                $this->info('author: ' . $videoDetails->author); // TODO REMOVE
                 $data['meta_author'] = $videoDetails->author;
             }
         }
