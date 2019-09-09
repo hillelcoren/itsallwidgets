@@ -259,17 +259,9 @@ padding: 1rem 1rem 4rem 1rem;
 
             <div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_profile">
                 <div class="modal-background" v-on:click="selectProfile()"></div>
-                <div class="modal-card is-body-font" style="padding:0" @click.stop>
-                    <!--
-                    <header class="modal-card-head">
-                        <p class="modal-card-title">
-                            @{{ selected_profile.name }}
-                        </p>
-                        <button class="delete" aria-label="close" v-on:click="selectProfile()"></button>
-                    </header>
-                    -->
+                <div class="modal-card" style="padding:0; width:1100px" @click.stop>
                     <iframe sandbox="allow-scripts allow-same-origin allow-top-navigation allow-popups" v-bind:src="selected_profile.profile_url" allowTransparency="true"
-                        loading="lazy" width="100%" height="800" frameBorder="0" style="border:none; overflow:hidden; background-color: white;"></iframe>
+                        width="100%" height="700" frameBorder="0" style="border:none; background-color: white;"></iframe>
                 </div>
             </div>
 
