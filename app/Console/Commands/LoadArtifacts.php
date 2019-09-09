@@ -146,7 +146,7 @@ class LoadArtifacts extends Command
 
             $data = [
                 'title' => $artifact->title,
-                'url' => $artifact->url,
+                'url' => rtrim($artifact->url, '/'),
                 'type' => $type,
                 'comment' => $artifact->description,
                 'source_url' => $link,
@@ -160,7 +160,7 @@ class LoadArtifacts extends Command
     private function parseResource($item)
     {
         $slug = str_slug($item['title'] . '-' . $item['published_date']);
-        $artifact = FlutterArtifact::where('url', '=', rtrim($item['url'] , '/'))
+        $artifact = FlutterArtifact::where('url', '=', $item['url'])
             ->orWhere('slug', '=', $slug)
             ->first();
 
