@@ -134,10 +134,14 @@ class LoadArtifacts extends Command
 
             if ($artifact->section == 'articles') {
                 $type = 'article';
-            } elseif ($artifact->section == 'videos') {
+            } else
+
+            if ($artifact->section == 'videos' || strpos($artifact->url, 'https://www.youtube.com') === 0) {
                 $type = 'video';
-            } else {
+            } else if ($artifact->section == 'libraries') {
                 $type = 'library';
+            } else {
+                $type = 'article';
             }
 
             $data = [
@@ -176,7 +180,12 @@ class LoadArtifacts extends Command
             $doc->loadHTML($c);
             $xp = new \domxpath($doc);
 
-            $item = $this->pasreMetaData($xp, $item);
+            if ($item['type'] == 'video') {
+                $item = $this->pasreVideoMetaData($xp, $item);
+            } else {
+                $item = $this->pasreMetaData($xp, $item);
+            }
+
             $item = $this->parseSchema($xp, $item);
             $item = $this->parseRepoUrl($xp, $item);
             $item = $this->parseGifUrl($xp, $item);
@@ -245,6 +254,7 @@ class LoadArtifacts extends Command
             break;
         }
         */
+
         foreach ($xp->query("//meta[@property='og:description']") as $el) {
             $data['meta_description'] = $el->getAttribute("content");
             break;
@@ -283,6 +293,30 @@ class LoadArtifacts extends Command
         foreach ($xp->query("//meta[@property='og:image']") as $el) {
             $data['image_url'] = $el->getAttribute("content");
             break;
+        }
+
+        return $data;
+    }
+
+    private function pasreVideoMetaData($xp, $data)
+    {
+        preg_match('/\?v=(.*?)&/', $data['url'], $matches);
+
+        if (count($matches) < 1) {
+            return $data;
+        }
+
+        parse_str(file_get_contents('https://youtube.com/get_video_info?video_id=' . $matches[1]), $info);
+
+        $player = json_decode($info['player_response']);
+        $videoDetails = $player->videoDetails;
+
+        if ($videoDetails->shortDescription) {
+            $data['meta_description'] = $videoDetails->shortDescription;
+        }
+
+        if ($videoDetails->author) {
+            $data['meta_author'] = $videoDetails->author;
         }
 
         return $data;

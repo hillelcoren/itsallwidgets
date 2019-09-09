@@ -220,6 +220,10 @@ class FlutterArtifact extends Model implements Feedable
             return true;
         }
 
+        if ($this->meta_author && strtolower($this->meta_author) == strtolower($user->handle)) {
+            return true;
+        }
+
         if ($user->website_url && strpos(strtolower($this->url), strtolower($user->website_url)) !== false) {
             return true;
         }
