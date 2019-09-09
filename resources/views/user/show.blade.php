@@ -27,13 +27,13 @@
 
     <meta property="og:title" content="{{ $user->name }} | {{ appName() }}">
     <meta property="og:description" content="{{ $user->bio }}">
-    <meta property="og:image" content="{{ $user->image_url }}">
+    <meta property="og:image" content="{{ $user->imageUrl() }}">
     <meta property="og:url" content="{{ request()->url() }}">
     <meta property="og:site_name" content="{{ appName() }}">
 
     <meta name="twitter:title" content="{{ $user->name }} | {{ appName() }}">
     <meta name="twitter:description" content="{{ $user->bio }}">
-    <meta name="twitter:image" content="{{ $user->image_url }}">
+    <meta name="twitter:image" content="{{ $user->imageUrl() }}">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image:alt" content="{{ $user->name }} | {{ appName() }}">
 

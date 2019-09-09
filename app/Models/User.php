@@ -121,6 +121,11 @@ class User extends Authenticatable
         return $this->url() . '/json' . ($isPretty ? '?pretty=true' : '');
     }
 
+    public function imageUrl()
+    {
+        return fpUrl() . '/' . $this->image_url;
+    }
+
     public function isActivityTypeActive($type)
     {
         if ($type == 'flutter_app' && $this->is_pro_iaw) {
@@ -218,7 +223,7 @@ class User extends Authenticatable
             }
 
             unset($activityObj->type);
-            
+
             $obj->{$type}[] = $activityObj;
         }
 
