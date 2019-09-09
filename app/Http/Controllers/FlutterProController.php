@@ -181,4 +181,27 @@ class FlutterProController extends Controller
         return $image;
     }
 
+    public function sitemap()
+    {
+        $str = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">";
+        $str .= '<url><loc>' . config('app.url') . '</loc><lastmod>' . date('Y-m-d') . '</lastmod><changefreq>daily</changefreq><priority>1</priority></url>';
+
+        $users = User::whereIsPro(true)
+            ->whereNotNull('last_activity')
+            ->orderBy('id')
+            ->get();
+
+        foreach ($users as $user) {
+            $str .= '<url>'
+            . '<loc>' . $user->url() . '</loc>'
+            . '<lastmod>' . $user->updated_at->format('Y-m-d') . '</lastmod>'
+            . '<changefreq>weekly</changefreq>'
+            . '<priority>0.5</priority>'
+            . '</url>';
+        }
+
+        $str .= '</urlset>';
+
+        return response($str)->header('Content-Type', 'application/xml');
+    }
 }

@@ -15,6 +15,7 @@ Route::feeds();
 
 Route::group(['domain' => '127.0.0.1'], function() {
     Route::get('profiles', 'FlutterProController@index');
+    Route::get('profiles/sitemap.xml', 'FlutterProController@sitemap');
     Route::get('profiles/{handle}/json', 'FlutterProController@json');
     Route::get('profiles/{handle}', 'FlutterProController@show');
     Route::get('search_pro', 'FlutterProController@search');
@@ -32,6 +33,7 @@ Route::group(['domain' => 'flutterpro.{tld}'], function() {
     Route::get('/', 'FlutterProController@index');
     Route::get('search_pro', 'FlutterProController@search');
     Route::get('{handle}/json', 'FlutterProController@json');
+    Route::get('sitemap.xml', 'FlutterProController@sitemap');
     Route::get('{handle}', 'FlutterProController@show');
 });
 
