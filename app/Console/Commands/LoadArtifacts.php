@@ -123,18 +123,14 @@ class LoadArtifacts extends Command
         $link = 'https://json.flutterweekly.net/' . $issue->file;
         $artifacts = file_get_contents($link);
 
-        $this->info('Issue: ' . $link);
+        $this->info("\n\nIssue: " . $link);
 
         $artifacts = json_decode($artifacts);
         $publishedDate = date('Y-m-d', strtotime($issue->publishedOn));
 
         foreach (array_reverse($artifacts->articles) as $artifact) {
             //$this->info(json_encode($artifact));
-            //$this->info('Artifact: ' . $artifact->title);
-
-            if ($artifact->section == 'articles') {
-                $type = 'article';
-            } else
+            $this->info($artifact->section . ' - ' . $artifact->title);
 
             if ($artifact->section == 'videos' || strpos($artifact->url, 'https://www.youtube.com') === 0) {
                 $type = 'video';
