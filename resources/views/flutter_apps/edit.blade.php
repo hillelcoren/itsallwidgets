@@ -409,11 +409,20 @@
 			<p>&nbsp;</p>
 			<p>&nbsp;</p>
 
+			@if (auth()->user()->is_pro && auth()->user()->is_pro_iaw)
+				<div class="has-text-centered">
+					The app will also be listed on <a href="{{ fpUrl() }}" target="_blank">flutterpro.dev</a>,
+					to change your settings <a href="/profile/edit" target="_blank">click here</a>.
+				</div>
+
+				<p>&nbsp;</p>
+			@endif
+
 			@if (! $app->exists)
 				<div class="has-text-centered">
 					<input name="terms" id="terms" type="checkbox" value="1" required>
 					<label for="terms">
-						&nbsp; I accept the It's All Widgets! {{ link_to('terms', 'Terms of Service', ['target' => '_blank']) }} [required]
+						&nbsp; I accept the It's All Widgets! {{ link_to('terms', 'Terms of Service', ['target' => '_blank']) }}
 					</label>
 					<br/>
 
@@ -428,26 +437,7 @@
 				<p>&nbsp;</p>
 			@endif
 
-			@if (auth()->user()->is_pro && ! auth()->user()->is_pro_iaw)
-				<div class="has-text-centered">
-					<input name="flutterpro" id="flutterpro" type="checkbox" value="1">
-					<label for="flutterpro">
-						&nbsp; Include apps in my {{ link_to(iawUrl() . '/profile/edit', 'flutterpro.dev', ['target' => '_blank']) }} profile [optional]
-					</label>
-					<br/>
-
-					@if ($errors->has('terms'))
-						<span class="help is-danger">
-							{{ $errors->first('terms') }}
-						</span>
-					@endif
-
-				</div>
-
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-			@endif
-
+			<p>&nbsp;</p>
 			<p>&nbsp;</p>
 
 			<div class="columns is-centered is-mobile">
