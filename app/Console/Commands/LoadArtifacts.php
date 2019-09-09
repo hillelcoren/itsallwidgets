@@ -305,11 +305,11 @@ class LoadArtifacts extends Command
     {
         $videoId = false;
 
-        preg_match('/\?v=(.*?)&/', $data['url'], $matches);
+        preg_match('/\?v=([\w\-]{11})/', $data['url'], $matches);
         if (count($matches) >= 1) {
             $videoId = $matches[1];
         } else {
-            preg_match('/youtu\.be\/([\w*]{11})$/', $data['url'], $matches);
+            preg_match('/youtu\.be\/([\w\-]{11})$/', $data['url'], $matches);
             if (count($matches) >= 1) {
                 $videoId = $matches[1];
             }
@@ -322,14 +322,17 @@ class LoadArtifacts extends Command
         parse_str(file_get_contents('https://youtube.com/get_video_info?video_id=' . $videoId), $info);
 
         $player = json_decode($info['player_response']);
-        $videoDetails = $player->videoDetails;
 
-        if ($videoDetails->shortDescription) {
-            $data['meta_description'] = $videoDetails->shortDescription;
-        }
+        if (property_exists($player, 'videoDetails')) {
+            $videoDetails = $player->videoDetails;
 
-        if ($videoDetails->author) {
-            $data['meta_author'] = $videoDetails->author;
+            if ($videoDetails->shortDescription) {
+                $data['meta_description'] = $videoDetails->shortDescription;
+            }
+
+            if ($videoDetails->author) {
+                $data['meta_author'] = $videoDetails->author;
+            }
         }
 
         return $data;
