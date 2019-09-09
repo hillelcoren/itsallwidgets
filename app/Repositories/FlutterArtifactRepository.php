@@ -60,8 +60,10 @@ class FlutterArtifactRepository
      */
     public function update($artifact, $input)
     {
+        unset($input['slug']);
+        unset($input['url']);
+
         $artifact->fill($input);
-        $artifact->url = rtrim($artifact->url , '/');
         $artifact->source_url = rtrim($artifact->source_url , '/');
         $artifact->repo_url = rtrim($artifact->repo_url , '/');
         $artifact->meta_author_url = rtrim($artifact->meta_author_url , '/');
