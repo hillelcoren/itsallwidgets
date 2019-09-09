@@ -234,6 +234,10 @@ class FlutterEvent extends Model implements Feedable
             return false;
         }
 
+        if (strlen($user->name) < 10) {
+            return false;
+        }
+
         if (in_array(strtolower($user->name), [
             'mobile developer',
             'flutter developer',

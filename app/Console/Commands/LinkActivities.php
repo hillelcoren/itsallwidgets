@@ -85,10 +85,6 @@ class LinkActivities extends Command
 
         foreach ($users as $user)
         {
-            if (strlen($user->name) < 10) {
-                continue;
-            }
-
             foreach ($activities as $activity)
             {
                 if (! $user->isActivityTypeActive($type)) {
