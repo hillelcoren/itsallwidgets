@@ -303,9 +303,19 @@ class LoadArtifacts extends Command
 
     private function pasreVideoMetaData($xp, $data)
     {
-        preg_match('/\?v=(.*?)&/', $data['url'], $matches);
+        $videoId = false;
 
-        if (count($matches) < 1) {
+        preg_match('/\?v=(.*?)&/', $data['url'], $matches);
+        if (count($matches) >= 1) {
+            $videoId = $matches[1];
+        } else {
+            preg_match('/youtu\.be\/([\w*]{11})$/', $data['url'], $matches);
+            if (count($matches) >= 1) {
+                $videoId = $matches[1];
+            }
+        }
+
+        if (! $videoId) {
             return $data;
         }
 
