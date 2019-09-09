@@ -201,7 +201,10 @@ class LoadArtifacts extends Command
             $item['gif_url'] = null;
 
             $item['title'] = html_entity_decode($item['title']);
-            $item['meta_description'] = html_entity_decode($item['meta_description']);
+
+            if (isset($item['meta_description'])) {
+                $item['meta_description'] = html_entity_decode($item['meta_description']);
+            }
 
             if ($artifact) {
                 $this->info('Updating: ' . $item['title']);
