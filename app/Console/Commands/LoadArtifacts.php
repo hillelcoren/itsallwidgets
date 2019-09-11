@@ -208,7 +208,7 @@ class LoadArtifacts extends Command
             } else {
                 $this->info('Storing: ' . $item['title']);
                 $artifact = $this->artifactRepo->store($item, 1);
-
+	    }
                 if ($imageUrl) {
                     $parts = explode('?', $imageUrl);
                     $imageUrl = count($parts) ? $parts[0] : '';
@@ -241,7 +241,7 @@ class LoadArtifacts extends Command
 
                     $artifact->save();
                 }
-            }
+           
         }
     }
 
