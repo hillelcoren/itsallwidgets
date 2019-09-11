@@ -63,7 +63,7 @@
 </head>
 
 <body>
-    <iframe sandbox="allow-scripts allow-same-origin allow-top-navigation allow-popups" src="{{ $user->profileUrl() }}"
+    <iframe sandboxx="allow-scripts allow-same-origin allow-top-navigation allow-popups" src="{{ $user->profileUrl() }}"
         allowTransparency="true" width="100%" height="100%" frameBorder="0">
     </iframe>
 </body>
