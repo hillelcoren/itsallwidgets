@@ -262,7 +262,9 @@ class FlutterEvent extends Model implements Feedable
 
     public function activityMessage()
     {
-        return substr($this->description, 0, 300);
+        $str = substr($this->description, 0, 300);
+        
+        return trim(str_replace(['<p>', '</p>', '<br>', '<br/>'], ' ', $str));
     }
 
     public function toObject()
