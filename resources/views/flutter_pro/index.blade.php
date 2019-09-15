@@ -259,7 +259,7 @@ padding: 1rem 1rem 4rem 1rem;
 
             <div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_profile">
                 <div class="modal-background" v-on:click="selectProfile()"></div>
-                <div class="modal-card" style="padding:0; width:1100px" @click.stop>
+                <div class="modal-card" style="padding:0; width:900px" @click.stop>
                     <iframe sandbox="allow-scripts allow-same-origin allow-top-navigation allow-popups" v-bind:src="selected_profile.profile_url" allowTransparency="true"
                         width="100%" height="700" frameBorder="0" style="border:none; background-color: white;"></iframe>
                 </div>
