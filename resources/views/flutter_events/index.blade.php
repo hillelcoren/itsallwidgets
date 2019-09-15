@@ -149,7 +149,7 @@
     ];
     var markerMap = {
         @foreach ($events as $event)
-            {{ $event->id}}: ['{{ $event->eventLink() }}<br/>{{ substr(strip_tags($event->description), 0, 150) }}...', {{ $event->latitude }}, {{ $event->longitude }}, {{ $event->distance }}],
+            {{ $event->id}}: ['{{ $event->eventLink() }}<br/>{{ substr(strip_tags(preg_replace( "/\r|\n/", " ", $event->description)), 0, 150) }}...', {{ $event->latitude }}, {{ $event->longitude }}, {{ $event->distance }}],
         @endforeach
     };
 
