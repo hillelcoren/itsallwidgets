@@ -293,7 +293,7 @@
     $(function() {
         $('div.navbar-animate').addClass(
             @if (isFP())
-                'animated zoomIn'
+                'animated pulse'
             @elseif (isFX())
                 'animated zoomIn'
             @elseif (isFE())
