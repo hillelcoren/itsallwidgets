@@ -85,7 +85,7 @@ padding: 1rem 1rem 4rem 1rem;
                     <div class="field is-grouped is-grouped-multiline is-vertical-center">
                         <p class="control is-expanded has-icons-left">
 
-                            <input v-model="search" class="input is-medium" type="text" placeholder="SEARCH"
+                            <input v-model="search" class="input is-medium" type="text" placeholder="Search {{ $count }} developers..."
                             autofocus="true" style="margin-top: 10px" v-bind:style="{ backgroundColor: searchBackgroundColor()}">
                             <span class="icon is-small is-left" style="margin-top: 10px">
                                 <i class="fas fa-search"></i>

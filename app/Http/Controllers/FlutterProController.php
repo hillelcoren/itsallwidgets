@@ -11,6 +11,7 @@ class FlutterProController extends Controller
     {
         $data = [
             'useBlackHeader' => true,
+            'count' => User::pro()->count(),
         ];
 
         return view('flutter_pro.index', $data);
@@ -23,9 +24,7 @@ class FlutterProController extends Controller
         $sortBy = strtolower(request()->sort_by);
         $platform = strtolower(request()->platform);
 
-        $users = User::whereIsPro(true)
-        ->whereNotNull('last_activity')
-        ->with('userActivities');
+        $users = User::pro()->with('userActivities');
 
         if ($search) {
             $users->search($search);

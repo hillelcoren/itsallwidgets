@@ -106,6 +106,10 @@ class User extends Authenticatable
         return $this->is_admin;
     }
 
+    public function scopePro($query) {
+        return $query->whereIsPro(true)->whereNotNull('last_activity');
+    }
+
     public static function admin()
     {
         return static::where('is_admin', '=', true)->first();

@@ -33,6 +33,7 @@
         <i class="fas fa-globe"></i> &nbsp; {{ ucwords($url) }}
     </a>
 
+    <!--
     @if (isIAW())
         @if (auth()->check())
             <a class="navbar-item" href="{{ url('logout') }}">
@@ -44,6 +45,7 @@
             </a>
         @endif
     @endif
+    -->
 
     @if (false && isIAW())
         <a class="navbar-item" href="{{ iawUrl() }}/about">
