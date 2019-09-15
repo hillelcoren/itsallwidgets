@@ -333,7 +333,7 @@
 							</div>
 						</div>
 
-						<div class="field">
+                        <div class="field">
 							<div class="field">
 								<label class="label" for="is_visible">
 									Is Visible
@@ -341,6 +341,18 @@
 								<div class="control">
 									{{ Form::hidden('is_visible', 0) }}
 									<input name="is_visible" type="checkbox" value="1" {{ $event->is_visible ? 'CHECKED' : '' }}>
+								</div>
+							</div>
+						</div>
+
+                        <div class="field">
+							<div class="field">
+								<label class="label" for="is_approved">
+									Is Approved
+								</label>
+								<div class="control">
+									{{ Form::hidden('is_approved', 0) }}
+									<input name="is_approved" type="checkbox" value="1" {{ $event->is_approved ? 'CHECKED' : '' }}>
 								</div>
 							</div>
 						</div>

@@ -25,6 +25,7 @@ class FlutterEvent extends Model implements Feedable
         'latitude',
         'longitude',
         'is_visible',
+        'is_approved',
         'rsvp_limit',
         'rsvp_yes',
         'rsvp_waitlist',
