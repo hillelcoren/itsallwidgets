@@ -644,8 +644,13 @@ var app = new Vue({
 
     mounted () {
         window.addEventListener('keyup', function(event) {
+            console.log('key code: %s', event.keyCode);
             if (event.keyCode == 27) {
                 app.selectApp();
+            } else if (event.keyCode == 39) {
+                app.moveNext();
+            } else if (event.keyCode == 37) {
+                app.movePrev();
             }
         });
     },

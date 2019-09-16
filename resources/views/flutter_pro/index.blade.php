@@ -458,6 +458,10 @@ padding: 1rem 1rem 4rem 1rem;
                 window.addEventListener('keyup', function(event) {
                     if (event.keyCode == 27) {
                         app.selectProfile();
+                    } else if (event.keyCode == 39) {
+                        app.moveNext();
+                    } else if (event.keyCode == 37) {
+                        app.movePrev();
                     }
                 });
             },

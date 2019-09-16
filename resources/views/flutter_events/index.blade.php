@@ -611,6 +611,10 @@ mounted () {
     window.addEventListener('keyup', function(event) {
         if (event.keyCode == 27) {
             app.selectEvent();
+        } else if (event.keyCode == 39) {
+            app.moveNext();
+        } else if (event.keyCode == 37) {
+            app.movePrev();
         }
     });
 },
