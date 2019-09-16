@@ -566,12 +566,6 @@
                             </a>
                         </div><br/>
                         <div class="column is-1">
-                            <a href="https://twitter.com/efthemess" target="_blank">
-                                <img src="{{ asset('images/img_efthymios.png') }}" width="72"/><br/>
-                                <div>Efthymis Sarmpanis</div>
-                            </a>
-                        </div><br/>
-                        <div class="column is-1">
                             <a href="https://twitter.com/flschweiger" target="_blank">
                                 <img src="{{ asset('images/img_frederik.png') }}" width="72"/><br/>
                                 <div>Frederik Schweiger</div>
