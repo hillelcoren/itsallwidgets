@@ -35,7 +35,10 @@ class FlutterProController extends Controller
         }
 
         if (request()->has('portfolio')) {
-            $users->where('profile_url', '!=', '');
+            $users->where(function($query){
+                $query->where('profile_url', '!=', '')
+                    ->orWhere('website_url', '!=', '');
+            });
         }
 
         if ($platform == 'github') {
