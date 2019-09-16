@@ -81,8 +81,6 @@ body {
     padding: 1rem 1rem 3rem 1rem;
 }
 
-
-
 @media screen and (max-width: 788px) {
     .slider-control {
         display: none;
@@ -285,6 +283,22 @@ body {
 
 <div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_app">
     <div class="modal-background" v-on:click="selectApp()"></div>
+
+    <div class="navigation-button prev-navigation-button" BAK-v-if="hasPrev">
+        <button class="button is-medium is-rounded" v-on:click="movePrev()">
+            <span class="icon">
+                <i class="fas fa-chevron-left"></i>
+            </span>
+        </button>
+    </div>
+    <div class="navigation-button next-navigation-button" BAK-v-if="hasNext">
+        <button class="button is-medium is-rounded" v-on:click="moveNext()">
+            <span class="icon">
+                <i class="fas fa-chevron-right"></i>
+            </span>
+        </button>
+    </div>
+
     <div class="modal-card is-body-font">
         <header class="modal-card-head">
             <p class="modal-card-title"></p>
@@ -612,7 +626,20 @@ var app = new Vue({
                     return '#FFC9D9';
                 }
             }
-        }
+        },
+
+        moveNext() {
+            var apps = this.filteredApps;
+            var index = apps.indexOf(this.selected_app);
+            this.selectApp(apps[index + 1]);
+        },
+
+        movePrev() {
+            var apps = this.filteredApps;
+            var index = apps.indexOf(this.selected_app);
+            this.selectApp(apps[index - 1]);
+        },
+
     },
 
     mounted () {
@@ -636,6 +663,20 @@ var app = new Vue({
     },
 
     computed: {
+
+        /*
+        hasNext() {
+            var apps = this.filteredApps;
+            var index = apps.indexOf(this.selected_app);
+            return index < 40;
+        },
+
+        hasPrev() {
+            var apps = this.filteredApps;
+            var index = apps.indexOf(this.selected_app);
+            return index > 0;
+        },
+        */
 
         modalClass() {
             if (this.selected_app) {

@@ -244,6 +244,19 @@
          padding: 5rem 1.5rem 5rem 1.5rem;
     }
 
+    .navigation-button {
+        position: absolute;
+        top: 50%;
+    }
+
+    .next-navigation-button {
+        right: 30px;
+    }
+
+    .prev-navigation-button {
+        left: 30px;
+    }
+
     </style>
 
     <script>

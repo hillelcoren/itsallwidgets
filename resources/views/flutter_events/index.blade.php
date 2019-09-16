@@ -357,6 +357,22 @@
 
 <div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_event">
 <div class="modal-background" v-on:click="selectEvent()"></div>
+
+<div class="navigation-button prev-navigation-button" BAK-v-if="hasPrev">
+    <button class="button is-medium is-rounded" v-on:click="movePrev()">
+        <span class="icon">
+            <i class="fas fa-chevron-left"></i>
+        </span>
+    </button>
+</div>
+<div class="navigation-button next-navigation-button" BAK-v-if="hasNext">
+    <button class="button is-medium is-rounded" v-on:click="moveNext()">
+        <span class="icon">
+            <i class="fas fa-chevron-right"></i>
+        </span>
+    </button>
+</div>
+
 <div class="modal-card is-body-font">
     <header class="modal-card-head">
         <p class="modal-card-title"></p>
@@ -569,7 +585,20 @@ methods: {
                 return '#FFC9D9';
             }
         }
-    }
+    },
+
+    moveNext() {
+        var events = this.filteredEvents;
+        var index = events.indexOf(this.selected_event);
+        this.selectEvent(events[index + 1]);
+    },
+
+    movePrev() {
+        var events = this.filteredEvents;
+        var index = events.indexOf(this.selected_event);
+        this.selectEvent(events[index - 1]);
+    },
+
 },
 
 beforeMount () {

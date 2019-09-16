@@ -272,6 +272,22 @@
 
 <div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_artifact">
 <div class="modal-background" v-on:click="selectArtifact()"></div>
+
+<div class="navigation-button prev-navigation-button" BAK-v-if="hasPrev">
+    <button class="button is-medium is-rounded" v-on:click="movePrev()">
+        <span class="icon">
+            <i class="fas fa-chevron-left"></i>
+        </span>
+    </button>
+</div>
+<div class="navigation-button next-navigation-button" BAK-v-if="hasNext">
+    <button class="button is-medium is-rounded" v-on:click="moveNext()">
+        <span class="icon">
+            <i class="fas fa-chevron-right"></i>
+        </span>
+    </button>
+</div>
+
 <div class="modal-card is-body-font">
     <header class="modal-card-head">
         <p class="modal-card-title"></p>
@@ -538,6 +554,18 @@ methods: {
             }
 
         }, 500);
+    },
+
+    moveNext() {
+        var artifacts = this.filteredArtifacts;
+        var index = artifacts.indexOf(this.selected_artifact);
+        this.selectArtifact(artifacts[index + 1]);
+    },
+
+    movePrev() {
+        var artifacts = this.filteredArtifacts;
+        var index = artifacts.indexOf(this.selected_artifact);
+        this.selectArtifact(artifacts[index - 1]);
     },
 
 },
