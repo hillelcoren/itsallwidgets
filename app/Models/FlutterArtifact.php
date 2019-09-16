@@ -112,6 +112,10 @@ class FlutterArtifact extends Model implements Feedable
     {
         $parse = parse_url($this->url);
 
+	if (!isset($parse['host'])) {
+		return '';
+	}
+
         $host = $parse['host'];
         $host = str_replace(['www.', 'blog.'], '', $host);
 
