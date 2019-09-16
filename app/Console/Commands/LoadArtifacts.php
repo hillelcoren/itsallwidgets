@@ -157,8 +157,8 @@ class LoadArtifacts extends Command
     {
         $slug = str_slug($item['title'] . '-' . $item['published_date']);
         $artifact = FlutterArtifact::where('url', '=', $item['url'])
-            ->orWhere('slug', '=', $slug)
-            ->first();
+                        ->orWhere('slug', '=', $slug)
+                        ->first();
 
         $item['slug'] = $slug;
         $item['is_approved'] = 1;
@@ -166,82 +166,76 @@ class LoadArtifacts extends Command
         // https://stackoverflow.com/a/9244634/497368
         libxml_use_internal_errors(true);
 
-        if ($c = @file_get_contents($item['url'])) {
+        if (strpos($item['url'], '//youtu.be/') !== false || strpos($item['url'], 'youtube.com/') !== false) {
+
+            $item = $this->pasreVideoMetaData($item);
+
+        } else if ($c = @file_get_contents($item['url'])) {
+
             $doc = new \DomDocument();
             $doc->loadHTML($c);
             $xp = new \domxpath($doc);
 
-            if ($item['type'] == 'video') {
-                $item = $this->pasreVideoMetaData($xp, $item);
-            } else {
-                $item = $this->pasreMetaData($xp, $item);
-            }
-
+            $item = $this->pasreMetaData($xp, $item);
             $item = $this->parseSchema($xp, $item);
             $item = $this->parseRepoUrl($xp, $item);
             $item = $this->parseGifUrl($xp, $item);
-
-            if ($item['type'] == 'video') {
-                // load transcript
-            } else {
-                $item = $this->parseContents($doc, $item);
-            }
+            $item = $this->parseContents($doc, $item);
 
             if (! array_get($item, 'image_url')) {
                 $item = $this->parseImageUrl($xp, $item);
             }
+        }
 
-            $imageUrl = array_get($item, 'image_url');
-            $gifUrl = array_get($item, 'gif_url');
-            $item['image_url'] = null;
-            $item['gif_url'] = null;
+        $imageUrl = array_get($item, 'image_url');
+        $gifUrl = array_get($item, 'gif_url');
+        $item['image_url'] = null;
+        $item['gif_url'] = null;
 
-            $item['title'] = html_entity_decode($item['title']);
+        $item['title'] = html_entity_decode($item['title']);
 
-            if (isset($item['meta_description'])) {
-                $item['meta_description'] = html_entity_decode($item['meta_description']);
+        if (isset($item['meta_description'])) {
+            $item['meta_description'] = html_entity_decode($item['meta_description']);
+        }
+
+        if ($artifact) {
+            $this->info('Updating: ' . $item['title']);
+            $artifact = $this->artifactRepo->update($artifact, $item);
+        } else {
+            $this->info('Storing: ' . $item['title']);
+            $artifact = $this->artifactRepo->store($item, 1);
+        }
+        if ($imageUrl) {
+            $parts = explode('?', $imageUrl);
+            $imageUrl = count($parts) ? $parts[0] : '';
+            $imageUrl = rtrim($imageUrl, '/');
+            $parts = explode('.', $imageUrl);
+            $extension = count($parts) > 1 ? '.' . $parts[count($parts) - 1] : '';
+            if (strlen($extension) > 5) {
+                $extension = '';
             }
 
-            if ($artifact) {
-                $this->info('Updating: ' . $item['title']);
-                $artifact = $this->artifactRepo->update($artifact, $item);
-            } else {
-                $this->info('Storing: ' . $item['title']);
-                $artifact = $this->artifactRepo->store($item, 1);
-	    }
-                if ($imageUrl) {
-                    $parts = explode('?', $imageUrl);
-                    $imageUrl = count($parts) ? $parts[0] : '';
-                    $imageUrl = rtrim($imageUrl, '/');
-                    $parts = explode('.', $imageUrl);
-                    $extension = count($parts) > 1 ? '.' . $parts[count($parts) - 1] : '';
-                    if (strlen($extension) > 5) {
-                        $extension = '';
-                    }
-
-                    if ($contents = @file_get_contents($imageUrl)) {
-                        if (strlen($contents) > 10000) {
-                            $url = '/thumbnails/artifact-' . $artifact->id . $extension;
-                            $file = public_path($url);
-                            file_put_contents($file, $contents);
-                            $artifact->image_url = $url;
-                        }
-                    }
-
-                    $artifact->save();
+            if ($contents = @file_get_contents($imageUrl)) {
+                if (strlen($contents) > 10000) {
+                    $url = '/thumbnails/artifact-' . $artifact->id . $extension;
+                    $file = public_path($url);
+                    file_put_contents($file, $contents);
+                    $artifact->image_url = $url;
                 }
+            }
 
-                if ($gifUrl) {
-                    if ($contents = @file_get_contents($gifUrl)) {
-                        $url = '/thumbnails/artifact-' . $artifact->id . '.gif';
-                        $file = public_path($url);
-                        file_put_contents($file, $contents);
-                        $artifact->gif_url = $url;
-                    }
+            $artifact->save();
+        }
 
-                    $artifact->save();
-                }
-           
+        if ($gifUrl) {
+            if ($contents = @file_get_contents($gifUrl)) {
+                $url = '/thumbnails/artifact-' . $artifact->id . '.gif';
+                $file = public_path($url);
+                file_put_contents($file, $contents);
+                $artifact->gif_url = $url;
+            }
+
+            $artifact->save();
         }
     }
 
@@ -297,7 +291,7 @@ class LoadArtifacts extends Command
         return $data;
     }
 
-    private function pasreVideoMetaData($xp, $data)
+    private function pasreVideoMetaData($data)
     {
         $videoId = false;
 
@@ -328,6 +322,10 @@ class LoadArtifacts extends Command
 
             if ($videoDetails->author) {
                 $data['meta_author'] = $videoDetails->author;
+            }
+
+            if ($videoDetails->thumbnail) {
+                $data['image_url'] = $videoDetails->thumbnail->thumbnails[0]->url;
             }
         }
 
