@@ -263,7 +263,7 @@ class FlutterEvent extends Model implements Feedable
     public function activityMessage()
     {
         $str = substr($this->description, 0, 300);
-        
+
         return trim(str_replace(['<p>', '</p>', '<br>', '<br/>'], ' ', $str));
     }
 
@@ -273,8 +273,8 @@ class FlutterEvent extends Model implements Feedable
         $obj->name = $this->event_name;
         $obj->type = 'event';
         $obj->description = mb_convert_encoding($this->description, 'UTF-8', 'UTF-8');
-        $obj->url = $this->event_url;
-        $obj->image_url = $this->image_url;
+        $obj->url = $this->url();
+        $obj->image_url = feUrl() . $this->image_url;
 
         return $obj;
     }
