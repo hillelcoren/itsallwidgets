@@ -615,7 +615,7 @@
     </footer>
 
     <section class="hero is-dark is-small is-body-font"
-            style="text-align:center; letter-spacing: 4px; font-size: 17px; font-weight: 200">
+            style="text-align:center; letter-spacing: 4px; font-size: 16px; font-weight: 200">
         <div class="hero-body">
             <div class="container">
                 <a href="{{ iawUrl() }}" title="An open list of apps built with Flutter">IT'S&nbsp;ALL&nbsp;WIDGETS!</a> &nbsp;&nbsp; • &nbsp;&nbsp;
