@@ -547,6 +547,12 @@
                         </div><br/>
                     @elseif (isFX())
                         <div class="column is-1">
+                            <a href="https://twitter.com/__nawalhmw" target="_blank">
+                                <img src="{{ asset('images/img_nawal.png') }}" width="72"/><br/>
+                                <div>Nawal Alhamwi</div>
+                            </a>
+                        </div><br/>
+                        <div class="column is-1">
                             <a href="https://twitter.com/efthemess" target="_blank">
                                 <img src="{{ asset('images/img_efthymios.png') }}" width="72"/><br/>
                                 <div>Efthymis Sarmpanis</div>
