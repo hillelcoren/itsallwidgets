@@ -145,7 +145,13 @@ class User extends Authenticatable
 
     function profileUrl()
     {
-        return $this->profile_url ?: $this->jsonUrl(true) . '&instructions=true';
+	if ($this->profile_url) {
+		return $this->profile_url;
+	} else if ($this->website_url) {
+		return $this->website_url;
+	} else {
+		return $this->jsonUrl(true) . '&instructions=true';
+	}
     }
 
     public function toObject()

@@ -309,7 +309,13 @@ class LoadArtifacts extends Command
             return $data;
         }
 
-        parse_str(file_get_contents('https://youtube.com/get_video_info?video_id=' . $videoId), $info);
+	$contents = @file_get_contents('https://youtube.com/get_video_info?video_id=' . $videoId);
+
+	if (!$contents) {
+		return $data;
+	}
+
+        parse_str($contents, $info);
 
         $player = json_decode($info['player_response']);
 
