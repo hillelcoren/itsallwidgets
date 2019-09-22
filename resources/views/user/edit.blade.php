@@ -161,6 +161,31 @@
 				<div class="message-body">
 
                     <div class="field">
+						<label class="label" for="website_url">
+							Website
+						</label>
+						<div class="control has-icons-left">
+
+							{{ Form::url('website_url', $user->website_url, ['class' => 'input', 'placeholder' => 'https://example.com']) }}
+
+							<span class="icon is-small is-left">
+								<i class="fas fa-globe"></i>
+							</span>
+
+                            <span class="help">
+                                JSON Feed <a href="{{ $user->jsonUrl() }}" target="_blank">flutterpro.dev/{{ $user->handle }}/json</a>
+                            </span>
+
+							@if ($errors->has('website_url'))
+								<span class="help is-danger">
+									{{ $errors->first('website_url') }}
+								</span>
+							@endif
+						</div>
+					</div>
+
+                    <!--
+                    <div class="field">
 						<label class="label" for="profile_url">
 							Flutter Web Portfolio
 						</label>
@@ -183,6 +208,7 @@
 							@endif
 						</div>
 					</div>
+                    -->
 
                     <div class="field">
 						<label class="label" for="avatar">
@@ -233,26 +259,6 @@
 							@if ($errors->has('country_code'))
 								<span class="help is-danger">
 									{{ $errors->first('country_code') }}
-								</span>
-							@endif
-						</div>
-					</div>
-
-					<div class="field">
-						<label class="label" for="website_url">
-							Website
-						</label>
-						<div class="control has-icons-left">
-
-							{{ Form::url('website_url', $user->website_url, ['class' => 'input', 'placeholder' => 'https://example.com']) }}
-
-							<span class="icon is-small is-left">
-								<i class="fas fa-globe"></i>
-							</span>
-
-							@if ($errors->has('website_url'))
-								<span class="help is-danger">
-									{{ $errors->first('website_url') }}
 								</span>
 							@endif
 						</div>
