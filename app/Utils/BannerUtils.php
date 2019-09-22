@@ -34,7 +34,7 @@ function getEventBanner()
         $latitude = cache($ip . '_latitude');
         $longitude = cache($ip . '_longitude');
 
-        $eventRepo = app('app\Repositories\FlutterEventRepository');
+        $eventRepo = app('App\Repositories\FlutterEventRepository');
         $event = $eventRepo->findByCoordinates($latitude, $longitude);
 
         if ($event) {
