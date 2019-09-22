@@ -279,6 +279,15 @@
     </section>
 
 
+    @if ($banner)
+        <br/>
+        <div class="container" v-cloak>
+            <div class="notification is-info">
+                {!! $banner !!}
+            </div>
+        </div>
+    @endif
+
 <div class="zcontainer">
 <section class="section is-body-font" style="background-color:#fefefe">
     <div class="container" v-cloak>

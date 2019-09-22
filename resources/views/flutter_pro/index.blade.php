@@ -139,6 +139,15 @@ padding: 1rem 1rem 4rem 1rem;
             </div>
         </section>
 
+        @if ($banner)
+            <br/>
+            <div class="container" v-cloak>
+                <div class="notification is-info">
+                    {!! $banner !!}
+                </div>
+            </div>
+        @endif
+
         <section class="section is-body-font" style="background-color:#fefefe">
 
             <div class="container" v-cloak>
@@ -237,7 +246,6 @@ padding: 1rem 1rem 4rem 1rem;
                         <p>&nbsp;</p>
                     </div>
                 </div>
-
 
             </section>
 

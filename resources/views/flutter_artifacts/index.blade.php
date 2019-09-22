@@ -147,6 +147,17 @@
     </section>
 
 
+
+    @if ($banner)
+        <br/>
+        <div class="container" v-cloak>
+            <div class="notification is-info">
+                {!! $banner !!}
+            </div>
+        </div>
+    @endif
+
+
 <section class="section is-body-font" style="background-color:#fefefe; padding-top:14px">
     <div class="container" v-cloak>
         <div v-if="filteredArtifacts.length == 0" class="is-wide has-text-centered is-vertical-center"
@@ -268,7 +279,6 @@
     </masonry>
 </div>
 </section>
-
 
 <div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_artifact">
 <div class="modal-background" v-on:click="selectArtifact()"></div>

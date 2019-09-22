@@ -12,6 +12,7 @@ class FlutterProController extends Controller
         $data = [
             'useBlackHeader' => true,
             'count' => User::pro()->count(),
+            'banner' => getBanner(),
         ];
 
         return view('flutter_pro.index', $data);

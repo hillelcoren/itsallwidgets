@@ -48,6 +48,7 @@ class FlutterEventController extends Controller
             'events' => $events,
             'useBlackHeader' => true,
             'hasLocation' => cache()->has($locationKey),
+            'banner' => getBanner(),
         ];
 
         return view('flutter_events.index', $data);

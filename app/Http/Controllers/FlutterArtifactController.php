@@ -25,6 +25,7 @@ class FlutterArtifactController extends Controller
 
         $data = [
             'artifacts' => $artifacts,
+            'banner' => getBanner(),
         ];
 
         if (!isGL()) {
