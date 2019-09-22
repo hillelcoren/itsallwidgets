@@ -7,7 +7,7 @@ function getBanner() {
 function getEventBanner() {
     $ip = \Request::getClientIp();
     $banner = false;
-
+    return '';
     if (cache()->has($ip . '_latitude') && ! request()->platform) {
         $latitude = cache($ip . '_latitude');
         $longitude = cache($ip . '_longitude');
