@@ -98,7 +98,7 @@ class FlutterApp extends TestCase
         ];
 
         auth()->logout();
-        $route = str_slug($this->title);
+        $route = 'flutter-app/' . str_slug($this->title);
 
         $response = $this->put($route, $newData);
         $response->assertStatus(302);
@@ -107,7 +107,7 @@ class FlutterApp extends TestCase
                           ->put($route, $newData);
         $response->assertStatus(403);
 
-        $response = $this->get($route);
+        $response = $this->get(str_slug($this->title));
         $response->assertSeeText($this->title);
 
         $response = $this->actingAs($this->user)
