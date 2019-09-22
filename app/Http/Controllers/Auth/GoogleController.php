@@ -46,7 +46,7 @@ class GoogleController extends Controller
 
             $userModel = new User;
             $createdUser = $userModel->addNew($create);
-            Auth::loginUsingId($createdUser->id);
+            Auth::loginUsingId($createdUser->id, true);
 
             dispatch(new ConvertToPro($createdUser));
 
