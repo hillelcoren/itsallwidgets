@@ -35,7 +35,8 @@
             "App\\": "app/"
         },
         "files": [
-            "app/Utils/DomainUtils.php"
+            "app/Utils/DomainUtils.php",
+            "app/Utils/BannerUtils.php"
         ]
     },
     "autoload-dev": {
