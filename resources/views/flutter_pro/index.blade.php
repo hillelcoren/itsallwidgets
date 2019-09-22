@@ -14,8 +14,8 @@
         Hire some of the best <a href="https://flutter.dev" target="_blank">Flutter</a> developers on the planet
     @else
         Profiles are sourced from
-        <a href="{{ fxUrl() }}">FlutterX</a>,
-        <a href="{{ feUrl() }}">Flutter Events</a> and
+        <a href="{{ fxUrl() }}">Flutter Weekly</a>,
+        <a href="{{ feUrl() }}">Meetup.com</a> and
         <a href="{{ iawUrl() }}">It's All Widgets!</a>
     @endif
 @endsection
@@ -85,7 +85,7 @@ padding: 1rem 1rem 4rem 1rem;
                     <div class="field is-grouped is-grouped-multiline is-vertical-center">
                         <p class="control is-expanded has-icons-left">
 
-                            <input v-model="search" class="input is-medium" type="text" placeholder="Search {{ $count }} developers..."
+                            <input v-model="search" class="input is-medium" type="text" placeholder="Search {{ $count }} Flutter developers..."
                             autofocus="true" style="margin-top: 10px" v-bind:style="{ backgroundColor: searchBackgroundColor()}">
                             <span class="icon is-small is-left" style="margin-top: 10px">
                                 <i class="fas fa-search"></i>
