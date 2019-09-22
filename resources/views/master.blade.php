@@ -553,6 +553,12 @@
                             </a>
                         </div><br/>
                         <div class="column is-1">
+                            <a href="https://twitter.com/__nawalhmw" target="_blank">
+                                <img src="{{ asset('images/img_nawal.png') }}" width="72"/><br/>
+                                <div>Nawal Alhamwi</div>
+                            </a>
+                        </div><br/>
+                        <div class="column is-1">
                             <a href="https://twitter.com/SergiAndReplace" target="_blank">
                                 <img src="{{ asset('images/img_sergi.png') }}" width="72"/><br/>
                                 <div>Sergi Martínez</div>
@@ -609,7 +615,7 @@
     </footer>
 
     <section class="hero is-dark is-small is-body-font"
-            style="text-align:center; letter-spacing: 4px; font-size: 18px; font-weight: 200">
+            style="text-align:center; letter-spacing: 4px; font-size: 16px; font-weight: 200">
         <div class="hero-body">
             <div class="container">
                 <a href="{{ iawUrl() }}" title="An open list of apps built with Flutter">IT'S&nbsp;ALL&nbsp;WIDGETS!</a> &nbsp;&nbsp; • &nbsp;&nbsp;
