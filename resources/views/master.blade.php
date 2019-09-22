@@ -566,6 +566,12 @@
                         </div><br/>
                     @elseif (isFP())
                         <div class="column is-1">
+                            <a href="https://twitter.com/lariki" target="_blank">
+                                <img src="{{ asset('images/img_lara.png') }}" width="72"/><br/>
+                                <div>Lara Martín</div>
+                            </a>
+                        </div><br/>
+                        <div class="column is-1">
                             <a href="https://twitter.com/imthepk" target="_blank">
                                 <img src="{{ asset('images/img_pawan.png') }}" width="72"/><br/>
                                 <div>Pawan Kumar</div>
