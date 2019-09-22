@@ -17,7 +17,7 @@ function getBanner()
 
 function getBookBanner()
 {
-    return "If you want to master Flutter you need to also master Dart, <b><a href='https://www.amazon.com/gp/product/B00PY771FG/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00PY771FG&linkCode=as2&tag=itsallwidgets-20&linkId=0d56c011d8546e561744505bfa157e03' target='_blank'>Mastering Dart</a></b> by Sergey Akopkokhyants will help you do just that. #Ad";
+    return "<b><a href='https://www.amazon.com/gp/product/B00PY771FG/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00PY771FG&linkCode=as2&tag=itsallwidgets-20&linkId=0d56c011d8546e561744505bfa157e03' target='_blank'>Mastering Dart</a></b> by Sergey Akopkokhyants is one of the best books available for Dart and is a great way to take your Flutter programming to the next level. #Ad";
 }
 
 function getCourseBanner()
