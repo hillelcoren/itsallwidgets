@@ -43,22 +43,22 @@
 }
 
 
-.fa-github,
-.fa-twitter,
-.fa-medium,
-.fa-linkedin,
-.fa-instagram,
-.fa-youtube {
+.profile-panel .fa-github,
+.profile-panel .fa-twitter,
+.profile-panel .fa-medium,
+.profile-panel .fa-linkedin,
+.profile-panel .fa-instagram,
+.profile-panel .fa-youtube {
     color: #888 !important;
     font-size: 22px !important;
 }
 
-.fa-github:hover,
-.fa-twitter:hover,
-.fa-medium:hover,
-.fa-linkedin:hover,
-.fa-instagram:hover,
-.fa-youtube:hover {
+.profile-panel .fa-github:hover,
+.profile-panel .fa-twitter:hover,
+.profile-panel .fa-medium:hover,
+.profile-panel .fa-linkedin:hover,
+.profile-panel .fa-instagram:hover,
+.profile-panel .fa-youtube:hover {
     color: black !important;
 }
 
