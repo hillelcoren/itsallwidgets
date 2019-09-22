@@ -116,6 +116,7 @@ class LoadEvents extends Command
             }
 
             $data = [
+                'slug' => str_slug($group->name . '-' . $item->name . '-' . $item->id),
                 'event_name' => $item->name,
                 'event_date' => $item->local_date,
                 'description' => $item->description,
@@ -134,13 +135,14 @@ class LoadEvents extends Command
                 'longitude' => $longitude,
             ];
 
-            $event = FlutterEvent::where('meetup_id', '=', $item->id)->first();
+            $event = FlutterEvent::where('meetup_id', '=', $item->id)
+                ->orWhere('url', '=', $item->link)
+                ->first();
 
             if ($event) {
                 $this->eventRepo->update($event, $data);
             } else {
                 $data['banner'] = 'Join us at $event in $city';
-                $data['slug'] = str_slug($group->name . '-' . $item->name . '-' . $item->id);
                 $data['event_url'] = $item->link;
 
                 $event = $this->eventRepo->store($data, 1);
