@@ -190,7 +190,7 @@ class User extends Authenticatable
                 $counts[] = $this->count_events . ($this->count_events == 1 ? ' Event' : ' Events');
             }
 
-            $obj->counts = join(' • ', $counts);
+            $obj->counts = join('  •  ', $counts);
             $obj->activity_count = 0;
             $obj->activity_message = '';
             $obj->activity_link_url = '';

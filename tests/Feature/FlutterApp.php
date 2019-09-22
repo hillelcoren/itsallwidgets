@@ -121,7 +121,7 @@ class FlutterApp extends TestCase
 
         auth()->logout();
 
-        $response = $this->get($route);
+        $response = $this->get(str_slug($this->title));
         $response->assertDontSee($this->title);
         $response->assertSee($newTitle);
 
