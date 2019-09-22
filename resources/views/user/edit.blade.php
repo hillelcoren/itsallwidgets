@@ -11,8 +11,8 @@
 
 @section('header_subtitle')
     Profiles are sourced from
-        <a href="{{ fxUrl() }}">FlutterX</a>,
-        <a href="{{ feUrl() }}">Flutter Events</a> and
+        <a href="https://flutterweekly.net" target="_blank">Flutter Weekly</a>,
+        <a href="https://www.meetup.com/find/?allMeetups=false&keywords=flutter&radius=Infinity" target="_blank">Meetup.com</a> and
         <a href="{{ iawUrl() }}">It's All Widgets!</a>
 @endsection
 

@@ -14,8 +14,8 @@
         Hire some of the best <a href="https://flutter.dev" target="_blank">Flutter</a> developers on the planet
     @else
         Profiles are sourced from
-        <a href="{{ fxUrl() }}">Flutter Weekly</a>,
-        <a href="{{ feUrl() }}">Meetup.com</a> and
+        <a href="https://flutterweekly.net" target="_blank">Flutter Weekly</a>,
+        <a href="https://www.meetup.com/find/?allMeetups=false&keywords=flutter&radius=Infinity" target="_blank">Meetup.com</a> and
         <a href="{{ iawUrl() }}">It's All Widgets!</a>
     @endif
 @endsection
