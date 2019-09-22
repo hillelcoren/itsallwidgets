@@ -584,13 +584,13 @@ var app = new Vue({
 
             if (document.body.clientWidth < 1000) {
                 if (app) {
-                    window.location = '/flutter-app/' + app.slug;
+                    window.location = '/' + app.slug;
                 }
             } else {
                 this.selected_app = app;
                 if (history.pushState) {
                     if (app) {
-                        var route = '/flutter-app/' + app.slug;
+                        var route = '/' + app.slug;
                         gtag('config', '{{ $tracking_id }}', {'page_path': route});
                         history.pushState(null, null, route);
                     } else {

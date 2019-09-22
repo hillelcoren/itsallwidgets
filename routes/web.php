@@ -85,7 +85,6 @@ Route::get('log_error', 'HomeController@logError');
 Route::get('event/feed', 'FlutterEventController@jsonFeed');
 Route::get('event/feed/json', 'FlutterEventController@jsonFeed');
 
-Route::get('flutter-app/{slug}', 'FlutterAppController@show');
 Route::get('flutter-event-click/{flutter_event}/{click_type}', 'FlutterEventController@trackClicked');
 
 Route::get('podcast', 'PodcastController@index');
@@ -122,3 +121,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('flutter-event/{flutter_event}/edit', 'FlutterEventController@edit');
     Route::put('flutter-event/{flutter_event}', 'FlutterEventController@update');
 });
+
+Route::get('flutter-app/{slug}', function ($slug) {
+    return redirect($slug);
+});
+
+Route::get('{slug}', 'FlutterAppController@show');

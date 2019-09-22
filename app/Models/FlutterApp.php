@@ -84,7 +84,7 @@ class FlutterApp extends Model implements Feedable
             ->title($this->title)
             ->summary($this->short_description)
             ->updated($this->updated_at)
-            ->link('/flutter-app/' . $this->slug)
+            ->link($this->url())
             ->author($this->title);
     }
 
@@ -102,7 +102,7 @@ class FlutterApp extends Model implements Feedable
 
     public function url()
     {
-        return iawUrl() . '/flutter-app/' . $this->slug;
+        return iawUrl() . '/' . $this->slug;
     }
 
     public function twitterHandle()
