@@ -136,7 +136,7 @@ class LoadEvents extends Command
             ];
 
             $event = FlutterEvent::where('meetup_id', '=', $item->id)
-                ->orWhere('url', '=', $item->link)
+                ->orWhere('event_url', '=', $item->link)
                 ->first();
 
             if ($event) {
