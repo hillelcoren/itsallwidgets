@@ -507,7 +507,7 @@
 
             <p style="padding-top:16px;">
                 <div class="strike">
-                   <span>FROM</span>
+                   <span>FROM <a href="https://twitter.com/hillelcoren" target="_blank">@hillelcoren</a> AND</span>
                 </div>
             <p>
 
@@ -578,12 +578,6 @@
                             </a>
                         </div><br/>
                     @else
-		    <div class="column is-offset-4 is-1">
-			<a href="https://twitter.com/hillelcoren" target="_blank">
-			    <img src="{{ asset('images/img_hillel.png') }}" width="72"/><br/>
-			    <div>Hillel Coren</div>
-			</a>
-		    </div><br/>
                         <div class="column is-1">
                             <a href="https://twitter.com/ThomasBurkhartB" target="_blank">
                                 <img src="{{ asset('images/img_thomas.png') }}" width="72"/><br/>
