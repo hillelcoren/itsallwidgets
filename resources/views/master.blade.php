@@ -520,12 +520,6 @@
                         </a>
                     </div><br/>
                 @else
-                    <div class="column is-offset-4 is-1">
-                        <a href="https://twitter.com/hillelcoren" target="_blank">
-                            <img src="{{ asset('images/img_hillel.png') }}" width="72"/><br/>
-                            <div>Hillel Coren</div>
-                        </a>
-                    </div><br/>
                     @if (isFE())
                         <div class="column is-1">
                             <a href="https://twitter.com/Nash0x7E2" target="_blank">
@@ -584,6 +578,12 @@
                             </a>
                         </div><br/>
                     @else
+		    <div class="column is-offset-4 is-1">
+			<a href="https://twitter.com/hillelcoren" target="_blank">
+			    <img src="{{ asset('images/img_hillel.png') }}" width="72"/><br/>
+			    <div>Hillel Coren</div>
+			</a>
+		    </div><br/>
                         <div class="column is-1">
                             <a href="https://twitter.com/ThomasBurkhartB" target="_blank">
                                 <img src="{{ asset('images/img_thomas.png') }}" width="72"/><br/>
