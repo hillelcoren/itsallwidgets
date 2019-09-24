@@ -507,7 +507,7 @@
 
             <p style="padding-top:16px;">
                 <div class="strike">
-                   <span>FROM <a href="https://twitter.com/hillelcoren" target="_blank">@hillelcoren</a> AND</span>
+                   <span>FROM</span>
                 </div>
             <p>
 
@@ -520,6 +520,12 @@
                         </a>
                     </div><br/>
                 @else
+                   <div class="column is-offset-4 is-1">
+                       <a href="https://twitter.com/hillelcoren" target="_blank">
+                           <img src="{{ asset('images/img_hillel.png') }}" width="72"/><br/>
+                           <div>Hillel Coren</div>
+                       </a>
+                   </div><br/>
                     @if (isFE())
                         <div class="column is-1">
                             <a href="https://twitter.com/Nash0x7E2" target="_blank">
