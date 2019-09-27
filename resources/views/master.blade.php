@@ -526,6 +526,12 @@
                             <div>Hillel Coren</div>
                         </a>
                     </div><br/>
+                    <div class="column is-offset-4 is-1">
+                        <a href="https://twitter.com/lucheng01" target="_blank">
+                            <img src="{{ asset('images/img_luke.png') }}" width="72"/><br/>
+                            <div>Luke Cheng</div>
+                        </a>
+                    </div><br/>
                     <div class="column is-1">
                         <a href="https://twitter.com/MendyMarcus" target="_blank">
                             <img src="{{ asset('images/img_mendy.png') }}" width="72"/><br/>
@@ -551,21 +557,27 @@
 
 
                     <div class="column is-1">
+                        <a href="https://twitter.com/kate_sheremet" target="_blank">
+                            <img src="{{ asset('images/img_katarina.png') }}" width="72"/><br/>
+                            <div>Katarina Sheremet</div>
+                        </a>
+                    </div><br/>
+                    <div class="column is-1">
                         <a href="https://twitter.com/scottstoll2017" target="_blank">
                             <img src="{{ asset('images/img_scott.png') }}" width="72"/><br/>
                             <div>Scott Stoll</div>
                         </a>
                     </div><br/>
                     <div class="column is-1">
-                        <a href="https://twitter.com/imthepk" target="_blank">
-                            <img src="{{ asset('images/img_pawan.png') }}" width="72"/><br/>
-                            <div>Pawan Kumar</div>
-                        </a>
-                    </div><br/>
-                    <div class="column is-1">
                         <a href="https://twitter.com/SergiAndReplace" target="_blank">
                             <img src="{{ asset('images/img_sergi.png') }}" width="72"/><br/>
                             <div>Sergi Martínez</div>
+                        </a>
+                    </div><br/>
+                    <div class="column is-1">
+                        <a href="https://twitter.com/androidmaven" target="_blank">
+                            <img src="{{ asset('images/img_oluwatobi.png') }}" width="72"/><br/>
+                            <div>Oluwatobi Akinpelu</div>
                         </a>
                     </div><br/>
                     <div class="column is-1">
@@ -590,6 +602,12 @@
                         <a href="https://twitter.com/flschweiger" target="_blank">
                             <img src="{{ asset('images/img_frederik.png') }}" width="72"/><br/>
                             <div>Frederik Schweiger</div>
+                        </a>
+                    </div><br/>
+                    <div class="column is-1">
+                        <a href="https://twitter.com/imthepk" target="_blank">
+                            <img src="{{ asset('images/img_pawan.png') }}" width="72"/><br/>
+                            <div>Pawan Kumar</div>
                         </a>
                     </div><br/>
                     <div class="column is-1">
