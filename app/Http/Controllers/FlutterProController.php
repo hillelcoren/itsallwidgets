@@ -111,7 +111,7 @@ class FlutterProController extends Controller
 
     public function jsonFeed(Request $request)
     {
-        $users = User::pro()->with('userActivities');
+        $users = User::pro()->get();
         $data = [];
 
         foreach ($users as $user) {
