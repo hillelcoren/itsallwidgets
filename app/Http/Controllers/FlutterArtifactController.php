@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\FlutterArtifact;
+use Illuminate\Http\Request;
 
 class FlutterArtifactController extends Controller
 {
@@ -93,6 +94,18 @@ class FlutterArtifactController extends Controller
         }
 
         return redirect(url('/') . '?clear_cache=true');
+    }
+
+    public function jsonFeed(Request $request)
+    {
+        $artifacts = cache('flutter-artifact-list');
+        $data = [];
+
+        foreach ($artifacts as $artifact) {
+            $data[] = $artifact->toObject();
+        }
+
+        return response()->json($data)->withCallback($request->input('callback'));;
     }
 
     public function sitemap()

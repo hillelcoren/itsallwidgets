@@ -230,6 +230,18 @@ class FlutterAppController extends Controller
         return redirect('/')->with('status', $app->title. ' is now featured!');
     }
 
+    public function jsonFeed(Request $request)
+    {
+        $apps = cache('flutter-app-list');
+        $data = [];
+
+        foreach ($apps as $app) {
+            $data[] = $app->toObject();
+        }
+
+        return response()->json($data)->withCallback($request->input('callback'));;
+    }
+
     public function sitemap()
     {
         $str = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">";

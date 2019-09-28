@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Http\Requests\UpdateProProfile;
+use Illuminate\Http\Request;
 
 class FlutterProController extends Controller
 {
@@ -106,6 +107,20 @@ class FlutterProController extends Controller
             return response()->json($user->toObject());
         }
     }
+
+
+    public function jsonFeed(Request $request)
+    {
+        $users = User::pro()->with('userActivities');
+        $data = [];
+
+        foreach ($users as $user) {
+            $data[] = $user->toObject();
+        }
+
+        return response()->json($data)->withCallback($request->input('callback'));;
+    }
+
 
     public function edit()
     {

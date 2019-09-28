@@ -31,6 +31,7 @@ Route::group(['domain' => '127.0.0.1'], function() {
 
 Route::group(['domain' => 'flutterpro.{tld}'], function() {
     Route::get('/', 'FlutterProController@index');
+    Route::get('feed', 'FlutterProController@jsonFeed');
     Route::get('search_pro', 'FlutterProController@search');
     Route::get('{handle}/json', 'FlutterProController@json')->middleware('cors');
     Route::get('sitemap.xml', 'FlutterProController@sitemap');
@@ -47,6 +48,7 @@ Route::group(['domain' => 'flutterevents.{tld}'], function() {
 
 Route::group(['domain' => 'flutterx.{tld}'], function() {
     Route::get('/', 'FlutterArtifactController@index');
+    Route::get('feed', 'FlutterArtifactController@jsonFeed');
     Route::get('search', 'FlutterArtifactController@search');
     Route::get('update', 'FlutterArtifactController@update');
     Route::get('sitemap.xml', 'FlutterArtifactController@sitemap');
@@ -67,6 +69,7 @@ Route::get('flutter-apps', function () {
 });
 
 Route::get('/', 'FlutterAppController@index');
+Route::get('feed', 'FlutterAppController@jsonFeed');
 Route::get('about', 'HomeController@about');
 Route::get('terms', 'HomeController@terms');
 Route::get('sitemap.xml', 'FlutterAppController@sitemap');
