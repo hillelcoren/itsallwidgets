@@ -631,6 +631,12 @@
                 @endif
             </div>
 
+            <p style="padding-top:16px;">
+                <div class="strike">
+                   <span>SUPPORTED BY <a href="https://invoiceninja.com" target="_blank">INVOICE NINJA</a></span>
+                </div>
+            <p>
+
             <br/> &nbsp; <br/>
 
             @if (!isFX() && !isGL() && (!request()->is('podcast*') || (auth()->check() && auth()->user()->is_admin)))

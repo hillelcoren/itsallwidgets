@@ -7,9 +7,11 @@ function getBanner()
     if ($random == 1) {
         return getEventBanner();
     } elseif ($random == 2) {
-        return getBookBanner();
+        return false;
+        //return getBookBanner();
     } elseif ($random == 3) {
-        return getCourseBanner();
+        return false;
+        //return getCourseBanner();
     } elseif ($random == 4) {
         return false;
     }
