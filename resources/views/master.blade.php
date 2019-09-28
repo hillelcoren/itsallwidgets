@@ -633,7 +633,7 @@
 
             <p style="padding-top:16px;">
                 <div class="strike">
-                   <span>SUPPORTED BY <a href="https://invoiceninja.com" target="_blank">INVOICE NINJA</a></span>
+                   <span>SUPPORTED BY <a href="https://www.invoiceninja.com/" target="_blank">INVOICE NINJA</a></span>
                 </div>
             <p>
 
