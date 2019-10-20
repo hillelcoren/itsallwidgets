@@ -79,6 +79,27 @@ class LoadEvents extends Command
         $this->info('Done');
     }
 
+    private function loadCurl($url)
+    {
+        // create curl resource
+        $ch = curl_init();
+
+        // set url
+        curl_setopt($ch, CURLOPT_URL, $url);
+
+        //return the transfer as a string
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch,CURLOPT_USERAGENT,'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
+
+        // $output contains the output string
+        $output = curl_exec($ch);
+
+        // close curl resource to free up system resources
+        curl_close($ch);
+
+        return $output;
+    }
+
     private function parseEvents($data)
     {
         $groups = [];
@@ -153,7 +174,7 @@ class LoadEvents extends Command
 
             $imageUrl = false;
 
-            if ($contents = @file_get_contents($event->event_url)) {
+            if ($contents = $this->loadCurl($event->event_url)) {
                 $matches = [];
                 preg_match('/featured_photo&(.*?)(https.*?)&/', $contents, $matches);
 
@@ -166,7 +187,7 @@ class LoadEvents extends Command
                 // https://stackoverflow.com/a/9244634/497368
                 libxml_use_internal_errors(true);
 
-                if ($c = @file_get_contents('https://www.meetup.com/' . $group->urlname)) {
+                if ($c = $this->loadCurl('https://www.meetup.com/' . $group->urlname)) {
                     $doc = new \DomDocument();
                     $doc->loadHTML($c);
                     $xp = new \domxpath($doc);
