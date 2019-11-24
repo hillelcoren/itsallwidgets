@@ -115,6 +115,20 @@ class LoadEvents extends Command
                 continue;
             }
 
+            $terms = [
+                'river',
+                'belly',
+                'trekking',
+                'dance',
+                'butterfly',
+            ];
+
+            foreach ($terms as $term) {
+                if (strpos(strtolower($item->name), $term) !== false) {
+                    continue;
+                }
+            }
+
             $group = $item->group;
             $city = '';
             $country = '';
@@ -172,6 +186,7 @@ class LoadEvents extends Command
                 $event->save();
             }
 
+            /*
             $imageUrl = false;
 
             if ($contents = $this->loadCurl($event->event_url)) {
@@ -218,6 +233,7 @@ class LoadEvents extends Command
 
                 $event->save();
             }
+            */
 
             if (!isset($groups[$group->id])) {
                 $groups[$group->id] = true;
