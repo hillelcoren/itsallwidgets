@@ -81,6 +81,12 @@ body {
     padding: 1rem 1rem 3rem 1rem;
 }
 
+@media screen and (min-width: 788px) {
+    .tabs div {
+        width: 250px;
+    }
+}
+
 @media screen and (max-width: 788px) {
     .slider-control {
         display: none;
@@ -183,7 +189,7 @@ body {
                 <ul>
                     <li v-bind:class="[filter_platform == 'platform_mobile' ? 'is-active' : '']">
                         <a href="#/" v-on:click="setPlatform('platform_mobile')">
-                            <div style="width:250px">
+                            <div>
                                 <span class="icon is-small">
                                     <i class="fas fa-mobile-alt" aria-hidden="true"></i>
                                 </span>
@@ -193,7 +199,7 @@ body {
                     </li>
                     <li v-bind:class="[filter_platform == 'platform_web' ? 'is-active' : '']">
                         <a href="#/" v-on:click="setPlatform('platform_web')">
-                            <div style="width:250px">
+                            <div>
                                 <span class="icon is-small">
                                     <i class="fas fa-desktop" aria-hidden="true"></i>
                                 </span>
