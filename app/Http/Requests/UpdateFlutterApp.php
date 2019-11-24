@@ -51,10 +51,6 @@ class UpdateFlutterApp extends FormRequest
             'instagram_url' => [new ExternalLink('https://www.instagram.com/')],
         ];
 
-        if (request()->is_template) {
-            $rules['repo_url'][] = 'required';
-        }
-
         if (request()->apple_url) {
             $rules['apple_url'][] = 'unique:flutter_apps,apple_url,' . $app->id . ',id';
         }
