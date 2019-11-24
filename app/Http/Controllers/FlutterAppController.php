@@ -187,10 +187,14 @@ class FlutterAppController extends Controller
             return redirect('/');
         }
 
+        if (request()->is_template) {
+            $app->is_template = true;
+        }
+
         $app->is_approved = true;
         $app->save();
 
-        if (auth()->user()->shouldSendTweet()) {
+        if (!$app->is_template && auth()->user()->shouldSendTweet()) {
             $app->notify(new AppApproved());
         }
 

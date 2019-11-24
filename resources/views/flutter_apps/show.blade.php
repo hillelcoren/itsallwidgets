@@ -47,6 +47,10 @@
 								<i style="font-size: 20px" class="fas fa-check"></i> &nbsp;
 								Approve
 							</a>
+							<a class="button is-success is-medium is-slightly-elevated" href="{{ url('flutter-app/' . $app->slug . '/approve?is_template=true') }}">
+								<i style="font-size: 20px" class="fas fa-check"></i> &nbsp;
+								Approve as Template
+							</a>
 							<a class="button is-danger is-medium is-slightly-elevated" href="{{ url('flutter-app/' . $app->slug . '/reject') }}">
 								<i style="font-size: 20px" class="fas fa-trash"></i> &nbsp;
 								Reject

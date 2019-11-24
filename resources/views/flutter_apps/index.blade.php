@@ -113,7 +113,7 @@ body {
                 <div class="field is-grouped is-grouped-multiline is-vertical-center">
                     <p class="control is-expanded has-icons-left">
 
-                        <input v-model="search" class="input is-medium" type="text" v-bind:placeholder="'Search ' + appCount + ' apps...'"
+                        <input v-model="search" class="input is-medium" type="text" v-bind:placeholder="searchPlaholder"
                             autofocus="true" style="margin-top: 10px" v-bind:style="{ backgroundColor: searchBackgroundColor()}">
                         <span class="icon is-small is-left" style="margin-top: 10px">
                             <i class="fas fa-search"></i>
@@ -885,7 +885,7 @@ var app = new Vue({
             return apps;
         },
 
-        appCount() {
+        searchPlaholder() {
 
             apps = this.unpaginatedFilteredApps;
 
@@ -893,7 +893,11 @@ var app = new Vue({
                 return !item.is_template;
             });
 
-            return apps.length
+            if (this.filter_template) {
+                return "Search " + apps.length + " templates...";
+            } else {
+                return "Search " + apps.length + " apps...";
+            }
         },
     }
 

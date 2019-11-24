@@ -132,6 +132,10 @@ class FlutterApp extends Model implements Feedable
             return false;
         }
 
+        if ($this->is_template) {
+            return false;
+        }
+
         return $user->id == $this->user_id;
     }
 
