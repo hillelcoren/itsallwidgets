@@ -169,6 +169,35 @@ body {
         </div>
     @endif
 
+    <div class="container">
+        <center>
+            <div class="tabs is-centered is-boxed is-medium" style="widthx:50%;padding-top:30px">
+                <ul>
+                    <li class="is-active">
+                        <a>
+                            <div style="width:250px">
+                                <span class="icon is-small">
+                                    <i class="fas fa-mobile-alt" aria-hidden="true"></i>
+                                </span>
+                                <span>Mobile Apps</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <div style="width:250px">
+                                <span class="icon is-small">
+                                    <i class="fas fa-desktop" aria-hidden="true"></i>
+                                </span>
+                                <span>Web Apps</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </center>
+    </div>
+
     <section class="section is-body-font" style="background-color:#fefefe">
         <div class="container" v-cloak>
             <div v-if="filteredApps.length == 0" class="is-wide has-text-centered is-vertical-center"
