@@ -775,11 +775,11 @@ var app = new Vue({
                     case 5:
                         return {'is-full': true};
                     case 4:
-                        return {'is-6': true};
+                        return {'is-full': true};
                     case 3:
-                        return {'is-one-third': true};
+                        return {'is-6': true};
                     case 2:
-                        return {'is-one-quarter': true};
+                        return {'is-one-third': true};
                 }
             }
         },
