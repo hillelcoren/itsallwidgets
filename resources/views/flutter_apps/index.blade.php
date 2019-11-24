@@ -903,10 +903,6 @@ var app = new Vue({
 
             apps = this.unpaginatedFilteredApps;
 
-            apps = apps.filter(function(item) {
-                return !item.is_template;
-            });
-
             if (this.filter_template) {
                 return "Search " + apps.length + " templates...";
             } else {
