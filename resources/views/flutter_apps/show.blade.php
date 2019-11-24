@@ -92,6 +92,9 @@
 									href="{{ url('?search=' . strtolower($app->category)) }}">
 									{{ $app->category }}
 								</a>
+							@elseif ($app->is_template)
+								&nbsp;&nbsp;
+								<span class="tag is-info is-medium">Template</span>
 							@endif
 
 							<div style="border-bottom: 2px #368cd5 solid; width: 50px; padding-top:12px;"/>
