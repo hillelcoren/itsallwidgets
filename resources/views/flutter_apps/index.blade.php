@@ -210,7 +210,14 @@ body {
         <div class="container" v-cloak>
             <div v-if="filteredApps.length == 0" class="is-wide has-text-centered is-vertical-center"
             style="height:400px; text-align:center; font-size: 32px; color: #AAA">
-            No apps found
+
+            <div v-if="filter_template">
+              No templates found
+            </div>
+            <div v-else>
+              No apps found
+            </div>
+
         </div>
         <div class="columns is-multiline is-6 is-variable">
             <div v-for="app in filteredApps" :key="app.id" class="column" v-bind:class="columnClass">
