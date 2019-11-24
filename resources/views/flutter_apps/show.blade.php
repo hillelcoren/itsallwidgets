@@ -57,6 +57,9 @@
 							</a>
 							<p>&nbsp;</p>
 						@endif
+
+						[Developer: {{ $app->user->name }}]
+						<p>&nbsp;</p>
 					@endif
 
 					@if (auth()->check() && auth()->user()->is_editor && ! $app->featured)
