@@ -45,6 +45,10 @@ class StoreFlutterApp extends FormRequest
             'terms' => 'required',
         ];
 
+        if (request()->is_template) {
+            $rules['repo_url'][] = 'required';
+        }
+
         if (request()->apple_url) {
             $rules['apple_url'][] = 'unique:flutter_apps';
         }

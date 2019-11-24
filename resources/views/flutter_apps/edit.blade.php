@@ -72,13 +72,13 @@
 								<label>
 									{{ Form::hidden('is_mobile', 0) }}
 									<input name="is_mobile" type="checkbox" onchange="updatePlatforms()"
-										value="1" {{ (old('is_mobile') !== null ? old('is_mobile') : $app->is_mobile) ? 'CHECKED' : '' }}/> Mobile
+										value="1" {{ (old('is_mobile') !== null ? intval(old('is_mobile')) : $app->is_mobile) ? 'CHECKED' : '' }}/> Mobile
 								</lable>
 								&nbsp;&nbsp;
 								<label>
 									{{ Form::hidden('is_web', 0) }}
 									<input name="is_web" type="checkbox" onchange="updatePlatforms()"
-										value="1" {{ (old('is_web') !== null ? old('is_web') : $app->is_web) ? 'CHECKED' : '' }}/> Web
+										value="1" {{ (old('is_web') !== null ? intval(old('is_web')) : $app->is_web) ? 'CHECKED' : '' }}/> Web
 								</label>
 							</div>
 						</div>
@@ -158,7 +158,7 @@
 								<label>
 									{{ Form::hidden('is_template', 0) }}
 									<input name="is_template" type="checkbox"
-										value="1" {{ (old('is_template') !== null ? old('is_template') : $app->is_template) ? 'CHECKED' : '' }}/> Please check this if your app is a UI template
+										value="1" {{ (old('is_template') !== null ? intval(old('is_template')) : $app->is_template) ? 'CHECKED' : '' }}/> Please check this if your app is a UI template
 								</lable>
 							</div>
 						</div>
