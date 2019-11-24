@@ -820,6 +820,10 @@ var app = new Vue({
                 apps = apps.filter(function(item) {
                     return item.is_template;
                 });
+            } else {
+                apps = apps.filter(function(item) {
+                    return !item.is_template;
+                });
             }
 
             if (filter_platform == 'platform_mobile') {
