@@ -194,7 +194,7 @@ class FlutterAppController extends Controller
         $app->is_approved = true;
         $app->save();
 
-        if (!$app->is_template && auth()->user()->shouldSendTweet()) {
+        if (auth()->user()->shouldSendTweet()) {
             $app->notify(new AppApproved());
         }
 
