@@ -28,12 +28,14 @@
 		<div class="container">
 
 			<div class="columns">
-				<div class="column is-4 is-elevated">
-					@if ($app->is_mobile)
-						<img id="appImage" src="{{ $app->screenshotUrl() }}" width="1080" height="1920"/>
-					@endif
-				</div>
-				<div class="column is-8">
+				@if ($app->is_mobile)
+					<div class="column is-4 is-elevated">
+						@if ($app->is_mobile)
+							<img id="appImage" src="{{ $app->screenshotUrl() }}" width="1080" height="1920"/>
+						@endif
+					</div>
+				@endif
+				<div class="column is-{{ $app->is_mobile ? '8' : '12' }}">
 					<nav class="breadcrumb" aria-label="breadcrumbs">
 						<ul>
 							<li><a href="{{ url('/') }}">All Applications</a></li>

@@ -31,6 +31,7 @@ class FlutterApp extends Model implements Feedable
         'has_screenshot_3',
         'is_mobile',
         'is_web',
+        'is_template',
         'flutter_web_url',
     ];
 
