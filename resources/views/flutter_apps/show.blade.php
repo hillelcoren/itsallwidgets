@@ -58,7 +58,9 @@
 							<p>&nbsp;</p>
 						@endif
 
-						[Developer: {{ $app->user->name }}]
+						<b>Developer:</b><br/>
+						{{ $app->user->name }}</br>
+						{{ $app->user->email}}
 						<p>&nbsp;</p>
 					@endif
 
