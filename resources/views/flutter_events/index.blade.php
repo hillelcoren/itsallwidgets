@@ -684,6 +684,10 @@ computed: {
                     return true;
                 }
 
+                if ((item.event_url || '').toLowerCase().indexOf(search) >= 0) {
+                    return true;
+                }
+
                 return false;
             });
         }
