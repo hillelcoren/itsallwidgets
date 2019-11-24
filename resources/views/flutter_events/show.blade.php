@@ -17,9 +17,12 @@
 		<div class="container">
 
 			<div class="columns">
+                <!--
 				<div class="column is-4 is-elevated">
 					<img id="appImage" src="{{ $event->image_url }}"/>
 				</div>
+                -->
+                <div class="column is-2"></div>
 				<div class="column is-8">
 					<nav class="breadcrumb" aria-label="breadcrumbs">
 						<ul>
