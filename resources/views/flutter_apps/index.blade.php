@@ -113,7 +113,7 @@ body {
                 <div class="field is-grouped is-grouped-multiline is-vertical-center">
                     <p class="control is-expanded has-icons-left">
 
-                        <input v-model="search" class="input is-medium" type="text" v-bind:placeholder="'Search ' + unpaginatedFilteredApps.length + ' apps...'"
+                        <input v-model="search" class="input is-medium" type="text" v-bind:placeholder="'Search ' + appCount + ' apps...'"
                             autofocus="true" style="margin-top: 10px" v-bind:style="{ backgroundColor: searchBackgroundColor()}">
                         <span class="icon is-small is-left" style="margin-top: 10px">
                             <i class="fas fa-search"></i>
@@ -123,6 +123,12 @@ body {
                             <input type="checkbox" name="openSourceSwitch"
                             class="switch is-info" v-model="filter_open_source">
                             <label for="openSourceSwitch" style="padding-top:6px; font-size: 16px">OPEN SOURCE &nbsp;</label>
+                        </div>
+
+                        <div class="is-medium" v-on:click="toggleTemplate()" style="padding-left: 26px;">
+                            <input type="checkbox" name="templateSwitch"
+                            class="switch is-info" v-model="filter_template">
+                            <label for="templateSwitch" style="padding-top:6px; font-size: 16px">TEMPLATE &nbsp;</label>
                         </div>
 
                         <div class="is-medium filter-label slider-control">
@@ -581,6 +587,10 @@ var app = new Vue({
             this.filter_open_source = ! this.filter_open_source;
         },
 
+        toggleTemplate: function() {
+            this.filter_template = ! this.filter_template;
+        },
+
         adjustPage: function(change) {
             this.page_number += change;
             document.body.scrollTop = 0; // For Safari
@@ -694,6 +704,7 @@ var app = new Vue({
         apps: {!! $apps !!},
         search: "{{ request()->search }}",
         filter_open_source: {{ filter_var(request()->open_source, FILTER_VALIDATE_BOOLEAN) ? 'true' : 'false' }},
+        filter_template: {{ filter_var(request()->templates, FILTER_VALIDATE_BOOLEAN) ? 'true' : 'false' }},
         cards_per_row: getCachedCardsPerRow(),
         sort_by: getCachedSortBy(),
         filter_platform: getCachedPlatform(),
@@ -777,6 +788,7 @@ var app = new Vue({
             var apps = this.apps;
             var search = this.search.toLowerCase().trim();
             var filter_open_source = this.filter_open_source;
+            var filter_template = this.filter_template;
             var filter_platform = this.filter_platform;
             var sort_by = this.sort_by;
 
@@ -801,6 +813,12 @@ var app = new Vue({
             if (filter_open_source) {
                 apps = apps.filter(function(item) {
                     return item.repo_url;
+                });
+            }
+
+            if (filter_template) {
+                apps = apps.filter(function(item) {
+                    return item.is_template;
                 });
             }
 
@@ -861,6 +879,17 @@ var app = new Vue({
             apps = apps.slice(startIndex, endIndex);
 
             return apps;
+        },
+
+        appCount() {
+
+            apps = this.unpaginatedFilteredApps;
+
+            apps = apps.filter(function(item) {
+                return !item.is_template;
+            });
+
+            return apps.length
         },
     }
 
