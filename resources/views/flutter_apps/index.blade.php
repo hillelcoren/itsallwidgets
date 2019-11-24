@@ -133,6 +133,7 @@ body {
                             step="1" min="2" max="6" type="range" v-model="cards_per_row">
                         </div>
 
+                        <!--
                         <div class="is-medium filter-label">
                             <label class="label is-medium" style="font-weight: normal; font-size: 16px">PLATFORM</label>
                         </div>
@@ -142,6 +143,7 @@ body {
                                 <option value="platform_web">WEB</option>
                             </select>
                         </div>
+                        -->
 
                         <div class="is-medium filter-label">
                             <label class="label is-medium" style="font-weight: normal; font-size: 16px">SORT</label>
@@ -173,8 +175,8 @@ body {
         <center>
             <div class="tabs is-centered is-boxed is-medium" style="widthx:50%;padding-top:30px">
                 <ul>
-                    <li class="is-active">
-                        <a>
+                    <li v-bind:class="[filter_platform == 'platform_mobile' ? 'is-active' : '']">
+                        <a href="#" v-on:click="setPlatform('platform_mobile')">
                             <div style="width:250px">
                                 <span class="icon is-small">
                                     <i class="fas fa-mobile-alt" aria-hidden="true"></i>
@@ -183,8 +185,8 @@ body {
                             </div>
                         </a>
                     </li>
-                    <li>
-                        <a>
+                    <li v-bind:class="[filter_platform == 'platform_web' ? 'is-active' : '']">
+                        <a href="#" v-on:click="setPlatform('platform_web')">
                             <div style="width:250px">
                                 <span class="icon is-small">
                                     <i class="fas fa-desktop" aria-hidden="true"></i>
@@ -627,6 +629,10 @@ var app = new Vue({
                     }
                 }
             }
+        },
+
+        setPlatform(platform) {
+            this.filter_platform = platform;
         },
 
         setFilter: function(filter) {
