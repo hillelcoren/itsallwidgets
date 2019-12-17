@@ -69,7 +69,11 @@
     }
 
     .has-bg-img {
-        background: url('/images/header_bg.jpg') center center; background-size:cover;
+        @if (isGL())
+            background: url('/images/geula_banner.png') center center; background-size:cover;
+        @else
+            background: url('/images/header_bg.jpg') center center; background-size:cover;
+        @endif
     }
 
     .has-bg-podcast-img {
@@ -244,6 +248,20 @@
          padding: 5rem 1.5rem 5rem 1.5rem;
     }
 
+    .hero.is-info .title {
+        @if (isGL())
+            color: #003b5c !important;
+        @endif
+    }
+
+    .hero.is-info .subtitle {
+        @if (isGL())
+            color: #003b5c !important;
+        @endif
+    }
+
+
+
     .navigation-button {
         position: absolute;
         top: 50%;
@@ -311,6 +329,8 @@
                 'animated zoomIn'
             @elseif (isFE())
                 'animated fadeInDown'
+            @elseif (isGL())
+                'animated fadeIn'
             @else
                 'animated tada'
             @endif
@@ -318,7 +338,11 @@
 
         $('.hero-body-animate .title, .hero-body-animate .subtitle, .hero-body-animate .button').addClass('animated fadeIn').css('visibility', 'visible');
         if (document.body.clientWidth > 1000) {
-            $('span.navbar-item').addClass('animated slideInDown').css('visibility', 'visible');
+            @if (isGL())
+                $('span.navbar-item').addClass('animated fadeIn').css('visibility', 'visible');
+            @else
+                $('span.navbar-item').addClass('animated slideInDown').css('visibility', 'visible');
+            @endif
         } else {
             $('span.navbar-item').css('visibility', 'visible');
         }
@@ -349,14 +373,17 @@
 </head>
 
 <body>
-    <section class="hero is-info is-head-font {{ request()->is('podcast*') || isset($useBlackHeader) ? 'has-bg-podcast-img' : 'has-bg-img' }}" style="background-color: {{ request()->is('podcast*') || isset($useBlackHeader) ? '#222' : '#3389d7' }};">
+    <section class="hero is-info is-head-font {{ request()->is('podcast*') || isset($useBlackHeader) ? 'has-bg-podcast-img' : 'has-bg-img' }}"
+        style="background-color: {{ request()->is('podcast*') || isset($useBlackHeader) ? '#222' : (isGL() ? '#d5effd' : '#3389d7') }};">
         <div class="hero-head">
             <nav class="navbar">
                 <div class="container">
                     <div class="navbar-brand">
                         <div class="navbar-animate">
                             @if (isGL())
-
+                                <a href="{{ glUrl() }}">
+                                    <img src="{{ asset('images/geula_logo.png') }}" width="200" style="padding-top: 12px; padding-left: 12px;"/>
+                                </a>
                             @else
                                 @if (isFP())
                                     <a href="{{ fpUrl() }}">
@@ -631,11 +658,13 @@
                 @endif
             </div>
 
-            <p style="padding-top:16px;">
-                <div class="strike">
-                   <span>SUPPORTED BY <a href="https://www.invoiceninja.com/" target="_blank">INVOICE NINJA</a></span>
-                </div>
-            <p>
+            @if (!isGL())
+                <p style="padding-top:16px;">
+                    <div class="strike">
+                       <span>SUPPORTED BY <a href="https://www.invoiceninja.com/" target="_blank">INVOICE NINJA</a></span>
+                    </div>
+                <p>
+            @endif
 
             <br/> &nbsp; <br/>
 
