@@ -1,9 +1,9 @@
 @extends('master')
 
-@section('title', isGL() ? 'A Directory of Universal, Transformational Torah Resources' : 'A Searchable List of Flutter Resources')
-@section('description', isGL() ? 'A Directory of Universal, Transformational Torah Resources' : 'A Searchable List of Flutter Resources')
+@section('title', isGL() ? 'A directory of universal Torah resources' : 'A Searchable List of Flutter Resources')
+@section('description', isGL() ? 'A directory of universal Torah resources' : 'A Searchable List of Flutter Resources')
 @section('image_url', isGL() ? asset('images/geula_twitter.png') : asset('images/flutterx_twitter.png'))
-@section('header_title', isGL() ? 'A Directory of Universal, Transformational Torah Resources' : 'A Searchable List of Flutter Resources')
+@section('header_title', isGL() ? 'A directory of universal Torah resources' : 'A Searchable List of Flutter Resources')
 @section('header_button_url', false)
 
 @section('header_subtitle')

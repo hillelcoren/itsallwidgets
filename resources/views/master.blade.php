@@ -447,7 +447,7 @@
             <div class="container has-text-centered">
                 <div class="subtitle" style="font-weight:200; font-size:18px;">
                     @if (isGL())
-                        MADE WITH &nbsp;<i class="fas fa-heart" style="font-size:16px"></i>&nbsp; TO BRING GEULA!
+                        MADE WITH &nbsp;<i class="fas fa-heart" style="font-size:16px"></i>&nbsp; TO REVEAL GEULA!
                     @else
                         MADE WITH &nbsp;<i class="fas fa-heart" style="font-size:16px"></i>&nbsp; BY THE <a href="https://medium.com/flutter-community" target="_blank">FLUTTER COMMUNITY</a>
                     @endif
@@ -457,7 +457,7 @@
                 </div>
                 <div class="subtitle" style="font-size:18px; padding-bottom:6px;">
                     @if (isGL())
-                        The global revelation of a higher reality
+                        Geula: a higher reality
                     @else
                         @yield('header_subtitle', 'Feel free to add an app in progress and update it when it goes live')
                     @endif
@@ -522,7 +522,7 @@
             <p>
                 @if (isGL())
                     <div style="font-size:16px; letter-spacing:2px; padding-bottom:6px; font-weight:600">
-                        To the Gate Of Unity Community
+                        HaShem!
                     </div>
                 @else
                     <div style="font-size:16px; letter-spacing:2px; padding-bottom:6px; font-weight:600">
