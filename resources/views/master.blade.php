@@ -457,7 +457,7 @@
                 </div>
                 <div class="subtitle" style="font-size:18px; padding-bottom:6px;">
                     @if (isGL())
-                        Geula: a higher reality
+                        Geula: A New Era
                     @else
                         @yield('header_subtitle', 'Feel free to add an app in progress and update it when it goes live')
                     @endif
@@ -521,9 +521,7 @@
 
             <p>
                 @if (isGL())
-                    <div style="font-size:16px; letter-spacing:2px; padding-bottom:6px; font-weight:600">
-                        HaShem!
-                    </div>
+
                 @else
                     <div style="font-size:16px; letter-spacing:2px; padding-bottom:6px; font-weight:600">
                         TO THE <a href="https://flutter.dev" target="_blank">FLUTTER</a> & <a href="https://www.dartlang.org/" target="_blank">DART</a> TEAMS
