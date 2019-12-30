@@ -4,7 +4,7 @@
 @section('description', $artifact->comment)
 @section('image_url', $artifact->image_url ? url($artifact->image_url) : '')
 
-@section('header_title', 'A Searchable List of Flutter Resources')
+@section('header_title', isGL() ? 'A directory of universal Torah resources' : 'A Searchable List of Flutter Resources')
 @section('header_button_url', false)
 
 @section('header_subtitle')
