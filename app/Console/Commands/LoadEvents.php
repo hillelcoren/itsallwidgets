@@ -125,7 +125,7 @@ class LoadEvents extends Command
 
             foreach ($terms as $term) {
                 if (strpos(strtolower($item->name), $term) !== false) {
-                    continue;
+                    continue 2;
                 }
             }
 

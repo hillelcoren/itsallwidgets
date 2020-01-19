@@ -29,6 +29,24 @@ Route::group(['domain' => '127.0.0.1'], function() {
     Route::get('flutter-events/{flutter_event}', 'FlutterEventController@show');
 });
 
+Route::group(['domain' => 'www.flutterpro.dev'], function() {
+    Route::get('/', function() {
+        return redirect('https://flutterpro.dev');
+    });
+});
+
+Route::group(['domain' => 'www.flutterx.com'], function() {
+    Route::get('/', function() {
+        return redirect('https://flutterx.com');
+    });
+});
+
+Route::group(['domain' => 'www.flutterevents.com'], function() {
+    Route::get('/', function() {
+        return redirect('https://flutterevents.com');
+    });
+});
+
 Route::group(['domain' => 'flutterpro.{tld}'], function() {
     Route::get('/', 'FlutterProController@index');
     Route::get('feed', 'FlutterProController@jsonFeed');
