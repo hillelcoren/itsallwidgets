@@ -86,6 +86,10 @@ Route::get('flutter-apps', function () {
     return redirect('/', 301);
 });
 
+Route::get('slides', function () {
+    return redirect('https://docs.google.com/presentation/d/1u82DeBozavR31n3xjmwmwl2CT8YsG7u8ltQv1ltxw34/edit', 301);
+});
+
 Route::get('/', 'FlutterAppController@index');
 Route::get('feed', 'FlutterAppController@jsonFeed');
 Route::get('about', 'HomeController@about');
