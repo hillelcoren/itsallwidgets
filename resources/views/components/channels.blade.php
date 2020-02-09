@@ -24,6 +24,15 @@
                                                 <i class="fab fa-twitter"></i>
                                             </span> &nbsp;
         <span>Twitter</span>
+    </a> &nbsp;&nbsp;&nbsp;
+
+    <a class="button is-elevated-dark"
+       style="color:white; background-color: #5b99ba; border-color:#5b99ba; margin-top:30px"
+       href="https://www.facebook.com/chanavered" target="_blank">
+                                            <span class="icon">
+                                                <i class="fab fa-facebook"></i>
+                                            </span> &nbsp;
+        <span>Facebook</span>
     </a>
 
 @else
