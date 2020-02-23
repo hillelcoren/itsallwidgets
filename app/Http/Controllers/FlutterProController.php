@@ -96,12 +96,6 @@ class FlutterProController extends Controller
         if (request()->pretty) {
             $str = '<pre>' . e(json_encode($user->toObject(), JSON_PRETTY_PRINT)) . '</pre';
 
-            if (request()->instructions) {
-                $str = 'You can use the <a href="' . $user->jsonUrl() . '" target="_blank">JSON feed</a> to create a custom profile with <a href="https://flutter.dev/web" target="_blank">Flutter Web</a>. To make it shareable you just need to accept the developer handle as a query parameter.<p/>'
-                . 'A number of developers are currently creating shareable portfolios, once they\'re ready a default portfolio will be enabled.<p/>'
-                . $str;
-            }
-
             return $str;
         } else {
             return response()->json($user->toObject());
