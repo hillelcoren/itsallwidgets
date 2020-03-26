@@ -457,7 +457,7 @@
                 </div>
                 <div class="subtitle" style="font-size:18px; padding-bottom:6px;">
                     @if (isGL())
-                        Geula: A New Era
+                        Geula: Revealing A Divine World
                     @else
                         @yield('header_subtitle', 'Feel free to add an app in progress and update it when it goes live')
                     @endif
