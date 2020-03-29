@@ -163,6 +163,7 @@ class FlutterApp extends Model implements Feedable
         $obj->description = mb_convert_encoding($this->short_description, 'UTF-8', 'UTF-8');
         $obj->url = $this->url();
         $obj->image_url = $this->screenshotUrl();
+        $obj->repo_url = $this->repo_url;
 
         return $obj;
     }

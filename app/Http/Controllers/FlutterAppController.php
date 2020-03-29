@@ -240,6 +240,10 @@ class FlutterAppController extends Controller
         $data = [];
 
         foreach ($apps as $app) {
+            if ($request->open_source && !$app->repo_url) {
+                continue;
+            }
+
             $data[] = $app->toObject();
         }
 
