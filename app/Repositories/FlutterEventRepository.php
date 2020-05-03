@@ -34,6 +34,19 @@ class FlutterEventRepository
         return FlutterEvent::findOrFail($id);
     }
 
+    public function findRandomOnline()
+    {
+        $events = FlutterEvent::approved()
+                        ->future()
+                        ->where('is_online', '=', true)
+                        ->get();
+
+        $count = $events->count();
+        $random = rand(0, $count - 1);
+
+        return $events[$random];
+    }
+
     public function findByCoordinates($latitude, $longitude)
     {
         $latitude = floatval($latitude);

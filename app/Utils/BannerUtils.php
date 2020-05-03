@@ -2,6 +2,9 @@
 
 function getBanner()
 {
+    return getEventBanner();
+
+    /*
     $random = rand(1, 4);
 
     if ($random == 1) {
@@ -15,6 +18,7 @@ function getBanner()
     } elseif ($random == 4) {
         return false;
     }
+    */
 }
 
 function getBookBanner()
@@ -28,6 +32,19 @@ function getCourseBanner()
 }
 
 function getEventBanner()
+{
+    $eventRepo = app('App\Repositories\FlutterEventRepository');
+    $event = $eventRepo->findRandomOnline();
+
+    if ($event) {
+        $event->view_count++;
+        $event->save();
+
+        return $event->getBanner();
+    }
+}
+
+function getNearestEventBanner()
 {
     $ip = \Request::getClientIp();
     $banner = false;
