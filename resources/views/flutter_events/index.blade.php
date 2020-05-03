@@ -144,12 +144,16 @@
 
     var markerList = [
         @foreach ($events as $event)
-            {{ $event->id}},
+            @if ($event->longitude != 0 && $event->latitude != 0)
+                {{ $event->id}},
+            @endif
         @endforeach
     ];
     var markerMap = {
         @foreach ($events as $event)
-            {{ $event->id}}: ['{{ $event->eventLink() }}<br/>{{ substr(strip_tags(preg_replace( "/\r|\n/", " ", $event->description)), 0, 150) }}...', {{ $event->latitude }}, {{ $event->longitude }}, {{ $event->distance }}],
+            @if ($event->longitude != 0 && $event->latitude != 0)
+                {{ $event->id}}: ['{{ $event->eventLink() }}<br/>{{ substr(strip_tags(preg_replace( "/\r|\n/", " ", $event->description)), 0, 150) }}...', {{ $event->latitude }}, {{ $event->longitude }}, {{ $event->distance }}],
+            @endif
         @endforeach
     };
 
@@ -234,10 +238,18 @@
                             <i class="fas fa-search"></i>
                         </span>
 
+                        <!--
                         <div class="is-medium" v-on:click="toggleStudyJams()" style="padding-left: 30px; padding-right: 10px;">
-                            <input type="checkbox" name="openSourceSwitch"
+                            <input type="checkbox" name="studyJamsSwitch"
                             class="switch is-info" v-model="filter_study_jams">
-                            <label for="openSourceSwitch" style="padding-top:6px; font-size: 16px">STUDY JAMS &nbsp;</label>
+                            <label for="studyJamsSwitch" style="padding-top:6px; font-size: 16px">STUDY JAMS &nbsp;</label>
+                        </div>
+                        -->
+
+                        <div class="is-medium" v-on:click="toggleOnline()" style="padding-left: 30px; padding-right: 10px;">
+                            <input type="checkbox" name="onlineSwitch"
+                            class="switch is-info" v-model="filter_online">
+                            <label for="oniineSwitch" style="padding-top:6px; font-size: 16px">ONLINE EVENTS &nbsp;</label>
                         </div>
 
                         @if ($hasLocation)
@@ -541,6 +553,10 @@ methods: {
         this.filter_study_jams = ! this.filter_study_jams;
     },
 
+    toggleOnline: function() {
+        this.filter_online = ! this.filter_online;
+    },
+
     adjustPage: function(change) {
         this.page_number += change;
         document.body.scrollTop = 0; // For Safari
@@ -637,6 +653,7 @@ data: {
     search: "{{ request()->search }}",
     sort_by: getCachedSortBy(),
     filter_study_jams: {{ filter_var(request()->study_jams, FILTER_VALIDATE_BOOLEAN) ? 'true' : 'false' }},
+    filter_online: {{ filter_var(request()->online, FILTER_VALIDATE_BOOLEAN) ? 'true' : 'false' }},
     selected_event: false,
     page_number: 1,
     filter_distance: getCachedFilterDistance(),
@@ -659,6 +676,7 @@ computed: {
         var sort_by = this.sort_by;
         var distance = this.filter_distance;
         var filter_study_jams = this.filter_study_jams;
+        var filter_online = this.filter_online;
 
         if (search || distance) {
             events = events.filter(function(item) {
@@ -695,6 +713,12 @@ computed: {
         if (filter_study_jams) {
             events = events.filter(function(item) {
                 return (item.event_name || '').toLowerCase().indexOf('study jam') >= 0;
+            });
+        }
+
+        if (filter_online) {
+            events = events.filter(function(item) {
+                return item.is_online;
             });
         }
 

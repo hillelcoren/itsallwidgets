@@ -37,7 +37,6 @@ class UpdateFlutterEvent extends FormRequest
             'event_name' => 'required',
             'slug' => 'unique:flutter_events,slug,' . $event->id . ',id',
             'event_date' => 'required|date',
-            'address' => 'required',
             'banner' => [
                 new HasVariable('$event'),
                 'required',

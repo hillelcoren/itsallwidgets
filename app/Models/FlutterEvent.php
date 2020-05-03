@@ -34,6 +34,8 @@ class FlutterEvent extends Model implements Feedable
         'meetup_group_id',
         'meetup_group_name',
         'meetup_group_url',
+        'is_online',
+        'is_in_person',
     ];
 
     protected $hidden = [
