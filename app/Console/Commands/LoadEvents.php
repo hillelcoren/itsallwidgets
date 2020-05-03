@@ -121,7 +121,7 @@ class LoadEvents extends Command
                 'trekking',
                 'dance',
                 'butterfly',
-                'yoga',                
+                'yoga',
             ];
 
             foreach ($terms as $term) {
@@ -140,7 +140,9 @@ class LoadEvents extends Command
                 if (property_exists($venue, 'address_1')) {
                     $address = $venue->address_1 . ', ';
                 }
-                $city = $venue->city;
+                if (property_exists($venue, 'city')) {
+                    $city = $venue->city;
+                }
                 $country = $venue->localized_country_name;
                 $address .= $venue->city . ' ' . $venue->localized_country_name;
                 $latitude = $venue->lat;
