@@ -198,7 +198,7 @@ class FlutterAppController extends Controller
             $app->notify(new AppApproved());
         }
 
-        return redirect('/')->with('status', 'App has been approved!');
+        return redirect('/' . $app->slug)->with('status', 'App has been approved!');
     }
 
     public function reject(RejectFlutterApp $request)
@@ -231,7 +231,7 @@ class FlutterAppController extends Controller
 
         $app->user->notify(new AppFeatured($app));
 
-        return redirect('/')->with('status', $app->title. ' is now featured!');
+        return redirect('/' . $app->slug)->with('status', $app->title. ' is now featured!');
     }
 
     public function jsonFeed(Request $request)

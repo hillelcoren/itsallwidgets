@@ -42,6 +42,11 @@ class FlutterEventRepository
                         ->get();
 
         $count = $events->count();
+
+        if ($count == 0) {
+            return false;
+        }
+
         $random = rand(0, $count - 1);
 
         return $events[$random];
