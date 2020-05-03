@@ -19,6 +19,10 @@
 			$('#saveButton').addClass('is-loading').prop('disabled', true);
 		}
 
+		function updateType() {
+			$('#inPersonRequiredField').toggle($('input[name=is_in_person]').is(':checked'));
+		}
+
 		function formatUrl() {
 			var url = $("input[name='event_url']").val();
 			url = url.split('?')[0].replace(/\/+$/, '');
@@ -29,11 +33,14 @@
 			var banner = $('textarea[name=banner]').val();
 			var name = $('input[name=event_name]').val() || 'EVENT';
 			var url = $('input[name=event_url]').val() || '/#';
-			@if (auth()->user()->is_admin)
-				var city = $('input[name=city]').val() || $('input[name=address]').val();
-			@else
-				var city = $('input[name=address]').val();
-			@endif
+            if ($('input[name=is_in_person]').is(':checked')) {
+                @if (auth()->user()->is_admin)
+    				var city = $('input[name=city]').val() || $('input[name=address]').val();
+    			@else
+    				var city = $('input[name=address]').val();
+    			@endif
+            }
+
 			var str = banner;
 
 			str = str.replace(/@(\S+)/g, '<b><a href="https://twitter.com/$1" target="blank">@$1</a></b>')
@@ -46,6 +53,7 @@
 
 		$(function() {
 			updatePreview();
+            updateType();
 		});
 
 	</script>
@@ -89,7 +97,13 @@
 				<p>&nbsp;</p>
 			@endif
 
-			{{ Form::open(['url' => $url, 'method' => $method, 'files' => true, 'onsubmit' => 'onFormSubmit()', 'onkeyup' => 'updatePreview()']) }}
+			{{ Form::open([
+                'url' => $url,
+                'method' => $method,
+                'files' => true,
+                'onsubmit' => 'onFormSubmit()',
+                'onkeyup' => 'updatePreview()'
+                ]) }}
 
 			<article class="message is-dark is-elevated">
 				<div class="message-body">
@@ -137,12 +151,34 @@
 							@endif
 						</div>
 					</div>
-					<div class="field">
+
+                    <div class="field">
+                        <div class="field">
+                            <label class="label">
+                                Event Type <span class="required">*</span>
+                            </label>
+                            <div class="control">
+                                <label>
+                                    {{ Form::hidden('is_online', 0) }}
+                                    <input name="is_online" type="checkbox" onchange="updateType()"
+                                        value="1" {{ (old('is_online') !== null ? intval(old('is_online')) : $event->is_online) ? 'CHECKED' : '' }}/> Online
+                                </label>
+                                &nbsp;&nbsp;
+                                <label>
+                                    {{ Form::hidden('is_in_person', 0) }}
+                                    <input name="is_in_person" type="checkbox" onchange="updateType()"
+                                        value="1" {{ (old('is_in_person') !== null ? intval(old('is_in_person')) : $event->is_in_person) ? 'CHECKED' : '' }}/> In Person
+                                </lable>
+                            </div>
+                        </div>
+                    </div>
+
+					<div class="field" id="inPersonRequiredField" style="display:{{ $event->is_in_person ? 'block' : 'none' }}">
 						<label class="label" for="address">
-							Event Address <span class="required">*</span>
+							Event Address
 						</label>
 						<div class="control has-icons-left">
-							{{ Form::text('address', $event->address, ['class' => 'input', 'required' => true]) }}
+							{{ Form::text('address', $event->address, ['class' => 'input']) }}
 
 							<span class="icon is-small is-left">
 								<i class="fas fa-map-marked"></i>
@@ -155,8 +191,9 @@
 							@endif
 						</div>
 					</div>
-					@if (auth()->user()->is_admin)
-					<div class="field">
+
+                    @if (auth()->user()->is_admin)
+					<div class="field" id="inPersonRequiredField" style="display:{{ $event->is_in_person ? 'block' : 'none' }}">
 						<label class="label" for="city">
 							Event City
 						</label>

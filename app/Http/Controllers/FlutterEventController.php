@@ -57,6 +57,7 @@ class FlutterEventController extends Controller
     public function create()
     {
         $event = new FlutterEvent;
+        $event->is_online = true;
 
         $data = [
             'event' => $event,

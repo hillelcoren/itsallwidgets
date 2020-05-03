@@ -30,7 +30,6 @@ class StoreFlutterEvent extends FormRequest
             'event_url' => 'required|unique:flutter_events',
             'slug' => 'required|unique:flutter_events',
             'event_date' => 'required|date',
-            'address' => 'required',
             'terms' => 'required',
             'banner' => [
                 new HasVariable('$event'),
