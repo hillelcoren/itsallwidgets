@@ -142,9 +142,10 @@ class LoadEvents extends Command
                 }
                 if (property_exists($venue, 'city')) {
                     $city = $venue->city;
+                    $address .= $venue->city . ' ';
                 }
+                $address .= $venue->localized_country_name;
                 $country = $venue->localized_country_name;
-                $address .= $venue->city . ' ' . $venue->localized_country_name;
                 $latitude = $venue->lat;
                 $longitude = $venue->lon;
             } else {
