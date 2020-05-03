@@ -133,6 +133,8 @@ class LoadEvents extends Command
             $group = $item->group;
             $city = '';
             $country = '';
+            $latitude = 0;
+            $longitude = 0;
 
             if (property_exists($item, 'venue')) {
                 $venue = $item->venue;
@@ -146,8 +148,10 @@ class LoadEvents extends Command
                 }
                 $address .= $venue->localized_country_name;
                 $country = $venue->localized_country_name;
-                $latitude = $venue->lat;
-                $longitude = $venue->lon;
+                if (property_exists($venue, 'lat') && property_exists($venue, 'lon')) {
+                    $latitude = $venue->lat;
+                    $longitude = $venue->lon;
+                }
             } else {
                 $address = $group->localized_location;
                 $latitude = $group->lat;
