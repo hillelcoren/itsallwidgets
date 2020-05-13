@@ -718,7 +718,10 @@ computed: {
 
         if (filter_online) {
             events = events.filter(function(item) {
-                return item.is_online;
+                var eventName = (item.event_name || '').toLowerCase();
+                return item.is_online
+                    || eventName.indexOf('online') >= 0
+                    || eventName.indexOf('virtual') >= 0;
             });
         }
 
