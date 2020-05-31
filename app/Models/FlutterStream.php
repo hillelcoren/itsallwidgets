@@ -28,6 +28,13 @@ class FlutterStream extends Model implements Feedable
         return link_to($this->url(), $this->name, ['target' => '_blank']);
     }
 
+    public function scopeVisible($query)
+    {
+        $query->whereHas('channel', function($query) {
+            return $query->where('is_visible', '=', 1);
+        });
+    }
+
     public function user()
     {
         return $this->belongsTo('App\Models\User');
@@ -35,7 +42,7 @@ class FlutterStream extends Model implements Feedable
 
     public function channel()
     {
-        return $this->belongsTo('App\Models\FlutterChannel');
+        return $this->belongsTo('App\Models\FlutterChannel', 'channel_id');
     }
 
     public function getVideoUrl()
