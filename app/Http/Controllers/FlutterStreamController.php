@@ -45,7 +45,9 @@ class FlutterStreamController extends Controller
         }
 
         if ($sortBy == 'sort_newest') {
-            $users->orderBy('id', 'desc');
+            $streams->orderBy('starts_at', 'desc');
+        } else {
+            $streams->orderBy('starts_at', 'desc');
         }
 
         $streams->limit(12)->offset(((request()->page ?: 1) - 1) * 12);

@@ -92,6 +92,7 @@ class FlutterStream extends Model implements Feedable
         $obj->description = mb_convert_encoding($this->description, 'UTF-8', 'UTF-8');
         $obj->video_id = $this->video_id;
         $obj->starts_at = $this->starts_at;
+        $obj->time_ago = \Carbon\Carbon::parse($this->starts_at)->diffForHumans();
         $obj->url = $this->url();
         $obj->video_url = 'https://www.youtube.com/watch?v=' . $this->video_id;
         $obj->embed_url = 'https://www.youtube.com/embed/' . $this->video_id;

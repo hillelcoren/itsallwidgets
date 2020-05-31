@@ -158,8 +158,8 @@
                                                     </a>
                                                 </div>
 
-                                                <div style="color:#888; font-size:15px;">
-                                                    @{{ stream.view_count }} views
+                                                <div style="color:#888; font-size:15px; padding-top: 4px;">
+                                                    @{{ stream.view_count }} views • @{{ stream.time_ago }}
                                                 </div>
                                             </div>
                                         </div>
