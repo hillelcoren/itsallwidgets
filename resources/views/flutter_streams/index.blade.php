@@ -1,14 +1,14 @@
 @extends('master')
 
-@section('title', 'A Open List of Flutter Live Streams')
-@section('description', 'Streamsxx are sourced from FlutterX, Flutter Events and It\'s All Widgets!')
+@section('title', 'An Open List of Flutter Live Streams')
+@section('description', 'Live streams are sourced from YouTube')
 @section('image_url', asset('images/flutterpro_twitter.png'))
 
-@section('header_title', 'A Open List of Flutter Live Streams')
+@section('header_title', 'An Open List of Flutter Live Streams')
 @section('header_button_url', 'https://twitter.com/FlutterStreams')
 @section('header_button_label', 'FOLLOW US')
 @section('header_button_icon', 'fab fa-twitter')
-@section('header_subtitle', 'Add #FlutterStream to the video title to add it to the list')
+@section('header_subtitle', 'Add #FlutterStream to the title to add your stream')
 
 @section('head')
 
@@ -47,7 +47,7 @@
                     <div class="field is-grouped is-grouped-multiline is-vertical-center">
                         <p class="control is-expanded has-icons-left">
 
-                            <input v-model="search" class="input is-medium" type="text" placeholder="Search {{ $count }} Flutter developers..."
+                            <input v-model="search" class="input is-medium" type="text" placeholder="Search {{ $count }} live streams..."
                             autofocus="true" style="margin-top: 10px" v-bind:style="{ backgroundColor: searchBackgroundColor()}">
                             <span class="icon is-small is-left" style="margin-top: 10px">
                                 <i class="fas fa-search"></i>
