@@ -20,6 +20,17 @@
     height: 550px;
 }
 
+.stream-name {
+    font-size: 18px;
+    line-height: 1.5em;
+    height: 3.2em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+}
+
 .stream-panel a {
     color: black;
 }
@@ -127,15 +138,15 @@
                                     </td>
                                     <td>
                                         <div style="padding-left: 8px; padding-right: 8px">
-                                            <p style="font-size:18px; padding-bottom:14px;">
+                                            <p class="stream-name">
                                                 @{{ stream.name }}
                                             </p>
 
-                                            <div style="border-bottom: 2px #368cd5 solid; width: 50px;"/></div>
+                                            <div style="padding-top:6px; border-bottom: 2px #368cd5 solid; width: 50px;"/></div>
 
                                             <div class="content" style="padding-top: 2px;">
 
-                                                <div style="padding-top:20px;">
+                                                <div style="padding-top:12px;">
                                                     <a v-bind:href="'https://www.youtube.com/channel/' + stream.channel_id" target="_blank" v-on:click.stop>
                                                         @{{ stream.channel_name }}
                                                     </a>
