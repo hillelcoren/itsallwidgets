@@ -52,7 +52,7 @@ class FlutterStreamController extends Controller
 
         foreach ($streams->get() as $stream)
         {
-            $data[] = $streams->toObject();
+            $data[] = $stream->toObject();
         }
 
         return response()->json($data);

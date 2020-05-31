@@ -383,7 +383,7 @@
                     if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
 
                     this.bounceTimeout = setTimeout(function() {
-                        var url = '/search_pro?counts=true&search='
+                        var url = '/search_streams?counts=true&search='
                         + encodeURIComponent(searchStr)
                         + '&sort_by=' + sortBy
                         + '&page=' + page
