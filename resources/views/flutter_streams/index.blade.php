@@ -129,7 +129,9 @@
                                 <tr>
                                     <td width="50">
                                         <div v-if="stream.channel_image_url">
-                                            <img v-bind:src="stream.channel_image_url + '?clear_cache=' + stream.updated_at" style="width: 40px; height: 40px; border-radius: 50%;"/>
+                                            <a v-bind:href="'https://www.youtube.com/channel/' + stream.channel_id" target="_blank" v-on:click.stop>
+                                                <img v-bind:src="stream.channel_image_url + '?clear_cache=' + stream.updated_at" style="width: 40px; height: 40px; border-radius: 50%;"/>
+                                            </a>
                                         </div>
                                         <div v-if="!stream.image_url">
                                             <img src="/images/flutter_logo.png" style="width: 50px; height: 50px; border-radius: 50%;"/>
@@ -142,11 +144,10 @@
                                                 @{{ stream.name }}
                                             </p>
 
-                                            <div style="padding-top:6px; border-bottom: 2px #368cd5 solid; width: 50px;"/></div>
+                                            <div style="padding-top:8px; border-bottom: 2px #368cd5 solid; width: 50px;"/></div>
 
-                                            <div class="content" style="padding-top: 2px;">
-
-                                                <div style="padding-top:12px;">
+                                            <div class="content">
+                                                <div style="padding-top:14px;">
                                                     <a v-bind:href="'https://www.youtube.com/channel/' + stream.channel_id" target="_blank" v-on:click.stop>
                                                         @{{ stream.channel_name }}
                                                     </a>
