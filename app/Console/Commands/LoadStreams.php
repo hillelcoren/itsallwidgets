@@ -43,7 +43,7 @@ class LoadStreams extends Command
         $this->info('Running...');
 
         // Load videos
-        $url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=flutter&type=video&order=date&key=';
+        $url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=250&q=flutter&type=video&order=date&key=';
         $url .= config('services.youtube.key');
 
         $data = json_decode(file_get_contents($url));

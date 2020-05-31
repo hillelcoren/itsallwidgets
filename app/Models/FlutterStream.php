@@ -90,10 +90,19 @@ class FlutterStream extends Model implements Feedable
         $obj->name = $this->name;
         $obj->type = 'stream';
         $obj->description = mb_convert_encoding($this->description, 'UTF-8', 'UTF-8');
+        $obj->video_id = $this->video_id;
+        $obj->start_at = $this->starts_at;
         $obj->url = $this->url();
+        $obj->view_count = $this->view_count;
+        $obj->like_count = $this->like_count;
+        $obj->comment_count = $this->comment_count;
         $obj->image_url = $this->thumbnail_url;
-        $obj->channel_name = $this->channel_name;
-        $obj->channel_id = $this->channel_id;
+        $obj->channel_name = $this->channel->name;
+        $obj->channel_id = $this->channel->channel_id;
+        $obj->channel_description = mb_convert_encoding($this->channel->description, 'UTF-8', 'UTF-8');
+        $obj->channel_custom_url = $this->channel->custom_url;
+        $obj->channel_image_url = $this->channel->thumbnail_url;
+        $obj->country = $this->channel->country;
 
         return $obj;
     }
