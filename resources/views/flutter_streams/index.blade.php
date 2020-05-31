@@ -113,10 +113,10 @@
                         <div class="stream-panel is-hover-elevated has-text-centered">
 
                             <header>
-                                <div style="height: 100px">
+                                <div style="height: 300px">
                                     <span v-if="stream.image_url">
                                         <img v-bind:src="stream.image_url + '?clear_cache=' + stream.updated_at"
-                                        style="width: 100%;"/>
+                                        style="width: 480px; height: 360px;"/>
                                     </span>
                                     <span v-if="!stream.image_url">
                                         <img src="/images/flutter_logo.png" style="width: 94px;"/>
@@ -132,63 +132,12 @@
                             <div class="content" style="padding-left:16px; padding-right:16px; padding-top: 2px;">
 
                                 <div class="short-description" style="padding-top:16px;">
-                                    <a v-bind:href="stream.activity_link_url" target="_blank" v-on:click.stop rel="nofollow">
-                                        @{{ stream.activity_link_title }}</a>
-
-                                        • @{{ stream.activity_message }}
-                                    </div>
-                                </div>
-
-                                <div style="padding-bottom:20px;">
-                                    &nbsp;
-                                    <span v-if="stream.github_url">
-                                        <span class="icon-bug-fix" style="padding:12px">
-                                            <a v-if="stream.github_url" v-bind:href="stream.github_url" target="_blank" v-on:click.stop rel="nofollow">
-                                                <i class="fab fa-github"></i>
-                                            </a>
-                                        </span>
-                                    </span>
-                                    <span v-if="stream.youtube_url">
-                                        <span class="icon-bug-fix" style="padding:12px">
-                                            <a v-bind:href="stream.youtube_url" target="_blank" v-on:click.stop rel="nofollow">
-                                                <i class="fab fa-youtube"></i>
-                                            </a>
-                                        </span>
-                                    </span>
-                                    <span v-if="stream.twitter_url">
-                                        <span class="icon-bug-fix" style="padding:12px">
-                                            <a v-bind:href="stream.twitter_url" target="_blank" v-on:click.stop rel="nofollow">
-                                                <i class="fab fa-twitter"></i>
-                                            </a>
-                                        </span>
-                                    </span>
-                                    <span v-if="stream.medium_url">
-                                        <span class="icon-bug-fix" style="padding:12px">
-                                            <a v-bind:href="stream.medium_url" target="_blank" v-on:click.stop rel="nofollow">
-                                                <i class="fab fa-medium"></i>
-                                            </a>
-                                        </span>
-                                    </span>
-                                    <span v-if="stream.linkedin_url">
-                                        <span class="icon-bug-fix" style="padding:12px">
-                                            <a v-bind:href="stream.linkedin_url" target="_blank" v-on:click.stop rel="nofollow">
-                                                <i class="fab fa-linkedin"></i>
-                                            </a>
-                                        </span>
-                                    </span>
-                                    <span v-if="stream.instagram_url">
-                                        <span class="icon-bug-fix" style="padding:12px">
-                                            <a v-bind:href="stream.instagram_url" target="_blank" v-on:click.stop rel="nofollow">
-                                                <i class="fab fa-instagram"></i>
-                                            </a>
-                                        </span>
-                                    </span>
+                                    @{{ stream.description }}
                                 </div>
 
                                 <div style="color:#888; font-size:15px;">
                                     @{{ stream.counts }}
                                 </div>
-
                             </div>
 
                         </div>
