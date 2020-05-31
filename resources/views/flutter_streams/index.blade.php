@@ -82,12 +82,8 @@
                             </div>
                             <div class="select is-medium filter-control" style="padding-left: 14px; font-size: 16px">
                                 <select v-model="sort_by" onchange="$(this).blur()">
-                                    <option value="sort_activity">ACTIVITY</option>
-                                    <option value="sort_featured">FEATURED</option>
                                     <option value="sort_newest">NEWEST</option>
-                                    <option value="sort_apps">APPS</option>
-                                    <option value="sort_artifacts">RESOURCES</option>
-                                    <option value="sort_events">EVENTS</option>
+                                    <option value="sort_views">VIEWS</option>
                                 </select>
                             </div>
                         </p>
@@ -228,7 +224,7 @@
         };
 
         function getCachedSortBy() {
-            return (isStorageSupported() ? localStorage.getItem('pro_sort_by') : false) || 'sort_activity';
+            return (isStorageSupported() ? localStorage.getItem('streams_sort_by') : false) || 'sort_newest';
         }
 
         var app = new Vue({
@@ -277,7 +273,7 @@
                         return false;
                     }
 
-                    localStorage.setItem('pro_sort_by', this.sort_by);
+                    localStorage.setItem('streams_sort_by', this.sort_by);
                 },
 
                 searchBackgroundColor: function() {
@@ -320,7 +316,7 @@
                     var streams = this.streams;
                     var sortBy = this.sort_by;
                     var page = this.page_number;
-                    var platform = this.filter_platform;
+                    var source = this.filter_source;
 
                     app.$set(app, 'is_searching', true);
                     if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
@@ -330,7 +326,7 @@
                         + encodeURIComponent(searchStr)
                         + '&sort_by=' + sortBy
                         + '&page=' + page
-                        + '&platform=' + platform;
+                        + '&source=' + source;
 
                         $.get(url,
                         function (data) {
