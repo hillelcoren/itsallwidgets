@@ -17,7 +17,7 @@
 .stream-panel {
     background-color: white;
     border-radius: 8px;
-    height: 420px;
+    height: 500px;
 }
 
 .short-description {
@@ -113,17 +113,16 @@
                         <div class="stream-panel is-hover-elevated has-text-centered">
 
                             <header>
-                                <div style="height: 300px">
-                                    <span v-if="stream.image_url">
-                                        <img v-bind:src="stream.image_url + '?clear_cache=' + stream.updated_at"
-                                        style="width: 480px; height: 360px;"/>
-                                    </span>
+                                <div>
+                                    <div v-if="stream.image_url" class="cropped">
+                                        <img v-bind:src="stream.image_url + '?clear_cache=' + stream.updated_at"/>
+                                    </div>
                                     <span v-if="!stream.image_url">
                                         <img src="/images/flutter_logo.png" style="width: 94px;"/>
                                     </span>
                                 </div><br/>
 
-                                <p class="no-wrap" style="font-size:22px; padding-top:18px; padding-bottom:14px;">
+                                <p class="no-wrap" style="font-size:22px; padding-bottom:14px; padding-left: 10px; padding-right: 10px;">
                                     @{{ stream.name }}
                                 </p>
                                 <div style="border-bottom: 2px #368cd5 solid; margin-left:40%; margin-right: 40%;"></div>
