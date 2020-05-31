@@ -16,6 +16,7 @@
         "laravel/socialite": "3.0.x-dev",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.6.0",
+        "socialiteproviders/twitch": "^5.2",
         "spatie/laravel-feed": "^2.1"
     },
     "require-dev": {

@@ -11,6 +11,9 @@
 |
 */
 
+//Route::get('oauth', 'Auth\OAuthController@redirectToProvider');
+//Route::get('oauth/callback', 'Auth\OAuthController@handleProviderCallback');
+
 Route::feeds();
 
 Route::group(['domain' => '127.0.0.1'], function() {

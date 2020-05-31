@@ -165,8 +165,7 @@ return [
         NotificationChannels\FacebookPoster\FacebookPosterServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Jaybizzle\LaravelCrawlerDetect\LaravelCrawlerDetectServiceProvider::class,
-
-
+        SocialiteProviders\Manager\ServiceProvider::class,
     ],
 
     /*
