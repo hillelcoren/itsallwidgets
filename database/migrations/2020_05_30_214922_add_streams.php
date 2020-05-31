@@ -18,6 +18,7 @@ class AddStreams extends Migration
             $table->timestamps();
             $table->enum('source', ['youtube', 'twitch']);
             $table->string('name');
+            $table->string('channel_id');
             $table->text('description');
             $table->string('custom_url');
             $table->string('thumbnail_url');

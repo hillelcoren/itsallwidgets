@@ -49,23 +49,42 @@ class LoadStreams extends Command
         $data = json_decode(file_get_contents($url));
         $videoIds = [];
         $videoMap = [];
+        $channelIds = [];
+        $channelMap = [];
 
         foreach ($data->items as $item) {
             $videoId = $item->id->videoId;;
             $videoIds[] = $videoId;
             $videoMap[$videoId] = $item;
+            $channelIds[] = $item->snippet->channelId;
         }
 
         // Load channels
-        $url = 'https://www.googleapis.com/youtube/v3/channels?part=snippet&key='
+        $url = 'https://www.googleapis.com/youtube/v3/channels?part=snippet&key=';
         $url .= config('services.youtube.key');
-        $url .= '&id=' . join(',', $videoIds);
-
+        $url .= '&id=' . join(',', $channelIds);
+        $this->info($url);
         $data = json_decode(file_get_contents($url));
 
         foreach ($data->items as $item) {
-            $videoId = $item->id;
-            $video = $videoMap[$videoId];
+            $channel = FlutterChannel::where('channel_id', '=', $item->id)
+                        ->where('source', '=', 'youtube')
+                        ->first();
+
+            if (! $channel) {
+                $channel = new FlutterChannel;
+                $channel->source = 'youtube';
+                $channel->channel_id = $item->id;
+            }
+
+            $channel->name = $item->snippet->title;
+            $channel->description = $item->snippet->description;
+            $channel->custom_url = property_exists($item->snippet, 'customUrl') ? $item->snippet->customUrl : '';
+            $channel->thumbnail_url = ''; //property_exists($item->snippet, 'thumbnails') ? $item->thumbnails->high->url : '';
+            $channel->country = ''; //$item->snippet->country;
+            $channel->save();
+
+            $channelMap[$channel->channel_id] = $channel->id;
         }
 
         // Load video streaming details
@@ -86,22 +105,18 @@ class LoadStreams extends Command
                 continue;
             }
 
-            $stream = FlutterStream::where('video_id', '=', $videoId)
-                        ->where('source', '=', 'youtube')
-                        ->first();
+            $stream = FlutterStream::where('video_id', '=', $videoId)->first();
 
             if (! $stream) {
                 $stream = new FlutterStream;
+                $stream->video_id = $videoId;
             }
 
-            $stream->source = 'youtube';
             $stream->name = $video->snippet->title;
             $stream->description = $video->snippet->description;
-            $stream->video_id = $videoId;
             $stream->published_at = rtrim(str_replace('T', ' ', $video->snippet->publishedAt), 'Z');
             $stream->starts_at = rtrim(str_replace('T', ' ', $item->liveStreamingDetails->scheduledStartTime), 'Z');
-            $stream->channel_id = $video->snippet->channelId;
-            $stream->channel_name = $video->snippet->channelTitle;
+            $stream->channel_id = $channelMap[$video->snippet->channelId];
             $stream->thumbnail_url = $video->snippet->thumbnails->high->url;
             $stream->view_count = $item->statistics->viewCount;
             $stream->comment_count = $item->statistics->commentCount;
