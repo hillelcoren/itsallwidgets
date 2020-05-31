@@ -22,19 +22,14 @@ class LoadStreams extends Command
      */
     protected $description = 'Load live streams from YouTube';
 
-    //protected $eventRepo;
-
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    //public function __construct(FlutterEventRepository $eventRepo)
     public function __construct()
     {
         parent::__construct();
-
-        //$this->eventRepo = $eventRepo;
     }
 
     /**

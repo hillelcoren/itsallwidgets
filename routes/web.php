@@ -23,13 +23,17 @@ Route::group(['domain' => '127.0.0.1'], function() {
     Route::get('profiles/{handle}', 'FlutterProController@show');
     Route::get('search_pro', 'FlutterProController@search');
     Route::get('flutterx', 'FlutterArtifactController@index');
-    Route::get('search', 'FlutterArtifactController@search');
+    //Route::get('search', 'FlutterArtifactController@search');
     Route::get('flutterx/sitemap.xml', 'FlutterArtifactController@sitemap');
     Route::get('flutterx/{flutter_artifact}/hide-me', 'FlutterArtifactController@hide');
     Route::get('flutterx/{flutter_artifact}', 'FlutterArtifactController@show');
     Route::get('flutter-events/feed', 'FlutterEventController@jsonFeed');
     Route::get('flutter-events/sitemap.xml', 'FlutterEventController@sitemap');
     Route::get('flutter-events/{flutter_event}', 'FlutterEventController@show');
+    Route::get('flutter-streams', 'FlutterStreamController@index');
+    Route::get('flutter-streams/feed', 'FlutterStreamController@jsonFeed');
+    Route::get('search', 'FlutterStreamController@search');
+    //Route::get('{flutter_stream}', 'FlutterStreamController@show');
 });
 
 Route::group(['domain' => 'www.flutterpro.dev'], function() {
@@ -65,6 +69,14 @@ Route::group(['domain' => 'flutterevents.{tld}'], function() {
     Route::get('flutter-groups', 'FlutterEventController@groups');
     Route::get('sitemap.xml', 'FlutterEventController@sitemap');
     Route::get('{flutter_event}', 'FlutterEventController@show');
+});
+
+Route::group(['domain' => 'flutterstream.{tld}'], function() {
+    Route::get('/', 'FlutterStreamController@index');
+    Route::get('feed', 'FlutterStreamController@jsonFeed');
+    Route::get('search', 'FlutterStreamController@search');
+    Route::get('sitemap.xml', 'FlutterStreamController@sitemap');
+    Route::get('{flutter_stream}', 'FlutterStreamController@show');
 });
 
 Route::group(['domain' => 'flutterx.{tld}'], function() {

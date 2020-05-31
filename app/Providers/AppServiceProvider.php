@@ -5,10 +5,12 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Models\FlutterApp;
 use App\Models\FlutterEvent;
+use App\Models\FlutterStream;
 use App\Models\PodcastEpisode;
 use App\Models\FlutterArtifact;
 use App\Observers\FlutterAppObserver;
 use App\Observers\FlutterEventObserver;
+use App\Observers\FlutterStreamObserver;
 use App\Observers\PodcastEpisodeObserver;
 use Cache;
 use Illuminate\Support\Facades\View;
@@ -27,12 +29,14 @@ class AppServiceProvider extends ServiceProvider
         Relation::morphMap([
             'flutter_app' => 'App\Models\FlutterApp',
             'flutter_event' => 'App\Models\FlutterEvent',
+            'flutter_stream' => 'App\Models\FlutterStream',
             'flutter_artifact' => 'App\Models\FlutterArtifact',
         ]);
 
         FlutterApp::observe(FlutterAppObserver::class);
         FlutterArtifact::observe(FlutterArtifactObserver::class);
         FlutterEvent::observe(FlutterEventObserver::class);
+        FlutterStream::observe(FlutterStreamObserver::class);
         PodcastEpisode::observe(PodcastEpisodeObserver::class);
 
         try {
@@ -49,6 +53,11 @@ class AppServiceProvider extends ServiceProvider
             if (! cache('flutter-event-list')) {
                 Cache::rememberForever('flutter-event-list', function () {
                     return FlutterEvent::approved()->latest()->get();
+                });
+            }
+            if (! cache('flutter-stream-list')) {
+                Cache::rememberForever('flutter-stream-list', function () {
+                    return FlutterStream::visible()->latest()->get();
                 });
             }
             if (! cache('flutter-podcast-list')) {
