@@ -327,7 +327,7 @@
                 'animated pulse'
             @elseif (isFX())
                 'animated zoomIn'
-            @elseif (isFE())
+            @elseif (isFE() || isFS())
                 'animated fadeInDown'
             @elseif (isGL())
                 'animated fadeIn'
@@ -401,6 +401,15 @@
                                         </div>
                                         <div style="display:inline-block; font-size: 32px; padding-top:26px; padding-left:8px; font-weight: bold">
                                             Flutter Events
+                                        </div>
+                                    </a>
+                                @elseif (isFS())
+                                    <a href="{{ fsUrl() }}">
+                                        <div style="display:inline-block;vertical-align:top;">
+                                            <img src="{{ asset('images/logo_blank.png') }}" width="80" style="padding-top: 12px; padding-left: 12px;"/>
+                                        </div>
+                                        <div style="display:inline-block; font-size: 32px; padding-top:26px; padding-left:8px; font-weight: bold">
+                                            Flutter Streams
                                         </div>
                                     </a>
                                 @elseif (isFX())

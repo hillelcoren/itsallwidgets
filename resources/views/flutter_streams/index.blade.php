@@ -18,8 +18,6 @@
     background-color: white;
     border-radius: 8px;
     height: 420px;
-    padding-left: 16px;
-    padding-right: 16px;
 }
 
 .short-description {
@@ -53,17 +51,6 @@
                                 <i class="fas fa-search"></i>
                             </span>
 
-                            <div class="is-medium" v-on:click="togglePortfolio()" style="padding-left: 20px;">
-                                <input type="checkbox" name="portfolioSwitch"
-                                class="switch is-info" v-model="filter_portfolio">
-                                <label for="portfolioSwitch" style="padding-top:6px; font-size: 16px">PORTFOLIO &nbsp;</label>
-                            </div>
-
-                            <div class="is-medium" v-on:click="toggleForHire()" style="padding-left: 20px;">
-                                <input type="checkbox" name="forHireSwitch"
-                                class="switch is-info" v-model="filter_for_hire">
-                                <label for="openSourceSwitch" style="padding-top:6px; font-size: 16px">FOR HIRE &nbsp;</label>
-                            </div>
 
                             <!--
                             <div class="is-medium filter-label" style="padding-left: 26px;">
@@ -117,7 +104,7 @@
                 class="is-wide has-text-centered is-vertical-center"
                 style="text-align:center; font-size: 32px; color: #AAA; padding-top: 150px; padding-bottom: 150px;">
                 <span v-if="is_searching">Loading...</span>
-                <span v-if="! is_searching">No developers found</span>
+                <span v-if="! is_searching">No streams found</span>
             </div>
 
             <div class="columns is-multiline is-6 is-variable" v-if="! is_searching">
@@ -125,11 +112,11 @@
                     <div v-on:click="selectStream(stream)" style="cursor:pointer">
                         <div class="stream-panel is-hover-elevated has-text-centered">
 
-                            <header style="padding-top: 25px">
+                            <header>
                                 <div style="height: 100px">
                                     <span v-if="stream.image_url">
                                         <img v-bind:src="stream.image_url + '?clear_cache=' + stream.updated_at"
-                                        style="border-radius: 50%; width: 120px;"/>
+                                        style="width: 100%;"/>
                                     </span>
                                     <span v-if="!stream.image_url">
                                         <img src="/images/flutter_logo.png" style="width: 94px;"/>
@@ -281,16 +268,6 @@
                         app.serverSearch();
                     },
                 },
-                filter_portfolio: {
-                    handler() {
-                        app.serverSearch();
-                    },
-                },
-                filter_for_hire: {
-                    handler() {
-                        app.serverSearch();
-                    },
-                },
                 page_number: {
                     handler() {
                         app.serverSearch();
@@ -305,14 +282,6 @@
             },
 
             methods: {
-
-                toggleForHire: function() {
-                    this.filter_for_hire = ! this.filter_for_hire;
-                },
-
-                togglePortfolio: function() {
-                    this.filter_portfolio = ! this.filter_portfolio;
-                },
 
                 adjustPage: function(change) {
                     this.page_number += change;
@@ -376,8 +345,6 @@
                     var sortBy = this.sort_by;
                     var page = this.page_number;
                     var platform = this.filter_platform;
-                    var forHire = this.filter_for_hire;
-                    var portfolio = this.filter_portfolio;
 
                     app.$set(app, 'is_searching', true);
                     if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
@@ -388,14 +355,6 @@
                         + '&sort_by=' + sortBy
                         + '&page=' + page
                         + '&platform=' + platform;
-
-                        if (forHire) {
-                            url += '&for_hire=true';
-                        }
-
-                        if (portfolio) {
-                            url += '&portfolio=true';
-                        }
 
                         $.get(url,
                         function (data) {
@@ -439,8 +398,6 @@
             data: {
                 streams: [],
                 search: "{{ request()->search }}",
-                filter_for_hire: {{ request()->has('for_hire') ? 'true' : 'false' }},
-                filter_portfolio: {{ request()->has('portfolio') ? 'true' : 'false' }},
                 sort_by: getCachedSortBy(),
                 selected_stream: false,
                 page_number: 1,
