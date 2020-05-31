@@ -20,14 +20,8 @@
     height: 550px;
 }
 
-.short-description {
-    line-height: 1.5em;
-    height: 5.3em;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    text-overflow: ellipsis;
+.stream-panel a {
+    color: black;
 }
 
 </style>
@@ -131,10 +125,6 @@
 
                             <div class="content" style="padding-left:16px; padding-right:16px; padding-top: 2px;">
 
-                                <div class="short-description" style="padding-top:16px;">
-                                    @{{ stream.description }}
-                                </div>
-
                                 <div style="padding-top:20px;">
                                     <a v-bind:href="'https://www.youtube.com/channel/' + stream.channel_id" target="_blank" v-on:click.stop>
                                         @{{ stream.channel_name }}
@@ -188,8 +178,8 @@
                 </div>
 
                 <div class="modal-card" style="padding:0; width:900px" @click.stop>
-                    <iframe sandbox="allow-scripts allow-same-origin allow-top-navigation allow-popups" v-bind:src="selected_stream.stream_url || selected_stream.website_url" allowTransparency="true"
-                        width="100%" height="700" frameBorder="0" style="border:none; background-color: white;"></iframe>
+                    <iframe width="1000" height="500" v-bind:src="selected_stream.embed_url" frameborder="0" 
+                        allow="accelerometer; autoplay; encrypted-media;" allowfullscreen></iframe>
                 </div>
             </div>
 
@@ -273,7 +263,6 @@
                 },
 
                 selectStream: function(stream) {
-
                     if (document.body.clientWidth < 1000) {
                         if (app) {
                             window.location = '/' + stream.handle;
