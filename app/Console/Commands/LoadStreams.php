@@ -80,8 +80,8 @@ class LoadStreams extends Command
             $channel->name = $item->snippet->title;
             $channel->description = $item->snippet->description;
             $channel->custom_url = property_exists($item->snippet, 'customUrl') ? $item->snippet->customUrl : '';
-            $channel->thumbnail_url = ''; //property_exists($item->snippet, 'thumbnails') ? $item->thumbnails->high->url : '';
-            $channel->country = ''; //$item->snippet->country;
+            $channel->thumbnail_url = property_exists($item->snippet, 'thumbnails') ? $item->snippet->thumbnails->high->url : '';
+            $channel->country = property_exists($item->snippet, 'country') ? $item->snippet->country : '';
             $channel->save();
 
             $channelMap[$channel->channel_id] = $channel->id;
