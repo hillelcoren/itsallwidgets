@@ -14,7 +14,7 @@ class LoadStreams extends Command
      *
      * @var string
      */
-    protected $signature = 'itsallwidgets:load_streams';
+    protected $signature = 'itsallwidgets:load_streams {--all}';
 
     /**
      * The console command description.
@@ -43,7 +43,7 @@ class LoadStreams extends Command
         $this->info('Running...');
 
         // Load videos
-        $url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=250&q=flutter&type=video&order=date&key=';
+        $url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=flutter&type=video&order=date&key=';
         $url .= config('services.youtube.key');
 
         $data = json_decode(file_get_contents($url));
@@ -57,6 +57,22 @@ class LoadStreams extends Command
             $videoIds[] = $videoId;
             $videoMap[$videoId] = $item;
             $channelIds[] = $item->snippet->channelId;
+        }
+
+        if ($this->option('all')) {
+            while ($data->nextPageToken) {
+                $this->info('nextPageToken: ' . $data->nextPageToken);
+
+                $nextUrl = $url . '&pageToken=' . $data->nextPageToken;
+                $data = json_decode(file_get_contents($nextUrl));
+
+                foreach ($data->items as $item) {
+                    $videoId = $item->id->videoId;;
+                    $videoIds[] = $videoId;
+                    $videoMap[$videoId] = $item;
+                    $channelIds[] = $item->snippet->channelId;
+                }
+            }
         }
 
         // Load channels
