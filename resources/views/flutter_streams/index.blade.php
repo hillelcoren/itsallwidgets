@@ -17,12 +17,10 @@
 .stream-panel {
     background-color: white;
     border-radius: 8px;
-    height: 500px;
+    height: 550px;
 }
 
 .short-description {
-    padding-left: 16px;
-    padding-right: 16px;
     line-height: 1.5em;
     height: 5.3em;
     overflow: hidden;
@@ -110,7 +108,7 @@
             <div class="columns is-multiline is-6 is-variable" v-if="! is_searching">
                 <div v-for="stream in filteredStreams" :key="stream.id" class="column is-one-third">
                     <div v-on:click="selectStream(stream)" style="cursor:pointer">
-                        <div class="stream-panel is-hover-elevated has-text-centered">
+                        <div class="stream-panel is-hover-elevated">
 
                             <header>
                                 <div>
@@ -122,16 +120,23 @@
                                     </span>
                                 </div><br/>
 
-                                <p class="no-wrap" style="font-size:22px; padding-bottom:14px; padding-left: 10px; padding-right: 10px;">
+                                <p class="no-wrap" style="font-size:22px; padding-bottom:14px; padding-left: 16px; padding-right: 16px;">
                                     @{{ stream.name }}
                                 </p>
-                                <div style="border-bottom: 2px #368cd5 solid; margin-left:40%; margin-right: 40%;"></div>
+
+                                <div style="padding-left: 16px; padding-right: 16px;">
+                                    <div style="border-bottom: 2px #368cd5 solid; width: 50px;"/></div>
+                                </div>
                             </header>
 
                             <div class="content" style="padding-left:16px; padding-right:16px; padding-top: 2px;">
 
                                 <div class="short-description" style="padding-top:16px;">
                                     @{{ stream.description }}
+                                </div>
+
+                                <div style="padding-top:10px;">
+                                    @{{ stream.channel_name }}
                                 </div>
 
                                 <div style="color:#888; font-size:15px;">
