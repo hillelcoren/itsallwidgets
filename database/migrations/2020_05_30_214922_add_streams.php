@@ -46,6 +46,8 @@ class AddStreams extends Migration
         Schema::table('flutter_streams', function(Blueprint $table) {
             $table->foreign('channel_id')->references('id')->on('flutter_channels')->onDelete('cascade');
         });
+
+        DB::statement('ALTER TABLE flutter_streams ADD FULLTEXT fulltext_index (name, description)');
     }
 
     /**

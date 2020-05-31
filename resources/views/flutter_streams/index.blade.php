@@ -86,6 +86,22 @@
                                     <option value="sort_views">VIEWS</option>
                                 </select>
                             </div>
+
+                            <!--
+                            <div style="padding-left: 20px">
+                                <a class="button is-white is-slightly-elevated" href="{{ feUrl() }}/feed" target="_blank">
+                                    <i style="font-size: 20px" class="fas fa-rss"></i> &nbsp;
+                                    SCHEDULE
+                                </a>
+                            </div>
+                            -->
+
+                            <div style="padding-left: 30px">
+                                <a class="button is-white is-slightly-elevated" href="{{ fsUrl() }}/feed" target="_blank">
+                                    <i style="font-size: 20px" class="fas fa-rss"></i> &nbsp;
+                                    RSS FEED
+                                </a>
+                            </div>
                         </p>
                     </div>
                 </div>
