@@ -18,14 +18,8 @@ class FlutterStreamController extends Controller
             return redirect('/')->with('status', 'App cache has been cleared!');
         }
 
-        if (auth()->check() && auth()->user()->is_admin) {
-            $streams = FlutterStream::latest()->get();
-        } else {
-            $streams = cache('flutter-stream-list');
-        }
-
         $data = [
-            'streams' => $streams,
+            'count' => FlutterStream::visible()->count(),
             'banner' => getBanner(),
             'useBlackHeader' => true,
         ];
@@ -37,19 +31,28 @@ class FlutterStreamController extends Controller
     {
         $data = [];
         $search = strtolower(request()->search);
-        $streams = FlutterStream::approved()->search($search)->get();
+        $sortBy = strtolower(request()->sort_by);
+        $source = strtolower(request()->source);
 
-        foreach ($streams as $stream)
+        $streams = FlutterStream::visible();
+
+        if ($search) {
+            $streams->search($search);
+        }
+
+        if ($source) {
+            $stream->where('source', '=', $source);
+        }
+
+        if ($sortBy == 'sort_newest') {
+            $users->orderBy('id', 'desc');
+        }
+
+        $streams->limit(12)->offset(((request()->page ?: 1) - 1) * 12);
+
+        foreach ($streams->get() as $stream)
         {
-            $index = strpos(strtolower($stream->description), $search);
-            $str = substr($stream->contents, $index, 800);
-            $str = mb_convert_encoding($str, 'UTF-8', 'UTF-8');
-
-            $obj = new \stdClass;
-            $obj->id = $stream->id;
-            $obj->contents = $str;
-
-            $data[] = $obj;
+            $data[] = $streams->toObject();
         }
 
         return response()->json($data);

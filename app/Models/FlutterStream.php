@@ -6,10 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Traits\FullTextSearch;
 
 class FlutterStream extends Model implements Feedable
 {
     use Notifiable;
+    use FullTextSearch;
+
+    protected $searchable = [
+        'name',
+        'description',
+        'channel_name',
+    ];
 
     public function url()
     {
