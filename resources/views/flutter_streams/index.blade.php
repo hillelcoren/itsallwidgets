@@ -104,35 +104,46 @@
                     <div v-on:click="selectStream(stream)" style="cursor:pointer">
                         <div class="stream-panel is-hover-elevated">
 
-                            <header>
+                            <div>
+                                <div v-if="stream.image_url">
+                                    <img v-bind:src="stream.image_url + '?clear_cache=' + stream.updated_at"/>
+                                </div>
+                                <span v-if="!stream.image_url">
+                                    <img src="/images/flutter_logo.png" style="width: 94px;"/>
+                                </span>
+                            </div><br/>
+
+                            <div>
+
+                                <div v-if="stream.channel_image_url">
+                                    <img v-bind:src="stream.channel_image_url + '?clear_cache=' + stream.updated_at" style="width: 40px; height: 40px;"/>
+                                </div>
+                                <span v-if="!stream.image_url">
+                                    <img src="/images/flutter_logo.png" style="width: 40px; height: 40px;"/>
+                                </span>
+
                                 <div>
-                                    <div v-if="stream.image_url" class="cropped">
-                                        <img v-bind:src="stream.image_url + '?clear_cache=' + stream.updated_at"/>
+
+                                    <p class="no-wrap" style="font-size:22px; padding-bottom:14px; padding-left: 16px; padding-right: 16px;">
+                                        @{{ stream.name }}
+                                    </p>
+
+                                    <div style="padding-left: 16px; padding-right: 16px;">
+                                        <div style="border-bottom: 2px #368cd5 solid; width: 50px;"/></div>
                                     </div>
-                                    <span v-if="!stream.image_url">
-                                        <img src="/images/flutter_logo.png" style="width: 94px;"/>
-                                    </span>
-                                </div><br/>
 
-                                <p class="no-wrap" style="font-size:22px; padding-bottom:14px; padding-left: 16px; padding-right: 16px;">
-                                    @{{ stream.name }}
-                                </p>
+                                    <div class="content" style="padding-left:16px; padding-right:16px; padding-top: 2px;">
 
-                                <div style="padding-left: 16px; padding-right: 16px;">
-                                    <div style="border-bottom: 2px #368cd5 solid; width: 50px;"/></div>
-                                </div>
-                            </header>
+                                        <div style="padding-top:20px;">
+                                            <a v-bind:href="'https://www.youtube.com/channel/' + stream.channel_id" target="_blank" v-on:click.stop>
+                                                @{{ stream.channel_name }}
+                                            </a>
+                                        </div>
 
-                            <div class="content" style="padding-left:16px; padding-right:16px; padding-top: 2px;">
-
-                                <div style="padding-top:20px;">
-                                    <a v-bind:href="'https://www.youtube.com/channel/' + stream.channel_id" target="_blank" v-on:click.stop>
-                                        @{{ stream.channel_name }}
-                                    </a>
-                                </div>
-
-                                <div style="color:#888; font-size:15px;">
-                                    @{{ stream.counts }}
+                                        <div style="color:#888; font-size:15px;">
+                                            @{{ stream.counts }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -178,7 +189,7 @@
                 </div>
 
                 <div class="modal-card" style="padding:0; width:900px" @click.stop>
-                    <iframe width="1000" height="500" v-bind:src="selected_stream.embed_url" frameborder="0" 
+                    <iframe width="1000" height="500" v-bind:src="selected_stream.embed_url" frameborder="0"
                         allow="accelerometer; autoplay; encrypted-media;" allowfullscreen></iframe>
                 </div>
             </div>
