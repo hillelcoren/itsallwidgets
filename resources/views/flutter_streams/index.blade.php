@@ -113,43 +113,43 @@
                                 </span>
                             </div><br/>
 
+                            <div style="padding-left: 16px; padding-right: 16px;">
                             <table>
                                 <tr>
-                                    <td width="40">
+                                    <td width="50">
                                         <div v-if="stream.channel_image_url">
-                                            <img v-bind:src="stream.channel_image_url + '?clear_cache=' + stream.updated_at" style="width: 40px; height: 40px;"/>
+                                            <img v-bind:src="stream.channel_image_url + '?clear_cache=' + stream.updated_at" style="width: 40px; height: 40px; border-radius: 50%;"/>
                                         </div>
                                         <div v-if="!stream.image_url">
-                                            <img src="/images/flutter_logo.png" style="width: 40px; height: 40px;"/>
+                                            <img src="/images/flutter_logo.png" style="width: 50px; height: 50px; border-radius: 50%;"/>
                                         </div>
 
                                     </td>
                                     <td>
-                                        <p style="font-size:22px; padding-bottom:14px; padding-left: 16px; padding-right: 16px;">
-                                            @{{ stream.name }}
-                                        </p>
+                                        <div style="padding-left: 8px; padding-right: 8px">
+                                            <p style="font-size:18px; padding-bottom:14px;">
+                                                @{{ stream.name }}
+                                            </p>
 
-                                        <div style="padding-left: 16px; padding-right: 16px;">
                                             <div style="border-bottom: 2px #368cd5 solid; width: 50px;"/></div>
-                                        </div>
 
-                                        <div class="content" style="padding-left:16px; padding-right:16px; padding-top: 2px;">
+                                            <div class="content" style="padding-top: 2px;">
 
-                                            <div style="padding-top:20px;">
-                                                <a v-bind:href="'https://www.youtube.com/channel/' + stream.channel_id" target="_blank" v-on:click.stop>
-                                                    @{{ stream.channel_name }}
-                                                </a>
+                                                <div style="padding-top:20px;">
+                                                    <a v-bind:href="'https://www.youtube.com/channel/' + stream.channel_id" target="_blank" v-on:click.stop>
+                                                        @{{ stream.channel_name }}
+                                                    </a>
+                                                </div>
+
+                                                <div style="color:#888; font-size:15px;">
+                                                    @{{ stream.counts }}
+                                                </div>
                                             </div>
-
-                                            <div style="color:#888; font-size:15px;">
-                                                @{{ stream.counts }}
-                                            </div>
                                         </div>
-
                                     </td>
                                 </tr>
                             </table>
-
+                            </div>
 
                         </div>
                         <p>&nbsp;</p>
