@@ -22,6 +22,7 @@ class AddStreams extends Migration
             $table->string('custom_url');
             $table->string('thumbnail_url');
             $table->string('country');
+            $table->boolean('is_visible')->default(false);
         });
 
         Schema::create('flutter_streams', function (Blueprint $table) {
@@ -34,7 +35,6 @@ class AddStreams extends Migration
             $table->dateTime('published_at');
             $table->dateTime('starts_at');
             $table->string('thumbnail_url');
-            $table->boolean('is_visible')->default(false);
             $table->integer('view_count');
             $table->integer('like_count');
             $table->integer('comment_count');

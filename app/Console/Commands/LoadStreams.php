@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\FlutterStream;
+use App\Models\FlutterChannel;
 use App\Repositories\FlutterEventRepository;
 
 class LoadStreams extends Command
@@ -41,6 +42,7 @@ class LoadStreams extends Command
     {
         $this->info('Running...');
 
+        // Load videos
         $url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=flutter&type=video&order=date&key=';
         $url .= config('services.youtube.key');
 
@@ -54,6 +56,19 @@ class LoadStreams extends Command
             $videoMap[$videoId] = $item;
         }
 
+        // Load channels
+        $url = 'https://www.googleapis.com/youtube/v3/channels?part=snippet&key='
+        $url .= config('services.youtube.key');
+        $url .= '&id=' . join(',', $videoIds);
+
+        $data = json_decode(file_get_contents($url));
+
+        foreach ($data->items as $item) {
+            $videoId = $item->id;
+            $video = $videoMap[$videoId];
+        }
+
+        // Load video streaming details
         $url = 'https://www.googleapis.com/youtube/v3/videos?part=liveStreamingDetails%2CcontentDetails%2Cstatistics&key=';
         $url .= config('services.youtube.key');
         $url .= '&id=' . join(',', $videoIds);
