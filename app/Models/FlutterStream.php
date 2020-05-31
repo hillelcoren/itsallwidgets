@@ -95,9 +95,9 @@ class FlutterStream extends Model implements Feedable
         $obj->url = $this->url();
         $obj->video_url = 'https://www.youtube.com/watch?v=' . $this->video_id;
         $obj->embed_url = 'https://www.youtube.com/embed/' . $this->video_id;
-        $obj->view_count = $this->view_count;
-        $obj->like_count = $this->like_count;
-        $obj->comment_count = $this->comment_count;
+        $obj->view_count = $this->thousandsCurrencyFormat($this->view_count);
+        $obj->like_count = $this->thousandsCurrencyFormat($this->like_count);
+        $obj->comment_count = $this->thousandsCurrencyFormat($this->comment_count);
         $obj->image_url = $this->thumbnail_url;
         $obj->channel_name = $this->channel->name;
         $obj->channel_id = $this->channel->channel_id;
@@ -108,6 +108,26 @@ class FlutterStream extends Model implements Feedable
         //$obj->is_english = $this->is_english;
 
         return $obj;
+    }
+
+    function thousandsCurrencyFormat($num) {
+
+      if($num>1000) {
+
+            $x = round($num);
+            $x_number_format = number_format($x);
+            $x_array = explode(',', $x_number_format);
+            $x_parts = array('k', 'm', 'b', 't');
+            $x_count_parts = count($x_array) - 1;
+            $x_display = $x;
+            $x_display = $x_array[0] . ((int) $x_array[1][0] !== 0 ? '.' . $x_array[1][0] : '');
+            $x_display .= $x_parts[$x_count_parts - 1];
+
+            return $x_display;
+
+      }
+
+      return $num;
     }
 
 

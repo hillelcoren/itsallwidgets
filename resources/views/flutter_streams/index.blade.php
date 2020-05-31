@@ -35,6 +35,11 @@
     color: black;
 }
 
+.stream-panel .content a {
+    color: #000; /* Fallback for older browsers */
+    color: rgba(0, 0, 0, 0.6);
+}
+
 </style>
 
 @endsection
@@ -154,7 +159,7 @@
                                                 </div>
 
                                                 <div style="color:#888; font-size:15px;">
-                                                    @{{ stream.counts }}
+                                                    @{{ stream.view_count }} views
                                                 </div>
                                             </div>
                                         </div>
