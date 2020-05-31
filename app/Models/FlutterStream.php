@@ -16,7 +16,6 @@ class FlutterStream extends Model implements Feedable
     protected $searchable = [
         'name',
         'description',
-        'channel_name',
     ];
 
     public function url()

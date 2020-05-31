@@ -13,19 +13,27 @@ class AddStreams extends Migration
      */
     public function up()
     {
+        Schema::create('flutter_channels', function (Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
+            $table->enum('source', ['youtube', 'twitch']);
+            $table->string('name');
+            $table->text('description');
+            $table->string('custom_url');
+            $table->string('thumbnail_url');
+            $table->string('country');
+        });
+
         Schema::create('flutter_streams', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->unsignedInteger('user_id')->nullable();
-            $table->enum('source', ['youtube', 'twitch']);
+            $table->unsignedInteger('channel_id');
             $table->string('name');
             $table->text('description');
             $table->string('video_id');
             $table->dateTime('published_at');
             $table->dateTime('starts_at');
-            $table->string('channel_id');
             $table->string('thumbnail_url');
-            $table->string('channel_name');
             $table->boolean('is_visible')->default(false);
             $table->integer('view_count');
             $table->integer('like_count');
@@ -33,7 +41,7 @@ class AddStreams extends Migration
         });
 
         Schema::table('flutter_streams', function(Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('channel_id')->references('id')->on('flutter_channels')->onDelete('cascade');
         });
     }
 
@@ -45,5 +53,6 @@ class AddStreams extends Migration
     public function down()
     {
         Schema::drop('flutter_streams');
+        Schema::drop('flutter_channels');
     }
 }

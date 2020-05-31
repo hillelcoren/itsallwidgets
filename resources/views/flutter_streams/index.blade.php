@@ -135,8 +135,10 @@
                                     @{{ stream.description }}
                                 </div>
 
-                                <div style="padding-top:10px;">
-                                    @{{ stream.channel_name }}
+                                <div style="padding-top:20px;">
+                                    <a v-bind:href="'https://www.youtube.com/channel/' + stream.channel_id" target="_blank" v-on:click.stop>
+                                        @{{ stream.channel_name }}
+                                    </a>
                                 </div>
 
                                 <div style="color:#888; font-size:15px;">
