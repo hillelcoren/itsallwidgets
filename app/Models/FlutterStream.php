@@ -105,6 +105,7 @@ class FlutterStream extends Model implements Feedable
         $obj->channel_custom_url = $this->channel->custom_url;
         $obj->channel_image_url = $this->channel->thumbnail_url;
         $obj->country = $this->channel->country;
+        //$obj->is_english = $this->is_english;
 
         return $obj;
     }

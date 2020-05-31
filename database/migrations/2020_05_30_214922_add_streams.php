@@ -24,6 +24,7 @@ class AddStreams extends Migration
             $table->string('thumbnail_url');
             $table->string('country');
             $table->boolean('is_visible')->default(false);
+            $table->boolean('is_english')->default(false);
         });
 
         Schema::create('flutter_streams', function (Blueprint $table) {
@@ -39,6 +40,7 @@ class AddStreams extends Migration
             $table->integer('view_count');
             $table->integer('like_count');
             $table->integer('comment_count');
+            $table->boolean('is_english')->default(false);
         });
 
         Schema::table('flutter_streams', function(Blueprint $table) {
