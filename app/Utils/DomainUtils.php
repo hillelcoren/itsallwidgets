@@ -8,6 +8,10 @@ function isFE() {
     return strpos(request()->url(), 'flutterevents.') !== false || strpos(request()->url(), iawUrl() . '/flutter-events') !== false;
 }
 
+function isFS() {
+    return strpos(request()->url(), 'flutterstreams.') !== false || strpos(request()->url(), iawUrl() . '/flutter-streams') !== false;
+}
+
 function isFX() {
     return strpos(request()->url(), 'flutterx.') !== false || strpos(request()->url(), iawUrl() . '/flutterx') !== false;
 }
@@ -37,6 +41,8 @@ function appName() {
         return 'Geu.la';
     } elseif (isFE()) {
         return 'Flutter Events';
+    } elseif (isFS()) {
+        return 'Flutter Streams';
     } elseif (isFP()) {
         return 'Flutter Pro';
     } elseif (isFX()) {
@@ -52,6 +58,10 @@ function iawUrl() {
 
 function feUrl() {
     return isTest() ? (isValet() ? 'http://flutterevents.test' : 'http://127.0.0.1:8000/flutter-events')  : 'https://flutterevents.com';
+}
+
+function fsUrl() {
+    return isTest() ? (isValet() ? 'http://flutterstreams.test' : 'http://127.0.0.1:8000/flutter-streams')  : 'https://flutterstreams.com';
 }
 
 function fxUrl() {
