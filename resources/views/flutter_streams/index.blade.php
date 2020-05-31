@@ -8,7 +8,7 @@
 @section('header_button_url', 'https://twitter.com/FlutterStreams')
 @section('header_button_label', 'FOLLOW US')
 @section('header_button_icon', 'fab fa-twitter')
-@section('header_subtitle', 'Add #FlutterStream to the title to add your stream')
+@section('header_subtitle', 'Streams are sourced from the YouTube API')
 
 @section('head')
 
@@ -17,7 +17,7 @@
 .stream-panel {
     background-color: white;
     border-radius: 8px;
-    height: 495px;
+    padding-bottom: 12px;
 }
 
 .stream-name {
@@ -139,9 +139,9 @@
                                 <span v-if="!stream.image_url">
                                     <img src="/images/flutter_logo.png" style="width: 94px;"/>
                                 </span>
-                            </div><br/>
+                            </div>
 
-                            <div style="padding-left: 16px; padding-right: 16px;">
+                            <div style="padding-left: 16px; padding-right: 16px; padding-top: 8px;">
                             <table>
                                 <tr>
                                     <td width="50">
@@ -153,7 +153,6 @@
                                         <div v-if="!stream.image_url">
                                             <img src="/images/flutter_logo.png" style="width: 50px; height: 50px; border-radius: 50%;"/>
                                         </div>
-
                                     </td>
                                     <td>
                                         <div style="padding-left: 8px; padding-right: 8px">
