@@ -1,30 +1,20 @@
 @extends('master')
 
-@section('title', 'A Showcase for Passionate Flutter Developers')
-@section('description', request()->has('for_hire') ? 'Hire some of the best Flutter developers on the planet' : 'Profiles are sourced from FlutterX, Flutter Events and It\'s All Widgets!')
+@section('title', 'A Open List of Flutter Live Streams')
+@section('description', 'Streamsxx are sourced from FlutterX, Flutter Events and It\'s All Widgets!')
 @section('image_url', asset('images/flutterpro_twitter.png'))
 
-@section('header_title', 'A Showcase for Passionate Flutter Developers')
-@section('header_button_url', iawUrl() . '/auth/google?intended_url=profile/edit')
-@section('header_button_label', 'MANAGE PROFILE')
-@section('header_button_icon', 'fas fa-user')
-
-@section('header_subtitle')
-    @if (request()->has('for_hire'))
-        Hire some of the best <a href="https://flutter.dev" target="_blank">Flutter</a> developers on the planet
-    @else
-        Profiles are sourced from
-        <a href="https://flutterweekly.net" target="_blank">Flutter Weekly</a>,
-        <a href="https://www.meetup.com/find/?allMeetups=false&keywords=flutter&radius=Infinity" target="_blank">Meetup.com</a> and
-        <a href="{{ iawUrl() }}">It's All Widgets!</a>
-    @endif
-@endsection
+@section('header_title', 'A Open List of Flutter Live Streams')
+@section('header_button_url', 'https://twitter.com/FlutterStreams')
+@section('header_button_label', 'FOLLOW US')
+@section('header_button_icon', 'fab fa-twitter')
+@section('header_subtitle', 'Add #FlutterStream to the video title to add it to the list')
 
 @section('head')
 
 <style>
 
-.profile-panel {
+.stream-panel {
     background-color: white;
     border-radius: 8px;
     height: 420px;
@@ -44,43 +34,13 @@
     text-overflow: ellipsis;
 }
 
-
-.profile-panel .fa-github,
-.profile-panel .fa-twitter,
-.profile-panel .fa-medium,
-.profile-panel .fa-linkedin,
-.profile-panel .fa-instagram,
-.profile-panel .fa-youtube {
-    color: #888 !important;
-    font-size: 22px !important;
-}
-
-.profile-panel .fa-github:hover,
-.profile-panel .fa-twitter:hover,
-.profile-panel .fa-medium:hover,
-.profile-panel .fa-linkedin:hover,
-.profile-panel .fa-instagram:hover,
-.profile-panel .fa-youtube:hover {
-    color: black !important;
-}
-
-/*
-.column {
-padding: 1rem 1rem 4rem 1rem;
-}
-*/
-
 </style>
-
 
 @endsection
 
-
 @section('content')
 
-
     <div id="app">
-
         <section class="hero is-light is-small is-body-font">
             <div class="hero-body">
                 <div class="container">
@@ -153,7 +113,7 @@ padding: 1rem 1rem 4rem 1rem;
         <section class="section is-body-font" style="background-color:#fefefe">
 
             <div class="container" v-cloak>
-                <div v-if="filteredProfiles.length == 0 || is_searching"
+                <div v-if="filteredStreams.length == 0 || is_searching"
                 class="is-wide has-text-centered is-vertical-center"
                 style="text-align:center; font-size: 32px; color: #AAA; padding-top: 150px; padding-bottom: 150px;">
                 <span v-if="is_searching">Loading...</span>
@@ -161,23 +121,23 @@ padding: 1rem 1rem 4rem 1rem;
             </div>
 
             <div class="columns is-multiline is-6 is-variable" v-if="! is_searching">
-                <div v-for="profile in filteredProfiles" :key="profile.id" class="column is-one-third">
-                    <div v-on:click="selectProfile(profile)" style="cursor:pointer">
-                        <div class="profile-panel is-hover-elevated has-text-centered">
+                <div v-for="stream in filteredStreams" :key="stream.id" class="column is-one-third">
+                    <div v-on:click="selectStream(stream)" style="cursor:pointer">
+                        <div class="stream-panel is-hover-elevated has-text-centered">
 
                             <header style="padding-top: 25px">
                                 <div style="height: 100px">
-                                    <span v-if="profile.image_url">
-                                        <img v-bind:src="profile.image_url + '?clear_cache=' + profile.updated_at"
+                                    <span v-if="stream.image_url">
+                                        <img v-bind:src="stream.image_url + '?clear_cache=' + stream.updated_at"
                                         style="border-radius: 50%; width: 120px;"/>
                                     </span>
-                                    <span v-if="!profile.image_url">
+                                    <span v-if="!stream.image_url">
                                         <img src="/images/flutter_logo.png" style="width: 94px;"/>
                                     </span>
                                 </div><br/>
 
                                 <p class="no-wrap" style="font-size:22px; padding-top:18px; padding-bottom:14px;">
-                                    @{{ profile.name }}
+                                    @{{ stream.name }}
                                 </p>
                                 <div style="border-bottom: 2px #368cd5 solid; margin-left:40%; margin-right: 40%;"></div>
                             </header>
@@ -185,53 +145,53 @@ padding: 1rem 1rem 4rem 1rem;
                             <div class="content" style="padding-left:16px; padding-right:16px; padding-top: 2px;">
 
                                 <div class="short-description" style="padding-top:16px;">
-                                    <a v-bind:href="profile.activity_link_url" target="_blank" v-on:click.stop rel="nofollow">
-                                        @{{ profile.activity_link_title }}</a>
+                                    <a v-bind:href="stream.activity_link_url" target="_blank" v-on:click.stop rel="nofollow">
+                                        @{{ stream.activity_link_title }}</a>
 
-                                        • @{{ profile.activity_message }}
+                                        • @{{ stream.activity_message }}
                                     </div>
                                 </div>
 
                                 <div style="padding-bottom:20px;">
                                     &nbsp;
-                                    <span v-if="profile.github_url">
+                                    <span v-if="stream.github_url">
                                         <span class="icon-bug-fix" style="padding:12px">
-                                            <a v-if="profile.github_url" v-bind:href="profile.github_url" target="_blank" v-on:click.stop rel="nofollow">
+                                            <a v-if="stream.github_url" v-bind:href="stream.github_url" target="_blank" v-on:click.stop rel="nofollow">
                                                 <i class="fab fa-github"></i>
                                             </a>
                                         </span>
                                     </span>
-                                    <span v-if="profile.youtube_url">
+                                    <span v-if="stream.youtube_url">
                                         <span class="icon-bug-fix" style="padding:12px">
-                                            <a v-bind:href="profile.youtube_url" target="_blank" v-on:click.stop rel="nofollow">
+                                            <a v-bind:href="stream.youtube_url" target="_blank" v-on:click.stop rel="nofollow">
                                                 <i class="fab fa-youtube"></i>
                                             </a>
                                         </span>
                                     </span>
-                                    <span v-if="profile.twitter_url">
+                                    <span v-if="stream.twitter_url">
                                         <span class="icon-bug-fix" style="padding:12px">
-                                            <a v-bind:href="profile.twitter_url" target="_blank" v-on:click.stop rel="nofollow">
+                                            <a v-bind:href="stream.twitter_url" target="_blank" v-on:click.stop rel="nofollow">
                                                 <i class="fab fa-twitter"></i>
                                             </a>
                                         </span>
                                     </span>
-                                    <span v-if="profile.medium_url">
+                                    <span v-if="stream.medium_url">
                                         <span class="icon-bug-fix" style="padding:12px">
-                                            <a v-bind:href="profile.medium_url" target="_blank" v-on:click.stop rel="nofollow">
+                                            <a v-bind:href="stream.medium_url" target="_blank" v-on:click.stop rel="nofollow">
                                                 <i class="fab fa-medium"></i>
                                             </a>
                                         </span>
                                     </span>
-                                    <span v-if="profile.linkedin_url">
+                                    <span v-if="stream.linkedin_url">
                                         <span class="icon-bug-fix" style="padding:12px">
-                                            <a v-bind:href="profile.linkedin_url" target="_blank" v-on:click.stop rel="nofollow">
+                                            <a v-bind:href="stream.linkedin_url" target="_blank" v-on:click.stop rel="nofollow">
                                                 <i class="fab fa-linkedin"></i>
                                             </a>
                                         </span>
                                     </span>
-                                    <span v-if="profile.instagram_url">
+                                    <span v-if="stream.instagram_url">
                                         <span class="icon-bug-fix" style="padding:12px">
-                                            <a v-bind:href="profile.instagram_url" target="_blank" v-on:click.stop rel="nofollow">
+                                            <a v-bind:href="stream.instagram_url" target="_blank" v-on:click.stop rel="nofollow">
                                                 <i class="fab fa-instagram"></i>
                                             </a>
                                         </span>
@@ -239,7 +199,7 @@ padding: 1rem 1rem 4rem 1rem;
                                 </div>
 
                                 <div style="color:#888; font-size:15px;">
-                                    @{{ profile.counts }}
+                                    @{{ stream.counts }}
                                 </div>
 
                             </div>
@@ -259,7 +219,7 @@ padding: 1rem 1rem 4rem 1rem;
                     </span>
                     Previous Page
                 </a> &nbsp;
-                <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)" v-if="filteredProfiles.length == 12">
+                <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)" v-if="filteredStreams.length == 12">
                     Next Page &nbsp;&nbsp;
                     <span>
                         <i style="font-size: 18px" class="fas fa-chevron-circle-right"></i>
@@ -267,8 +227,8 @@ padding: 1rem 1rem 4rem 1rem;
                 </a>
             </center>
 
-            <div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_profile">
-                <div class="modal-background" v-on:click="selectProfile()"></div>
+            <div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_stream">
+                <div class="modal-background" v-on:click="selectStream()"></div>
 
                 <div class="navigation-button prev-navigation-button" BAK-v-if="hasPrev">
                     <button class="button is-medium is-rounded" v-on:click="movePrev()">
@@ -286,7 +246,7 @@ padding: 1rem 1rem 4rem 1rem;
                 </div>
 
                 <div class="modal-card" style="padding:0; width:900px" @click.stop>
-                    <iframe sandbox="allow-scripts allow-same-origin allow-top-navigation allow-popups" v-bind:src="selected_profile.profile_url || selected_profile.website_url" allowTransparency="true"
+                    <iframe sandbox="allow-scripts allow-same-origin allow-top-navigation allow-popups" v-bind:src="selected_stream.stream_url || selected_stream.website_url" allowTransparency="true"
                         width="100%" height="700" frameBorder="0" style="border:none; background-color: white;"></iframe>
                 </div>
             </div>
@@ -362,7 +322,7 @@ padding: 1rem 1rem 4rem 1rem;
 
                 setFilter: function(filter) {
                     filter = filter || '';
-                    this.selectProfile();
+                    this.selectStream();
                     this.search = filter.toLowerCase();
                 },
 
@@ -380,7 +340,7 @@ padding: 1rem 1rem 4rem 1rem;
                     } else {
                         if (this.is_searching) {
                             return '#FFFFBB';
-                        } else if (this.filteredProfiles.length) {
+                        } else if (this.filteredStreams.length) {
                             return '#FFFFBB';
                         } else {
                             return '#FFC9D9';
@@ -388,22 +348,22 @@ padding: 1rem 1rem 4rem 1rem;
                     }
                 },
 
-                selectProfile: function(profile) {
+                selectStream: function(stream) {
 
                     if (document.body.clientWidth < 1000) {
                         if (app) {
-                            window.location = '/' + profile.handle;
+                            window.location = '/' + stream.handle;
                         }
                     } else {
-                        this.selected_profile = profile;
+                        this.selected_stream = stream;
 
                         if (history.pushState) {
                             if (app) {
-                                var route = '/' + (profile ? profile.handle : '');
+                                var route = '/' + (stream ? stream.handle : '');
                                 gtag('config', '{{ $tracking_id }}', {'page_path': route});
                                 history.pushState(null, null, route);
                             } else {
-                                history.pushState(null, null, '{{ isTest() ? '/profiles' : '/' }}' );
+                                history.pushState(null, null, '{{ isTest() ? '/streams' : '/' }}' );
                             }
                         }
                     }
@@ -412,7 +372,7 @@ padding: 1rem 1rem 4rem 1rem;
                 serverSearch: function() {
                     var app = app || this;
                     var searchStr = this.search;
-                    var profiles = this.profiles;
+                    var streams = this.streams;
                     var sortBy = this.sort_by;
                     var page = this.page_number;
                     var platform = this.filter_platform;
@@ -439,7 +399,7 @@ padding: 1rem 1rem 4rem 1rem;
 
                         $.get(url,
                         function (data) {
-                            app.$set(app, 'profiles', data);
+                            app.$set(app, 'streams', data);
                             app.$set(app, 'is_searching', false);
                         });
                     }, 500);
@@ -447,15 +407,15 @@ padding: 1rem 1rem 4rem 1rem;
 
 
                 moveNext() {
-                    var profiles = this.filteredProfiles;
-                    var index = profiles.indexOf(this.selected_profile);
-                    this.selectProfile(profiles[index + 1]);
+                    var streams = this.filteredStreams;
+                    var index = streams.indexOf(this.selected_stream);
+                    this.selectStream(streams[index + 1]);
                 },
 
                 movePrev() {
-                    var profiles = this.filteredProfiles;
-                    var index = profiles.indexOf(this.selected_profile);
-                    this.selectProfile(profiles[index - 1]);
+                    var streams = this.filteredStreams;
+                    var index = streams.indexOf(this.selected_stream);
+                    this.selectStream(streams[index - 1]);
                 },
 
             },
@@ -467,7 +427,7 @@ padding: 1rem 1rem 4rem 1rem;
             mounted () {
                 window.addEventListener('keyup', function(event) {
                     if (event.keyCode == 27) {
-                        app.selectProfile();
+                        app.selectStream();
                     } else if (event.keyCode == 39) {
                         app.moveNext();
                     } else if (event.keyCode == 37) {
@@ -477,12 +437,12 @@ padding: 1rem 1rem 4rem 1rem;
             },
 
             data: {
-                profiles: [],
+                streams: [],
                 search: "{{ request()->search }}",
                 filter_for_hire: {{ request()->has('for_hire') ? 'true' : 'false' }},
                 filter_portfolio: {{ request()->has('portfolio') ? 'true' : 'false' }},
                 sort_by: getCachedSortBy(),
-                selected_profile: false,
+                selected_stream: false,
                 page_number: 1,
                 filter_platform: '',
                 is_searching: false,
@@ -491,27 +451,27 @@ padding: 1rem 1rem 4rem 1rem;
             computed: {
 
                 modalClass() {
-                    if (this.selected_profile) {
+                    if (this.selected_stream) {
                         return {'is-active': true};
                     } else {
                         return {};
                     }
                 },
 
-                filteredProfiles() {
+                filteredStreams() {
 
-                    var profiles = this.profiles;
+                    var streams = this.streams;
                     var search = this.search.toLowerCase().trim();
                     var sort_by = this.sort_by;
 
                     if (search) {
-                        profiles = profiles.filter(function(item) {
+                        streams = streams.filter(function(item) {
 
                             return true;
                         });
                     }
 
-                    profiles.sort(function(itemA, itemB) {
+                    streams.sort(function(itemA, itemB) {
                         var timeA = false;//new Date(itemA.created_at).getTime();
                         var timeB = false;//new Date(itemB.created_at).getTime();
 
@@ -521,7 +481,7 @@ padding: 1rem 1rem 4rem 1rem;
                         }
                     });
 
-                    return profiles;
+                    return streams;
                 },
             }
 
