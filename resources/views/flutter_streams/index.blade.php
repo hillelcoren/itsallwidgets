@@ -17,7 +17,7 @@
 .stream-panel {
     background-color: white;
     border-radius: 8px;
-    height: 500px;
+    height: 495px;
 }
 
 .stream-name {
@@ -236,7 +236,7 @@
                         app.serverSearch();
                     },
                 },
-                filter_platform: {
+                filter_source: {
                     handler() {
                         app.serverSearch();
                     },
@@ -373,7 +373,7 @@
                 sort_by: getCachedSortBy(),
                 selected_stream: false,
                 page_number: 1,
-                filter_platform: '',
+                filter_source: '',
                 is_searching: false,
             },
 

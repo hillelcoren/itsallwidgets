@@ -44,7 +44,7 @@ class FlutterStreamController extends Controller
             $stream->where('source', '=', $source);
         }
 
-        if ($sortBy == 'sort_view') {
+        if ($sortBy == 'sort_views') {
             $streams->orderBy('view_count', 'desc');
         } else {
             $streams->orderBy('starts_at', 'desc');
