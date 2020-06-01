@@ -70,7 +70,7 @@ class LoadStreams extends Command
         }
 
         if ($this->option('all')) {
-            while (property_exists(($data, 'nextPageToken') && $data->nextPageToken) {
+            while (property_exists($data, 'nextPageToken') && $data->nextPageToken) {
                 $this->info('nextPageToken: ' . $data->nextPageToken);
 
                 $nextUrl = $url . '&pageToken=' . $data->nextPageToken;
