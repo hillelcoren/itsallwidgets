@@ -43,7 +43,10 @@ class LoadStreams extends Command
         $this->info('Running...');
 
         $this->loadVideos();
-        $this->loadVideos('upcoming');
+
+        if (! $this->option('all')) {
+            $this->loadVideos('upcoming');
+        }
     }
 
     public function loadVideos($type = false)
@@ -69,9 +72,15 @@ class LoadStreams extends Command
             $channelIds[] = $item->snippet->channelId;
         }
 
+        $this->loadVideosDetails($videoIds, $videoMap, $channelIds, $channelMap);
+
         if ($this->option('all')) {
             while (property_exists($data, 'nextPageToken') && $data->nextPageToken) {
                 $this->info('nextPageToken: ' . $data->nextPageToken);
+                $videoIds = [];
+                $videoMap = [];
+                $channelIds = [];
+                $channelMap = [];
 
                 $nextUrl = $url . '&pageToken=' . $data->nextPageToken;
                 $data = json_decode(file_get_contents($nextUrl));
@@ -82,9 +91,15 @@ class LoadStreams extends Command
                     $videoMap[$videoId] = $item;
                     $channelIds[] = $item->snippet->channelId;
                 }
+
+                $this->loadVideosDetails($videoIds, $videoMap, $channelIds, $channelMap);
             }
         }
+    }
 
+
+    public function loadVideosDetails($videoIds, $videoMap, $channelIds, $channelMap)
+    {
         // Load channels
         $url = 'https://www.googleapis.com/youtube/v3/channels?part=snippet&key=';
         $url .= config('services.youtube.key');
