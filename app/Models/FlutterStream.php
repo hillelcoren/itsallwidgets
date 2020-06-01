@@ -104,6 +104,7 @@ class FlutterStream extends Model implements Feedable
         $obj->video_id = $this->video_id;
         $obj->starts_at = $this->starts_at;
         $obj->time_ago = \Carbon\Carbon::parse($this->starts_at)->diffForHumans();
+        $obj->is_upcoming = ! \Carbon\Carbon::parse($this->starts_at)->isPast();
         $obj->url = $this->url();
         $obj->video_url = 'https://www.youtube.com/watch?v=' . $this->video_id;
         $obj->embed_url = 'https://www.youtube.com/embed/' . $this->video_id;

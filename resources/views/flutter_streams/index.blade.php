@@ -173,7 +173,7 @@
                                             <img src="/images/flutter_logo.png" style="width: 50px; height: 50px; border-radius: 50%;"/>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td width="100%">
                                         <div style="padding-left: 8px; padding-right: 8px">
                                             <p class="stream-name">
                                                 @{{ stream.name }}
@@ -189,7 +189,17 @@
                                                 </div>
 
                                                 <div style="color:#888; font-size:15px; padding-top: 8px;" class="channel-name">
-                                                    @{{ stream.view_count }} views • @{{ stream.time_ago }}
+                                                    @{{ stream.time_ago }}
+
+                                                    <!--
+                                                    <span v-if="!stream.is_upcoming">
+                                                        • @{{ stream.view_count }} views
+                                                    </span>
+                                                    --> 
+
+                                                    <div v-if="stream.is_upcoming" class="is-pulled-right">
+                                                        <span class="tag is-info">Upcoming</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
