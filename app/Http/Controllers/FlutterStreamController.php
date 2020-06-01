@@ -122,6 +122,19 @@ class FlutterStreamController extends Controller
         return redirect(url('/') . '?clear_cache=true');
     }
 
+    public function englishChannel($tld, $stream = false)
+    {
+        if (! $stream) {
+            $stream = $tld;
+        }
+
+        $channel = $stream->channel;
+        $channel->is_english = ! $channel->is_english;
+        $channel->save();
+
+        return redirect(url('/') . '?clear_cache=true');
+    }
+
     public function jsonFeed(Request $request)
     {
         $streams = cache('flutter-stream-list');
