@@ -350,7 +350,7 @@
                     }
 
                     localStorage.setItem('streams_sort_by', this.sort_by);
-                    localStorage.setItem('streams_english', this.filter_english);
+                    localStorage.setItem('streams_english', this.filter_english ? '1' : '');
                 },
 
                 searchBackgroundColor: function() {
