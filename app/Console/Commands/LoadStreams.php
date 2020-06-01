@@ -147,7 +147,7 @@ class LoadStreams extends Command
             $image = imagecreatefromjpeg($stream->thumbnail_url);
             $cropped = imagecreatetruecolor(480, $newHeight);
             imagecopyresampled($cropped, $image, 0, 0, 0, $border, 480, $newHeight, 480, $newHeight);
-            imagejpeg($cropped, public_path("streams/{$stream->id}.jpg"));
+            imagejpeg($cropped, public_path("streams/stream-{$stream->id}.jpg"));
         }
     }
 }
