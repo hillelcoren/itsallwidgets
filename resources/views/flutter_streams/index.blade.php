@@ -213,7 +213,7 @@
                     </span>
                     Previous Page
                 </a> &nbsp;
-                <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)" v-if="filteredStreams.length == 12">
+                <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)" v-if="filteredStreams.length == 12 &amp;&amp; {{ $count }} > 12">
                     Next Page &nbsp;&nbsp;
                     <span>
                         <i style="font-size: 18px" class="fas fa-chevron-circle-right"></i>
