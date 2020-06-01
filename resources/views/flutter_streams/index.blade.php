@@ -31,6 +31,16 @@
     text-overflow: ellipsis;
 }
 
+.channel-name {
+    line-height: 1.5em;
+    height: 2.0em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+}
+
 .stream-panel a {
     color: black;
 }
@@ -169,13 +179,13 @@
                                             <div style="padding-top:8px; border-bottom: 2px #368cd5 solid; width: 50px;"/></div>
 
                                             <div class="content">
-                                                <div style="padding-top:14px;">
+                                                <div style="padding-top:14px;" class="channel-name">
                                                     <a v-bind:href="'https://www.youtube.com/channel/' + stream.channel_id" target="_blank" v-on:click.stop>
                                                         @{{ stream.channel_name }}
                                                     </a>
                                                 </div>
 
-                                                <div style="color:#888; font-size:15px; padding-top: 4px;">
+                                                <div style="color:#888; font-size:15px; padding-top: 8px;" class="channel-name">
                                                     @{{ stream.view_count }} views • @{{ stream.time_ago }}
                                                 </div>
                                             </div>
