@@ -32,6 +32,7 @@ class AddStreams extends Migration
             $table->timestamps();
             $table->unsignedInteger('channel_id');
             $table->string('name');
+            $table->string('slug');
             $table->text('description');
             $table->string('video_id');
             $table->dateTime('published_at');

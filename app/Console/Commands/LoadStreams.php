@@ -129,6 +129,7 @@ class LoadStreams extends Command
             }
 
             $stream->name = $video->snippet->title;
+            $stream->slug = str_slug($stream->name . '-' . explode('T', $video->snippet->publishedAt)[0]);
             $stream->description = $video->snippet->description;
             $stream->published_at = rtrim(str_replace('T', ' ', $video->snippet->publishedAt), 'Z');
             $stream->starts_at = rtrim(str_replace('T', ' ', $item->liveStreamingDetails->scheduledStartTime), 'Z');

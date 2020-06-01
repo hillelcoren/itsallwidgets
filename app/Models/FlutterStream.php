@@ -88,6 +88,7 @@ class FlutterStream extends Model implements Feedable
     {
         $obj = new \stdClass;
         $obj->name = $this->name;
+        $obj->slug = $this->slug;
         $obj->type = 'stream';
         $obj->description = mb_convert_encoding($this->description, 'UTF-8', 'UTF-8');
         $obj->video_id = $this->video_id;

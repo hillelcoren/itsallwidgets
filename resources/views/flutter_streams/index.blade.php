@@ -336,7 +336,7 @@
 
                         if (history.pushState) {
                             if (app) {
-                                var route = '/' + (stream ? stream.handle : '');
+                                var route = '/' + (stream ? stream.slug : '');
                                 gtag('config', '{{ $tracking_id }}', {'page_path': route});
                                 history.pushState(null, null, route);
                             } else {
