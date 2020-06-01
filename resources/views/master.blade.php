@@ -473,7 +473,7 @@
                 </div>
 
                 @if (!isFX() && !isGL() && (!request()->is('podcast*') || (auth()->check() && auth()->user()->is_admin)))
-                    <a class="button is-elevated-dark" style="padding: 20px 32px 18px 32px"
+                    <a class="button is-elevated-dark" style="padding: 20px 32px 18px 32px" target="{{ isFS() ? '_blank' : '_self' }}"
                         href="@yield('header_button_url', url(auth()->check() ? 'submit' : 'auth/google?intended_url=submit'))">
                         <span class="icon">
                             <i class="@yield('header_button_icon', 'fas fa-cloud-upload-alt')"></i>
