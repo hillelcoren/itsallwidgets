@@ -183,7 +183,7 @@
                                             <img src="/images/flutter_logo.png" style="width: 50px; height: 50px; border-radius: 50%;"/>
                                         </div>
                                     </td>
-                                    <td width="100%">
+                                    <td>
                                         <div style="padding-left: 8px; padding-right: 8px">
                                             <p class="stream-name">
                                                 @{{ stream.name }}
