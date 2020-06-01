@@ -42,9 +42,19 @@ class LoadStreams extends Command
     {
         $this->info('Running...');
 
+        $this->loadVideos();
+        $this->loadVideos('upcoming');
+    }
+
+    public function loadVideos($type = false)
+    {
         // Load videos
-        $url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=flutter&type=video&order=date&eventType=upcoming&key=';
+        $url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=flutter&type=video&order=date&key=';
         $url .= config('services.youtube.key');
+
+        if ($type) {
+            $url .= '&eventType=' . $type;
+        }
 
         $data = json_decode(file_get_contents($url));
         $videoIds = [];
