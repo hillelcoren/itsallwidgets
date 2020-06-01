@@ -24,7 +24,7 @@
 .stream-name {
     font-size: 18px;
     line-height: 1.5em;
-    height: 3.2em;
+    height: 3.1em;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
