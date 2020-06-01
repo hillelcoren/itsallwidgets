@@ -35,19 +35,22 @@ class FlutterStreamController extends Controller
         $source = strtolower(request()->source);
         $isEnglish = request()->is_english;
 
-        $streams = FlutterStream::visible();
+        $streams = FlutterStream::where(function($query) use ($source, $search, $isEnglish) {
 
-        if ($search) {
-            $streams->search($search);
-        }
+            $query->visible();
 
-        if ($source) {
-            $streams->where('source', '=', $source);
-        }
+            if ($source) {
+                $query->where('source', '=', $source);
+            }
 
-        if ($isEnglish) {
-            $streams->english();
-        }
+            if ($search) {
+                $query->search($search);
+            }
+
+            if ($isEnglish) {
+                $query->english();
+            }
+        });
 
         if ($sortBy == 'sort_views') {
             $streams->orderBy('view_count', 'desc');

@@ -188,14 +188,14 @@
                                                     </a>
                                                 </div>
 
-                                                <div style="color:#888; font-size:15px; padding-top: 8px;" class="channel-name">
+                                                <div style="color:#888; font-size:15px; padding-top: 10px;" class="channel-name">
                                                     @{{ stream.time_ago }}
 
                                                     <!--
                                                     <span v-if="!stream.is_upcoming">
                                                         • @{{ stream.view_count }} views
                                                     </span>
-                                                    --> 
+                                                    -->
 
                                                     <div v-if="stream.is_upcoming" class="is-pulled-right">
                                                         <span class="tag is-info">Upcoming</span>
