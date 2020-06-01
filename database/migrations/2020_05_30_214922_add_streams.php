@@ -49,6 +49,7 @@ class AddStreams extends Migration
         });
 
         DB::statement('ALTER TABLE flutter_streams ADD FULLTEXT fulltext_index (name, description)');
+        DB::statement('ALTER TABLE flutter_channels ADD FULLTEXT fulltext_index (name, description)');
     }
 
     /**
