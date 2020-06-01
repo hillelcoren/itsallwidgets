@@ -46,7 +46,7 @@ class FlutterStreamController extends Controller
         }
 
         if ($isEnglish) {
-            $stream->where('is_english', '=', true);
+            $stream->english();
         }
 
         if ($sortBy == 'sort_views') {

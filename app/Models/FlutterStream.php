@@ -35,6 +35,13 @@ class FlutterStream extends Model implements Feedable
         });
     }
 
+    public function scopeEnglish($query)
+    {
+        $query->whereHas('channel', function($query) {
+            return $query->where('is_english', '=', 1);
+        });
+    }
+
     public function user()
     {
         return $this->belongsTo('App\Models\User');
@@ -108,7 +115,7 @@ class FlutterStream extends Model implements Feedable
         $obj->channel_custom_url = $this->channel->custom_url;
         $obj->channel_image_url = $this->channel->thumbnail_url;
         $obj->country = $this->channel->country;
-        //$obj->is_english = $this->is_english;
+        $obj->is_english = $this->is_english;
 
         return $obj;
     }

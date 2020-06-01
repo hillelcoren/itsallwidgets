@@ -138,6 +138,8 @@ class LoadStreams extends Command
             $stream->view_count = $item->statistics->viewCount;
             $stream->comment_count = $item->statistics->commentCount;
             $stream->like_count = $item->statistics->likeCount;
+            $interval = new DateInterval($item->contentDetails->duration);
+            $stream->duration = $interval->h * 3600 + $interval->i * 60 + $interval->s;
             $stream->save();
             $stream->fresh();
 
