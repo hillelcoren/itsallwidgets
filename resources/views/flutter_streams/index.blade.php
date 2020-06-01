@@ -222,26 +222,28 @@
             </center>
 
             <div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_stream">
-                <div class="modal-background" v-on:click="selectStream()"></div>
+                <div class="modal-background" v-on:click="selectStream()" style="z-index:0"></div>
+                <div style="z-index:1">
+                    <div class="navigation-button prev-navigation-button" BAK-v-if="hasPrev">
+                        <button class="button is-medium is-rounded" v-on:click="movePrev()">
+                            <span class="icon">
+                                <i class="fas fa-chevron-left"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="navigation-button next-navigation-button" BAK-v-if="hasNext">
+                        <button class="button is-medium is-rounded" v-on:click="moveNext()">
+                            <span class="icon">
+                                <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </button>
+                    </div>
 
-                <div class="navigation-button prev-navigation-button" BAK-v-if="hasPrev">
-                    <button class="button is-medium is-rounded" v-on:click="movePrev()">
-                        <span class="icon">
-                            <i class="fas fa-chevron-left"></i>
-                        </span>
-                    </button>
-                </div>
-                <div class="navigation-button next-navigation-button" BAK-v-if="hasNext">
-                    <button class="button is-medium is-rounded" v-on:click="moveNext()">
-                        <span class="icon">
-                            <i class="fas fa-chevron-right"></i>
-                        </span>
-                    </button>
-                </div>
-
-                <div class="modal-card" style="padding:0; width:900px" @click.stop>
-                    <iframe width="1000" height="500" v-bind:src="selected_stream.embed_url" frameborder="0"
-                        allow="accelerometer; autoplay; encrypted-media;" allowfullscreen></iframe>
+                    <div @click.stop>
+                        <iframe v-bind:src="selected_stream.embed_url" frameborder="0"
+                            style="width: 1280px; height: 720px;"
+                            allow="accelerometer; autoplay; encrypted-media;" allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
 
