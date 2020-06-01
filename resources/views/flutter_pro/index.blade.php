@@ -499,27 +499,15 @@ padding: 1rem 1rem 4rem 1rem;
                 },
 
                 filteredProfiles() {
-
                     var profiles = this.profiles;
                     var search = this.search.toLowerCase().trim();
                     var sort_by = this.sort_by;
 
                     if (search) {
                         profiles = profiles.filter(function(item) {
-
                             return true;
                         });
                     }
-
-                    profiles.sort(function(itemA, itemB) {
-                        var timeA = false;//new Date(itemA.created_at).getTime();
-                        var timeB = false;//new Date(itemB.created_at).getTime();
-
-                        if (sort_by == 'sort_newest') {
-                            return timeB - timeA;
-                        } else {
-                        }
-                    });
 
                     return profiles;
                 },

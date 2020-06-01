@@ -447,20 +447,19 @@
 
                     if (search) {
                         streams = streams.filter(function(item) {
-
                             return true;
                         });
                     }
 
+                    /*
                     streams.sort(function(itemA, itemB) {
-                        var timeA = false;//new Date(itemA.created_at).getTime();
-                        var timeB = false;//new Date(itemB.created_at).getTime();
-
                         if (sort_by == 'sort_newest') {
                             return timeB - timeA;
                         } else {
+
                         }
                     });
+                    */
 
                     return streams;
                 },

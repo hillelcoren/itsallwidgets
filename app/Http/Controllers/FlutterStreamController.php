@@ -52,7 +52,7 @@ class FlutterStreamController extends Controller
         if ($sortBy == 'sort_views') {
             $streams->orderBy('view_count', 'desc');
         } else {
-            $streams->orderBy('starts_at', 'desc');
+            $streams->orderByRaw(\DB::raw("CASE WHEN starts_at > NOW() THEN starts_at ELSE '3000-01-01' END ASC, starts_at DESC"));
         }
 
         $streams->limit(12)->offset(((request()->page ?: 1) - 1) * 12);
