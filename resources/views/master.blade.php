@@ -471,6 +471,7 @@
                         @yield('header_subtitle', 'Feel free to add an app in progress and update it when it goes live')
                     @endif
                 </div>
+
                 @if (!isFX() && !isGL() && (!request()->is('podcast*') || (auth()->check() && auth()->user()->is_admin)))
                     <a class="button is-elevated-dark" style="padding: 20px 32px 18px 32px"
                         href="@yield('header_button_url', url(auth()->check() ? 'submit' : 'auth/google?intended_url=submit'))">
@@ -479,6 +480,17 @@
                         </span> &nbsp;
                         <span>@yield('header_button_label', 'SUBMIT APP')</span>
                     </a>
+
+                    @if (isIAW())
+                        &nbsp;
+                        <a style="padding: 20px 32px 18px 32px; color:white; background-color: #366cb6; border-color:#366cb6;"
+                            class="button is-elevated-dark" href="@yield('second_header_button_url', ''))">
+                            <span class="icon">
+                                <i class="@yield('second_header_button_icon', 'fab fa-twitter')"></i>
+                            </span> &nbsp;
+                            <span>@yield('second_header_button_label', 'FOLLOW US')</span>
+                        </a>
+                    @endif
                 @endif
             </div>
         </div>

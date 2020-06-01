@@ -29,6 +29,12 @@
         </a>
     @endif
 
+    @if (! isFS() && false)
+        <a class="navbar-item" href="{{ fsUrl() }}">
+            <i class="fas fa-video"></i> &nbsp; Streams
+        </a>
+    @endif
+
     <a class="navbar-item" href="https://flutter.dev/{{ $url }}" target="_blank">
         <i class="fas fa-globe"></i> &nbsp; {{ ucwords($url) }}
     </a>
