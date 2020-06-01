@@ -57,6 +57,12 @@ Route::group(['domain' => 'www.flutterevents.com'], function() {
     });
 });
 
+Route::group(['domain' => 'www.flutterstreams.com'], function() {
+    Route::get('/', function() {
+        return redirect('https://flutterstreams.com');
+    });
+});
+
 Route::group(['domain' => 'flutterpro.{tld}'], function() {
     Route::get('/', 'FlutterProController@index');
     Route::get('feed', 'FlutterProController@jsonFeed');
@@ -74,7 +80,7 @@ Route::group(['domain' => 'flutterevents.{tld}'], function() {
     Route::get('{flutter_event}', 'FlutterEventController@show');
 });
 
-Route::group(['domain' => 'flutterstream.{tld}'], function() {
+Route::group(['domain' => 'flutterstreams.{tld}'], function() {
     Route::get('/', 'FlutterStreamController@index');
     Route::get('feed', 'FlutterStreamController@jsonFeed');
     Route::get('search_streams', 'FlutterStreamController@search');
