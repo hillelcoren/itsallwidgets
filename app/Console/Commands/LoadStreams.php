@@ -156,11 +156,14 @@ class LoadStreams extends Command
             $origHeight = 360;
             $newHeight = 270;
             $border = ($origHeight - $newHeight) / 2;
-            $imageData = file_get_contents($stream->thumbnail_url);
-            $image = imagecreatefromstring($imageData);
-            $cropped = imagecreatetruecolor(480, $newHeight);
-            imagecopyresampled($cropped, $image, 0, 0, 0, $border, 480, $newHeight, 480, $newHeight);
-            imagejpeg($cropped, public_path("streams/stream-{$stream->id}.jpg"));
+            $imageData = @file_get_contents($stream->thumbnail_url);
+
+            if ($imageData) {
+                $image = imagecreatefromstring($imageData);
+                $cropped = imagecreatetruecolor(480, $newHeight);
+                imagecopyresampled($cropped, $image, 0, 0, 0, $border, 480, $newHeight, 480, $newHeight);
+                imagejpeg($cropped, public_path("streams/stream-{$stream->id}.jpg"));
+            }
         }
     }
 }
