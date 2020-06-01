@@ -87,6 +87,7 @@ class FlutterStream extends Model implements Feedable
     public function toObject()
     {
         $obj = new \stdClass;
+        $obj->id = $this->id;
         $obj->name = $this->name;
         $obj->slug = $this->slug;
         $obj->type = 'stream';
