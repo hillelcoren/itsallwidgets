@@ -33,7 +33,7 @@ class FlutterStreamController extends Controller
         $search = strtolower(request()->search);
         $sortBy = strtolower(request()->sort_by);
         $source = strtolower(request()->source);
-        $isEnglish = request()->isEnglish;
+        $isEnglish = request()->is_english;
 
         $streams = FlutterStream::visible();
 
@@ -42,11 +42,11 @@ class FlutterStreamController extends Controller
         }
 
         if ($source) {
-            $stream->where('source', '=', $source);
+            $streams->where('source', '=', $source);
         }
 
         if ($isEnglish) {
-            $stream->english();
+            $streams->english();
         }
 
         if ($sortBy == 'sort_views') {
