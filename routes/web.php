@@ -78,11 +78,11 @@ Route::group(['domain' => 'flutterstream.{tld}'], function() {
     Route::get('/', 'FlutterStreamController@index');
     Route::get('feed', 'FlutterStreamController@jsonFeed');
     Route::get('search_streams', 'FlutterStreamController@search');
-    Route::get('sitemap.xml', 'FlutterStreamController@sitemap');
+    //Route::get('sitemap.xml', 'FlutterStreamController@sitemap');
     Route::get('{flutter_stream}/hide', 'FlutterStreamController@hideChannel');
     Route::get('{flutter_stream}/show', 'FlutterStreamController@showChannel');
     Route::get('{flutter_stream}/english', 'FlutterStreamController@englishChannel');
-    Route::get('{flutter_stream}', 'FlutterStreamController@show');
+    //Route::get('{flutter_stream}', 'FlutterStreamController@show');
 });
 
 Route::group(['domain' => 'flutterx.{tld}'], function() {
