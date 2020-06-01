@@ -103,6 +103,7 @@ class FlutterStream extends Model implements Feedable
         $obj->description = mb_convert_encoding($this->description, 'UTF-8', 'UTF-8');
         $obj->video_id = $this->video_id;
         $obj->starts_at = $this->starts_at;
+        $obj->duration = gmdate($this->duration > (60 * 60) ? "H:i:s" : "i:s", $this->duration);
         $obj->time_ago = \Carbon\Carbon::parse($this->starts_at)->diffForHumans();
         $obj->is_upcoming = ! \Carbon\Carbon::parse($this->starts_at)->isPast();
         $obj->url = $this->url();
