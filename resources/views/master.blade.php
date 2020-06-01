@@ -707,8 +707,8 @@
                     <a href="{{ fpUrl() }}" title="A Showcase for Passionate Flutter Developers">FLUTTER&nbsp;PRO</a> &nbsp;&nbsp; • &nbsp;&nbsp;
                     <a href="{{ feUrl() }}" title="An Open List of Flutter Events">FLUTTER&nbsp;EVENTS</a> &nbsp;&nbsp; • &nbsp;&nbsp;
                     <a href="{{ iawUrl() }}" title="An open list of apps built with Flutter">IT'S&nbsp;ALL&nbsp;WIDGETS!</a> &nbsp;&nbsp; • &nbsp;&nbsp;
-                    <a href="{{ fxUrl() }}" title="A Searchable List of Flutter Resources">FLUTTERX</a> &nbsp;&nbsp; • &nbsp;&nbsp;
-                    <a href="{{ fsUrl() }}" title="An Open List of Flutter Live Streams">FLUTTER&nbsp;STREAMS</a>
+                    <a href="{{ fxUrl() }}" title="A Searchable List of Flutter Resources">FLUTTERX</a> &nbsp;&nbsp; <!-- • &nbsp;&nbsp;
+                    <a href="{{ fsUrl() }}" title="An Open List of Flutter Live Streams">FLUTTER&nbsp;STREAMS</a> -->
                 </div>
             </div>
         </section>
