@@ -151,14 +151,15 @@
                         <div class="stream-panel is-hover-elevated">
 
                             <div>
-                                <img v-bind:src="'streams/stream-' + stream.id + '.jpg?clear_cache=' + stream.updated_at" style="width: 100%; object-fit: fill;"/>
+                                <img v-bind:src="'streams/stream-' + stream.id + '.jpg?clear_cache=' + stream.updated_at"
+                                    style="width: 100%; object-fit: fill;"/>
 
                                 <!--
                                 <div style="color: white; margin-top: -35px;">
                                     @{{ stream.duration }}
                                 </div>
                                 -->
-                                
+
                                 <!--
                                 <div v-if="stream.image_url">
                                     <img v-bind:src="stream.image_url + '?clear_cache=' + stream.updated_at" style="width: 100%; object-fit: fill;"/>
