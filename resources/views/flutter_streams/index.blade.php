@@ -18,6 +18,7 @@
     background-color: white;
     border-radius: 8px;
     padding-bottom: 16px;
+    word-break: break-word;
 }
 
 .stream-name {
