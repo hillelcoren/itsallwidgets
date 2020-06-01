@@ -77,6 +77,12 @@
                             </div>
                             -->
 
+                            <div class="is-medium" v-on:click="toggleEnglish()" style="padding-left: 35px; padding-right: 10px;">
+                                <input type="checkbox" name="englishSwitch"
+                                class="switch is-info" v-model="filter_english">
+                                <label for="englishSwitch" style="padding-top:6px; font-size: 16px">ENGLISH &nbsp;</label>
+                            </div>
+
                             <div class="is-medium filter-label" style="padding-left: 26px;">
                                 <label class="label is-medium" style="font-weight: normal; font-size: 16px">SORT</label>
                             </div>
@@ -96,7 +102,7 @@
                             </div>
                             -->
 
-                            <div style="padding-left: 30px">
+                            <div style="padding-left: 35px">
                                 <a class="button is-white is-slightly-elevated" href="{{ fsUrl() }}/feed" target="_blank">
                                     <i style="font-size: 20px" class="fas fa-rss"></i> &nbsp;
                                     RSS FEED
@@ -242,6 +248,10 @@
             return (isStorageSupported() ? localStorage.getItem('streams_sort_by') : false) || 'sort_newest';
         }
 
+        function getCachedEnglish() {
+            return (isStorageSupported() ? localStorage.getItem('streams_english') : false) || false;
+        }
+
         var app = new Vue({
             el: '#app',
 
@@ -254,6 +264,12 @@
                 filter_source: {
                     handler() {
                         app.serverSearch();
+                    },
+                },
+                filter_english: {
+                    handler() {
+                        app.serverSearch();
+                        app.saveFilters();
                     },
                 },
                 page_number: {
@@ -270,6 +286,10 @@
             },
 
             methods: {
+
+                toggleEnglish: function() {
+                    this.filter_english = ! this.filter_english;
+                },
 
                 adjustPage: function(change) {
                     this.page_number += change;
@@ -289,6 +309,7 @@
                     }
 
                     localStorage.setItem('streams_sort_by', this.sort_by);
+                    localStorage.setItem('streams_english', this.filter_english);
                 },
 
                 searchBackgroundColor: function() {
@@ -332,6 +353,7 @@
                     var sortBy = this.sort_by;
                     var page = this.page_number;
                     var source = this.filter_source;
+                    var isEnglish = this.filter_english;
 
                     app.$set(app, 'is_searching', true);
                     if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
@@ -341,7 +363,8 @@
                         + encodeURIComponent(searchStr)
                         + '&sort_by=' + sortBy
                         + '&page=' + page
-                        + '&source=' + source;
+                        + '&source=' + source
+                        + '&is_english=' + (isEnglish ? '1' : '');
 
                         $.get(url,
                         function (data) {
@@ -386,6 +409,7 @@
                 streams: [],
                 search: "{{ request()->search }}",
                 sort_by: getCachedSortBy(),
+                filter_english: getCachedEnglish(),
                 selected_stream: false,
                 page_number: 1,
                 filter_source: '',
