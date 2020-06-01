@@ -17,7 +17,7 @@
 .stream-panel {
     background-color: white;
     border-radius: 8px;
-    padding-bottom: 12px;
+    padding-bottom: 16px;
 }
 
 .stream-name {
