@@ -7,12 +7,8 @@ use Illuminate\Http\Request;
 
 class FlutterStreamController extends Controller
 {
-    public function index($tld = '')
+    public function index()
     {
-        if ($tld == 'com') {
-            return redirect('https://flutterstreams.com');
-        }
-
         if (request()->clear_cache) {
             cache()->forget('flutter-stream-list');
             return redirect('/')->with('status', 'App cache has been cleared!');
