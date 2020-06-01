@@ -140,7 +140,7 @@
 
                             <div>
                                 <div v-if="stream.image_url">
-                                    <img v-bind:src="stream.image_url + '?clear_cache=' + stream.updated_at"/>
+                                    <img v-bind:src="stream.image_url + '?clear_cache=' + stream.updated_at" style="width: 100%; object-fit: fill;"/>
                                 </div>
                                 <span v-if="!stream.image_url">
                                     <img src="/images/flutter_logo.png" style="width: 94px;"/>
@@ -329,7 +329,7 @@
                 selectStream: function(stream) {
                     if (document.body.clientWidth < 1000) {
                         if (app) {
-                            window.location = '/' + stream.handle;
+                            window.open(stream.video_url, '_blank');
                         }
                     } else {
                         this.selected_stream = stream;
