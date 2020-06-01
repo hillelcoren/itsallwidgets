@@ -29,7 +29,7 @@
         </a>
     @endif
 
-    @if (! isFS() && false)
+    @if (! isFS())
         <a class="navbar-item" href="{{ fsUrl() }}">
             <i class="fas fa-video"></i> &nbsp; Streams
         </a>
