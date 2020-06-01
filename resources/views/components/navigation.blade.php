@@ -1,7 +1,7 @@
 @php
     if (isFX())
         $url = 'docs';
-    elseif (isFE() || isFP())
+    elseif (isFE() || isFP() || isFS())
         $url = 'community';
     else
         $url = 'showcase'

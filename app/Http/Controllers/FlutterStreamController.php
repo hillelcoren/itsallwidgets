@@ -95,8 +95,22 @@ class FlutterStreamController extends Controller
             $stream = $tld;
         }
 
-        $stream->is_visible = false;
-        $stream->save();
+        $channel = $stream->channel;
+        $channel->is_visible = false;
+        $channel->save();
+
+        return redirect(url('/') . '?clear_cache=true');
+    }
+
+    public function show($tld, $stream = false)
+    {
+        if (! $stream) {
+            $stream = $tld;
+        }
+
+        $channel = $stream->channel;
+        $channel->is_visible = true;
+        $channel->save();
 
         return redirect(url('/') . '?clear_cache=true');
     }
