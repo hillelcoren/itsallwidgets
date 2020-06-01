@@ -10,40 +10,40 @@ use App\Repositories\FlutterEventRepository;
 class LoadStreams extends Command
 {
     /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
+    * The name and signature of the console command.
+    *
+    * @var string
+    */
     protected $signature = 'itsallwidgets:load_streams {--all}';
 
     /**
-     * The console command description.
-     *
-     * @var string
-     */
+    * The console command description.
+    *
+    * @var string
+    */
     protected $description = 'Load live streams from YouTube';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
+    * Create a new command instance.
+    *
+    * @return void
+    */
     public function __construct()
     {
         parent::__construct();
     }
 
     /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
+    * Execute the console command.
+    *
+    * @return mixed
+    */
     public function handle()
     {
         $this->info('Running...');
 
         // Load videos
-        $url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=flutter&type=video&order=date&key=';
+        $url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=flutter&type=video&order=date&eventType=upcoming&key=';
         $url .= config('services.youtube.key');
 
         $data = json_decode(file_get_contents($url));
@@ -84,8 +84,8 @@ class LoadStreams extends Command
 
         foreach ($data->items as $item) {
             $channel = FlutterChannel::where('channel_id', '=', $item->id)
-                        ->where('source', '=', 'youtube')
-                        ->first();
+            ->where('source', '=', 'youtube')
+            ->first();
 
             if (! $channel) {
                 $channel = new FlutterChannel;
@@ -138,7 +138,7 @@ class LoadStreams extends Command
             $stream->view_count = $item->statistics->viewCount;
             $stream->comment_count = $item->statistics->commentCount;
             $stream->like_count = $item->statistics->likeCount;
-            $interval = new DateInterval($item->contentDetails->duration);
+            $interval = new \DateInterval($item->contentDetails->duration);
             $stream->duration = $interval->h * 3600 + $interval->i * 60 + $interval->s;
             $stream->save();
             $stream->fresh();
@@ -146,7 +146,8 @@ class LoadStreams extends Command
             $origHeight = 360;
             $newHeight = 270;
             $border = ($origHeight - $newHeight) / 2;
-            $image = imagecreatefromjpeg($stream->thumbnail_url);
+            $imageData = file_get_contents($stream->thumbnail_url);
+            $image = imagecreatefromstring($imageData);
             $cropped = imagecreatetruecolor(480, $newHeight);
             imagecopyresampled($cropped, $image, 0, 0, 0, $border, 480, $newHeight, 480, $newHeight);
             imagejpeg($cropped, public_path("streams/stream-{$stream->id}.jpg"));
