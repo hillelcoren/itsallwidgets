@@ -32,8 +32,8 @@ Route::group(['domain' => '127.0.0.1'], function() {
     Route::get('flutter-events/{flutter_event}', 'FlutterEventController@show');
     Route::get('flutter-streams', 'FlutterStreamController@index');
     Route::get('flutter-streams/feed', 'FlutterStreamController@jsonFeed');
-    Route::get('{flutter_stream}/hide', 'FlutterStreamController@hide');
-    Route::get('{flutter_stream}/show', 'FlutterStreamController@show');
+    Route::get('{flutter_stream}/hide', 'FlutterStreamController@hideChannel');
+    Route::get('{flutter_stream}/show', 'FlutterStreamController@showChannel');
     Route::get('search_streams', 'FlutterStreamController@search');
     //Route::get('{flutter_stream}', 'FlutterStreamController@show');
 });
@@ -78,8 +78,8 @@ Route::group(['domain' => 'flutterstream.{tld}'], function() {
     Route::get('feed', 'FlutterStreamController@jsonFeed');
     Route::get('search_streams', 'FlutterStreamController@search');
     Route::get('sitemap.xml', 'FlutterStreamController@sitemap');
-    Route::get('{flutter_stream}/hide', 'FlutterStreamController@hide');
-    Route::get('{flutter_stream}/show', 'FlutterStreamController@show');
+    Route::get('{flutter_stream}/hide', 'FlutterStreamController@hideChannel');
+    Route::get('{flutter_stream}/show', 'FlutterStreamController@showChannel');
     Route::get('{flutter_stream}', 'FlutterStreamController@show');
 });
 

@@ -89,7 +89,7 @@ class FlutterStreamController extends Controller
         return view('flutter_streams.show', $data);
     }
 
-    public function hide($tld, $stream = false)
+    public function hideChannel($tld, $stream = false)
     {
         if (! $stream) {
             $stream = $tld;
@@ -102,7 +102,7 @@ class FlutterStreamController extends Controller
         return redirect(url('/') . '?clear_cache=true');
     }
 
-    public function show($tld, $stream = false)
+    public function showChannel($tld, $stream = false)
     {
         if (! $stream) {
             $stream = $tld;
