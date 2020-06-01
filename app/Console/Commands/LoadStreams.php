@@ -139,6 +139,15 @@ class LoadStreams extends Command
             $stream->comment_count = $item->statistics->commentCount;
             $stream->like_count = $item->statistics->likeCount;
             $stream->save();
+            $stream->fresh();
+
+            $origHeight = 360;
+            $newHeight = 270;
+            $border = ($origHeight - $newHeight) / 2;
+            $image = imagecreatefromjpeg($stream->thumbnail_url);
+            $cropped = imagecreatetruecolor(480, $newHeight);
+            imagecopyresampled($cropped, $image, 0, 0, 0, $border, 480, $newHeight, 480, $newHeight);
+            imagejpeg($cropped, public_path("streams/{$stream->id}.png"));
         }
     }
 }
