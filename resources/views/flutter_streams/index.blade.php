@@ -8,7 +8,7 @@
 @section('header_button_url', 'https://twitter.com/FlutterStreams')
 @section('header_button_label', 'FOLLOW US')
 @section('header_button_icon', 'fab fa-twitter')
-@section('header_subtitle', 'Streams are sourced from the YouTube API')
+@section('header_subtitle', 'Streams are sourced from the YouTube API (Twitch coming soon)')
 
 @section('head')
 
