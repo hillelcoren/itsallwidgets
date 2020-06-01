@@ -171,7 +171,7 @@
                             </div>
 
                             <div style="padding-left: 16px; padding-right: 16px; padding-top: 8px;">
-                            <table>
+                            <table style="width: 100%">
                                 <tr>
                                     <td width="50">
                                         <div v-if="stream.channel_image_url">
@@ -186,7 +186,7 @@
                                     <td>
                                         <div style="padding-left: 8px; padding-right: 8px">
                                             <p class="stream-name">
-                                                @{{ stream.name }}
+                                                @{{ stream.name }} • @{{ stream.description }}
                                             </p>
 
                                             <div style="padding-top:8px; border-bottom: 2px #368cd5 solid; width: 50px;"/></div>
