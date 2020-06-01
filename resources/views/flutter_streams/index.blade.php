@@ -115,7 +115,7 @@
                             <div style="padding-left: 35px">
                                 <a class="button is-white is-slightly-elevated" href="{{ fsUrl() }}/feed" target="_blank">
                                     <i style="font-size: 20px" class="fas fa-rss"></i> &nbsp;
-                                    RSS FEED
+                                    FEED
                                 </a>
                             </div>
                         </p>
