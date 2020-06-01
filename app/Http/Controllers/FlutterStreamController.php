@@ -54,6 +54,10 @@ class FlutterStreamController extends Controller
 
         if ($sortBy == 'sort_views') {
             $streams->orderBy('view_count', 'desc');
+        } else if ($sortBy == 'sort_likes') {
+            $streams->orderBy('like_count', 'desc');
+        } else if ($sortBy == 'sort_comments') {
+            $streams->orderBy('comment_count', 'desc');
         } else {
             $streams->orderByRaw(\DB::raw("CASE WHEN starts_at > NOW() THEN starts_at ELSE '3000-01-01' END ASC, starts_at DESC"));
         }

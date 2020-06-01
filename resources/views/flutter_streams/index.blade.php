@@ -100,6 +100,8 @@
                                 <select v-model="sort_by" onchange="$(this).blur()">
                                     <option value="sort_newest">NEWEST</option>
                                     <option value="sort_views">VIEWS</option>
+                                    <option value="sort_likes">LIKES</option>
+                                    <option value="sort_comments">COMMENTS</option>
                                 </select>
                             </div>
 
