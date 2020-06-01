@@ -107,6 +107,10 @@ class LoadStreams extends Command
         $this->info($url);
         $data = json_decode(file_get_contents($url));
 
+        if (property_exists($data, 'items')) {
+            return;
+        }
+
         foreach ($data->items as $item) {
             $channel = FlutterChannel::where('channel_id', '=', $item->id)
             ->where('source', '=', 'youtube')
