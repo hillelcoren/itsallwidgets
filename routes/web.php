@@ -14,7 +14,7 @@
 //Route::get('oauth', 'Auth\OAuthController@redirectToProvider');
 //Route::get('oauth/callback', 'Auth\OAuthController@handleProviderCallback');
 
-Route::get('test', function ($slug) {
+Route::get('test', function () {
     return redirect('https://google.com');
 });
 
