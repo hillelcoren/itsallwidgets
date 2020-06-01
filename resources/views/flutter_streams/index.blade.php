@@ -2,7 +2,7 @@
 
 @section('title', 'An Open List of Flutter Live Streams')
 @section('description', 'Live streams are sourced from YouTube')
-@section('image_url', asset('images/flutterpro_twitter.png'))
+@section('image_url', asset('images/flutterstreams_twitter.png'))
 
 @section('header_title', 'An Open List of Flutter Live Streams')
 @section('header_button_url', 'https://twitter.com/FlutterStreams')

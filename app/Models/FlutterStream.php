@@ -94,6 +94,12 @@ class FlutterStream extends Model implements Feedable
 
     public function toObject()
     {
+        /*
+        $country_code = $this->country;
+        $flag = mb_convert_encoding( '&#' . ( 127397 + ord( $country_code[0] ) ) . ';', 'UTF-8', 'HTML-ENTITIES') .
+                mb_convert_encoding( '&#' . ( 127397 + ord( $country_code[1] ) ) . ';', 'UTF-8', 'HTML-ENTITIES');
+                */
+
         $obj = new \stdClass;
         $obj->id = $this->id;
         $obj->updated_at = $this->updated_at ? $this->updated_at->toIso8601String() : '';
@@ -119,6 +125,7 @@ class FlutterStream extends Model implements Feedable
         $obj->channel_custom_url = $this->channel->custom_url;
         $obj->channel_image_url = $this->channel->thumbnail_url;
         $obj->country = $this->channel->country;
+        //$obj->country_flag = $flag;
         $obj->is_english = $this->is_english;
 
         return $obj;
