@@ -199,6 +199,17 @@
                                                     </span>
                                                     -->
 
+                                                    <div v-if="sort_by == 'sort_likes'" class="is-pulled-right">
+                                                        @{{ stream.like_count }} likes
+                                                    </div>
+                                                    <div v-if="sort_by == 'sort_views'" class="is-pulled-right">
+                                                        @{{ stream.view_count }} views
+                                                    </div>
+                                                    <div v-if="sort_by == 'sort_comments'" class="is-pulled-right">
+                                                        @{{ stream.comment_count }} comments
+                                                    </div>
+
+
                                                     <div v-if="stream.is_upcoming" class="is-pulled-right">
                                                         <span class="tag is-info">Upcoming</span>
                                                     </div>
