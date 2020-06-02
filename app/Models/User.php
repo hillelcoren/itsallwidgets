@@ -35,10 +35,13 @@ class User extends Authenticatable
         'is_pro',
         'is_pro_iaw',
         'is_pro_fe',
+        'is_pro_fs',
         'is_pro_fx',
         'is_subscribed',
         'country_code',
         'is_for_hire',
+        'is_mentor',
+        'is_trainer',
         'last_activity',
     ];
 

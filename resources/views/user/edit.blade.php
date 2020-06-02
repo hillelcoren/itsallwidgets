@@ -442,7 +442,37 @@
 								<input name="is_for_hire" type="checkbox" value="1" {{ $user->is_for_hire ? 'CHECKED' : '' }}> Yes
                             </label>
                             <div class="help">
-                                Enable potential clients to see you're available to take on work
+                                Enable clients to see you're available to take on work
+                            </div>
+						</div>
+					</div>
+
+                    <div class="field">
+						<label class="label" for="is_trainer">
+							Available for Workshops
+						</label>
+						<div class="control">
+                            <label class="checkbox">
+                                {{ Form::hidden('is_trainer', 0) }}
+								<input name="is_trainer" type="checkbox" value="1" {{ $user->is_trainer ? 'CHECKED' : '' }}> Yes
+                            </label>
+                            <div class="help">
+                                Find new clients as a Flutter trainer
+                            </div>
+						</div>
+					</div>
+
+                    <div class="field">
+						<label class="label" for="is_mentor">
+							Available to Mentor
+						</label>
+						<div class="control">
+                            <label class="checkbox">
+                                {{ Form::hidden('is_mentor', 0) }}
+								<input name="is_mentor" type="checkbox" value="1" {{ $user->is_mentor ? 'CHECKED' : '' }}> Yes
+                            </label>
+                            <div class="help">
+                                Help other developers learn from your experience
                             </div>
 						</div>
 					</div>
