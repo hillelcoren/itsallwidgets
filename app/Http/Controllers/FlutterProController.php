@@ -121,6 +121,7 @@ class FlutterProController extends Controller
         $user = auth()->user();
 
         $data = [
+            'channel' => false,
             'user' => $user,
             'useBlackHeader' => true,
         ];

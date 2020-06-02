@@ -16,7 +16,15 @@ class AddUserFields extends Migration
         Schema::table('users', function(Blueprint $table) {
             $table->boolean('is_mentor')->default(false);
             $table->boolean('is_trainer')->default(false);
-            $table->boolean('is_pro_fs')->default(true);
+            $table->unsignedInteger('youtube_channel_id')->nullable()->unique();
+        });
+
+        Schema::table('users', function(Blueprint $table) {
+            $table->foreign('channel_id')->references('id')->on('flutter_channels')->onDelete('cascade');
+        });
+
+        Schema::table('flutter_channels', function(Blueprint $table) {
+            $table->boolean('match_all_videos')->default(false);
         });
     }
 
@@ -30,7 +38,11 @@ class AddUserFields extends Migration
         Schema::table('users', function(Blueprint $table) {
             $table->dropColumn('is_mentor');
             $table->dropColumn('is_trainer');
-            $table->dropColumn('is_pro_fs');
+            $table->dropColumn('channel_id');
+        });
+
+        Schema::table('flutter_channels', function(Blueprint $table) {
+            $table->dropColumn('match_all_videos');
         });
     }
 }

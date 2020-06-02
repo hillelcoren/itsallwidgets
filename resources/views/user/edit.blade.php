@@ -95,9 +95,11 @@
 								<i class="fas fa-at"></i>
 							</span>
 
+                            <!--
                             <span class="help">
                                 Profile Link <a href="{{ $user->url() }}" target="_blank">flutterpro.dev/{{ $user->handle }}</a>
                             </span>
+                            -->
 
 							@if ($errors->has('handle'))
 								<span class="help is-danger">
@@ -107,6 +109,7 @@
 						</div>
 					</div>
 
+                    <!--
 					<div class="field">
 						<label class="label" for="title">
 							Sources
@@ -147,7 +150,7 @@
                             @endif
 						</div>
 					</div>
-
+                    -->
 				</div>
 
 			</article>
@@ -155,7 +158,7 @@
 			<p>&nbsp;</p>
 			<p>&nbsp;</p>
 
-			<div class="subtitle">Optional Fields</div>
+			<div class="subtitle">Profile Details</div>
 
 			<article class="message is-dark is-elevated">
 				<div class="message-body">
@@ -172,9 +175,11 @@
 								<i class="fas fa-globe"></i>
 							</span>
 
+                            <!--
                             <span class="help">
                                 JSON Feed <a href="{{ $user->jsonUrl() }}" target="_blank">flutterpro.dev/{{ $user->handle }}/json</a>
                             </span>
+                            -->
 
 							@if ($errors->has('website_url'))
 								<span class="help is-danger">
@@ -391,6 +396,70 @@
 
 				</div>
 			</article>
+
+            <span>
+
+                <p>&nbsp;</p>
+    			<p>&nbsp;</p>
+
+
+                <div class="subtitle">Live Streams</div>
+
+    			<article class="message is-dark is-elevated">
+    				<div class="message-body">
+
+                        <div class="field">
+    						<label class="label" for="youtube_channel_id">
+    							YouTube Channel Id
+    						</label>
+    						<div class="control has-icons-left">
+    							{{ Form::text('youtube_channel_id', $user->youtube_channel_id, ['class' => 'input', 'placeholder' => 'UC...', 'maxlength' => 24]) }}
+
+    							<span class="icon is-small is-left">
+    								<i class="fab fa-youtube"></i>
+    							</span>
+
+    							@if ($errors->has('youtube_channel_id'))
+    								<span class="help is-danger">
+    									{{ $errors->first('youtube_channel_id') }}
+    								</span>
+    							@endif
+    						</div>
+    					</div>
+
+                        <div class="field">
+    						<label class="label" for="all_streams">
+    							All Videos
+    						</label>
+    						<div class="control">
+                                <label class="checkbox">
+                                    {{ Form::hidden('all_streams', 0) }}
+    								<input name="all_streams" type="checkbox" value="1" {{ $channel && $channel->all_streams ? 'CHECKED' : '' }}> Yes
+                                </label>
+                                <div class="help">
+                                    If unchecked only videos with "Flutter" in the title will be included
+                                </div>
+    						</div>
+    					</div>
+
+                        <div class="field">
+    						<label class="label" for="is_english">
+    							English
+    						</label>
+    						<div class="control">
+                                <label class="checkbox">
+                                    {{ Form::hidden('is_english', 0) }}
+    								<input name="is_english" type="checkbox" value="1" {{ $channel && $channel->is_english ? 'CHECKED' : '' }}> Yes
+                                </label>
+                                <div class="help">
+                                    Videos will be categorized under English language
+                                </div>
+    						</div>
+    					</div>
+
+                    </div>
+                </article>
+            </span>
 
 
             <p>&nbsp;</p>

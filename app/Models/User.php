@@ -42,7 +42,7 @@ class User extends Authenticatable
         'is_for_hire',
         'is_mentor',
         'is_trainer',
-        'last_activity',
+        'last_activity',        
     ];
 
     /**
@@ -55,6 +55,10 @@ class User extends Authenticatable
         'email',
         'google_id',
         'remember_token',
+        'updated_at',
+        'match_all_videos',
+        'is_mentor',
+        'is_trainer',
     ];
 
     protected $searchable = [
