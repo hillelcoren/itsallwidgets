@@ -438,7 +438,7 @@
     						</div>
     					</div>
 
-                        <div class="field" style="padding-top: 18px;">
+                        <div class="field" style="padding-top: 14px;">
                             <label class="label">
     							Include
     						</label>
@@ -454,7 +454,7 @@
                             </div>
     					</div>
 
-                        <div class="field" style="padding-top: 12px;">
+                        <div class="field" style="padding-top: 8px;">
                             <label class="label">
     							Language
     						</label>

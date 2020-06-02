@@ -184,8 +184,8 @@ class FlutterProController extends Controller
                 $channel->country = '';
             }
 
-            $channel->is_english = filter_var(request()->is_english, FILTER_VALIDATE_BOOLEAN);
-            $channel->match_all_videos = filter_var(request()->match_all_videos, FILTER_VALIDATE_BOOLEAN);
+            $channel->is_english = request()->language == 'english';
+            $channel->match_all_videos = request()->match_videos == 'all';
             $channel->save();
             $channel->fresh();
 
