@@ -42,7 +42,7 @@ class User extends Authenticatable
         'is_for_hire',
         'is_mentor',
         'is_trainer',
-        'last_activity',        
+        'last_activity',
     ];
 
     /**
@@ -78,6 +78,11 @@ class User extends Authenticatable
     public function userActivities()
     {
         return $this->hasMany('App\Models\UserActivity')->orderBy('id', 'desc');
+    }
+
+    public function channel()
+    {
+        return $this->belongsTo('App\Models\FlutterChannel', 'channel_id');
     }
 
     public function addNew($input)
@@ -152,13 +157,13 @@ class User extends Authenticatable
 
     function profileUrl()
     {
-	if ($this->profile_url) {
-		return $this->profile_url;
-	} else if ($this->website_url) {
-		return $this->website_url;
-	} else {
-		return $this->jsonUrl(true) . '&instructions=true';
-	}
+    	if ($this->profile_url) {
+    		return $this->profile_url;
+    	} else if ($this->website_url) {
+    		return $this->website_url;
+    	} else {
+    		return $this->jsonUrl(true) . '&instructions=true';
+    	}
     }
 
     public function toObject()

@@ -16,7 +16,7 @@ class AddUserFields extends Migration
         Schema::table('users', function(Blueprint $table) {
             $table->boolean('is_mentor')->default(false);
             $table->boolean('is_trainer')->default(false);
-            $table->unsignedInteger('youtube_channel_id')->nullable()->unique();
+            $table->unsignedInteger('channel_id')->nullable()->unique();
         });
 
         Schema::table('users', function(Blueprint $table) {

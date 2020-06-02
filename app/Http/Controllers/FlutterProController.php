@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\FlutterChannel;
 use App\Http\Requests\UpdateProProfile;
 use Illuminate\Http\Request;
 
@@ -121,7 +122,6 @@ class FlutterProController extends Controller
         $user = auth()->user();
 
         $data = [
-            'channel' => false,
             'user' => $user,
             'useBlackHeader' => true,
         ];
@@ -168,9 +168,31 @@ class FlutterProController extends Controller
             $this->resize_png($output, $output, 300, 300);
         }
 
-        return redirect('/profile/edit')->with(
-        'status',
-        'Your profile has been successfully updated!');
+        if (request()->youtube_channel_id) {
+            $channel = FlutterChannel::where('channel_id', '=', request()->youtube_channel_id)
+                        ->where('source', '=', 'youtube')
+                        ->first();
+
+            if (! $channel) {
+                $channel = new FlutterChannel;
+                $channel->source = 'youtube';
+                $channel->channel_id = request()->youtube_channel_id;
+            }
+
+            $channel->is_english = filter_var(request()->is_english, FILTER_VALIDATE_BOOLEAN);
+            $channel->match_all_videos = filter_var(request()->match_all_videos, FILTER_VALIDATE_BOOLEAN);
+            $channel->save();
+            $channel->fresh();
+
+            $user->channel_id = $channel->id;
+            $user->save();
+        } else if ($user->channel_id) {
+            $user->channel_id = null;
+            $user->save();
+        }
+
+        return redirect('/profile/edit')
+                ->with('status','Your profile has been successfully updated!');
     }
 
     // https://www.php.net/manual/en/function.imagepng.php#60128

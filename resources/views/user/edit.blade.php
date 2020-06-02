@@ -413,7 +413,12 @@
     							YouTube Channel Id
     						</label>
     						<div class="control has-icons-left">
-    							{{ Form::text('youtube_channel_id', $user->youtube_channel_id, ['class' => 'input', 'placeholder' => 'UC...', 'maxlength' => 24]) }}
+    							{{ Form::text('youtube_channel_id', $user->channel ? $user->channel->channel_id : '', [
+                                        'class' => 'input',
+                                        'placeholder' => 'UC...',
+                                        'minlength' => 24,
+                                        'maxlength' => 24,
+                                        ]) }}
 
     							<span class="icon is-small is-left">
     								<i class="fab fa-youtube"></i>
@@ -428,13 +433,13 @@
     					</div>
 
                         <div class="field">
-    						<label class="label" for="all_streams">
+    						<label class="label" for="match_all_videos">
     							All Videos
     						</label>
     						<div class="control">
                                 <label class="checkbox">
-                                    {{ Form::hidden('all_streams', 0) }}
-    								<input name="all_streams" type="checkbox" value="1" {{ $channel && $channel->all_streams ? 'CHECKED' : '' }}> Yes
+                                    {{ Form::hidden('match_all_videos', 0) }}
+    								<input name="match_all_videos" type="checkbox" value="1" {{ $user->channel && $user->channel->match_all_videos ? 'CHECKED' : '' }}> Yes
                                 </label>
                                 <div class="help">
                                     If unchecked only videos with "Flutter" in the title will be included
@@ -449,7 +454,7 @@
     						<div class="control">
                                 <label class="checkbox">
                                     {{ Form::hidden('is_english', 0) }}
-    								<input name="is_english" type="checkbox" value="1" {{ $channel && $channel->is_english ? 'CHECKED' : '' }}> Yes
+    								<input name="is_english" type="checkbox" value="1" {{ $user->channel && $user->channel->is_english ? 'CHECKED' : '' }}> Yes
                                 </label>
                                 <div class="help">
                                     Videos will be categorized under English language
