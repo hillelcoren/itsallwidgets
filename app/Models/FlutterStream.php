@@ -103,10 +103,10 @@ class FlutterStream extends Model implements Feedable
         $obj = new \stdClass;
         $obj->id = $this->id;
         $obj->updated_at = $this->updated_at ? $this->updated_at->toIso8601String() : '';
-        $obj->name = html_entity_decode($this->name);
+        $obj->name = mb_convert_encoding(html_entity_decode($this->name, ENT_QUOTES), 'UTF-8', 'UTF-8');
         $obj->slug = $this->slug;
         $obj->type = 'stream';
-        $obj->description = mb_convert_encoding($this->description, 'UTF-8', 'UTF-8');
+        $obj->description = mb_convert_encoding(html_entity_decode($this->description, ENT_QUOTES), 'UTF-8', 'UTF-8');
         $obj->video_id = $this->video_id;
         $obj->starts_at = $this->starts_at;
         $obj->duration = gmdate($this->duration > (60 * 60) ? "H:i:s" : "i:s", $this->duration);
