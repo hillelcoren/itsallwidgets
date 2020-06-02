@@ -424,6 +424,12 @@
     								<i class="fab fa-youtube"></i>
     							</span>
 
+                                @if ($user->channel && $user->channel->name)
+                                    <div class="help">
+                                        Channel: {{ $user->channel->name }}
+                                    </div>
+                                @endif
+
     							@if ($errors->has('youtube_channel_id'))
     								<span class="help is-danger">
     									{{ $errors->first('youtube_channel_id') }}
