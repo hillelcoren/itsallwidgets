@@ -91,7 +91,7 @@
                             <div class="is-medium" v-on:click="toggleEnglish()" style="padding-left: 35px; padding-right: 10px;">
                                 <input type="checkbox" name="englishSwitch"
                                 class="switch is-info" v-model="filter_english">
-                                <label for="englishSwitch" style="padding-top:6px; font-size: 16px">ENGLISH &nbsp;</label>
+                                <label for="englishSwitch" style="padding-top:6px; font-size: 16px">&nbsp;ENGLISH &nbsp;</label>
                             </div>
 
                             <div class="is-medium filter-label" style="padding-left: 26px;">

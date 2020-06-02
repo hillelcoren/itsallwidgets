@@ -155,6 +155,81 @@
 
 			</article>
 
+            <p>&nbsp;</p>
+			<p>&nbsp;</p>
+
+
+            <div class="subtitle">Live Stream</div>
+
+			<article class="message is-dark is-elevated">
+				<div class="message-body">
+
+                    <div class="field">
+						<label class="label" for="youtube_channel_id">
+							YouTube Channel ID
+						</label>
+						<div class="control has-icons-left">
+							{{ Form::text('youtube_channel_id', $user->channel ? $user->channel->channel_id : '', [
+                                    'class' => 'input',
+                                    'placeholder' => 'UC...',
+                                    'minlength' => 24,
+                                    'maxlength' => 24,
+                                    ]) }}
+
+							<span class="icon is-small is-left">
+								<i class="fab fa-youtube"></i>
+							</span>
+
+                            @if ($user->channel && $user->channel->name)
+                                <div class="help">
+                                    Channel: {{ $user->channel->name }}
+                                </div>
+                            @endif
+
+							@if ($errors->has('youtube_channel_id'))
+								<span class="help is-danger">
+									{{ $errors->first('youtube_channel_id') }}
+								</span>
+							@endif
+						</div>
+					</div>
+
+                    <div class="field" style="padding-top: 14px;">
+                        <label class="label">
+							Include
+						</label>
+                        <div class="control">
+                          <label class="radio">
+                            <input type="radio" name="match_videos" value="all" {{ !$user->channel || $user->channel->match_all_videos ? 'CHECKED' : '' }}>
+                            All videos
+                          </label>
+                          <label class="radio">
+                            <input type="radio" name="match_videos" value="flutter" {{ $user->channel && !$user->channel->match_all_videos ? 'CHECKED' : '' }}>
+                            Videos with 'Flutter' in the title
+                          </label>
+                        </div>
+					</div>
+
+                    <div class="field" style="padding-top: 8px;">
+                        <label class="label">
+							Language
+						</label>
+                        <div class="control">
+                          <label class="radio">
+                            <input type="radio" name="language" value="english" {{ !$user->channel || $user->channel->is_english ? 'CHECKED' : '' }}>
+                            English
+                          </label>
+                          <label class="radio">
+                            <input type="radio" name="language" value="other" {{ $user->channel && !$user->channel->is_english ? 'CHECKED' : '' }}>
+                            Other language
+                          </label>
+                        </div>
+					</div>
+
+                </div>
+            </article>
+
+
 			<p>&nbsp;</p>
 			<p>&nbsp;</p>
 
@@ -397,82 +472,6 @@
 				</div>
 			</article>
 
-            <span>
-
-                <p>&nbsp;</p>
-    			<p>&nbsp;</p>
-
-
-                <div class="subtitle">Live Streams</div>
-
-    			<article class="message is-dark is-elevated">
-    				<div class="message-body">
-
-                        <div class="field">
-    						<label class="label" for="youtube_channel_id">
-    							YouTube Channel ID
-    						</label>
-    						<div class="control has-icons-left">
-    							{{ Form::text('youtube_channel_id', $user->channel ? $user->channel->channel_id : '', [
-                                        'class' => 'input',
-                                        'placeholder' => 'UC...',
-                                        'minlength' => 24,
-                                        'maxlength' => 24,
-                                        ]) }}
-
-    							<span class="icon is-small is-left">
-    								<i class="fab fa-youtube"></i>
-    							</span>
-
-                                @if ($user->channel && $user->channel->name)
-                                    <div class="help">
-                                        Channel: {{ $user->channel->name }}
-                                    </div>
-                                @endif
-
-    							@if ($errors->has('youtube_channel_id'))
-    								<span class="help is-danger">
-    									{{ $errors->first('youtube_channel_id') }}
-    								</span>
-    							@endif
-    						</div>
-    					</div>
-
-                        <div class="field" style="padding-top: 14px;">
-                            <label class="label">
-    							Include
-    						</label>
-                            <div class="control">
-                              <label class="radio">
-                                <input type="radio" name="match_videos" value="all" {{ !$user->channel || $user->channel->match_all_videos ? 'CHECKED' : '' }}>
-                                All videos
-                              </label>
-                              <label class="radio">
-                                <input type="radio" name="match_videos" value="flutter" {{ $user->channel && !$user->channel->match_all_videos ? 'CHECKED' : '' }}>
-                                Videos with 'Flutter' in the title
-                              </label>
-                            </div>
-    					</div>
-
-                        <div class="field" style="padding-top: 8px;">
-                            <label class="label">
-    							Language
-    						</label>
-                            <div class="control">
-                              <label class="radio">
-                                <input type="radio" name="language" value="english" {{ !$user->channel || $user->channel->is_english ? 'CHECKED' : '' }}>
-                                English
-                              </label>
-                              <label class="radio">
-                                <input type="radio" name="language" value="other" {{ $user->channel && !$user->channel->is_english ? 'CHECKED' : '' }}>
-                                Other language
-                              </label>
-                            </div>
-    					</div>
-
-                    </div>
-                </article>
-            </span>
 
 
             <p>&nbsp;</p>
