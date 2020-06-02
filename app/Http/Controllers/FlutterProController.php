@@ -177,6 +177,11 @@ class FlutterProController extends Controller
                 $channel = new FlutterChannel;
                 $channel->source = 'youtube';
                 $channel->channel_id = request()->youtube_channel_id;
+                $channel->name = '';
+                $channel->description = '';
+                $channel->custom_url = '';
+                $channel->thumbnail_url = '';
+                $channel->country = '';
             }
 
             $channel->is_english = filter_var(request()->is_english, FILTER_VALIDATE_BOOLEAN);
