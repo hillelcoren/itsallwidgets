@@ -438,34 +438,36 @@
     						</div>
     					</div>
 
-                        <div class="field">
-    						<label class="label" for="match_all_videos">
-    							All Videos
+                        <div class="field" style="padding-top: 18px;">
+                            <label class="label">
+    							Include
     						</label>
-    						<div class="control">
-                                <label class="checkbox">
-                                    {{ Form::hidden('match_all_videos', 0) }}
-    								<input name="match_all_videos" type="checkbox" value="1" {{ $user->channel && $user->channel->match_all_videos ? 'CHECKED' : '' }}> Yes
-                                </label>
-                                <div class="help">
-                                    If unchecked only videos with "Flutter" in the title will be included
-                                </div>
-    						</div>
+                            <div class="control">
+                              <label class="radio">
+                                <input type="radio" name="match_videos" value="all" {{ !$user->channel || $user->channel->match_all_videos ? 'CHECKED' : '' }}>
+                                All videos
+                              </label>
+                              <label class="radio">
+                                <input type="radio" name="match_videos" value="flutter" {{ $user->channel && !$user->channel->match_all_videos ? 'CHECKED' : '' }}>
+                                Videos with 'Flutter' in the title
+                              </label>
+                            </div>
     					</div>
 
-                        <div class="field">
-    						<label class="label" for="is_english">
-    							English
+                        <div class="field" style="padding-top: 12px;">
+                            <label class="label">
+    							Language
     						</label>
-    						<div class="control">
-                                <label class="checkbox">
-                                    {{ Form::hidden('is_english', 0) }}
-    								<input name="is_english" type="checkbox" value="1" {{ $user->channel && $user->channel->is_english ? 'CHECKED' : '' }}> Yes
-                                </label>
-                                <div class="help">
-                                    Videos will be categorized under English language
-                                </div>
-    						</div>
+                            <div class="control">
+                              <label class="radio">
+                                <input type="radio" name="language" value="english" {{ !$user->channel || $user->channel->is_english ? 'CHECKED' : '' }}>
+                                English
+                              </label>
+                              <label class="radio">
+                                <input type="radio" name="language" value="other" {{ $user->channel && !$user->channel->is_english ? 'CHECKED' : '' }}>
+                                Other language
+                              </label>
+                            </div>
     					</div>
 
                     </div>

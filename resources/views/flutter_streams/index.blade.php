@@ -107,18 +107,18 @@
                             </div>
 
                             <!--
-                            <div style="padding-left: 20px">
-                                <a class="button is-white is-slightly-elevated" href="{{ feUrl() }}/feed" target="_blank">
-                                    <i style="font-size: 20px" class="fas fa-rss"></i> &nbsp;
-                                    SCHEDULE
+                            <div style="padding-left: 35px">
+                                <a class="button is-white is-slightly-elevated" href="{{ fsUrl() }}/feed" target="_blank">
+                                    <i style="font-size: 20px" class="fas fa-rss"></i> &nbsp; &nbsp;
+                                    FEED
                                 </a>
                             </div>
                             -->
 
                             <div style="padding-left: 35px">
-                                <a class="button is-white is-slightly-elevated" href="{{ fsUrl() }}/feed" target="_blank">
-                                    <i style="font-size: 20px" class="fas fa-rss"></i> &nbsp; &nbsp;
-                                    FEED
+                                <a class="button is-white is-slightly-elevated" href="{{ iawUrl() . '/auth/google?intended_url=profile/edit' }}">
+                                    <i style="font-size: 20px" class="fas fa-plus-square"></i> &nbsp; &nbsp;
+                                    ADD CHANNEL
                                 </a>
                             </div>
                         </p>
