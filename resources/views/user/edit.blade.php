@@ -530,7 +530,7 @@
 
                     <div class="field">
 						<label class="label" for="is_trainer">
-							Available for Workshops
+							Available to Train
 						</label>
 						<div class="control">
                             <label class="checkbox">

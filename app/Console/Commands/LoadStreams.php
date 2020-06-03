@@ -3,9 +3,12 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Models\User;
 use App\Models\FlutterStream;
 use App\Models\FlutterChannel;
 use App\Repositories\FlutterEventRepository;
+use App\Models\StreamsImported;
+use App\Notifications\StreamsImported;
 
 class LoadStreams extends Command
 {
@@ -56,6 +59,8 @@ class LoadStreams extends Command
                 $this->loadVideos('eventType=upcoming&channelId=' . $channel->channelId);
             }
         }
+
+        User::admin()->notify(new StreamsImported);
     }
 
     public function loadVideos($filter)
