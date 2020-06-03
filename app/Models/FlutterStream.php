@@ -114,7 +114,7 @@ class FlutterStream extends Model implements Feedable
         $obj->duration = gmdate($this->duration > (60 * 60) ? "H:i:s" : "i:s", $this->duration);
         $obj->time_ago = $startsAtDate->diffForHumans();
         $obj->is_upcoming = ! $startsAtDate->addHours(2)->isPast();
-        $obj->is_soon = ! $startsAtDate->subHours(1)->isPast() && $startsAtDate->isPast();
+        $obj->is_soon = ! $startsAtDate->subHours(1)->isPast();
         $obj->is_live = ! $startsAtDate->isPast() && $startsAtDate->addHours(1)->isPast();
         $obj->url = $this->url();
         $obj->video_url = 'https://www.youtube.com/watch?v=' . $this->video_id;
