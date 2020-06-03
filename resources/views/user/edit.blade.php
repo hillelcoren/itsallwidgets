@@ -219,7 +219,9 @@
                             <div class="select">
                               <select name="language_id">
                                 @foreach ($languages as $language)
-                                    <option value="{{ $language->id}}" {{ $user->channel && $language->id == $user->channel->language_id ? ' SELECTED' : '' }}>{{ $language->name}}</option>
+                                    <option value="{{ $language->id}}"
+                                        {{ ($user->channel && $language->id == $user->channel->language_id) || (! $user->channel && $language->id == 1) ? ' SELECTED' : '' }}
+                                    >{{ $language->name}}</option>
                                 @endforeach
                               </select>
                             </div>
