@@ -214,7 +214,17 @@
                                                         </div>
                                                     </div>
                                                     <div v-if="stream.is_upcoming" class="is-pulled-right">
-                                                        <span class="tag is-info">Upcoming</span>
+                                                        <div v-if="stream.is_live">
+                                                            <span class="tag is-danger">Live Now</span>
+                                                        </div>
+                                                        <div v-if="!stream.is_live">
+                                                            <div v-if="stream.is_soon">
+                                                                <span class="tag is-warning">Soon</span>
+                                                            </div>
+                                                            <div v-if="!stream.is_soon">
+                                                                <span class="tag is-info">Upcoming</span>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
