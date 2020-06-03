@@ -205,6 +205,10 @@
                                                     <SPAN v-if="stream.is_soon">S </SPAN>
                                                     <SPAN v-if="stream.is_live">L </SPAN>
 
+<SPAN v-if="stream.is_past">P </SPAN>
+<SPAN v-if="stream.is_past_add">A </SPAN>
+<SPAN v-if="stream.is_past_sub">S </SPAN>
+
                                                     <div v-if="!stream.is_upcoming" class="is-pulled-right">
                                                         <div v-if="sort_by == 'sort_likes'" class="is-pulled-right">
                                                             @{{ stream.like_count }} likes
