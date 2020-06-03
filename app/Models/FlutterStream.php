@@ -100,6 +100,8 @@ class FlutterStream extends Model implements Feedable
                 mb_convert_encoding( '&#' . ( 127397 + ord( $country_code[1] ) ) . ';', 'UTF-8', 'HTML-ENTITIES');
                 */
 
+        $startsAtDate = \Carbon\Carbon::parse($this->starts_at);
+
         $obj = new \stdClass;
         $obj->id = $this->id;
         $obj->updated_at = $this->updated_at ? $this->updated_at->toIso8601String() : '';
@@ -110,8 +112,10 @@ class FlutterStream extends Model implements Feedable
         $obj->video_id = $this->video_id;
         $obj->starts_at = $this->starts_at;
         $obj->duration = gmdate($this->duration > (60 * 60) ? "H:i:s" : "i:s", $this->duration);
-        $obj->time_ago = \Carbon\Carbon::parse($this->starts_at)->diffForHumans();
-        $obj->is_upcoming = ! \Carbon\Carbon::parse($this->starts_at)->isPast();
+        $obj->time_ago = $startsAtDate->diffForHumans();
+        $obj->is_upcoming = ! $startsAtDate->addHours(2)->isPast();
+        $obj->is_soon = ! $startsAtDate->subHours(1)->isPast() && $startsAtDate->isPast();
+        $obj->is_live = ! $startsAtDate->isPast() && $startsAtDate->addHours(1)->isPast();
         $obj->url = $this->url();
         $obj->video_url = 'https://www.youtube.com/watch?v=' . $this->video_id;
         $obj->embed_url = 'https://www.youtube.com/embed/' . $this->video_id;

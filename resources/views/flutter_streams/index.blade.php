@@ -202,6 +202,10 @@
                                                 <div style="color:#888; font-size:15px; padding-top: 10px;" class="channel-name">
                                                     @{{ stream.time_ago }}
 
+                                                    <SPAN v-if="stream.is_upcoming">U </SPAN>
+                                                    <SPAN v-if="stream.is_soon">S </SPAN>
+                                                    <SPAN v-if="stream.is_live">L </SPAN>                                                    
+
                                                     <div v-if="!stream.is_upcoming" class="is-pulled-right">
                                                         <div v-if="sort_by == 'sort_likes'" class="is-pulled-right">
                                                             @{{ stream.like_count }} likes
