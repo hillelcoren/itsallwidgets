@@ -39,7 +39,7 @@ Route::group(['domain' => '127.0.0.1'], function() {
     Route::get('flutter-streams/feed', 'FlutterStreamController@jsonFeed');
     Route::get('{flutter_stream}/hide', 'FlutterStreamController@hideChannel');
     Route::get('{flutter_stream}/show', 'FlutterStreamController@showChannel');
-    Route::get('{flutter_stream}/english', 'FlutterStreamController@englishChannel');
+    Route::get('{flutter_stream}/lang', 'FlutterStreamController@englishChannel');
     Route::get('search_streams', 'FlutterStreamController@search');
     //Route::get('{flutter_stream}', 'FlutterStreamController@show');
 });
