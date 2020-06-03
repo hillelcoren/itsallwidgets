@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Language;
 use App\Models\FlutterChannel;
 use App\Http\Requests\UpdateProProfile;
 use Illuminate\Http\Request;
@@ -122,6 +123,7 @@ class FlutterProController extends Controller
         $user = auth()->user();
 
         $data = [
+            'languages' => Language::orderBy('name')->get(),
             'user' => $user,
             'useBlackHeader' => true,
         ];
@@ -185,7 +187,7 @@ class FlutterProController extends Controller
                 $channel->country = '';
             }
 
-            $channel->is_english = request()->language == 'english';
+            $channel->language_id = request()->language_id;
             $channel->match_all_videos = request()->match_videos == 'all';
             $channel->save();
             $channel->fresh();

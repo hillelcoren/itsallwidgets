@@ -40,7 +40,7 @@ class FlutterStream extends Model implements Feedable
     public function scopeEnglish($query)
     {
         $query->whereHas('channel', function($query) {
-            return $query->where('is_english', '=', 1);
+            return $query->where('language_id', '=', 1);
         });
     }
 

@@ -215,6 +215,16 @@
 							Language
 						</label>
                         <div class="control">
+
+                            <div class="select">
+                              <select name="language_id">
+                                @foreach ($languages as $language)
+                                    <option value="{{ $language->id}}" {{ $user->channel && $language->id == $user->channel->language_id ? ' SELECTED' : '' }}>{{ $language->name}}</option>
+                                @endforeach
+                              </select>
+                            </div>
+
+                        <!--
                           <label class="radio">
                             <input type="radio" name="language" value="english" {{ !$user->channel || $user->channel->is_english ? 'CHECKED' : '' }}>
                             English
@@ -224,6 +234,7 @@
                             Other language
                           </label>
                         </div>
+                        -->
 					</div>
 
                 </div>

@@ -55,11 +55,7 @@ class LoadStreams extends Command
                 ->get();
 
             foreach ($channels as $channel) {
-                if (! $channel->channelId) {
-                    continue;
-                }
-
-                $this->loadVideos('eventType=upcoming&channelId=' . $channel->channelId);
+                $this->loadVideos('eventType=upcoming&channelId=' . $channel->channel_id);
             }
         }
 
@@ -140,7 +136,7 @@ class LoadStreams extends Command
                 $channel->source = 'youtube';
                 $channel->channel_id = $item->id;
                 $channel->is_visible = false;
-                $channel->is_english = true;
+                $channel->language_id = 1;
             }
 
             $channel->name = $item->snippet->title;

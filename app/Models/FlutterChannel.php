@@ -21,6 +21,6 @@ class FlutterChannel extends Model
 
     public function scopeEnglish($query)
     {
-        $query->where('is_english', '=', true);
+        $query->where('language_id', '=', 1);
     }
 }
