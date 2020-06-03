@@ -92,7 +92,7 @@ Route::group(['domain' => 'flutterstreams.{tld}'], function() {
     //Route::get('sitemap.xml', 'FlutterStreamController@sitemap');
     Route::get('{flutter_stream}/hide', 'FlutterStreamController@hideChannel');
     Route::get('{flutter_stream}/show', 'FlutterStreamController@showChannel');
-    Route::get('{flutter_stream}/english', 'FlutterStreamController@englishChannel');
+    Route::get('{flutter_stream}/lang', 'FlutterStreamController@englishChannel');
     //Route::get('{flutter_stream}', 'FlutterStreamController@show');
 });
 
