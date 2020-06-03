@@ -216,27 +216,16 @@
 						</label>
                         <div class="control">
 
-                            <div class="select">
-                              <select name="language_id">
-                                @foreach ($languages as $language)
-                                    <option value="{{ $language->id}}"
-                                        {{ ($user->channel && $language->id == $user->channel->language_id) || (! $user->channel && $language->id == 1) ? ' SELECTED' : '' }}
-                                    >{{ $language->name}}</option>
-                                @endforeach
-                              </select>
-                            </div>
-
-                        <!--
-                          <label class="radio">
-                            <input type="radio" name="language" value="english" {{ !$user->channel || $user->channel->is_english ? 'CHECKED' : '' }}>
-                            English
-                          </label>
-                          <label class="radio">
-                            <input type="radio" name="language" value="other" {{ $user->channel && !$user->channel->is_english ? 'CHECKED' : '' }}>
-                            Other language
-                          </label>
+                        <div class="select">
+                          <select name="language_id">
+                            @foreach ($languages as $language)
+                                <option value="{{ $language->id}}"
+                                    {{ ($user->channel && $language->id == $user->channel->language_id) || (! $user->channel && $language->id == 1) ? ' SELECTED' : '' }}
+                                >{{ $language->name}}</option>
+                            @endforeach
+                          </select>
                         </div>
-                        -->
+
 					</div>
 
                 </div>

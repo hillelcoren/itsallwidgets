@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\FlutterStream;
+use App\Models\Language;
 use Illuminate\Http\Request;
 
 class FlutterStreamController extends Controller
@@ -124,8 +125,11 @@ class FlutterStreamController extends Controller
             $stream = $tld;
         }
 
+        $language = Language::where('locale', '=', request()->locale)
+            ->firstOrFail();
+
         $channel = $stream->channel;
-        $channel->is_english = ! $channel->is_english;
+        $channel->language_id = $language->id;
         $channel->save();
 
         return redirect(url('/') . '?clear_cache=true');
