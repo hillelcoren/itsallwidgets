@@ -483,7 +483,7 @@
 
                     @if (isIAW() && !request()->is('*/edit'))
                         &nbsp;
-                        <a style="padding: 20px 32px 18px 32px; color:white; background-color: #366cb6; border-color:#366cb6;" target="_blank"
+                        <a style="padding: 20px 32px 18px 32px; color:white;" target="_blank"
                             class="button is-elevated-dark" href="@yield('second_header_button_url', 'https://twitter.com/itsallwidgets')">
                             <span class="icon">
                                 <i class="@yield('second_header_button_icon', 'fab fa-twitter')"></i>
