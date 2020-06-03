@@ -42,21 +42,32 @@ class LoadStreams extends Command
     {
         $this->info('Running...');
 
-        $this->loadVideos();
+        //$this->loadVideos('q=flutter');
 
         if (! $this->option('all')) {
-            $this->loadVideos('upcoming');
+            $this->loadVideos('eventType=upcoming&q=flutter');
+
+            $channels = FlutterChannel::visible()
+                ->where('match_all_videos', '=', true)
+                ->orderBy('id')
+                ->get();
+
+            foreach ($channels as $channel) {
+                $this->loadVideos('eventType=upcoming&channelId=' . $channel->channelId);
+            }
         }
     }
 
-    public function loadVideos($type = false)
+    public function loadVideos($filter)
     {
+        $this->info('loadVideos - filter: ' . $filter);
+
         // Load videos
-        $url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=flutter&type=video&order=date&key=';
+        $url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&type=video&order=date&key=';
         $url .= config('services.youtube.key');
 
-        if ($type) {
-            $url .= '&eventType=' . $type;
+        if ($filter) {
+            $url .= '&' . $filter;
         }
 
         $data = json_decode(file_get_contents($url));
@@ -120,6 +131,8 @@ class LoadStreams extends Command
                 $channel = new FlutterChannel;
                 $channel->source = 'youtube';
                 $channel->channel_id = $item->id;
+                $channel->is_visible = false;
+                $channel->is_english = true;
             }
 
             $channel->name = $item->snippet->title;
