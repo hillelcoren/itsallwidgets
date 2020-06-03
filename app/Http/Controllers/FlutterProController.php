@@ -175,6 +175,7 @@ class FlutterProController extends Controller
 
             if (! $channel) {
                 $channel = new FlutterChannel;
+                $channel->is_visible = true;
                 $channel->source = 'youtube';
                 $channel->channel_id = request()->youtube_channel_id;
                 $channel->name = '';
