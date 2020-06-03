@@ -100,7 +100,7 @@ class FlutterStream extends Model implements Feedable
                 mb_convert_encoding( '&#' . ( 127397 + ord( $country_code[1] ) ) . ';', 'UTF-8', 'HTML-ENTITIES');
                 */
 
-        $startsAtDate = \Carbon\Carbon::parse($this->starts_at);
+        $startsAtDate = \Carbon\Carbon::parse($this->starts_at, 'UTC');
 
         $obj = new \stdClass;
         $obj->id = $this->id;
