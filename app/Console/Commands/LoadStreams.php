@@ -55,6 +55,10 @@ class LoadStreams extends Command
                 ->get();
 
             foreach ($channels as $channel) {
+                if (! $channel->channelId) {
+                    continue;
+                }
+
                 $this->loadVideos('eventType=upcoming&channelId=' . $channel->channelId);
             }
         }
