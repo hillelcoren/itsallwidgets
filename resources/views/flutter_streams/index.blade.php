@@ -199,33 +199,33 @@
                                                     </a>
                                                 </div>
 
-                                                <div style="color:#888; font-size:15px; padding-top: 10px;" class="channel-name">
-                                                    @{{ stream.time_ago }}
+                                                <div v-if="!stream.is_upcoming" class="is-pulled-right">
+                                                    <div v-if="sort_by == 'sort_likes'" class="is-pulled-right">
+                                                        @{{ stream.like_count }} likes
+                                                    </div>
+                                                    <div v-if="sort_by == 'sort_views'" class="is-pulled-right">
+                                                        @{{ stream.view_count }} views
+                                                    </div>
+                                                    <div v-if="sort_by == 'sort_comments'" class="is-pulled-right">
+                                                        @{{ stream.comment_count }} comments
+                                                    </div>
+                                                </div>
+                                                <div v-if="stream.is_upcoming" class="is-pulled-right">
+                                                    <div v-if="stream.is_live">
+                                                        <span class="tag is-danger">Live Now</span>
+                                                    </div>
+                                                    <div v-if="!stream.is_live">
+                                                        <div v-if="stream.is_soon">
+                                                            <span class="tag is-warning">Starts Soon</span>
+                                                        </div>
+                                                        <div v-if="!stream.is_soon">
+                                                            <span class="tag is-info">Upcoming</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                                                    <div v-if="!stream.is_upcoming" class="is-pulled-right">
-                                                        <div v-if="sort_by == 'sort_likes'" class="is-pulled-right">
-                                                            @{{ stream.like_count }} likes
-                                                        </div>
-                                                        <div v-if="sort_by == 'sort_views'" class="is-pulled-right">
-                                                            @{{ stream.view_count }} views
-                                                        </div>
-                                                        <div v-if="sort_by == 'sort_comments'" class="is-pulled-right">
-                                                            @{{ stream.comment_count }} comments
-                                                        </div>
-                                                    </div>
-                                                    <div v-if="stream.is_upcoming" class="is-pulled-right">
-                                                        <div v-if="stream.is_live">
-                                                            <span class="tag is-danger">Live Now</span>
-                                                        </div>
-                                                        <div v-if="!stream.is_live">
-                                                            <div v-if="stream.is_soon">
-                                                                <span class="tag is-warning">Soon</span>
-                                                            </div>
-                                                            <div v-if="!stream.is_soon">
-                                                                <span class="tag is-info">Upcoming</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                <div style="color:#888; font-size:15px; padding-top: 10px;" class="channel-name is-pulled-left">
+                                                    @{{ stream.time_ago }}
                                                 </div>
                                             </div>
                                         </div>
