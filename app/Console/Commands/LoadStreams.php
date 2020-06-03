@@ -7,7 +7,6 @@ use App\Models\User;
 use App\Models\FlutterStream;
 use App\Models\FlutterChannel;
 use App\Repositories\FlutterEventRepository;
-use App\Models\StreamsImported;
 use App\Notifications\StreamsImported;
 
 class LoadStreams extends Command
