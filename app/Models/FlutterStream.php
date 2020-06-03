@@ -114,8 +114,8 @@ class FlutterStream extends Model implements Feedable
         $obj->duration = gmdate($this->duration > (60 * 60) ? "H:i:s" : "i:s", $this->duration);
         $obj->time_ago = $startsAtDate->diffForHumans();
         $obj->is_upcoming = ! $startsAtDate->addHours(2)->isPast();
-        $obj->is_soon = ! $startsAtDate->isPast() && $startsAtDate->subHours(1)->isPast();
-        $obj->is_live = $startsAtDate->isPast() && ! $startsAtDate->addHours(1)->isPast();
+        $obj->is_soon = ! $startsAtDate->isPast() && $startsAtDate->subHours(10)->isPast();
+        $obj->is_live = $startsAtDate->isPast() && ! $startsAtDate->addHours(10)->isPast();
         $obj->is_past = $startsAtDate->isPast();
         $obj->is_past_sub  = $startsAtDate->subHours(1)->isPast();
         $obj->is_past_add  = $startsAtDate->addHours(1)->isPast();
