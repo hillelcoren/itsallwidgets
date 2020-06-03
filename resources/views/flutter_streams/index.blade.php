@@ -203,8 +203,9 @@
                                                     @{{ stream.time_ago }}
 
                                                     <SPAN v-if="stream.is_past">P </SPAN>
-                                                    <SPAN v-if="stream.is_past_add">A </SPAN>
-                                                    <SPAN v-if="stream.is_past_sub">S </SPAN>
+                                                    <SPAN v-if="stream.is_past_sub1">1 </SPAN>
+                                                    <SPAN v-if="stream.is_past_sub2">2 </SPAN>
+                                                    <SPAN v-if="stream.is_past_sub3">3 </SPAN>
 
                                                     <!--
                                                     <SPAN v-if="stream.is_soon">S </SPAN>
