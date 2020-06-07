@@ -58,7 +58,7 @@ class TweetStream extends Command
 
             $startsAtDate = Carbon::parse($stream->starts_at);
 
-            $tweet = 'Starting ' . $startsAtDate->diffForHumans() . ': ' . $stream->name;
+            $tweet = 'Starting ' . $startsAtDate->diffForHumans() . '... ' . $stream->name;
 
             $parameters = ['status' => $tweet];
 
