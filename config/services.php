@@ -52,6 +52,13 @@ return [
         'access_secret' => env('TWITTER_ACCESS_SECRET')
     ],
 
+    'twitter_streams' => [
+        'consumer_key' => env('TWITTER_STREAMS_CONSUMER_KEY'),
+        'consumer_secret' => env('TWITTER_STREAMS_CONSUMER_SECRET'),
+        'access_token' => env('TWITTER_STREAMS_ACCESS_TOKEN'),
+        'access_secret' => env('TWITTER_STREAMS_ACCESS_SECRET')
+    ],
+
     'facebook_poster' => [
     	'app_id' => env('FACEBOOK_APP_ID'),
     	'app_secret' => env('FACEBOOK_APP_SECRET'),
