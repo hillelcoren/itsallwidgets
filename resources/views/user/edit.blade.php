@@ -225,8 +225,14 @@
                             @endforeach
                           </select>
                         </div>
-
 					</div>
+
+                    <div style="padding-top: 25px;">
+                        For guidance producing a live stream check out this
+                        <a href="https://medium.com/flutter/best-practices-for-hosting-a-live-streaming-coding-session-18d28b3a8d93" target="_blank">article</a>
+                        and
+                        <a href="https://www.youtube.com/watch?v=mGkuOQK3kAM" target="_blank">video</a>
+                    </div>
 
                 </div>
             </article>
