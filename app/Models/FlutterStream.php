@@ -31,7 +31,7 @@ class FlutterStream extends Model implements Feedable
 
     public function scopeVisible($query)
     {
-        $query->whereRaw('(starts_at >= DATE_SUB(NOW(), INTERVAL 1 HOUR) OR view_count > 0)')
+        $query->whereRaw('(starts_at >= DATE_SUB(NOW(), INTERVAL 1 DAY) OR view_count > 0)')
             ->whereHas('channel', function($query) {
             return $query->where('is_visible', '=', 1);
         });
