@@ -55,7 +55,7 @@ class LoadStreams extends Command
                 ->get();
 
             foreach ($channels as $channel) {
-                $this->loadVideos('eventType=upcoming&channelId=' . $channel->channel_id);
+                $this->loadVideos('channelId=' . $channel->channel_id);
             }
         }
 
@@ -164,6 +164,11 @@ class LoadStreams extends Command
                 $this->info($videoId . ' - ' . $video->snippet->title . ' - ' . $item->liveStreamingDetails->scheduledStartTime);
             } else {
                 $this->info('Skipping');
+                continue;
+            }
+
+            if (! property_exists($item->statistics, 'likeCount')) {
+                $this->info('Skipping - NO LIKE');
                 continue;
             }
 
