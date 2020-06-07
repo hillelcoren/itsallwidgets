@@ -58,4 +58,6 @@
             <i class="fas fa-info-circle"></i> &nbsp; About
         </a>
     @endif
+
+    <br/>
 @endif

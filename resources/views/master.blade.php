@@ -260,7 +260,13 @@
         @endif
     }
 
-
+    @if (isset($useBlackHeader))
+        @media screen and (max-width: 1087px) {
+            .hero.is-info .navbar-menu {
+                background-color: #111111;                
+            }
+        }
+    @endif
 
     .navigation-button {
         position: absolute;
