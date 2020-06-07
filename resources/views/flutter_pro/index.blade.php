@@ -88,7 +88,7 @@ padding: 1rem 1rem 4rem 1rem;
                         <p class="control is-expanded has-icons-left">
 
                             <input v-model="search" class="input is-medium" type="text" placeholder="Search {{ $count }} Flutter developers..."
-                            autofocus="true" style="margin-top: 10px" v-bind:style="{ backgroundColor: searchBackgroundColor()}">
+                                style="margin-top: 10px" v-bind:style="{ backgroundColor: searchBackgroundColor()}">
                             <span class="icon is-small is-left" style="margin-top: 10px">
                                 <i class="fas fa-search"></i>
                             </span>

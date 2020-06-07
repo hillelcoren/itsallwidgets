@@ -44,7 +44,6 @@
                         <input
                         class="input {{ $errors->has('twitter_url') ? ' is-danger' : '' }}"
                         name="secret"
-                        autofocus="true"
                         required>
                     </div>
                 </div>
