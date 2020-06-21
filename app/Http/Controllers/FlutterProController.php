@@ -177,7 +177,6 @@ class FlutterProController extends Controller
 
             if (! $channel) {
                 $channel = new FlutterChannel;
-                $channel->is_visible = true;
                 $channel->source = 'youtube';
                 $channel->channel_id = request()->youtube_channel_id;
                 $channel->name = '';
@@ -187,6 +186,7 @@ class FlutterProController extends Controller
                 $channel->country = '';
             }
 
+            $channel->is_visible = true;
             $channel->language_id = request()->language_id;
             $channel->match_all_videos = request()->match_videos == 'all';
             $channel->save();
