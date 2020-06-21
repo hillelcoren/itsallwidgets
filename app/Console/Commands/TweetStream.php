@@ -7,6 +7,7 @@ use App\Models\FlutterStream;
 use App\Models\User;
 use Abraham\TwitterOAuth\TwitterOAuth;
 use Carbon\Carbon;
+use App\Notifications\StreamsImported;
 
 class TweetStream extends Command
 {
@@ -51,10 +52,11 @@ class TweetStream extends Command
         );
 
         $streams = FlutterStream::visible()
-                    //->whereRaw('starts_at < NOW() AND starts_at > DATE_SUB(NOW(), INTERVAL 1 HOUR)')
+                    ->whereRaw('starts_at < DATE_SUB(NOW(), INTERVAL 10 MINUTE) AND starts_at >= DATE_SUB(NOW(), INTERVAL 20 MINUTE)')
                     ->with('channel.language')
                     ->orderBy('starts_at')
                     ->orderBy('id')
+                    ->limit(3)
                     ->get();
 
         foreach ($streams as $stream) {
@@ -67,7 +69,7 @@ class TweetStream extends Command
                 $tweet .= ' (' . $handle . ')';
             }
 
-            $tweet .= ' @FlutterDev live stream starting ' . $startsAtDate->diffForHumans() . '...';
+            $tweet .= ' live stream starting ' . $startsAtDate->diffForHumans() . '...';
             //$tweet .= ' #' . $stream->channel->language->name . "\n\n";
 
             $tweet .= "\n\n"
@@ -79,5 +81,7 @@ class TweetStream extends Command
             $this->info("TWEET:\n\n" . $tweet . "\n\n");
             //$response = $twitter->post('statuses/update', $parameters);
         }
+
+        User::admin()->notify(new StreamsImported);
     }
 }
