@@ -22,6 +22,10 @@ class AddRtlLanguages extends Migration
         foreach ($languages as $language) {
             Language::create($language);
         }
+
+        Schema::table('flutter_streams', function(Blueprint $table) {
+            $table->boolean('was_tweeted')->default(false);
+        });
     }
 
     /**
@@ -31,6 +35,8 @@ class AddRtlLanguages extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('flutter_streams', function(Blueprint $table) {
+            $table->dropColumn('was_tweeted');
+        });
     }
 }

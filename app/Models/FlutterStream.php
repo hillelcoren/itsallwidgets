@@ -54,6 +54,11 @@ class FlutterStream extends Model implements Feedable
         return $this->belongsTo('App\Models\FlutterChannel', 'channel_id');
     }
 
+    public function getThumbnailUrl()
+    {
+        return public_path("streams/stream-{$this->id}.jpg");
+    }
+
     public function getVideoUrl()
     {
         return 'https://www.youtube.com/watch?v=' . $this->video_id;

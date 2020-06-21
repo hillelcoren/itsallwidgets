@@ -52,25 +52,29 @@ class TweetStream extends Command
         );
 
         $streams = FlutterStream::visible()
-                    //->whereRaw('starts_at < DATE_SUB(NOW(), INTERVAL 10 MINUTE) AND starts_at >= DATE_SUB(NOW(), INTERVAL 20 MINUTE)')
+                    ->where('was_tweeted', '=', false)
+                    ->whereRaw('starts_at < DATE_SUB(NOW(), INTERVAL 10 MINUTE) AND starts_at >= DATE_SUB(NOW(), INTERVAL 20 MINUTE)')
                     ->with('channel.language')
                     ->orderBy('starts_at')
                     ->orderBy('id')
-                    //->limit(3)
-                    ->limit(1)
+                    ->limit(3)
                     ->get();
 
         foreach ($streams as $stream) {
-            $startsAtDate = Carbon::parse($stream->starts_at);
+            $response = $twitter->upload('media/upload', [
+                'media' => $stream->getThumbnailUrl(),
+                'media_type' => 'image/jpg'
+            ], true);
 
-            $tweet = $stream->channel->name;
+            $startsAtDate = Carbon::parse($stream->starts_at);
+            $tweet = '📢 ' . $stream->channel->name . "'s ";
 
             $user = User::where('channel_id', '=', $stream->channel_id)->first();
             if ($user && ($handle = $user->twitterHandle())) {
                 $tweet .= ' (' . $handle . ')';
             }
 
-            $tweet .= ' live stream starting ' . $startsAtDate->diffForHumans();
+            $tweet .= ' live stream is starting ' . $startsAtDate->diffForHumans() . ' 🙌';
             //$tweet .= ' #' . $stream->channel->language->name . "\n\n";
 
             $tweet .= "\n\n"
@@ -84,12 +88,17 @@ class TweetStream extends Command
                 $tweet = substr($tweet, 0, $index) . '...';
             }
 
-            $parameters = ['status' => $tweet];
+            $parameters = [
+                'status' => $tweet,
+                'media_ids' => $response->media_id_string
+            ];
 
-            $this->info("TWEET:\n\n" . $tweet . "\n\n");
-            //$response = $twitter->post('statuses/update', $parameters);
+            $response = $twitter->post('statuses/update', $parameters);
+
+            $stream->was_tweeted = true;
+            $stream->save();
         }
 
-        //User::admin()->notify(new StreamsImported);
+        User::admin()->notify(new StreamsImported);
     }
 }
