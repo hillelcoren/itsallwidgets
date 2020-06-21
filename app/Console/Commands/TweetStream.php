@@ -53,7 +53,7 @@ class TweetStream extends Command
 
         $streams = FlutterStream::visible()
                     ->where('was_tweeted', '=', false)
-                    ->whereRaw('starts_at < DATE_SUB(NOW(), INTERVAL 10 MINUTE) AND starts_at >= DATE_SUB(NOW(), INTERVAL 20 MINUTE)')
+                    ->whereRaw('starts_at < DATE_ADD(NOW(), INTERVAL 10 MINUTE) AND starts_at >= DATE_SUB(NOW(), INTERVAL 10 MINUTE)')
                     ->with('channel.language')
                     ->orderBy('starts_at')
                     ->orderBy('id')
