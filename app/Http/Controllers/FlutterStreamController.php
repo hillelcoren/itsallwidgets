@@ -16,9 +16,10 @@ class FlutterStreamController extends Controller
         }
 
         $data = [
-            'count' => FlutterStream::visible()->count(),
+            'count' => request()->show_all ? FlutterStream::count() : FlutterStream::visible()->count(),
             'banner' => getBanner(),
             'useBlackHeader' => true,
+            'showAll' => request()->show_all,
         ];
 
         return view('flutter_streams.index', $data);
@@ -34,7 +35,9 @@ class FlutterStreamController extends Controller
 
         $streams = FlutterStream::where(function($query) use ($source, $search, $isEnglish) {
 
-            $query->visible();
+            if (!request()->show_all) {
+                $query->visible();
+            }
 
             if ($source) {
                 $query->where('source', '=', $source);

@@ -415,7 +415,8 @@
                         + '&sort_by=' + sortBy
                         + '&page=' + page
                         + '&source=' + source
-                        + '&is_english=' + (isEnglish ? '1' : '');
+                        + '&is_english=' + (isEnglish ? '1' : '')
+                        + '&show_all={{ $showAll ? '1' : '' }}';
 
                         $.get(url,
                         function (data) {
