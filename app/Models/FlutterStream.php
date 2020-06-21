@@ -56,11 +56,7 @@ class FlutterStream extends Model implements Feedable
 
     public function getVideoUrl()
     {
-        if ($this->source == 'youtube') {
-            return 'https://www.youtube.com/watch?v=' . $this->video_id;
-        } else {
-            return '';
-        }
+        return 'https://www.youtube.com/watch?v=' . $this->video_id;
     }
 
     public function toFeedItem()

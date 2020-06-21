@@ -14,6 +14,11 @@ class FlutterChannel extends Model
         'description',
     ];
 
+    public function language()
+    {
+        return $this->belongsTo('App\Models\Language');
+    }
+
     public function scopeVisible($query)
     {
         $query->where('is_visible', '=', true);
