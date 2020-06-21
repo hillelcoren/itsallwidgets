@@ -52,11 +52,12 @@ class TweetStream extends Command
         );
 
         $streams = FlutterStream::visible()
-                    ->whereRaw('starts_at < DATE_SUB(NOW(), INTERVAL 10 MINUTE) AND starts_at >= DATE_SUB(NOW(), INTERVAL 20 MINUTE)')
+                    //->whereRaw('starts_at < DATE_SUB(NOW(), INTERVAL 10 MINUTE) AND starts_at >= DATE_SUB(NOW(), INTERVAL 20 MINUTE)')
                     ->with('channel.language')
                     ->orderBy('starts_at')
                     ->orderBy('id')
-                    ->limit(3)
+                    //->limit(3)
+                    ->limit(1)
                     ->get();
 
         foreach ($streams as $stream) {
@@ -69,12 +70,19 @@ class TweetStream extends Command
                 $tweet .= ' (' . $handle . ')';
             }
 
-            $tweet .= ' live stream starting ' . $startsAtDate->diffForHumans() . '...';
+            $tweet .= ' live stream starting ' . $startsAtDate->diffForHumans();
             //$tweet .= ' #' . $stream->channel->language->name . "\n\n";
 
             $tweet .= "\n\n"
                 . $stream->getVideoUrl() . "\n\n"
                 . $stream->name . ': ' . $stream->description;
+
+
+            if (strlen($tweet) >= 280) {
+                $tweet = substr($tweet, 0, 275);
+                $index = strrpos($tweet, ' ');
+                $tweet = substr($tweet, 0, $index) . '...';
+            }
 
             $parameters = ['status' => $tweet];
 
@@ -82,6 +90,6 @@ class TweetStream extends Command
             //$response = $twitter->post('statuses/update', $parameters);
         }
 
-        User::admin()->notify(new StreamsImported);
+        //User::admin()->notify(new StreamsImported);
     }
 }
