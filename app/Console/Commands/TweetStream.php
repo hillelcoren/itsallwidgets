@@ -62,6 +62,7 @@ class TweetStream extends Command
 
             $parameters = ['status' => $tweet];
 
+            $this->info('TWEET: ' . $tweet);
             //$response = $twitter->post('statuses/update', $parameters);
         }
     }
