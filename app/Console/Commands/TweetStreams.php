@@ -9,21 +9,21 @@ use Abraham\TwitterOAuth\TwitterOAuth;
 use Carbon\Carbon;
 use App\Notifications\StreamsImported;
 
-class TweetStream extends Command
+class TweetStreams extends Command
 {
     /**
     * The name and signature of the console command.
     *
     * @var string
     */
-    protected $signature = 'itsallwidgets:tweet_stream';
+    protected $signature = 'itsallwidgets:tweet_streams';
 
     /**
     * The console command description.
     *
     * @var string
     */
-    protected $description = 'Tweet live stream';
+    protected $description = 'Tweet live streams';
 
     /**
     * Create a new command instance.
