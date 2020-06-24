@@ -52,6 +52,7 @@ class TweetStreams extends Command
         );
 
         $streams = FlutterStream::visible()
+                    ->english()
                     ->where('was_tweeted', '=', false)
                     ->whereRaw('starts_at < DATE_ADD(NOW(), INTERVAL 10 MINUTE) AND starts_at >= DATE_SUB(NOW(), INTERVAL 10 MINUTE)')
                     ->with('channel.language')
@@ -67,7 +68,7 @@ class TweetStreams extends Command
             ], true);
 
             $startsAtDate = Carbon::parse($stream->starts_at);
-            $tweet = '📢 ' . $stream->channel->name . "'s ";
+            $tweet = '📢 ' . $stream->channel->name . "'s";
 
             $user = User::where('channel_id', '=', $stream->channel_id)->first();
             if ($user && ($handle = $user->twitterHandle())) {
