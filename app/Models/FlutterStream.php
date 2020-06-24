@@ -37,6 +37,13 @@ class FlutterStream extends Model implements Feedable
         });
     }
 
+    public function scopeNotVisible($query)
+    {
+        $query->whereHas('channel', function($query) {
+            return $query->where('is_visible', '=', 0);
+        });
+    }
+
     public function scopeEnglish($query)
     {
         $query->whereHas('channel', function($query) {

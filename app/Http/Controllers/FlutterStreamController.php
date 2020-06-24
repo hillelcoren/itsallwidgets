@@ -35,7 +35,9 @@ class FlutterStreamController extends Controller
 
         $streams = FlutterStream::where(function($query) use ($source, $search, $isEnglish) {
 
-            if (!request()->show_all) {
+            if (request()->show_all) {
+                $query->notVisible();
+            } else {
                 $query->visible();
             }
 
