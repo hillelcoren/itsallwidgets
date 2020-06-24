@@ -121,7 +121,7 @@ class FlutterStreamController extends Controller
         $channel->is_visible = true;
         $channel->save();
 
-        return redirect(url('/') . '?clear_cache=true');
+        return redirect(url('/') . '?clear_cache=true&show_all=true');
     }
 
     public function englishChannel($tld, $stream = false)
