@@ -98,8 +98,6 @@ class TweetStreams extends Command
 
             $stream->was_tweeted = true;
             $stream->save();
-
-            //User::admin()->notify(new StreamsImported);
         }
     }
 }
