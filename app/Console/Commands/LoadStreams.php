@@ -58,7 +58,7 @@ class LoadStreams extends Command
             }
         }
 
-        User::admin()->notify(new StreamsImported);
+        //User::admin()->notify(new StreamsImported);
     }
 
     public function loadVideos($filter)
