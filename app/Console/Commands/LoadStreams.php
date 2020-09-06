@@ -57,6 +57,8 @@ class LoadStreams extends Command
                 $this->loadVideos('channelId=' . $channel->channel_id);
             }
         }
+
+        //User::admin()->notify(new StreamsImported);
     }
 
     public function loadVideos($filter)
