@@ -82,6 +82,7 @@ Route::group(['domain' => 'flutterevents.{tld}'], function() {
     Route::get('feed', 'FlutterEventController@jsonFeed');
     Route::get('flutter-groups', 'FlutterEventController@groups');
     Route::get('sitemap.xml', 'FlutterEventController@sitemap');
+    Route::get('{flutter_event}/hide', 'FlutterEventController@hide');
     Route::get('{flutter_event}', 'FlutterEventController@show');
 });
 

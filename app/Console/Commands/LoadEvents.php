@@ -127,6 +127,9 @@ class LoadEvents extends Command
                 'harmonica',
                 'book club',
                 'bookclub',
+                'singles',
+                'murder',
+                'butterflies',
             ];
 
             foreach ($terms as $term) {

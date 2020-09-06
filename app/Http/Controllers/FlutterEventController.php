@@ -176,6 +176,20 @@ class FlutterEventController extends Controller
         return redirect('/flutter-events')->with('status', 'Event has been rejected!');
     }
 
+    public function hide($tld, $stream = false)
+    {
+        if (! $event) {
+            $event = $tld;
+        }
+
+        $event->is_visible = false;
+        $event->is_approved = false;
+        $event->save();
+
+        return redirect(url('/') . '?clear_cache=true');
+    }
+
+
     public function trackClicked(FlutterEvent $event, $clickType)
     {
         if ($clickType == 'twitter') {
