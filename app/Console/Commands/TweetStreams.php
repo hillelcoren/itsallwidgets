@@ -75,7 +75,8 @@ class TweetStreams extends Command
                 $tweet .= ' (' . $handle . ')';
             }
 
-            $tweet .= ' live stream is starting ' . $startsAtDate->diffForHumans() . ' 🙌';
+            $tweet .= ' live stream is starting soon 🙌';
+            //$tweet .= ' live stream is starting ' . $startsAtDate->diffForHumans() . ' 🙌';
             //$tweet .= ' #' . $stream->channel->language->name . "\n\n";
 
             $tweet .= "\n\n"
