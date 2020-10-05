@@ -46,12 +46,12 @@ class LoadRatings extends Command
                 $matches = [];
                 $listing = file_get_contents($app->google_url);
 
-                preg_match('/ratingValue" content="(.*?)"/', $listing, $matches);
+                preg_match('/ratingValue":"(.*?)"/', $listing, $matches);
                 if (count($matches) >= 2) {
                     $app->store_rating = $matches[1];
                 }
 
-                preg_match('/reviewCount" content="(.*?)"/', $listing, $matches);
+                preg_match('/ratingCount":"(.*?)"/', $listing, $matches);
                 if (count($matches) >= 2) {
                     $app->store_review_count = $matches[1];
                 }
@@ -61,9 +61,9 @@ class LoadRatings extends Command
                     $app->store_download_count = preg_replace('/[\D]*/', '', $matches[1]);
                 }
 
-                preg_match('/store\/apps\/category\/.*?"  class=".*?">(.*?)</', $listing, $matches);
+                preg_match('/applicationCategory":"(.*?)"/', $listing, $matches);
                 if (count($matches) >= 2) {
-                    $app->category = html_entity_decode($matches[1]);
+                    $app->category = ucwords(strtolower($matches[1]));
                 }
 
                 $this->info($app->title . ' ' . $app->store_review_count . ' ' . $app->store_rating . ' ' . $app->store_download_count);
