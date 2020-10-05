@@ -163,11 +163,12 @@ body {
                         <div class="select is-medium filter-control" style="font-size: 16px">
                             <select v-model="sort_by" onchange="$(this).blur()">
                                 <option value="sort_featured">FEATURED</option>
+                                <option value="sort_rating">RATING</option>
+                                <option value="sort_installs">INSTALLS</option>
                                 <option value="sort_newest">NEWEST</option>
                                 <option value="sort_oldest">OLDEST</option>
                             </select>
                         </div>
-
                     </p>
                 </div>
             </div>
@@ -858,6 +859,8 @@ var app = new Vue({
                     return timeA - timeB;
                 } else if (sort_by == 'sort_newest') {
                     return timeB - timeA;
+                } else if (sort_by == 'sort_installs') {
+                    return itemB.store_download_count - itemA.store_download_count;
                 } else {
                     var itemARating = itemA.store_rating;
                     if (itemA.store_download_count < 500) {
@@ -873,7 +876,9 @@ var app = new Vue({
                         itemBRating -= .5;
                     }
 
-                    if (itemA.featured != itemB.featured) {
+                    if (sort_by == 'sort_rating') {
+                        return itemBRating - itemARating;
+                    } else if (itemA.featured != itemB.featured) {
                         return itemB.featured - itemA.featured;
                     } else if (itemARating != itemBRating) {
                         return itemBRating - itemARating;
