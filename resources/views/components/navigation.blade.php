@@ -1,42 +1,25 @@
-@php
-    if (isFX())
-        $url = 'docs';
-    elseif (isFE() || isFP() || isFS())
-        $url = 'community';
-    else
-        $url = 'showcase'
-@endphp
-
 @if (isGL())
 
 @else
 
-    @if (! isFP())
-        <a class="navbar-item" href="{{ fpUrl() }}">
-            <i class="fas fa-users"></i> &nbsp; Developers
-        </a>
-    @endif
+    <a class="navbar-item" href="{{ iawUrl() }}">
+        <i class="fas fa-mobile-alt"></i> &nbsp; Apps
+    </a>
 
-    @if (! isFX())
-        <a class="navbar-item" href="{{ fxUrl() }}">
-            <i class="fas fa-laptop"></i> &nbsp; Resources
-        </a>
-    @endif
+    <a class="navbar-item" href="{{ fpUrl() }}">
+        <i class="fas fa-users"></i> &nbsp; Developers
+    </a>
 
-    @if (! isFE())
-        <a class="navbar-item" href="{{ feUrl() }}">
-            <i class="fas fa-calendar"></i> &nbsp; Events
-        </a>
-    @endif
+    <a class="navbar-item" href="{{ fxUrl() }}">
+        <i class="fas fa-laptop"></i> &nbsp; Resources
+    </a>
 
-    @if (! isFS())
-        <a class="navbar-item" href="{{ fsUrl() }}">
-            <i class="fas fa-video"></i> &nbsp; Streams
-        </a>
-    @endif
+    <a class="navbar-item" href="{{ feUrl() }}">
+        <i class="fas fa-calendar"></i> &nbsp; Events
+    </a>
 
-    <a class="navbar-item" href="https://flutter.dev/{{ $url }}" target="_blank">
-        <i class="fas fa-globe"></i> &nbsp; {{ ucwords($url) }}
+    <a class="navbar-item" href="{{ fsUrl() }}">
+        <i class="fas fa-video"></i> &nbsp; Streams
     </a>
 
     <!--

@@ -1,9 +1,9 @@
 @php
     $twitterColor = $isPodcast ? "#444" : "#366cb6";
     $altChannelColor = $isPodcast ? "#000" : "#366cb6";
-    $altChannelIcon = $isPodcast ? "fa-mobile-alt" : "fa-microphone";
-    $altChannelUrl = $isPodcast ? iawUrl() : url('/podcast');
-    $altChannelTitle = $isPodcast ? "Apps" : "Podcast";
+    $altChannelIcon = "fa-microphone";
+    $altChannelUrl = url('/podcast');
+    $altChannelTitle = "Podcast";
 @endphp
 
 @if (isGL())
@@ -37,7 +37,7 @@
 
 @else
 
-    @if (! isIAW())
+    @if (false && ! isIAW())
         <a class="button is-elevated-dark"
            style="color:white; background-color:{{$twitterColor}}; border-color:{{$twitterColor}}"
            href="https://twitter.com/itsallwidgets" target="_blank">
