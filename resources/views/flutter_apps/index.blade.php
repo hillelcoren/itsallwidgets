@@ -909,9 +909,9 @@ var app = new Vue({
             apps = this.unpaginatedFilteredApps;
 
             if (this.filter_template) {
-                return "Search " + apps.length + " templates...";
+                return "Search " + apps.length.toLocaleString() + " templates...";
             } else {
-                return "Search " + apps.length + " apps...";
+                return "Search " + apps.length.toLocaleString() + " apps...";
             }
         },
     }
