@@ -2,7 +2,8 @@
 
 function getBanner()
 {
-    return getEventBanner();
+    return false;
+    //return getEventBanner();
 
     /*
     $random = rand(1, 4);
