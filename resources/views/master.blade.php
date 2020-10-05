@@ -263,7 +263,7 @@
     @if (isset($useBlackHeader))
         @media screen and (max-width: 1087px) {
             .hero.is-info .navbar-menu {
-                background-color: #111111;                
+                background-color: #111111;
             }
         }
     @endif
@@ -685,13 +685,17 @@
 
             @if (!isGL())
                 <p style="padding-top:16px;">
-                    <div class="strike">
+                    <div class="strike" style="font-weight:600">
                        <span>SUPPORTED BY <a href="https://www.invoiceninja.com/" target="_blank">INVOICE NINJA</a></span>
+                    </div>
+                    <div style="padding-top:16px;">
+                        Sell with Stripe, Authorize.net, PayPal <br/>
+                        and more using the <a href="https://pub.dev/packages/invoiceninja" target="_blank">Flutter plugin</a>
                     </div>
                 <p>
             @endif
 
-            <br/> &nbsp; <br/>
+            <br/>&nbsp;<br/>
 
             @if (!isFX() && !isGL() && (!request()->is('podcast*') || (auth()->check() && auth()->user()->is_admin)))
                 <a class="button is-elevated-dark" style="padding: 20px 32px 18px 32px"
