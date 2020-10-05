@@ -39,6 +39,7 @@ class FlutterEventRepository
         $events = FlutterEvent::approved()
                         ->future()
                         ->where('is_online', '=', true)
+                        ->where('user_id', '=', 1)
                         ->get();
 
         $count = $events->count();
