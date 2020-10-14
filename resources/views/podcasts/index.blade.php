@@ -165,6 +165,7 @@
 
             </div>
 
+            <!--
             <div>
                 @if (request()->filter == 'all')
                     {{ link_to('podcast', 'Featured Episodes') }} &nbsp; | &nbsp; All Episodes
@@ -172,6 +173,8 @@
                     Featured Episodes &nbsp; | &nbsp; {{ link_to('podcast?filter=all', 'All Episodes') }}
                 @endif
             </div>
+            -->
+
         </div>
 
 

@@ -58,7 +58,8 @@ class PodcastEpisode extends Model implements Feedable
 
     public static function getFeedItems()
     {
-        if (request()->filter == 'all') {
+        //if (request()->filter == 'all') {
+        if (true) {
             return cache('flutter-podcast-list');
         } else {
             return cache('flutter-featured-podcast-list');
