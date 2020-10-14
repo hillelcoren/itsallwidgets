@@ -855,30 +855,38 @@ var app = new Vue({
                 var timeA = new Date(itemA.created_at).getTime();
                 var timeB = new Date(itemB.created_at).getTime();
 
+                var itemARating = itemA.store_rating;
+                if (itemA.store_download_count < 500) {
+                    itemARating -= 1;
+                } else if (itemA.store_download_count < 1000) {
+                    itemARating -= .5;
+                }
+
+                var itemBRating = itemB.store_rating;
+                if (itemB.store_download_count < 500) {
+                    itemBRating -= 1;
+                } else if (itemB.store_download_count < 1000) {
+                    itemBRating -= .5;
+                }
+
                 if (sort_by == 'sort_oldest') {
                     return timeA - timeB;
                 } else if (sort_by == 'sort_newest') {
                     return timeB - timeA;
                 } else if (sort_by == 'sort_installs') {
-                    return itemB.store_download_count - itemA.store_download_count;
+                    if (itemA.store_download_count != itemB.store_download_count) {
+                        return itemB.store_download_count - itemA.store_download_count;
+                    } else {
+                        return itemB.store_rating - itemA.store_rating;
+                    }
+                } else if (sort_by == 'sort_rating') {
+                    if (itemA.store_rating != itemB.store_rating) {
+                        return itemB.store_rating - itemA.store_rating;
+                    } else {
+                        return itemB.store_review_count - itemA.store_review_count;
+                    }
                 } else {
-                    var itemARating = itemA.store_rating;
-                    if (itemA.store_download_count < 500) {
-                        itemARating -= 1;
-                    } else if (itemA.store_download_count < 1000) {
-                        itemARating -= .5;
-                    }
-
-                    var itemBRating = itemB.store_rating;
-                    if (itemB.store_download_count < 500) {
-                        itemBRating -= 1;
-                    } else if (itemB.store_download_count < 1000) {
-                        itemBRating -= .5;
-                    }
-
-                    if (sort_by == 'sort_rating') {
-                        return itemBRating - itemARating;
-                    } else if (itemA.featured != itemB.featured) {
+                    if (itemA.featured != itemB.featured) {
                         return itemB.featured - itemA.featured;
                     } else if (itemARating != itemBRating) {
                         return itemBRating - itemARating;
