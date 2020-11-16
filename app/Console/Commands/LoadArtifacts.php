@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Models\FlutterArtifact;
 use App\Repositories\FlutterArtifactRepository;
+use Exception;
 
 class LoadArtifacts extends Command
 {
@@ -224,7 +225,11 @@ class LoadArtifacts extends Command
                 }
             }
 
-            $artifact->save();
+            try {
+                $artifact->save();
+            } catch (Exception $error) {
+                // do nothing
+            }
         }
 
         if ($gifUrl) {
@@ -235,7 +240,11 @@ class LoadArtifacts extends Command
                 $artifact->gif_url = $url;
             }
 
-            $artifact->save();
+            try {
+                $artifact->save();
+            } catch (Exception $error) {
+                // do nothing
+            }
         }
     }
 
