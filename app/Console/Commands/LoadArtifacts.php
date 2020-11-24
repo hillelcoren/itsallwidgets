@@ -66,7 +66,7 @@ class LoadArtifacts extends Command
             foreach ($xml->channel->item as $item) {
                 $data = [
                     'title' => $item->title,
-                    'url' => $item->link,
+                    'url' => rtrim($item->link , '/'),
                     'type' => 'article',
                     'source_url' => $feed,
                     'published_date' => date('Y-m-d', strtotime($item->pubDate)),
