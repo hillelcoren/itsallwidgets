@@ -141,6 +141,11 @@ padding: 1rem 1rem 4rem 1rem;
             </div>
         </section>
 
+        <br/>
+        <div class="container">
+            <a href="http://goo.gle/30daysofflutter" target="_blank"><img src="{{ asset('images/30days.jpg') }}"/></a>
+        </div>
+
         @if ($banner)
             <br/>
             <div class="container" v-cloak>

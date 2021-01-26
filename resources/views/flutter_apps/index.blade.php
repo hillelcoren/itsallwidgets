@@ -175,6 +175,11 @@ body {
         </div>
     </section>
 
+    <br/>
+    <div class="container">
+        <a href="http://goo.gle/30daysofflutter" target="_blank"><img src="{{ asset('images/30days.jpg') }}"/></a>
+    </div>
+
     @if ($banner)
         <br/>
         <div class="container" v-cloak>
@@ -330,7 +335,6 @@ body {
         </div>
     </div>
 </section>
-
 
 <div class="modal animated fadeIn" v-bind:class="modalClass" v-if="selected_app">
     <div class="modal-background" v-on:click="selectApp()"></div>
