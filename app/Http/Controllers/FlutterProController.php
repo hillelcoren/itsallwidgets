@@ -131,9 +131,15 @@ class FlutterProController extends Controller
             'FutureBuilder',
         ];
 
+        $actors = [
+            'Filip Hráček',
+            'Emily Fortuna',
+        ];
+
         $data = [
             'languages' => Language::orderBy('name')->get(),
             'widgets' => $widgets,
+            'actors' => $actors,
             'user' => $user,
             'useBlackHeader' => true,
         ];

@@ -14,7 +14,9 @@ class AddFlutterCards extends Migration
     public function up()
     {
         Schema::table('users', function(Blueprint $table) {
+            $table->string('rss_feed_url')->default('');
             $table->string('widget')->nullable()->unique();
+            $table->string('widget_voice')->default('');
             $table->string('widget_youtube_url')->default('');
             $table->string('widget_api_url')->default('');
             $table->string('widget_inheritance')->default('');
@@ -42,7 +44,9 @@ class AddFlutterCards extends Migration
     public function down()
     {
         Schema::table('users', function(Blueprint $table) {
+            $table->dropColumn('rss_feed_url');
             $table->dropColumn('widget');
+            $table->dropColumn('widget_voice');
             $table->dropColumn('widget_youtube_url');
             $table->dropColumn('widget_api_url');
             $table->dropColumn('widget_inheritance');

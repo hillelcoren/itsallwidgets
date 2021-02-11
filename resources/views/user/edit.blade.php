@@ -203,6 +203,21 @@
     						</div>
     					</div>
 
+                        <div class="field">
+                            <label class="label" for="youtube_channel_id">
+                                Voice Actor
+                            </label>
+                            <div class="control has-icons-left">
+                                <div class="select">
+                                  <select name="widget">
+                                    @foreach ($widgets as $widget)
+                                        <option value="{{ $widget }}">{{ $widget }}</option>
+                                    @endforeach
+                                  </select>
+                                </div>
+                            </div>
+                        </div>
+
 
                     </div>
                 </article>
