@@ -170,7 +170,7 @@
                             </label>
                             <div class="control has-icons-left">
                                 @if ($user->widget)
-                                    {{ $user->widget }}
+                                    {{ (array_search($user->widget, $widgets) + 1) . '. ' . $user->widget }}
                                 @else
                                     <div class="select">
                                       <select name="widget">
@@ -183,6 +183,54 @@
                                 @endif
                             </div>
                         </div>
+
+                        <div class="field">
+    						<label class="label" for="widget_description">
+    							Description
+    						</label>
+    						<div class="control">
+
+    							{{ Form::textarea('widget_description', $user->widget_description, ['class' => 'textarea', 'rows' => 3]) }}
+
+    							@if ($errors->has('widget_description'))
+    								<span class="help is-danger">
+    									{{ $errors->first('widget_description') }}
+    								</span>
+    							@endif
+    						</div>
+    					</div>
+
+                        <div class="field">
+                    		<label class="label" for="widget_tip">
+                    			Tip
+                    		</label>
+                    		<div class="control">
+
+                    			{{ Form::textarea('widget_tip', $user->widget_tip, ['class' => 'textarea', 'rows' => 3]) }}
+
+                    			@if ($errors->has('widget_tip'))
+                    				<span class="help is-danger">
+                    					{{ $errors->first('widget_tip') }}
+                    				</span>
+                    			@endif
+                    		</div>
+                    	</div>
+
+                        <div class="field">
+    						<label class="label" for="widget_code_sample">
+    							Code Sample
+    						</label>
+    						<div class="control">
+
+    							{{ Form::textarea('widget_code_sample', $user->widget_code_sample, ['class' => 'textarea', 'rows' => 3]) }}
+
+    							@if ($errors->has('widget_code_sample'))
+    								<span class="help is-danger">
+    									{{ $errors->first('widget_code_sample') }}
+    								</span>
+    							@endif
+    						</div>
+    					</div>
 
                         <div class="field">
     						<label class="label" for="widget_youtube_url">
@@ -221,57 +269,8 @@
                         </div>
 
                         <div class="field">
-    						<label class="label" for="widget_description">
-    							Description
-    						</label>
-    						<div class="control">
-
-    							{{ Form::textarea('widget_description', $user->widget_description, ['class' => 'textarea', 'rows' => 3]) }}
-
-    							@if ($errors->has('widget_description'))
-    								<span class="help is-danger">
-    									{{ $errors->first('widget_description') }}
-    								</span>
-    							@endif
-    						</div>
-    					</div>
-
-                        <div class="field">
-    						<label class="label" for="widget_code_sample">
-    							Code Sample
-    						</label>
-    						<div class="control">
-
-    							{{ Form::textarea('widget_code_sample', $user->widget_code_sample, ['class' => 'textarea', 'rows' => 3]) }}
-
-    							@if ($errors->has('widget_code_sample'))
-    								<span class="help is-danger">
-    									{{ $errors->first('widget_code_sample') }}
-    								</span>
-    							@endif
-    						</div>
-    					</div>
-
-                        <div class="field">
-    						<label class="label" for="widget_tip">
-    							Tip
-    						</label>
-    						<div class="control">
-
-    							{{ Form::textarea('widget_tip', $user->widget_tip, ['class' => 'textarea', 'rows' => 3]) }}
-
-    							@if ($errors->has('widget_tip'))
-    								<span class="help is-danger">
-    									{{ $errors->first('widget_tip') }}
-    								</span>
-    							@endif
-    						</div>
-    					</div>
-
-
-                        <div class="field">
     						<label class="label" for="widget_youtube_handle">
-    							YouTube Comment Handle
+    							Comment Handle
     						</label>
     						<div class="control has-icons-left">
 
@@ -291,7 +290,7 @@
 
                         <div class="field">
     						<label class="label" for="widget_youtube_comment">
-    							YouTube Comment Text
+    							Comment Text
     						</label>
     						<div class="control">
 
