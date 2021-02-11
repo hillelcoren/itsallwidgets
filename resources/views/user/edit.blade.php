@@ -176,7 +176,7 @@
                                       <select name="widget">
                                         <option value=""></option>
                                         @foreach ($widgets as $widget)
-                                            <option value="{{ $widget }}">{{ $widget }}</option>
+                                            <option value="{{ $widget }}">{{ (array_search($widget, $widgets) + 1) . '. ' . $widget }}</option>
                                         @endforeach
                                       </select>
                                     </div>
@@ -221,6 +221,55 @@
                         </div>
 
                         <div class="field">
+    						<label class="label" for="widget_description">
+    							Description
+    						</label>
+    						<div class="control">
+
+    							{{ Form::textarea('widget_description', $user->widget_description, ['class' => 'textarea', 'rows' => 3]) }}
+
+    							@if ($errors->has('widget_description'))
+    								<span class="help is-danger">
+    									{{ $errors->first('widget_description') }}
+    								</span>
+    							@endif
+    						</div>
+    					</div>
+
+                        <div class="field">
+    						<label class="label" for="widget_code_sample">
+    							Code Sample
+    						</label>
+    						<div class="control">
+
+    							{{ Form::textarea('widget_code_sample', $user->widget_code_sample, ['class' => 'textarea', 'rows' => 3]) }}
+
+    							@if ($errors->has('widget_code_sample'))
+    								<span class="help is-danger">
+    									{{ $errors->first('widget_code_sample') }}
+    								</span>
+    							@endif
+    						</div>
+    					</div>
+
+                        <div class="field">
+    						<label class="label" for="widget_tip">
+    							Tip
+    						</label>
+    						<div class="control">
+
+    							{{ Form::textarea('widget_tip', $user->widget_tip, ['class' => 'textarea', 'rows' => 3]) }}
+
+    							@if ($errors->has('widget_tip'))
+    								<span class="help is-danger">
+    									{{ $errors->first('widget_tip') }}
+    								</span>
+    							@endif
+    						</div>
+    					</div>
+
+
+                        <div class="field">
     						<label class="label" for="widget_youtube_handle">
     							YouTube Comment Handle
     						</label>
@@ -235,6 +284,22 @@
     							@if ($errors->has('widget_youtube_handle'))
     								<span class="help is-danger">
     									{{ $errors->first('widget_youtube_handle') }}
+    								</span>
+    							@endif
+    						</div>
+    					</div>
+
+                        <div class="field">
+    						<label class="label" for="widget_youtube_comment">
+    							YouTube Comment Text
+    						</label>
+    						<div class="control">
+
+    							{{ Form::textarea('widget_youtube_comment', $user->widget_youtube_comment, ['class' => 'textarea', 'rows' => 3]) }}
+
+    							@if ($errors->has('widget_youtube_comment'))
+    								<span class="help is-danger">
+    									{{ $errors->first('widget_youtube_comment') }}
     								</span>
     							@endif
     						</div>
