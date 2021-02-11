@@ -208,12 +208,12 @@
                             <label class="label" for="youtube_channel_id">
                                 Voice Actor
                             </label>
-                            <div class="control has-icons-left">
+                            <div class="control">
                                 <div class="select">
-                                  <select name="widget_voicet">
+                                  <select name="widget_voice">
                                     <option value=""></option>
                                     @foreach ($actors as $actor)
-                                        <option value="{{ $actor }}">{{ $actor }}</option>
+                                        <option value="{{ $actor }}" {{ $actor == $user->widget_voice ? 'SELECTED' : '' }}>{{ $actor }}</option>
                                     @endforeach
                                   </select>
                                 </div>

@@ -20,7 +20,6 @@ class AddFlutterCards extends Migration
             $table->string('widget_youtube_url')->nullable();
             $table->string('widget_inheritance')->nullable();
             $table->string('widget_version_added')->nullable();
-            $table->integer('widget_week')->default(0);
             $table->text('widget_description')->nullable();
             $table->text('widget_code_sample')->nullable();
             $table->text('widget_tip')->nullable();
@@ -49,7 +48,6 @@ class AddFlutterCards extends Migration
             $table->dropColumn('widget_youtube_url');
             $table->dropColumn('widget_inheritance');
             $table->dropColumn('widget_version_added');
-            $table->dropColumn('widget_week');
             $table->dropColumn('widget_description');
             $table->dropColumn('widget_code_sample');
             $table->dropColumn('widget_tip');
