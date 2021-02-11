@@ -175,7 +175,7 @@
                                     <div class="select">
                                       <select name="widget">
                                         <option value=""></option>
-                                        @foreach ($widgets as $widget)
+                                        @foreach ($availableWidgets as $widget)
                                             <option value="{{ $widget }}">{{ (array_search($widget, $widgets) + 1) . '. ' . $widget }}</option>
                                         @endforeach
                                       </select>

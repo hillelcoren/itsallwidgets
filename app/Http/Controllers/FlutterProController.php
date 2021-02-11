@@ -122,14 +122,22 @@ class FlutterProController extends Controller
     {
         $user = auth()->user();
 
-        $widgets = [
-            'SafeArea',
-            'Expanded',
-            'Wrap',
-            'AnimatedContainer',
-            'Opacity',
-            'FutureBuilder',
-        ];
+        if (request()->flutter_cards) {
+            $widgets = [
+                'SafeArea',
+                'Expanded',
+                'Wrap',
+                'AnimatedContainer',
+                'Opacity',
+                'FutureBuilder',
+            ];
+            $usedWigets = User::whereNotNull('widget')
+                ->pluck('widget')
+                ->all();
+            $availableWidgets = array_diff($widgets, $usedWigets);
+        } else {
+            $widgets = $availableWidgets = [];
+        }
 
         $actors = [
             'Filip Hráček',
@@ -139,6 +147,7 @@ class FlutterProController extends Controller
         $data = [
             'languages' => Language::orderBy('name')->get(),
             'widgets' => $widgets,
+            'availableWidgets' => $availableWidgets,
             'actors' => $actors,
             'user' => $user,
             'useBlackHeader' => true,
