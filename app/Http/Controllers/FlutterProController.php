@@ -122,7 +122,7 @@ class FlutterProController extends Controller
     {
         $user = auth()->user();
 
-        if (request()->flutter_cards) {
+        if (request()->flutter_cards || $user->widget) {
             $widgets = [
                 'SafeArea',
                 'Expanded',
