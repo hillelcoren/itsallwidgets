@@ -183,6 +183,26 @@
                             </div>
                         </div>
 
+                        <div class="field">
+    						<label class="label" for="widget_youtube_url">
+    							Widget of the Week URL
+    						</label>
+    						<div class="control has-icons-left">
+
+    							{{ Form::url('widget_youtube_url', $user->widget_youtube_url, ['class' => 'input', 'placeholder' => 'https://youtube.com']) }}
+
+    							<span class="icon is-small is-left">
+    								<i class="fab fa-youtube"></i>
+    							</span>
+
+    							@if ($errors->has('widget_youtube_url'))
+    								<span class="help is-danger">
+    									{{ $errors->first('widget_youtube_url') }}
+    								</span>
+    							@endif
+    						</div>
+    					</div>
+
 
                     </div>
                 </article>
