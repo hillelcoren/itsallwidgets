@@ -158,7 +158,7 @@
             <p>&nbsp;</p>
 			<p>&nbsp;</p>
 
-            @if (request()->flutter_cards)
+            @if (request()->flutter_cards || $user->widget)
                 <div class="subtitle">Flutter Cards</div>
 
                 <article class="message is-dark is-elevated">
@@ -174,6 +174,7 @@
                                 @else
                                     <div class="select">
                                       <select name="widget">
+                                        <option value=""></option>
                                         @foreach ($widgets as $widget)
                                             <option value="{{ $widget }}">{{ $widget }}</option>
                                         @endforeach
@@ -209,9 +210,10 @@
                             </label>
                             <div class="control has-icons-left">
                                 <div class="select">
-                                  <select name="widget">
-                                    @foreach ($widgets as $widget)
-                                        <option value="{{ $widget }}">{{ $widget }}</option>
+                                  <select name="widget_voicet">
+                                    <option value=""></option>
+                                    @foreach ($actors as $actor)
+                                        <option value="{{ $actor }}">{{ $actor }}</option>
                                     @endforeach
                                   </select>
                                 </div>

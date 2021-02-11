@@ -14,13 +14,13 @@ class AddFlutterCards extends Migration
     public function up()
     {
         Schema::table('users', function(Blueprint $table) {
-            $table->string('rss_feed_url')->default('');
+            $table->string('rss_feed_url')->nullable();
             $table->string('widget')->nullable()->unique();
-            $table->string('widget_voice')->default('');
-            $table->string('widget_youtube_url')->default('');
-            $table->string('widget_api_url')->default('');
-            $table->string('widget_inheritance')->default('');
-            $table->string('widget_version_added')->default('');
+            $table->string('widget_voice')->nullable();
+            $table->string('widget_youtube_url')->nullable();
+            $table->string('widget_api_url')->nullable();
+            $table->string('widget_inheritance')->nullable();
+            $table->string('widget_version_added')->nullable();
             $table->integer('widget_week')->default(0);
             $table->text('widget_description')->nullable();
             $table->text('widget_code_sample')->nullable();
