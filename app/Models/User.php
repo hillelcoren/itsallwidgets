@@ -47,7 +47,6 @@ class User extends Authenticatable
         'widget',
         'widget_voice',
         'widget_youtube_url',
-        'widget_api_url',
         'widget_inheritance',
         'widget_version_added',
         'widget_week',

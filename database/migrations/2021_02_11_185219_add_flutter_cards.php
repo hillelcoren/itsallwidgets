@@ -18,15 +18,14 @@ class AddFlutterCards extends Migration
             $table->string('widget')->nullable()->unique();
             $table->string('widget_voice')->nullable();
             $table->string('widget_youtube_url')->nullable();
-            $table->string('widget_api_url')->nullable();
             $table->string('widget_inheritance')->nullable();
             $table->string('widget_version_added')->nullable();
             $table->integer('widget_week')->default(0);
             $table->text('widget_description')->nullable();
             $table->text('widget_code_sample')->nullable();
             $table->text('widget_tip')->nullable();
+            $table->string('widget_youtube_handle')->nullable();
             $table->text('widget_youtube_comment')->nullable();
-            $table->text('widget_youtube_handle')->nullable();
         });
 
         Schema::table('flutter_apps', function(Blueprint $table) {
@@ -48,7 +47,6 @@ class AddFlutterCards extends Migration
             $table->dropColumn('widget');
             $table->dropColumn('widget_voice');
             $table->dropColumn('widget_youtube_url');
-            $table->dropColumn('widget_api_url');
             $table->dropColumn('widget_inheritance');
             $table->dropColumn('widget_version_added');
             $table->dropColumn('widget_week');

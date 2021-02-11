@@ -220,6 +220,25 @@
                             </div>
                         </div>
 
+                        <div class="field">
+    						<label class="label" for="widget_youtube_handle">
+    							YouTube Comment Handle
+    						</label>
+    						<div class="control has-icons-left">
+
+    							{{ Form::text('widget_youtube_handle', $user->widget_youtube_handle, ['class' => 'input']) }}
+
+    							<span class="icon is-small is-left">
+    								<i class="fab fa-youtube"></i>
+    							</span>
+
+    							@if ($errors->has('widget_youtube_handle'))
+    								<span class="help is-danger">
+    									{{ $errors->first('widget_youtube_handle') }}
+    								</span>
+    							@endif
+    						</div>
+    					</div>
 
                     </div>
                 </article>
