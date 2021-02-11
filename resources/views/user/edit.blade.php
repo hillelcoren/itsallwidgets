@@ -158,6 +158,39 @@
             <p>&nbsp;</p>
 			<p>&nbsp;</p>
 
+            @if (request()->flutter_cards)
+                <div class="subtitle">Flutter Cards</div>
+
+                <article class="message is-dark is-elevated">
+                    <div class="message-body">
+
+                        <div class="field">
+                            <label class="label" for="youtube_channel_id">
+                                Widget
+                            </label>
+                            <div class="control has-icons-left">
+                                @if ($user->widget)
+                                    {{ $user->widget }}
+                                @else
+                                    <div class="select">
+                                      <select name="widget">
+                                        @foreach ($widgets as $widget)
+                                            <option value="{{ $widget }}">{{ $widget }}</option>
+                                        @endforeach
+                                      </select>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+
+
+                    </div>
+                </article>
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+            @endif
+
 
             <div class="subtitle">Live Stream</div>
 

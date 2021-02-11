@@ -122,8 +122,18 @@ class FlutterProController extends Controller
     {
         $user = auth()->user();
 
+        $widgets = [
+            'SafeArea',
+            'Expanded',
+            'Wrap',
+            'AnimatedContainer',
+            'Opacity',
+            'FutureBuilder',
+        ];
+
         $data = [
             'languages' => Language::orderBy('name')->get(),
+            'widgets' => $widgets,
             'user' => $user,
             'useBlackHeader' => true,
         ];

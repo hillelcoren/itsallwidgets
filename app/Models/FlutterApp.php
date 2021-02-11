@@ -33,6 +33,9 @@ class FlutterApp extends Model implements Feedable
         'is_web',
         'is_template',
         'flutter_web_url',
+        'campaign_id',
+        'campaign_question1',
+        'campaign_question2',
     ];
 
     protected $hidden = [

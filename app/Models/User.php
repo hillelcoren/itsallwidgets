@@ -43,6 +43,17 @@ class User extends Authenticatable
         'is_mentor',
         'is_trainer',
         'last_activity',
+        'widget',
+        'widget_youtube_url',
+        'widget_api_url',
+        'widget_inheritance',
+        'widget_version_added',
+        'widget_week',
+        'widget_description',
+        'widget_code_sample',
+        'widget_tip',
+        'widget_youtube_comment',
+        'widget_youtube_handle',
     ];
 
     /**
