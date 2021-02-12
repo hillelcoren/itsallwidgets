@@ -200,9 +200,25 @@ class FlutterProController extends Controller
             'Emily Fortuna',
         ];
 
+        $libraries = [
+            'Animation',
+            'Cupertino',
+            'Foundation',
+            '6estures',
+            'Material',
+            'Painting',
+            'Physics',
+            'Rendering',
+            'Scheduler',
+            'Semantics',
+            'Services',
+            'Widgets',
+        ];
+
         $data = [
             'languages' => Language::orderBy('name')->get(),
             'widgets' => $widgets,
+            'libraries' => $libraries,
             'availableWidgets' => $availableWidgets,
             'actors' => $actors,
             'user' => $user,

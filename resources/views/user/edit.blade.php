@@ -200,12 +200,28 @@
                                     </div>
 
                                 @endif
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label" for="widget_library">
+                                Library
+                            </label>
+                            <div class="control">
+                                <div class="select">
+                                  <select name="widget_library">
+                                    @foreach ($libraries as $library)
+                                        <option value="{{ $library }}" {{ $library == $user->widget_library ? 'SELECTED' : '' }}>{{ $library }}</option>
+                                    @endforeach
+                                  </select>
+                                </div>
 
                                 <div class="help" id="docsLink" style="display: {{ $user->widget ? 'block' : 'none' }};">
                                     <a href="#" onclick="viewDocs(); return false;" target="_blank">View API Docs<a/>
                                 </div>
                             </div>
                         </div>
+
 
                         <div class="field">
     						<label class="label" for="widget_description">

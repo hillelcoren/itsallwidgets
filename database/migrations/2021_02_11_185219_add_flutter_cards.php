@@ -39,7 +39,7 @@ class AddFlutterCards extends Migration
                 'Semantics',
                 'Services',
                 'Widgets',
-            ])->nullable();
+            ])->default('Widgets');
         });
 
         Schema::table('flutter_apps', function(Blueprint $table) {
