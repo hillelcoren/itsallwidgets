@@ -181,8 +181,12 @@
                 <div class="subtitle">Flutter Cards</div>
 
                 <div class="subtitle is-6">
-                    The collected data will be shared with <a href="http://fluttercards.dev" target="_blank">fluttercards.dev</a> where it will be viewable online, downloadable as a PDF and available to purchase as physical cards.
+                    The collected data will be shared with <a href="http://fluttercards.dev" target="_blank">fluttercards.dev</a> (site in development) where it will be viewable online, downloadable as a PDF and available to purchase as physical cards.
                     We aren't able to offer revenue sharing but will feature your Twitter handle on the card you create (if you don't like "work for recognition" this probably isn't for you).
+                </div>
+
+                <div class="subtitle is-6">
+                    If you have any questions or feedback about the cards please email us at contact@itsallwidgets.com
                 </div>
 
                 <article class="message is-dark is-elevated">
@@ -320,7 +324,7 @@
 
                         <div class="field">
                             <label class="label" for="youtube_channel_id">
-                                Voice Actor
+                                Created By
                             </label>
                             <div class="control">
                                 <div class="select">
@@ -347,6 +351,10 @@
     									{{ $errors->first('widget_youtube_handle') }}
     								</span>
     							@endif
+
+                                <div class="help">
+                                    If you see a particularly funny comment it may make it on the card
+                                </div>
     						</div>
     					</div>
 
