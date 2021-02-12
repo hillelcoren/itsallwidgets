@@ -46,11 +46,10 @@
         function viewDocs() {
             @if ($user->widget)
                 var widget = '{{ $user->widget }}';
-                var library = '{{ strtolower($user->widget_library) }}';
             @else
                 var widget = $('#widget').find(":selected").val();
-                var library = $('#widget_library').find(":selected").val().toLowerCase();
             @endif
+            var library = $('#widget_library').find(":selected").val().toLowerCase();
             window.open('https://api.flutter.dev/flutter/' + library + '/' + widget + '-class.html');
         }
 	</script>
