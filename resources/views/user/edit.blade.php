@@ -217,11 +217,29 @@
                                 </div>
 
                                 <div class="help" id="docsLink" style="display: {{ $user->widget ? 'block' : 'none' }};">
-                                    <a href="#" onclick="viewDocs(); return false;" target="_blank">View API Docs<a/>
+                                    <a href="#" onclick="viewDocs(); return false;" target="_blank">View API Docs</a>
                                 </div>
                             </div>
                         </div>
 
+                        <div class="field">
+                            <label class="label" for="widget_library">
+                                Number of Children
+                            </label>
+                            <div class="control">
+                                <div class="select">
+                                  <select name="widget_library">
+                                    @foreach (['None','Single','Multiple'] as $number)
+                                        <option value="{{ $number }}" {{ $number == $user->widget_child_count ? 'SELECTED' : '' }}>{{ $number }}</option>
+                                    @endforeach
+                                  </select>
+                                </div>
+
+                                <div class="help">
+                                    ie, Text would be 'None', Container would be 'Single' and Row would be 'Multiple'
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="field">
     						<label class="label" for="widget_description">

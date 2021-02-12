@@ -25,7 +25,7 @@ class AddFlutterCards extends Migration
             $table->text('widget_tip')->nullable();
             $table->string('widget_youtube_handle')->nullable();
             $table->text('widget_youtube_comment')->nullable();
-            $table->enum('widget_child_count', ['None','Single','Multiple']);
+            $table->enum('widget_child_count', ['None','Single','Multiple'])->default('single');
             $table->enum('widget_library', [
                 'Animation',
                 'Cupertino',
