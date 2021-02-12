@@ -33,6 +33,20 @@
     	function onFormSubmit() {
     		$('#saveButton').addClass('is-loading').prop('disabled', true);
     	}
+
+        function onWidgetChange() {
+            var widget = $('#widget').find(":selected").val();
+            if (widget) {
+                $('#docsLink').fadeIn();
+            } else {
+                $('#docsLink').fadeOut();
+            }
+        }
+
+        function viewDocs() {
+            var widget = $('#widget').find(":selected").val();
+            window.open('https://api.flutter.dev/flutter/widgets/' + widget + '-class.html');
+        }
 	</script>
 
     <section class="hero is-light is-small is-body-font">
@@ -168,17 +182,21 @@
                             <label class="label" for="youtube_channel_id">
                                 Widget
                             </label>
-                            <div class="control has-icons-left">
+                            <div class="control">
                                 @if ($user->widget)
                                     {{ (array_search($user->widget, $widgets) + 1) . '. ' . $user->widget }}
                                 @else
                                     <div class="select">
-                                      <select name="widget">
+                                      <select name="widget" id="widget" onchange="onWidgetChange()">
                                         <option value=""></option>
                                         @foreach ($availableWidgets as $widget)
                                             <option value="{{ $widget }}">{{ (array_search($widget, $widgets) + 1) . '. ' . $widget }}</option>
                                         @endforeach
                                       </select>
+                                    </div>
+
+                                    <div class="help" id="docsLink" style="display: none;">
+                                        <a href="#" onclick="viewDocs(); return false;" target="_blank">View API Docs<a/>
                                     </div>
                                 @endif
                             </div>
@@ -272,13 +290,9 @@
     						<label class="label" for="widget_youtube_handle">
     							Comment Handle
     						</label>
-    						<div class="control has-icons-left">
+    						<div class="control">
 
     							{{ Form::text('widget_youtube_handle', $user->widget_youtube_handle, ['class' => 'input']) }}
-
-    							<span class="icon is-small is-left">
-    								<i class="fab fa-youtube"></i>
-    							</span>
 
     							@if ($errors->has('widget_youtube_handle'))
     								<span class="help is-danger">
