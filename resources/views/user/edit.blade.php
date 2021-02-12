@@ -225,12 +225,12 @@
                         </div>
 
                         <div class="field">
-                            <label class="label" for="widget_library">
+                            <label class="label" for="widget_child_count">
                                 Number of Children
                             </label>
                             <div class="control">
                                 <div class="select">
-                                  <select name="widget_library">
+                                  <select name="widget_child_count">
                                     @foreach (['None','Single','Multiple'] as $number)
                                         <option value="{{ $number }}" {{ $number == $user->widget_child_count ? 'SELECTED' : '' }}>{{ $number }}</option>
                                     @endforeach
