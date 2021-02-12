@@ -44,7 +44,11 @@
         }
 
         function viewDocs() {
-            var widget = $('#widget').find(":selected").val();
+            @if ($user->widget)
+                var widget = '{{ $user->widget }}'
+            @else
+                var widget = $('#widget').find(":selected").val();
+            @endif
             window.open('https://api.flutter.dev/flutter/widgets/' + widget + '-class.html');
         }
 	</script>
@@ -195,10 +199,11 @@
                                       </select>
                                     </div>
 
-                                    <div class="help" id="docsLink" style="display: none;">
-                                        <a href="#" onclick="viewDocs(); return false;" target="_blank">View API Docs<a/>
-                                    </div>
                                 @endif
+
+                                <div class="help" id="docsLink" style="display: {{ $user->widget ? 'block' : 'none' }};">
+                                    <a href="#" onclick="viewDocs(); return false;" target="_blank">View API Docs<a/>
+                                </div>
                             </div>
                         </div>
 
