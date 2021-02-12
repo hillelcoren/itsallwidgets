@@ -307,11 +307,11 @@
 
                         <div class="field">
     						<label class="label" for="widget_youtube_url">
-    							Widget of the Week URL
+    							Widget of the Week YouTube ID
     						</label>
     						<div class="control has-icons-left">
 
-    							{{ Form::url('widget_youtube_url', $user->widget_youtube_url, ['class' => 'input', 'placeholder' => 'https://youtube.com']) }}
+    							{{ Form::text('widget_youtube_url', $user->widget_youtube_url, ['class' => 'input', 'placeholder' => 'z5iw2SeFx2M', 'maxlength' => 16]) }}
 
     							<span class="icon is-small is-left">
     								<i class="fab fa-youtube"></i>
