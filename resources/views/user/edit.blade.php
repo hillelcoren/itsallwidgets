@@ -45,11 +45,13 @@
 
         function viewDocs() {
             @if ($user->widget)
-                var widget = '{{ $user->widget }}'
+                var widget = '{{ $user->widget }}';
+                var library = '{{ strtolower($user->widget_library) }}';
             @else
                 var widget = $('#widget').find(":selected").val();
+                var library = $('#widget_library').find(":selected").val().toLowerCase();
             @endif
-            window.open('https://api.flutter.dev/flutter/widgets/' + widget + '-class.html');
+            window.open('https://api.flutter.dev/flutter/' + library + '/' + widget + '-class.html');
         }
 	</script>
 
@@ -209,7 +211,7 @@
                             </label>
                             <div class="control">
                                 <div class="select">
-                                  <select name="widget_library">
+                                  <select name="widget_library" id="widget_library">
                                     @foreach ($libraries as $library)
                                         <option value="{{ $library }}" {{ $library == $user->widget_library ? 'SELECTED' : '' }}>{{ $library }}</option>
                                     @endforeach
