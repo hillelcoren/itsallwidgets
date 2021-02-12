@@ -54,6 +54,8 @@ class User extends Authenticatable
         'widget_tip',
         'widget_youtube_comment',
         'widget_youtube_handle',
+        'widget_library',
+        'widget_child_count',
     ];
 
     /**

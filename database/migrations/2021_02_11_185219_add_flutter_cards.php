@@ -25,6 +25,21 @@ class AddFlutterCards extends Migration
             $table->text('widget_tip')->nullable();
             $table->string('widget_youtube_handle')->nullable();
             $table->text('widget_youtube_comment')->nullable();
+            $table->enum('widget_child_count', ['None','Single','Multiple']);
+            $table->enum('widget_library', [
+                'Animation',
+                'Cupertino',
+                'Foundation',
+                '6estures',
+                'Material',
+                'Painting',
+                'Physics',
+                'Rendering',
+                'Scheduler',
+                'Semantics',
+                'Services',
+                'Widgets',
+            ])->nullable();
         });
 
         Schema::table('flutter_apps', function(Blueprint $table) {
@@ -53,6 +68,8 @@ class AddFlutterCards extends Migration
             $table->dropColumn('widget_tip');
             $table->dropColumn('widget_youtube_comment');
             $table->dropColumn('widget_youtube_handle');
+            $table->dropColumn('widget_library');
+            $table->dropColumn('widget_child_count');
         });
 
         Schema::table('flutter_apps', function(Blueprint $table) {
