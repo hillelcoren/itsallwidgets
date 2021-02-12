@@ -182,11 +182,10 @@
 
                 <div class="subtitle is-6">
                     The collected data will be shared with <a href="http://fluttercards.dev" target="_blank">fluttercards.dev</a> (site in development) where it will be viewable online, downloadable as a PDF and available to purchase as physical cards.
-                    We aren't able to offer revenue sharing but will feature your Twitter handle on the card you create (if you don't like "work for recognition" this probably isn't for you).
                 </div>
 
                 <div class="subtitle is-6">
-                    If you have any questions or feedback about the cards please email us at contact@itsallwidgets.com
+                    We aren't able to offer revenue sharing but will feature your Twitter handle on the card you create. If you have any questions or feedback about the cards please email us at contact@itsallwidgets.com
                 </div>
 
                 <article class="message is-dark is-elevated">
