@@ -210,7 +210,7 @@
                                 @endif
 
                                 <div class="help">
-                                    Note: once you select a widget it can't be changed
+                                    This will reserve your widget, please only do so if you plan to join the project
                                 </div>
                             </div>
                         </div>
@@ -259,7 +259,7 @@
     						</label>
     						<div class="control">
 
-    							{{ Form::textarea('widget_description', $user->widget_description, ['class' => 'textarea', 'rows' => 3]) }}
+    							{{ Form::textarea('widget_description', $user->widget_description, ['class' => 'textarea', 'rows' => 3, 'maxlength' => 200]) }}
 
     							@if ($errors->has('widget_description'))
     								<span class="help is-danger">
@@ -275,7 +275,7 @@
                     		</label>
                     		<div class="control">
 
-                    			{{ Form::textarea('widget_tip', $user->widget_tip, ['class' => 'textarea', 'rows' => 3]) }}
+                    			{{ Form::textarea('widget_tip', $user->widget_tip, ['class' => 'textarea', 'rows' => 3, 'maxlength' => 200]) }}
 
                     			@if ($errors->has('widget_tip'))
                     				<span class="help is-danger">
@@ -291,7 +291,7 @@
     						</label>
     						<div class="control">
 
-    							{{ Form::textarea('widget_code_sample', $user->widget_code_sample, ['class' => 'textarea', 'rows' => 3]) }}
+    							{{ Form::textarea('widget_code_sample', $user->widget_code_sample, ['class' => 'textarea', 'rows' => 3, 'maxlength' => 400]) }}
 
     							@if ($errors->has('widget_code_sample'))
     								<span class="help is-danger">
@@ -299,6 +299,10 @@
     								</span>
     							@endif
     						</div>
+
+                            <div class="help">
+                                Please try to use the sample from the video
+                            </div>
     					</div>
 
                         <div class="field">
@@ -337,6 +341,7 @@
                             </div>
                         </div>
 
+                        <!--
                         <div class="field">
     						<label class="label" for="widget_youtube_handle">
     							Comment Handle
@@ -372,6 +377,7 @@
     							@endif
     						</div>
     					</div>
+                        -->
 
                     </div>
                 </article>

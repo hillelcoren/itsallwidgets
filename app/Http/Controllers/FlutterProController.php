@@ -160,6 +160,7 @@ class FlutterProController extends Controller
                 'MediaQuery',
                 'Spacer',
                 'InheritedWidget',
+                /*
                 'AnimatedIcon',
                 'AspectRatio',
                 'LimitedBox',
@@ -176,7 +177,6 @@ class FlutterProController extends Controller
                 'AnimatedOpacity',
                 'FractionallySizedBox',
                 'ListView',
-                /*
                 'ListTile',
                 'Container',
                 'SelectableText',
@@ -196,8 +196,10 @@ class FlutterProController extends Controller
         }
 
         $actors = [
-            'Filip Hráček',
+            'Andrew Brogdon',
+            'Andrew Fitz Gibbon',
             'Emily Fortuna',
+            'Filip Hráček',
         ];
 
         $libraries = [
