@@ -219,7 +219,7 @@
                                 </div>
 
                                 <div class="help" id="docsLink" style="display: {{ $user->widget ? 'block' : 'none' }};">
-                                    <a href="#" onclick="viewDocs(); return false;" target="_blank">View API Docs</a>
+                                    <a href="#" onclick="viewDocs(); return false;" target="_blank">View API Docs</a> | The library must be set correctly or you'll see a 404
                                 </div>
                             </div>
                         </div>
