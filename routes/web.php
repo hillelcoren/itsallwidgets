@@ -14,11 +14,6 @@
 //Route::get('oauth', 'Auth\OAuthController@redirectToProvider');
 //Route::get('oauth/callback', 'Auth\OAuthController@handleProviderCallback');
 
-Route::get('test', function () {
-    return redirect('https://google.com');
-});
-
-
 Route::feeds();
 
 Route::group(['domain' => '127.0.0.1'], function() {
@@ -121,6 +116,14 @@ Route::get('flutter-apps', function () {
 
 Route::get('slides', function () {
     return redirect('https://docs.google.com/presentation/d/1u82DeBozavR31n3xjmwmwl2CT8YsG7u8ltQv1ltxw34/edit', 301);
+});
+
+Route::get('30days', function () {
+    if (auth()->check()) {
+        return redirect('/submit/30days');
+    } else {
+        return redirect('/auth/google?intended_url=submit/30days');
+    }
 });
 
 Route::get('/', 'FlutterAppController@index');
