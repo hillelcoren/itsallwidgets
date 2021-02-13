@@ -125,6 +125,9 @@ class FlutterAppController extends Controller
     public function store(StoreFlutterApp $request)
     {
         $input = $request->all();
+
+        dd($input);
+
         $user = auth()->user();
         $app = $this->appRepo->store($input, $user->id);
 

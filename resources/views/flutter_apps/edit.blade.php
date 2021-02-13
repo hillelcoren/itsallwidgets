@@ -139,7 +139,7 @@
 						</label>
 						<div class="control">
 
-							{{ Form::textarea('long_description', $app->long_description, ['class' => 'textarea', 'required' => true]) }}
+							{{ Form::textarea('long_description', $app->long_description, ['class' => 'textarea', 'required' => true, 'rows' => 6]) }}
 
 							@if ($errors->has('long_description'))
 								<span class="help is-danger">
@@ -171,12 +171,105 @@
 			<p>&nbsp;</p>
 			<p>&nbsp;</p>
 
-			@if ($campaign)
+			@if ($campaign == '30days')
 
 				<div class="subtitle">30 Days of Flutter</div>
 
-				<article class="message is-elevated">
+				<article class="message is-info is-elevated">
 					<div class="message-body">
+
+						<div class="field">
+							<label class="label" for="campaign_content_score">
+								On a scale of 1-5, how useful did you find the content shared during #30DaysOfFlutter?
+							</label>
+							<div class="control">
+								<select name="campaign_content_score">
+									<option value=""></option>
+									@for ($i=1; $i<=5; $i++)
+										<option value="{{ $i }}" {{ old('campaign_content_score') == $i ? "SELECTED" : ""}}>
+											@if ($i == 1)
+												1 - Poor
+											@elseif ($i == 5)
+												5 - Loved it!
+											@else
+												{{ $i }}
+											@endif
+										</option>
+									@endfor
+								</select>
+							</div>
+						</div>
+
+						<div class="field">
+							<label class="label" for="campaign_video_score">
+								On a scale of 1-5, how useful did you find the live sessions?
+							</label>
+							<div class="control">
+								<select name="campaign_video_score">
+									<option value=""></option>
+									@for ($i=1; $i<=5; $i++)
+										<option value="{{ $i }}" {{ old('campaign_video_score') == $i ? "SELECTED" : ""}}>
+											@if ($i == 1)
+												1 - Poor
+											@elseif ($i == 5)
+												5 - Enjoyed it a lot!
+											@else
+												{{ $i }}
+											@endif
+										</option>
+									@endfor
+								</select>
+							</div>
+						</div>
+
+						<div class="field">
+							<label class="label" for="campaign_support_score">
+								On a scale of 1-5, how satisfied are you with the support provided by the community during #30DaysOfFlutter campaign?
+							</label>
+							<div class="control">
+								<select name="campaign_support_score">
+									<option value=""></option>
+									@for ($i=1; $i<=5; $i++)
+										<option value="{{ $i }}" {{ old('campaign_support_score') == $i ? "SELECTED" : ""}}>
+											@if ($i == 1)
+												1 - Poor
+											@elseif ($i == 5)
+												5 - It was great!
+											@else
+												{{ $i }}
+											@endif
+										</option>
+									@endfor
+								</select>
+							</div>
+						</div>
+
+						<div class="field">
+							<label class="label" for="campaign_subscribe">
+								Will you like to be a part of more such campaigns in the future?
+							</label>
+							<div class="control">
+							  <label class="radio" style="color:black">
+							    <input type="radio" name="campaign_subscribe" value="true">
+								Yes
+							</label>
+							  <label class="radio" style="color:black">
+							    <input type="radio" name="campaign_subscribe" value="">
+							    No
+							  </label>
+							</div>
+						</div>
+
+						<div class="field">
+							<label class="label" for="campaign_comments">
+								Comments (if any)
+							</label>
+							<div class="control">
+
+								{{ Form::textarea('campaign_comments', '', ['class' => 'textarea', 'rows' => 4]) }}
+
+							</div>
+						</div>
 
 					</div>
 				</article>
