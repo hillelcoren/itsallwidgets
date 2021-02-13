@@ -173,6 +173,8 @@
 
 			@if ($campaign == '30days')
 
+				<input type="text" name="campaign_id" value="1" style="display:none"/>
+
 				<div class="subtitle">30 Days of Flutter</div>
 
 				<article class="message is-info is-elevated">
