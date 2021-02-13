@@ -171,6 +171,21 @@
 			<p>&nbsp;</p>
 			<p>&nbsp;</p>
 
+			@if ($campaign)
+
+				<div class="subtitle">30 Days of Flutter</div>
+
+				<article class="message is-elevated">
+					<div class="message-body">
+
+					</div>
+				</article>
+
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+
+			@endif
+
 			<div class="subtitle">Optional Mobile Images</div>
 
 			<article class="message is-elevated">
@@ -426,7 +441,7 @@
 
 			@if (auth()->user()->is_pro && auth()->user()->is_pro_iaw)
 				<div class="has-text-centered">
-					The app will also be listed on <a href="{{ fpUrl() }}" target="_blank">flutterpro.dev</a>,
+					Your profile will also be listed on <a href="{{ fpUrl() }}" target="_blank">flutterpro.dev</a>,
 					to change your settings <a href="/profile/edit" target="_blank">click here</a>
 				</div>
 

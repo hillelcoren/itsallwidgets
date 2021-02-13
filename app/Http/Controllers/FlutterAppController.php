@@ -81,7 +81,7 @@ class FlutterAppController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function create($campaign = '')
     {
         $app = new FlutterApp;
         $app->is_mobile = true;
@@ -90,6 +90,7 @@ class FlutterAppController extends Controller
             'app' => $app,
             'url' => 'submit',
             'method' => 'POST',
+            'campaign' => $campaign,
         ];
 
         return view('flutter_apps.edit', $data);
@@ -109,6 +110,7 @@ class FlutterAppController extends Controller
             'app' => $app,
             'url' => 'flutter-app/' . $app->slug,
             'method' => 'PUT',
+            'campaign' => false,
         ];
 
         return view('flutter_apps.edit', $data);
