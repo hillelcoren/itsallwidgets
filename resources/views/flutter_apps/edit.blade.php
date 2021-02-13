@@ -158,7 +158,7 @@
 								<label>
 									{{ Form::hidden('is_template', 0) }}
 									<input name="is_template" type="checkbox"
-										value="1" {{ (old('is_template') !== null ? intval(old('is_template')) : $app->is_template) ? 'CHECKED' : '' }}/> Please check this if your app is a template
+										value="1" {{ (old('is_template') !== null ? intval(old('is_template')) : $app->is_template) ? 'CHECKED' : '' }}/> Please check this if your app is a template or UI kit
 								</lable>
 							</div>
 						</div>

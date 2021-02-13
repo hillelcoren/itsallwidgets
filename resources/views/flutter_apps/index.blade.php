@@ -214,17 +214,18 @@ body {
                         </a>
                     </li>
 
-                    <li v-bind:class="[filter_platform == 'platform_campaign' ? 'is-active' : '']">
-                        <a href="#/" v-on:click="setPlatform('platform_campaign')">
-                            <div>
-                                <span class="icon is-small">
-                                    <i class="fas fa-code" aria-hidden="true"></i>
-                                </span>
-                                <span>30 Days of Flutter</span>
-                            </div>
-                        </a>
-                    </li>
-
+                    @if (request()->show30)
+                        <li v-bind:class="[filter_platform == 'platform_campaign' ? 'is-active' : '']">
+                            <a href="#/" v-on:click="setPlatform('platform_campaign')">
+                                <div>
+                                    <span class="icon is-small">
+                                        <i class="fas fa-code" aria-hidden="true"></i>
+                                    </span>
+                                    <span>30 Days of Flutter</span>
+                                </div>
+                            </a>
+                        </li>
+                    @endif
 
                 </ul>
             </div>
@@ -864,7 +865,7 @@ var app = new Vue({
                 });
             } else if (filter_platform == 'platform_campaign') {
                 apps = apps.filter(function(item) {
-                    return item.is_mobile && item.campaign_id == '1';                    
+                    return item.is_mobile && item.campaign_id == '1';
                 });
             } else {
                 apps = apps.filter(function(item) {
