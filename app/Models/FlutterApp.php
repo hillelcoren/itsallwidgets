@@ -44,7 +44,6 @@ class FlutterApp extends Model implements Feedable
     protected $hidden = [
         'is_visible',
         'is_approved',
-        'campaign_id',
         'campaign_content_score',
         'campaign_video_score',
         'campaign_support_score',

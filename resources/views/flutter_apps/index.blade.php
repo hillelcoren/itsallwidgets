@@ -314,7 +314,7 @@ body {
                                 </div>
                             @endif
 
-                            <div v-if="filter_platform == 'platform_mobile'" class="app-stores" style="font-size:13px; padding-top:12px;">
+                            <div v-if="filter_platform != 'platform_web'" class="app-stores" style="font-size:13px; padding-top:12px;">
                                 <a v-bind:href="app.google_url" v-if="app.google_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
                                     GOOGLE PLAY
                                 </a>
@@ -333,7 +333,7 @@ body {
                             </div>
                         </div>
 
-                        <div v-if="filter_platform == 'platform_mobile'" class="card-image" style="line-height:0px">
+                        <div v-if="filter_platform != 'platform_web'" class="card-image" style="line-height:0px">
                             <img v-if="app.has_gif" v-bind:src="'/gifs/app-' + app.id + '.gif?updated_at=' + app.updated_at" loading="lazy" width="1080" height="1920"/>
                             <img v-if="!app.has_gif" v-bind:src="'/screenshots/app-' + app.id + '.png?updated_at=' + app.updated_at" loading="lazy" width="1080" height="1920"/>
                         </div>
@@ -858,13 +858,17 @@ var app = new Vue({
                 });
             }
 
-            if (filter_platform == 'platform_mobile') {
+            if (filter_platform == 'platform_web') {
                 apps = apps.filter(function(item) {
-                    return item.is_mobile;
+                    return item.is_web;
+                });
+            } else if (filter_platform == 'platform_campaign') {
+                apps = apps.filter(function(item) {
+                    return item.is_mobile && item.campaign_id == '1';                    
                 });
             } else {
                 apps = apps.filter(function(item) {
-                    return item.is_web;
+                    return item.is_mobile;
                 });
             }
 
