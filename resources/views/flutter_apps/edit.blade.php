@@ -250,11 +250,11 @@
 							</label>
 							<div class="control">
 							  <label class="radio" style="color:black">
-							    <input type="radio" name="campaign_subscribe" value="true" {{ old('campaign_subscribe') == "true" ? "CHECKED" : "" }}>
+							    <input type="radio" name="campaign_subscribe" value="1" {{ old('campaign_subscribe') == "1" ? "CHECKED" : "" }}>
 								Yes
 							</label>
 							  <label class="radio" style="color:black">
-							    <input type="radio" name="campaign_subscribe" value="false" {{ old('campaign_subscribe') == "false" ? "CHECKED" : "" }}>
+							    <input type="radio" name="campaign_subscribe" value="0" {{ old('campaign_subscribe') == "0" ? "CHECKED" : "" }}>
 							    No
 							  </label>
 							</div>
