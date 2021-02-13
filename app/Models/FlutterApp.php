@@ -34,13 +34,22 @@ class FlutterApp extends Model implements Feedable
         'is_template',
         'flutter_web_url',
         'campaign_id',
-        'campaign_question1',
-        'campaign_question2',
+        'campaign_content_score',
+        'campaign_video_score',
+        'campaign_support_score',
+        'campaign_subscribe',
+        'campaign_comments',
     ];
 
     protected $hidden = [
         'is_visible',
         'is_approved',
+        'campaign_id',
+        'campaign_content_score',
+        'campaign_video_score',
+        'campaign_support_score',
+        'campaign_subscribe',
+        'campaign_comments',
     ];
 
     public function user()
