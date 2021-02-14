@@ -202,7 +202,7 @@ class FlutterProController extends Controller
             'Animation',
             'Cupertino',
             'Foundation',
-            '6estures',
+            'Gestures',
             'Material',
             'Painting',
             'Physics',
