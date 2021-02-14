@@ -177,7 +177,7 @@
             <p>&nbsp;</p>
 			<p>&nbsp;</p>
 
-            @if (request()->flutter_cards || $user->widget)
+            @if (count($availableWidgets) > 0 || $user->widget)
                 <div class="subtitle">Flutter Cards</div>
 
                 <div class="subtitle is-6">
