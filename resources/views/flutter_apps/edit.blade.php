@@ -214,7 +214,7 @@
 											@if ($i == 1)
 												1 - Poor
 											@elseif ($i == 5)
-												5 - Enjoyed it a lot!
+												5 - Enjoyed a lot!
 											@else
 												{{ $i }}
 											@endif
