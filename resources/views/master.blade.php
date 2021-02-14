@@ -473,6 +473,8 @@
                 <div class="subtitle" style="font-size:18px; padding-bottom:6px;">
                     @if (isGL())
                         Geula: Revealing A Divine World
+                    @elseif (isset($campaign) && $campaign)
+                        Thank you for participating in <a href="https://events.withgoogle.com/30-daysofflutter/" target="_blank">30 Days of Flutter!</a>
                     @else
                         @yield('header_subtitle', 'Feel free to add an app in progress and update it when it goes live')
                     @endif
