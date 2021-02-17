@@ -36,6 +36,14 @@
 					</div>
 				@endif
 				<div class="column is-{{ $app->is_mobile ? '8' : '12' }}">
+
+					@if (auth()->check() && auth()->user()->owns($app) && $app->campaign_id)
+						<div class="notification is-info">
+							<a href="{{ url('/badge') }}" target="_blank">Click here</a> to create your 30 Days of Flutter badge!
+						</div>
+						<p>&nbsp;</p>
+					@endif
+
 					<nav class="breadcrumb" aria-label="breadcrumbs">
 						<ul>
 							<li><a href="{{ url('/') }}">All Applications</a></li>
