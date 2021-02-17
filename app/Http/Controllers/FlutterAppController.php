@@ -287,4 +287,9 @@ class FlutterAppController extends Controller
 
         return response($str)->header('Content-Type', 'application/xml');
     }
+
+    public function badge()
+    {
+        return view('flutter_apps.badge');
+    }
 }

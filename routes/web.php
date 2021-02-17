@@ -159,6 +159,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('profile', 'FlutterProController@update');
     Route::get('profile/edit', 'FlutterProController@edit');
 
+    Route::get('badge', 'FlutterAppController@badge');
     Route::get('submit/{campaign?}', 'FlutterAppController@create');
     Route::post('submit', 'FlutterAppController@store')->middleware('slug');
 
