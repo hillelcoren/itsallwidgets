@@ -349,41 +349,8 @@ class FlutterProController extends Controller
             return redirect('/');
         }
 
-        $str = '<table><tr>'
-            . '<th>Widget</th>'
-            . '<th>Developer</th>'
-            . '<th>Description</th>'
-            . '<th>Tip</th>'
-            . '<th>Code Sample</th>'
-            . '</tr>';
-
         $users = User::where('widget', '!=' , '')->get();
 
-        foreach ($users as $user) {
-
-            if ($user->widget_youtube_url) {
-                $name = '<a href="https://www.youtube.com/watch?v=' . $user->widget_youtube_url . '" target="_blank">' . $user->widget . '</a>';
-            } else {
-                $name = $user->widget;
-            }
-
-            if ($user->twitter_url) {
-                $developer = '<a href="' . $user->twitter_url . '" target="_blank">' . $user->twitterHandle() . '</a>';
-            } else {
-                $developer = '';
-            }
-
-            $str .= '<tr>'
-            . '<td>' . $name . '</td>'
-            . '<td>' . $developer . '</td>'
-            . '<td>' . $user->widget_description . '</td>'
-            . '<td>' . $user->widget_tip . '</td>'
-            . '<td>' . $user->widget_code_sample . '</td>'
-            . '</tr>';
-        }
-
-        $str .= '</table>';
-
-        return $str;
+        return view('flutter_pro.cards', ['users' => $users]);
     }
 }
