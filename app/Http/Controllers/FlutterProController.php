@@ -367,8 +367,18 @@ class FlutterProController extends Controller
                 $name = $user->widget;
             }
 
+            if ($user->twitter_url) {
+                $developer = '<a href="' . $user->twitter_url . '" target="_blank">' . $user->twitterHandle() . '</a>';
+            } else {
+                $developer = '';
+            }
+
             $str .= '<tr>'
             . '<td>' . $name . '</td>'
+            . '<td>' . $developer . '</td>'
+            . '<td>' . $user->widget_description . '</td>'
+            . '<td>' . $user->widget_tip . '</td>'
+            . '<td>' . $user->widget_code_sample . '</td>'
             . '</tr>';
         }
 
