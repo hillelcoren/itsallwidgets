@@ -342,4 +342,38 @@ class FlutterProController extends Controller
 
         return response($str)->header('Content-Type', 'application/xml');
     }
+
+    public function cards()
+    {
+        if (!auth()->check() || !auth()->user()->widget) {
+            return redirect('/');
+        }
+
+        $str = '<table><tr>'
+            . '<th>Widget</th>'
+            . '<th>Developer</th>'
+            . '<th>Description</th>'
+            . '<th>Tip</th>'
+            . '<th>Code Sample</th>'
+            . '</tr>';
+
+        $users = User::where('widget', '!=' , '')->get();
+
+        foreach ($users as $user) {
+
+            if ($user->widget_youtube_url) {
+                $name = '<a href="https://www.youtube.com/watch?v=' . $user->widget_youtube_url . '" target="_blank">' . $user->widget . '</a>';
+            } else {
+                $name = $user->widget;
+            }
+
+            $str .= '<tr>'
+            . '<td>' . $name . '</td>'
+            . '</tr>';
+        }
+
+        $str .= '</table>';
+
+        return $str;
+    }
 }
