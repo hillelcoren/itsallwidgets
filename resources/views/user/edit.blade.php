@@ -197,7 +197,7 @@
                             </label>
                             <div class="control">
                                 @if ($user->widget)
-                                    {{ (array_search($user->widget, $widgets) + 1) . '. ' . $user->widget }}
+                                    {{ (array_search($user->widget, $widgets) + 1) . '. ' . $user->widget }} - <a href="{{ url('/cards') }}" target="_blank">View card data</a>
                                 @else
                                     <div class="select">
                                       <select name="widget" id="widget" onchange="onWidgetChange()">

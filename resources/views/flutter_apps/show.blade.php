@@ -39,7 +39,7 @@
 
 					@if (auth()->check() && auth()->user()->owns($app) && $app->campaign_id)
 						<div class="notification is-info">
-							<a href="{{ url('/badge') }}" target="_blank">Click here</a> to create your 30 Days of Flutter badge!
+							<a href="{{ url('/badge') }}" target="_blank">Click here</a> to create your #30DaysOfFlutter badge!
 						</div>
 						<p>&nbsp;</p>
 					@endif
