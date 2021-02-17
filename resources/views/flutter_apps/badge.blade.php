@@ -195,7 +195,7 @@
       <button class="button" onclick="uploadImage()">Upload Image</button>
       <input class="profile-input" type="file" accept="image/*" onchange="upload(event)" hidden />
     </div>
-    <div class="input">
+    <div class="input" style="display:none">
       <label for="category">Category Name</label>
       <input id="category" list="gde-category" class="category-input" type="text" oninput="draw()" />
       <datalist id="gde-category">
@@ -297,7 +297,8 @@
   }
 
   const draw = () => {
-    const category = document.querySelector('input.category-input').value || 'Category Name'
+    //const category = document.querySelector('input.category-input').value || 'Category Name'
+    const category = document.querySelector('input.category-input').value || ''
 
     if (image) {
       switch (shape) {
