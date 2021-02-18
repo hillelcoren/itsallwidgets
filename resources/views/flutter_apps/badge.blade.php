@@ -293,7 +293,7 @@
   }
 
   const banner = new Image()
-  banner.src = '{{ asset('images/badge.png') }}';
+  banner.src = '{{ asset('images/badge.png?v2') }}';
   banner.onload = () => {
     draw()
   }
