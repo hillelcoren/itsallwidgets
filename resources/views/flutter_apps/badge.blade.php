@@ -219,8 +219,8 @@
     <div class="input">
       <label>Image Shape</label>
       <div class="select-container">
-        <div class="select" id="original" selected onclick="changeShape('original')">Original</div>
-        <div class="select" id="square" onclick="changeShape('square')">Square</div>
+        <!-- <div class="select" id="original" selected onclick="changeShape('original')">Original</div> -->
+        <div class="select" id="square" selected onclick="changeShape('square')">Square</div>
         <div class="select" id="circle" onclick="changeShape('circle')">Circle</div>
       </div>
     </div>
@@ -241,33 +241,35 @@
   const canvas = document.querySelector('canvas')
   const ctx = canvas.getContext('2d')
   let image = ''
-  let shape = 'original'
+  let shape = 'square'
 
   const uploadImage = () => {
     document.querySelector('input.profile-input').click()
   }
 
   const changeShape = (type) => {
-    const original = document.querySelector('.select-container .select#original')
+    //const original = document.querySelector('.select-container .select#original')
     const square = document.querySelector('.select-container .select#square')
     const circle = document.querySelector('.select-container .select#circle')
     shape = type
     switch (type) {
+        /*
       case 'original': {
         original.setAttribute('selected', '')
         square.removeAttribute('selected')
         circle.removeAttribute('selected')
         break
       }
+      */
       case 'square': {
         square.setAttribute('selected', '')
-        original.removeAttribute('selected')
+        //original.removeAttribute('selected')
         circle.removeAttribute('selected')
         break
       }
       case 'circle': {
         circle.setAttribute('selected', '')
-        original.removeAttribute('selected')
+        //original.removeAttribute('selected')
         square.removeAttribute('selected')
         break
       }
@@ -291,7 +293,7 @@
   }
 
   const banner = new Image()
-  banner.src = '{{ asset('images/badge.svg') }}';
+  banner.src = '{{ asset('images/badge.png') }}';
   banner.onload = () => {
     draw()
   }
@@ -334,6 +336,7 @@
     const fontSize = canvas.width / 17.2
     const fontY = y + height * 0.7
     ctx.drawImage(banner, 0, 0, banner.width, banner.height, 0, y, canvas.width, height)
+    console.log(banner.width + ' ' + banner.height);
 
     ctx.fillStyle = '#757575'
     ctx.textAlign = 'center'
