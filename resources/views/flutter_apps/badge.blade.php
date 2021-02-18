@@ -336,7 +336,6 @@
     const fontSize = canvas.width / 17.2
     const fontY = y + height * 0.7
     ctx.drawImage(banner, 0, 0, banner.width, banner.height, 0, y, canvas.width, height)
-    console.log(banner.width + ' ' + banner.height);
 
     ctx.fillStyle = '#757575'
     ctx.textAlign = 'center'
