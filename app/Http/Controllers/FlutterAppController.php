@@ -290,6 +290,14 @@ class FlutterAppController extends Controller
 
     public function badge()
     {
+        $count = FlutterApp::where('user_id', '=', auth()->user()->id)
+            ->where('campaign_id', '=', 1)
+            ->count();
+
+        if ($count == 0 && request()->secret != 'dash') {
+            return redirect('/');
+        }
+
         return view('flutter_apps.badge');
     }
 }
