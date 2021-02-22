@@ -214,7 +214,7 @@ body {
                         </a>
                     </li>
 
-                    @if (request()->show30)
+                    @if (true)
                         <li v-bind:class="[filter_platform == 'platform_campaign' ? 'is-active' : '']">
                             <a href="#/" v-on:click="setPlatform('platform_campaign')">
                                 <div>
@@ -579,16 +579,6 @@ function getCachedSortBy() {
     return sortBy;
 }
 
-function getCachedPlatform() {
-    @if (request()->platform == 'web')
-        return 'platform_web';
-    @elseif (request()->platform == 'mobile')
-        return 'platform_mobile';
-    @endif
-
-    return (isStorageSupported() ? localStorage.getItem('filter_platform') : false) || 'platform_mobile';
-}
-
 function getCachedCardsPerRow() {
     return (isStorageSupported() ? localStorage.getItem('cards_per_row') : false) || 4;
 }
@@ -721,7 +711,6 @@ var app = new Vue({
 
     mounted () {
         window.addEventListener('keyup', function(event) {
-            console.log('key code: %s', event.keyCode);
             if (event.keyCode == 27) {
                 app.selectApp();
             } else if (event.keyCode == 39) {
@@ -739,8 +728,7 @@ var app = new Vue({
         filter_template: {{ filter_var(request()->templates, FILTER_VALIDATE_BOOLEAN) ? 'true' : 'false' }},
         cards_per_row: getCachedCardsPerRow(),
         sort_by: getCachedSortBy(),
-        //filter_platform: getCachedPlatform(),
-        filter_platform: 'platform_mobile',
+        filter_platform: '{{ request()->show30 ? 'platform_campaign' : 'platform_mobile' }}',
         selected_app: false,
         image_type: '.png',
         page_number: 1,
