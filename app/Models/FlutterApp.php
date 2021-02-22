@@ -39,6 +39,7 @@ class FlutterApp extends Model implements Feedable
         'campaign_support_score',
         'campaign_subscribe',
         'campaign_comments',
+        'campaign_is_first_app',
     ];
 
     protected $hidden = [

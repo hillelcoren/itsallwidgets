@@ -181,6 +181,22 @@
 					<div class="message-body">
 
 						<div class="field">
+							<label class="label" for="campaign_is_first_app">
+								Was this your first Flutter app?
+							</label>
+							<div class="control">
+							  <label class="radio" style="color:black">
+							    <input type="radio" name="campaign_is_first_app" value="1" {{ old('campaign_is_first_app') == "1" ? "CHECKED" : "" }}>
+								Yes
+							</label>
+							  <label class="radio" style="color:black">
+							    <input type="radio" name="campaign_is_first_app" value="0" {{ old('campaign_is_first_app') == "0" ? "CHECKED" : "" }}>
+							    No
+							  </label>
+							</div>
+						</div>
+
+						<div class="field">
 							<label class="label" for="campaign_content_score">
 								On a scale of 1-5, how useful did you find the content shared during #30DaysOfFlutter?
 							</label>
