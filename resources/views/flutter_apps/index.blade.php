@@ -853,7 +853,7 @@ var app = new Vue({
                 });
             } else if (filter_platform == 'platform_campaign') {
                 apps = apps.filter(function(item) {
-                    return item.is_mobile && item.campaign_id == '1';
+                    return item.is_mobile && item.campaign_id == '1' && item.campaign_is_first_app != '0';
                 });
             } else {
                 apps = apps.filter(function(item) {
