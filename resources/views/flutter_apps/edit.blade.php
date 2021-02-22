@@ -177,6 +177,7 @@
 
 				<div class="subtitle">30 Days of Flutter</div>
 
+				<div class="subtitle is-6">Thank you for participating in the event!! Feel free to share your app even if it isn't yet complete. Your Flutter journey is just beginning... hopefully you'll keep improving the app over time, you can update the details here any time.</div>
 				<article class="message is-info is-elevated">
 					<div class="message-body">
 
