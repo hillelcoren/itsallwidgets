@@ -175,7 +175,8 @@ class User extends Authenticatable
     	} else if ($this->website_url) {
     		return $this->website_url;
     	} else {
-    		return $this->jsonUrl(true) . '&instructions=true';
+            return '';
+    		//return $this->jsonUrl(true) . '&instructions=true';
     	}
     }
 
