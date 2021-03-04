@@ -188,7 +188,7 @@
                     We aren't able to offer revenue sharing but will include your Twitter handle on the card you create and credit you on the site. If you have any questions or feedback about the cards please email us at contact@itsallwidgets.com
                 </div>
 
-                <article class="message is-dark is-elevated">
+                <article class="message is-info is-elevated">
                     <div class="message-body">
 
                         <div class="field">
