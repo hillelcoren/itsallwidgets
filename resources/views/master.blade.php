@@ -694,6 +694,9 @@
                         Sell with Stripe, Authorize.net, PayPal <br/>
                         and more using the <a href="https://pub.dev/packages/invoiceninja" target="_blank">Flutter plugin</a>
                     </div>
+                    <div style="padding-top:25px;">
+                        <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/iefk6TOU-Ts" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
                 <p>
             @endif
 
