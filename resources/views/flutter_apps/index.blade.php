@@ -201,7 +201,17 @@ body {
                                 <span class="icon is-small">
                                     <i class="fas fa-mobile-alt" aria-hidden="true"></i>
                                 </span>
-                                <span>Mobile Apps</span>
+                                <span>Mobile</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li v-bind:class="[filter_platform == 'platform_desktop' ? 'is-active' : '']">
+                        <a href="#/" v-on:click="setPlatform('platform_desktop')">
+                            <div>
+                                <span class="icon is-small">
+                                    <i class="fas fa-desktop" aria-hidden="true"></i>
+                                </span>
+                                <span>Desktop</span>
                             </div>
                         </a>
                     </li>
@@ -209,14 +219,14 @@ body {
                         <a href="#/" v-on:click="setPlatform('platform_web')">
                             <div>
                                 <span class="icon is-small">
-                                    <i class="fas fa-desktop" aria-hidden="true"></i>
+                                    <i class="fas fa-laptop" aria-hidden="true"></i>
                                 </span>
-                                <span>Web Apps</span>
+                                <span>Web</span>
                             </div>
                         </a>
                     </li>
 
-                    @if (true)
+                    @if (false)
                         <li v-bind:class="[filter_platform == 'platform_campaign' ? 'is-active' : '']">
                             <a href="#/" v-on:click="setPlatform('platform_campaign')">
                                 <div>
@@ -317,7 +327,7 @@ body {
                                 </div>
                             @endif
 
-                            <div v-if="filter_platform != 'platform_web'" class="app-stores" style="font-size:13px; padding-top:12px;">
+                            <div v-if="filter_platform == 'platform_mobile'" class="app-stores" style="font-size:13px; padding-top:12px;">
                                 <a v-bind:href="app.google_url" v-if="app.google_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
                                     GOOGLE PLAY
                                 </a>
@@ -336,7 +346,7 @@ body {
                             </div>
                         </div>
 
-                        <div v-if="filter_platform != 'platform_web'" class="card-image" style="line-height:0px">
+                        <div v-if="filter_platform == 'platform_mobile'" class="card-image" style="line-height:0px">
                             <img v-if="app.has_gif" v-bind:src="'/gifs/app-' + app.id + '.gif?updated_at=' + app.updated_at" loading="lazy" width="1080" height="1920"/>
                             <img v-if="!app.has_gif" v-bind:src="'/screenshots/app-' + app.id + '.png?updated_at=' + app.updated_at" loading="lazy" width="1080" height="1920"/>
                         </div>
@@ -777,20 +787,7 @@ var app = new Vue({
         },
 
         columnClass() {
-            if (this.filter_platform == 'platform_web') {
-                switch(+this.cards_per_row) {
-                    case 6:
-                        return {'is-full': true};
-                    case 5:
-                        return {'is-full': true};
-                    case 4:
-                        return {'is-full': true};
-                    case 3:
-                        return {'is-6': true};
-                    case 2:
-                        return {'is-one-third': true};
-                }
-            } else {
+            if (this.filter_platform == 'platform_mobile') {
                 switch(+this.cards_per_row) {
                     case 6:
                         return {'is-6': true};
@@ -802,6 +799,19 @@ var app = new Vue({
                         return {'is-one-fifth': true};
                     case 2:
                         return {'is-2': true};
+                }
+            } else {
+                switch(+this.cards_per_row) {
+                    case 6:
+                        return {'is-full': true};
+                    case 5:
+                        return {'is-full': true};
+                    case 4:
+                        return {'is-full': true};
+                    case 3:
+                        return {'is-6': true};
+                    case 2:
+                        return {'is-one-third': true};
                 }
             }
         },
@@ -849,17 +859,21 @@ var app = new Vue({
                 });
             }
 
-            if (filter_platform == 'platform_web') {
+            if (filter_platform == 'platform_mobile') {
+                apps = apps.filter(function(item) {
+                    return item.is_mobile;
+                });
+            } else if (filter_platform == 'platform_desktop') {
+                apps = apps.filter(function(item) {
+                    return item.is_desktop;
+                });
+            } else if (filter_platform == 'platform_web') {
                 apps = apps.filter(function(item) {
                     return item.is_web;
                 });
             } else if (filter_platform == 'platform_campaign') {
                 apps = apps.filter(function(item) {
                     return item.is_mobile && item.campaign_id == '1' && item.campaign_is_first_app != '0';
-                });
-            } else {
-                apps = apps.filter(function(item) {
-                    return item.is_mobile;
                 });
             }
 
