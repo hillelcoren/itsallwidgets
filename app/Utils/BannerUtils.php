@@ -38,7 +38,7 @@ function getEventBanner()
     if (cache()->has($ip . '_country')) {
         $country = cache($ip . '_country');
         if ($country == 'IL') {
-            return \App\Models\User::admin()->widget_description;
+            return \App\Models\User::admin()->widget_code_sample;
         }
     }
 
