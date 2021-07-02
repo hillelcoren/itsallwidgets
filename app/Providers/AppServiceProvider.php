@@ -76,17 +76,19 @@ class AppServiceProvider extends ServiceProvider
         }
 
         $ip = \Request::getClientIp();
-        if (!cache()->has($ip . '_latitude')) {
-            $link = 'http://www.geoplugin.net/php.gp?ip=' . $ip;
+        if (!cache()->has($ip . '_country')) {
+            $link = 'http://www.geoplugin.net/json.gp?ip=' . $ip;
             $latitude = 0;
             $longitude = 0;
-            if ($data = unserialize(@file_get_contents($link))) {
-                $latitude = floatval($data['geoplugin_latitude']);
-                $longitude = floatval($data['geoplugin_longitude']);
+            if ($data = json_decode(@file_get_contents($link))) {
+                $latitude = floatval($data->geoplugin_latitude);
+                $longitude = floatval($data->geoplugin_longitude);
+                $country = $data->geoplugin_countryCode;
             }
-            if ($latitude && $longitude) {
+            if ($country) {
                 cache([$ip . '_latitude' => $latitude], 60 * 60 * 24);
                 cache([$ip . '_longitude' => $longitude], 60 * 60 * 24);
+                cache([$ip . '_country' => $country], 60 * 60 * 24);
             }
         }
     }

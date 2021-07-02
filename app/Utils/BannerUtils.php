@@ -32,7 +32,16 @@ function getCourseBanner()
 }
 
 function getEventBanner()
-{
+{    
+    $ip = \Request::getClientIp();
+
+    if (cache()->has($ip . '_country')) {
+        $country = cache($ip . '_country');
+        if ($country == 'IL') {
+            return \App\Models\User::admin()->widget_description;
+        }
+    }
+
     $eventRepo = app('App\Repositories\FlutterEventRepository');
     $event = $eventRepo->findRandomOnline();
 
