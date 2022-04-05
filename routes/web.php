@@ -53,7 +53,7 @@ Route::group(['domain' => 'www.flutterx.com'], function() {
 
 Route::group(['domain' => 'www.flutterevents.com'], function() {
     Route::get('/', function() {
-        return redirect('https://flutterevents.com');
+        return redirect('https://www.meetup.com/pro/flutter');
     });
 });
 

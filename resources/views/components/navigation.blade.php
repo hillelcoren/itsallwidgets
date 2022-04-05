@@ -14,9 +14,11 @@
         <i class="fas fa-laptop"></i> &nbsp; Resources
     </a>
 
+    <!--
     <a class="navbar-item" href="{{ feUrl() }}">
         <i class="fas fa-calendar"></i> &nbsp; Events
     </a>
+    -->
 
     <a class="navbar-item" href="{{ fsUrl() }}">
         <i class="fas fa-video"></i> &nbsp; Streams

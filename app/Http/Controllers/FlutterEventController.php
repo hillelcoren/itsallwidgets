@@ -32,6 +32,9 @@ class FlutterEventController extends Controller
 
     public function index()
     {
+        return redirect('https://www.meetup.com/pro/flutter');
+
+        /*
         if (request()->clear_cache) {
             cache()->forget('flutter-event-list');
             return redirect('/')->with('status', 'App cache has been cleared!');
@@ -52,6 +55,7 @@ class FlutterEventController extends Controller
         ];
 
         return view('flutter_events.index', $data);
+        */
     }
 
     public function create()
@@ -133,6 +137,9 @@ class FlutterEventController extends Controller
      */
     public function show($tld, $event = false)
     {
+        return redirect('https://www.meetup.com/pro/flutter');
+
+        /*
         if (! $event) {
             $event = $tld;
         }
@@ -147,6 +154,7 @@ class FlutterEventController extends Controller
         ];
 
         return view('flutter_events.show', $data);
+        */
     }
 
     public function approve(ApproveFlutterEvent $request)
