@@ -205,6 +205,7 @@ body {
                             </div>
                         </a>
                     </li>
+                    <!--
                     <li v-bind:class="[filter_platform == 'platform_desktop' ? 'is-active' : '']">
                         <a href="#/" v-on:click="setPlatform('platform_desktop')">
                             <div>
@@ -215,6 +216,7 @@ body {
                             </div>
                         </a>
                     </li>
+                    -->
                     <li v-bind:class="[filter_platform == 'platform_web' ? 'is-active' : '']">
                         <a href="#/" v-on:click="setPlatform('platform_web')">
                             <div>
@@ -226,7 +228,7 @@ body {
                         </a>
                     </li>
 
-                    @if (false)
+                    @if (true)
                         <li v-bind:class="[filter_platform == 'platform_campaign' ? 'is-active' : '']">
                             <a href="#/" v-on:click="setPlatform('platform_campaign')">
                                 <div>
