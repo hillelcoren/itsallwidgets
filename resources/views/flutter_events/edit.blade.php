@@ -1,16 +1,9 @@
 @extends('master')
 
-@section('title', 'Flutter Events')
-@section('description', 'An Open List of Flutter Events')
+@section('title', 'An open list of apps built with Flutter')
+@section('description', 'An open list of apps built with Flutter')
 @section('image_url', asset('images/events_twitter.png'))
-@section('header_title', 'An Open List of Flutter Events')
-
-@section('header_subtitle')
-    Events are sourced from <a href="https://www.meetup.com/find/?allMeetups=false&keywords=flutter&radius=Infinity" target="_blank">Meetup.com</a> or can be added manually
-@endsection
-
-@section('header_button_url', url(auth()->check() ? 'flutter-event/submit' : 'auth/google?intended_url=flutter-event/submit'))
-@section('header_button_label', 'SUBMIT EVENT')
+@section('header_title', 'An open list of apps built with Flutter')
 
 @section('content')
 
@@ -79,9 +72,9 @@
 
 			<div class="subtitle" style="padding-top:6px">
 				@if ($event->is_approved)
-					Your banner will be shown to people who are near the event
+					Your banner is now active
 				@else
-					Once approved your banner will be shown to people who are near the event
+					Once approved your banner will be displayed on the site
 				@endif
 				<!--
 				Your banner will be shown to people who are near the event and you'll be able to tweet the event from the

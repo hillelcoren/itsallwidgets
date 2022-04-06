@@ -486,25 +486,25 @@
                     @endif
                 </div>
 
-                @if (!isFX() && !isGL() && (!request()->is('podcast*') || (auth()->check() && auth()->user()->is_admin)))
-                    <a class="button is-elevated-dark" style="padding: 20px 32px 18px 32px" target="{{ isFS() ? '_blank' : '_self' }}"
-                        href="@yield('header_button_url', url(auth()->check() ? 'submit' : 'auth/google?intended_url=submit'))">
-                        <span class="icon">
-                            <i class="@yield('header_button_icon', 'fas fa-cloud-upload-alt')"></i>
-                        </span> &nbsp;
-                        <span>@yield('header_button_label', 'SUBMIT APP')</span>
-                    </a>
-
-                    @if (isIAW() && !request()->is('*/edit'))
-                        &nbsp;
-                        <a style="padding: 20px 32px 18px 32px; color:white;" target="_blank"
-                            class="button is-elevated-dark" href="@yield('second_header_button_url', 'https://twitter.com/itsallwidgets')">
+                @if (!isGL() && (!request()->is('podcast*') || (auth()->check() && auth()->user()->is_admin)))
+                    @if (!isFX())
+                        <a class="button is-elevated-dark" style="padding: 20px 32px 18px 32px" target="{{ isFS() ? '_blank' : '_self' }}"
+                            href="@yield('header_button_url', url(auth()->check() ? 'submit' : 'auth/google?intended_url=submit'))">
                             <span class="icon">
-                                <i class="@yield('second_header_button_icon', 'fab fa-twitter')"></i>
+                                <i class="@yield('header_button_icon', 'fas fa-cloud-upload-alt')"></i>
                             </span> &nbsp;
-                            <span>@yield('second_header_button_label', 'FOLLOW US')</span>
+                            <span>@yield('header_button_label', 'SUBMIT APP')</span>
                         </a>
                     @endif
+
+                    &nbsp;
+                    <a style="padding: 20px 32px 18px 32px; color:white;" target="_blank"
+                        class="button is-elevated-dark" href="{{ iawUrl() . '/' . (auth()->check() ? 'flutter-event/submit' : 'auth/google?intended_url=flutter-event/submit') }}">
+                        <span class="icon">
+                            <i class="fa fa-calendar"></i>
+                        </span> &nbsp;
+                        <span>SUBMIT EVENT</span>
+                    </a>
                 @endif
             </div>
         </div>
