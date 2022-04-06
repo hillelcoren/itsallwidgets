@@ -32,7 +32,7 @@ class FlutterEventController extends Controller
 
     public function index()
     {
-        return redirect('https://www.meetup.com/pro/flutter');
+        return redirect('https://itsallwidgets.com');
 
         /*
         if (request()->clear_cache) {
@@ -137,7 +137,7 @@ class FlutterEventController extends Controller
      */
     public function show($tld, $event = false)
     {
-        return redirect('https://www.meetup.com/pro/flutter');
+        return redirect('https://itsallwidgets.com');
 
         /*
         if (! $event) {
