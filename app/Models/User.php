@@ -186,8 +186,22 @@ class User extends Authenticatable
 
         if (request()->counts) {
             $obj->id = $this->profile_key;
-            $obj->image_url = $this->image_url;
             $obj->profile_url = $this->profileUrl();
+            $obj->image_url = $this->image_url;
+
+            if ($this->avatar_url && !$this->image_url) {
+                $url = $this->avatar_url;
+
+                if (strpos($url, '/photo.jpg?sz=50') != null) {
+                    $url = rtrim($url, '50') . '300';
+                } else if (strpos($url, '/photo.jpg') != null) {
+                    $url = $url . '?sz=300';
+                } else {
+                    $url = $url . '=s300-c';
+                }
+    
+                $obj->image_url = $url;
+            }
         }
 
         $obj->name = $this->name;
