@@ -35,6 +35,15 @@ function getEventBanner()
 {    
     $ip = \Request::getClientIp();
 
+    /*
+    if (cache()->has($ip . '_country')) {
+        $country = cache($ip . '_country');
+        if ($country == 'IL') {
+            return '';
+        }
+    }
+    */
+
     $eventRepo = app('App\Repositories\FlutterEventRepository');
     $event = $eventRepo->findRandomOnline();
 
