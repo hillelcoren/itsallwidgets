@@ -72,7 +72,6 @@ Route::group(['domain' => '{subdomain}.flutterpro.{tld}'], function() {
     Route::get('{handle}', 'FlutterProController@show');
 });
 
-/*
 Route::group(['domain' => '{subdomain}.flutterevents.{tld}'], function() {
     Route::get('/', 'FlutterEventController@index');
     Route::get('feed', 'FlutterEventController@jsonFeed');
@@ -81,7 +80,6 @@ Route::group(['domain' => '{subdomain}.flutterevents.{tld}'], function() {
     Route::get('{flutter_event}/hide', 'FlutterEventController@hide');
     Route::get('{flutter_event}', 'FlutterEventController@show');
 });
-*/
 
 Route::group(['domain' => '{subdomain}.flutterstreams.{tld}'], function() {
     Route::get('/', 'FlutterStreamController@index');
