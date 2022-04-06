@@ -37,17 +37,6 @@
 
 @else
 
-    @if (false && ! isIAW())
-        <a class="button is-elevated-dark"
-           style="color:white; background-color:{{$twitterColor}}; border-color:{{$twitterColor}}"
-           href="https://twitter.com/itsallwidgets" target="_blank">
-                                                <span class="icon">
-                                                    <i class="fab fa-twitter"></i>
-                                                </span> &nbsp;
-            <span>Twitter</span>
-        </a> &nbsp;&nbsp;&nbsp;
-    @endif
-
     <a class="button is-elevated-dark"
        style="color:white; background-color:{{$altChannelColor}}; border-color:{{$altChannelColor}}"
        href="{{ $altChannelUrl }}">
@@ -55,5 +44,15 @@
                                                 <i class="fas {{$altChannelIcon}}"></i>
                                             </span> &nbsp;
         <span>{{$altChannelTitle}}</span>
-    </a>
+    </a> &nbsp;&nbsp;
+
+    <a class="button is-elevated-dark"
+           style="color:white; background-color:{{$twitterColor}}; border-color:{{$twitterColor}}"
+           href="https://twitter.com/itsallwidgets" target="_blank">
+                                                <span class="icon">
+                                                    <i class="fab fa-twitter"></i>
+                                                </span> &nbsp;
+            <span>Twitter</span>
+    </a> 
+
 @endif
