@@ -25,11 +25,15 @@ function isGL() {
 }
 
 function isTest() {
-    return isValet() || isServe();
+    return isValet() || isServe() || isHomestead();
 }
 
 function isValet() {
     return strpos(request()->url(), '.test') !== false;
+}
+
+function isHomestead() {
+    return strpos(request()->url(), 'dev.') !== false;
 }
 
 function isServe() {
@@ -53,25 +57,57 @@ function appName() {
 }
 
 function iawUrl() {
-    return isTest() ? (isValet() ? 'http://itsallwidgets.test' : 'http://127.0.0.1:8000') : 'https://itsallwidgets.com';
-}
+    if (isValet()) {
+        return 'http://itsallwidgets.test';
+    } else if (isHomestead()) {
+        return 'http://dev.itsallwidgets.com';
+    } else {
+        return 'http://127.0.0.1:8000';
+    }
 
-function feUrl() {
-    return isTest() ? (isValet() ? 'http://flutterevents.test' : 'http://127.0.0.1:8000/flutter-events')  : 'https://flutterevents.com';
+    return 'https://itsallwidgets.com';
 }
 
 function fsUrl() {
-    return isTest() ? (isValet() ? 'http://flutterstreams.test' : 'http://127.0.0.1:8000/flutter-streams')  : 'https://flutterstreams.com';
+    if (isValet()) {
+        return 'http://flutterstreams.test';
+    } else if (isHomestead()) {
+        return 'http://dev.flutterstreams.com';
+    } else {
+        return 'http://127.0.0.1:8000/flutter-streams';
+    }
+
+    return 'https://flutterstreams.com';
 }
 
 function fxUrl() {
-    return isTest() ? (isValet() ? 'http://flutterx.test' : 'http://127.0.0.1:8000/flutterx') : 'https://flutterx.com';
+    if (isValet()) {
+        return 'http://flutterx.test';
+    } else if (isHomestead()) {
+        return 'http://dev.flutterx.com';
+    } else {
+        return 'http://127.0.0.1:8000/flutterx';
+    }
+
+    return 'https://flutterx.com';
 }
 
 function fpUrl() {
-    return isTest() ? (isValet() ? 'http://flutterpro.test' : 'http://127.0.0.1:8000/profiles') : 'https://flutterpro.dev';
+    if (isValet()) {
+        return 'http://flutterpro.test';
+    } else if (isHomestead()) {
+        return 'http://dev.flutterpro.com';
+    } else {
+        return 'http://127.0.0.1:8000/flutterpro';
+    }
+
+    return 'https://flutterpro.dev';
 }
 
 function glUrl() {
     return isTest() ? (isValet() ? 'http://geu.test' : 'http://127.0.0.1:8000/flutterx') : 'https://geu.la';
+}
+
+function feUrl() {
+    return isTest() ? (isValet() ? 'http://flutterevents.test' : 'http://127.0.0.1:8000/flutter-events')  : 'https://flutterevents.com';
 }

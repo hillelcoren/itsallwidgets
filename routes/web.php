@@ -63,7 +63,7 @@ Route::group(['domain' => 'www.flutterstreams.com'], function() {
     });
 });
 
-Route::group(['domain' => 'flutterpro.{tld}'], function() {
+Route::group(['domain' => '{subdomain}.flutterpro.{tld}'], function() {
     Route::get('/', 'FlutterProController@index');
     Route::get('feed', 'FlutterProController@jsonFeed');
     Route::get('search_pro', 'FlutterProController@search');
@@ -72,7 +72,8 @@ Route::group(['domain' => 'flutterpro.{tld}'], function() {
     Route::get('{handle}', 'FlutterProController@show');
 });
 
-Route::group(['domain' => 'flutterevents.{tld}'], function() {
+/*
+Route::group(['domain' => '{subdomain}.flutterevents.{tld}'], function() {
     Route::get('/', 'FlutterEventController@index');
     Route::get('feed', 'FlutterEventController@jsonFeed');
     Route::get('flutter-groups', 'FlutterEventController@groups');
@@ -80,8 +81,9 @@ Route::group(['domain' => 'flutterevents.{tld}'], function() {
     Route::get('{flutter_event}/hide', 'FlutterEventController@hide');
     Route::get('{flutter_event}', 'FlutterEventController@show');
 });
+*/
 
-Route::group(['domain' => 'flutterstreams.{tld}'], function() {
+Route::group(['domain' => '{subdomain}.flutterstreams.{tld}'], function() {
     Route::get('/', 'FlutterStreamController@index');
     Route::get('feed', 'FlutterStreamController@jsonFeed');
     Route::get('search_streams', 'FlutterStreamController@search');
@@ -92,7 +94,7 @@ Route::group(['domain' => 'flutterstreams.{tld}'], function() {
     //Route::get('{flutter_stream}', 'FlutterStreamController@show');
 });
 
-Route::group(['domain' => 'flutterx.{tld}'], function() {
+Route::group(['domain' => '{subdomain}.flutterx.{tld}'], function() {
     Route::get('/', 'FlutterArtifactController@index');
     Route::get('feed', 'FlutterArtifactController@jsonFeed');
     Route::get('search', 'FlutterArtifactController@search');
@@ -101,7 +103,7 @@ Route::group(['domain' => 'flutterx.{tld}'], function() {
     Route::get('{flutter_artifact}', 'FlutterArtifactController@show');
 });
 
-Route::group(['domain' => 'geu.{tld}'], function() {
+Route::group(['domain' => '{subdomain}.geu.{tld}'], function() {
     Route::get('/', 'FlutterArtifactController@index');
     Route::get('search', 'FlutterArtifactController@search');
     Route::get('update', 'FlutterArtifactController@update');
