@@ -63,7 +63,7 @@ Route::group(['domain' => 'www.flutterstreams.com'], function() {
     });
 });
 
-Route::group(['domain' => '{subdomain}.flutterpro.{tld}'], function() {
+Route::group(['domain' => 'flutterpro.{tld}'], function() {
     Route::get('/', 'FlutterProController@index');
     Route::get('feed', 'FlutterProController@jsonFeed');
     Route::get('search_pro', 'FlutterProController@search');
