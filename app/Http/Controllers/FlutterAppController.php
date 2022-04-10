@@ -130,9 +130,9 @@ class FlutterAppController extends Controller
 
         dispatch(new UploadScreenshot($app));
 
-        if (strpos($app->website_url, '.inoru.') !== false)) {
+        if (strpos($app->website_url, '.inoru.') !== false) {
             // do nothing
-        } else if (strpos($app->website_url, '.appdupe.') !== false)) {
+        } else if (strpos($app->website_url, '.appdupe.') !== false) {
             // do nothing
         } else {
             User::admin()->notify(new AppSubmitted($app));
