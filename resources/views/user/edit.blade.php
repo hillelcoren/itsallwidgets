@@ -177,7 +177,7 @@
             <p>&nbsp;</p>
 			<p>&nbsp;</p>
 
-            @if (count($availableWidgets) > 0 || $user->widget)
+            @if (false && (count($availableWidgets) > 0 || $user->widget))
                 <div class="subtitle">Flutter Cards</div>
 
                 <div class="subtitle is-6">
