@@ -72,7 +72,7 @@ Route::group(['domain' => '{subdomain}.flutterpro.{tld}'], function() {
     Route::get('{handle}', 'FlutterProController@show');
 });
 
-Route::group(['domain' => '{subdomain}.flutterevents.{tld}'], function() {
+Route::group(['domain' => 'flutterevents.{tld}'], function() {
     Route::get('/', 'FlutterEventController@index');
     Route::get('feed', 'FlutterEventController@jsonFeed');
     Route::get('flutter-groups', 'FlutterEventController@groups');
@@ -81,7 +81,7 @@ Route::group(['domain' => '{subdomain}.flutterevents.{tld}'], function() {
     Route::get('{flutter_event}', 'FlutterEventController@show');
 });
 
-Route::group(['domain' => '{subdomain}.flutterstreams.{tld}'], function() {
+Route::group(['domain' => 'flutterstreams.{tld}'], function() {
     Route::get('/', 'FlutterStreamController@index');
     Route::get('feed', 'FlutterStreamController@jsonFeed');
     Route::get('search_streams', 'FlutterStreamController@search');
@@ -92,7 +92,7 @@ Route::group(['domain' => '{subdomain}.flutterstreams.{tld}'], function() {
     //Route::get('{flutter_stream}', 'FlutterStreamController@show');
 });
 
-Route::group(['domain' => '{subdomain}.flutterx.{tld}'], function() {
+Route::group(['domain' => 'flutterx.{tld}'], function() {
     Route::get('/', 'FlutterArtifactController@index');
     Route::get('feed', 'FlutterArtifactController@jsonFeed');
     Route::get('search', 'FlutterArtifactController@search');
