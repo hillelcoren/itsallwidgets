@@ -14,8 +14,7 @@
         Hire some of the best <a href="https://flutter.dev" target="_blank">Flutter</a> developers on the planet
     @else
         Profiles are sourced from
-        <a href="https://flutterweekly.net" target="_blank">Flutter Weekly</a>,
-        <a href="https://www.meetup.com/find/?allMeetups=false&keywords=flutter&radius=Infinity" target="_blank">Meetup.com</a> and
+        <a href="https://flutterweekly.net" target="_blank">Flutter Weekly</a> and
         <a href="{{ iawUrl() }}">It's All Widgets!</a>
     @endif
 @endsection
@@ -132,7 +131,7 @@ padding: 1rem 1rem 4rem 1rem;
                                     <option value="sort_newest">NEWEST</option>
                                     <option value="sort_apps">APPS</option>
                                     <option value="sort_artifacts">RESOURCES</option>
-                                    <option value="sort_events">EVENTS</option>
+                                    <!-- <option value="sort_events">EVENTS</option> -->
                                 </select>
                             </div>
                         </p>

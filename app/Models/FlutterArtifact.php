@@ -249,9 +249,13 @@ class FlutterArtifact extends Model implements Feedable
                 continue;
             }
 
-            $url = strtolower($url);
+            $url = rtrim(strtolower($url), '/');
 
             if ($url == 'https://medium.com/flutter-community') {
+                continue;
+            }
+
+            if ($url == 'https://github.com') {
                 continue;
             }
 

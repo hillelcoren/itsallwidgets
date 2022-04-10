@@ -216,9 +216,12 @@ class User extends Authenticatable
             if ($this->count_artifacts > 0) {
                 $counts[] = $this->count_artifacts . ($this->count_artifacts == 1 ? ' Resource' : ' Resources');
             }
+
+            /*
             if ($this->count_events > 0) {
                 $counts[] = $this->count_events . ($this->count_events == 1 ? ' Event' : ' Events');
             }
+            */
 
             $obj->counts = join('  •  ', $counts);
             $obj->activity_count = 0;
