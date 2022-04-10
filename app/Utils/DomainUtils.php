@@ -61,7 +61,7 @@ function iawUrl() {
         return 'http://itsallwidgets.test';
     } else if (isHomestead()) {
         return 'http://dev.itsallwidgets.com';
-    } else {
+    } else if (isServe()) {
         return 'http://127.0.0.1:8000';
     }
 
@@ -73,7 +73,7 @@ function fsUrl() {
         return 'http://flutterstreams.test';
     } else if (isHomestead()) {
         return 'http://dev.flutterstreams.com';
-    } else {
+    } else if (isServe()) {
         return 'http://127.0.0.1:8000/flutter-streams';
     }
 
@@ -84,8 +84,8 @@ function fxUrl() {
     if (isValet()) {
         return 'http://flutterx.test';
     } else if (isHomestead()) {
-        return 'http://dev.flutterx.com';
-    } else {
+        return 'http://dev.flutterx.com';        
+    } else if (isServe()) {
         return 'http://127.0.0.1:8000/flutterx';
     }
 
@@ -97,7 +97,7 @@ function fpUrl() {
         return 'http://flutterpro.test';
     } else if (isHomestead()) {
         return 'http://dev.flutterpro.com';
-    } else {
+    } else if (isServe()) {
         return 'http://127.0.0.1:8000/flutterpro';
     }
 
