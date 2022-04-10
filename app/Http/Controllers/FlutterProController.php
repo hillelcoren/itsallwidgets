@@ -70,7 +70,8 @@ class FlutterProController extends Controller
         } else if ($sortBy == 'sort_events') {
             $users->orderBy('count_events', 'desc');
         } else {
-            $users->orderByRaw(\DB::raw("count_apps + count_artifacts + (count_events*2) DESC"));
+            //$users->orderByRaw(\DB::raw("count_apps + count_artifacts + (count_events*2) DESC"));
+            $users->orderByRaw(\DB::raw("count_apps + count_artifacts DESC"));
         }
 
         $users->limit(12)->offset(((request()->page ?: 1) - 1) * 12);
