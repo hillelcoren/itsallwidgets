@@ -1,9 +1,6 @@
 @php
     $twitterColor = $isPodcast ? "#444" : "#366cb6";
     $altChannelColor = $isPodcast ? "#000" : "#366cb6";
-    $altChannelIcon = "fa-microphone";
-    $altChannelUrl = url('/podcast');
-    $altChannelTitle = "Podcast";
 @endphp
 
 @if (isGL())
@@ -39,11 +36,11 @@
 
     <a class="button is-elevated-dark"
        style="color:white; background-color:{{$altChannelColor}}; border-color:{{$altChannelColor}}"
-       href="{{ $altChannelUrl }}">
+       href="https://itsallwidgets.com/podcast">
                                             <span class="icon">
-                                                <i class="fas {{$altChannelIcon}}"></i>
+                                                <i class="fas fa-microphone"></i>
                                             </span> &nbsp;
-        <span>{{$altChannelTitle}}</span>
+        <span>Podcast</span>
     </a> &nbsp;&nbsp;
 
     <a class="button is-elevated-dark"
