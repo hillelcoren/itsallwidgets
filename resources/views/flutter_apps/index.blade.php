@@ -791,7 +791,7 @@ var app = new Vue({
         },
 
         columnClass() {
-            if (this.filter_platform == 'platform_mobile' || this.filter_platform == 'platform_desktop') {
+            if (this.filter_platform == 'platform_mobile') {
                 switch(+this.cards_per_row) {
                     case 6:
                         return {'is-6': true};
@@ -803,6 +803,19 @@ var app = new Vue({
                         return {'is-one-fifth': true};
                     case 2:
                         return {'is-2': true};
+                }
+            } else if (this.filter_platform == 'platform_desktop') {
+                switch(+this.cards_per_row) {
+                    case 6:
+                        return {'is-full': true};
+                    case 5:
+                        return {'is-full': true};
+                    case 4:
+                        return {'is-6': true};
+                    case 3:
+                        return {'is-one-third': true};
+                    case 2:
+                        return {'is-one-quarter': true};
                 }
             } else {
                 switch(+this.cards_per_row) {
