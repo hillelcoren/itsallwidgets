@@ -12,8 +12,8 @@
 		}
 
 		function updatePlatforms() {
-			$('#webRequiredField').toggle($('input[name=is_web]').is(':checked'));
-			$('#mobileRequiredField').toggle($('input[name=is_mobile]').is(':checked'));
+			$('#screenshotInput').toggle($('input[name=is_desktop]').is(':checked') || $('input[name=is_mobile]').is(':checked'));
+			$('#webUrlInput').toggle($('input[name=is_web]').is(':checked'));
 		}
 		$(function() {
 			updatePlatforms();
@@ -68,12 +68,18 @@
 							<label class="label">
 								Platforms <span class="required">*</span>
 							</label>
-							<div class="control">
+							<div class="control prevent-select">
 								<label>
 									{{ Form::hidden('is_mobile', 0) }}
 									<input name="is_mobile" type="checkbox" onchange="updatePlatforms()"
 										value="1" {{ (old('is_mobile') !== null ? intval(old('is_mobile')) : $app->is_mobile) ? 'CHECKED' : '' }}/> Mobile
-								</lable>
+								</label>
+								&nbsp;&nbsp;
+								<label>
+									{{ Form::hidden('is_desktop', 0) }}
+									<input name="is_desktop" type="checkbox" onchange="updatePlatforms()"
+										value="1" {{ (old('is_desktop') !== null ? intval(old('is_desktop')) : $app->is_desktop) ? 'CHECKED' : '' }}/> Desktop
+								</label>
 								&nbsp;&nbsp;
 								<label>
 									{{ Form::hidden('is_web', 0) }}
@@ -84,7 +90,7 @@
 						</div>
 					</div>
 
-					<div class="field" id="mobileRequiredField" style="display:{{ $app->is_mobile ? 'block' : 'none' }}">
+					<div class="field" id="screenshotInput" style="display:{{ $app->is_mobile ? 'block' : 'none' }}">
 						<label class="label" for="screenshot">
 							PNG Screenshot • 1080px by 1920px <span class="required">*</span>
 						</label>
@@ -101,7 +107,7 @@
 					</div>
 
 
-					<div class="field" id="webRequiredField" style="display:{{ $app->is_web ? 'block' : 'none' }}">
+					<div class="field" id="webUrlInput" style="display:{{ $app->is_web ? 'block' : 'none' }}">
 						<label class="label" for="flutter_web_url">
 							Flutter Web URL <span class="required">*</span>
 						</label>

@@ -260,6 +260,12 @@
         @endif
     }
 
+    .prevent-select {
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10 and IE 11 */
+        user-select: none; /* Standard syntax */
+    }
+
     @if (isset($useBlackHeader))
         @media screen and (max-width: 1087px) {
             .hero.is-info .navbar-menu {
