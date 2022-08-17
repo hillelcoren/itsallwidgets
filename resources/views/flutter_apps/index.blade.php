@@ -205,7 +205,6 @@ body {
                             </div>
                         </a>
                     </li>
-                    <!--
                     <li v-bind:class="[filter_platform == 'platform_desktop' ? 'is-active' : '']">
                         <a href="#/" v-on:click="setPlatform('platform_desktop')">
                             <div>
@@ -216,7 +215,6 @@ body {
                             </div>
                         </a>
                     </li>
-                    -->
                     <li v-bind:class="[filter_platform == 'platform_web' ? 'is-active' : '']">
                         <a href="#/" v-on:click="setPlatform('platform_web')">
                             <div>
@@ -228,7 +226,7 @@ body {
                         </a>
                     </li>
 
-                    @if (true)
+                    @if (false)
                         <li v-bind:class="[filter_platform == 'platform_campaign' ? 'is-active' : '']">
                             <a href="#/" v-on:click="setPlatform('platform_campaign')">
                                 <div>
@@ -348,7 +346,7 @@ body {
                             </div>
                         </div>
 
-                        <div v-if="filter_platform == 'platform_mobile'" class="card-image" style="line-height:0px">
+                        <div v-if="filter_platform == 'platform_mobile' || filter_platform == 'platform_desktop'" class="card-image" style="line-height:0px">
                             <img v-if="app.has_gif" v-bind:src="'/gifs/app-' + app.id + '.gif?updated_at=' + app.updated_at" loading="lazy" width="1080" height="1920"/>
                             <img v-if="!app.has_gif" v-bind:src="'/screenshots/app-' + app.id + '.png?updated_at=' + app.updated_at" loading="lazy" width="1080" height="1920"/>
                         </div>
@@ -789,7 +787,7 @@ var app = new Vue({
         },
 
         columnClass() {
-            if (this.filter_platform == 'platform_mobile') {
+            if (this.filter_platform == 'platform_mobile' || this.filter_platform == 'platform_desktop') {
                 switch(+this.cards_per_row) {
                     case 6:
                         return {'is-6': true};
