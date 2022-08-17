@@ -337,11 +337,38 @@ body {
                                 <span style="color:#CCCCCC">
                                     &nbsp; | &nbsp;
                                 </span>
-                                <a v-bind:href="app.apple_url" v-if="app.apple_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                <a v-bind:href="app.apple_url + '?platform=iphone'" v-if="app.apple_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
                                     APP STORE
                                 </a>
                                 <span v-if="! app.apple_url" style="color:#AAAAAA">
                                     APP STORE
+                                </span>
+                            </div>
+
+                            <div v-if="filter_platform == 'platform_desktop'" class="app-stores" style="font-size:13px; padding-top:12px;">
+                                <a v-bind:href="app.microsoft_url" v-if="app.microsoft_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                    MICROSOFT STORE
+                                </a>
+                                <span v-if="! app.microsoft_url" style="color:#AAAAAA">
+                                    MICROSOFT STORE
+                                </span>
+                                <span style="color:#CCCCCC">
+                                    &nbsp; | &nbsp;
+                                </span>
+                                <a v-bind:href="app.apple_url + '?platform=mac'" v-if="app.apple_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                    APPLE APP STORE
+                                </a>
+                                <span v-if="! app.apple_url" style="color:#AAAAAA">
+                                    APPLE APP STORE
+                                </span>
+                                <span style="color:#CCCCCC">
+                                    &nbsp; | &nbsp;
+                                </span>
+                                <a v-bind:href="app.snapcraft_url" v-if="app.apple_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                    SNAPCRAFT
+                                </a>
+                                <span v-if="! app.snapcraft_url" style="color:#AAAAAA">
+                                    SNAPCRAFT
                                 </span>
                             </div>
                         </div>
