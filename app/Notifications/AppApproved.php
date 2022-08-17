@@ -32,6 +32,18 @@ class AppApproved extends Notification
 
         if ($app->apple_url) {
             $tweet .= ' #iPhone';
+
+            if ($app->is_desktop) {
+                $tweet .= ' #macOS';
+            }
+        }
+
+        if ($app->microsoft_url) {
+            $tweet .= ' #Windows';
+        }
+
+        if ($app->snapcraft_url) {
+            $tweet .= ' #Linux';
         }
 
         if ($app->is_web) {
