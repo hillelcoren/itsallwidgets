@@ -489,6 +489,18 @@ body {
                             </div>
                         </div>
 
+                        <div class="block" v-if="selected_app.is_desktop">
+                        <a v-bind:href="selected_app.microsoft_url" v-if="selected_app.microsoft_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                <i class="fab fa-microsoft" style="font-size:50px"></i>
+                            </a> &nbsp;&nbsp;             
+                            <a v-bind:href="selected_app.apple_url" v-if="selected_app.apple_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                <i class="fab fa-apple" style="font-size:50px"></i>
+                            </a> &nbsp;&nbsp;               
+                            <a v-bind:href="selected_app.snapcraft_url" v-if="selected_app.snapcraft_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                <i class="fab fa-linux" style="font-size:50px"></i>
+                            </a>                            
+                        </div>
+
                         <div class="content" v-if="selected_app.website_url || selected_app.repo_url">
                             <div>
                                 <a v-if="selected_app.website_url" v-bind:href="selected_app.website_url" target="_blank" rel="nofollow">

@@ -121,10 +121,32 @@
 									</a>
 								@endif
 								@if ($app->apple_url)
-									<a href="{{ $app->apple_url }}" target="_blank" class="is-slightly-elevated" rel="nofollow">
+									<a href="{{ $app->apple_url }}?platform=iphone" target="_blank" class="is-slightly-elevated" rel="nofollow">
 										<img src="{{ asset('images/apple.png') }}" style="width:180px"/>
 									</a>
 								@endif
+							</div>
+						@endif
+
+						@if ($app->is_desktop)
+							<div class="block">
+							@if ($app->microsoft_url)
+								<a href="{{ $app->microsoft_url }}" target="_blank" class="is-slightly-elevated" rel="nofollow">
+									<i class="fab fa-microsoft" style="font-size:50px"></i>
+								</a>
+							@endif						
+							&nbsp;&nbsp;&nbsp;
+							@if ($app->apple_url)
+								<a href="{{ $app->apple_url }}?platform=mac" target="_blank" class="is-slightly-elevated" rel="nofollow">
+									<i class="fab fa-apple" style="font-size:50px"></i>
+								</a>
+							@endif						
+							&nbsp;&nbsp;&nbsp;
+							@if ($app->snapcraft_url)
+								<a href="{{ $app->snapcraft_url }}" target="_blank" class="is-slightly-elevated" rel="nofollow">
+									<i class="fab fa-linux" style="font-size:50px"></i>
+								</a>
+							@endif						
 							</div>
 						@endif
 
