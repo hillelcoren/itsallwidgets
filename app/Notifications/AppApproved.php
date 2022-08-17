@@ -26,24 +26,24 @@ class AppApproved extends Notification
             $tweet .= ' ' . $handle;
         }
 
-        if ($app->google_url) {
-            $tweet .= ' #Android';
-        }
-
-        if ($app->apple_url) {
-            $tweet .= ' #iPhone';
-
-            if ($app->is_desktop) {
-                $tweet .= ' #macOS';
-            }
-        }
-
         if ($app->microsoft_url) {
             $tweet .= ' #Windows';
         }
 
+        if ($app->apple_url && $app->is_desktop) {
+            $tweet .= ' #macOS';
+        }
+
         if ($app->snapcraft_url) {
             $tweet .= ' #Linux';
+        }
+
+        if ($app->google_url) {
+            $tweet .= ' #Android';
+        }
+
+        if ($app->apple_url && $app->is_mobile) {
+            $tweet .= ' #iPhone';
         }
 
         if ($app->is_web) {
