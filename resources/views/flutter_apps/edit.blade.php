@@ -12,7 +12,8 @@
 		}
 
 		function updatePlatforms() {
-			$('#screenshotInput').toggle($('input[name=is_desktop]').is(':checked') || $('input[name=is_mobile]').is(':checked'));
+			$('#mobileScreenshotInput').toggle($('input[name=is_mobile]').is(':checked'));
+			$('#desktopScreenshotInput').toggle($('input[name=is_desktop]').is(':checked'));
 			$('#webUrlInput').toggle($('input[name=is_web]').is(':checked'));
 		}
 		$(function() {
@@ -90,9 +91,9 @@
 						</div>
 					</div>
 
-					<div class="field" id="screenshotInput" style="display:{{ $app->is_mobile ? 'block' : 'none' }}">
+					<div class="field" id="mobileScreenshotInput" style="display:{{ $app->is_mobile ? 'block' : 'none' }}">
 						<label class="label" for="screenshot">
-							PNG Screenshot • 1080px by 1920px <span class="required">*</span>
+							Mobile PNG Screenshot • 1080px by 1920px <span class="required">*</span>
 						</label>
 						<div class="control">
 
@@ -106,6 +107,21 @@
 						</div>
 					</div>
 
+					<div class="field" id="desktopScreenshotInput" style="display:{{ $app->is_desktop ? 'block' : 'none' }}">
+						<label class="label" for="screenshot_desktop">
+							Desktop PNG Screenshot • 1280px x 800px <span class="required">*</span>
+						</label>
+						<div class="control">
+
+							{{ Form::file('screenshot_desktop') }}
+
+							@if ($errors->has('screenshot_desktop'))
+								<span class="help is-danger">
+									{{ $errors->first('screenshot_desktop') }}
+								</span>
+							@endif
+						</div>
+					</div>
 
 					<div class="field" id="webUrlInput" style="display:{{ $app->is_web ? 'block' : 'none' }}">
 						<label class="label" for="flutter_web_url">

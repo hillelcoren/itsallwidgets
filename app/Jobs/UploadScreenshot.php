@@ -36,6 +36,7 @@ class UploadScreenshot implements ShouldQueue
         $this->uploadImage('screenshot_1', 1);
         $this->uploadImage('screenshot_2', 2);
         $this->uploadImage('screenshot_3', 3);
+        $this->uploadImage('screenshot_desktop', 0, true);
 
         // check for gif
         if ($gif = request()->file('gif')) {
@@ -48,10 +49,14 @@ class UploadScreenshot implements ShouldQueue
         }
     }
 
-    private function uploadImage($name, $number = 0)
+    private function uploadImage($name, $number = 0, $isDesktop = false)
     {
         if ($png = request()->file($name)) {
             $suffix = $number ? '-' . $number : '';
+            if ($isDesktop) {
+                $suffix = '-desktop';
+            }
+
             $filename = 'app-' . $this->app->id . $suffix . '.png';
             $png->move(public_path('/screenshots'), $filename);
 
@@ -62,12 +67,14 @@ class UploadScreenshot implements ShouldQueue
             }
 
             // check for an error border
-            $image = Image::make(public_path('/screenshots') . '/' . $filename);
+            if (!$isDesktop) {
+                $image = Image::make(public_path('/screenshots') . '/' . $filename);
 
-            if ($this->isErrorPixel($image, 0, 500)
-                && ! $this->isErrorPixel($image, 50, 500)
-            ) {
-                session()->flash('warning', 'We\'ve detected a yellow border around the image, see this GitHub comment for a fix: https://github.com/flutter/flutter/issues/16810#issuecomment-416962229');
+                if ($this->isErrorPixel($image, 0, 500)
+                    && ! $this->isErrorPixel($image, 50, 500)
+                ) {
+                    session()->flash('warning', 'We\'ve detected a yellow border around the image, see this GitHub comment for a fix: https://github.com/flutter/flutter/issues/16810#issuecomment-416962229');
+                }
             }
         }
     }
