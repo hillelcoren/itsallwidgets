@@ -610,7 +610,7 @@
 
 			@if (auth()->user()->is_pro && auth()->user()->is_pro_iaw)
 				<div class="has-text-centered">
-					Your profile will also be listed on <a href="{{ fpUrl() }}" target="_blank">flutterpro.dev</a>,
+					Your developer profile will also be listed on <a href="{{ fpUrl() }}" target="_blank">flutterpro.dev</a>,
 					to change your settings <a href="/profile/edit" target="_blank">click here</a>
 				</div>
 
