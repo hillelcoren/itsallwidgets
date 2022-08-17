@@ -193,7 +193,17 @@
 								{!! nl2br(e($app->long_description)) !!}
 							</div>
 
+							@if ($app->is_desktop)
+								<br/>&nbsp;<br/>
+								@if ($app->has_desktop_gif)
+									<img src="{{ $app->desktopGifUrl() }}" class="is-slightly-elevated is-hover-elevated"/>
+								@else
+									<img src="{{ $app->desktopScreenshotUrl() }}" class="is-slightly-elevated is-hover-elevated"/>
+								@endif
+							@endif
+
 							@if ($app->is_web && $app->flutter_web_url)
+								<br/>&nbsp;<br/>							
 								<iframe sandbox="allow-scripts allow-same-origin allow-top-navigation allow-popups" src="{{ $app->flutter_web_url }}" allowTransparency="true"
 			                        width="100%" height="800px" frameBorder="0" style="border:none; overflow:hidden;"></iframe>
 							@endif

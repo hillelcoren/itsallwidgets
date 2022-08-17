@@ -121,6 +121,11 @@ class FlutterApp extends Model implements Feedable
         return url('gifs/app-' . $this->id . '.gif?updated_at=' . $this->updated_at->format('Y-m-d%20H:m:s'));
     }
 
+    public function desktopGifUrl()
+    {
+        return url('gifs/app-' . $this->id . '-desktop.gif?updated_at=' . $this->updated_at->format('Y-m-d%20H:m:s'));
+    }
+
     public function url()
     {
         return iawUrl() . '/' . $this->slug;
