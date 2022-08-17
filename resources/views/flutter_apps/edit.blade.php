@@ -14,6 +14,7 @@
 		function updatePlatforms() {
 			$('#mobileScreenshotInput').toggle($('input[name=is_mobile]').is(':checked'));
 			$('#desktopScreenshotInput').toggle($('input[name=is_desktop]').is(':checked'));
+			$('#desktopGifInput').toggle($('input[name=is_desktop]').is(':checked'));
 			$('#webUrlInput').toggle($('input[name=is_web]').is(':checked'));
 		}
 		$(function() {
@@ -320,14 +321,30 @@
 
 			@endif
 
-			<div class="subtitle">Optional Images</div>
+			<div class="subtitle">Optional GIFs/Images</div>
 
 			<article class="message is-elevated">
 				<div class="message-body">
 
+					<div class="field" id="desktopGifInput">
+						<label class="label" for="gif_desktop">
+							Desktop GIF • 1280px by 800px
+						</label>
+						<div class="control">
+
+							{{ Form::file('gif_desktop') }}
+
+							@if ($errors->has('gif_desktop'))
+								<span class="help is-danger">
+									{{ $errors->first('gif_desktop') }}
+								</span>
+							@endif
+						</div>
+					</div>
+
 					<div class="field">
 						<label class="label" for="gif">
-							GIF Video • 1080px by 1920px
+							Mobile GIF • 1080px by 1920px
 						</label>
 						<div class="control">
 
@@ -341,10 +358,9 @@
 						</div>
 					</div>
 
-
 					<div class="field">
 						<label class="label" for="screenshot_1">
-							PNG Screenshot • 1080px by 1920px
+							Mobile PNG • 1080px by 1920px
 						</label>
 						<div class="control">
 
@@ -360,7 +376,7 @@
 
 					<div class="field">
 						<label class="label" for="screenshot_2">
-							PNG Screenshot • 1080px by 1920px
+							Mobile PNG • 1080px by 1920px
 						</label>
 						<div class="control">
 
@@ -376,7 +392,7 @@
 
 					<div class="field">
 						<label class="label" for="screenshot_3">
-							PNG Screenshot • 1080px by 1920px
+							Mobile PNG • 1080px by 1920px
 						</label>
 						<div class="control">
 

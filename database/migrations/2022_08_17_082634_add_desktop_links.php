@@ -16,6 +16,7 @@ class AddDesktopLinks extends Migration
         Schema::table('flutter_apps', function(Blueprint $table) {
             $table->string('microsoft_url')->unique()->nullable();
             $table->string('snapcraft_url')->unique()->nullable();
+            $table->boolean('has_desktop_gif')->default(false);
         });
     }
 
@@ -29,6 +30,7 @@ class AddDesktopLinks extends Migration
         Schema::table('flutter_apps', function(Blueprint $table) {
             $table->dropColumn('microsoft_url');
             $table->dropColumn('snapcraft_url');
+            $table->dropColumn('has_desktop_gif');            
         });
     }
 }

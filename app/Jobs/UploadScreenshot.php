@@ -47,6 +47,15 @@ class UploadScreenshot implements ShouldQueue
                 'has_gif' => true,
             ]);
         }
+
+        if ($gif = request()->file('gif_desktop')) {
+            $filename = 'app-' . $this->app->id . '-desktop.gif';
+            $gif->move(public_path('/gifs'), $filename);
+
+            $this->app->update([
+                'has_desktop_gif' => true,
+            ]);
+        }
     }
 
     private function uploadImage($name, $number = 0, $isDesktop = false)

@@ -523,8 +523,8 @@ body {
                     </div>
 
                     <div v-if="selected_app.is_desktop">
-                        <img v-if="selected_app.has_gif" v-bind:src="'/gifs/app-' + selected_app.id + '.gif?updated_at=' + selected_app.updated_at" class="is-slightly-elevated is-hover-elevated"/>
-                        <img v-if="!selected_app.has_gif" v-bind:src="'/screenshots/app-' + selected_app.id + '-desktop.png?updated_at=' + selected_app.updated_at" class="is-slightly-elevated is-hover-elevated"/>
+                        <img v-if="selected_app.has_desktop_gif" v-bind:src="'/gifs/app-' + selected_app.id + '.gif?updated_at=' + selected_app.updated_at" class="is-slightly-elevated is-hover-elevated"/>
+                        <img v-if="!selected_app.has_desktop_gif" v-bind:src="'/screenshots/app-' + selected_app.id + '-desktop.png?updated_at=' + selected_app.updated_at" class="is-slightly-elevated is-hover-elevated"/>
                     </div>
 
                     <iframe v-if="selected_app.is_web && selected_app.flutter_web_url" sandbox="allow-scripts allow-same-origin" v-bind:src="selected_app.flutter_web_url" allowTransparency="true" scrolling="no"
