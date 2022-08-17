@@ -38,6 +38,8 @@ class StoreFlutterApp extends FormRequest
             'repo_url' => [new ExternalLink('https://github.com/', 'https://bitbucket.org/')],
             'google_url' => [new ExternalLink('https://play.google.com/')],
             'apple_url' => [new ExternalLink('https://itunes.apple.com/', 'https://apps.apple.com/')],
+            'microsoft_url' => [new ExternalLink('https://microsoft.com/')],
+            'snapcraft_url' => [new ExternalLink('https://snapcraft.io/')],
             'facebook_url' => [new ExternalLink('https://www.facebook.com/')],
             'twitter_url' => [new ExternalLink('https://twitter.com/')],
             'youtube_url' => [new ExternalLink('https://www.youtube.com/embed/')],

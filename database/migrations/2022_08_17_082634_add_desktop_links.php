@@ -14,9 +14,8 @@ class AddDesktopLinks extends Migration
     public function up()
     {
         Schema::table('flutter_apps', function(Blueprint $table) {
-            $table->string('windows_url')->unique()->nullable();
-            $table->string('linux_url')->unique()->nullable();
-            $table->string('macos_url')->unique()->nullable();
+            $table->string('microsoft_url')->unique()->nullable();
+            $table->string('snapcraft_url')->unique()->nullable();
         });
     }
 
@@ -28,9 +27,8 @@ class AddDesktopLinks extends Migration
     public function down()
     {
         Schema::table('flutter_apps', function(Blueprint $table) {
-            $table->dropColumn('windows_url');
-            $table->dropColumn('linux_url');
-            $table->dropColumn('macos_url');
+            $table->dropColumn('microsoft_url');
+            $table->dropColumn('snapcraft_url');
         });
     }
 }

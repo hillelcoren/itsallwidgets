@@ -304,7 +304,7 @@
 
 			@endif
 
-			<div class="subtitle">Optional Mobile Images</div>
+			<div class="subtitle">Optional Images</div>
 
 			<article class="message is-elevated">
 				<div class="message-body">
@@ -374,8 +374,98 @@
 						</div>
 					</div>
 
-
 				</div>
+			</article>
+
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+
+			<div class="subtitle">App Store Links</div>
+
+			<article class="message is-elevated">
+				<div class="message-body">
+
+				<div class="field">
+					<label class="label" for="google_url">
+						Android • Google Play Store
+					</label>
+					<div class="control has-icons-left">
+
+						{{ Form::url('google_url', $app->google_url, ['class' => 'input', 'placeholder' => 'https://play.google.com/...']) }}
+
+						<span class="icon is-small is-left">
+							<i class="fab fa-google"></i>
+						</span>
+
+						@if ($errors->has('google_url'))
+							<span class="help is-danger">
+								{{ $errors->first('google_url') }}
+							</span>
+						@endif
+					</div>
+				</div>
+
+				<div class="field">
+					<label class="label" for="apple_url">
+						iOS/macOS • Apple App Store
+					</label>
+					<div class="control has-icons-left">
+
+						{{ Form::url('apple_url', $app->apple_url, ['class' => 'input', 'placeholder' => 'https://apps.apple.com/...']) }}
+
+						<span class="icon is-small is-left">
+							<i class="fab fa-apple"></i>
+						</span>
+
+						@if ($errors->has('apple_url'))
+							<span class="help is-danger">
+								{{ $errors->first('apple_url') }}
+							</span>
+						@endif
+					</div>
+				</div>
+													
+				<div class="field">
+					<label class="label" for="apple_url">
+						Windows • Microsoft Store
+					</label>
+					<div class="control has-icons-left">
+
+						{{ Form::url('microsoft_url', $app->microsoft_url, ['class' => 'input', 'placeholder' => 'https://microsoft.com/...']) }}
+
+						<span class="icon is-small is-left">
+							<i class="fab fa-microsoft"></i>
+						</span>
+
+						@if ($errors->has('microsoft_url'))
+							<span class="help is-danger">
+								{{ $errors->first('microsoft_url') }}
+							</span>
+						@endif
+					</div>
+				</div>	
+
+				<div class="field">
+					<label class="label" for="snapcraft_url">
+						Linux • Snapcraft
+					</label>
+					<div class="control has-icons-left">
+
+						{{ Form::url('snapcraft_url', $app->snapcraft_url, ['class' => 'input', 'placeholder' => 'https://snapcraft.io/...']) }}
+
+						<span class="icon is-small is-left">
+							<i class="fab fa-linux"></i>
+						</span>
+
+						@if ($errors->has('snapcraft_url'))
+							<span class="help is-danger">
+								{{ $errors->first('snapcraft_url') }}
+							</span>
+						@endif
+					</div>
+				</div>
+	
+			</div>
 			</article>
 
 			<p>&nbsp;</p>
@@ -388,45 +478,6 @@
 			<article class="message is-elevated">
 				<div class="message-body">
 
-					<div class="field">
-						<label class="label" for="google_url">
-							Google Play Store
-						</label>
-						<div class="control has-icons-left">
-
-							{{ Form::url('google_url', $app->google_url, ['class' => 'input', 'placeholder' => 'https://play.google.com/...']) }}
-
-							<span class="icon is-small is-left">
-								<i class="fab fa-google"></i>
-							</span>
-
-							@if ($errors->has('google_url'))
-								<span class="help is-danger">
-									{{ $errors->first('google_url') }}
-								</span>
-							@endif
-						</div>
-					</div>
-
-					<div class="field">
-						<label class="label" for="apple_url">
-							Apple App Store
-						</label>
-						<div class="control has-icons-left">
-
-							{{ Form::url('apple_url', $app->apple_url, ['class' => 'input', 'placeholder' => 'https://itunes.apple.com/...']) }}
-
-							<span class="icon is-small is-left">
-								<i class="fab fa-apple"></i>
-							</span>
-
-							@if ($errors->has('apple_url'))
-								<span class="help is-danger">
-									{{ $errors->first('apple_url') }}
-								</span>
-							@endif
-						</div>
-					</div>
 
 					<div class="field">
 						<label class="label" for="repo_url">
