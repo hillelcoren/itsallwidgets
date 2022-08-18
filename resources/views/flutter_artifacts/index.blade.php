@@ -198,7 +198,7 @@
                                 </a>
                             </span>
 
-                            <span v-if="(artifact.meta_author_url || artifact.meta_author_twitter) && (artifact.meta_publisher_twitter || artifact.meta_publisher)" class="">
+                            <span v-if="(artifact.meta_author_url || artifact.meta_author_twitter) && (artifact.meta_publisher_twitter || artifact.meta_publisher || artifact.domain)" class="">
                                 •
                             </span>
 
@@ -209,6 +209,9 @@
                             </span>
                             <span v-if="!artifact.meta_publisher_twitter && artifact.meta_publisher">
                                 @{{ artifact.meta_publisher }}
+                            </span>                    
+                            <span v-if="!artifact.meta_publisher_twitter && !artifact.meta_publisher">
+                                @{{ artifact.domain }}
                             </span>
                         </div>
 
@@ -217,63 +220,63 @@
 
                     </header>
 
-                    <div class="content" style="padding-left:16px; padding-right:16px; margin-top:0px">
+                    <div class="content" style="margin-top:0px">
+                        <div style="padding-left:16px; padding-right:16px;">
+                            <div class="help is-clearfix" style="padding-top:8px;padding-bottom:8px;">
+                                <div class="is-pulled-right">
+                                    <span v-bind:class="'button is-outlined is-small is-static is-' + artifact.type_class">
+                                        @{{ artifact.pretty_type }}
+                                    </span>
+                                </div>
+                                <div class="is-pulled-left">
+                                    <span class="tag is-white" style="padding-left:0px; padding-top:6px; color:#777">
+                                        @{{ artifact.pretty_published_date }}
+                                    </span>
+                                </div>
+                            </div>
 
-                        <div class="help is-clearfix" style="padding-top:8px;padding-bottom:8px;">
-                            <div class="is-pulled-right">
-                                <span v-bind:class="'button is-outlined is-small is-static is-' + artifact.type_class">
-                                    @{{ artifact.pretty_type }}
-                                </span>
-                            </div>
-                            <div class="is-pulled-left">
-                                <span class="tag is-white" style="padding-left:0px; padding-top:6px; color:#777">
-                                    @{{ artifact.pretty_published_date }}
-                                </span>
-                            </div>
+                            <div v-bind:title="artifact.short_description" style="word-break:break-word;">
+                                <div v-if="artifact.contents">
+                                    @{{ artifact.contents.substr(0, 200) }}
+                                </div>
+                                <div v-if="artifact.comment && !artifact.contents">
+                                    @{{ artifact.comment }}
+                                </div>
+                                <div v-if="artifact.meta_description && !artifact.comment && !artifact.contents">
+                                    @{{ artifact.meta_description.substr(0, 200).trim() }}...
+                                </div>
+                            </div><br/>
+
+
+                            <center>
+                                <div class="artifact-links" style="font-size:13px; padding-top:16px; padding-bottom:16px">
+                                    <a v-bind:href="artifact.url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                        @{{ artifact.type_label }}
+                                    </a> &nbsp;
+                                    <a v-bind:href="artifact.url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <span v-if="artifact.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} || {{ auth()->check() && auth()->user()->is_admin ? 'true' : 'false' }}">
+                                        <span style="color:#CCCCCC">
+                                            &nbsp; | &nbsp;
+                                        </span>
+                                        <a v-bind:href="'{{ iawUrl() }}/flutter-artifact/' + artifact.slug + '/edit'" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                            EDIT RESOURCE
+                                        </a>
+                                    </span>
+                                </div>
+                            </center>
                         </div>
 
-                        <div v-bind:title="artifact.short_description" style="word-break:break-word;">
-                            <div v-if="artifact.contents">
-                                @{{ artifact.contents.substr(0, 200) }}
-                            </div>
-                            <div v-if="artifact.comment && !artifact.contents">
-                                @{{ artifact.comment }}
-                            </div>
-                            <div v-if="artifact.meta_description && !artifact.comment && !artifact.contents">
-                                @{{ artifact.meta_description.substr(0, 200).trim() }}...
-                            </div>
-                        </div><br/>
-
-
-                        <center>
-                            <div class="artifact-links" style="font-size:13px; padding-top:16px; padding-bottom:16px">
-                                <a v-bind:href="artifact.url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
-                                    @{{ artifact.type_label }}
-                                </a> &nbsp;
-                                <a v-bind:href="artifact.url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                                <span v-if="artifact.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} || {{ auth()->check() && auth()->user()->is_admin ? 'true' : 'false' }}">
-                                    <span style="color:#CCCCCC">
-                                        &nbsp; | &nbsp;
-                                    </span>
-                                    <a v-bind:href="'{{ iawUrl() }}/flutter-artifact/' + artifact.slug + '/edit'" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
-                                        EDIT RESOURCE
-                                    </a>
-                                </span>
-                            </div>
-                        </center>
-
                         @if (isGL())
-                            <div v-if="artifact.image_url" class="card-image" style="max-height:250px; overflow: hidden" style="vertical-align:center">
+                            <div v-if="artifact.image_url" class="card-image" style="max-height:250px; overflow: hidden">
                                 <img v-bind:src="artifact.image_url + '?updated_at=' + artifact.updated_at" loading="lazy" width="100%"/>
                             </div>
                         @else
-                            <div v-if="artifact.gif_url || artifact.image_url" class="card-image" style="max-height:250px; overflow: hidden" style="vertical-align:center">
+                            <div v-if="artifact.gif_url || artifact.image_url" class="card-image" style="max-height:220px; overflow: hidden; line-height:0px;">
                                 <img v-bind:src="(artifact.gif_url || artifact.image_url) + '?updated_at=' + artifact.updated_at" loading="lazy" width="100%"/>
                             </div>
                         @endif
-                        <div style="height:20px" v-if="artifact.image_url"/>
                     </div>
                 </div>
             </div>
@@ -395,7 +398,7 @@
                         </a>
                     </span>
 
-                    <span v-if="(selected_artifact.meta_author_url || selected_artifact.meta_author_twitter) && (selected_artifact.meta_publisher_twitter || selected_artifact.meta_publisher)" class="">
+                    <span v-if="(selected_artifact.meta_author_url || selected_artifact.meta_author_twitter) && (selected_artifact.meta_publisher_twitter || selected_artifact.meta_publisher || selected_artifact.domain)" class="">
                         •
                     </span>
 
