@@ -396,14 +396,14 @@
             @endif
 
 
-            <div class="subtitle">Live Stream</div>
+            <div class="subtitle">YouTube</div>
 
 			<article class="message is-dark is-elevated">
 				<div class="message-body">
 
                     <div class="field">
 						<label class="label" for="youtube_channel_id">
-							YouTube Channel ID
+							Channel ID
 						</label>
 						<div class="control has-icons-left">
 							{{ Form::text('youtube_channel_id', $user->channel ? $user->channel->channel_id : '', [
