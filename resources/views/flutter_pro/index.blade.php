@@ -14,7 +14,7 @@
         Hire some of the best <a href="https://flutter.dev" target="_blank">Flutter</a> developers on the planet
     @else
         Profiles are sourced from
-        <a href="https://flutterweekly.net" target="_blank">Flutter Weekly</a> and
+        <a href="https://flutterx.com" target="_blank">FlutterX</a> and
         <a href="{{ iawUrl() }}">It's All Widgets!</a>
     @endif
 @endsection

@@ -10,9 +10,8 @@
 @section('header_button_icon', 'fas fa-user')
 
 @section('header_subtitle')
-    Profiles are sourced from
-        <a href="https://flutterweekly.net" target="_blank">Flutter Weekly</a>,
-        <a href="https://www.meetup.com/find/?allMeetups=false&keywords=flutter&radius=Infinity" target="_blank">Meetup.com</a> and
+	Profiles are sourced from
+        <a href="https://flutterx.com" target="_blank">FlutterX</a> and
         <a href="{{ iawUrl() }}">It's All Widgets!</a>
 @endsection
 

@@ -7,7 +7,7 @@
 @section('header_button_url', false)
 
 @section('header_subtitle')
-    Resources are sourced from the <a href="https://flutterweekly.net" target="_blank">Flutter Weekly Newsletter</a>
+    Resources are sourced from <a href="https://flutterpro.dev" target="_blank">Flutter Pro</a>
 @endsection
 
 @section('content')
@@ -371,15 +371,6 @@
                     <div class="panel-block">
                         <div class="block wrap">@{{ selected_artifact.meta_description }}</div>
                     </div><br/>
-                @else
-                    <nav class="panel">
-                        <p class="panel-heading">
-                            Flutter Weekly
-                        </p>
-                        <div class="panel-block">
-                            <div class="block wrap">@{{ selected_artifact.comment }}</div>
-                        </div>
-                    </nav>
                 @endif
 
                 <nav class="panel" v-if="selected_artifact.contents">

@@ -26,7 +26,7 @@ class LinkActivities extends Command
      *
      * @var string
      */
-    protected $description = 'Load artifacts from Flutter Weekly';
+    protected $description = 'Link user activities';
 
     protected $activityRepo;
 
