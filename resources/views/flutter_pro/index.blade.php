@@ -122,6 +122,19 @@ padding: 1rem 1rem 4rem 1rem;
                             -->
 
                             <div class="is-medium filter-label" style="padding-left: 26px;">
+                                <label class="label is-medium" style="font-weight: normal; font-size: 16px">COUNTRY</label>
+                            </div>
+
+                            <div class="select is-medium filter-control" style="padding-left: 14px; font-size: 16px; max-width: 140px;">
+                                <select v-model="filter_country" onchange="$(this).blur">
+                                    <option value="" selected>ALL</option>
+                                    @foreach ($countries as $countryCode => $country)
+                                        <option value="{{ $countryCode }}">{{ $country }}</option>                                    
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="is-medium filter-label" style="padding-left: 26px;">
                                 <label class="label is-medium" style="font-weight: normal; font-size: 16px">SORT</label>
                             </div>
                             <div class="select is-medium filter-control" style="padding-left: 14px; font-size: 16px">
@@ -348,6 +361,11 @@ padding: 1rem 1rem 4rem 1rem;
                         app.saveFilters();
                     },
                 },
+                filter_country: {
+                    handler() {
+                        app.serverSearch();
+                    },
+                },
             },
 
             methods: {
@@ -424,7 +442,8 @@ padding: 1rem 1rem 4rem 1rem;
                     var platform = this.filter_platform;
                     var forHire = this.filter_for_hire;
                     var portfolio = this.filter_portfolio;
-
+                    var countryCode = this.filter_country;
+                    
                     app.$set(app, 'is_searching', true);
                     if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
 
@@ -432,6 +451,7 @@ padding: 1rem 1rem 4rem 1rem;
                         var url = '/search_pro?counts=true&search='
                         + encodeURIComponent(searchStr)
                         + '&sort_by=' + sortBy
+                        + '&country_code=' + countryCode
                         + '&page=' + page
                         + '&platform=' + platform;
 
@@ -492,6 +512,7 @@ padding: 1rem 1rem 4rem 1rem;
                 page_number: 1,
                 filter_platform: '',
                 is_searching: false,
+                filter_country: '',
             },
 
             computed: {

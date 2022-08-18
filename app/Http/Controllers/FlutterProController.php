@@ -12,10 +12,24 @@ class FlutterProController extends Controller
 {
     public function index()
     {
+        $countryInfo = \DB::table('users')
+                 ->select('country_code', \DB::raw('count(*) as total'))
+                 ->where('is_pro', '=', 1)
+                 ->where('country_code', '!=', '')
+                 ->groupBy('country_code')
+                 ->get();
+
+        foreach ($countryInfo->all() as $country) {
+            $countries[$country->country_code] = \Locale::getDisplayRegion('-' . $country->country_code) . ' (' . $country->total . ')';
+        }
+
+        asort($countries);
+
         $data = [
             'useBlackHeader' => true,
             'count' => User::pro()->count(),
             'banner' => getBanner(),
+            'countries' => $countries,
         ];
 
         return view('flutter_pro.index', $data);
@@ -43,6 +57,10 @@ class FlutterProController extends Controller
                 $query->where('profile_url', '!=', '')
                     ->orWhere('website_url', '!=', '');
             });
+        }
+
+        if (request()->country_code) {
+            $users->where('country_code', '=', request()->country_code);
         }
 
         if ($platform == 'github') {
