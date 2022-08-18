@@ -291,6 +291,21 @@ class User extends Authenticatable
         return $obj;
     }
 
+    public function mediumHandle() 
+    {
+        if (! $this->medium_url) {
+            return false;
+        }
+
+        $parts = explode('@', $this->medium_url);
+
+        if (count($parts) < 2) {
+            return false;
+        }
+
+        return $parts[1];
+    }
+
     public function twitterHandle()
     {
         if (! $this->twitter_url) {

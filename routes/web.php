@@ -22,6 +22,11 @@ Route::group(['domain' => 'dev.flutterpro.com'], function() {
     Route::get('profile/edit', 'FlutterProController@edit');
 });
 
+Route::group(['domain' => 'dev.flutterx.com'], function() {
+    Route::get('/', 'FlutterArtifactController@index');
+    Route::get('search', 'FlutterArtifactController@search');
+});
+
 Route::group(['domain' => '127.0.0.1'], function() {
     Route::get('profiles', 'FlutterProController@index');
     Route::get('profiles/sitemap.xml', 'FlutterProController@sitemap');

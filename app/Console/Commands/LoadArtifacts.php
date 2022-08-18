@@ -21,7 +21,7 @@ class LoadArtifacts extends Command
      *
      * @var string
      */
-    protected $description = 'Load artifacts from Flutter Weekly';
+    protected $description = 'Load articles from RSS feeds';
 
     protected $artifactRepo;
 
@@ -50,7 +50,7 @@ class LoadArtifacts extends Command
         if ($this->option('geula')) {
             $this->handleGeula();
         } else {
-            $this->handleFlutterX();
+            $this->loadUsers();
         }
 
         $this->info('Done');
@@ -101,7 +101,83 @@ class LoadArtifacts extends Command
         }
     }
 
-    public function handleFlutterX()
+    public function loadUsers()
+    {
+        $users = \App\Models\User::where('is_pro', '=', true)->orderBy('id')->get();
+
+        foreach ($users as $user) {            
+            if ($user->medium_url) {
+                $url = 'https://medium.com/feed/@' . $user->mediumHandle();    
+                $xml = simplexml_load_file($url);
+                foreach ($xml->channel->item as $item) {
+                    $data = [
+                        'title' => $item->title,
+                        'url' => rtrim($item->link , '/'),
+                        'type' => 'article',
+                        'source_url' => $url,
+                        'published_date' => date('Y-m-d', strtotime($item->pubDate)),
+                        'meta_author' => $item->children('dc', true)->creator,
+                        'meta_description' => $item->description,
+                    ];
+    
+    
+                    $this->parseResource($data);
+                }    
+            }
+
+            if ($user->channel_id) {
+                $url = 'https://www.youtube.com/feeds/videos.xml?channel_id=' . $user->channel->channel_id;
+                $xml = simplexml_load_file($url);
+                
+                foreach ($xml->entry as $item) {
+
+                    $title = strtolower(strval($item->title));
+                    if ($user->channel->match_all_videos || strstr($title, 'flutter')) {
+
+                        $data = [
+                            'title' => $item->title,
+                            'url' => $item->link['href'],
+                            'type' => 'video',
+                            'source_url' => $url,
+                            'published_date' => date('Y-m-d', strtotime($item->published)),
+                            'meta_author' => $item->author->name,
+                            'meta_author_url' => 'https://www.youtube.com/channel/' . $user->channel->channel_id,
+                            'meta_description' => $item->children('media', true)->group->description,
+                            'image_url' => 'https://i1.ytimg.com/vi/' . $item->children('yt', true)->videoId . '/hqdefault.jpg',
+                        ];
+
+                        $this->parseResource($data);
+                    }
+                }    
+            }
+        }        
+
+        /*
+        // handle videos
+        $feeds = explode(',', config('services.feeds.videos'));
+
+        foreach ($feeds as $channel) {
+            $feed = 'https://www.youtube.com/feeds/videos.xml?channel_id=' . $channel;
+            $xml = simplexml_load_file($feed);
+            foreach ($xml->entry as $item) {
+                $data = [
+                    'title' => $item->title,
+                    'url' => $item->link['href'],
+                    'type' => 'video',
+                    'source_url' => $feed,
+                    'published_date' => date('Y-m-d', strtotime($item->published)),
+                    'meta_author' => $item->author->name,
+                    'meta_description' => $item->children('media', true)->group->description,
+                    'image_url' => 'https://i1.ytimg.com/vi/' . $item->children('yt', true)->videoId . '/hqdefault.jpg',
+                ];
+
+                $this->parseResource($data);
+            }
+        }
+        */
+    }
+
+    public function loadFlutterWeekly()
     {
         $data = file_get_contents('https://json.flutterweekly.net/issues.json');
         $data = json_decode($data);
@@ -318,11 +394,12 @@ class LoadArtifacts extends Command
             return $data;
         }
 
-	$contents = @file_get_contents('https://youtube.com/get_video_info?video_id=' . $videoId);
+        /*
+        $contents = @file_get_contents('https://youtube.com/get_video_info?video_id=' . $videoId);
 
-	if (!$contents) {
-		return $data;
-	}
+        if (!$contents) {
+            return $data;
+        }
 
         parse_str($contents, $info);
 
@@ -343,6 +420,7 @@ class LoadArtifacts extends Command
                 $data['image_url'] = $videoDetails->thumbnail->thumbnails[0]->url;
             }
         }
+        */
 
         return $data;
     }
