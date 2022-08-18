@@ -66,13 +66,11 @@ class FlutterAppRepository
 
     private function cleanAppUrls($app) 
     {
-        $app->google_url = explode('?', $app->google_url)[0];
         $app->apple_url = explode('?', $app->apple_url)[0];
         $app->microsoft_url = explode('?', $app->microsoft_url)[0];
         $app->snapcraft_url = explode('?', $app->snapcraft_url)[0];
         $app->twitter_url = explode('?', $app->twitter_url)[0];
 
-        $app->google_url = explode('#', $app->google_url)[0];
         $app->apple_url = explode('#', $app->apple_url)[0];
         $app->microsoft_url = explode('#', $app->microsoft_url)[0];
         $app->snapcraft_url = explode('#', $app->snapcraft_url)[0];
