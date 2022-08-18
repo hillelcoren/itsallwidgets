@@ -92,15 +92,16 @@ padding: 1rem 1rem 4rem 1rem;
                                 <i class="fas fa-search"></i>
                             </span>
 
+                            <!--
                             <div class="is-medium" v-on:click="togglePortfolio()" style="padding-left: 20px;">
                                 <input type="checkbox" name="portfolioSwitch"
                                 class="switch is-info" v-model="filter_portfolio">
                                 <label for="portfolioSwitch" style="padding-top:6px; font-size: 16px">PORTFOLIO &nbsp;</label>
                             </div>
+                            -->
 
                             <div class="is-medium" v-on:click="toggleForHire()" style="padding-left: 20px;">
-                                <input type="checkbox" name="forHireSwitch"
-                                class="switch is-info" v-model="filter_for_hire">
+                                <input type="checkbox" name="forHireSwitch" class="switch is-info" v-model="filter_for_hire">
                                 <label for="openSourceSwitch" style="padding-top:6px; font-size: 16px">FOR HIRE &nbsp;</label>
                             </div>
 
@@ -126,7 +127,7 @@ padding: 1rem 1rem 4rem 1rem;
                             </div>
 
                             <div class="select is-medium filter-control" style="padding-left: 14px; font-size: 16px; max-width: 140px;">
-                                <select v-model="filter_country" onchange="$(this).blur">
+                                <select v-model="filter_country" onchange="$(this).blur()">
                                     <option value="" selected>ALL</option>
                                     @foreach ($countries as $countryCode => $country)
                                         <option value="{{ $countryCode }}">{{ $country }}</option>                                    
