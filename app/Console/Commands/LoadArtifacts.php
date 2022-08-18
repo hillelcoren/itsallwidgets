@@ -117,6 +117,7 @@ class LoadArtifacts extends Command
                         'source_url' => $url,
                         'published_date' => date('Y-m-d', strtotime($item->pubDate)),
                         'meta_author' => $item->children('dc', true)->creator,
+                        'meta_author_twitter' => $user->twitter_url,
                         'meta_description' => $item->description,
                     ];
     
@@ -142,6 +143,7 @@ class LoadArtifacts extends Command
                             'published_date' => date('Y-m-d', strtotime($item->published)),
                             'meta_author' => $item->author->name,
                             'meta_author_url' => 'https://www.youtube.com/channel/' . $user->channel->channel_id,
+                            'meta_author_twitter' => $user->twitter_url,
                             'meta_description' => $item->children('media', true)->group->description,
                             'image_url' => 'https://i1.ytimg.com/vi/' . $item->children('yt', true)->videoId . '/hqdefault.jpg',
                         ];
@@ -151,30 +153,6 @@ class LoadArtifacts extends Command
                 }    
             }
         }        
-
-        /*
-        // handle videos
-        $feeds = explode(',', config('services.feeds.videos'));
-
-        foreach ($feeds as $channel) {
-            $feed = 'https://www.youtube.com/feeds/videos.xml?channel_id=' . $channel;
-            $xml = simplexml_load_file($feed);
-            foreach ($xml->entry as $item) {
-                $data = [
-                    'title' => $item->title,
-                    'url' => $item->link['href'],
-                    'type' => 'video',
-                    'source_url' => $feed,
-                    'published_date' => date('Y-m-d', strtotime($item->published)),
-                    'meta_author' => $item->author->name,
-                    'meta_description' => $item->children('media', true)->group->description,
-                    'image_url' => 'https://i1.ytimg.com/vi/' . $item->children('yt', true)->videoId . '/hqdefault.jpg',
-                ];
-
-                $this->parseResource($data);
-            }
-        }
-        */
     }
 
     public function loadFlutterWeekly()

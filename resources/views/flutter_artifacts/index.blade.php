@@ -210,9 +210,6 @@
                             <span v-if="!artifact.meta_publisher_twitter && artifact.meta_publisher">
                                 @{{ artifact.meta_publisher }}
                             </span>
-                            <span v-if="!artifact.meta_publisher_twitter && !artifact.meta_publisher">
-                                @{{ artifact.domain }}
-                            </span>
                         </div>
 
 
