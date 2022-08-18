@@ -432,20 +432,36 @@ body {
                                     Edit Application
                                 </a>
                                 &nbsp;&nbsp;
-                            </span>
+                            </span> 
+
+                            <br/>&nbsp;&nbsp;<br/>
 
                             @if (auth()->user()->is_editor)
                                 <span v-if="selected_app.featured == 0">
                                     <a class="button is-warning is-slightly-elevated" v-bind:href="'/flutter-app/' + selected_app.slug + '/feature'">
                                         <i style="font-size: 20px" class="fas fa-star"></i> &nbsp;
                                         Feature Application
-                                    </a>
-                                    &nbsp;&nbsp;
+                                    </a> &nbsp;&nbsp;
                                 </span>
                                 <a class="button is-danger is-slightly-elevated" v-bind:href="'/flutter-app/' + selected_app.slug + '/hide'">
                                     <i style="font-size: 20px" class="fas fa-trash"></i> &nbsp;
                                     Hide Application
                                 </a>
+
+                                <br/>&nbsp;&nbsp;<br/>
+
+                                <span v-if="selected_app.is_web">
+                                    <a class="button is-warning is-slightly-elevated" v-bind:href="'/flutter-app/' + selected_app.slug + '/feature_web'">
+                                        <i style="font-size: 20px" class="fas fa-star"></i> &nbsp;
+                                        Feature Web Application
+                                    </a> &nbsp;&nbsp;
+                                    <a class="button is-danger is-slightly-elevated" v-bind:href="'/flutter-app/' + selected_app.slug + '/hide_web'">
+                                        <i style="font-size: 20px" class="fas fa-trash"></i> &nbsp;
+                                        Hide Web Application
+                                    </a>
+
+                                    <br/>&nbsp;&nbsp;<br/>
+                                </span>
                             @endif
                         @endif
                     </div>

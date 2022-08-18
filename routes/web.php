@@ -166,6 +166,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('flutter-app/{flutter_app}/hide', 'FlutterAppController@hide');
     Route::get('flutter-app/{flutter_app}/feature', 'FlutterAppController@feature');
+    Route::get('flutter-app/{flutter_app}/hide_web', 'FlutterAppController@hideWeb');
+    Route::get('flutter-app/{flutter_app}/feature_web', 'FlutterAppController@featureWeb');
     Route::get('flutter-app/{flutter_app}/approve', 'FlutterAppController@approve');
     Route::get('flutter-app/{flutter_app}/reject', 'FlutterAppController@reject');
     Route::get('flutter-app/{flutter_app}/edit', 'FlutterAppController@edit');

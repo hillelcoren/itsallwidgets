@@ -243,6 +243,26 @@ class FlutterAppController extends Controller
         return redirect('/' . $app->slug)->with('status', $app->title. ' is now featured!');
     }
 
+    public function hideWeb(HideFlutterApp $request)
+    {
+        $app = $request->flutter_app;
+
+        $app->is_web = false;
+        $app->flutter_web_url = '';
+        $app->save();
+
+        return redirect('/')->with('status', 'App has been hidden from web!');
+    }
+
+    public function featureWeb(FeatureFlutterApp $request)
+    {
+        $app = $request->flutter_app;
+        $app->featured = 32;
+        $app->save();
+
+        return redirect('/' . $app->slug)->with('status', $app->title. ' is now featured!');
+    }
+
     public function jsonFeed(Request $request)
     {
         $apps = cache('flutter-app-list');
