@@ -232,8 +232,7 @@ class FlutterAppController extends Controller
     {
         $app = $request->flutter_app;
 
-        //FlutterApp::where('featured', '>', 0)->where('is_web', '=', $app->is_web)->decrement('featured');
-        FlutterApp::where('featured', '>', 0)->decrement('featured');
+        FlutterApp::where('featured', '>', 0)->where('is_web', '=', 0)->decrement('featured');
 
         $app->featured = 32;
         $app->save();
@@ -257,6 +256,9 @@ class FlutterAppController extends Controller
     public function featureWeb(FeatureFlutterApp $request)
     {
         $app = $request->flutter_app;
+
+        FlutterApp::where('featured', '>', 0)->where('is_web', '=', 1)->decrement('featured');
+
         $app->featured = 32;
         $app->save();
 
