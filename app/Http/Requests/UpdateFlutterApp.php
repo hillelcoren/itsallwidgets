@@ -32,16 +32,19 @@ class UpdateFlutterApp extends FormRequest
     {
         $app = request()->flutter_app;
 
+        $mobileImageExists = file_exists($app->screenshotPath());
+        $desktopImageExists = file_exists($app->screenshotDesktopPath());
+
         $rules = [
             'title' => 'required|unique:flutter_apps,title,' . $app->id . ',id',
             'gif' => 'mimes:gif|dimensions:width=1080,height=1920|max:10000',
             'gif_desktop' => 'mimes:gif|dimensions:width=1280,height=800|max:10000',
             'flutter_web_url' => 'required_if:is_web,1|nullable|unique:flutter_apps,flutter_web_url,' . $app->id . ',id',
-            'screenshot' => 'image|nullable|mimes:png|dimensions:width=1080,height=1920|max:2500',
+            'screenshot' => ($mobileImageExists ? '' : 'required_if:is_mobile,1|') . 'image|nullable|mimes:png|dimensions:width=1080,height=1920|max:2500',
             'screenshot_1' => 'image|mimes:png|dimensions:width=1080,height=1920|max:2500',
             'screenshot_2' => 'image|mimes:png|dimensions:width=1080,height=1920|max:2500',
             'screenshot_3' => 'image|mimes:png|dimensions:width=1080,height=1920|max:2500',
-            'screenshot_desktop' => 'image|nullable|mimes:png|dimensions:width=1280,height=800|max:2500',
+            'screenshot_desktop' => ($desktopImageExists ? '' : 'required_if:is_desktop,1|') . 'image|nullable|mimes:png|dimensions:width=1280,height=800|max:2500',
             'short_description' => 'required|max:250',
             'long_description' => 'required',
             'repo_url' => [new ExternalLink('https://github.com/', 'https://bitbucket.org/')],

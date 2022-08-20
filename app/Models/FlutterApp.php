@@ -104,6 +104,16 @@ class FlutterApp extends Model implements Feedable
             ->author($this->title);
     }
 
+    public function screenshotPath()
+    {
+        return public_path('/screenshots/app-' . $this->id . '.png');
+    }
+
+    public function screenshotDesktopPath()
+    {
+        return public_path('/screenshots/app-' . $this->id . '-desktop.png');
+    }
+
     public function screenshotUrl($number = false)
     {
         $suffix = $number ? '-' . $number : '';
