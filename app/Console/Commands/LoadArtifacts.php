@@ -96,7 +96,11 @@ class LoadArtifacts extends Command
                     'image_url' => 'https://i1.ytimg.com/vi/' . $item->children('yt', true)->videoId . '/hqdefault.jpg',
                 ];
 
-                $this->parseResource($data);
+                if (strlen($data['url']) > 250) {
+                    // do nothing
+                } else {
+                    $this->parseResource($data);
+                }                
             }
         }
     }
@@ -125,8 +129,11 @@ class LoadArtifacts extends Command
                                 'meta_description' => $item->description,
                             ];
             
-            
-                            $this->parseResource($data);
+                            if (strlen($data['url']) > 250) {
+                                // do nothing
+                            } else {
+                                $this->parseResource($data);
+                            }
                         }
                     }    
                 }
