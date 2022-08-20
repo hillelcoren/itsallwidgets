@@ -110,19 +110,23 @@ class LoadArtifacts extends Command
                 $url = 'https://medium.com/feed/@' . $user->mediumHandle();    
                 $xml = simplexml_load_file($url);
                 foreach ($xml->channel->item as $item) {
-                    $data = [
-                        'title' => $item->title,
-                        'url' => rtrim($item->link , '/'),
-                        'type' => 'article',
-                        'source_url' => $url,
-                        'published_date' => date('Y-m-d', strtotime($item->pubDate)),
-                        'meta_author' => $item->children('dc', true)->creator,
-                        'meta_author_twitter' => $user->twitter_url,
-                        'meta_description' => $item->description,
-                    ];
-    
-    
-                    $this->parseResource($data);
+                    $title = strtolower(strval($item->title));                    
+                    if (strstr($title, 'flutter')) {
+
+                        $data = [
+                            'title' => $item->title,
+                            'url' => rtrim($item->link , '/'),
+                            'type' => 'article',
+                            'source_url' => $url,
+                            'published_date' => date('Y-m-d', strtotime($item->pubDate)),
+                            'meta_author' => $item->children('dc', true)->creator,
+                            'meta_author_twitter' => $user->twitter_url,
+                            'meta_description' => $item->description,
+                        ];
+        
+        
+                        $this->parseResource($data);
+                    }
                 }    
             }
 
