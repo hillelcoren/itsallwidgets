@@ -66,6 +66,14 @@ class UpdateFlutterApp extends FormRequest
             $rules['google_url'][] = 'unique:flutter_apps,google_url,' . $app->id . ',id';
         }
 
+        if (request()->microsoft_url) {
+            $rules['microsoft_url'][] = 'unique:flutter_apps,microsoft_url,' . $app->id . ',id';
+        }
+
+        if (request()->snapcraft_url) {
+            $rules['snapcraft_url'][] = 'unique:flutter_apps,snapcraft_url,' . $app->id . ',id';
+        }
+
         return $rules;
     }
 }

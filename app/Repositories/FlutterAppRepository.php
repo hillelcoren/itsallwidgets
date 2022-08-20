@@ -66,15 +66,25 @@ class FlutterAppRepository
 
     private function cleanAppUrls($app) 
     {
-        $app->apple_url = explode('?', $app->apple_url)[0];
-        $app->microsoft_url = explode('?', $app->microsoft_url)[0];
-        $app->snapcraft_url = explode('?', $app->snapcraft_url)[0];
-        $app->twitter_url = explode('?', $app->twitter_url)[0];
+        if ($app->apple_url) {
+            $app->apple_url = explode('?', $app->apple_url)[0];
+            $app->apple_url = explode('#', $app->apple_url)[0];
+        }
 
-        $app->apple_url = explode('#', $app->apple_url)[0];
-        $app->microsoft_url = explode('#', $app->microsoft_url)[0];
-        $app->snapcraft_url = explode('#', $app->snapcraft_url)[0];
-        $app->twitter_url = explode('#', $app->twitter_url)[0];
+        if ($app->microsoft_url) {
+            $app->microsoft_url = explode('?', $app->microsoft_url)[0];
+            $app->microsoft_url = explode('#', $app->microsoft_url)[0];
+        }
+
+        if ($app->snapcraft_url) {
+            $app->snapcraft_url = explode('?', $app->snapcraft_url)[0];
+            $app->snapcraft_url = explode('#', $app->snapcraft_url)[0];
+        }
+
+        if ($app->twitter_url) {
+            $app->twitter_url = explode('?', $app->twitter_url)[0];
+            $app->twitter_url = explode('#', $app->twitter_url)[0];
+        }
 
         return $app;
     }

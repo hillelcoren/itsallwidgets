@@ -57,6 +57,14 @@ class StoreFlutterApp extends FormRequest
             $rules['google_url'][] = 'unique:flutter_apps';
         }
 
+        if (request()->microsoft_url) {
+            $rules['microsoft_url'][] = 'unique:flutter_apps';
+        }
+
+        if (request()->snapcraft_url) {
+            $rules['snapcraft_url'][] = 'unique:flutter_apps';
+        }
+
         return $rules;
     }
 }
