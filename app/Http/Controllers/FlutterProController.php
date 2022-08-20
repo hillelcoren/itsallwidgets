@@ -20,7 +20,7 @@ class FlutterProController extends Controller
                  ->get();
 
         foreach ($countryInfo->all() as $country) {
-            $countries[$country->country_code] = \Locale::getDisplayRegion('-' . $country->country_code) . ' (' . $country->total . ')';
+            $countries[$country->country_code] = \Locale::getDisplayRegion('-' . $country->country_code);
         }
 
         asort($countries);
