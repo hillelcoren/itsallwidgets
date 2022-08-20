@@ -108,54 +108,57 @@ class LoadArtifacts extends Command
         foreach ($users as $user) {            
             if ($user->medium_url) {
                 $url = 'https://medium.com/feed/@' . $user->mediumHandle();    
-                $xml = simplexml_load_file($url);
-                foreach ($xml->channel->item as $item) {
-                    $title = strtolower(strval($item->title));                    
-                    if (strstr($title, 'flutter')) {
+                $xml = @simplexml_load_file($url);
+                if ($xml) {
+                    foreach ($xml->channel->item as $item) {
+                        $title = strtolower(strval($item->title));                    
+                        if (strstr($title, 'flutter')) {
 
-                        $data = [
-                            'title' => $item->title,
-                            'url' => rtrim($item->link , '/'),
-                            'type' => 'article',
-                            'source_url' => $url,
-                            'published_date' => date('Y-m-d', strtotime($item->pubDate)),
-                            'meta_author' => $item->children('dc', true)->creator,
-                            'meta_author_twitter' => $user->twitter_url,
-                            'meta_description' => $item->description,
-                        ];
-        
-        
-                        $this->parseResource($data);
-                    }
-                }    
+                            $data = [
+                                'title' => $item->title,
+                                'url' => rtrim($item->link , '/'),
+                                'type' => 'article',
+                                'source_url' => $url,
+                                'published_date' => date('Y-m-d', strtotime($item->pubDate)),
+                                'meta_author' => $item->children('dc', true)->creator,
+                                'meta_author_twitter' => $user->twitter_url,
+                                'meta_description' => $item->description,
+                            ];
+            
+            
+                            $this->parseResource($data);
+                        }
+                    }    
+                }
             }
 
             if ($user->channel_id) {
                 $url = 'https://www.youtube.com/feeds/videos.xml?channel_id=' . $user->channel->channel_id;
-                $xml = simplexml_load_file($url);
-                
-                foreach ($xml->entry as $item) {
+                $xml = @simplexml_load_file($url);
+                if ($xml) {
+                    foreach ($xml->entry as $item) {
 
-                    $title = strtolower(strval($item->title));
-                    //if ($user->channel->match_all_videos || strstr($title, 'flutter')) {
-                    if (strstr($title, 'flutter')) {
+                        $title = strtolower(strval($item->title));
+                        //if ($user->channel->match_all_videos || strstr($title, 'flutter')) {
+                        if (strstr($title, 'flutter')) {
 
-                        $data = [
-                            'title' => $item->title,
-                            'url' => $item->link['href'],
-                            'type' => 'video',
-                            'source_url' => $url,
-                            'published_date' => date('Y-m-d', strtotime($item->published)),
-                            'meta_author' => $item->author->name,
-                            'meta_author_url' => 'https://www.youtube.com/channel/' . $user->channel->channel_id,
-                            'meta_author_twitter' => $user->twitter_url,
-                            'meta_description' => $item->children('media', true)->group->description,
-                            'image_url' => 'https://i1.ytimg.com/vi/' . $item->children('yt', true)->videoId . '/hqdefault.jpg',
-                        ];
+                            $data = [
+                                'title' => $item->title,
+                                'url' => $item->link['href'],
+                                'type' => 'video',
+                                'source_url' => $url,
+                                'published_date' => date('Y-m-d', strtotime($item->published)),
+                                'meta_author' => $item->author->name,
+                                'meta_author_url' => 'https://www.youtube.com/channel/' . $user->channel->channel_id,
+                                'meta_author_twitter' => $user->twitter_url,
+                                'meta_description' => $item->children('media', true)->group->description,
+                                'image_url' => 'https://i1.ytimg.com/vi/' . $item->children('yt', true)->videoId . '/hqdefault.jpg',
+                            ];
 
-                        $this->parseResource($data);
-                    }
-                }    
+                            $this->parseResource($data);
+                        }
+                    }    
+                }
             }
         }        
     }
