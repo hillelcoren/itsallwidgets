@@ -133,7 +133,8 @@ class LoadArtifacts extends Command
                 foreach ($xml->entry as $item) {
 
                     $title = strtolower(strval($item->title));
-                    if ($user->channel->match_all_videos || strstr($title, 'flutter')) {
+                    //if ($user->channel->match_all_videos || strstr($title, 'flutter')) {
+                    if (strstr($title, 'flutter')) {
 
                         $data = [
                             'title' => $item->title,
