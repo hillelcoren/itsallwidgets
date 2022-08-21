@@ -16,6 +16,7 @@ class FlutterProController extends Controller
                  ->select('country_code', \DB::raw('count(*) as total'))
                  ->where('is_pro', '=', 1)
                  ->where('country_code', '!=', '')
+                 ->whereNotNull('last_activity')
                  ->groupBy('country_code')
                  ->get();
 

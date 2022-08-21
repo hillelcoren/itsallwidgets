@@ -247,7 +247,7 @@ class FlutterAppController extends Controller
         $app = $request->flutter_app;
 
         $app->is_web = false;
-        $app->flutter_web_url = '';
+        $app->flutter_web_url = null;
         $app->save();
 
         return redirect('/')->with('status', 'App has been hidden from web!');
