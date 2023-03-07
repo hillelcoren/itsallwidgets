@@ -51,6 +51,8 @@ class LoadArtifacts extends Command
             $this->handleGeula();
         } else {
             $this->loadUsers();
+
+            file_get_contents('https://flutterx.com/?clear_cache=true');
         }
 
         $this->info('Done');
