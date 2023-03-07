@@ -364,7 +364,7 @@ body {
                                 <span style="color:#CCCCCC">
                                     &nbsp; | &nbsp;
                                 </span>
-                                <a v-bind:href="app.snapcraft_url" v-if="app.apple_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                <a v-bind:href="app.snapcraft_url" v-if="app.snapcraft_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
                                     SNAPCRAFT
                                 </a>
                                 <span v-if="! app.snapcraft_url" style="color:#AAAAAA">
