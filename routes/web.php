@@ -126,7 +126,7 @@ Route::get('flutter-apps', function () {
 });
 
 Route::get('slides', function () {
-    return redirect('https://docs.google.com/presentation/d/1u82DeBozavR31n3xjmwmwl2CT8YsG7u8ltQv1ltxw34/edit', 301);
+    return redirect('https://docs.google.com/presentation/d/19mGrohMNCQgNCjF3IRjuCKPj_fDbHAv0idyPD3OnNUA/edit', 301);
 });
 
 Route::get('30days', function () {
