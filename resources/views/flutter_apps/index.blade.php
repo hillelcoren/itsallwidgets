@@ -480,9 +480,9 @@ body {
 
                             <span v-if="selected_app.category">
                                 &nbsp;&nbsp;
-                                <a class="tag is-info is-medium" v-on:click="setFilter(selected_app.category)"
+                                <a class="tag is-info is-medium" v-on:click="setFilter(selected_app.category.replaceAll('_', ' '))"
                                     href="#" style="text-decoration: none;">
-                                    @{{ selected_app.category }}
+                                    @{{ selected_app.category.replaceAll('_', ' ') }}
                                 </a>
                             </span>
                         </div>

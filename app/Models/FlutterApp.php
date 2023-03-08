@@ -193,6 +193,11 @@ class FlutterApp extends Model implements Feedable
         return substr($this->short_description . '. ' . $this->long_description, 0, 300);
     }
 
+    public function readableCategory()
+    {
+        return str_replace('_', ' ', $this->category);
+    }
+
     public function toObject()
     {
         $obj = new \stdClass;

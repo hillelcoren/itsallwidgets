@@ -109,8 +109,8 @@
 							@if ($app->category)
 								&nbsp;&nbsp;
 								<a class="tag is-info is-medium" style="text-decoration: none;"
-									href="{{ url('?search=' . strtolower($app->category)) }}">
-									{{ $app->category }}
+									href="{{ url('?search=' . strtolower($app->readableCategory())) }}">
+									{{ $app->readableCategory() }}
 								</a>
 							@elseif ($app->is_template)
 								&nbsp;&nbsp;
