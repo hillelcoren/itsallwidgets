@@ -111,8 +111,11 @@ body {
 
 </style>
 
-<div id="app">
+<form style="display: none" method="POST" id="delete-form">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+</form>
 
+<div id="app">
     <section class="hero is-light is-small is-body-font">
         <div class="hero-body">
             <div class="container">
@@ -432,6 +435,10 @@ body {
                                     Edit Application
                                 </a>
                                 &nbsp;&nbsp;
+                                <a class="button is-danger is-slightly-elevated" v-on:click="deleteSelected()">
+                                    <i style="font-size: 20px" class="fas fa-trash"></i> &nbsp;
+                                    Delete Application
+                                </a>
                             </span> 
 
                             <br/>&nbsp;&nbsp;<br/>
@@ -781,6 +788,14 @@ var app = new Vue({
             var apps = this.filteredApps;
             var index = apps.indexOf(this.selected_app);
             this.selectApp(apps[index - 1]);
+        },
+
+        deleteSelected() {
+            if (confirm('Are you sure?')) {
+                var form = document.getElementById('delete-form');
+                form.action = '/flutter-app/' + this.selected_app.slug + '/delete';
+                form.submit();                
+            }
         },
 
     },

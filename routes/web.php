@@ -182,6 +182,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('flutter-app/{flutter_app}/approve', 'FlutterAppController@approve');
     Route::get('flutter-app/{flutter_app}/reject', 'FlutterAppController@reject');
     Route::get('flutter-app/{flutter_app}/edit', 'FlutterAppController@edit');
+    Route::post('flutter-app/{flutter_app}/delete', 'FlutterAppController@delete');
     Route::put('flutter-app/{flutter_app}', 'FlutterAppController@update');
 
     Route::get('podcast/submit', 'PodcastController@create');

@@ -251,6 +251,10 @@ class User extends Authenticatable
                 $obj->activity_link_title = mb_convert_encoding($activity->activity->activityLinkTitle(), 'UTF-8', 'UTF-8');
             }
 
+            if (! $activity->activity) {
+                continue;
+            }
+
             $activityObj = $activity->activity->toObject();
 
             if ($activityObj->type == 'app') {

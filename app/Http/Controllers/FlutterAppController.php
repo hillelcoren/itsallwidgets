@@ -13,6 +13,7 @@ use App\Http\Requests\ApproveFlutterApp;
 use App\Http\Requests\FeatureFlutterApp;
 use App\Http\Requests\RejectFlutterApp;
 use App\Http\Requests\HideFlutterApp;
+use App\Http\Requests\DeleteFlutterApp;
 use Illuminate\Http\Request;
 use App\Repositories\FlutterAppRepository;
 use App\Repositories\FlutterEventRepository;
@@ -226,6 +227,19 @@ class FlutterAppController extends Controller
         $app->save();
 
         return redirect('/')->with('status', 'App has been hidden!');
+    }
+
+    public function delete(DeleteFlutterApp $request)
+    {
+        $app = $request->flutter_app;
+        $app->delete();
+        $app->forceDelete();
+
+        $user = auth()->user();
+        $user->count_apps--;
+        $user->save();
+
+        return redirect('/')->with('status', 'App has been deleted!');
     }
 
     public function feature(FeatureFlutterApp $request)

@@ -85,10 +85,18 @@
 					@endif
 
 					@if (auth()->check() && auth()->user()->owns($app))
-						<a class="button is-info is-slightly-elevated" href="{{ url('flutter-app/' . $app->slug . '/edit') }}">
+					<a class="button is-info is-slightly-elevated" href="{{ url('flutter-app/' . $app->slug . '/edit') }}">
 							<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
 							Edit Application
 						</a>
+						&nbsp;&nbsp;
+						<a class="button is-danger is-slightly-elevated" onclick="if (confirm('Are you sure?')) $('#delete-form').submit()";>
+							<i style="font-size: 20px" class="fas fa-trash"></i> &nbsp;
+							Delete Application
+						</a>
+						<form style="display: none" action="{{ url('flutter-app/' . $app->slug . '/delete') }}" method="POST" id="delete-form">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}"/>	
+						</form>
 						<p>&nbsp;</p>
 					@endif
 
