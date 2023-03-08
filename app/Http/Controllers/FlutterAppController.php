@@ -246,7 +246,7 @@ class FlutterAppController extends Controller
     {
         $app = $request->flutter_app;
 
-        FlutterApp::where('featured', '>', 0)->where('is_web', '=', 0)->decrement('featured');
+        FlutterApp::where('featured', '>', 0)->decrement('featured');
 
         $app->featured = 32;
         $app->save();
@@ -269,14 +269,18 @@ class FlutterAppController extends Controller
 
     public function featureWeb(FeatureFlutterApp $request)
     {
+        return redirect('/');
+
+        /*
         $app = $request->flutter_app;
 
-        FlutterApp::where('featured', '>', 0)->where('is_web', '=', 1)->decrement('featured');
+        FlutterApp::where('featured', '>', 0)->decrement('featured');
 
         $app->featured = 32;
         $app->save();
 
         return redirect('/' . $app->slug)->with('status', $app->title. ' is now featured!');
+        */
     }
 
     public function jsonFeed(Request $request)
