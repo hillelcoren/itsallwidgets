@@ -316,7 +316,10 @@ class User extends Authenticatable
             return false;
         }
 
-        $parts = explode('/', $this->twitter_url);
+        $url = $this->twitter_url;
+        $url = rtrim($url, '/');
+
+        $parts = explode('/', $url);
         $part = $parts[count($parts) - 1];
         $part = ltrim($part, '@');
 
