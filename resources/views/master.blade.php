@@ -29,13 +29,13 @@
 
     <meta property="og:title" content="@yield('title') | {{ appName() }}">
     <meta property="og:description" content="@yield('description')">
-    <meta property="og:image" content="@yield('image_url')?clear_cache=1">
+    <meta property="og:image" content="@yield('image_url')">
     <meta property="og:url" content="{{ request()->url() }}">
     <meta property="og:site_name" content="{{ appName() }}">
 
     <meta name="twitter:title" content="@yield('title') | {{ appName() }}">
     <meta name="twitter:description" content="@yield('description')">
-    <meta name="twitter:image" content="@yield('image_url')?clear_cache=2">
+    <meta name="twitter:image" content="@yield('image_url')">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image:alt" content="@yield('title') | {{ appName() }}">
 
