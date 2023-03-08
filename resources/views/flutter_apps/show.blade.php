@@ -247,9 +247,11 @@
 											<img src="{{ $app->gifUrl() }}" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer" onclick="selectImage('gif')"/>
 			                            </div>
 									@endif
-		                            <div class="column is-one-fifth">
-										<img src="{{ $app->screenshotUrl() }}" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer" onclick="selectImage('png')"/>
-		                            </div>
+									@if ($app->is_mobile)
+										<div class="column is-one-fifth">
+											<img src="{{ $app->screenshotUrl() }}" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer" onclick="selectImage('png')"/>
+										</div>
+									@endif
 									@if ($app->has_screenshot_1)
 										<div class="column is-one-fifth">
 											<img src="{{ $app->screenshotUrl(1) }}" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer" onclick="selectImage('png1')"/>
