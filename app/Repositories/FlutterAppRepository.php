@@ -19,7 +19,7 @@ class FlutterAppRepository
      */
     public function getBySlug($slug)
     {
-        return FlutterApp::where('slug', $slug)->firstOrFail();
+        return FlutterApp::where('slug', $slug)->first();
     }
 
     /**
