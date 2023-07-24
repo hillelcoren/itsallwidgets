@@ -204,7 +204,61 @@ class FlutterAppController extends Controller
         $app->save();
 
         if (! $app->is_template && auth()->user()->shouldSendTweet()) {
-            $app->notify(new AppApproved());
+            //$app->notify(new AppApproved());
+
+            $tweet = 'New #Flutter App! 🚀 ' . $app->title . ' 🙌 ';
+
+            if ($handle = $app->twitterHandle()) {
+                $tweet .= ' ' . $handle;
+            }
+    
+            if ($app->microsoft_url) {
+                $tweet .= ' #Windows';
+            }
+    
+            if ($app->apple_url && $app->is_desktop) {
+                $tweet .= ' #macOS';
+            }
+    
+            if ($app->snapcraft_url) {
+                $tweet .= ' #Linux';
+            }
+    
+            if ($app->google_url) {
+                $tweet .= ' #Android';
+            }
+    
+            if ($app->apple_url && $app->is_mobile) {
+                $tweet .= ' #iPhone';
+            }
+    
+            if ($app->is_web) {
+                $tweet .= ' #FlutterWeb';
+            }
+    
+            if ($app->repo_url) {
+                $tweet .= ' #OpenSource';
+            }
+    
+            if ($app->is_template) {
+                $tweet .= ' #Template';
+            }
+    
+            $tweet .= "\n" . $app->url();
+            
+            $twitter = new TwitterOAuth(
+                config('services.twitter_streams.consumer_key'),
+                config('services.twitter_streams.consumer_secret'),
+                config('services.twitter_streams.access_token'),
+                config('services.twitter_streams.access_secret')
+            );
+            
+            $parameters = [
+                'status' => $tweet,
+            ];
+
+            $twitter->setApiVersion('2');
+            $twitter->post('statuses/update', $parameters);
         }
 
         return redirect('/' . $app->slug)->with('status', 'App has been approved!');

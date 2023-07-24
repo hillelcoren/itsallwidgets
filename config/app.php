@@ -161,7 +161,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
 
-        NotificationChannels\Twitter\TwitterServiceProvider::class,
+        //NotificationChannels\Twitter\TwitterServiceProvider::class,
         NotificationChannels\FacebookPoster\FacebookPosterServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Jaybizzle\LaravelCrawlerDetect\LaravelCrawlerDetectServiceProvider::class,
