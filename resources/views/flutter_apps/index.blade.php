@@ -249,7 +249,7 @@ body {
 
     <section class="section is-body-font" style="background-color:#fefefe">
         <div class="container" v-cloak>
-            <div v-if="filteredApps.length == 0 || is_searching" class="is-wide has-text-centered is-vertical-center"
+            <div v-if="apps.length == 0 || is_searching" class="is-wide has-text-centered is-vertical-center"
             style="height:400px; text-align:center; font-size: 32px; color: #AAA">
 
             <div v-if="is_searching">Loading...</div>
@@ -264,7 +264,7 @@ body {
 
         </div>
         <div class="columns is-multiline is-6 is-variable" v-if="! is_searching">
-            <div v-for="app in filteredApps" :key="app.id" class="column" v-bind:class="columnClass">
+            <div v-for="app in apps" :key="app.id" class="column" v-bind:class="columnClass">
                 <div v-on:click="selectApp(app)" style="cursor:pointer">
                     <div class="flutter-app is-hover-elevated" v-bind:class="[app.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} ? 'is-owned' : '']">
                         <div class="is-pulled-right field is-grouped is-grouped-multiline is-vertical-center"
@@ -635,7 +635,7 @@ body {
         </span>
         Previous Page
     </a> &nbsp;
-    <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)" v-if="page_number < unpaginatedFilteredApps.length / 40">
+    <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)" v-if="page_number < this.app_count / 40">
         Next Page &nbsp;&nbsp;
         <span>
             <i style="font-size: 18px" class="fas fa-chevron-circle-right"></i>
@@ -797,7 +797,7 @@ var app = new Vue({
             } else {
                 if (this.is_searching) {
                     return '#FFFFBB';
-                } else if (this.filteredApps.length) {
+                } else if (this.apps.length) {
                     return '#FFFFBB';
                 } else {
                     return '#FFC9D9';
@@ -806,13 +806,13 @@ var app = new Vue({
         },
 
         moveNext() {
-            var apps = this.filteredApps;
+            var apps = this.apps;
             var index = apps.indexOf(this.selected_app);
             this.selectApp(apps[index + 1]);
         },
 
         movePrev() {
-            var apps = this.filteredApps;
+            var apps = this.apps;
             var index = apps.indexOf(this.selected_app);
             this.selectApp(apps[index - 1]);
         },
@@ -970,6 +970,7 @@ var app = new Vue({
             }
         },
 
+        /*
         unpaginatedFilteredApps() {
 
             var apps = this.apps;
@@ -1091,6 +1092,7 @@ var app = new Vue({
 
             return apps;
         },
+        */
 
         searchPlaholder() {
 

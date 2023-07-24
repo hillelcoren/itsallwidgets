@@ -165,13 +165,13 @@
 
 <section class="section is-body-font" style="background-color:#fefefe; padding-top:14px">
     <div class="container" v-cloak>
-        <div v-if="filteredArtifacts.length == 0" class="is-wide has-text-centered is-vertical-center"
+        <div v-if="artifacts.length == 0" class="is-wide has-text-centered is-vertical-center"
         style="height:400px; text-align:center; font-size: 32px; color: #AAA">
         <span v-if="is_searching">Searching...</span>
         <span v-if="! is_searching">No resources found</span>
     </div>
     <masonry :cols="{default: 4, 1000: 3, 800: 2, 600: 1}" :gutter="{default: '22px', 600: '15px'}">
-        <div v-for="artifact in filteredArtifacts" :key="artifact.id + artifact.contents" class="item">
+        <div v-for="artifact in artifacts" :key="artifact.id + artifact.contents" class="item">
             <div v-on:click="selectArtifact(artifact)" style="cursor:pointer">
                 <div class="flutter-artifact is-hover-elevated" v-bind:class="[artifact.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} ? 'is-owned' : '']">
 
@@ -438,7 +438,7 @@
     </span>
     Previous Page
 </a> &nbsp;
-<a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)" v-if="page_number < unpaginatedFilteredArtifacts.length / 50">
+<a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)" v-if="page_number < this.artifact_count / 50">
     Next Page &nbsp;&nbsp;
     <span>
         <i style="font-size: 18px" class="fas fa-chevron-circle-right"></i>
@@ -520,7 +520,7 @@ methods: {
         } else {
             if (this.is_searching) {
                 return '#FFFFBB';
-            } else if (this.filteredArtifacts.length) {
+            } else if (this.artifacts.length) {
                 return '#FFFFBB';
             } else {
                 return '#FFC9D9';
@@ -563,13 +563,13 @@ methods: {
     },
 
     moveNext() {
-        var artifacts = this.filteredArtifacts;
+        var artifacts = this.artifacts;
         var index = artifacts.indexOf(this.selected_artifact);
         this.selectArtifact(artifacts[index + 1]);
     },
 
     movePrev() {
-        var artifacts = this.filteredArtifacts;
+        var artifacts = this.artifacts;
         var index = artifacts.indexOf(this.selected_artifact);
         this.selectArtifact(artifacts[index - 1]);
     },
@@ -613,6 +613,7 @@ computed: {
         }
     },
 
+    /*
     unpaginatedFilteredArtifacts() {
 
         var artifacts = this.artifacts;
@@ -673,6 +674,7 @@ computed: {
 
         return artifacts;
     },
+    */
 }
 
 });
