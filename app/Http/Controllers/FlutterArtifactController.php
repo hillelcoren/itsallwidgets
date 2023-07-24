@@ -19,7 +19,7 @@ class FlutterArtifactController extends Controller
         }
 
         $data = [
-            'artifact_count' => FlutterArtifact::count(),
+            'artifact_count' => FlutterArtifact::approved()->count(),
             'banner' => getBanner(),
         ];
 
@@ -34,10 +34,29 @@ class FlutterArtifactController extends Controller
     {
         $data = [];
         $search = strtolower(request()->search);
-        $artifacts = FlutterArtifact::approved()->search($search)->get();
+        $artifacts = FlutterArtifact::approved();
+        
+        if ($search) {
+            $artifacts->search($search);
+        }
 
-        foreach ($artifacts as $artifact)
+        if (request()->filter_type == 'filter_type_articles') {
+            $artifacts->where('type', '=', 'article');
+        } else if (request()->filter_type == 'filter_type_videos') {
+            $artifacts->where('type', '=', 'video');
+        } else if (request()->filter_type == 'filter_type_libraries') {
+            $artifacts->where('type', '=', 'library');
+        }
+
+        if (request()->sort_by == 'newest') {
+            $artifacts->orderBy('id', 'desc');
+        } else {
+            $artifacts->orderBy('id', 'asc');
+        }        
+        
+        foreach ($artifacts->get() as $artifact)
         {
+            /*
             $index = strpos(strtolower($artifact->contents), $search);
             $str = substr($artifact->contents, $index, 800);
             $str = mb_convert_encoding($str, 'UTF-8', 'UTF-8');
@@ -45,8 +64,9 @@ class FlutterArtifactController extends Controller
             $obj = new \stdClass;
             $obj->id = $artifact->id;
             $obj->contents = $str;
-
-            $data[] = $obj;
+            */
+            
+            $data[] = $artifact->toArray();
         }
 
         return response()->json($data);

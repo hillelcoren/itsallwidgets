@@ -835,7 +835,6 @@ var app = new Vue({
             var page = this.page_number;
 
             app.$set(app, 'is_searching', true);
-
             if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
 
             this.bounceTimeout = setTimeout(function() {

@@ -165,12 +165,12 @@
 
 <section class="section is-body-font" style="background-color:#fefefe; padding-top:14px">
     <div class="container" v-cloak>
-        <div v-if="artifacts.length == 0" class="is-wide has-text-centered is-vertical-center"
+        <div v-if="artifacts.length == 0 || is_searching" class="is-wide has-text-centered is-vertical-center"
         style="height:400px; text-align:center; font-size: 32px; color: #AAA">
         <span v-if="is_searching">Searching...</span>
         <span v-if="! is_searching">No resources found</span>
     </div>
-    <masonry :cols="{default: 4, 1000: 3, 800: 2, 600: 1}" :gutter="{default: '22px', 600: '15px'}">
+    <masonry :cols="{default: 4, 1000: 3, 800: 2, 600: 1}" :gutter="{default: '22px', 600: '15px'}" v-if="! is_searching">
         <div v-for="artifact in artifacts" :key="artifact.id + artifact.contents" class="item">
             <div v-on:click="selectArtifact(artifact)" style="cursor:pointer">
                 <div class="flutter-artifact is-hover-elevated" v-bind:class="[artifact.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} ? 'is-owned' : '']">
@@ -473,8 +473,14 @@ watch: {
             app.serverSearch();
         },
     },
+    filter_type: {
+        handler() {
+            app.serverSearch();
+        },
+    },
     sort_by: {
         handler() {
+            app.serverSearch();
             app.saveFilters();
         },
     },
@@ -532,33 +538,24 @@ methods: {
         var app = app || this;
         var searchStr = this.search;
         var artifacts = this.artifacts;
+        var sortBy = this.sort_by;
+        var page = this.page_number;
+        var filterType = this.filter_type;
 
         app.$set(app, 'is_searching', true);
         if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
 
         this.bounceTimeout = setTimeout(function() {
-            if (searchStr && searchStr.length >= 3) {
-                $.get('/search?search=' + encodeURIComponent(searchStr), function (data) {
-                    app.$set(app, 'is_searching', false);
+            var url = '/search?search=' 
+            + encodeURIComponent(searchStr)
+            + '&sort_by=' + sortBy
+            + '&filter_type=' + filterType
+            + '&page=' + page;
 
-                    var artifactMap = {};
-                    for (var i=0; i<data.length; i++) {
-                        var artifact = data[i];
-                        artifactMap[artifact.id] = artifact.contents;
-                    }
-
-                    for (var i=0; i<artifacts.length; i++) {
-                        var artifact = artifacts[i];
-                        app.$set(artifacts[i], 'contents', (artifactMap[artifact.id] || ''));
-                    }
-                });
-            } else {
+            $.get(url, function (data) {
+                app.$set(app, 'artifacts', data);
                 app.$set(app, 'is_searching', false);
-                for (var i=0; i<artifacts.length; i++) {
-                    app.$set(artifacts[i], 'contents', '');
-                }
-            }
-
+            });
         }, 500);
     },
 
@@ -612,69 +609,6 @@ computed: {
             return {};
         }
     },
-
-    /*
-    unpaginatedFilteredArtifacts() {
-
-        var artifacts = this.artifacts;
-        var search = this.search.toLowerCase().trim();
-        var sort_by = this.sort_by;
-        var type = this.filter_type;
-
-        if (search || type) {
-            artifacts = artifacts.filter(function(item) {
-
-                if (type) {
-                    if (type == 'filter_type_articles' && item.type != 'article') {
-                        return false;
-                    } else if (type == 'filter_type_videos' && item.type != 'video') {
-                        return false;
-                    } else if (type == 'filter_type_libraries' && item.type != 'library') {
-                        return false;
-                    }
-                }
-
-                var searchStr = (item.title || '')
-                    + (item.comment || '')
-                    + (item.contents || '')
-                    + (item.meta_author || '')
-                    + (item.meta_publisher || '')
-                    + (item.meta_description || '')
-                    + (item.meta_author_twitter || '')
-                    + (item.meta_publisher_twitter || '');
-
-                if (searchStr.toLowerCase().indexOf(search) >= 0) {
-                    return true;
-                }
-
-                return false;
-            });
-        }
-
-        artifacts.sort(function(itemA, itemB) {
-            if (sort_by == 'sort_oldest') {
-                return itemA.published_date.localeCompare(itemB.published_date);
-            } else if (sort_by == 'sort_newest') {
-                return itemB.published_date.localeCompare(itemA.published_date);
-            } else {
-                return itemB.published_date.localeCompare(itemA.published_date);
-            }
-        });
-
-        return artifacts;
-    },
-
-    filteredArtifacts() {
-
-        artifacts = this.unpaginatedFilteredArtifacts;
-
-        var startIndex = (this.page_number - 1) * 50;
-        var endIndex = startIndex + 50;
-        artifacts = artifacts.slice(startIndex, endIndex);
-
-        return artifacts;
-    },
-    */
 }
 
 });
