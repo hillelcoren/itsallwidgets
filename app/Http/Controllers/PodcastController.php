@@ -23,20 +23,16 @@ class PodcastController extends Controller
     {
         if (request()->clear_cache) {
             cache()->forget('flutter-podcast-list');
-            cache()->forget('flutter-featured-podcast-list');
 
             return redirect('/podcast')->with('status', 'Podcast cache has been cleared!');
         }
 
         if (auth()->user() && auth()->user()->is_admin) {
             $episodes = PodcastEpisode::orderBy('episode', 'desc')->orderBy('created_at', 'desc')->get();
-        //} elseif (request()->filter == 'all') {
-        } elseif (true) {
-            $episodes = cache('flutter-podcast-list');
         } else {
-            $episodes = cache('flutter-featured-podcast-list');
+            $episodes = cache('flutter-podcast-list');
         }
-
+        
         $data = [
             'episodes' => $episodes,
         ];

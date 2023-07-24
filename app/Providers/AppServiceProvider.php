@@ -8,7 +8,6 @@ use App\Models\FlutterEvent;
 use App\Models\FlutterStream;
 use App\Models\PodcastEpisode;
 use App\Models\FlutterArtifact;
-use App\Observers\FlutterAppObserver;
 use App\Observers\FlutterEventObserver;
 use App\Observers\FlutterStreamObserver;
 use App\Observers\PodcastEpisodeObserver;
@@ -33,25 +32,11 @@ class AppServiceProvider extends ServiceProvider
             'flutter_artifact' => 'App\Models\FlutterArtifact',
         ]);
 
-        FlutterApp::observe(FlutterAppObserver::class);
-        FlutterArtifact::observe(FlutterArtifactObserver::class);
         FlutterEvent::observe(FlutterEventObserver::class);
         FlutterStream::observe(FlutterStreamObserver::class);
         PodcastEpisode::observe(PodcastEpisodeObserver::class);
 
         try {
-            if (! cache('flutter-app-list')) {
-                Cache::rememberForever('flutter-app-list', function () {
-                    //return FlutterApp::approved()->visible()->latest()->get();
-                    return FlutterApp::approved()->visible()->latest()->take(1000)->get();
-                });
-            }
-            if (! cache('flutter-artifact-list')) {
-                Cache::rememberForever('flutter-artifact-list', function () {
-                    //return FlutterArtifact::approved()->latest()->get();
-                    return FlutterArtifact::approved()->latest()->take(1000)->get();
-                });
-            }
             if (! cache('flutter-event-list')) {
                 Cache::rememberForever('flutter-event-list', function () {
                     return FlutterEvent::approved()->latest()->get();
@@ -65,11 +50,6 @@ class AppServiceProvider extends ServiceProvider
             if (! cache('flutter-podcast-list')) {
                 Cache::rememberForever('flutter-podcast-list', function () {
                     return PodcastEpisode::uploaded()->orderBy('episode', 'desc')->get();
-                });
-            }
-            if (! cache('flutter-featured-podcast-list')) {
-                Cache::rememberForever('flutter-featured-podcast-list', function () {
-                    return PodcastEpisode::uploaded()->where('is_featured', true)->orderBy('episode', 'desc')->get();
                 });
             }
         } catch (\Illuminate\Database\QueryException $exception) {
