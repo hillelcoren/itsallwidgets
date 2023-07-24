@@ -167,7 +167,7 @@
     <div class="container" v-cloak>
         <div v-if="artifacts.length == 0 || is_searching" class="is-wide has-text-centered is-vertical-center"
         style="height:400px; text-align:center; font-size: 32px; color: #AAA">
-        <span v-if="is_searching">Searching...</span>
+        <span v-if="is_searching">Loading...</span>
         <span v-if="! is_searching">No resources found</span>
     </div>
     <masonry :cols="{default: 4, 1000: 3, 800: 2, 600: 1}" :gutter="{default: '22px', 600: '15px'}" v-if="! is_searching">

@@ -48,7 +48,7 @@ class FlutterArtifactController extends Controller
             $artifacts->where('type', '=', 'library');
         }
 
-        if (request()->sort_by == 'newest') {
+        if (request()->sort_by == 'sort_newest') {
             $artifacts->orderBy('id', 'desc');
         } else {
             $artifacts->orderBy('id', 'asc');
