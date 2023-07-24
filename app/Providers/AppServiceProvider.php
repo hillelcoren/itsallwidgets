@@ -42,12 +42,14 @@ class AppServiceProvider extends ServiceProvider
         try {
             if (! cache('flutter-app-list')) {
                 Cache::rememberForever('flutter-app-list', function () {
-                    return FlutterApp::approved()->visible()->latest()->get();
+                    //return FlutterApp::approved()->visible()->latest()->get();
+                    return FlutterApp::approved()->visible()->latest()->take(1000)->get();
                 });
             }
             if (! cache('flutter-artifact-list')) {
                 Cache::rememberForever('flutter-artifact-list', function () {
-                    return FlutterArtifact::approved()->latest()->get();
+                    //return FlutterArtifact::approved()->latest()->get();
+                    return FlutterArtifact::approved()->latest()->take(1000)->get();
                 });
             }
             if (! cache('flutter-event-list')) {
