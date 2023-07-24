@@ -92,51 +92,39 @@ class FlutterAppController extends Controller
             $apps->search($search);
         }
 
-        /*
-        if (request()->has('for_hire')) {
-            $users->where('is_for_hire', '=', 1);
+        if (request()->filter_open_source) {
+            $apps->where('repo_url', '!=', '');
         }
 
-        if (request()->has('portfolio')) {
-            $users->where(function($query){
-                $query->where('profile_url', '!=', '')
-                    ->orWhere('website_url', '!=', '');
-            });
-        }
-
-        if (request()->country_code) {
-            $users->where('country_code', '=', request()->country_code);
-        }
-
-        if ($platform == 'github') {
-            $users->where('github_url', '!=', '');
-        } else if ($platform == 'youtube') {
-            $users->where('youtube_url', '!=', '');
-        } else if ($platform == 'twitter') {
-            $users->where('twitter_url', '!=', '');
-        } else if ($platform == 'medium') {
-            $users->where('medium_url', '!=', '');
-        } else if ($platform == 'linkedin') {
-            $users->where('linkedin_url', '!=', '');
-        } else if ($platform == 'instagram') {
-            $users->where('instagram_url', '!=', '');
-        }
-
-        if ($sortBy == 'sort_newest') {
-            $users->orderBy('id', 'desc');
-        } else if ($sortBy == 'sort_activity') {
-            $users->orderBy('last_activity', 'desc')->orderBy('id', 'desc');
-        } else if ($sortBy == 'sort_apps') {
-            $users->orderBy('count_apps', 'desc');
-        } else if ($sortBy == 'sort_artifacts') {
-            $users->orderBy('count_artifacts', 'desc');
-        } else if ($sortBy == 'sort_events') {
-            $users->orderBy('count_events', 'desc');
+        if (request()->filter_template) {
+            $apps->where('is_template', '=', true);
         } else {
-            //$users->orderByRaw(\DB::raw("count_apps + count_artifacts + (count_events*2) DESC"));
-            $users->orderByRaw(\DB::raw("count_apps + count_artifacts DESC"));
+            $apps->where('is_template', '=', false);
         }
-        */
+
+        if (request()->filter_platform == 'platform_mobile') {
+            $apps->where('is_mobile', '=', true);
+        } else if (request()->filter_platform == 'platform_desktop') {
+            $apps->where('is_desktop', '=', true);
+        } else if (request()->filter_platform == 'platform_web') {
+            $apps->where('is_web', '=', true);
+        } else if (request()->filter_platform == 'platform_campaign') {
+            $apps->where('is_mobile', '=', true)
+                ->where('campaign_id', '=', 1)
+                ->where('campaign_is_first_app', '!=', 0);
+        }
+
+        if (request()->sort_by == 'sort_oldest') {
+            $apps->orderBy('id', 'asc');
+        } else if (request()->sort_by == 'sort_newest') {
+            $apps->orderBy('id', 'desc');
+        } else if (request()->sort_by == 'sort_installs') {
+            $apps->orderBy('store_download_count', 'desc');
+        } else if (request()->sort_by == 'sort_rating') {
+            $apps->orderBy('store_review_count', 'desc');
+        } else  {
+            $apps->orderBy('featured', 'desc')->orderBy('store_review_count', 'desc');
+        } 
 
         $apps->limit(40)->offset(((request()->page ?: 1) - 1) * 40);
 

@@ -13,7 +13,7 @@ class AddSearchToApps extends Migration
      */
     public function up()
     {
-        DB::statement('ALTER TABLE flutter_apps ADD FULLTEXT fulltext_index (title, short_description, long_description, website_url, repo_url)');
+        DB::statement('ALTER TABLE flutter_apps ADD FULLTEXT fulltext_index (title, short_description, category)');
     }
 
     /**
@@ -23,6 +23,6 @@ class AddSearchToApps extends Migration
      */
     public function down()
     {
-        //
+        DB::statement('ALTER TABLE flutter_apps DROP INDEX fulltext_index');
     }
 }

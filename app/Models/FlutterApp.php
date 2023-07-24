@@ -60,9 +60,7 @@ class FlutterApp extends Model implements Feedable
     protected $searchable = [
         'title',
         'short_description',
-        'long_description',
-        'website_url',
-        'repo_url',        
+        'category',
     ];
 
     public function user()

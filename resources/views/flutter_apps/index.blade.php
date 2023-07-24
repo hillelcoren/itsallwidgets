@@ -1081,17 +1081,6 @@ var app = new Vue({
 
             return apps;
         },
-
-        filteredApps() {
-
-            apps = this.unpaginatedFilteredApps;
-
-            var startIndex = (this.page_number - 1) * 40;
-            var endIndex = startIndex + 40;
-            apps = apps.slice(startIndex, endIndex);
-
-            return apps;
-        },
         */
 
         searchPlaholder() {
