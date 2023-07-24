@@ -18,14 +18,8 @@ class FlutterArtifactController extends Controller
             return redirect('/')->with('status', 'App cache has been cleared!');
         }
 
-        if (auth()->check() && auth()->user()->is_admin) {
-            $artifacts = FlutterArtifact::latest()->get();
-        } else {
-            $artifacts = cache('flutter-artifact-list');
-        }
-
         $data = [
-            'artifacts' => $artifacts,
+            'artifact_count' => FlutterArtifact::count(),
             'banner' => getBanner(),
         ];
 

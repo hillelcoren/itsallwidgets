@@ -138,6 +138,7 @@ Route::get('30days', function () {
 });
 
 Route::get('/', 'FlutterAppController@index');
+Route::get('search_apps', 'FlutterAppController@search');
 Route::get('feed', 'FlutterAppController@jsonFeed');
 Route::get('about', 'HomeController@about');
 Route::get('terms', 'HomeController@terms');

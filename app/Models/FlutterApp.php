@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Traits\FullTextSearch;
 
 class FlutterApp extends Model implements Feedable
 {
     use Notifiable;
+    use FullTextSearch;
 
     protected $fillable = [
         'title',
@@ -53,6 +55,14 @@ class FlutterApp extends Model implements Feedable
         'campaign_support_score',
         'campaign_subscribe',
         'campaign_comments',
+    ];
+
+    protected $searchable = [
+        'title',
+        'short_description',
+        'long_description',
+        'website_url',
+        'repo_url',        
     ];
 
     public function user()

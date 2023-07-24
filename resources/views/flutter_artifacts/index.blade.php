@@ -109,7 +109,7 @@
             <div class="container">
                 <div class="field is-grouped is-grouped-multiline is-vertical-center">
                     <p class="control is-expanded has-icons-left">
-                        <input v-model="search" class="input is-medium" type="text" v-bind:placeholder="'Search ' + unpaginatedFilteredArtifacts.length.toLocaleString() + ' resources...'"
+                        <input v-model="search" class="input is-medium" type="text" v-bind:placeholder="'Search {{ $artifact_count }} resources...'"
                             style="margin-top: 10px" v-bind:style="{ backgroundColor: searchBackgroundColor()}">
                         <span class="icon is-small is-left" style="margin-top: 10px">
                             <i class="fas fa-search"></i>
@@ -577,9 +577,7 @@ methods: {
 },
 
 beforeMount() {
-    @if (request()->q || request()->search)
-        this.serverSearch();
-    @endif
+    this.serverSearch();
 },
 
 mounted () {
@@ -595,7 +593,8 @@ mounted () {
 },
 
 data: {
-    artifacts: {!! $artifacts !!},
+    artifacts: [],
+    artifact_count: {{ $artifact_count }},
     search: "{{ request()->q ?: request()->search }}",
     sort_by: getCachedSortBy(),
     selected_artifact: false,

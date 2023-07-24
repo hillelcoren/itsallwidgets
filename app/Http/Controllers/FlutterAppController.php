@@ -70,12 +70,84 @@ class FlutterAppController extends Controller
         }
 
         $data = [
-            'apps' => cache('flutter-app-list') ?: FlutterApp::approved()->latest()->get(),
+            'app_count' => FlutterApp::approved()
+                            ->whereIsTemplate(false)
+                            ->count(),
             'banner' => getBanner(),
         ];
 
         return view($view, $data);
     }
+
+    public function search()
+    {
+        $data = [];
+        $search = strtolower(request()->search);
+        $sortBy = strtolower(request()->sort_by);
+        $platform = strtolower(request()->platform);
+
+        $apps = FlutterApp::approved();
+
+        if ($search) {
+            $apps->search($search);
+        }
+
+        /*
+        if (request()->has('for_hire')) {
+            $users->where('is_for_hire', '=', 1);
+        }
+
+        if (request()->has('portfolio')) {
+            $users->where(function($query){
+                $query->where('profile_url', '!=', '')
+                    ->orWhere('website_url', '!=', '');
+            });
+        }
+
+        if (request()->country_code) {
+            $users->where('country_code', '=', request()->country_code);
+        }
+
+        if ($platform == 'github') {
+            $users->where('github_url', '!=', '');
+        } else if ($platform == 'youtube') {
+            $users->where('youtube_url', '!=', '');
+        } else if ($platform == 'twitter') {
+            $users->where('twitter_url', '!=', '');
+        } else if ($platform == 'medium') {
+            $users->where('medium_url', '!=', '');
+        } else if ($platform == 'linkedin') {
+            $users->where('linkedin_url', '!=', '');
+        } else if ($platform == 'instagram') {
+            $users->where('instagram_url', '!=', '');
+        }
+
+        if ($sortBy == 'sort_newest') {
+            $users->orderBy('id', 'desc');
+        } else if ($sortBy == 'sort_activity') {
+            $users->orderBy('last_activity', 'desc')->orderBy('id', 'desc');
+        } else if ($sortBy == 'sort_apps') {
+            $users->orderBy('count_apps', 'desc');
+        } else if ($sortBy == 'sort_artifacts') {
+            $users->orderBy('count_artifacts', 'desc');
+        } else if ($sortBy == 'sort_events') {
+            $users->orderBy('count_events', 'desc');
+        } else {
+            //$users->orderByRaw(\DB::raw("count_apps + count_artifacts + (count_events*2) DESC"));
+            $users->orderByRaw(\DB::raw("count_apps + count_artifacts DESC"));
+        }
+        */
+
+        $apps->limit(40)->offset(((request()->page ?: 1) - 1) * 40);
+
+        foreach ($apps->get() as $app)
+        {
+            $data[] = $app->toObject();
+        }
+
+        return response()->json($data);
+    }
+
 
     /**
      * Display form to submit app

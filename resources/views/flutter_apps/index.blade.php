@@ -249,18 +249,21 @@ body {
 
     <section class="section is-body-font" style="background-color:#fefefe">
         <div class="container" v-cloak>
-            <div v-if="filteredApps.length == 0" class="is-wide has-text-centered is-vertical-center"
+            <div v-if="filteredApps.length == 0 || is_searching" class="is-wide has-text-centered is-vertical-center"
             style="height:400px; text-align:center; font-size: 32px; color: #AAA">
 
-            <div v-if="filter_template">
-              No templates found
-            </div>
-            <div v-else>
-              No apps found
-            </div>
+            <div v-if="is_searching">Loading...</div>
+            <span v-if="! is_searching">
+                <div v-if="filter_template">
+                    No templates found
+                </div>
+                <div v-else>
+                    No apps found
+                </div>
+            </span>
 
         </div>
-        <div class="columns is-multiline is-6 is-variable">
+        <div class="columns is-multiline is-6 is-variable" v-if="! is_searching">
             <div v-for="app in filteredApps" :key="app.id" class="column" v-bind:class="columnClass">
                 <div v-on:click="selectApp(app)" style="cursor:pointer">
                     <div class="flutter-app is-hover-elevated" v-bind:class="[app.user_id == {{ auth()->check() ? auth()->user()->id : '0' }} ? 'is-owned' : '']">
@@ -670,13 +673,35 @@ var app = new Vue({
     el: '#app',
 
     watch: {
+        search: {
+            handler() {
+                app.serverSearch();
+            },
+        },
+        filter_open_source: {
+            handler() {
+                app.serverSearch();
+            },
+        },
+        filter_template: {
+            handler() {
+                app.serverSearch();
+            },
+        },
+        page_number: {
+            handler() {
+                app.serverSearch();
+            },
+        },
         sort_by: {
             handler() {
+                app.serverSearch();
                 app.saveFilters();
             },
         },
         filter_platform: {
             handler() {
+                app.serverSearch();
                 app.saveFilters();
             },
         },
@@ -770,7 +795,9 @@ var app = new Vue({
             if (! this.search) {
                 return '#FFFFFF';
             } else {
-                if (this.filteredApps.length) {
+                if (this.is_searching) {
+                    return '#FFFFBB';
+                } else if (this.filteredApps.length) {
                     return '#FFFFBB';
                 } else {
                     return '#FFC9D9';
@@ -798,6 +825,39 @@ var app = new Vue({
             }
         },
 
+        serverSearch: function() {
+            var app = app || this;
+            var searchStr = this.search;
+            var sortBy = this.sort_by;
+            var filterOpenSource = this.filter_open_source;
+            var filterTemplate = this.filter_template;
+            var filterPlatform = this.filter_platform;
+            var page = this.page_number;
+
+            app.$set(app, 'is_searching', true);
+
+            if (this.bounceTimeout) clearTimeout(this.bounceTimeout);
+
+            this.bounceTimeout = setTimeout(function() {
+                var url = '/search_apps?search='
+                + encodeURIComponent(searchStr)
+                + '&sort_by=' + sortBy
+                + '&filter_open_source=' + (filterOpenSource ? 'true' : '')
+                + '&filter_template=' + (filterTemplate ? 'true' : '')
+                + '&filter_platform=' + filterPlatform
+                + '&page=' + page;
+
+                $.get(url,
+                function (data) {
+                    app.$set(app, 'apps', data);
+                    app.$set(app, 'is_searching', false);
+                });
+            }, 500);
+        }
+    },
+
+    beforeMount() {
+        this.serverSearch();
     },
 
     mounted () {
@@ -813,7 +873,8 @@ var app = new Vue({
     },
 
     data: {
-        apps: {!! $apps !!},
+        apps: [],
+        app_count: {{ $app_count }},
         search: "{{ request()->search }}",
         filter_open_source: {{ filter_var(request()->open_source, FILTER_VALIDATE_BOOLEAN) ? 'true' : 'false' }},
         filter_template: {{ filter_var(request()->templates, FILTER_VALIDATE_BOOLEAN) ? 'true' : 'false' }},
@@ -823,6 +884,7 @@ var app = new Vue({
         selected_app: false,
         image_type: '.png',
         page_number: 1,
+        is_searching: false,
     },
 
     computed: {
@@ -1032,12 +1094,10 @@ var app = new Vue({
 
         searchPlaholder() {
 
-            apps = this.unpaginatedFilteredApps;
-
             if (this.filter_template) {
-                return "Search " + apps.length.toLocaleString() + " templates...";
+                return "Search templates...";
             } else {
-                return "Search " + apps.length.toLocaleString() + " apps...";
+                return "Search " + this.app_count.toLocaleString() + " apps...";
             }
         },
     }
