@@ -142,7 +142,7 @@ class FlutterAppController extends Controller
 
         foreach ($apps->get() as $app)
         {
-            $data[] = $app->toObject();
+            $data[] = $app->toArray();
         }
 
         return response()->json($data);
