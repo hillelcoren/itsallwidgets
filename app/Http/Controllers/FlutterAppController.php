@@ -22,6 +22,7 @@ use App\Notifications\AppApproved;
 use App\Notifications\AppRejected;
 use App\Notifications\AppFeatured;
 use App\Jobs\UploadScreenshot;
+use Abraham\TwitterOAuth\TwitterOAuth;
 
 class FlutterAppController extends Controller
 {
