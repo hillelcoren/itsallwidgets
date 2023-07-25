@@ -22,7 +22,7 @@
 			font-size: 2rem;
 		}
 
-		.social-buttons .button {
+		.social-buttons > .button {
 			margin-bottom: 12px;
 		}
 
@@ -150,6 +150,23 @@
 				@endif
 			</div>
 		</div>
+
+		@if (auth()->check() && auth()->user()->owns($app))
+			<a class="button is-info" href="{{ url('flutter-app/' . $app->slug . '/edit') }}">
+				<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
+				Edit Application
+			</a>
+			&nbsp;&nbsp;
+			<a class="button is-danger" onclick="if (confirm('Are you sure?')) $('#delete-form').submit()";>
+				<i style="font-size: 20px" class="fas fa-trash"></i> &nbsp;
+				Delete Application
+			</a>
+			<form style="display: none" action="{{ url('flutter-app/' . $app->slug . '/delete') }}" method="POST" id="delete-form">
+				<input type="hidden" name="_token" value="{{ csrf_token() }}"/>	
+			</form>
+			<p>&nbsp;</p>
+		@endif
+
 
 		@if ($app->is_desktop)
 			<div style="margin-top: 30px">
