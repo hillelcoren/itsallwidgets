@@ -46,17 +46,19 @@
 			<div class="column is-two-thirds">
 				<div class="app-title">{{ $app->title }}</div>
 				<div class="app-subtitle">{{ $app->short_description }}</div>
-
 				@if ($app->google_url || $app->apple_url)
-					<div class="block">
+					<div style="padding-top: 30px">
 						@if ($app->google_url)
 							<a href="{{ $app->google_url }}" target="_blank" class="is-slightly-elevated" rel="nofollow">
-								<img src="{{ asset('images/google.png') }}" style="width:180px"/>
+								<img src="{{ asset('images/google.png') }}" style="width:200px"/>
 							</a>
 						@endif
 						@if ($app->apple_url)
+							@if ($app->google_url)
+								&nbsp;
+							@endif
 							<a href="{{ $app->apple_url }}?platform=iphone" target="_blank" class="is-slightly-elevated" rel="nofollow">
-								<img src="{{ asset('images/apple.png') }}" style="width:180px"/>
+								<img src="{{ asset('images/apple.png') }}" style="width:200px"/>
 							</a>
 						@endif
 					</div>
