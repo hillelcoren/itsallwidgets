@@ -127,7 +127,7 @@ class FlutterAppController extends Controller
             $apps->orderBy('featured', 'desc')->orderBy('store_review_count', 'desc');
         } 
 
-        $apps->limit(40)->offset(((request()->page ?: 1) - 1) * 40);
+        $apps->limit(20)->offset(((request()->page ?: 1) - 1) * 20);
 
         foreach ($apps->get() as $app)
         {
