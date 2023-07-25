@@ -136,6 +136,37 @@
 			</div>
 		</div>
 
+		@if ($app->is_desktop)
+			<div class="columns">
+				<div class="column is-four-fifths">
+					@if ($app->has_desktop_gif)
+						<img src="{{ $app->desktopGifUrl() }}"/>
+					@else
+						<img src="{{ $app->desktopScreenshotUrl() }}"/>
+					@endif
+				</div>
+				<div class="column">
+					<div class="center">
+						@if ($app->microsoft_url)
+							<a href="{{ $app->microsoft_url }}" target="_blank" rel="nofollow">
+								<img src="{{ asset('images/microsoft.png') }}"/>
+							</a><br/>
+						@endif											
+						@if ($app->apple_url)
+							<a href="{{ $app->apple_url }}?platform=mac" target="_blank" rel="nofollow">
+								<img src="{{ asset('images/apple.png') }}"/>
+							</a><br/>
+						@endif						
+						@if ($app->snapcraft_url)
+							<a href="{{ $app->snapcraft_url }}" target="_blank" rel="nofollow">
+								<img src="{{ asset('images/linux.png') }}"/>
+							</a>
+						@endif						
+					</div>
+				</div>
+			</div>
+		@endif
+
 		@if ($app->youtube_url)		
 			<div class="videoWrapper" style="margin-top: 50px;">
 				<iframe src="{{ $app->youtube_url }}" frameborder="0" allowfullscreen></iframe>  				
