@@ -122,7 +122,7 @@ class FlutterAppController extends Controller
         } else if (request()->sort_by == 'sort_installs') {
             $apps->orderBy('store_download_count', 'desc');
         } else if (request()->sort_by == 'sort_rating') {
-            $apps->orderBy('store_review_count', 'desc');
+            $apps->orderBy('store_rating', 'desc');
         } else  {
             $apps->orderBy('featured', 'desc')->orderBy('store_review_count', 'desc');
         } 

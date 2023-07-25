@@ -53,6 +53,8 @@ class FlutterArtifactController extends Controller
         } else {
             $artifacts->orderBy('id', 'asc');
         }        
+
+        $artifacts->limit(50)->offset(((request()->page ?: 1) - 1) * 50);
         
         foreach ($artifacts->get() as $artifact)
         {
