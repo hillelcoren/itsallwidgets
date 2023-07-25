@@ -49,6 +49,10 @@
             -o-filter: drop-shadow(0px 0px 20px #000);
             filter: drop-shadow(0px 0px 20px #000);            
         }
+
+        .app-footer a:hover {
+            border-bottom: 1px white dashed;
+        }
     </style>
 
 
@@ -57,11 +61,11 @@
 <body>
     @yield('body')
 
-    <section class="hero is-dark is-small is-body-font" style="text-align:center; letter-spacing: 2px; font-size: 16px; font-weight: 200">
+    <section class="app-footer hero is-dark is-small is-body-font" style="text-align:center; letter-spacing: 2px; font-size: 16px; font-weight: 200;">
         <div class="hero-body">
             <div class="container">
                 View <a href="{{ iawUrl() }}" title="An open list of apps built with Flutter" target="_blank">It's&nbsp;All&nbsp;Widgets!</a> 
-                for more <a href="https://flutter.dev" title="Build apps for any screen" target="_blank">Flutter<a/> apps &nbsp;•&nbsp;
+                for more <a href="https://flutter.dev" title="Build apps for any screen" target="_blank">Flutter</a> apps &nbsp;•&nbsp;
                 Supported by <a href="https://invoiceninja.com" title="Leading small-business platform to invoice, accept payments, track expenses & time tasks" target="_blank">Invoice&nbsp;Ninja</a>
             </div>
         </div>
