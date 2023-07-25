@@ -22,6 +22,10 @@
 			font-size: 2rem;
 		}
 
+		.social-buttons .button {
+			margin-bottom: 12px;
+		}
+
 		@media only screen and (min-width: 768px) {
 			.container {
 				padding: 70px 50px;
@@ -76,19 +80,19 @@
 				</div>
 
 
-				<div class="content">
+				<div class="content social-buttons">
 					@if ($app->facebook_url)
 						<a class="button" href="{{ $app->facebook_url }}" target="_blank" rel="nofollow">
 							<i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
 						</a> &nbsp;
 					@endif
 					@if ($app->twitter_url)
-						<a class="button" 	href="{{ $app->twitter_url }}" target="_blank" rel="nofollow">
+						<a class="button" href="{{ $app->twitter_url }}" target="_blank" rel="nofollow">
 							<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
 						</a> &nbsp;
 					@endif
 					@if ($app->instagram_url)
-						<a class="button" 	href="{{ $app->instagram_url }}" target="_blank" rel="nofollow">
+						<a class="button" href="{{ $app->instagram_url }}" target="_blank" rel="nofollow">
 							<i style="font-size: 20px" class="fab fa-instagram"></i> &nbsp; Instagram
 						</a> &nbsp;
 					@endif
