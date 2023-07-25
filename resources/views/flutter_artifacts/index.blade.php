@@ -473,6 +473,11 @@ watch: {
             app.serverSearch();
         },
     },
+    page_number: {
+        handler() {
+            app.serverSearch();
+        },
+    },
     filter_type: {
         handler() {
             app.serverSearch();
