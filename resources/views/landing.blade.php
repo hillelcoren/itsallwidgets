@@ -87,7 +87,7 @@
             <div class="container">
                 View <a href="{{ iawUrl() }}" title="An open list of apps built with Flutter" target="_blank">It's&nbsp;All&nbsp;Widgets!</a> 
                 for more <a href="https://flutter.dev" title="Build apps for any screen" target="_blank">Flutter</a> apps 💙
-                Supported by <a href="https://invoiceninja.com" title="Leading small-business platform to invoice, accept payments, track expenses & time tasks" target="_blank">Invoice&nbsp;Ninja</a>
+                Supported by <a href="https://invoiceninja.com" title="Leading small-business platform to manage invoices, expenses & tasks" target="_blank">Invoice&nbsp;Ninja</a>
             </div>
         </div>
     </section>

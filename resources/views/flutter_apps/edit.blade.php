@@ -499,6 +499,43 @@
 	
 			</div>
 			</article>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+
+			<div class="subtitle">Landing Page Style</div>
+
+			<article class="message is-elevated">
+				<div class="message-body">
+
+				<div class="field">
+					<label class="label" for="google_url">
+						Background Gradient
+					</label>
+					<div class="control has-icons-left">
+
+						<div class="select">
+							{{ Form::select('size', $gradients, 'S') }}
+						</div>
+
+						<span class="icon is-small is-left">
+							<i class="fa-solid fa-palette"></i>
+						</span>
+
+						<span class="help">
+							<a href="https://www.b3multimedia.ie/beautiful-color-gradients-for-your-next-design-project/" target="_blank" rel="nofollow">Preview Options</a>
+						</span>
+
+						@if ($errors->has('google_url'))
+							<span class="help is-danger">
+								{{ $errors->first('google_url') }}
+							</span>
+						@endif
+					</div>
+				</div>
+
+	
+			</div>
+			</article>
 
 			<p>&nbsp;</p>
 			<p>&nbsp;</p>
