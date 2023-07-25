@@ -47,7 +47,7 @@
 				<div class="app-title">{{ $app->title }}</div>
 				<div class="app-subtitle">{{ $app->short_description }}</div>
 				@if ($app->google_url || $app->apple_url)
-					<div style="padding-top: 30px">
+					<div style="padding: 26px 0px">
 						@if ($app->google_url)
 							<a href="{{ $app->google_url }}" target="_blank" class="is-slightly-elevated" rel="nofollow">
 								<img src="{{ asset('images/google.png') }}" style="width:200px"/>
@@ -64,6 +64,58 @@
 					</div>
 				@endif
 
+				<div class="block">
+					{!! nl2br(e($app->long_description)) !!}
+				</div>
+
+
+				<div class="content">
+					@if ($app->facebook_url)
+						<a class="button is-slightly-elevated" href="{{ $app->facebook_url }}" target="_blank" rel="nofollow">
+							<i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
+						</a> &nbsp;
+					@endif
+					@if ($app->twitter_url)
+						<a class="button is-slightly-elevated" 	href="{{ $app->twitter_url }}" target="_blank" rel="nofollow">
+							<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
+						</a> &nbsp;
+					@endif
+					@if ($app->instagram_url)
+						<a class="button is-slightly-elevated" 	href="{{ $app->instagram_url }}" target="_blank" rel="nofollow">
+							<i style="font-size: 20px" class="fab fa-instagram"></i> &nbsp; Instagram
+						</a> &nbsp;
+					@endif
+
+					<div class="dropdown is-hoverable">
+						<div class="dropdown-trigger is-slightly-elevated">
+							<button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+								<span>
+									<i style="font-size: 20px" class="fa fa-share"></i> &nbsp;
+									Share App
+								</span>
+								<span class="icon is-small">
+									<i class="fas fa-angle-down" aria-hidden="true"></i>
+								</span>
+							</button>
+						</div>
+						<div class="dropdown-menu" role="menu">
+							<a href="https://www.facebook.com/sharer/sharer.php?u=#url" target="_blank" rel="nofollow">
+								<div class="dropdown-content">
+									<div class="dropdown-item">
+										<i style="font-size: 20px" class="fab fa-facebook"></i> &nbsp; Facebook
+									</div>
+								</div>
+							</a>
+							<a href="https://twitter.com/share?text={{ urlencode($app->title) }}&amp;url={{ urlencode(url('/flutter-app/' . $app->slug)) }}" target="_blank" rel="nofollow">
+								<div class="dropdown-content">
+									<div class="dropdown-item">
+										<i style="font-size: 20px" class="fab fa-twitter"></i> &nbsp; Twitter
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
 				
 			</div>
 			<div class="column">	
