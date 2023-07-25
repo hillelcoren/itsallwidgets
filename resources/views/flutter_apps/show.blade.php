@@ -21,15 +21,48 @@
 			font-size: 5rem;
 			font-weight: 600;						
 		}
+
+		.app-subtitle {
+			font-size: 2rem;
+		}
+
+		@media only screen and (min-width: 768px) {
+			.container {
+				padding: 70px 50px;
+			}
+		}
+
+		@media only screen and (max-width: 768px) {
+			.container {
+				padding: 20px;
+			}
+		}
 	</style>
 @stop
 
 @section("body")
-	<div class="container pt-2">
+	<div class="container">
     	<div class="columns">
 			<div class="column is-two-thirds">
 				<div class="app-title">{{ $app->title }}</div>
 				<div class="app-subtitle">{{ $app->short_description }}</div>
+
+				@if ($app->google_url || $app->apple_url)
+					<div class="block">
+						@if ($app->google_url)
+							<a href="{{ $app->google_url }}" target="_blank" class="is-slightly-elevated" rel="nofollow">
+								<img src="{{ asset('images/google.png') }}" style="width:180px"/>
+							</a>
+						@endif
+						@if ($app->apple_url)
+							<a href="{{ $app->apple_url }}?platform=iphone" target="_blank" class="is-slightly-elevated" rel="nofollow">
+								<img src="{{ asset('images/apple.png') }}" style="width:180px"/>
+							</a>
+						@endif
+					</div>
+				@endif
+
+				
 			</div>
 			<div class="column">	
 				@if ($app->is_mobile)			
