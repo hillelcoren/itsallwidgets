@@ -137,7 +137,7 @@
 		</div>
 
 		@if ($app->is_desktop)
-			<div class="columns">
+			<div class="columns" style="margin-top: 30px">
 				<div class="column is-four-fifths">
 					@if ($app->has_desktop_gif)
 						<img src="{{ $app->desktopGifUrl() }}"/>
@@ -166,6 +166,14 @@
 				</div>
 			</div>
 		@endif
+
+		@if ($app->is_web && $app->flutter_web_url)
+			<iframe sandbox="allow-scripts allow-same-origin allow-top-navigation allow-popups" 
+				src="{{ $app->flutter_web_url }}" allowTransparency="true"
+				width="100%" height="800px" frameBorder="0" style="border:none; overflow:hidden; margin-top: 30px;"></iframe>
+		@endif
+
+
 
 		@if ($app->youtube_url)		
 			<div class="videoWrapper" style="margin-top: 50px;">
