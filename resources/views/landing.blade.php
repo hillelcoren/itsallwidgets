@@ -72,14 +72,6 @@
 
         .center {
             text-align: center;
-            
-            /*
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            xheight: 200px;
-            xborder: 3px solid green;
-            */
         }
 
     </style>

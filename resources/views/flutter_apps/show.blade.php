@@ -26,6 +26,14 @@
 			margin-bottom: 12px;
 		}
 
+		.website-content {
+			font-size: 1.5rem;
+		}
+
+		.website-content a:hover {
+            border-bottom: 1px white dashed;
+        }
+
 		@media only screen and (min-width: 768px) {
 			.app-container {
 				padding: 70px 50px 50px 50px;
@@ -78,6 +86,13 @@
 				<div class="block">
 					{!! nl2br(e($app->long_description)) !!}
 				</div>
+
+				@if ($app->website_url)
+					<div class="content website-content">
+						<a href="{{ url($app->website_url) }}" style="color: #FFFFFF" target="_blank" 
+							rel="nofollow">{{ str_replace("https://", "", $app->website_url) }}</a></br>
+					</div>
+				@endif
 
 
 				<div class="content social-buttons">
@@ -137,32 +152,29 @@
 		</div>
 
 		@if ($app->is_desktop)
-			<div class="columns" style="margin-top: 30px">
-				<div class="column is-four-fifths">
-					@if ($app->has_desktop_gif)
-						<img src="{{ $app->desktopGifUrl() }}"/>
-					@else
-						<img src="{{ $app->desktopScreenshotUrl() }}"/>
-					@endif
-				</div>
-				<div class="column">
-					<div class="center">
-						@if ($app->microsoft_url)
-							<a href="{{ $app->microsoft_url }}" target="_blank" rel="nofollow">
-								<img src="{{ asset('images/microsoft.png') }}"/>
-							</a><br/>
-						@endif											
-						@if ($app->apple_url)
-							<a href="{{ $app->apple_url }}?platform=mac" target="_blank" rel="nofollow">
-								<img src="{{ asset('images/apple.png') }}"/>
-							</a><br/>
-						@endif						
-						@if ($app->snapcraft_url)
-							<a href="{{ $app->snapcraft_url }}" target="_blank" rel="nofollow">
-								<img src="{{ asset('images/linux.png') }}"/>
-							</a>
-						@endif						
-					</div>
+			<div style="margin-top: 30px">
+				@if ($app->has_desktop_gif)
+					<img src="{{ $app->desktopGifUrl() }}"/>
+				@else
+					<img src="{{ $app->desktopScreenshotUrl() }}"/>
+				@endif
+
+				<div class="center" style="margin-top: 30px">
+					@if ($app->microsoft_url)							
+						<a href="{{ $app->microsoft_url }}" target="_blank" rel="nofollow">
+							<img src="{{ asset('images/microsoft.png') }}" width="200px"/>
+						</a>&nbsp;
+					@endif											
+					@if ($app->apple_url)
+						<a href="{{ $app->apple_url }}?platform=mac" target="_blank" rel="nofollow">
+							<img src="{{ asset('images/apple.png') }}" width="200px"/>
+						</a>&nbsp;
+					@endif						
+					@if ($app->snapcraft_url)
+						<a href="{{ $app->snapcraft_url }}" target="_blank" rel="nofollow">
+							<img src="{{ asset('images/linux.png') }}" width="200px"/>
+						</a>
+					@endif						
 				</div>
 			</div>
 		@endif
