@@ -41,7 +41,17 @@
     <link rel="stylesheet" href="{{ asset('css/bulma.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bulma-extensions.min.css') }}">
     <script src="{{ asset('js/fontawesome.js') }}"></script>
-    
+
+    <style>
+        .is-elevated {
+            -moz-filter: drop-shadow(0px 0px 20px #000);
+            -webkit-filter: drop-shadow(0px 0px 20px #000);
+            -o-filter: drop-shadow(0px 0px 20px #000);
+            filter: drop-shadow(0px 0px 20px #000);            
+        }
+    </style>
+
+
     @yield('head')
 </head>
 <body>
