@@ -6,12 +6,8 @@
 
 @section("head")
     <style>
-		html {
-			height: 100%;
-		}
-
 		body {
-			height: 100%;
+			min-height: 100%;
 			background-image: linear-gradient(135deg, #7468E6, #C44B85);			
 			background-attachment: fixed;
 			color: #FFFFFF;
@@ -29,6 +25,10 @@
 		@media only screen and (min-width: 768px) {
 			.container {
 				padding: 70px 50px;
+			}
+
+			.is-two-thirds {
+				padding-right: 50px;
 			}
 		}
 
@@ -90,7 +90,7 @@
 						<div class="dropdown-trigger is-slightly-elevated">
 							<button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
 								<span>
-									<i style="font-size: 20px" class="fa fa-share"></i> &nbsp;
+									<i style="font-size: 20px;" class="fa fa-share"></i> &nbsp;
 									Share App
 								</span>
 								<span class="icon is-small">
@@ -116,7 +116,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 			</div>
 			<div class="column">	
 				@if ($app->is_mobile)			

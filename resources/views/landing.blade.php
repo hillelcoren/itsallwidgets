@@ -40,7 +40,8 @@
 
     <link rel="stylesheet" href="{{ asset('css/bulma.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bulma-extensions.min.css') }}">
-
+    <script src="{{ asset('js/fontawesome.js') }}"></script>
+    
     @yield('head')
 </head>
 <body>
