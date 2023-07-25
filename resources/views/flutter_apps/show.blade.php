@@ -28,7 +28,7 @@
 
 		@media only screen and (min-width: 768px) {
 			.app-container {
-				padding: 70px 50px;
+				padding: 70px 50px 50px 50px;
 			}
 
 			.is-two-thirds {
@@ -135,5 +135,12 @@
 				@endif
 			</div>
 		</div>
+
+		@if ($app->youtube_url)		
+			<div class="videoWrapper" style="margin-top: 50px;">
+				<iframe src="{{ $app->youtube_url }}" frameborder="0" allowfullscreen></iframe>  				
+			</div>
+		@endif
+
 	</div>
 @stop

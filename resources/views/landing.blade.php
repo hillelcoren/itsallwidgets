@@ -53,6 +53,22 @@
         .app-footer a:hover {
             border-bottom: 1px white dashed;
         }
+
+        /* https://stackoverflow.com/a/38270745/497368 */
+        .videoWrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            padding-top: 25px;
+            height: 0;
+        }
+
+        .videoWrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 
 
