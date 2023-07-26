@@ -80,8 +80,14 @@
 							<i style="font-size: 20px" class="fas fa-trash"></i> &nbsp;
 							Reject
 						</a>
-						<p>&nbsp;</p>
+					@endif					
+					@if (!$app->featured)
+						<a class="button is-warning is-slightly-elevated" href="{{ url('flutter-app/' . $app->slug . '/feature') }}">
+							<i style="font-size: 20px" class="fas fa-star"></i> &nbsp;
+							Feature
+						</a>
 					@endif
+					<p>&nbsp;</p>
 
 					<b>Developer:</b><br/>
 					{{ $app->user->name }}<br/>
