@@ -66,27 +66,27 @@
 
 				@if (auth()->check() && auth()->user()->is_admin)
 					@if (! $app->is_approved)
-						<a class="button is-success is-medium is-slightly-elevated" href="{{ url('flutter-app/' . $app->slug . '/approve') }}">
+						<a class="button is-success is-medium" href="{{ url('flutter-app/' . $app->slug . '/approve') }}">
 							<i style="font-size: 20px" class="fas fa-check"></i> &nbsp;
 							Approve
 						</a>
 						@if (! $app->is_template)
-							<a class="button is-success is-medium is-slightly-elevated" href="{{ url('flutter-app/' . $app->slug . '/approve?is_template=true') }}">
+							<a class="button is-success is-medium" href="{{ url('flutter-app/' . $app->slug . '/approve?is_template=true') }}">
 								<i style="font-size: 20px" class="fas fa-check"></i> &nbsp;
-								Approve as Template
+								Template
 							</a>
 						@endif
-						<a class="button is-danger is-medium is-slightly-elevated" href="{{ url('flutter-app/' . $app->slug . '/reject') }}">
+						@if (! $app->featured)
+							<a class="button is-warning is-medium" href="{{ url('flutter-app/' . $app->slug . '/approve?feature=true') }}">
+								<i style="font-size: 20px" class="fas fa-star"></i> &nbsp;
+								Feature
+							</a>
+						@endif
+						<a class="button is-danger is-medium" href="{{ url('flutter-app/' . $app->slug . '/reject') }}">
 							<i style="font-size: 20px" class="fas fa-trash"></i> &nbsp;
 							Reject
 						</a>
 					@endif					
-					@if (!$app->featured)
-						<a class="button is-warning is-slightly-elevated" href="{{ url('flutter-app/' . $app->slug . '/feature') }}">
-							<i style="font-size: 20px" class="fas fa-star"></i> &nbsp;
-							Feature
-						</a>
-					@endif
 					<p>&nbsp;</p>
 
 					<b>Developer:</b><br/>

@@ -286,6 +286,15 @@ class FlutterAppController extends Controller
         $app->is_approved = true;
         $app->save();
 
+        if (request()->feature) {
+            FlutterApp::where('featured', '>', 0)->decrement('featured');
+
+            $app->featured = 32;
+            $app->save();
+
+            $app->user->notify(new AppFeatured($app));
+        }
+
         if (! $app->is_template && auth()->user()->shouldSendTweet()) {
             //$app->notify(new AppApproved());
 
