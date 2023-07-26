@@ -509,17 +509,13 @@
 
 				<div class="field">
 					<label class="label" for="google_url">
-						Background Gradient
+						Background Gradient Colors
 					</label>
-					<div class="control has-icons-left">
+					<div class="control">
 
 						<div class="select">
 							{{ Form::select('size', $gradients, 'S') }}
 						</div>
-
-						<span class="icon is-small is-left">
-							<i class="fa-solid fa-palette"></i>
-						</span>
 
 						<span class="help">
 							<a href="https://www.b3multimedia.ie/beautiful-color-gradients-for-your-next-design-project/" target="_blank" rel="nofollow">Preview Options</a>
