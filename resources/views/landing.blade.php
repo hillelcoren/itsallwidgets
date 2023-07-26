@@ -1,8 +1,9 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <!--
     <meta name="google" content="notranslate">
-
+    -->
 
     @if ($tracking_id)
         <script async src="https://www.googletagmanager.com/gtag/js?id={{ $tracking_id }}"></script>

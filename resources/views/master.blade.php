@@ -83,7 +83,7 @@
     }
 
     .footer {
-        padding: 7rem 1.5rem 7rem;
+        padding: 7rem 1.5rem 4rem;
     }
 
     .is-head-font {
@@ -731,7 +731,7 @@
                 <p style="padding-top:16px;">
                     <div class="strike"  style="font-weight:600">
                         <span>
-                            <a href="mailto:contact@itsallwidgets.com">contact@itsallwidgets.com</a>
+                            Contact Email: <a href="mailto:contact@itsallwidgets.com">contact@itsallwidgets.com</a>
                         </span>
                     </div>
                 <p>
