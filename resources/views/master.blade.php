@@ -53,11 +53,13 @@
     <link href="https://fonts.googleapis.com/css?family=Overpass:200,400,800" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/bulma.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bulma-extensions.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bulma-slider.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
     <script src="{{ asset('js/vue.min.js') }}"></script>
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('js/fontawesome.js') }}"></script>
-
+    <script src="{{ asset('js/bulma-slider.min.js') }}"></script>
+    
     <style>
 
     [v-cloak] {
@@ -641,9 +643,9 @@
                         </a>
                     </div><br/>
                     <div class="column is-1">
-                        <a href="https://twitter.com/androidmaven" target="_blank">
+                        <a href="https://twitter.com/tobiakinpelu_" target="_blank">
                             <img src="{{ asset('images/img_oluwatobi.png') }}" width="72"/><br/>
-                            <div>Oluwatobi Akinpelu</div>
+                            <div>Tobi Akinpelu</div>
                         </a>
                     </div><br/>
                     <div class="column is-1">

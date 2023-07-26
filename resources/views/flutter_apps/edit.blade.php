@@ -19,6 +19,7 @@
 		}
 		$(function() {
 			updatePlatforms();
+			bulmaSlider.attach();
 		});
 	</script>
 
@@ -539,7 +540,8 @@
 					</label>
 					<div class="control">
 
-						{{ Form::range('background_rotation', $app->background_rotation, ['class' => 'slider is-fullwidth', 'step' => '1', 'min' => '0', 'max' => '360']) }}
+						{{ Form::range('background_rotation', $app->background_rotation, ['class' => 'slider has-output is-fullwidth', 'step' => '1', 'min' => '0', 'max' => '360', 'id' => 'background_rotation']) }}						
+						<output for="background_rotation" style="margin-top:22px;">{{ $app->background_rotation }}</output>
 
 						@if ($errors->has('background_rotation'))
 							<span class="help is-danger">

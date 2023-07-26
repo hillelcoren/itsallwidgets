@@ -31,7 +31,7 @@
 		}
 
 		.website-content a:hover {
-            border-bottom: 1px white dashed;
+            border-bottom: 1px {{ $app->font_color }} dashed;
         }
 
 		@media only screen and (min-width: 768px) {
@@ -89,7 +89,7 @@
 
 				@if ($app->website_url)
 					<div class="content website-content">
-						<a href="{{ url($app->website_url) }}" style="color: #FFFFFF" target="_blank" 
+						<a href="{{ url($app->website_url) }}" style="color: {{ $app->font_color }}" target="_blank" 
 							rel="nofollow">{{ str_replace("https://", "", $app->website_url) }}</a></br>
 					</div>
 				@endif
@@ -152,19 +152,20 @@
 		</div>
 
 		@if (auth()->check() && auth()->user()->owns($app))
-			<a class="button is-info" href="{{ url('flutter-app/' . $app->slug . '/edit') }}">
-				<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
-				Edit Application
-			</a>
-			&nbsp;&nbsp;
-			<a class="button is-danger" onclick="if (confirm('Are you sure?')) $('#delete-form').submit()";>
-				<i style="font-size: 20px" class="fas fa-trash"></i> &nbsp;
-				Delete Application
-			</a>
-			<form style="display: none" action="{{ url('flutter-app/' . $app->slug . '/delete') }}" method="POST" id="delete-form">
-				<input type="hidden" name="_token" value="{{ csrf_token() }}"/>	
-			</form>
-			<p>&nbsp;</p>
+			<div style="padding-bottom: 20px">
+				<a class="button is-info" href="{{ url('flutter-app/' . $app->slug . '/edit') }}">
+					<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
+					Edit Application
+				</a>
+				&nbsp;&nbsp;
+				<a class="button is-danger" onclick="if (confirm('Are you sure?')) $('#delete-form').submit()";>
+					<i style="font-size: 20px" class="fas fa-trash"></i> &nbsp;
+					Delete Application
+				</a>
+				<form style="display: none" action="{{ url('flutter-app/' . $app->slug . '/delete') }}" method="POST" id="delete-form">
+					<input type="hidden" name="_token" value="{{ csrf_token() }}"/>	
+				</form>
+			</div>
 		@endif
 
 
