@@ -530,7 +530,7 @@
 						</div>
 
 						<span class="help">
-							<a href="https://www.b3multimedia.ie/beautiful-color-gradients-for-your-next-design-project/" target="_blank" rel="nofollow">Gradients from b3multimedia.ie</a>
+							<a href="https://uigradients.com" target="_blank" rel="nofollow">Gradients from uiGradients</a>
 						</span>
 
 						<span class="icon is-small is-left">
