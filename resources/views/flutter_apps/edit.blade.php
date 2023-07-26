@@ -555,7 +555,7 @@
 					</label>
 					<div class="control has-icons-left">
 
-						{{ Form::text('font_color', $app->font_color, ['class' => 'input']) }}
+						{{ Form::color('font_color', $app->font_color, ['class' => 'input']) }}
 
 						<span class="icon is-small is-left">
 							<i class="fas fa-font"></i>
