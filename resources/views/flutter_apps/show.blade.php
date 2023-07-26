@@ -282,7 +282,7 @@
 		@endif
 
 		@if ($app->youtube_url)		
-			<div class="content videoWrapper">
+			<div class="content video-wrapper">
 				<iframe src="{{ $app->youtube_url }}" frameborder="0" allowfullscreen></iframe>  				
 			</div>
 		@endif

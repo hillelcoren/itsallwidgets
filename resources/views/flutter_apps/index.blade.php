@@ -579,17 +579,7 @@ body {
 
                     </div>
 
-                    <div v-if="selected_app.is_desktop" class="content">
-                        <img v-if="selected_app.has_desktop_gif" v-bind:src="'/gifs/app-' + selected_app.id + '.gif?updated_at=' + selected_app.updated_at" class="is-slightly-elevated is-hover-elevated"/>
-                        <img v-if="!selected_app.has_desktop_gif" v-bind:src="'/screenshots/app-' + selected_app.id + '-desktop.png?updated_at=' + selected_app.updated_at" class="is-slightly-elevated is-hover-elevated"/>
-                    </div>
-
-                    <div class="content">
-                        <iframe v-if="selected_app.is_web && selected_app.flutter_web_url" sandbox="allow-scripts allow-same-origin" v-bind:src="selected_app.flutter_web_url" allowTransparency="true" scrolling="no"
-                            width="100%" height="800px" frameborder="0" style="border:none; overflow:hidden;"></iframe>
-                    </div>
-
-                    <div v-if="selected_app.has_gif || selected_app.has_screenshot_1 || selected_app.has_screenshot_2 || selected_app.has_screenshot_3">
+                    <div class="content" v-if="selected_app.has_gif || selected_app.has_screenshot_1 || selected_app.has_screenshot_2 || selected_app.has_screenshot_3">
                         <div class="columns is-multiline is-3 is-variable">
                             <div class="column is-one-fifth" v-if="selected_app.has_gif">
                                 <img v-on:click="selectImage('.gif')" v-bind:src="'/gifs/app-' + selected_app.id + '.gif?updated_at=' + selected_app.updated_at" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
@@ -607,10 +597,22 @@ body {
                                 <img v-on:click="selectImage('-3.png')" v-bind:src="'/screenshots/app-' + selected_app.id + '-3.png?updated_at=' + selected_app.updated_at" class="is-slightly-elevated is-hover-elevated" style="cursor:pointer"/>
                             </div>
                         </div>
-                    </div><br/>
+                    </div>
 
-                    <iframe v-if="selected_app.youtube_url" width="560" height="315" v-bind:src="selected_app.youtube_url"
-                    frameborder="0" allowfullscreen></iframe><br/>
+                    <div v-if="selected_app.is_desktop" class="content">
+                        <img v-if="selected_app.has_desktop_gif" v-bind:src="'/gifs/app-' + selected_app.id + '.gif?updated_at=' + selected_app.updated_at" class="is-slightly-elevated is-hover-elevated"/>
+                        <img v-if="!selected_app.has_desktop_gif" v-bind:src="'/screenshots/app-' + selected_app.id + '-desktop.png?updated_at=' + selected_app.updated_at" class="is-slightly-elevated is-hover-elevated"/>
+                    </div>
+
+                    <div class="content">
+                        <iframe v-if="selected_app.is_web && selected_app.flutter_web_url" sandbox="allow-scripts allow-same-origin" v-bind:src="selected_app.flutter_web_url" allowTransparency="true" scrolling="no"
+                            width="100%" height="800px" frameborder="0" style="border:none; overflow:hidden;"></iframe>
+                    </div>
+
+                    <div class="content">
+                        <iframe v-if="selected_app.youtube_url" width="560" height="315" v-bind:src="selected_app.youtube_url"
+                        frameborder="0" allowfullscreen></iframe>
+                    </div>
 
                 </div>
             </div>

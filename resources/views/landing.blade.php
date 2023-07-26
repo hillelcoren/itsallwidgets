@@ -53,14 +53,14 @@
         }
 
         /* https://stackoverflow.com/a/38270745/497368 */
-        .videoWrapper {
+        .video-wrapper {
             position: relative;
             padding-bottom: 56.25%;
             padding-top: 25px;
             height: 0;
         }
 
-        .videoWrapper iframe {
+        .video-wapper iframe {
             position: absolute;
             top: 0;
             left: 0;
