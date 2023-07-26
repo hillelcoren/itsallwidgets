@@ -17,8 +17,19 @@
 			$('#desktopGifInput').toggle($('input[name=is_desktop]').is(':checked'));
 			$('#webUrlInput').toggle($('input[name=is_web]').is(':checked'));
 		}
+
+		function updateSample() {
+			var backgroundColors = $('#background_colors').val();
+			var backgroundRotation = $('#background_rotation').val();
+			var fontColor = $('#font_color').val();
+
+			var gradient = 'linear-gradient(' + backgroundRotation + 'deg, ' + backgroundColors + ')';
+			$('#sample').css('background-image', gradient);
+		}
+
 		$(function() {
 			updatePlatforms();
+			updateSample();
 			bulmaSlider.attach();
 		});
 	</script>
@@ -515,7 +526,7 @@
 					<div class="control has-icons-left">
 
 						<div class="select">
-							{{ Form::select('background_colors', $gradients, $app->background_colors) }}
+							{{ Form::select('background_colors', $gradients, $app->background_colors, ['oninput' => 'updateSample()', 'id' => 'background_colors']) }}
 						</div>
 
 						<span class="help">
@@ -540,7 +551,7 @@
 					</label>
 					<div class="control">
 
-						{{ Form::range('background_rotation', $app->background_rotation, ['class' => 'slider has-output is-fullwidth', 'step' => '1', 'min' => '0', 'max' => '360', 'id' => 'background_rotation']) }}						
+						{{ Form::range('background_rotation', $app->background_rotation, ['class' => 'slider has-output is-fullwidth', 'step' => '1', 'min' => '0', 'max' => '360', 'id' => 'background_rotation', 'oninput' => 'updateSample()']) }}
 						<output for="background_rotation" style="margin-top:22px;">{{ $app->background_rotation }}</output>
 
 						@if ($errors->has('background_rotation'))
@@ -557,7 +568,7 @@
 					</label>
 					<div class="control has-icons-left">
 
-						{{ Form::color('font_color', $app->font_color, ['class' => 'input']) }}
+						{{ Form::color('font_color', $app->font_color, ['class' => 'input', 'id' => 'font_color', 'oninput' => 'updateSample()']) }}
 
 						<span class="icon is-small is-left">
 							<i class="fas fa-font"></i>
@@ -576,13 +587,7 @@
 					<label class="label" for="sample">
 						Sample
 					</label>
-					<div class="control">
-
-						<div id="sample" style="border:1px solid black;height:150px;">
-
-						</div>
-
-					</div>
+					<div id="sample" style="border:1px solid black;height:150px;"/>
 				</div>
 
 	
