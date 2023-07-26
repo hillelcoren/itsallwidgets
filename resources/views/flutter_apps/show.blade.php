@@ -167,33 +167,70 @@
 				</form>
 			</div>
 		@endif
-
+		
+		<div class="columns" style="padding-top: 30px">
+			@if ($app->has_gif)	
+				<div class="column is-one-fourth">
+					<img src="{{ $app->screenshotUrl() }}"/>
+				</div>
+				@if ($app->has_screenshot_1)
+					<div class="column is-one-fourth">
+						<img src="{{ $app->screenshotUrl(1) }}"/>
+					</div>
+				@endif
+				@if ($app->has_screenshot_2)
+					<div class="column is-one-fourth">
+						<img src="{{ $app->screenshotUrl(2) }}"/>
+					</div>
+				@endif
+				@if ($app->has_screenshot_3)
+					<div class="column is-one-fourth">
+						<img src="{{ $app->screenshotUrl(3) }}"/>
+					</div>
+				@endif
+			@else
+				@if ($app->has_screenshot_1)
+					<div class="column is-one-third">
+						<img src="{{ $app->screenshotUrl(1) }}"/>
+					</div>
+				@endif
+				@if ($app->has_screenshot_2)
+					<div class="column is-one-third">
+						<img src="{{ $app->screenshotUrl(2) }}"/>
+					</div>
+				@endif
+				@if ($app->has_screenshot_3)
+					<div class="column is-one-third">
+						<img src="{{ $app->screenshotUrl(3) }}"/>
+					</div>
+				@endif
+			@endif
+		</div>
 
 		@if ($app->is_desktop)
+			<div class="center" style="margin-top: 30px">
+				@if ($app->microsoft_url)							
+					<a href="{{ $app->microsoft_url }}" target="_blank" rel="nofollow">
+						<img src="{{ asset('images/microsoft.png') }}" width="200px"/>
+					</a>&nbsp;
+				@endif											
+				@if ($app->apple_url)
+					<a href="{{ $app->apple_url }}?platform=mac" target="_blank" rel="nofollow">
+						<img src="{{ asset('images/apple.png') }}" width="200px"/>
+					</a>&nbsp;
+				@endif						
+				@if ($app->snapcraft_url)
+					<a href="{{ $app->snapcraft_url }}" target="_blank" rel="nofollow">
+						<img src="{{ asset('images/linux.png') }}" width="200px"/>
+					</a>
+				@endif						
+			</div>
 			<div style="margin-top: 30px">
 				@if ($app->has_desktop_gif)
 					<img src="{{ $app->desktopGifUrl() }}"/>
 				@else
 					<img src="{{ $app->desktopScreenshotUrl() }}"/>
 				@endif
-
-				<div class="center" style="margin-top: 30px">
-					@if ($app->microsoft_url)							
-						<a href="{{ $app->microsoft_url }}" target="_blank" rel="nofollow">
-							<img src="{{ asset('images/microsoft.png') }}" width="200px"/>
-						</a>&nbsp;
-					@endif											
-					@if ($app->apple_url)
-						<a href="{{ $app->apple_url }}?platform=mac" target="_blank" rel="nofollow">
-							<img src="{{ asset('images/apple.png') }}" width="200px"/>
-						</a>&nbsp;
-					@endif						
-					@if ($app->snapcraft_url)
-						<a href="{{ $app->snapcraft_url }}" target="_blank" rel="nofollow">
-							<img src="{{ asset('images/linux.png') }}" width="200px"/>
-						</a>
-					@endif						
-				</div>
 			</div>
 		@endif
 
