@@ -66,7 +66,7 @@ class FlutterAppController extends Controller
             
         if (request()->legacy || Crawler::isCrawler()) {
             $view = 'flutter_apps.legacy_index';
-            $apps = FlutterApp::approved()->orderBy('featured', 'desc')->orderBy('store_review_count', 'desc')->limit(40)->get();            
+            $apps = FlutterApp::approved()->orderBy('featured', 'desc')->orderBy('store_review_count', 'desc')->limit(40)->get();
         } else {
             $view = 'flutter_apps.index';
             $apps = "[]";
