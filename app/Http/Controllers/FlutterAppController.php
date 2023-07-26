@@ -232,6 +232,11 @@ class FlutterAppController extends Controller
     {
         $app = $request->flutter_app;
         $input = $request->all();
+
+        if (!$input['background_colors']) {
+            $input['background_colors'] = $input['custom_color1'] . ', ' . $input['custom_color2'];
+        }
+
         $app = $this->appRepo->update($app, $input);
 
         if ($request->flutterpro) {
