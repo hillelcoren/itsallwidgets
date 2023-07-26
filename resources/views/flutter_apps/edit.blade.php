@@ -514,7 +514,7 @@
 			<p>&nbsp;</p>
 			<p>&nbsp;</p>
 
-			<div class="subtitle">Landing Page Style</div>
+			<div class="subtitle">Page Style</div>
 
 			<article class="message is-elevated">
 				<div class="message-body">
@@ -530,7 +530,7 @@
 						</div>
 
 						<span class="help">
-							<a href="https://www.b3multimedia.ie/beautiful-color-gradients-for-your-next-design-project/" target="_blank" rel="nofollow">Preview Options</a>
+							<a href="https://www.b3multimedia.ie/beautiful-color-gradients-for-your-next-design-project/" target="_blank" rel="nofollow">Gradients from b3multimedia.ie</a>
 						</span>
 
 						<span class="icon is-small is-left">

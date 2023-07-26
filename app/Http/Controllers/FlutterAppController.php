@@ -168,40 +168,23 @@ class FlutterAppController extends Controller
     {
         $app = request()->flutter_app;
 
+        $gradients = file_get_contents(base_path('public/gradients.json'));
+
+        $gradientOptions = [
+            '#7468E6, #C44B85' => 'Default', 
+            '' => 'Custom',
+        ];
+        
+        foreach (json_decode($gradients) as $gradient) {
+            $gradientOptions[join($gradient->colors, ', ')] = $gradient->name;
+        }
+
         $data = [
             'app' => $app,
             'url' => 'flutter-app/' . $app->slug,
             'method' => 'PUT',
             'campaign' => false,
-            'gradients' => [
-                '#7468E6, #C44B85' => 'Default', 
-                '' => 'Custom',
-			    '#2E3192, #1BFFFF' => 'Ocean Blue',
-                '#D4145A, #FBB03B' => 'Sanguine',
-                '#009245, #FCEE21' => 'Luscious Lime',
-                '#662D8C, #ED1E79' => 'Purple Lake',
-                '#EE9CA7, #FFDDE1' => 'Piglet',
-                '#614385, #516395' => 'Kashmir',
-                '#02AABD, #00CDAC' => 'Green Beach',
-                '#FF512F, #DD2476' => 'Bloody Mary',
-                '#FF5F6D, #FFC371' => 'Sweet Morning',
-                '#11998E, #38EF7D' => 'Quepal',
-                '#C6EA8D, #FE90AF' => 'Cactus',
-                '#EA8D8D, #A890FE' => 'Yosemite',
-                '#D8B5FF, #1EAE98' => 'Antarctica',
-                '#FF61D2, #FE9090' => 'Exotic',
-                '#BFF098, #6FD6FF' => 'Toxic',
-                '#4E65FF, #92EFFD' => 'Orbit',
-                '#A9F1DF, #FFBBBB' => 'No Mans',
-                '#C33764, #1D2671' => 'Celestial',
-                '#93A5CF, #E4EfE9' => 'Clean Mirror',
-                '#868F96, #596164' => 'Mountain Rock',
-                '#09203F, #537895' => 'Eternal Constance',
-                '#FFECD2, #FCB69F' => 'Juicy Peach',
-                '#A1C4FD, #C2E9FB' => 'Winter Neva',
-                '#764BA2, #667EEA' => 'Plum Plate',
-                '#FDFCFB, #E2D1C3' => 'Everlasting Sky',
-            ]
+            'gradients' => $gradientOptions,
         ];
 
         return view('flutter_apps.edit', $data);
