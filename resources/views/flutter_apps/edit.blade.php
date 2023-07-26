@@ -556,7 +556,7 @@
 					<div class="control has-icons-left">
 
 						<div class="select">
-							{{ Form::select('background_colors', $gradients, $app->background_colors, ['oninput' => 'updatePreview()', 'id' => 'background_colors']) }}
+							{{ Form::select('background_colors', $gradients, $selectedGradient, ['oninput' => 'updatePreview()', 'id' => 'background_colors']) }}
 						</div>
 
 						<span class="help">

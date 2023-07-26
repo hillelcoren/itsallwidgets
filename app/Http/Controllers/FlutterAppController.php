@@ -189,6 +189,7 @@ class FlutterAppController extends Controller
             'method' => 'PUT',
             'campaign' => false,
             'gradients' => $gradientOptions,
+            'selectedGradient' => array_key_exists($app->background_colors, $gradientOptions) ? $app->background_colors : '',
         ];
 
         return view('flutter_apps.edit', $data);
