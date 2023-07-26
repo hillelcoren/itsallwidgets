@@ -498,33 +498,25 @@ body {
 
                         <div v-if="selected_app.google_url || selected_app.apple_url" class="buttons">
                             <a v-bind:href="selected_app.google_url" v-if="selected_app.google_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
-                                <div class="card-image is-slightly-elevated">
-                                    <img src="{{ asset('images/google.png') }}" width="160px"/>
-                                </div>
+                                <img src="{{ asset('images/google.png') }}" width="160px"/>
                             </a>
                             <div v-if="! selected_app.google_url" class="card-image is-slightly-elevated">
                                 <img src="{{ asset('images/google.png') }}" style="opacity: 0.1; filter: grayscale(100%);" width="160px"/>
-                            </div> &nbsp;&nbsp;
+                            </div> &nbsp;
                             <a v-bind:href="selected_app.apple_url" v-if="selected_app.apple_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
-                                <div class="card-image is-slightly-elevated">
-                                    <img src="{{ asset('images/apple.png') }}" width="160px"/>
-                                </div>
+                                <img src="{{ asset('images/apple.png') }}" width="160px"/>
                             </a>
                             <div v-if="! selected_app.apple_url" class="card-image is-slightly-elevated">
                                 <img src="{{ asset('images/apple.png') }}" style="opacity: 0.1; filter: grayscale(100%);" width="160px"/>
-                            </div>
-                        </div>
-
-                        <div class="block" v-if="selected_app.is_desktop">
-                        <a v-bind:href="selected_app.microsoft_url" v-if="selected_app.microsoft_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
-                                <i class="fab fa-microsoft" style="font-size:50px"></i>
-                            </a> &nbsp;&nbsp;             
-                            <a v-bind:href="selected_app.apple_url" v-if="selected_app.apple_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
-                                <i class="fab fa-apple" style="font-size:50px"></i>
-                            </a> &nbsp;&nbsp;               
-                            <a v-bind:href="selected_app.snapcraft_url" v-if="selected_app.snapcraft_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
-                                <i class="fab fa-linux" style="font-size:50px"></i>
-                            </a>                            
+                            </div> &nbsp;
+                            <span v-if="selected_app.is_desktop">
+                                <a v-bind:href="selected_app.microsoft_url" v-if="selected_app.microsoft_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                    <img src="{{ asset('images/microsoft.png') }}" width="160px"/>
+                                </a>
+                                <a v-bind:href="selected_app.snapcraft_url" v-if="selected_app.snapcraft_url" target="_blank" v-on:click.stop target="_blank" rel="nofollow">
+                                    <img src="{{ asset('images/linux.png') }}" width="160px"/>
+                                </a>                            
+                            </span>
                         </div>
 
                         <div class="content" v-if="selected_app.website_url || selected_app.repo_url">
