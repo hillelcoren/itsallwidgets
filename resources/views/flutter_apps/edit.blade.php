@@ -508,22 +508,62 @@
 				<div class="message-body">
 
 				<div class="field">
-					<label class="label" for="google_url">
-						Background Gradient Colors
+					<label class="label" for="background_colors">
+						Background Colors
 					</label>
-					<div class="control">
+					<div class="control has-icons-left">
 
 						<div class="select">
-							{{ Form::select('size', $gradients, 'S') }}
+							{{ Form::select('background_colors', $gradients, $app->background_colors) }}
 						</div>
 
 						<span class="help">
 							<a href="https://www.b3multimedia.ie/beautiful-color-gradients-for-your-next-design-project/" target="_blank" rel="nofollow">Preview Options</a>
 						</span>
 
-						@if ($errors->has('google_url'))
+						@if ($errors->has('background_colors'))
 							<span class="help is-danger">
-								{{ $errors->first('google_url') }}
+								{{ $errors->first('background_colors') }}
+							</span>
+						@endif
+					</div>
+				</div>
+
+				<div class="field">
+					<label class="label" for="background_rotation">
+						Background Rotation
+					</label>
+					<div class="control has-icons-left">
+
+						{{ Form::url('background_rotation', $app->background_rotation, ['class' => 'input']) }}
+
+						<span class="icon is-small is-left">
+							<i class="fab fa-github"></i>
+						</span>
+
+						@if ($errors->has('background_rotation'))
+							<span class="help is-danger">
+								{{ $errors->first('background_rotation') }}
+							</span>
+						@endif
+					</div>
+				</div>
+
+				<div class="field">
+					<label class="label" for="font_color">
+						Font Color
+					</label>
+					<div class="control has-icons-left">
+
+						{{ Form::url('font_color', $app->font_color, ['class' => 'input']) }}
+
+						<span class="icon is-small is-left">
+							<i class="fab fa-github"></i>
+						</span>
+
+						@if ($errors->has('font_color'))
+							<span class="help is-danger">
+								{{ $errors->first('font_color') }}
 							</span>
 						@endif
 					</div>
