@@ -42,13 +42,19 @@
 			var fontColor = $('#font_color').val();
 			var appName = $('#title').val();
 
+			$('#custom_colors').toggle(backgroundColors == '');
+			if (backgroundColors == '') {
+				var customColor1 = $('#custom_color1').val();
+				var customColor2 = $('#custom_color2').val();
+				backgroundColors = customColor1 + ', ' + customColor2;
+			}
+
 			var gradient = 'linear-gradient(' + backgroundRotation + 'deg, ' + backgroundColors + ')';
+
 			$('#preview')
 				.css('background-image', gradient)
 				.css('color', fontColor)
 				.text(appName);
-
-			$('#custom_colors').toggle(backgroundColors == '');
 		}
 
 		$(function() {
@@ -561,9 +567,9 @@
 							<i class="fas fa-palette"></i>
 						</span>
 
-						<div id="custom_colors" style="padding-top: 10px">
-							{{ Form::color('custom_color1') }} &nbsp;
-							{{ Form::color('custom_color2') }}
+						<div id="custom_colors" style="padding-top: 10px;display: none;">
+							{{ Form::color('custom_color1', explode(', ', $app->background_colors)[0], ['id' => 'custom_color1', 'oninput' => 'updatePreview()']) }} &nbsp;
+							{{ Form::color('custom_color2', explode(', ', $app->background_colors)[1], ['id' => 'custom_color2', 'oninput' => 'updatePreview()']) }}
 						</div>
 
 						@if ($errors->has('background_colors'))
