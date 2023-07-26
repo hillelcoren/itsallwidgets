@@ -6,6 +6,24 @@
 
 @section('content')
 
+	<style>
+
+		#preview {
+			border: 1px solid #dbdbdb;
+			border-radius: 4px;
+			height: 150px;
+			width: 100%;
+			text-align: center;
+			vertical-align: middle;
+			display: flex;
+			align-items:center;
+        	justify-content:center;
+			margin: auto;
+			font-size: 3rem;
+		}
+
+	</style>
+
 	<script>
 		function onFormSubmit() {
 			$('#saveButton').addClass('is-loading').prop('disabled', true);
@@ -18,18 +36,24 @@
 			$('#webUrlInput').toggle($('input[name=is_web]').is(':checked'));
 		}
 
-		function updateSample() {
+		function updatePreview() {
 			var backgroundColors = $('#background_colors').val();
 			var backgroundRotation = $('#background_rotation').val();
 			var fontColor = $('#font_color').val();
+			var appName = $('#title').val();
 
 			var gradient = 'linear-gradient(' + backgroundRotation + 'deg, ' + backgroundColors + ')';
-			$('#sample').css('background-image', gradient);
+			$('#preview')
+				.css('background-image', gradient)
+				.css('color', fontColor)
+				.text(appName);
+
+			$('#custom_colors').toggle(backgroundColors == '');
 		}
 
 		$(function() {
 			updatePlatforms();
-			updateSample();
+			updatePreview();
 			bulmaSlider.attach();
 		});
 	</script>
@@ -62,7 +86,7 @@
 							Application Name <span class="required">*</span>
 						</label>
 						<div class="control">
-							{{ Form::text('title', $app->title, ['class' => 'input', 'required' => true]) }}
+							{{ Form::text('title', $app->title, ['class' => 'input', 'required' => true, 'id' => 'title', 'oninput' => 'updatePreview()']) }}
 
 							@if ($errors->has('title'))
 								<span class="help is-danger">
@@ -526,7 +550,7 @@
 					<div class="control has-icons-left">
 
 						<div class="select">
-							{{ Form::select('background_colors', $gradients, $app->background_colors, ['oninput' => 'updateSample()', 'id' => 'background_colors']) }}
+							{{ Form::select('background_colors', $gradients, $app->background_colors, ['oninput' => 'updatePreview()', 'id' => 'background_colors']) }}
 						</div>
 
 						<span class="help">
@@ -536,6 +560,11 @@
 						<span class="icon is-small is-left">
 							<i class="fas fa-palette"></i>
 						</span>
+
+						<div id="custom_colors" style="padding-top: 10px">
+							{{ Form::color('custom_color1') }} &nbsp;
+							{{ Form::color('custom_color2') }}
+						</div>
 
 						@if ($errors->has('background_colors'))
 							<span class="help is-danger">
@@ -551,7 +580,7 @@
 					</label>
 					<div class="control">
 
-						{{ Form::range('background_rotation', $app->background_rotation, ['class' => 'slider has-output is-fullwidth', 'step' => '1', 'min' => '0', 'max' => '360', 'id' => 'background_rotation', 'oninput' => 'updateSample()']) }}
+						{{ Form::range('background_rotation', $app->background_rotation, ['class' => 'slider has-output is-fullwidth', 'step' => '1', 'min' => '0', 'max' => '360', 'id' => 'background_rotation', 'oninput' => 'updatePreview()']) }}
 						<output for="background_rotation" style="margin-top:22px;">{{ $app->background_rotation }}</output>
 
 						@if ($errors->has('background_rotation'))
@@ -568,7 +597,7 @@
 					</label>
 					<div class="control has-icons-left">
 
-						{{ Form::color('font_color', $app->font_color, ['class' => 'input', 'id' => 'font_color', 'oninput' => 'updateSample()']) }}
+						{{ Form::color('font_color', $app->font_color, ['class' => 'input', 'id' => 'font_color', 'oninput' => 'updatePreview()']) }}
 
 						<span class="icon is-small is-left">
 							<i class="fas fa-font"></i>
@@ -584,10 +613,10 @@
 
 	
 				<div class="field">
-					<label class="label" for="sample">
-						Sample
+					<label class="label" for="preview">
+						Preview
 					</label>
-					<div id="sample" style="border:1px solid black;height:150px;"/>
+					<div id="preview"/>
 				</div>
 
 	
