@@ -572,6 +572,20 @@
 				</div>
 
 	
+				<div class="field">
+					<label class="label" for="sample">
+						Sample
+					</label>
+					<div class="control">
+
+						<div id="sample" style="border:1px solid black;height:150px;">
+
+						</div>
+
+					</div>
+				</div>
+
+	
 			</div>
 			</article>
 
