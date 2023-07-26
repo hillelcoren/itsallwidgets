@@ -63,6 +63,37 @@
 	<div class="app-container container">
     	<div class="columns">
 			<div class="column is-two-thirds">
+
+				@if (auth()->check() && auth()->user()->is_admin)
+					@if (! $app->is_approved)
+						<a class="button is-success is-medium is-slightly-elevated" href="{{ url('flutter-app/' . $app->slug . '/approve') }}">
+							<i style="font-size: 20px" class="fas fa-check"></i> &nbsp;
+							Approve
+						</a>
+						@if (! $app->is_template)
+							<a class="button is-success is-medium is-slightly-elevated" href="{{ url('flutter-app/' . $app->slug . '/approve?is_template=true') }}">
+								<i style="font-size: 20px" class="fas fa-check"></i> &nbsp;
+								Approve as Template
+							</a>
+						@endif
+						<a class="button is-danger is-medium is-slightly-elevated" href="{{ url('flutter-app/' . $app->slug . '/reject') }}">
+							<i style="font-size: 20px" class="fas fa-trash"></i> &nbsp;
+							Reject
+						</a>
+						<p>&nbsp;</p>
+					@endif
+
+					<b>Developer:</b><br/>
+					{{ $app->user->name }}<br/>
+					{{ $app->user->email}}<br/>&nbsp;
+				@endif
+
+				@if ($app->is_template)
+					<div>
+						<span class="tag is-info is-large">Template</span>
+					</div>
+				@endif
+
 				<div class="app-title">{{ $app->title }}</div>
 				<div class="app-subtitle">{{ $app->short_description }}</div>
 				@if ($app->google_url || $app->apple_url)
