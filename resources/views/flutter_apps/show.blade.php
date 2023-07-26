@@ -36,7 +36,7 @@
 
 		@media only screen and (min-width: 768px) {
 			.app-container {
-				padding: 70px 50px 50px 50px;
+				padding: 70px 50px 40px 50px;
 			}
 
 			.is-two-thirds {
@@ -100,10 +100,13 @@
 					</div>
 				@endif
 
-				<div class="app-title">{{ $app->title }}</div>
-				<div class="app-subtitle">{{ $app->short_description }}</div>
+				<div class="content">
+					<div class="app-title">{{ $app->title }}</div>
+					<div class="app-subtitle">{{ $app->short_description }}</div>
+				</div>
+
 				@if ($app->google_url || $app->apple_url)
-					<div style="padding-top: 32px; padding-bottom: 22px;">
+					<div class="content">
 						@if ($app->google_url)
 							<a href="{{ $app->google_url }}" target="_blank" rel="nofollow">
 								<img src="{{ asset('images/google.png') }}" style="width:200px"/>
@@ -120,10 +123,6 @@
 					</div>
 				@endif
 
-				<div class="block">
-					{!! nl2br(e($app->long_description)) !!}
-				</div>
-
 				@if ($app->website_url)
 					<div class="content website-content">
 						<a href="{{ url($app->website_url) }}" style="color: {{ $app->font_color }}" target="_blank" 
@@ -131,6 +130,9 @@
 					</div>
 				@endif
 
+				<div class="content block">
+					{!! nl2br(e($app->long_description)) !!}
+				</div>
 
 				<div class="content social-buttons">
 					@if ($app->facebook_url)
@@ -189,7 +191,7 @@
 		</div>
 
 		@if (auth()->check() && auth()->user()->owns($app))
-			<div style="padding-bottom: 20px">
+			<div class="content">
 				<a class="button is-info" href="{{ url('flutter-app/' . $app->slug . '/edit') }}">
 					<i style="font-size: 20px" class="fas fa-edit"></i> &nbsp;
 					Edit Application
@@ -205,7 +207,7 @@
 			</div>
 		@endif
 		
-		<div class="columns" style="padding-top: 30px">
+		<div class="columns content">
 			@if ($app->has_gif)	
 				<div class="column is-one-fourth">
 					<img src="{{ $app->screenshotUrl() }}"/>
@@ -245,7 +247,7 @@
 		</div>
 
 		@if ($app->is_desktop)
-			<div class="center" style="margin-top: 30px">
+			<div class="content center">
 				@if ($app->microsoft_url)							
 					<a href="{{ $app->microsoft_url }}" target="_blank" rel="nofollow">
 						<img src="{{ asset('images/microsoft.png') }}" width="200px"/>
@@ -272,15 +274,15 @@
 		@endif
 
 		@if ($app->is_web && $app->flutter_web_url)
-			<iframe sandbox="allow-scripts allow-same-origin allow-top-navigation allow-popups" 
-				src="{{ $app->flutter_web_url }}" allowTransparency="true"
-				width="100%" height="600px" frameBorder="0" style="border:none; overflow:hidden; margin-top: 30px;"></iframe>
+			<div class="content">
+				<iframe sandbox="allow-scripts allow-same-origin allow-top-navigation allow-popups" 
+					src="{{ $app->flutter_web_url }}" allowTransparency="true"
+					width="100%" height="600px" frameBorder="0" style="border:none; overflow:hidden; margin-top: 30px;"></iframe>
+			</div>
 		@endif
 
-
-
 		@if ($app->youtube_url)		
-			<div class="videoWrapper" style="margin-top: 50px;">
+			<div class="content videoWrapper">
 				<iframe src="{{ $app->youtube_url }}" frameborder="0" allowfullscreen></iframe>  				
 			</div>
 		@endif
