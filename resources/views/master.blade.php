@@ -574,7 +574,7 @@
             </p>
 
             <p style="padding-top:16px;">
-                <div class="strike">
+                <div class="strike"  style="font-weight:600">
                    <span>FROM</span>
                 </div>
             <p>
@@ -725,10 +725,22 @@
                     <span>@yield('header_button_label', 'SUBMIT APP')</span>
                 </a>
             @endif
+
+            
+            @if (!isGL())
+                <p style="padding-top:16px;">
+                    <div class="strike"  style="font-weight:600">
+                        <span>
+                            <a href="mailto:contact@itsallwidgets.com">contact@itsallwidgets.com</a>
+                        </span>
+                    </div>
+                <p>
+            @endif
         </div>
     </footer>
 
     @if (!isGL())
+    
         <section class="hero is-dark is-small is-body-font"
                 style="text-align:center; letter-spacing: 4px; font-size: 16px; font-weight: 200">
             <div class="hero-body">
