@@ -86,7 +86,7 @@
     <section class="app-footer hero is-dark is-small is-body-font" style="text-align:center; letter-spacing: 2px; font-size: 16px; font-weight: 200;">
         <div class="hero-body">
             <div class="container">
-                View <a href="{{ iawUrl() }}" title="An open list of apps built with Flutter" target="_blank">It's&nbsp;All&nbsp;Widgets!</a> 
+                Visit <a href="{{ iawUrl() }}" title="An open list of apps built with Flutter" target="_blank">It's&nbsp;All&nbsp;Widgets!</a> 
                 for more <a href="https://flutter.dev" title="Build apps for any screen" target="_blank">Flutter</a> apps 💙
                 Supported by <a href="https://invoiceninja.com" title="Leading small-business platform to manage invoices, expenses & tasks" target="_blank">Invoice&nbsp;Ninja</a>
             </div>
