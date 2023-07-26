@@ -169,16 +169,20 @@ class FlutterAppController extends Controller
         $app = request()->flutter_app;
 
         $gradients = file_get_contents(base_path('public/gradients.json'));
+        $gradients = json_decode($gradients);
+
+        $gradientOptions = [];
+        foreach ($gradients as $gradient) {
+            $gradientOptions[join($gradient->colors, ', ')] = $gradient->name;
+        }
+
+        asort($gradientOptions);
 
         $gradientOptions = [
             '#7468E6, #C44B85' => 'Default', 
             '' => 'Custom',
-        ];
+        ] + $gradientOptions;
         
-        foreach (json_decode($gradients) as $gradient) {
-            $gradientOptions[join($gradient->colors, ', ')] = $gradient->name;
-        }
-
         $data = [
             'app' => $app,
             'url' => 'flutter-app/' . $app->slug,
