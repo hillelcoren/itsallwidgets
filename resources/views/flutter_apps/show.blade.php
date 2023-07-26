@@ -8,9 +8,9 @@
     <style>
 		body {
 			min-height: 100%;
-			background-image: linear-gradient(135deg, #7468E6, #C44B85);			
+			background-image: linear-gradient({{ $app->background_rotation }}deg, {{ $app->background_colors }});
 			background-attachment: fixed;
-			color: #FFFFFF;
+			color: {{ $app->font_color }};
 		}
 
 		.app-title {

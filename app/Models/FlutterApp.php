@@ -45,6 +45,9 @@ class FlutterApp extends Model implements Feedable
         'is_desktop',
         'microsoft_url',
         'snapcraft_url',
+        'background_colors',
+        'background_rotation',
+        'font_color',
     ];
 
     protected $hidden = [
@@ -55,6 +58,9 @@ class FlutterApp extends Model implements Feedable
         'campaign_support_score',
         'campaign_subscribe',
         'campaign_comments',
+        'background_colors',
+        'background_rotation',
+        'font_color',
     ];
 
     protected $searchable = [

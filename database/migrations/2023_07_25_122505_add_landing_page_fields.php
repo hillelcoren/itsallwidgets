@@ -15,7 +15,7 @@ class AddLandingPageFields extends Migration
     {
         Schema::table('flutter_apps', function(Blueprint $table) {
             $table->string('background_colors')->default('#7468E6, #C44B85');
-            $table->string('background_rotation')->default('45');
+            $table->integer('background_rotation')->default(135);
             $table->string('font_color')->default('#FFFFFF');
         });
     }
