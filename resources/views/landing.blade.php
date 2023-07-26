@@ -60,7 +60,7 @@
             height: 0;
         }
 
-        .video-wapper iframe {
+        .video-wrapper iframe {
             position: absolute;
             top: 0;
             left: 0;
