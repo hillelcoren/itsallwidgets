@@ -63,11 +63,13 @@ class FlutterAppController extends Controller
             cache()->forget('flutter-app-list');
             return redirect('/')->with('status', 'App cache has been cleared!');
         }
-
+            
         if (request()->legacy || Crawler::isCrawler()) {
             $view = 'flutter_apps.legacy_index';
+            $apps = FlutterApp::approved()->orderBy('featured', 'desc')->orderBy('store_review_count', 'desc')->limit(40)->get();            
         } else {
             $view = 'flutter_apps.index';
+            $apps = "[]";
         }
 
         $data = [
@@ -75,6 +77,7 @@ class FlutterAppController extends Controller
                             ->whereIsTemplate(false)
                             ->count(),
             'banner' => getBanner(),
+            'apps' => $apps,
         ];
 
         return view($view, $data);

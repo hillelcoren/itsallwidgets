@@ -866,7 +866,7 @@ var app = new Vue({
     },
 
     data: {
-        apps: [],
+        apps: {{ $apps }},
         app_count: {{ $app_count }},
         search: "{{ request()->search }}",
         filter_open_source: {{ filter_var(request()->open_source, FILTER_VALIDATE_BOOLEAN) ? 'true' : 'false' }},
