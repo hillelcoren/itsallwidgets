@@ -521,6 +521,10 @@
 							<a href="https://www.b3multimedia.ie/beautiful-color-gradients-for-your-next-design-project/" target="_blank" rel="nofollow">Preview Options</a>
 						</span>
 
+						<span class="icon is-small is-left">
+							<i class="fas fa-palette"></i>
+						</span>
+
 						@if ($errors->has('background_colors'))
 							<span class="help is-danger">
 								{{ $errors->first('background_colors') }}
@@ -533,13 +537,9 @@
 					<label class="label" for="background_rotation">
 						Background Rotation
 					</label>
-					<div class="control has-icons-left">
+					<div class="control">
 
-						{{ Form::url('background_rotation', $app->background_rotation, ['class' => 'input']) }}
-
-						<span class="icon is-small is-left">
-							<i class="fab fa-github"></i>
-						</span>
+						{{ Form::range('background_rotation', $app->background_rotation, ['class' => 'slider is-fullwidth', 'step' => '1', 'min' => '0', 'max' => '360']) }}
 
 						@if ($errors->has('background_rotation'))
 							<span class="help is-danger">
@@ -555,10 +555,10 @@
 					</label>
 					<div class="control has-icons-left">
 
-						{{ Form::url('font_color', $app->font_color, ['class' => 'input']) }}
+						{{ Form::text('font_color', $app->font_color, ['class' => 'input']) }}
 
 						<span class="icon is-small is-left">
-							<i class="fab fa-github"></i>
+							<i class="fas fa-font"></i>
 						</span>
 
 						@if ($errors->has('font_color'))
