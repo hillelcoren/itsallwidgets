@@ -165,6 +165,7 @@ class FlutterAppController extends Controller
 
         $app = new FlutterApp;
         $app->is_mobile = true;
+        $app->background_colors = '#7468E6, #C44B85';
 
         $data = [
             'app' => $app,
@@ -172,7 +173,7 @@ class FlutterAppController extends Controller
             'method' => 'POST',
             'campaign' => $campaign,
             'gradients' => $gradientOptions,
-            'selectedGradient' => '#7468E6, #C44B85',
+            'selectedGradient' => $app->background_colors,
         ];
 
         return view('flutter_apps.edit', $data);
