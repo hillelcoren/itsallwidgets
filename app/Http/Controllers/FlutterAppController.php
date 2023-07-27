@@ -166,6 +166,8 @@ class FlutterAppController extends Controller
         $app = new FlutterApp;
         $app->is_mobile = true;
         $app->background_colors = '#7468E6, #C44B85';
+        $app->background_rotation = 135;
+        $app->font_color = '#FFFFFF';
 
         $data = [
             'app' => $app,
