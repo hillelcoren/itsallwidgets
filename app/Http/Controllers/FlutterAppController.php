@@ -148,6 +148,21 @@ class FlutterAppController extends Controller
      */
     public function create($campaign = '')
     {
+        $gradients = file_get_contents(base_path('public/gradients.json'));
+        $gradients = json_decode($gradients);
+
+        $gradientOptions = [];
+        foreach ($gradients as $gradient) {
+            $gradientOptions[join($gradient->colors, ', ')] = $gradient->name;
+        }
+
+        asort($gradientOptions);
+
+        $gradientOptions = [
+            '#7468E6, #C44B85' => 'Default', 
+            '' => 'Custom',
+        ] + $gradientOptions;
+
         $app = new FlutterApp;
         $app->is_mobile = true;
 
@@ -156,6 +171,8 @@ class FlutterAppController extends Controller
             'url' => 'submit',
             'method' => 'POST',
             'campaign' => $campaign,
+            'gradients' => $gradientOptions,
+            'selectedGradient' => '#7468E6, #C44B85',
         ];
 
         return view('flutter_apps.edit', $data);

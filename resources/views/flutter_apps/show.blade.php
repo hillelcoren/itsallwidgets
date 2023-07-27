@@ -126,7 +126,7 @@
 				@if ($app->website_url)
 					<div class="content website-content">
 						<a href="{{ url($app->website_url) }}" style="color: {{ $app->font_color }}" target="_blank" 
-							rel="nofollow">{{ str_replace("https://", "", $app->website_url) }}</a></br>
+							rel="nofollow">{{ rtrim(str_replace("https://", "", $app->website_url), '/') }}</a></br>
 					</div>
 				@endif
 
