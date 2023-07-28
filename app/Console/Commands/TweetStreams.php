@@ -91,7 +91,7 @@ class TweetStreams extends Command
             }
 
             $parameters = [
-                'status' => $tweet,
+                'text' => $tweet,
                 'media_ids' => $response->media_id_string
             ];
 
