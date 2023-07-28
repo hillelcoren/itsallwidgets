@@ -369,7 +369,7 @@ class FlutterAppController extends Controller
             );
             
             $parameters = [
-                'status' => $tweet,
+                'text' => $tweet,
             ];
 
             $twitter->setApiVersion('2');
@@ -434,11 +434,11 @@ class FlutterAppController extends Controller
             );
             
             $parameters = [
-                'status' => $tweet,
+                'text' => $tweet,
             ];
 
             $twitter->setApiVersion('2');
-            $response = $twitter->post('tweets', $parameters);
+            $response = $twitter->post('tweets', $parameters, true);
 
             dd($response);
         }
