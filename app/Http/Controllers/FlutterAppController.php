@@ -362,10 +362,10 @@ class FlutterAppController extends Controller
             $tweet .= "\n" . $app->url();
             
             $twitter = new TwitterOAuth(
-                config('services.twitter_streams.consumer_key'),
-                config('services.twitter_streams.consumer_secret'),
-                config('services.twitter_streams.access_token'),
-                config('services.twitter_streams.access_secret')
+                config('services.twitter.consumer_key'),
+                config('services.twitter.consumer_secret'),
+                config('services.twitter.access_token'),
+                config('services.twitter.access_secret')
             );
             
             $parameters = [
@@ -427,18 +427,18 @@ class FlutterAppController extends Controller
             $tweet .= "\n" . $app->url();
             
             $twitter = new TwitterOAuth(
-                config('services.twitter_streams.consumer_key'),
-                config('services.twitter_streams.consumer_secret'),
-                config('services.twitter_streams.access_token'),
-                config('services.twitter_streams.access_secret')
+                config('services.twitter.consumer_key'),
+                config('services.twitter.consumer_secret'),
+                config('services.twitter.access_token'),
+                config('services.twitter.access_secret')                
             );
             
             $parameters = [
-                'status' => $tweet,
+                'text' => $tweet,
             ];
 
-            //$twitter->setApiVersion('1');
-            $response = $twitter->post('statuses/update', $parameters);
+            $twitter->setApiVersion('2');
+            $response = $twitter->post('tweets', $parameters, true);
 
             dd($response);
         }

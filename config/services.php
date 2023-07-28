@@ -49,14 +49,16 @@ return [
         'consumer_key' => env('TWITTER_CONSUMER_KEY'),
         'consumer_secret' => env('TWITTER_CONSUMER_SECRET'),
         'access_token' => env('TWITTER_ACCESS_TOKEN'),
-        'access_secret' => env('TWITTER_ACCESS_SECRET')
+        'access_secret' => env('TWITTER_ACCESS_SECRET'),
+        'bearer_token' => env('TWITTER_BEARER_TOKEN'),
     ],
 
     'twitter_streams' => [
         'consumer_key' => env('TWITTER_STREAMS_CONSUMER_KEY'),
         'consumer_secret' => env('TWITTER_STREAMS_CONSUMER_SECRET'),
         'access_token' => env('TWITTER_STREAMS_ACCESS_TOKEN'),
-        'access_secret' => env('TWITTER_STREAMS_ACCESS_SECRET')
+        'access_secret' => env('TWITTER_STREAMS_ACCESS_SECRET'),
+        'bearer_token' => env('TWITTER_STREAMS_BEARER_TOKEN'),
     ],
 
     'facebook_poster' => [
