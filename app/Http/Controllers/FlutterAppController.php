@@ -373,7 +373,7 @@ class FlutterAppController extends Controller
             ];
 
             $twitter->setApiVersion('2');
-            $twitter->post('statuses/update', $parameters);
+            $twitter->post('tweets', $parameters, true);
         }
 
         return redirect('/' . $app->slug)->with('status', 'App has been approved!');
@@ -438,7 +438,7 @@ class FlutterAppController extends Controller
             ];
 
             $twitter->setApiVersion('2');
-            $response = $twitter->post('statuses/update', $parameters);
+            $response = $twitter->post('tweets', $parameters, true);
 
             dd($response);
         }
