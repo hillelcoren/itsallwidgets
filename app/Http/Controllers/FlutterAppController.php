@@ -438,7 +438,7 @@ class FlutterAppController extends Controller
             ];
 
             $twitter->setApiVersion('2');
-            $response = $twitter->post('tweets', $parameters, true);
+            $response = $twitter->post('tweets', $parameters);
 
             dd($response);
         }
