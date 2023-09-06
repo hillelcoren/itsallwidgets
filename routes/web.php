@@ -25,6 +25,7 @@ Route::group(['domain' => 'dev.flutterpro.com'], function() {
 Route::group(['domain' => 'dev.flutterx.com'], function() {
     Route::get('/', 'FlutterArtifactController@index');
     Route::get('search', 'FlutterArtifactController@search');
+    Route::get('/{flutter_artifact}', 'FlutterArtifactController@show');
 });
 
 Route::group(['domain' => '127.0.0.1'], function() {

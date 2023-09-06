@@ -87,6 +87,10 @@ class FlutterArtifactController extends Controller
             $artifact = $tld;
         }
 
+        if (! $artifact) {
+            return redirect(url('/'));
+        }
+
         $data = [
             'artifact' => $artifact,
         ];
