@@ -83,13 +83,18 @@ Route::group(['domain' => 'flutterpro.{tld}'], function() {
     Route::get('{handle}', 'FlutterProController@show');
 });
 
-Route::group(['domain' => 'flutterevents.{tld}'], function() {
+Route::group(['domain' => 'flutterevents.{tld}'], function() {    
+    Route::get('/', function() {
+        return redirect('https://itsallwidgets.com');
+    });
+    /*
     Route::get('/', 'FlutterEventController@index');
     Route::get('feed', 'FlutterEventController@jsonFeed');
     Route::get('flutter-groups', 'FlutterEventController@groups');
     Route::get('sitemap.xml', 'FlutterEventController@sitemap');
     Route::get('{flutter_event}/hide', 'FlutterEventController@hide');
     Route::get('{flutter_event}', 'FlutterEventController@show');
+    */
 });
 
 Route::group(['domain' => 'flutterstreams.{tld}'], function() {
@@ -164,7 +169,7 @@ Route::get('podcast', 'PodcastController@index');
 Route::get('podcast/download/episode-{episode}.{format}', 'PodcastController@download');
 Route::get('podcast/episodes/{episode}/{title?}', 'PodcastController@show');
 
-Route::get('flutter-events', 'FlutterEventController@index');
+//Route::get('flutter-events', 'FlutterEventController@index');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('profile', 'FlutterProController@show');
