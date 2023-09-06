@@ -62,12 +62,10 @@ class TweetStreams extends Command
                     ->get();
 
         foreach ($streams as $stream) {
-            /*
             $response = $twitter->upload('media/upload', [
                 'media' => $stream->getThumbnailUrl(),
                 'media_type' => 'image/jpg'
             ]);
-            */
 
             $startsAtDate = Carbon::parse($stream->starts_at);
             $tweet = '📢 ' . $stream->channel->name . "'s";
@@ -94,7 +92,7 @@ class TweetStreams extends Command
 
             $parameters = [
                 'text' => $tweet,
-                //'media_ids' => $response->media_id_string
+                'media_ids' => $response->media_id_string
             ];
 
             $twitter->setApiVersion('2');
