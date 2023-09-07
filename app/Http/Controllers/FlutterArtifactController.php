@@ -87,7 +87,7 @@ class FlutterArtifactController extends Controller
             $artifact = $tld;
         }
 
-        if (! $artifact) {
+        if (! $artifact || $artifact == 'com') {
             return redirect(url('/'));
         }
 
