@@ -116,7 +116,7 @@
 						<p>&nbsp;</p>
 
 						<div style="max-width:600px" class="block">
-							{!! $long_description !!}
+							{{ nl2br($long_description) }}
 						</div>
 					@endif
 
