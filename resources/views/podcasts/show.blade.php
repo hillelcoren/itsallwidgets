@@ -86,7 +86,7 @@
 
 
 					<div class="subtitle" style="padding-top:16px; padding-bottom:8px; max-width:600px">
-						{{ $episode->short_description }}
+						{!! nl2br($episode->short_description) !!}
 					</div>
 
 					@if ($episode->website_url)
@@ -116,7 +116,7 @@
 						<p>&nbsp;</p>
 
 						<div style="max-width:600px" class="block">
-							{{ nl2br($long_description) }}
+							{!! $long_description !!}
 						</div>
 					@endif
 
