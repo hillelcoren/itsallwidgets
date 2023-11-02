@@ -454,14 +454,16 @@ class FlutterAppController extends Controller
 
     public function jsonFeed(Request $request)
     {
-        $apps = cache('flutter-app-list');
+        $apps = FlutterApp::approved()->orderBy('created_at', 'desc');
+
+        if ($request->open_source) {
+            $apps = $apps->where('repo_url', '!=', '');
+        }
+
+        $apps = $apps->get();
         $data = [];
 
         foreach ($apps as $app) {
-            if ($request->open_source && !$app->repo_url) {
-                continue;
-            }
-
             $data[] = $app->toObject();
         }
 
