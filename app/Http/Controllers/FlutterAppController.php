@@ -290,6 +290,13 @@ class FlutterAppController extends Controller
      */
     public function show($slug)
     {
+        $url = request()->url();
+        $matchUrl = isHomestead() ? 'http://dev.itsallwidgets.com/' : 'https://itsallwidgets.com/';
+
+        if (! str_starts_with($url, $matchUrl)) {
+            return redirect('https://itsallwidgets.com/' . $slug);
+        }
+
         $app = $this->appRepo->getBySlug($slug);
 
         if (! $app) {
