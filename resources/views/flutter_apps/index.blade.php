@@ -631,7 +631,7 @@ body {
         </span>
         Previous Page
     </a> &nbsp;
-    <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)" v-if="page_number < this.app_count / 20">
+    <a class="button is-info is-slightly-elevated" v-on:click="adjustPage(1)" v-if="this.apps.length == 20">
         Next Page &nbsp;&nbsp;
         <span>
             <i style="font-size: 18px" class="fas fa-chevron-circle-right"></i>
