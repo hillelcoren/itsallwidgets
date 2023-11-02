@@ -475,7 +475,7 @@ class FlutterAppController extends Controller
         $str = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">";
         $str .= '<url><loc>' . config('app.url') . '</loc><lastmod>' . date('Y-m-d') . '</lastmod><changefreq>daily</changefreq><priority>1</priority></url>';
 
-        $apps = cache('flutter-app-list');
+        $apps = FlutterApp::approved()->orderBy('created_at', 'desc')->get();
 
         foreach ($apps as $app) {
             $str .= '<url>'
