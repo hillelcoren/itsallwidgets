@@ -6,6 +6,10 @@
 
 @section("head")
     <style>
+		html {
+			background-color: #363636;
+		}
+
 		body {
 			min-height: 100%;
 			background-image: linear-gradient({{ $app->background_rotation }}deg, {{ $app->background_colors }});
