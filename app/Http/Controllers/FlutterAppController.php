@@ -228,6 +228,11 @@ class FlutterAppController extends Controller
     {
         $input = $request->all();
         $user = auth()->user();
+
+        if (!$input['background_colors']) {
+            $input['background_colors'] = $input['custom_color1'] . ', ' . $input['custom_color2'];
+        }
+
         $app = $this->appRepo->store($input, $user->id);
 
         dispatch(new UploadScreenshot($app));
