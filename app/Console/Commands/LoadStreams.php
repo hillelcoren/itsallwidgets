@@ -186,6 +186,7 @@ class LoadStreams extends Command
             $stream->channel_id = $channelMap[$video->snippet->channelId];
             $stream->thumbnail_url = $video->snippet->thumbnails->high->url;
             $stream->view_count = $item->statistics->viewCount;
+            $stream->comment_count = 0;
             if (property_exists($item->statistics, 'commentCount')) {                
                 $stream->comment_count = $item->statistics->commentCount;
             }
