@@ -702,7 +702,10 @@
             @if (!isGL())
                 <p style="padding-top:16px;">
                     <div class="strike" style="font-weight:600">
-                       <span>SUPPORTED BY <a href="https://www.invoiceninja.com/" target="_blank">INVOICE NINJA</a></span>
+                        <span>
+                            SUPPORTED BY <a href="https://invoiceninja.com" title="Leading small-business platform to manage invoices, expenses & tasks" target="_blank">INVOICE&nbsp;NINJA</a>
+                            & <a href="https://eventschedule.com" title="Easy, simple and free way to share your event calendar" target="_blank">EVENT&nbsp;SCHEDULE</a>
+                        </span>
                     </div>
                     <div style="padding-top:16px;">
                         Sell with Stripe, Authorize.net, PayPal <br/>
