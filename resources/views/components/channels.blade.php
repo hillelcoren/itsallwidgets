@@ -1,5 +1,4 @@
 @php
-    $twitterColor = $isPodcast ? "#444" : "#366cb6";
     $altChannelColor = $isPodcast ? "#000" : "#366cb6";
 @endphp
 
@@ -53,7 +52,7 @@
     </a> &nbsp;&nbsp;
 
     <a class="button is-elevated-dark"
-           style="color:white; background-color:{{$twitterColor}}; border-color:{{$twitterColor}}"
+           style="color:white; background-color:{{$altChannelColor}}; border-color:{{$altChannelColor}}"
            href="https://twitter.com/itsallwidgets" target="_blank">
                                                 <span class="icon">
                                                     <i class="fab fa-twitter"></i>
