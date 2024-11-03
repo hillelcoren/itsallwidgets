@@ -109,7 +109,7 @@
             <div class="container">
                 <div class="field is-grouped is-grouped-multiline is-vertical-center">
                     <p class="control is-expanded has-icons-left">
-                        <input v-model="search" class="input is-medium" type="text" v-bind:placeholder="'Search {{ $artifact_count }} resources...'"
+                        <input v-model="search" class="input is-medium" type="text" v-bind:placeholder="searchPlaceholder()"
                             style="margin-top: 10px" v-bind:style="{ backgroundColor: searchBackgroundColor()}">
                         <span class="icon is-small is-left" style="margin-top: 10px">
                             <i class="fas fa-search"></i>
@@ -576,6 +576,10 @@ methods: {
         this.selectArtifact(artifacts[index - 1]);
     },
 
+    searchPlaceholder() {
+        var count = {{ $artifact_count }};
+        return 'Search ' + count.toLocaleString() + ' resources...';
+    }
 },
 
 beforeMount() {

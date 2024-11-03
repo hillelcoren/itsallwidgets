@@ -67,7 +67,7 @@
                     <div class="field is-grouped is-grouped-multiline is-vertical-center">
                         <p class="control is-expanded has-icons-left">
 
-                            <input v-model="search" class="input is-medium" type="text" placeholder="Search {{ $count }} live streams..."
+                            <input v-model="search" class="input is-medium" type="text" placeholder="searchPlaceholder()"
                                 style="margin-top: 10px" v-bind:style="{ backgroundColor: searchBackgroundColor()}">
                             <span class="icon is-small is-left" style="margin-top: 10px">
                                 <i class="fas fa-search"></i>
@@ -448,6 +448,11 @@
                     var index = streams.indexOf(this.selected_stream);
                     this.selectStream(streams[index - 1]);
                 },
+
+                searchPlaceholder() {
+                    var count = {{ $count }};
+                    return 'Search ' + count.toLocaleString() + ' live streams...';
+                }
 
             },
 
