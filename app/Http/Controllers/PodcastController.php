@@ -27,11 +27,10 @@ class PodcastController extends Controller
             return redirect('/podcast')->with('status', 'Podcast cache has been cleared!');
         }
 
-        if (auth()->user() && auth()->user()->is_admin) {
-            $episodes = PodcastEpisode::orderBy('episode', 'desc')->orderBy('created_at', 'desc')->get();
-        } else {
-            $episodes = cache('flutter-podcast-list');
-        }
+        $episodes = PodcastEpisode::take(request()->sort == 'popular' ? 15 : 1000)
+                        ->orderBy(request()->sort == 'popular' ? 'download_count' : 'episode', 'desc')
+                        ->orderBy('created_at', 'desc')
+                        ->get();
         
         $data = [
             'episodes' => $episodes,

@@ -165,15 +165,13 @@
 
             </div>
 
-            <!--
             <div>
-                @if (request()->filter == 'all')
-                    {{ link_to('podcast', 'Featured Episodes') }} &nbsp; | &nbsp; All Episodes
+                @if (request()->sort == 'popular')
+                    {{ link_to('podcast', 'Newest Episodes') }} &nbsp;|&nbsp; Popular Episodes
                 @else
-                    Featured Episodes &nbsp; | &nbsp; {{ link_to('podcast?filter=all', 'All Episodes') }}
+                    Newest Episodes &nbsp;|&nbsp; {{ link_to('podcast?sort=popular', 'Popular Episodes') }}
                 @endif
             </div>
-            -->
 
         </div>
 
