@@ -642,7 +642,7 @@
 
 					<div class="field">
 						<label class="label" for="repo_url">
-							Source Code
+							GitHub
 						</label>
 						<div class="control has-icons-left">
 
