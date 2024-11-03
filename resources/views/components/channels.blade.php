@@ -44,6 +44,15 @@
     </a> &nbsp;&nbsp;
 
     <a class="button is-elevated-dark"
+       style="color:white; background-color:{{$altChannelColor}}; border-color:{{$altChannelColor}}"
+       href="https://forum.itsallwidgets.com" target="_blank">
+                                            <span class="icon">
+                                                <i class="fab fa-discourse"></i>
+                                            </span> &nbsp;
+        <span>Forum</span>
+    </a> &nbsp;&nbsp;
+
+    <a class="button is-elevated-dark"
            style="color:white; background-color:{{$twitterColor}}; border-color:{{$twitterColor}}"
            href="https://twitter.com/itsallwidgets" target="_blank">
                                                 <span class="icon">
