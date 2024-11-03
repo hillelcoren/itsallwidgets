@@ -20,6 +20,8 @@ class FlutterProController extends Controller
                  ->groupBy('country_code')
                  ->get();
 
+        $countries = [];
+
         foreach ($countryInfo->all() as $country) {
             $countries[$country->country_code] = \Locale::getDisplayRegion('-' . $country->country_code);
         }
