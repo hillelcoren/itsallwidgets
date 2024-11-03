@@ -304,7 +304,7 @@ padding: 1rem 1rem 4rem 1rem;
                 </div>
 
                 <div class="modal-card" style="padding:0; width:900px" @click.stop>
-                    <iframe sandbox="allow-scripts allow-same-origin allow-top-navigation allow-popups" v-bind:src="selected_profile.profile_url || selected_profile.website_url" allowTransparency="true"
+                    <iframe sandbox="allow-scripts allow-same-origin allow-top-navigation allow-popups" v-bind:src="modalUrl()" allowTransparency="true"
                         width="100%" height="700" frameBorder="0" style="border:none; background-color: white;"></iframe>
                 </div>
             </div>
@@ -482,6 +482,22 @@ padding: 1rem 1rem 4rem 1rem;
                     var index = profiles.indexOf(this.selected_profile);
                     this.selectProfile(profiles[index - 1]);
                 },
+
+                modalUrl() {
+                    var profile = this.selected_profile;
+
+                    if (profile.profile_url) {
+                        return profile.profile_url;
+                    }
+
+                    if (profile.website_url) {
+                        return profile.website_url;
+                    }
+
+                    if (profile.apps && profile.apps.length) {
+                        return profile.apps[0].url;
+                    }
+                }
 
             },
 
