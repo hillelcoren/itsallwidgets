@@ -88,7 +88,7 @@
                 apps on <a href="{{ iawUrl() }}" title="An open list of apps built with Flutter" target="_blank">It's&nbsp;All&nbsp;Widgets!</a> 
                  💙
                 Supported by <a href="https://invoiceninja.com" title="Leading small-business platform to manage invoices, expenses & tasks" target="_blank">Invoice&nbsp;Ninja</a>
-                & <a href="https://eventschedule.com" title="Easy, simple and free way to share your event calendar" target="_blank">Event&nbsp;Schedule</a>
+                & <a href="https://eventschedule.com" title="The simple and free way to share your event schedule" target="_blank">Event&nbsp;Schedule</a>
             </div>
         </div>
     </section>
