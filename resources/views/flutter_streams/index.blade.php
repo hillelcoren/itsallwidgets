@@ -8,7 +8,10 @@
 @section('header_button_url', 'https://twitter.com/FlutterStreams')
 @section('header_button_label', 'GET NOTIFICATIONS')
 @section('header_button_icon', 'fab fa-twitter')
-@section('header_subtitle', 'Streams are sourced from the YouTube API')
+
+@section('header_subtitle')
+    Streams are sourced from <a href="https://flutterpro.dev" target="_blank">Flutter Pro</a>
+@endsection
 
 @section('head')
 
