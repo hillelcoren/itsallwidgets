@@ -497,6 +497,10 @@ padding: 1rem 1rem 4rem 1rem;
                     if (profile.apps && profile.apps.length) {
                         return profile.apps[0].url;
                     }
+
+                    if (profile.articles && profile.articles.length) {
+                        return profile.articles[0].url;
+                    }
                 }
 
             },
