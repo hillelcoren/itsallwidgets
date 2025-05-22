@@ -28,6 +28,7 @@ class PodcastController extends Controller
         }
 
         $episodes = PodcastEpisode::take(request()->sort == 'popular' ? 15 : 1000)
+                        ->uploaded()
                         ->orderBy(request()->sort == 'popular' ? 'download_count' : 'episode', 'desc')
                         ->orderBy('created_at', 'desc')
                         ->get();
