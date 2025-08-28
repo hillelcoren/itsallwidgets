@@ -62,6 +62,7 @@ class AppServiceProvider extends ServiceProvider
             $link = 'http://www.geoplugin.net/json.gp?ip=' . $ip;
             $latitude = 0;
             $longitude = 0;
+            $country = false;
             if ($data = json_decode(@file_get_contents($link))) {
                 $latitude = floatval($data->geoplugin_latitude);
                 $longitude = floatval($data->geoplugin_longitude);
