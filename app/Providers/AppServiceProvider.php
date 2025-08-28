@@ -57,6 +57,7 @@ class AppServiceProvider extends ServiceProvider
             // before the database is migrated
         }
 
+        /*
         $ip = \Request::getClientIp();
         if (!cache()->has($ip . '_country')) {
             $link = 'http://www.geoplugin.net/json.gp?ip=' . $ip;
@@ -74,6 +75,7 @@ class AppServiceProvider extends ServiceProvider
                 cache([$ip . '_country' => $country], 60 * 60 * 24);
             }
         }
+        */
     }
 
     /**
