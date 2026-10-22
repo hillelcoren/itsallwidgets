@@ -31,6 +31,7 @@ class StorePodcastEpisode extends FormRequest
             'app_url' => [new ExternalLink('https://itsallwidgets.com/flutter-app/')],
             'github_url' => [new ExternalLink('https://github.com/')],
             'reddit_url' => [new ExternalLink('https://www.reddit.com/r/FlutterDev/')],
+            'avatar_url' => ['nullable', 'url', 'regex:/^https:\/\//i', 'max:1000'],
         ];
 
         return $rules;

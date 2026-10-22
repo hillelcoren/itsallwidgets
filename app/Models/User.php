@@ -16,12 +16,13 @@ class User extends Authenticatable
     *
     * @var array
     */
+    // Security: email, google_id, the is_pro* flags and last_activity are not mass assignable
+    // (the profile form used to accept them). Sign-up uses forceCreate; the Pro toggles are set
+    // explicitly in FlutterProController@update.
     protected $fillable = [
         'name',
-        'email',
         'handle',
         'image_url',
-        'google_id',
         'avatar_url',
         'profile_url',
         'website_url',
@@ -32,17 +33,11 @@ class User extends Authenticatable
         'linkedin_url',
         'instagram_url',
         'bio',
-        'is_pro',
-        'is_pro_iaw',
-        'is_pro_fe',
-        'is_pro_fs',
-        'is_pro_fx',
         'is_subscribed',
         'country_code',
         'is_for_hire',
         'is_mentor',
         'is_trainer',
-        'last_activity',
         'rss_feed_url',
         'widget',
         'widget_voice',
@@ -90,7 +85,8 @@ class User extends Authenticatable
 
     public function userActivities()
     {
-        return $this->hasMany('App\Models\UserActivity')->orderBy('id', 'desc');
+        // "Not mine?" on the new app hides a link with is_visible = 0.
+        return $this->hasMany('App\Models\UserActivity')->where('is_visible', 1)->orderBy('id', 'desc');
     }
 
     public function channel()
@@ -103,7 +99,7 @@ class User extends Authenticatable
         $check = static::where('google_id', $input['google_id'])->first();
 
         if (is_null($check)) {
-            return static::create($input);
+            return static::forceCreate($input);
         }
 
         return $check;

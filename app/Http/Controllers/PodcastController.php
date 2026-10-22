@@ -56,7 +56,12 @@ class PodcastController extends Controller
 
     public function store(StorePodcastEpisode $request)
     {
-        $input = $request->all();
+        // Security: only the guest's own fields (private_notes is their availability). Never
+        // episode, is_visible, is_uploaded or is_featured.
+        $input = $request->only([
+            'title', 'email', 'short_description', 'long_description', 'avatar_url', 'private_notes',
+            'reddit_url', 'website_url', 'github_url', 'twitter_url', 'app_url',
+        ]);
         $episode = $this->podcastRepo->store($input);
 
         dispatch(new SaveAvatar($episode));

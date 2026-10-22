@@ -271,7 +271,14 @@ class FlutterProController extends Controller
     public function update(UpdateProProfile $request)
     {
         $user = auth()->user();
-        $user->fill($request->all());
+        $user->fill($request->except(['email', 'google_id', 'last_activity', 'is_admin', 'is_editor', 'profile_key']));
+
+        foreach (['is_pro', 'is_pro_iaw', 'is_pro_fs', 'is_pro_fx'] as $flag) {
+            if ($request->exists($flag)) {
+                $user->{$flag} = (bool) $request->input($flag);
+            }
+        }
+
         $user->website_url = rtrim($user->website_url, '/');
         $user->github_url = rtrim($user->github_url, '/');
         $user->youtube_url = rtrim($user->youtube_url, '/');
