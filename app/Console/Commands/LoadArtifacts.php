@@ -3,12 +3,15 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Console\Commands\Concerns\StopsWhenDown;
 use App\Models\FlutterArtifact;
 use App\Repositories\FlutterArtifactRepository;
 use Exception;
 
 class LoadArtifacts extends Command
 {
+    use StopsWhenDown;
+
     /**
      * The name and signature of the console command.
      *
@@ -45,17 +48,29 @@ class LoadArtifacts extends Command
 
     public function handle()
     {
-        $this->info('Running...');
+        $this->markBusy();
 
-        if ($this->option('geula')) {
-            $this->handleGeula();
-        } else {
-            $this->loadUsers();
+        if ($this->skipWhenDown()) {
+            $this->clearBusy();
 
-            file_get_contents('https://flutterx.com/?clear_cache=true');
+            return;
         }
 
-        $this->info('Done');
+        try {
+            $this->info('Running...');
+
+            if ($this->option('geula')) {
+                $this->handleGeula();
+            } else {
+                $this->loadUsers();
+
+                file_get_contents('https://flutterx.com/?clear_cache=true');
+            }
+
+            $this->info('Done');
+        } finally {
+            $this->clearBusy();
+        }
     }
 
     public function handleGeula()

@@ -3,11 +3,14 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Console\Commands\Concerns\StopsWhenDown;
 use App\Models\FlutterEvent;
 use App\Repositories\FlutterEventRepository;
 
 class LoadEvents extends Command
 {
+    use StopsWhenDown;
+
     /**
      * The name and signature of the console command.
      *
@@ -43,40 +46,52 @@ class LoadEvents extends Command
      */
     public function handle()
     {
-        $this->info('Running...');
+        $this->markBusy();
 
-        if ($this->option('all')) {
-            $groups = FlutterEvent::groupBy('meetup_group_url')
-                ->orderBy('meetup_group_url')
-                ->get(['meetup_group_url']);
+        if ($this->skipWhenDown()) {
+            $this->clearBusy();
 
-            foreach ($groups as $group) {
-                if (! $group->meetup_group_url) {
-                    continue;
-                }
-
-                $this->info('Loading ' . $group->meetup_group_url . '...');
-
-                $data = file_get_contents('https://api.meetup.com/' . $group->meetup_group_url . '/events?page=1000&text=flutter&status=past&key=' . config('services.meetup.key'));
-                $data = json_decode($data);
-
-                $this->parseEvents($data);
-            }
-
-        } else {
-            $this->info('Loading upcoming events...');
-
-            if ($file = $this->option('file')) {
-                $data = file_get_contents($file);
-            } else {
-                $data = file_get_contents('https://api.meetup.com/find/upcoming_events?page=1000&text=flutter&radius=global&key=' . config('services.meetup.key'));
-            }
-
-            $data = json_decode($data);
-            $this->parseEvents($data->events);
+            return;
         }
 
-        $this->info('Done');
+        try {
+            $this->info('Running...');
+
+            if ($this->option('all')) {
+                $groups = FlutterEvent::groupBy('meetup_group_url')
+                    ->orderBy('meetup_group_url')
+                    ->get(['meetup_group_url']);
+
+                foreach ($groups as $group) {
+                    if (! $group->meetup_group_url) {
+                        continue;
+                    }
+
+                    $this->info('Loading ' . $group->meetup_group_url . '...');
+
+                    $data = file_get_contents('https://api.meetup.com/' . $group->meetup_group_url . '/events?page=1000&text=flutter&status=past&key=' . config('services.meetup.key'));
+                    $data = json_decode($data);
+
+                    $this->parseEvents($data);
+                }
+
+            } else {
+                $this->info('Loading upcoming events...');
+
+                if ($file = $this->option('file')) {
+                    $data = file_get_contents($file);
+                } else {
+                    $data = file_get_contents('https://api.meetup.com/find/upcoming_events?page=1000&text=flutter&radius=global&key=' . config('services.meetup.key'));
+                }
+
+                $data = json_decode($data);
+                $this->parseEvents($data->events);
+            }
+
+            $this->info('Done');
+        } finally {
+            $this->clearBusy();
+        }
     }
 
     private function loadCurl($url)

@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Console\Commands\Concerns\StopsWhenDown;
 use App\Models\User;
 use App\Models\FlutterStream;
 use App\Models\FlutterChannel;
@@ -10,6 +11,8 @@ use App\Notifications\StreamsImported;
 
 class LoadStreams extends Command
 {
+    use StopsWhenDown;
+
     /**
     * The name and signature of the console command.
     *
@@ -41,24 +44,36 @@ class LoadStreams extends Command
     */
     public function handle()
     {
-        $this->info('Running...');
+        $this->markBusy();
 
-        //$this->loadVideos('q=flutter');
+        if ($this->skipWhenDown()) {
+            $this->clearBusy();
 
-        if (! $this->option('all')) {
-            $this->loadVideos('eventType=upcoming&q=flutter');
-
-            $channels = FlutterChannel::visible()
-                ->where('match_all_videos', '=', true)
-                ->orderBy('id')
-                ->get();
-
-            foreach ($channels as $channel) {
-                $this->loadVideos('channelId=' . $channel->channel_id);
-            }
+            return;
         }
 
-        //User::admin()->notify(new StreamsImported);
+        try {
+            $this->info('Running...');
+
+            //$this->loadVideos('q=flutter');
+
+            if (! $this->option('all')) {
+                $this->loadVideos('eventType=upcoming&q=flutter');
+
+                $channels = FlutterChannel::visible()
+                    ->where('match_all_videos', '=', true)
+                    ->orderBy('id')
+                    ->get();
+
+                foreach ($channels as $channel) {
+                    $this->loadVideos('channelId=' . $channel->channel_id);
+                }
+            }
+
+            //User::admin()->notify(new StreamsImported);
+        } finally {
+            $this->clearBusy();
+        }
     }
 
     public function loadVideos($filter)

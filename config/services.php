@@ -85,4 +85,9 @@ return [
         'client_secret' => env('TWITCH_SECRET'),
         'redirect' => env('TWITCH_REDIRECT_URI')
     ],
+
+    'iaw_export' => [
+        'key' => env('LEGACY_EXPORT_KEY'),
+        'host' => env('LEGACY_EXPORT_HOST', 'legacy.itsallwidgets.com'),
+    ],
 ];

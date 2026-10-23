@@ -3,12 +3,15 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Console\Commands\Concerns\StopsWhenDown;
 use App\Models\FlutterArtifact;
 use App\Repositories\FlutterArtifactRepository;
 use App\Models\User;
 
 class ConvertToPro extends Command
 {
+    use StopsWhenDown;
+
     /**
      * The name and signature of the console command.
      *
@@ -44,17 +47,29 @@ class ConvertToPro extends Command
 
     public function handle()
     {
-        //$this->info('Running...');
+        $this->markBusy();
 
-        if ($this->user) {
-            $this->convertUser($this->user);
-        } else if ($this->option('all')) {
-            foreach (User::all() as $user) {
-                $this->convertUser($user);
-            }
+        if ($this->skipWhenDown()) {
+            $this->clearBusy();
+
+            return;
         }
 
-        //$this->info('Done');
+        try {
+            //$this->info('Running...');
+
+            if ($this->user) {
+                $this->convertUser($this->user);
+            } else if ($this->option('all')) {
+                foreach (User::all() as $user) {
+                    $this->convertUser($user);
+                }
+            }
+
+            //$this->info('Done');
+        } finally {
+            $this->clearBusy();
+        }
     }
 
     public function convertUser($user)

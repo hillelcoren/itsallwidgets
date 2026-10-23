@@ -55,6 +55,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
+        $this->mapExportRoutes();
+
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
@@ -74,6 +76,23 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
              ->namespace($this->namespace)
              ->group(base_path('routes/web.php'));
+    }
+
+    /**
+     * Define the signed export routes the new app copies its data through.
+     *
+     * They only answer on the legacy host, carry no session or cookies and
+     * are loaded first so no other route can shadow them.
+     *
+     * @return void
+     */
+    protected function mapExportRoutes()
+    {
+        Route::domain(config('services.iaw_export.host'))
+             ->prefix('iaw-export')
+             ->namespace($this->namespace)
+             ->middleware(['iaw.export', 'throttle:3000,1'])
+             ->group(base_path('routes/export.php'));
     }
 
     /**

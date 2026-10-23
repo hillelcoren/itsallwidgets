@@ -3,10 +3,13 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Console\Commands\Concerns\StopsWhenDown;
 use App\Models\FlutterApp;
 
 class LoadRatings extends Command
 {
+    use StopsWhenDown;
+
     /**
      * The name and signature of the console command.
      *
@@ -38,48 +41,60 @@ class LoadRatings extends Command
      */
     public function handle()
     {
-        $apps = FlutterApp::orderBy('id')->where('google_url', '!=', '')->get();
-        $this->info('Running...');
+        $this->markBusy();
 
-        foreach ($apps as $app) {
-            try {
-                $matches = [];
-                $listing = file_get_contents($app->google_url);
+        if ($this->skipWhenDown()) {
+            $this->clearBusy();
 
-                preg_match('/ratingValue":"(.*?)"/', $listing, $matches);
-                if (count($matches) >= 2) {
-                    $app->store_rating = $matches[1];
-                }
-
-                preg_match('/ratingCount":"(.*?)"/', $listing, $matches);
-                if (count($matches) >= 2) {
-                    $app->store_review_count = $matches[1];
-                }
-
-                preg_match('/Installs<.div><span class=".*?"><div class=".*?"><span class=".*?">(.*?)</', $listing, $matches);
-                if (count($matches) >= 2) {
-                    $app->store_download_count = preg_replace('/[\D]*/', '', $matches[1]);
-                }
-
-                preg_match('/applicationCategory":"(.*?)"/', $listing, $matches);
-                if (count($matches) >= 2) {
-                    $app->category = ucwords(strtolower($matches[1]));
-                }
-
-                $this->info($app->title . ' ' . $app->store_review_count . ' ' . $app->store_rating . ' ' . $app->store_download_count);
-                $app->save();
-
-                usleep(rand(1, 500) * 10000);
-            } catch(\Exception $e) {
-                $error = $e->getMessage();
-                $this->info($app->google_url . ' FAILED: ' . $error);
-                if (strpos($error, '404 Not Found') !== false) {
-                    $app->google_url = null;
-                    $app->save();
-                }
-            }
+            return;
         }
 
-        $this->info('Done');
+        try {
+            $apps = FlutterApp::orderBy('id')->where('google_url', '!=', '')->get();
+            $this->info('Running...');
+
+            foreach ($apps as $app) {
+                try {
+                    $matches = [];
+                    $listing = file_get_contents($app->google_url);
+
+                    preg_match('/ratingValue":"(.*?)"/', $listing, $matches);
+                    if (count($matches) >= 2) {
+                        $app->store_rating = $matches[1];
+                    }
+
+                    preg_match('/ratingCount":"(.*?)"/', $listing, $matches);
+                    if (count($matches) >= 2) {
+                        $app->store_review_count = $matches[1];
+                    }
+
+                    preg_match('/Installs<.div><span class=".*?"><div class=".*?"><span class=".*?">(.*?)</', $listing, $matches);
+                    if (count($matches) >= 2) {
+                        $app->store_download_count = preg_replace('/[\D]*/', '', $matches[1]);
+                    }
+
+                    preg_match('/applicationCategory":"(.*?)"/', $listing, $matches);
+                    if (count($matches) >= 2) {
+                        $app->category = ucwords(strtolower($matches[1]));
+                    }
+
+                    $this->info($app->title . ' ' . $app->store_review_count . ' ' . $app->store_rating . ' ' . $app->store_download_count);
+                    $app->save();
+
+                    usleep(rand(1, 500) * 10000);
+                } catch(\Exception $e) {
+                    $error = $e->getMessage();
+                    $this->info($app->google_url . ' FAILED: ' . $error);
+                    if (strpos($error, '404 Not Found') !== false) {
+                        $app->google_url = null;
+                        $app->save();
+                    }
+                }
+            }
+
+            $this->info('Done');
+        } finally {
+            $this->clearBusy();
+        }
     }
 }

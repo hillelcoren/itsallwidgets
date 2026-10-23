@@ -9,11 +9,14 @@ use App\Models\UserActivity;
 use App\Models\User;
 use Exception;
 use Illuminate\Console\Command;
+use App\Console\Commands\Concerns\StopsWhenDown;
 use App\Repositories\UserActivityRepository;
 use Illuminate\Database\Eloquent\Model;
 
 class LinkActivities extends Command
 {
+    use StopsWhenDown;
+
     /**
      * The name and signature of the console command.
      *
@@ -49,15 +52,27 @@ class LinkActivities extends Command
      */
     public function handle()
     {
-        $this->info('Running...');
+        $this->markBusy();
 
-        $users = User::whereIsPro(true)->orderBy('id')->get();
+        if ($this->skipWhenDown()) {
+            $this->clearBusy();
 
-        $this->linkApps($users);
-        $this->linkEvents($users);
-        $this->linkArtifacts($users);
+            return;
+        }
 
-        $this->info('Done');
+        try {
+            $this->info('Running...');
+
+            $users = User::whereIsPro(true)->orderBy('id')->get();
+
+            $this->linkApps($users);
+            $this->linkEvents($users);
+            $this->linkArtifacts($users);
+
+            $this->info('Done');
+        } finally {
+            $this->clearBusy();
+        }
     }
 
     private function linkEvents($users): void
