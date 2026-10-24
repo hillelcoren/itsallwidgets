@@ -20,7 +20,9 @@ use Illuminate\Console\Command;
  */
 class PrepareExport extends Command
 {
-    protected $signature = 'iaw:prepare-export {--checked : The abuse check found files, and every secret in .env has been rotated since}';
+    protected $signature = 'iaw:prepare-export
+        {--checked : The abuse check found files, and every secret in .env has been rotated since}
+        {--stdin : Read the two keys from standard input (one per line), as the new app\'s app:provision sends them}';
 
     protected $description = 'Prepare this server for the new app: export keys, busy folder, caches, and the legacy. host installer';
 
@@ -38,8 +40,20 @@ class PrepareExport extends Command
             return 1;
         }
 
-        $exportKey = $this->askKey('LEGACY_EXPORT_KEY (64 hex characters, from the new app)', '/^[0-9a-f]{64}$/');
-        $importKey = $this->askKey('LEGACY_IMPORT_KEY (from the new app)', '/^\S{16,}$/');
+        if ($this->option('stdin')) {
+            // Sent by app:provision over SSH: never on a command line, never printed.
+            $exportKey = trim((string) fgets(STDIN));
+            $importKey = trim((string) fgets(STDIN));
+
+            if (! preg_match('/^[0-9a-f]{64}$/', $exportKey) || ! preg_match('/^\S{16,}$/', $importKey)) {
+                $this->error('The keys on standard input don\'t look right.');
+
+                return 1;
+            }
+        } else {
+            $exportKey = $this->askKey('LEGACY_EXPORT_KEY (64 hex characters, from the new app)', '/^[0-9a-f]{64}$/');
+            $importKey = $this->askKey('LEGACY_IMPORT_KEY (from the new app)', '/^\S{16,}$/');
+        }
 
         $this->setEnv(['LEGACY_EXPORT_KEY' => $exportKey, 'LEGACY_EXPORT_HOST' => self::HOST]);
         $this->info('✓ .env has LEGACY_EXPORT_KEY and LEGACY_EXPORT_HOST.');
@@ -60,6 +74,9 @@ class PrepareExport extends Command
 
         $this->call('config:cache');
         $this->call('route:clear');
+        // The forge user may reload PHP-FPM without a password (Forge's sudoers rule).
+        exec('sudo -n /usr/sbin/service php7.3-fpm reload 2>&1', $output, $status);
+        $this->line($status === 0 ? '✓ PHP-FPM reloaded: the export route is live.' : 'Reload PHP-FPM yourself: sudo service php7.3-fpm reload');
 
         $installer = $this->writeInstaller($importKey);
 
