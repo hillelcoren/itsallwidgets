@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 
 /**
  * Everything the old server needs before the new app can copy from it, in one run (as forge,
- * after `git pull`):
+ * once the code is up to date; the new app's app:provision brings it, as a git bundle):
  *
  *   1. checks the avatars and thumbnails for files that aren't images (the podcast-form hole)
  *   2. sets LEGACY_EXPORT_KEY and LEGACY_EXPORT_HOST in .env (a backup of .env is kept)
@@ -16,7 +16,8 @@ use Illuminate\Console\Command;
  *      legacy.itsallwidgets.com: its nginx site with the key gate, its certificate, and the
  *      PHP-FPM reload
  *
- * Safe to run again. The keys come from the new app (php artisan app:provision prints them).
+ * Safe to run again. The keys come from the new app: app:provision sends them on standard input
+ * (--stdin), never on a command line or in any output.
  */
 class PrepareExport extends Command
 {
@@ -31,7 +32,7 @@ class PrepareExport extends Command
     public function handle()
     {
         if (! file_exists(base_path('routes/export.php'))) {
-            $this->error('The export route isn\'t here yet. Run `git pull --ff-only origin master` first.');
+            $this->error('The export route isn\'t here yet: bring the code up to date first (the new app\'s app:provision does it).');
 
             return 1;
         }
@@ -86,7 +87,7 @@ class PrepareExport extends Command
         $this->line('    sudo bash '.$installer);
         $this->line('');
         $this->line('It sets up '.self::HOST.' (its DNS record must point at this server first), gets its');
-        $this->line('certificate and reloads nginx and PHP-FPM. Then, in the new app\'s console: php artisan app:first-copy');
+        $this->line('certificate and reloads nginx and PHP-FPM. The new app then starts its first copy by itself.');
 
         return 0;
     }
@@ -110,7 +111,8 @@ class PrepareExport extends Command
             foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($directory, \FilesystemIterator::SKIP_DOTS)) as $file) {
                 $type = (string) $finfo->file($file->getPathname());
 
-                if ($file->isFile() && strpos($type, 'image/') !== 0) {
+                // The folders' own .gitignore (tracked) and other dotfiles aren't uploads.
+                if ($file->isFile() && strpos($file->getFilename(), '.') !== 0 && strpos($type, 'image/') !== 0) {
                     $found[] = $folder.'/'.$file->getFilename().' ('.$type.')';
                 }
             }
@@ -159,7 +161,16 @@ class PrepareExport extends Command
     {
         $path = base_path('.env');
         $contents = (string) file_get_contents($path);
-        copy($path, $path.'.backup-'.date('YmdHis'));
+        // The backup holds every secret: readable by its owner only, outside the web root and git.
+        $directory = storage_path('app/iaw');
+
+        if (! is_dir($directory)) {
+            mkdir($directory, 0700, true);
+        }
+
+        $backup = $directory.'/env.backup-'.date('YmdHis');
+        copy($path, $backup);
+        chmod($backup, 0600);
 
         foreach ($values as $name => $value) {
             $line = $name.'='.$value;
@@ -219,7 +230,10 @@ nginx -t
 service nginx reload
 
 echo "2/4 The certificate"
-certbot certonly --nginx -d {$host} --non-interactive --agree-tos --keep-until-expiring
+command -v certbot >/dev/null || { echo "certbot isn't installed: apt-get install certbot, then run this again."; exit 1; }
+# Webroot: the port-80 site above serves the challenge from the app's public folder (the nginx
+# plugin on this server is older than certbot). Renewals reload nginx.
+certbot certonly --webroot -w {$root} -d {$host} --non-interactive --agree-tos --register-unsafely-without-email --keep-until-expiring --deploy-hook "service nginx reload"
 
 echo "3/4 The HTTPS site, behind the import key"
 cat > "\$SITE" <<'NGINX'
