@@ -13,8 +13,8 @@ use Illuminate\Console\Command;
  *   3. creates storage/framework/iaw-busy
  *   4. caches the config and clears the route cache
  *   5. writes storage/app/iaw/install-legacy-host.sh, which (run with sudo) sets up
- *      legacy.itsallwidgets.com: its nginx site with the key gate, its certificate, and the
- *      PHP-FPM reload
+ *      legacy.itsallwidgets.com: its self-signed certificate (the host is proxied through
+ *      Cloudflare), its nginx site with the key gate, and the PHP-FPM reload
  *
  * Safe to run again. The keys come from the new app: app:provision sends them on standard input
  * (--stdin), never on a command line or in any output.
@@ -86,8 +86,8 @@ class PrepareExport extends Command
         $this->line('');
         $this->line('    sudo bash '.$installer);
         $this->line('');
-        $this->line('It sets up '.self::HOST.' (its DNS record must point at this server first), gets its');
-        $this->line('certificate and reloads nginx and PHP-FPM. The new app then starts its first copy by itself.');
+        $this->line('It sets up '.self::HOST.' (proxied through Cloudflare) with its certificate, and reloads');
+        $this->line('nginx and PHP-FPM. The new app then starts its first copy by itself.');
 
         return 0;
     }
@@ -185,9 +185,9 @@ class PrepareExport extends Command
     }
 
     /**
-     * The installer for legacy.itsallwidgets.com: a port-80 site first (so certbot can verify
-     * the name), the certificate, then the HTTPS site that only answers requests carrying the
-     * import key. It holds the key, so it's readable by its owner only.
+     * The installer for legacy.itsallwidgets.com: a self-signed certificate (the host is proxied
+     * through Cloudflare, with its own SSL mode), then the HTTPS site that only answers requests
+     * carrying the import key. It holds the key, so it's readable by its owner only.
      */
     private function writeInstaller($importKey)
     {
@@ -204,38 +204,22 @@ class PrepareExport extends Command
         $script = <<<BASH
 #!/usr/bin/env bash
 # Written by php artisan iaw:prepare-export. Sets up {$host} for the new app's copies.
+# The host is proxied through Cloudflare (this server only lets Cloudflare in on 80 and 443), with
+# its own Cloudflare SSL mode, so a self-signed certificate is all it needs here.
 set -euo pipefail
 
 SITE=/etc/nginx/sites-available/{$host}
+CERT_DIR=/etc/nginx/ssl/{$host}
 
-echo "1/4 A port-80 site, so certbot can check the name"
-cat > "\$SITE" <<'NGINX'
-server {
-    listen 80;
-    listen [::]:80;
-    server_name {$host};
-    root {$root};
+echo "1/3 The certificate (self-signed, made once)"
+if [ ! -f "\$CERT_DIR/server.crt" ]; then
+    mkdir -p "\$CERT_DIR"
+    chmod 700 "\$CERT_DIR"
+    openssl req -x509 -nodes -newkey rsa:2048 -days 3650 -subj "/CN={$host}" -keyout "\$CERT_DIR/server.key" -out "\$CERT_DIR/server.crt" 2>/dev/null
+    chmod 600 "\$CERT_DIR/server.key"
+fi
 
-    location ^~ /.well-known/acme-challenge/ {
-        allow all;
-    }
-
-    location / {
-        return 404;
-    }
-}
-NGINX
-ln -sf "\$SITE" /etc/nginx/sites-enabled/{$host}
-nginx -t
-service nginx reload
-
-echo "2/4 The certificate"
-command -v certbot >/dev/null || { echo "certbot isn't installed: apt-get install certbot, then run this again."; exit 1; }
-# Webroot: the port-80 site above serves the challenge from the app's public folder (the nginx
-# plugin on this server is older than certbot). Renewals reload nginx.
-certbot certonly --webroot -w {$root} -d {$host} --non-interactive --agree-tos --register-unsafely-without-email --keep-until-expiring --deploy-hook "service nginx reload"
-
-echo "3/4 The HTTPS site, behind the import key"
+echo "2/3 The site, behind the import key"
 cat > "\$SITE" <<'NGINX'
 map \$http_x_iaw_import \$iaw_import_ok {
     default 0;
@@ -246,15 +230,7 @@ server {
     listen 80;
     listen [::]:80;
     server_name {$host};
-    root {$root};
-
-    location ^~ /.well-known/acme-challenge/ {
-        allow all;
-    }
-
-    location / {
-        return 404;
-    }
+    return 404;
 }
 
 server {
@@ -264,9 +240,12 @@ server {
     root {$root};
     index index.php;
 
-    ssl_certificate /etc/letsencrypt/live/{$host}/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/{$host}/privkey.pem;
+    ssl_certificate /etc/nginx/ssl/{$host}/server.crt;
+    ssl_certificate_key /etc/nginx/ssl/{$host}/server.key;
     ssl_protocols TLSv1.2 TLSv1.3;
+
+    # On every answer, the gate's 404 included: tells the new app's setup check this site is in place.
+    add_header X-IAW-Legacy 1 always;
 
     # The copies are JSON pages of a few MB.
     gzip on;
@@ -292,10 +271,11 @@ server {
     }
 }
 NGINX
+ln -sf "\$SITE" /etc/nginx/sites-enabled/{$host}
 nginx -t
 service nginx reload
 
-echo "4/4 PHP-FPM, so the new .env and code are live"
+echo "3/3 PHP-FPM, so the new .env and code are live"
 service php7.3-fpm reload
 
 echo "Done: {$host} answers the new app (and nothing else)."
