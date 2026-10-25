@@ -13,8 +13,9 @@ use Illuminate\Console\Command;
  *   3. creates storage/framework/iaw-busy
  *   4. caches the config and clears the route cache
  *   5. writes storage/app/iaw/install-legacy-host.sh, which (run with sudo) sets up
- *      legacy.itsallwidgets.com: its self-signed certificate (the host is proxied through
- *      Cloudflare), its nginx site with the key gate, and the PHP-FPM reload
+ *      legacy.itsallwidgets.com: a placeholder certificate until the Cloudflare Origin CA one
+ *      replaces it (the host is proxied through Cloudflare, Full (strict)), its nginx site with
+ *      the key gate, and the PHP-FPM reload
  *
  * Safe to run again. The keys come from the new app: app:provision sends them on standard input
  * (--stdin), never on a command line or in any output.
@@ -185,8 +186,9 @@ class PrepareExport extends Command
     }
 
     /**
-     * The installer for legacy.itsallwidgets.com: a self-signed certificate (the host is proxied
-     * through Cloudflare, with its own SSL mode), then the HTTPS site that only answers requests
+     * The installer for legacy.itsallwidgets.com: a placeholder self-signed certificate, made only
+     * when none is there (the Cloudflare Origin CA certificate put at the same paths replaces it,
+     * and Cloudflare checks it: Full (strict)), then the HTTPS site that only answers requests
      * carrying the import key. It holds the key, so it's readable by its owner only.
      */
     private function writeInstaller($importKey)
@@ -204,14 +206,15 @@ class PrepareExport extends Command
         $script = <<<BASH
 #!/usr/bin/env bash
 # Written by php artisan iaw:prepare-export. Sets up {$host} for the new app's copies.
-# The host is proxied through Cloudflare (this server only lets Cloudflare in on 80 and 443), with
-# its own Cloudflare SSL mode, so a self-signed certificate is all it needs here.
+# The host is proxied through Cloudflare (this server only lets Cloudflare in on 80 and 443) in
+# Full (strict) mode: put the Cloudflare Origin CA certificate and key in \$CERT_DIR (server.crt,
+# server.key). The self-signed one made below is only a placeholder; Cloudflare refuses it (526).
 set -euo pipefail
 
 SITE=/etc/nginx/sites-available/{$host}
 CERT_DIR=/etc/nginx/ssl/{$host}
 
-echo "1/3 The certificate (self-signed, made once)"
+echo "1/3 The certificate (a self-signed placeholder if none is there; replace it with the Origin CA one)"
 if [ ! -f "\$CERT_DIR/server.crt" ]; then
     mkdir -p "\$CERT_DIR"
     chmod 700 "\$CERT_DIR"
@@ -221,11 +224,6 @@ fi
 
 echo "2/3 The site, behind the import key"
 cat > "\$SITE" <<'NGINX'
-map \$http_x_iaw_import \$iaw_import_ok {
-    default 0;
-    "{$key}" 1;
-}
-
 server {
     listen 80;
     listen [::]:80;
@@ -251,7 +249,9 @@ server {
     gzip on;
     gzip_types application/json;
 
-    if (\$iaw_import_ok = 0) {
+    # A plain comparison, not a map: a map's 48-character key overflows nginx's default
+    # map_hash_bucket_size (64), and then nginx -t fails for the whole server.
+    if (\$http_x_iaw_import != "{$key}") {
         return 404;
     }
 
@@ -271,8 +271,15 @@ server {
     }
 }
 NGINX
+# It holds the import key, and nginx reads its configuration as root.
+chmod 600 "\$SITE"
 ln -sf "\$SITE" /etc/nginx/sites-enabled/{$host}
-nginx -t
+if ! nginx -t; then
+    # Never leave a site nginx rejects enabled: the next restart would take every site down.
+    rm -f /etc/nginx/sites-enabled/{$host}
+    echo "nginx rejected {$host}, so it's switched off again and nothing was reloaded." >&2
+    exit 1
+fi
 service nginx reload
 
 echo "3/3 PHP-FPM, so the new .env and code are live"
